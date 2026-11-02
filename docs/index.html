@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</title>
+    <link rel="stylesheet" href="html/assets/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="index.html" class="nav-home active">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="html/pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="html/pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="html/pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="html/pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="html/pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="html/pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="html/pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="html/pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="html/pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="html/pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="html/pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="html/pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="html/pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="html/sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="html/sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="html/sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="html/sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="html/sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="html/sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="html/sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="html/sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="html/sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="html/sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="html/sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="html/sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="html/sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="html/sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="html/sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="html/sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="html/sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="html/sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="html/sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="html/sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="html/sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="html/sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="html/sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="html/sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="html/sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="html/sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="html/sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="html/sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="html/sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="html/sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="html/sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="html/sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="html/sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="html/sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="html/sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="ov-page">
+                <div class="page-header">
+                    <h1 class="page-title">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</h1>
+                    <p class="page-desc">A guide to the PL/I implementation of the GenApp general insurance application on z/OS. It covers the CICS 3270 menus, the business-logic orchestrators, the Db2 and VSAM back ends, the batch reporting and export programs, and the shared logging, setup and statistics utilities.</p>
+                </div>
+                <div class="ov-group-heading ov-group-heading--first">Application Documentation</div>
+        <div class="ov-section">
+            <span class="ov-section-title">Overview</span>
+            <div class="card-grid">
+                <a href="html/pages/application-overview.html" class="card">
+                    <span class="card-title">Application Overview</span>
+                    <span class="card-description">High-level introduction to the GenApp general insurance application. It covers the customer and policy domains (endowment, house, motor, commercial, claim), the online and batch entry points, and how the program families fit together.</span>
+                </a>
+                <a href="html/pages/program-catalog.html" class="card">
+                    <span class="card-title">Program Catalog and Naming Conventions</span>
+                    <span class="card-description">Index of all PL/I programs, grouped by function (inquiry, add, update, delete, test menus, batch, utilities). It explains the naming scheme: the IC/AC/UC/DC prefixes for customer operations, the IP/AP/UP/DP prefixes for policy operations, and the -01/-DB/-VS suffixes for business-logic, Db2 and VSAM programs.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Architecture</span>
+            <div class="card-grid">
+                <a href="html/pages/layered-architecture.html" class="card">
+                    <span class="card-title">Layered Architecture and Call Flow</span>
+                    <span class="card-description">Describes the layering of the application. 3270 menu programs call business-logic orchestrators (LGxxOL01 and LGxxUS01). These LINK to Db2 back ends, which in turn LINK to VSAM synchronisation programs. The page covers COMMAREA conventions, request identifiers and return-code handling across layers.</span>
+                </a>
+                <a href="html/pages/db2-data-access.html" class="card">
+                    <span class="card-title">Db2 Data Access Programs</span>
+                    <span class="card-description">The Db2 back-end programs that read and modify the CUSTOMER, CUSTOMER_SECURE, POLICY and policy-type tables (ENDOWMENT, HOUSE, MOTOR, COMMERCIAL, CLAIM). Covers SQL usage, cursors, foreign-key cascades, SQLCODE-to-return-code handling and the LINKs to the VSAM programs.</span>
+                </a>
+                <a href="html/pages/vsam-data-access.html" class="card">
+                    <span class="card-title">VSAM KSDS Data Access Programs</span>
+                    <span class="card-description">The VSAM back-end programs for the KSDSCUST customer file and the KSDSPOLY policy file. They cover read, write, rewrite and delete operations, key construction, generic GTEQ browsing, and the abend codes and return codes used on failure.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Customer Management</span>
+            <div class="card-grid">
+                <a href="html/pages/customer-inquiry.html" class="card">
+                    <span class="card-title">Customer Inquiry</span>
+                    <span class="card-description">The customer lookup flow. The LGICUS01 business-logic entry point calls LGICDB01 for Db2 retrieval. LGICVS01 returns a valid random customer number from the VSAM file and the GENACNTL range queue.</span>
+                </a>
+                <a href="html/pages/customer-creation.html" class="card">
+                    <span class="card-title">Customer Creation and Security Registration</span>
+                    <span class="card-description">How new customers are onboarded. This covers the Db2 insert with a customer number from the named counter, the VSAM record write, and the creation of the CUSTOMER_SECURE record.</span>
+                </a>
+                <a href="html/pages/customer-update.html" class="card">
+                    <span class="card-title">Customer Update</span>
+                    <span class="card-description">The customer update chain. The LGUCUS01 orchestrator validates the request and links to LGUCDB01, which updates Db2. LGUCDB01 then calls LGUCVS01 to keep the VSAM customer file synchronised.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Policy Management</span>
+            <div class="card-grid">
+                <a href="html/pages/policy-inquiry.html" class="card">
+                    <span class="card-title">Policy Inquiry</span>
+                    <span class="card-description">The policy and claim inquiry flow. LGIPOL01 is the business-logic entry point and LGIPDB01 retrieves data from Db2 for each policy type, claims, and multi-record lookups. LGIPVS01 does the generic key browse on the VSAM policy file.</span>
+                </a>
+                <a href="html/pages/policy-add.html" class="card">
+                    <span class="card-title">Policy Add</span>
+                    <span class="card-description">The new-policy flow. LGAPOL01 orchestrates, optionally calling the ODM business-rules program LGAPBR01. LGAPDB01 inserts into Db2 and LGAPVS01 persists the policy record to the VSAM KSDS.</span>
+                </a>
+                <a href="html/pages/policy-update.html" class="card">
+                    <span class="card-title">Policy Update</span>
+                    <span class="card-description">The policy update chain. LGUPOL01 validates and dispatches the request. LGUPDB01 uses a cursor and optimistic concurrency on the timestamp to update the Db2 tables. LGUPVS01 rewrites the VSAM policy record.</span>
+                </a>
+                <a href="html/pages/policy-delete.html" class="card">
+                    <span class="card-title">Policy Delete</span>
+                    <span class="card-description">The policy deletion chain. LGDPOL01 dispatches by policy type and LGDPDB01 deletes from the Db2 POLICY table, with child rows removed by foreign-key cascade. LGDPVS01 removes the matching record from the VSAM policy file.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Online User Interface (3270 Menus)</span>
+            <div class="card-grid">
+                <a href="html/pages/customer-menu.html" class="card">
+                    <span class="card-title">Customer Menu (LGTESTC1, SSC1)</span>
+                    <span class="card-description">The 3270 customer menu for inquiring about, adding and updating customers. It delegates to the customer business services and maintains the GENACNTL customer-range queue.</span>
+                </a>
+                <a href="html/pages/motor-and-endowment-menus.html" class="card">
+                    <span class="card-title">Motor and Endowment Policy Menus</span>
+                    <span class="card-description">The 3270 menu programs for motor policies (LGTESTP1, map SSMAPP1) and endowment policies (LGTESTP2). They cover inquire, add, delete and update, plus pseudo-conversational handling and PF3 exit.</span>
+                </a>
+                <a href="html/pages/house-and-commercial-menus.html" class="card">
+                    <span class="card-title">House and Commercial Policy Menus</span>
+                    <span class="card-description">The 3270 menu programs for house policies (LGTESTP3, SSP3) and commercial policies (LGTESTP4, SSP4). They cover the request codes used, the back-end services called, rollback on failure and screen handling.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Batch Processing</span>
+            <div class="card-grid">
+                <a href="html/pages/batch-customer-reporting.html" class="card">
+                    <span class="card-title">Batch Customer Reporting</span>
+                    <span class="card-description">The non-CICS batch programs that produce customer detail lines. LGBATCH drives the report from an input file of customer numbers. LGBATCHF formats each report line. LGBATDB2 is a single-customer test driver.</span>
+                </a>
+                <a href="html/pages/motor-policy-export.html" class="card">
+                    <span class="card-title">Motor Policy Export</span>
+                    <span class="card-description">The batch program LGMOTOUT. It exports the GENASA1.MOTOR table to a sequential flat file through a read-only Db2 cursor and sets a return code for the calling job.</span>
+                </a>
+            </div>
+        </div>
+        <div class="ov-section">
+            <span class="ov-section-title">Operations and Shared Services</span>
+            <div class="card-grid">
+                <a href="html/pages/error-logging.html" class="card">
+                    <span class="card-title">Shared Error and Message Logging (LGSTSQ)</span>
+                    <span class="card-description">The common logging utility that writes to the CSMT transient data queue and to GENAxxxx temporary storage queues. It is called by the orchestrator, Db2 and VSAM programs to record diagnostics.</span>
+                </a>
+                <a href="html/pages/environment-setup.html" class="card">
+                    <span class="card-title">Environment Setup and Reset (LGSETUP)</span>
+                    <span class="card-description">Resetting the demo environment. This covers clearing the temporary storage queues, rebuilding the control queue and customer range, recreating the customer-number named counter, and zeroing the statistics counters.</span>
+                </a>
+                <a href="html/pages/statistics-collection.html" class="card">
+                    <span class="card-title">Transaction Statistics Collection</span>
+                    <span class="card-description">Monitoring of transaction volumes. LGASTAT1 is the event-processing adapter that increments named counters per request type and outcome. LGWEBST5 periodically aggregates the counters and computes deltas into temporary storage queues.</span>
+                </a>
+            </div>
+        </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — index page never sets a referrer; breadcrumb only shows
+       when arriving from the Source Files section of a wiki page. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        /* Clear any stale referrer so direct navigation never shows a breadcrumb. */
+        if (link.getAttribute('href') && link.getAttribute('href').indexOf('sources/') === -1) {
+          try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+        }
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>

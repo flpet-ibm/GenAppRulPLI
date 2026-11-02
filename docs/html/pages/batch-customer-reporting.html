@@ -1,0 +1,1174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Customer Reporting - GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../assets/prism-tomorrow.css">
+    <script src="../assets/prism-core.js"></script>
+    <script src="../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="batch-customer-reporting.html" class="nav-link active" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="page-container">
+                <div class="content-layout">
+                    <div class="prose">
+                        <details class="source-files-disclosure">
+            <summary>
+                <svg class="sf-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Source Files
+                <span style="margin-left:4px;font-size:11px;color:var(--fg-subtle)">(3)</span>
+            </summary>
+            <div class="source-files-body">
+                <ul class="source-files-list">
+            <li><a href="../sources/program/pli/LGBATCH.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGBATCH
+            </a></li>
+            <li><a href="../sources/program/pli/LGBATCHF.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGBATCHF
+            </a></li>
+            <li><a href="../sources/program/pli/LGBATDB2.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGBATDB2
+            </a></li>
+                </ul>
+            </div>
+        </details>
+                        <h1 id="batch-customer-reporting" tabindex="-1">Batch Customer Reporting</h1>
+<p>This page describes the non-CICS batch programs that produce customer detail lines from the Db2 <code>CUSTOMER</code> table. <strong>LGBATCH</strong> drives the report from an input file of customer numbers. <strong>LGBATCHF</strong> formats each report line. <strong>LGBATDB2</strong> is a single-customer test driver for the same logic.</p>
+<h2 id="1-overview" tabindex="-1">1. Overview</h2>
+<h3 id="11-purpose" tabindex="-1">1.1 Purpose</h3>
+<p>The batch customer reporting application produces a customer detail report outside the online (CICS) environment. All three programs are Enterprise PL/I <code>Options(Main)</code> or called-subroutine modules. They share one commarea layout (<code>LGCMAREA</code>) and one Db2 table (<code>CUSTOMER</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Program</th>
+<th>Role</th>
+<th>Inputs</th>
+<th>Outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LGBATCH</code></td>
+<td>Batch driver. Reads customer numbers, looks up each customer in Db2, calls the formatter, and writes the report.</td>
+<td><code>CUSTIN</code> file (10-byte records), Db2 <code>CUSTOMER</code></td>
+<td><code>CUSTRPT</code> file (80-byte records), return code 16 if <code>CUSTIN</code> can’t be opened</td>
+</tr>
+<tr>
+<td><code>LGBATCHF</code></td>
+<td>Formatting subroutine. Builds one 80-character report line.</td>
+<td>Customer number, commarea pointer</td>
+<td><code>LS_LINE</code> (80 characters), a <code>DISPLAY</code> trace</td>
+</tr>
+<tr>
+<td><code>LGBATDB2</code></td>
+<td>Test driver. Looks up customer number 1 and displays the formatted line.</td>
+<td>Hard-coded key <code>1</code>, Db2 <code>CUSTOMER</code></td>
+<td>Console/SYSOUT messages</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-key-characteristics" tabindex="-1">1.2 Key Characteristics</h3>
+<ul>
+<li>The report contains one line for every input record. There is no filtering, de-duplication or skipping.</li>
+<li>Each line has the form <code>Customer &lt;10-digit number&gt; is &lt;first name&gt; &lt;last name&gt;</code>.</li>
+<li>A customer that isn’t found, or whose SELECT fails, is still reported. The line is built from whatever the commarea still holds from the previous record.</li>
+<li><code>LGBATCHF</code> is loaded dynamically with <code>FETCH</code> by both <code>LGBATCH</code> and <code>LGBATDB2</code>.</li>
+<li>Db2 access uses a singleton <code>SELECT ... INTO</code> host-variable pattern against the commarea fields.</li>
+</ul>
+<h2 id="2-system-architecture" tabindex="-1">2. System Architecture</h2>
+<h3 id="21-component-architecture" tabindex="-1">2.1 Component Architecture</h3>
+<p><code>LGBATCH</code> and <code>LGBATDB2</code> are two alternative entry points. Both use the same Db2 lookup pattern, the same commarea storage (<code>BATCH_COMM_AREA</code>) and the same formatter (<code>LGBATCHF</code>).</p>
+<div class="mermaid">
+graph TD
+    JCL[Batch JCL / DSN attach] --> LGBATCH[LGBATCH<br/>Report driver]
+    JCL --> LGBATDB2[LGBATDB2<br/>Single-customer test driver]
+
+    CUSTIN[(CUSTIN<br/>FB 10 bytes)] --> LGBATCH
+    LGBATCH --> CUSTRPT[(CUSTRPT<br/>FB 80 bytes)]
+
+    LGBATCH -->|SELECT by CUSTOMERNUMBER| DB2[(Db2 CUSTOMER table)]
+    LGBATDB2 -->|SELECT customer 1| DB2
+
+    LGBATCH -->|FETCH + CALL| LGBATCHF[LGBATCHF<br/>Line formatter]
+    LGBATDB2 -->|FETCH + CALL| LGBATCHF
+
+    COMM[[LGCMAREA commarea<br/>BATCH_COMM_AREA 32,500 bytes]] -.shared layout.- LGBATCH
+    COMM -.shared layout.- LGBATCHF
+    COMM -.shared layout.- LGBATDB2
+
+    LGBATCHF --> LINE[80-char report line]
+    LGBATDB2 --> SYSOUT[(SYSOUT / console)]
+    LGBATCHF --> SYSOUT
+</div>
+<h3 id="22-shared-communication-area" tabindex="-1">2.2 Shared Communication Area</h3>
+<p>All three programs include the <code>LGCMAREA</code> layout (<code>plinc/LGCMAREA.inc</code>).</p>
+<ul>
+<li><code>BATCH_COMM_AREA</code> is a <code>CHAR(32500)</code> work area in the drivers.</li>
+<li><code>COMM_AREA_PTR</code> is set to <code>ADDR(BATCH_COMM_AREA)</code>.</li>
+<li>A <code>BASED</code> <code>COMM_AREA</code> union overlays that storage, so the Db2 <code>SELECT</code> loads data straight into the <code>CA_*</code> fields.</li>
+<li><code>LGBATCHF</code> receives the pointer and overlays the same layout on the caller’s storage.</li>
+</ul>
+<p>Only the customer request portion is used in this application.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Length</th>
+<th>Source (Db2 column)</th>
+<th>Used by LGBATCHF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_FIRST_NAME</code></td>
+<td>10</td>
+<td><code>FIRSTNAME</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>CA_LAST_NAME</code></td>
+<td>20</td>
+<td><code>LASTNAME</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>CA_DOB</code></td>
+<td>10</td>
+<td><code>DATEOFBIRTH</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>CA_HOUSE_NAME</code></td>
+<td>20</td>
+<td><code>HOUSENAME</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>CA_HOUSE_NUM</code></td>
+<td>4</td>
+<td><code>HOUSENUMBER</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>CA_POSTCODE</code></td>
+<td>8</td>
+<td><code>POSTCODE</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>CA_PHONE_MOBILE</code></td>
+<td>20</td>
+<td><code>PHONEMOBILE</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>CA_PHONE_HOME</code></td>
+<td>20</td>
+<td><code>PHONEHOME</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>CA_EMAIL_ADDRESS</code></td>
+<td>100</td>
+<td><code>EMAILADDRESS</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td>2</td>
+<td>Set by <code>LGBATCH</code></td>
+<td>No (not read)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-runtime-environment" tabindex="-1">2.3 Runtime Environment</h3>
+<ul>
+<li>Enterprise PL/I for z/OS with the Language Environment runtime. It supports <code>FETCH</code>, record I/O, <code>ON</code> conditions, <code>DISPLAY</code>, <code>STOP</code> and <code>PLIRETC</code>.</li>
+<li>A Db2 precompile or coprocessor step, plus a bound plan or package (<code>GenAppBind.jcl</code>).</li>
+<li>The <code>CUSTOMER</code> table, defined by <code>GenAppDDL.jcl</code>.</li>
+<li>The <code>LGBATCHF</code> load module in the load library or STEPLIB.</li>
+<li>Run JCL with <code>CUSTIN</code> and <code>CUSTRPT</code> DD statements, for <code>LGBATCH</code> only.</li>
+</ul>
+<h2 id="3-data-flow" tabindex="-1">3. Data Flow</h2>
+<h3 id="31-end-to-end-report-flow" tabindex="-1">3.1 End-to-End Report Flow</h3>
+<div class="mermaid">
+graph LR
+    A[CUSTIN record<br/>CUSTIN_CUSTNUMBER PIC 9999999999] --> B[Convert to FIXED BIN 31<br/>DB2_CUSTOMERNUMBER_INT]
+    B --> C[SELECT from CUSTOMER<br/>WHERE CUSTOMERNUMBER = :host var]
+    C --> D[CA_* fields in COMM_AREA]
+    C --> E[SQLCODE evaluation]
+    E --> F[CA_RETURN_CODE<br/>00 / 01 / 90]
+    D --> G[LGBATCHF]
+    A --> G
+    G --> H[CUSTRPT_LINE CHAR 80]
+    H --> I[WRITE to CUSTRPT]
+</div>
+<h3 id="32-entity-relationships" tabindex="-1">3.2 Entity Relationships</h3>
+<div class="mermaid">
+erDiagram
+    CUSTIN_RECORD ||--|| CUSTOMER : "keys lookup by CUSTOMERNUMBER"
+    CUSTOMER ||--|| COMM_AREA_CUSTOMER_REQUEST : "SELECT INTO host variables"
+    COMM_AREA_CUSTOMER_REQUEST ||--|| CUSTRPT_LINE : "names formatted by LGBATCHF"
+    CUSTRPT_LINE ||--|| CUSTRPT_FILE : "one record per input record"
+
+    CUSTIN_RECORD {
+        string CUSTIN_CUSTNUMBER "PIC 9999999999"
+    }
+    CUSTOMER {
+        int CUSTOMERNUMBER
+        string FIRSTNAME
+        string LASTNAME
+        string DATEOFBIRTH
+        string EMAILADDRESS
+    }
+    COMM_AREA_CUSTOMER_REQUEST {
+        string CA_FIRST_NAME
+        string CA_LAST_NAME
+        string CA_RETURN_CODE
+    }
+    CUSTRPT_LINE {
+        string text "CHAR 80"
+    }
+</div>
+<h2 id="4-lgbatch-batch-report-driver" tabindex="-1">4. LGBATCH: Batch Report Driver</h2>
+<h3 id="41-initialization-and-resource-setup" tabindex="-1">4.1 Initialization and Resource Setup</h3>
+<p>On start-up the program does the following, in order:</p>
+<ol>
+<li>Sets <code>COMM_AREA_PTR</code> to the address of <code>BATCH_COMM_AREA</code>.</li>
+<li>Executes <code>FETCH LGBATCHF</code> to load the formatter.</li>
+<li>Establishes <code>ON UNDEFINEDFILE(CUSTIN)</code>. This handler displays <code>'FILE STATUS AT OPEN CUSTIN'</code>, calls <code>PLIRETC(16)</code> and issues <code>STOP</code>.</li>
+<li>Opens <code>CUSTIN</code> (<code>RECORD INPUT SEQUENTIAL ENV(FB RECSIZE(10))</code>) and <code>CUSTRPT</code> (<code>RECORD OUTPUT SEQUENTIAL ENV(FB RECSIZE(80))</code>).</li>
+<li>Establishes <code>ON ENDFILE(CUSTIN)</code>, which sets <code>FI_EOF = '1'B</code>.</li>
+</ol>
+<h3 id="42-main-processing-loop" tabindex="-1">4.2 Main Processing Loop</h3>
+<p>The program performs a priming read, then loops until <code>FI_EOF</code> is set. Each iteration calls <code>PROCESS_RECORD</code> and then reads the next record. An empty input file skips the loop and ends normally.</p>
+<div class="mermaid">
+flowchart TD
+    S([Start]) --> P[Set COMM_AREA_PTR, FETCH LGBATCHF]
+    P --> O{CUSTIN opens?}
+    O -- No --> E[DISPLAY message<br/>PLIRETC 16, STOP]
+    O -- Yes --> R1[Open CUSTRPT<br/>Priming READ CUSTIN]
+    R1 --> L{FI_EOF?}
+    L -- No --> PR[PROCESS_RECORD]
+    PR --> R2[READ next CUSTIN record]
+    R2 --> L
+    L -- Yes --> C[CLOSE CUSTIN and CUSTRPT]
+    C --> X([RETURN])
+</div>
+<h3 id="43-process_record" tabindex="-1">4.3 PROCESS_RECORD</h3>
+<p>For each customer, <code>PROCESS_RECORD</code> does the following in a fixed order:</p>
+<ol>
+<li>Converts <code>CUSTIN_CUSTNUMBER</code> into the binary host variable <code>DB2_CUSTOMERNUMBER_INT</code> (<code>FIXED BIN(31)</code>).</li>
+<li>Calls <code>GET_CUSTOMER_INFO</code> to run the SELECT.</li>
+<li>Calls <code>LGBATCHF(CUSTIN_CUSTNUMBER, COMM_AREA_PTR, CUSTRPT_LINE)</code>.</li>
+<li>Executes <code>WRITE FILE(CUSTRPT) FROM(CUSTRPT_LINE)</code>.</li>
+</ol>
+<h3 id="44-get_customer_info-and-return-codes" tabindex="-1">4.4 GET_CUSTOMER_INFO and Return Codes</h3>
+<p>The procedure sets <code>EM_SQLREQ</code> to <code>' SELECT CUSTOMER'</code>. It then runs a singleton SELECT of nine columns into the commarea fields and maps <code>SQLCODE</code> to a business return code.</p>
+<table>
+<thead>
+<tr>
+<th>SQLCODE</th>
+<th><code>CA_RETURN_CODE</code></th>
+<th>Meaning</th>
+<th>Extra action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>00</code></td>
+<td>Success</td>
+<td>None</td>
+</tr>
+<tr>
+<td>100</td>
+<td><code>01</code></td>
+<td>Customer not found</td>
+<td>None; the line is still formatted</td>
+</tr>
+<tr>
+<td>Other</td>
+<td><code>90</code></td>
+<td>Database error</td>
+<td>Calls <code>WRITE_ERROR_MESSAGE</code></td>
+</tr>
+</tbody>
+</table>
+<div class="mermaid">
+stateDiagram-v2
+    [*] --> Select
+    Select --> Found: SQLCODE 0
+    Select --> NotFound: SQLCODE 100
+    Select --> DbError: other SQLCODE
+    Found --> Format: CA_RETURN_CODE = 00
+    NotFound --> Format: CA_RETURN_CODE = 01
+    DbError --> BuildMsg: CA_RETURN_CODE = 90
+    BuildMsg --> Format: ERROR_MSG built, not written
+    Format --> [*]: LGBATCHF + WRITE
+</div>
+<h3 id="45-write_error_message" tabindex="-1">4.5 WRITE_ERROR_MESSAGE</h3>
+<p>This routine fills the in-memory <code>ERROR_MSG</code> structure:</p>
+<ul>
+<li><code>SQLCODE</code> goes to <code>EM_SQLRC</code>.</li>
+<li><code>WS_DATE</code> goes to <code>EM_DATE</code>.</li>
+<li><code>WS_TIME</code> goes to <code>EM_TIME</code>.</li>
+</ul>
+<p>The message is never displayed or written. <code>WS_DATE</code> and <code>WS_TIME</code> stay blank, and <code>EM_CUSNUM</code> and <code>EM_POLNUM</code> are never populated. Only <code>CA_RETURN_CODE = '90'</code> shows that an error occurred, and that code isn’t written anywhere either.</p>
+<h3 id="46-termination" tabindex="-1">4.6 Termination</h3>
+<p>After the loop ends, the program closes <code>CUSTIN</code> and <code>CUSTRPT</code> and executes <code>RETURN</code>. Normal completion sets no non-zero return code, even if some records hit the not-found or error paths.</p>
+<h2 id="5-lgbatchf-report-line-formatter" tabindex="-1">5. LGBATCHF: Report Line Formatter</h2>
+<p><code>LGBATCHF</code> is a leaf subroutine with no file, database or CICS access. The source documentation also refers to it as LGBATCF in places. It takes three parameters by reference:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CUSTNUMBER</code></td>
+<td><code>PIC '9999999999'</code></td>
+<td>In</td>
+<td>Customer number, printed with leading zeros</td>
+</tr>
+<tr>
+<td><code>COMM_PTR</code></td>
+<td><code>PTR</code></td>
+<td>In</td>
+<td>Pointer to the caller’s <code>LGCMAREA</code> commarea</td>
+</tr>
+<tr>
+<td><code>LS_LINE</code></td>
+<td><code>CHAR(80)</code></td>
+<td>Out</td>
+<td>Formatted report line</td>
+</tr>
+</tbody>
+</table>
+<h3 id="51-processing-logic" tabindex="-1">5.1 Processing Logic</h3>
+<p>The routine assigns <code>COMM_AREA_PTR = COMM_PTR</code>, so the based structure overlays the caller’s storage. It then emulates COBOL <code>STRING ... DELIMITED BY SPACE</code> for each name using <code>INDEX</code>:</p>
+<ul>
+<li>If no blank is found (position 0), the token is the whole field.</li>
+<li>If the blank is in position 1, the token is an empty string.</li>
+<li>Otherwise, the token is the text before the first blank.</li>
+</ul>
+<p>It then builds the line, displays a trace message and returns.</p>
+<div class="mermaid">
+graph TD
+    A([Entry]) --> B[COMM_AREA_PTR = COMM_PTR]
+    B --> C[INDEX CA_FIRST_NAME for blank]
+    C --> D[Derive FIRST_TOKEN]
+    D --> E[INDEX CA_LAST_NAME for blank]
+    E --> F[Derive LAST_TOKEN]
+    F --> G["LS_LINE = 'Customer ' + CUSTNUMBER + ' is ' + FIRST_TOKEN + ' ' + LAST_TOKEN"]
+    G --> H["DISPLAY 'LGBATCHF WAS HERE... ' + LS_LINE"]
+    H --> I([RETURN])
+</div>
+<h3 id="52-formatting-rules" tabindex="-1">5.2 Formatting Rules</h3>
+<ul>
+<li>The fixed text takes 24 characters (9 + 10 + 4 + 1). The tokens can add at most 10 + 20 characters, so the line never exceeds 80 characters.</li>
+<li>Work variables are <code>FIRST_TOKEN CHAR(10) VAR</code>, <code>LAST_TOKEN CHAR(20) VAR</code> and <code>POS FIXED BIN(15)</code>.</li>
+<li><code>&quot;Mary Ann&quot;</code> becomes <code>Mary</code>, and <code>&quot;Van Der Berg&quot;</code> becomes <code>Van</code>.</li>
+<li>An empty first name leaves two consecutive blanks. An empty last name leaves a trailing blank.</li>
+<li>The routine does no validation, has no error path, does not check for a null pointer, and never sets <code>CA_RETURN_CODE</code>.</li>
+<li>The trace <code>DISPLAY</code> runs on every call and cannot be switched off. For <code>LGBATCH</code> this means one trace line per customer in the job output.</li>
+</ul>
+<h2 id="6-lgbatdb2-single-customer-test-driver" tabindex="-1">6. LGBATDB2: Single-Customer Test Driver</h2>
+<p><code>LGBATDB2</code> is a batch main procedure that takes no parameters and reads no files. It gives a quick end-to-end check of the Db2 retrieval and <code>LGBATCHF</code> formatting.</p>
+<ol>
+<li>Sets <code>COMM_AREA_PTR</code> to <code>ADDR(BATCH_COMM_AREA)</code>.</li>
+<li>Fetches <code>LGBATCHF</code>.</li>
+<li>Displays <code>SQLCODE</code> and <code>SQLSTATE</code>. This happens before any SQL runs, so it only shows initial SQLCA values.</li>
+<li>Sets <code>DB2_CUSTOMERNUMBER_INT = 1</code>.</li>
+<li>Calls <code>PROCESS_RECORD</code>, which does the following:
+<ul>
+<li>Calls <code>GET_CUSTOMER_INFO</code>.</li>
+<li>Moves the key into <code>CUSTIN_CUSTNUMBER</code>.</li>
+<li>Calls <code>LGBATCHF</code>.</li>
+<li>Displays <code>CUSTRPT_LINE</code>.</li>
+</ul>
+</li>
+<li>Returns.</li>
+</ol>
+<p>Unlike <code>LGBATCH</code>, it doesn’t check <code>SQLCODE</code> after the SELECT, doesn’t set <code>CA_RETURN_CODE</code> and has no <code>ON</code> units. Changing the customer means changing the constant in source.</p>
+<h2 id="7-sequence-of-operations" tabindex="-1">7. Sequence of Operations</h2>
+<h3 id="71-lgbatch-run" tabindex="-1">7.1 LGBATCH Run</h3>
+<div class="mermaid">
+sequenceDiagram
+    participant JCL as Batch Job
+    participant LGB as LGBATCH
+    participant IN as CUSTIN
+    participant DB as Db2 CUSTOMER
+    participant FMT as LGBATCHF
+    participant OUT as CUSTRPT
+
+    JCL->>LGB: Start step
+    LGB->>FMT: FETCH (dynamic load)
+    LGB->>IN: OPEN
+    LGB->>OUT: OPEN
+    LGB->>IN: READ (priming)
+    loop Until ENDFILE
+        LGB->>DB: SELECT ... WHERE CUSTOMERNUMBER = :key
+        DB-->>LGB: Row + SQLCODE (0 / 100 / other)
+        LGB->>LGB: Set CA_RETURN_CODE (00 / 01 / 90)
+        LGB->>FMT: CALL (CUSTIN_CUSTNUMBER, COMM_AREA_PTR, CUSTRPT_LINE)
+        FMT-->>LGB: Formatted 80-char line
+        LGB->>OUT: WRITE CUSTRPT_LINE
+        LGB->>IN: READ next
+    end
+    LGB->>IN: CLOSE
+    LGB->>OUT: CLOSE
+    LGB-->>JCL: RETURN
+</div>
+<h3 id="72-lgbatdb2-run" tabindex="-1">7.2 LGBATDB2 Run</h3>
+<div class="mermaid">
+sequenceDiagram
+    participant JCL as Batch Job
+    participant TD as LGBATDB2
+    participant DB as Db2 CUSTOMER
+    participant FMT as LGBATCHF
+    participant SO as SYSOUT
+
+    JCL->>TD: Start step
+    TD->>FMT: FETCH
+    TD->>SO: DISPLAY SQLCODE / SQLSTATE
+    TD->>TD: DB2_CUSTOMERNUMBER_INT = 1
+    TD->>DB: SELECT ... INTO CA_* fields
+    DB-->>TD: Row (SQLCODE not checked)
+    TD->>FMT: CALL (CUSTIN_CUSTNUMBER, COMM_AREA_PTR, CUSTRPT_LINE)
+    FMT->>SO: DISPLAY 'LGBATCHF WAS HERE... ' + line
+    FMT-->>TD: Report line
+    TD->>SO: DISPLAY CUSTRPT_LINE
+    TD-->>JCL: RETURN
+</div>
+<h2 id="8-interfaces-and-code-examples" tabindex="-1">8. Interfaces and Code Examples</h2>
+<h3 id="81-files" tabindex="-1">8.1 Files</h3>
+<table>
+<thead>
+<tr>
+<th>DD / File</th>
+<th>Direction</th>
+<th>Organization</th>
+<th>Record</th>
+<th>Program</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CUSTIN</code></td>
+<td>Input</td>
+<td>Sequential, fixed-blocked</td>
+<td>10 bytes</td>
+<td><code>LGBATCH</code></td>
+</tr>
+<tr>
+<td><code>CUSTRPT</code></td>
+<td>Output</td>
+<td>Sequential, fixed-blocked</td>
+<td>80 bytes</td>
+<td><code>LGBATCH</code></td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">CUSTIN  FILE RECORD INPUT  SEQUENTIAL ENV(FB RECSIZE(10))
+CUSTRPT FILE RECORD OUTPUT SEQUENTIAL ENV(FB RECSIZE(80))</code></pre>
+</div>
+<h3 id="82-lgbatchf-call-interface" tabindex="-1">8.2 LGBATCHF Call Interface</h3>
+<p>The entry declaration is the same in both drivers:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">ENTRY(PIC &#039;9999999999&#039;, PTR, CHAR(80))</code></pre>
+</div>
+<p>The call, as made from <code>PROCESS_RECORD</code> in both drivers, is:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">CALL LGBATCHF(CUSTIN_CUSTNUMBER, COMM_AREA_PTR, CUSTRPT_LINE);</code></pre>
+</div>
+<h3 id="83-db2-access-pattern" tabindex="-1">8.3 Db2 Access Pattern</h3>
+<p>The singleton SELECT used by <code>GET_CUSTOMER_INFO</code> retrieves the following columns into the commarea host variables:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">SQL</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-sql">SELECT FIRSTNAME, LASTNAME, DATEOFBIRTH, HOUSENAME, HOUSENUMBER,
+       POSTCODE, PHONEMOBILE, PHONEHOME, EMAILADDRESS
+  INTO :CA_FIRST_NAME, :CA_LAST_NAME, :CA_DOB, :CA_HOUSE_NAME,
+       :CA_HOUSE_NUM, :CA_POSTCODE, :CA_PHONE_MOBILE,
+       :CA_PHONE_HOME, :CA_EMAIL_ADDRESS
+  FROM CUSTOMER
+ WHERE CUSTOMERNUMBER = :DB2_CUSTOMERNUMBER_INT</code></pre>
+</div>
+<h3 id="84-sqlcode-mapping-and-open-failure-handling-lgbatch" tabindex="-1">8.4 SQLCODE Mapping and Open-Failure Handling (LGBATCH)</h3>
+<p>This is a sketch of the logic described for <code>LGBATCH</code>, not verbatim source:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">SELECT (SQLCODE);
+  WHEN (0)   CA_RETURN_CODE = &#039;00&#039;;
+  WHEN (100) CA_RETURN_CODE = &#039;01&#039;;
+  OTHERWISE  DO;
+               CA_RETURN_CODE = &#039;90&#039;;
+               CALL WRITE_ERROR_MESSAGE;
+             END;
+END;</code></pre>
+</div>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">ON UNDEFINEDFILE(CUSTIN) BEGIN;
+   DISPLAY(&#039;FILE STATUS AT OPEN CUSTIN&#039;);
+   CALL PLIRETC(16);
+   STOP;
+END;
+ON ENDFILE(CUSTIN) FI_EOF = &#039;1&#039;B;</code></pre>
+</div>
+<h3 id="85-report-line-construction-lgbatchf" tabindex="-1">8.5 Report Line Construction (LGBATCHF)</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">LS_LINE = &#039;Customer &#039; || CUSTNUMBER || &#039; is &#039; || FIRST_TOKEN || &#039; &#039; || LAST_TOKEN;
+DISPLAY(&#039;LGBATCHF WAS HERE... &#039; || LS_LINE);</code></pre>
+</div>
+<h2 id="9-output-examples" tabindex="-1">9. Output Examples</h2>
+<h3 id="91-typical-customer" tabindex="-1">9.1 Typical Customer</h3>
+<p>Input: <code>CUSTNUMBER = 0000000123</code>, <code>CA_FIRST_NAME = John</code>, <code>CA_LAST_NAME = Smith</code>.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>Customer 0000000123 is John Smith</code></pre>
+</div>
+<p>The console also shows <code>LGBATCHF WAS HERE... Customer 0000000123 is John Smith</code>.</p>
+<h3 id="92-names-with-embedded-blanks" tabindex="-1">9.2 Names With Embedded Blanks</h3>
+<p>Input: <code>CA_FIRST_NAME = Mary Ann</code>, <code>CA_LAST_NAME = Van Der Berg</code>.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>Customer 0000004567 is Mary Van</code></pre>
+</div>
+<h3 id="93-blank-first-name-and-full-last-name" tabindex="-1">9.3 Blank First Name and Full Last Name</h3>
+<p>Input: <code>CA_FIRST_NAME</code> is all blanks, and <code>CA_LAST_NAME = ABCDEFGHIJKLMNOPQRST</code>.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>Customer 0000000999 is  ABCDEFGHIJKLMNOPQRST</code></pre>
+</div>
+<p>There are two blanks between <code>is</code> and the last name.</p>
+<h3 id="94-lgbatdb2-sysout-customer-1-found" tabindex="-1">9.4 LGBATDB2 SYSOUT (Customer 1 Found)</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>LGBATDB2 SQLCode : 0
+LGBATDB2 SQLState: 00000
+LGBATCHF WAS HERE... Customer 0000000001 is Andrew Pandy
+Customer 0000000001 is Andrew Pandy</code></pre>
+</div>
+<h3 id="95-lgbatdb2-with-customer-1-not-found" tabindex="-1">9.5 LGBATDB2 With Customer 1 Not Found</h3>
+<p>The SELECT returns +100, which isn’t checked, so the result depends on the leftover commarea contents. In the best case the names are blank:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>Customer 0000000001 is</code></pre>
+</div>
+<h2 id="10-error-handling" tabindex="-1">10. Error Handling</h2>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>LGBATCH</th>
+<th>LGBATCHF</th>
+<th>LGBATDB2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CUSTIN</code> open failure</td>
+<td>Message, <code>PLIRETC(16)</code>, <code>STOP</code></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><code>CUSTRPT</code> open failure</td>
+<td>No handler (default PL/I action)</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>End of input</td>
+<td><code>ENDFILE</code> sets <code>FI_EOF</code></td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Customer not found (+100)</td>
+<td><code>CA_RETURN_CODE = '01'</code>, processing continues</td>
+<td>N/A</td>
+<td>Not checked</td>
+</tr>
+<tr>
+<td>Other SQL error</td>
+<td><code>CA_RETURN_CODE = '90'</code>, message built but not output</td>
+<td>N/A</td>
+<td>Not checked</td>
+</tr>
+<tr>
+<td>READ/WRITE errors, <code>FETCH</code> failure</td>
+<td>No handling</td>
+<td>N/A</td>
+<td>No handling</td>
+</tr>
+<tr>
+<td>Null/invalid commarea pointer</td>
+<td>N/A</td>
+<td>Not checked</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h3 id="101-known-limitations" tabindex="-1">10.1 Known Limitations</h3>
+<ul>
+<li><strong>Stale data:</strong> a not-found or failed lookup produces a line from the previous customer’s commarea contents. <code>CA_RETURN_CODE</code> is the only indicator, and <code>LGBATCHF</code> doesn’t read it.</li>
+<li><strong>Silent SQL errors:</strong> <code>LGBATCH</code> builds <code>ERROR_MSG</code> but never writes it. <code>LGBATDB2</code> ignores SQL results entirely.</li>
+<li><strong>Nullable columns:</strong> no indicator variables are declared. A NULL column gives SQLCODE -305, which <code>LGBATCH</code> maps to <code>'90'</code> and <code>LGBATDB2</code> ignores.</li>
+<li><strong>Truncation:</strong> values longer than the host-variable lengths are truncated. For example, the email address is limited to 100 characters.</li>
+<li><strong>Name truncation:</strong> names are cut at the first embedded blank by <code>LGBATCHF</code>.</li>
+<li><strong>Return code:</strong> the job return code stays 0 on normal completion, even if records hit the not-found or error paths.</li>
+<li><strong>Unused commarea fields:</strong> <code>CA_CUSTOMER_NUM</code> and <code>CA_NUM_POLICIES</code> are never set by the drivers.</li>
+</ul>
+<h2 id="11-dependencies-and-constraints-summary" tabindex="-1">11. Dependencies and Constraints Summary</h2>
+<ul>
+<li><strong>Input format:</strong> <code>CUSTIN</code> must be fixed-blocked with 10-byte records. Each record holds a 10-digit customer number, and the programs don’t validate it.</li>
+<li><strong>Single-row lookup:</strong> the SELECT is keyed on <code>CUSTOMERNUMBER</code>. A multi-row result gives SQLCODE -811.</li>
+<li><strong>Interface:</strong> <code>LGBATCHF</code> must receive a 10-digit picture, a pointer and an <code>CHAR(80)</code> buffer, in that order.</li>
+<li><strong>Order of operations:</strong> the pointer must be set and <code>LGBATCHF</code> fetched before use. Files must be opened before the first read. The SELECT must complete before the formatter is called.</li>
+<li><strong>Sizing:</strong> the commarea work area is 32,500 bytes, and the report line is 80 bytes. There is no limit on the number of input records.</li>
+<li><strong>Environment:</strong> the programs are batch only and must not run under CICS. They need a Db2 attachment such as DSN or IKJEFT01, the <code>LGBATCHF</code> load module, and the <code>CUSTOMER</code> table.</li>
+</ul>
+
+                        <div class="related-pages">
+                            <p class="related-pages-title">Related Pages</p>
+                            <div class="card-grid">
+                                
+            <a href="motor-policy-export.html" class="card">
+                <span class="card-title">Motor Policy Export</span>
+                <span class="card-description">The batch program LGMOTOUT. It exports the GENASA1.MOTOR table to a sequential flat file through a read-only Db2 cursor and sets a return code for the calling job.</span>
+            </a>
+            <a href="db2-data-access.html" class="card">
+                <span class="card-title">Db2 Data Access Programs</span>
+                <span class="card-description">The Db2 back-end programs that read and modify the CUSTOMER, CUSTOMER_SECURE, POLICY and policy-type tables (ENDOWMENT, HOUSE, MOTOR, COMMERCIAL, CLAIM). Covers SQL usage, cursors, foreign-key cascades, SQLCODE-to-return-code handling and the LINKs to the VSAM programs.</span>
+            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-overview">1. Overview</a>
+<ul>
+<li class="toc-level-3"><a href="#11-purpose">1.1 Purpose</a></li>
+<li class="toc-level-3"><a href="#12-key-characteristics">1.2 Key Characteristics</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#2-system-architecture">2. System Architecture</a>
+<ul>
+<li class="toc-level-3"><a href="#21-component-architecture">2.1 Component Architecture</a></li>
+<li class="toc-level-3"><a href="#22-shared-communication-area">2.2 Shared Communication Area</a></li>
+<li class="toc-level-3"><a href="#23-runtime-environment">2.3 Runtime Environment</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-data-flow">3. Data Flow</a>
+<ul>
+<li class="toc-level-3"><a href="#31-end-to-end-report-flow">3.1 End-to-End Report Flow</a></li>
+<li class="toc-level-3"><a href="#32-entity-relationships">3.2 Entity Relationships</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-lgbatch-batch-report-driver">4. LGBATCH: Batch Report Driver</a>
+<ul>
+<li class="toc-level-3"><a href="#41-initialization-and-resource-setup">4.1 Initialization and Resource Setup</a></li>
+<li class="toc-level-3"><a href="#42-main-processing-loop">4.2 Main Processing Loop</a></li>
+<li class="toc-level-3"><a href="#43-process_record">4.3 PROCESS_RECORD</a></li>
+<li class="toc-level-3"><a href="#44-get_customer_info-and-return-codes">4.4 GET_CUSTOMER_INFO and Return Codes</a></li>
+<li class="toc-level-3"><a href="#45-write_error_message">4.5 WRITE_ERROR_MESSAGE</a></li>
+<li class="toc-level-3"><a href="#46-termination">4.6 Termination</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-lgbatchf-report-line-formatter">5. LGBATCHF: Report Line Formatter</a>
+<ul>
+<li class="toc-level-3"><a href="#51-processing-logic">5.1 Processing Logic</a></li>
+<li class="toc-level-3"><a href="#52-formatting-rules">5.2 Formatting Rules</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#6-lgbatdb2-single-customer-test-driver">6. LGBATDB2: Single-Customer Test Driver</a></li>
+<li class="toc-level-2"><a href="#7-sequence-of-operations">7. Sequence of Operations</a>
+<ul>
+<li class="toc-level-3"><a href="#71-lgbatch-run">7.1 LGBATCH Run</a></li>
+<li class="toc-level-3"><a href="#72-lgbatdb2-run">7.2 LGBATDB2 Run</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-interfaces-and-code-examples">8. Interfaces and Code Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#81-files">8.1 Files</a></li>
+<li class="toc-level-3"><a href="#82-lgbatchf-call-interface">8.2 LGBATCHF Call Interface</a></li>
+<li class="toc-level-3"><a href="#83-db2-access-pattern">8.3 Db2 Access Pattern</a></li>
+<li class="toc-level-3"><a href="#84-sqlcode-mapping-and-open-failure-handling-lgbatch">8.4 SQLCODE Mapping and Open-Failure Handling (LGBATCH)</a></li>
+<li class="toc-level-3"><a href="#85-report-line-construction-lgbatchf">8.5 Report Line Construction (LGBATCHF)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-output-examples">9. Output Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-typical-customer">9.1 Typical Customer</a></li>
+<li class="toc-level-3"><a href="#92-names-with-embedded-blanks">9.2 Names With Embedded Blanks</a></li>
+<li class="toc-level-3"><a href="#93-blank-first-name-and-full-last-name">9.3 Blank First Name and Full Last Name</a></li>
+<li class="toc-level-3"><a href="#94-lgbatdb2-sysout-customer-1-found">9.4 LGBATDB2 SYSOUT (Customer 1 Found)</a></li>
+<li class="toc-level-3"><a href="#95-lgbatdb2-with-customer-1-not-found">9.5 LGBATDB2 With Customer 1 Not Found</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#10-error-handling">10. Error Handling</a>
+<ul>
+<li class="toc-level-3"><a href="#101-known-limitations">10.1 Known Limitations</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#11-dependencies-and-constraints-summary">11. Dependencies and Constraints Summary</a></li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* sidebar-toggle.js — persists open/closed state across navigation */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — only stamps sessionStorage when clicking a source-file link
+       that lives inside the "Source Files" disclosure section, not from sidebar or cards. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('sources/') === -1) return;
+        /* Only set referrer when the click originates from inside the Source Files
+           disclosure (.source-files-disclosure). Any other path — sidebar, cards,
+           direct navigation — must not set a referrer. */
+        if (!link.closest('.source-files-disclosure')) return;
+        try {
+          sessionStorage.setItem('wiki_referrer', JSON.stringify({
+            href: location.href,
+            title: document.title,
+            file: location.pathname.split('/').pop()
+          }));
+        } catch (_e) {}
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>

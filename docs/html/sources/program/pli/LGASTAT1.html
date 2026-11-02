@@ -1,0 +1,1006 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGASTAT1</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link active">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>LGASTAT1 is a CICS statistics-collection program that acts as an event-processing adapter target, counting the number of times each GenApp business request type completes with a given outcome. It accepts a request identifier and a return code either from CICS event-processing channel containers (<code>DFHEP.DATA.00001</code> and <code>DFHEP.DATA.00002</code>) or, if no channel data is present, from the passed communication area, then normalises legacy or variant request codes to a canonical value and collapses any non-zero return code to a single failure indicator. Using these two values it constructs a 16-character named-counter key in the form <code>GENA&lt;request&gt;&lt;outcome&gt;</code>, retrieves the current running total from the <code>GENA</code> named-counter pool, and records a statistics-collection start timestamp in a CICS temporary storage queue (<code>GENASTRT</code>) the first time it is invoked, providing a persistent audit trail of when transaction counting began.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<ul>
+<li><strong>Program parameter</strong>
+<ul>
+<li>COMM_AREA_PTR: pointer to the CICS COMMAREA. It addresses the COMM_AREA structure.</li>
+</ul>
+</li>
+<li><strong>COMMAREA fields (fallback source when the event channel containers are unavailable)</strong>
+<ul>
+<li>CA_REQUEST_ID: 6-character business request identifier. It supplies the request part (GENACOUNTER) of the counter name.</li>
+<li>CA_RETURN_CODE: 2-digit outcome code. It supplies the outcome part (GENATYPE) of the counter name. Any non-zero value becomes ‘99’.</li>
+<li>The rest of the shared COMMAREA layout is declared (for example CA_CUSTOMER_NUM and CA_POLICY_NUM) but the program doesn’t read it.</li>
+</ul>
+</li>
+<li><strong>CICS channel containers (primary source, supplied by the event processing adapter)</strong>
+<ul>
+<li>Container DFHEP.DATA.00001 (WS_CHANNAME1): its content is read into WS_DATA_REQ and supplies the request identifier for the counter name.</li>
+<li>Container DFHEP.DATA.00002 (WS_CHANNAME2): its content is read into WS_DATA_RC and supplies the return code for the counter name.</li>
+<li>The RESP value from the container reads (WS_RESP) decides whether the containers or the COMMAREA are used.</li>
+</ul>
+</li>
+<li><strong>CICS task and EIB context</strong>
+<ul>
+<li>EIBCALEN: COMMAREA length. If it is 0 and the containers are unavailable, the program returns immediately.</li>
+<li>EIBTRNID, EIBTRMID, EIBTASKN: transaction ID, terminal ID and task number. They are copied into the run-time header (WS_HEADER).</li>
+</ul>
+</li>
+<li><strong>External data resources</strong>
+<ul>
+<li>Temporary storage queue GENASTRT (WS_QNAME): read to get the statistics start date and time stamp (WS_QAREA). If the queue doesn’t exist (QIDERR), the program writes it using the current date and time from CICS ASKTIME and FORMATTIME.</li>
+<li>Named counter pool GENA (GENAPOOL): the program gets the counter GENA<request><type> from this pool. The returned value goes to TRANCOUNT.</li>
+</ul>
+</li>
+<li><strong>Constants that shape the external lookups</strong>
+<ul>
+<li>Counter name prefix ‘GENA’ and the pool name ‘GENA’.</li>
+<li>Request code normalisation: ‘02ACUS’ becomes ‘01ACUS’. ‘02ICOM’, ‘03ICOM’ and ‘05ICOM’ become ‘01ICOM’.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<ul>
+<li>
+<p><strong>Named counter retrieval (CICS GET COUNTER, primary observable side effect)</strong></p>
+<ul>
+<li>Counter name built in <code>GENACOUNT</code> and passed to the pool <code>GENAPOOL</code> (‘GENA’). Each call retrieves the counter and advances its value, so this is the program’s main external effect.</li>
+<li><code>GENACOUNT</code>: 16-character counter name made of the ‘GENA’ prefix, <code>GENACOUNTER</code>, <code>GENATYPE</code> and trailing blanks.
+<ul>
+<li><code>GENACOUNTER</code>: request identifier part of the name.
+<ul>
+<li>Source: the <code>DFHEP.DATA.00001</code> container value (<code>WS_DATA_REQ</code>), or <code>CA_REQUEST_ID</code> from the commarea when the container is not available.</li>
+<li>Legacy values are normalised: ‘02ACUS’ becomes ‘01ACUS’. ‘02ICOM’, ‘03ICOM’ and ‘05ICOM’ become ‘01ICOM’.</li>
+</ul>
+</li>
+<li><code>GENATYPE</code>: outcome part of the name.
+<ul>
+<li>Source: the <code>DFHEP.DATA.00002</code> container value (<code>WS_DATA_RC</code>), or <code>CA_RETURN_CODE</code> from the commarea.</li>
+<li>‘00’ is kept for success. Any other value becomes ‘99’ for failure.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>GENAPOOL</code>: fixed pool name (‘GENA’) that groups the application statistics counters.</li>
+<li><code>TRANCOUNT</code>: receives the current counter value for the request and outcome combination.
+<ul>
+<li>It is not displayed, returned or written anywhere else.</li>
+<li>It is available to the task only.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Temporary storage queue write (statistics start timestamp)</strong></p>
+<ul>
+<li><code>WS_QNAME</code> (‘GENASTRT’) is the target queue. The write happens only when the queue does not exist (QIDERR on the read).</li>
+<li><code>WS_QAREA</code>: 16-character record written to the queue.
+<ul>
+<li><code>WS_AREA_D</code>: collection start date, formatted DDMMYYYY from the current CICS time.</li>
+<li><code>WS_AREA_T</code>: collection start time.</li>
+</ul>
+</li>
+<li>The queue is written once and serves as a persistent marker of when statistics collection began.</li>
+</ul>
+</li>
+<li>
+<p><strong>Task termination (CICS RETURN)</strong></p>
+<ul>
+<li>The program ends with a CICS RETURN on every path.</li>
+<li>It also returns early, with no counter update and no queue write, when no container data is available and the commarea length (<code>EIBCALEN</code>) is 0.</li>
+<li>No value is passed back to the caller. <code>COMM_AREA</code> is read but never modified.</li>
+</ul>
+</li>
+<li>
+<p><strong>Printed messages, files, database and API output</strong></p>
+<ul>
+<li>The program prints no messages and writes no files or database records.</li>
+<li>The only external effects are the named counter retrieval and the one-time temporary storage queue write.</li>
+<li><code>WS_RESP</code> is set after each CICS call but is never acted on in a way that changes output.
+<ul>
+<li>The container-read response is the only exception, because it chooses between container input and commarea input.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    A([Start LGASTAT1]) --> B[Initialise header fields<br>from EIB transid termid task number and commarea length]
+    B --> C[Get container DFHEP.DATA.00001<br>into request id field]
+    C --> D[Get container DFHEP.DATA.00002<br>into return code field]
+    D --> E{Last container response normal}
+    E -- Yes --> F[Counter request = container request id<br>Counter type = container return code]
+    E -- No --> G{Commarea length is zero}
+    G -- Yes --> H([Return to CICS])
+    G -- No --> I[Counter request = commarea request id<br>Counter type = commarea return code]
+    F --> J[Read temporary storage queue GENASTRT]
+    I --> J
+    J --> K{Queue not found}
+    K -- Yes --> L[Get current time and format date and time]
+    L --> M[Write date and time record<br>to queue GENASTRT]
+    M --> N
+    K -- No --> N{Request is 02ACUS}
+    N -- Yes --> O[Change request to 01ACUS]
+    N -- No --> P
+    O --> P{Request is 02ICOM or 03ICOM or 05ICOM}
+    P -- Yes --> Q[Change request to 01ICOM]
+    P -- No --> R
+    Q --> R{Counter type not 00}
+    R -- Yes --> S[Set counter type to 99]
+    R -- No --> T
+    S --> T[Build counter name GENA plus request plus type]
+    T --> U[Get named counter from pool GENA<br>into transaction count]
+    U --> V([Return to CICS])
+
+    classDef start fill:#d5f5e3,stroke:#7dcea0,color:#000
+    classDef process fill:#d6eaf8,stroke:#85c1e9,color:#000
+    classDef decision fill:#fdebd0,stroke:#f5cba7,color:#000
+    classDef endnode fill:#f5d5e3,stroke:#d7a3bd,color:#000
+
+    class A start
+    class B,C,D,F,I,J,L,M,O,Q,S,T,U process
+    class E,G,K,N,P,R decision
+    class H,V endnode
+</div>
+<hr>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<p><strong>High-level Summary</strong></p>
+<p>LGASTAT1 is a CICS PL/I main program. It is the target of an event-processing adapter and updates application statistics. It works out which business request ran and whether it succeeded. It builds a counter name of the form <code>GENA</code> + request id (6 characters) + outcome (2 characters) + 4 blanks. It then gets that named counter from the counter pool <code>GENA</code>. On its first run, it also records the date and time that statistics collection started in a temporary storage queue.</p>
+<p><strong>Execution Flow</strong></p>
+<ol>
+<li><strong>Initialise diagnostics.</strong> The program clears the <code>WS_HEADER</code> structure. It sets the eyecatcher <code>LGASTAT1------WS</code> and copies in the transaction id (<code>EIBTRNID</code>), terminal id (<code>EIBTRMID</code>), task number (<code>EIBTASKN</code>) and commarea length (<code>EIBCALEN</code>). These fields are for debugging only and are not used later.</li>
+<li><strong>Read the event containers.</strong> The program gets container <code>DFHEP.DATA.00001</code> into <code>WS_DATA_REQ</code>, the request id. It then gets container <code>DFHEP.DATA.00002</code> into <code>WS_DATA_RC</code>, the return code. Both commands use the same <code>WS_RESP</code> field. The second command overwrites the first response, so only the response from the second GET CONTAINER is tested.</li>
+<li><strong>Choose the data source.</strong>
+<ul>
+<li>If the response is NORMAL, <code>GENACOUNTER</code> is set from <code>WS_DATA_REQ</code> and <code>GENATYPE</code> from <code>WS_DATA_RC</code>.</li>
+<li>If the response is not NORMAL, the program was not driven by an event channel.
+<ul>
+<li>If <code>EIBCALEN = 0</code>, there is no commarea either, so the program issues <code>EXEC CICS RETURN</code> and ends without updating any counter. This is the only validation or error exit.</li>
+<li>Otherwise <code>GENACOUNTER</code> is set from <code>CA_REQUEST_ID</code> and <code>GENATYPE</code> from <code>CA_RETURN_CODE</code> in the commarea.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Record the statistics start time.</strong> The program reads TS queue <code>GENASTRT</code> into <code>WS_QAREA</code> (length 16).
+<ul>
+<li>If the response is QIDERR, the queue does not exist yet. The program issues ASKTIME and FORMATTIME (DDMMYYYY and time). It puts the date in <code>WS_AREA_D</code> and the time in <code>WS_AREA_T</code>. It then writes the 16-byte record to the queue.</li>
+<li>Any other response, including a successful read, is ignored. The queue is only written once, so its record holds the time the first statistic was captured.</li>
+<li>The WRITEQ response is not checked.</li>
+</ul>
+</li>
+<li><strong>Normalise the request codes</strong> (business rules):
+<ul>
+<li><code>02ACUS</code> becomes <code>01ACUS</code>.</li>
+<li><code>02ICOM</code>, <code>03ICOM</code> and <code>05ICOM</code> all become <code>01ICOM</code>.</li>
+<li>These rules consolidate legacy or variant request codes into one counter.</li>
+</ul>
+</li>
+<li><strong>Normalise the outcome.</strong> If <code>GENATYPE</code> is not <code>'00'</code>, it becomes <code>'99'</code>. This leaves two outcomes per request: success (<code>00</code>) and any failure (<code>99</code>).</li>
+<li><strong>Get the counter.</strong> The program issues <code>EXEC CICS GET COUNTER</code> with the 16-character name in <code>GENACOUNT</code>, pool <code>GENA</code>, and the value returned in <code>TRANCOUNT</code>. The response is stored but not tested. <code>GET COUNTER</code> returns the next value and increments the counter, so each call adds 1 to the total for that request and outcome. If the counter is not defined, the failure is silently ignored.</li>
+<li><strong>End.</strong> The program issues <code>EXEC CICS RETURN</code>.</li>
+</ol>
+<p><strong>External Interactions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Interaction</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Channel containers <code>DFHEP.DATA.00001</code> and <code>DFHEP.DATA.00002</code></td>
+<td>Input from the event-processing adapter. They carry the request id and the return code.</td>
+</tr>
+<tr>
+<td>COMMAREA (<code>COMM_AREA</code>, using <code>CA_REQUEST_ID</code> and <code>CA_RETURN_CODE</code>)</td>
+<td>Fallback input when no containers are present.</td>
+</tr>
+<tr>
+<td>TS queue <code>GENASTRT</code></td>
+<td>Holds a single record with the date and time statistics collection began. It is read, and written only if it is missing.</td>
+</tr>
+<tr>
+<td>Named counter pool <code>GENA</code></td>
+<td>Holds the counters named <code>GENA&lt;request&gt;&lt;rc&gt;</code>. The program gets the counter to increment the count of transactions per request and outcome.</td>
+</tr>
+<tr>
+<td>EIB fields</td>
+<td>Source of the transaction, terminal, task and commarea length diagnostics.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Plain Language Summary</strong></p>
+<p>Each time a business request such as a customer inquiry or a policy change finishes, this program counts it. It looks at which request it was and whether it worked. The information comes from an event message or, failing that, from the data passed in by the calling program. If neither is available, it stops without counting. The first time it runs, it saves the date and time as the point where counting began. It then tidies the request name so that old variants of the same request are counted together. It also reduces every kind of failure to a single “failed” code. Finally, it adds one to the matching tally in the shared statistics counter pool and ends.</p>
+<hr>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+    TSQ_GENASTRT {
+        string WS_AREA_D "length 8, date DDMMYYYY"
+        string FILLER "length 2"
+        string WS_AREA_T "length 6, time"
+    }
+    COUNTER_POOL_GENA {
+        string COUNTER_PREFIX "length 4, value GENA"
+        string GENACOUNTER "length 6, request id"
+        string GENATYPE "length 2, 00 success or 99 failure"
+        string FILLER "length 4, blanks"
+        int TRANCOUNT "fullword counter value"
+    }
+    EVENT_CONTAINERS {
+        string DFHEP_DATA_00001 "length 6, request id"
+        string DFHEP_DATA_00002 "length 2, return code"
+    }
+    COMM_AREA {
+        string CA_REQUEST_ID "length 6"
+        string CA_RETURN_CODE "length 2"
+        string CA_CUSTOMER_NUM "length 10"
+        string CA_POLICY_NUM "length 10"
+    }
+    EVENT_CONTAINERS ||--o{ COUNTER_POOL_GENA : "supplies request and type"
+    COMM_AREA ||--o{ COUNTER_POOL_GENA : "fallback request and type"
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li><strong>LGASTAT1</strong>
+<ul>
+<li><strong>Purpose</strong>: Serves as the main entry procedure and event-processing adapter target to record and update application transaction statistics using CICS named counters and temporary storage queues.</li>
+<li><strong>Operations</strong>:
+<ul>
+<li>Initializes working storage header fields with execution diagnostic data from the Execute Interface Block (EIB), including transaction ID (<code>EIBTRNID</code>), terminal ID (<code>EIBTRMID</code>), task number (<code>EIBTASKN</code>), and COMMAREA length (<code>EIBCALEN</code>).</li>
+<li>Attempts to retrieve the request identifier and return code from event channel containers <code>DFHEP.DATA.00001</code> and <code>DFHEP.DATA.00002</code>.</li>
+<li>Reads the statistics start timestamp from the temporary storage queue <code>GENASTRT</code>. If the queue does not exist (<code>QIDERR</code>), retrieves the current system time using <code>EXEC CICS ASKTIME</code>, formats the date and time using <code>EXEC CICS FORMATTIME</code>, and writes a new record into the <code>GENASTRT</code> temporary storage queue.</li>
+<li>Normalizes incoming request identifier codes (maps <code>02ACUS</code> to <code>01ACUS</code>, and maps <code>02ICOM</code>, <code>03ICOM</code>, or <code>05ICOM</code> to <code>01ICOM</code>) and categorizes any non-zero return code as <code>99</code> (failure), leaving <code>00</code> as success.</li>
+<li>Constructs the named counter key (<code>GENA</code> prefix + normalized request ID + return code category) and fetches/increments the counter value from the named counter pool <code>GENA</code>.</li>
+<li>Returns control to CICS.</li>
+</ul>
+</li>
+<li><strong>Control Flow Elements</strong>:
+<ul>
+<li>Conditional check on container retrieval response (<code>WS_RESP = DFHRESP(NORMAL)</code>): if container read is successful, extracts request ID and return code from container data; otherwise, checks <code>EIBCALEN</code> to fall back to COMMAREA values or terminates execution via <code>EXEC CICS RETURN</code> if COMMAREA length is zero.</li>
+<li>Conditional handling on temporary storage queue read (<code>WS_RESP = DFHRESP(QIDERR)</code>) to capture and record the initial start timestamp if not already present.</li>
+<li>Conditional statements to normalize specific request counter IDs (<code>GENACOUNTER</code>) and map return code types (<code>GENATYPE</code>).</li>
+</ul>
+</li>
+<li><strong>Interactions with External Systems</strong>:
+<ul>
+<li>CICS Channel and Container API: <code>EXEC CICS GET CONTAINER</code> for containers <code>DFHEP.DATA.00001</code> and <code>DFHEP.DATA.00002</code>.</li>
+<li>CICS Temporary Storage Queue API: <code>EXEC CICS READQ TS</code> and <code>EXEC CICS WRITEQ TS</code> on queue <code>GENASTRT</code>.</li>
+<li>CICS Time Services API: <code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code>.</li>
+<li>CICS Named Counter Facility: <code>EXEC CICS GET COUNTER</code> on pool <code>GENA</code>.</li>
+<li>CICS Control API: <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<h3 id="61-cics-system-services-and-facilities" tabindex="-1">6.1 CICS System Services and Facilities</h3>
+<ul>
+<li><strong>CICS Named Counter Facility</strong>
+<ul>
+<li><strong>Named Counter Pool (<code>GENAPOOL</code>)</strong>: Accesses the <code>GENA</code> named counter pool using <code>EXEC CICS GET COUNTER</code> to retrieve and increment transaction execution counters (<code>GENACOUNT</code> / <code>genacount_str</code>) based on business request ID and outcome type.</li>
+</ul>
+</li>
+<li><strong>CICS Event Processing (EP) Channel and Containers</strong>
+<ul>
+<li><strong><code>DFHEP.DATA.00001</code> (<code>WS_CHANNAME1</code>)</strong>: Container holding the 6-character business request identifier (<code>WS_DATA_REQ</code>) passed by the CICS event processing adapter.</li>
+<li><strong><code>DFHEP.DATA.00002</code> (<code>WS_CHANNAME2</code>)</strong>: Container holding the 2-character return code/outcome status (<code>WS_DATA_RC</code>) passed by the CICS event processing adapter.</li>
+</ul>
+</li>
+<li><strong>CICS Temporary Storage (TS) Queue</strong>
+<ul>
+<li><strong><code>GENASTRT</code> Queue (<code>WS_QNAME</code>)</strong>: Temporary storage queue queried (<code>EXEC CICS READQ TS</code>) to track the statistics collection start timestamp. If missing (<code>DFHRESP(QIDERR)</code>), it is initialized with the current date and time (<code>EXEC CICS WRITEQ TS</code>).</li>
+</ul>
+</li>
+<li><strong>CICS Time and Clock Services</strong>
+<ul>
+<li><strong><code>EXEC CICS ASKTIME</code> / <code>EXEC CICS FORMATTIME</code></strong>: Used to capture the absolute time and format the current date (<code>DDMMYYYY</code>) and time (<code>TIME</code>) for logging into the <code>GENASTRT</code> queue when initialized.</li>
+</ul>
+</li>
+<li><strong>Execute Interface Block (EIB)</strong>
+<ul>
+<li><strong><code>EIBTRNID</code></strong>: Provides the current CICS transaction identifier.</li>
+<li><strong><code>EIBTRMID</code></strong>: Provides the terminal identifier associated with the task.</li>
+<li><strong><code>EIBTASKN</code></strong>: Provides the CICS task number for runtime context.</li>
+<li><strong><code>EIBCALEN</code></strong>: Indicates the length of the passed communication area, evaluated when channel containers are absent.</li>
+</ul>
+</li>
+</ul>
+<h3 id="62-data-interfaces-and-structures" tabindex="-1">6.2 Data Interfaces and Structures</h3>
+<ul>
+<li><strong>Communication Area (<code>LGCMAREA</code> / <code>COMM_AREA</code>)</strong>
+<ul>
+<li>Fallback input interface supplied via <code>COMM_AREA_PTR</code> when event channel data is not available.</li>
+<li><strong><code>CA_REQUEST_ID</code></strong>: Supplies the 6-character business function request code (e.g., <code>'01ACUS'</code>, <code>'01ICOM'</code>) when event containers are missing.</li>
+<li><strong><code>CA_RETURN_CODE</code></strong>: Supplies the 2-character numeric return code indicating transaction outcome when event containers are missing.</li>
+</ul>
+</li>
+</ul>
+<h3 id="63-include-files-and-copybooks" tabindex="-1">6.3 Include Files and Copybooks</h3>
+<ul>
+<li><strong><code>LGCMAREA.inc</code> (<code>LGCMAREA</code>)</strong>
+<ul>
+<li>PL/I include file defining the standard 32,500-byte shared communication area structure used across the GenApp application suite.</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<h3 id="71-input-and-invocation-constraints" tabindex="-1">7.1 Input and Invocation Constraints</h3>
+<ul>
+<li>Program Input Mechanisms:
+<ul>
+<li>The program accepts input through two primary mechanisms: CICS channel containers (<code>DFHEP.DATA.00001</code> and <code>DFHEP.DATA.00002</code>) or a CICS Communication Area (<code>COMMAREA</code>).</li>
+<li>Container input takes precedence over <code>COMMAREA</code> input. The second container read response (<code>WS_RESP</code>) determines whether channel input is used.</li>
+<li>When container retrieval fails (returns non-<code>NORMAL</code>), the program requires <code>EIBCALEN &gt; 0</code> to process the <code>COMMAREA</code>. If <code>EIBCALEN = 0</code>, execution terminates immediately via <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="72-data-formatting-and-normalization-constraints" tabindex="-1">7.2 Data Formatting and Normalization Constraints</h3>
+<ul>
+<li>Named Counter Structure:
+<ul>
+<li>The counter name string passed to CICS (<code>GENACOUNT_str</code>) is strictly constrained to 16 characters with the format:
+<ul>
+<li>Bytes 1–4: Prefix <code>'GENA'</code>.</li>
+<li>Bytes 5–10: Request identifier (<code>GENACOUNTER</code>, 6 characters).</li>
+<li>Bytes 11–12: Result type (<code>GENATYPE</code>, 2 characters).</li>
+<li>Bytes 13–16: Trailing padding (4 blank spaces, <code>'    '</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Request Identifier Normalization:
+<ul>
+<li>Legacy customer add request code <code>'02ACUS'</code> is consolidated and remapped to <code>'01ACUS'</code>.</li>
+<li>Commercial policy inquiry and maintenance request codes <code>'02ICOM'</code>, <code>'03ICOM'</code>, and <code>'05ICOM'</code> are consolidated and remapped to <code>'01ICOM'</code>.</li>
+<li>All other 6-character request identifiers retain their incoming values without remapping.</li>
+</ul>
+</li>
+<li>Return Code Normalization:
+<ul>
+<li>Return code status is restricted to a binary outcome:
+<ul>
+<li>Success code <code>'00'</code> is preserved as <code>'00'</code>.</li>
+<li>Any non-zero return code (<code>GENATYPE ^= '00'</code>) is mapped to failure category <code>'99'</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="73-cics-resource-and-state-constraints" tabindex="-1">7.3 CICS Resource and State Constraints</h3>
+<ul>
+<li>Named Counter Pool:
+<ul>
+<li>Counter retrieval is restricted to the specific named counter pool <code>'GENA'</code>.</li>
+<li>The counter retrieval operation (<code>EXEC CICS GET COUNTER</code>) stores the transaction count in a fullword binary integer (<code>FIXED BIN(31)</code>), constraining the returned count to valid 31-bit signed binary values.</li>
+</ul>
+</li>
+<li>Temporary Storage Queue (<code>GENASTRT</code>):
+<ul>
+<li>Queue access is fixed to the TS queue named <code>'GENASTRT'</code>.</li>
+<li>The TS queue record length is constrained to 16 bytes (<code>STG(WS_QAREA)</code>), partitioned as:
+<ul>
+<li>Bytes 1–8: Date in <code>DD/MM/YYYY</code> format (<code>WS_AREA_D</code>, derived from <code>WS_DATE</code>).</li>
+<li>Bytes 9–10: Two blank separator characters (<code>'  '</code>).</li>
+<li>Bytes 11–16: Time in <code>HHMMSS</code> format (<code>WS_AREA_T</code>, derived from <code>WS_TIME</code>).</li>
+</ul>
+</li>
+<li>The queue is read unconditionally on each invocation. If the queue does not exist (<code>DFHRESP(QIDERR)</code>), the program captures the current timestamp via <code>ASKTIME</code>/<code>FORMATTIME</code> and initializes the queue via <code>WRITEQ TS</code>. Any other condition from <code>READQ TS</code> bypasses initialization without error raising.</li>
+</ul>
+</li>
+</ul>
+<h3 id="74-sequence-and-execution-flow-constraints" tabindex="-1">7.4 Sequence and Execution Flow Constraints</h3>
+<ul>
+<li>Execution Order:
+<ul>
+<li>Container retrieval must occur before <code>COMMAREA</code> evaluation.</li>
+<li>TS Queue verification and initialization must execute before counter normalization and counter retrieval.</li>
+<li>Request code and return code normalization must execute prior to issuing <code>EXEC CICS GET COUNTER</code>.</li>
+<li>The program terminates execution unconditionally via <code>EXEC CICS RETURN</code> after attempting the named counter retrieval.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<ul>
+<li>
+<p><strong>Container retrieval and fallback to the communication area</strong></p>
+<ul>
+<li>The program issues two GET CONTAINER commands, one for each event-processing data container (the request identifier and the return code). Both use the RESP option, so a failure does not cause an automatic abend.</li>
+<li>Both commands write to the same response field, so the second command overwrites the first one’s result. Only the outcome of the second container read is tested. A failed first read is not detected unless the second read also fails.</li>
+<li>If the response is NORMAL, the counter request and type are taken from the container values.</li>
+<li>If the response is anything else, the program assumes it was not started through the event-processing channel. It falls back to the communication area.</li>
+<li>In the fallback, the counter request comes from the communication area request identifier. The counter type comes from the communication area return code.</li>
+</ul>
+</li>
+<li>
+<p><strong>Guard against a missing communication area</strong></p>
+<ul>
+<li>In the fallback path, the program checks whether the communication area length is zero.</li>
+<li>If it is zero, there is neither channel data nor communication area data. The program ends immediately with a CICS RETURN, and no counter is retrieved. This protects against reading through an unaddressable communication area pointer.</li>
+</ul>
+</li>
+<li>
+<p><strong>Temporary storage queue handling</strong></p>
+<ul>
+<li>The program reads the start-time queue with READQ TS and the RESP option, so no abend occurs if the queue is missing.</li>
+<li>If the response is QIDERR, the queue does not exist yet. The program creates it:
+<ul>
+<li>It gets the current absolute time.</li>
+<li>It formats the date and time.</li>
+<li>It builds the queue record.</li>
+<li>It resets the record length to the size of the queue record area.</li>
+<li>It writes the record with WRITEQ TS.</li>
+</ul>
+</li>
+<li>This is recovery logic. The first execution initialises the missing start-time record.</li>
+<li>Any response other than NORMAL or QIDERR from the read is not handled. The read response is checked only for QIDERR.</li>
+<li>The WRITEQ TS command also uses RESP, but its response is never checked. A failed write is silently ignored.</li>
+</ul>
+</li>
+<li>
+<p><strong>Data normalisation and default outcome values</strong></p>
+<ul>
+<li>Legacy request codes are mapped to consolidated values so they count against a single counter. The code ‘02ACUS’ becomes ‘01ACUS’. The codes ‘02ICOM’, ‘03ICOM’ and ‘05ICOM’ become ‘01ICOM’.</li>
+<li>Any return code other than ‘00’ is collapsed to ‘99’. This gives only two outcome categories, success and generic failure, and bounds the number of counters.</li>
+</ul>
+</li>
+<li>
+<p><strong>Counter retrieval</strong></p>
+<ul>
+<li>The GET COUNTER command uses the RESP option, so the program does not abend if the pool or counter is missing or unavailable.</li>
+<li>The response is stored but never checked. Failures such as a missing counter or pool are ignored, and the counter value field is not used afterwards.</li>
+</ul>
+</li>
+<li>
+<p><strong>Program termination and notifications</strong></p>
+<ul>
+<li>Every path ends with a CICS RETURN, either the early exit for a missing communication area or the normal exit after the counter request.</li>
+<li>The program writes no error messages. It does no logging, sets no return code in the communication area, and issues no abend.</li>
+<li>The program has no PL/I ON-unit or condition handling (such as ERROR or SIZE conditions). It relies only on RESP-based checking for CICS commands.</li>
+<li>The program does not retry.</li>
+</ul>
+</li>
+<li>
+<p><strong>Run-time diagnostic information</strong></p>
+<ul>
+<li>The program records the transaction ID, terminal ID, task number and communication area length in a working-storage header with an eyecatcher. This provides diagnostic context in a dump or trace, but the program does not use it for any error decision.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-successful-channel-driven-transaction-counter-increment" tabindex="-1">9.1 Example 1: Successful Channel-Driven Transaction Counter Increment</h3>
+<h4 id="911-input-data" tabindex="-1">9.1.1 Input Data</h4>
+<ul>
+<li><strong>CICS Channel Containers:</strong>
+<ul>
+<li>Container <code>DFHEP.DATA.00001</code> (<code>WS_CHANNAME1</code>): <code>'01ICOM'</code></li>
+<li>Container <code>DFHEP.DATA.00002</code> (<code>WS_CHANNAME2</code>): <code>'00'</code></li>
+</ul>
+</li>
+<li><strong>CICS Temporary Storage Queue <code>GENASTRT</code>:</strong>
+<ul>
+<li>Queue exists with start timestamp record: <code>'15/10/2023  083000'</code></li>
+</ul>
+</li>
+<li><strong>Named Counter Pool <code>GENA</code>:</strong>
+<ul>
+<li>Named counter <code>GENA01ICOM00    </code> current value: <code>124</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="912-expected-output" tabindex="-1">9.1.2 Expected Output</h4>
+<ul>
+<li><strong>Named Counter Pool <code>GENA</code>:</strong>
+<ul>
+<li>Counter <code>GENA01ICOM00    </code> value incremented to: <code>125</code></li>
+<li>Variable <code>TRANCOUNT</code>: <code>125</code></li>
+</ul>
+</li>
+<li><strong>CICS Temporary Storage Queue <code>GENASTRT</code>:</strong> Unchanged</li>
+</ul>
+<h4 id="913-explanation" tabindex="-1">9.1.3 Explanation</h4>
+<ol>
+<li><code>LGASTAT1</code> retrieves the request identifier (<code>'01ICOM'</code>) from container <code>DFHEP.DATA.00001</code> and the return code (<code>'00'</code>) from container <code>DFHEP.DATA.00002</code>.</li>
+<li>Because the container read succeeds (<code>WS_RESP = DFHRESP(NORMAL)</code>), <code>GENACOUNTER</code> is set to <code>'01ICOM'</code> and <code>GENATYPE</code> is set to <code>'00'</code>.</li>
+<li>The program checks TS queue <code>GENASTRT</code>. Since it already exists, reading completes normally without creating a new timestamp.</li>
+<li>Normalization checks evaluate <code>'01ICOM'</code> and <code>'00'</code>, requiring no modifications.</li>
+<li>The 16-character counter name structure <code>GENACOUNT</code> formats as <code>'GENA01ICOM00    '</code>.</li>
+<li><code>EXEC CICS GET COUNTER</code> fetches and increments the counter in pool <code>GENA</code>, updating its value from <code>124</code> to <code>125</code>.</li>
+</ol>
+<hr>
+<h3 id="92-example-2-failed-transaction-via-commarea-with-request-normalization-and-queue-initialization" tabindex="-1">9.2 Example 2: Failed Transaction via COMMAREA with Request Normalization and Queue Initialization</h3>
+<h4 id="921-input-data" tabindex="-1">9.2.1 Input Data</h4>
+<ul>
+<li><strong>CICS Channel Containers:</strong> Not present (returns container error condition)</li>
+<li><strong>COMMAREA Input:</strong>
+<ul>
+<li><code>CA_REQUEST_ID</code>: <code>'02ACUS'</code></li>
+<li><code>CA_RETURN_CODE</code>: <code>01</code></li>
+<li><code>EIBCALEN</code>: <code>32500</code></li>
+</ul>
+</li>
+<li><strong>CICS Temporary Storage Queue <code>GENASTRT</code>:</strong> Not yet created (<code>QIDERR</code> condition on read)</li>
+<li><strong>CICS System Clock:</strong> <code>01/11/2023 14:15:30</code></li>
+<li><strong>Named Counter Pool <code>GENA</code>:</strong>
+<ul>
+<li>Named counter <code>GENA01ACUS99    </code> current value: <code>45</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="922-expected-output" tabindex="-1">9.2.2 Expected Output</h4>
+<ul>
+<li><strong>CICS Temporary Storage Queue <code>GENASTRT</code>:</strong>
+<ul>
+<li>Created record containing formatted date and time: <code>'01112023  141530'</code></li>
+</ul>
+</li>
+<li><strong>Named Counter Pool <code>GENA</code>:</strong>
+<ul>
+<li>Counter <code>GENA01ACUS99    </code> value incremented to: <code>46</code></li>
+<li>Variable <code>TRANCOUNT</code>: <code>46</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="923-explanation" tabindex="-1">9.2.3 Explanation</h4>
+<ol>
+<li>Container retrieval fails, prompting the program to inspect <code>EIBCALEN</code>. Since <code>EIBCALEN &gt; 0</code>, the program falls back to <code>COMMAREA</code> fields, loading <code>GENACOUNTER</code> with <code>'02ACUS'</code> and <code>GENATYPE</code> with <code>'01'</code>.</li>
+<li>The TS queue read for <code>GENASTRT</code> returns <code>QIDERR</code>. The program calls <code>EXEC CICS ASKTIME</code> and <code>FORMATTIME</code> to capture the current timestamp (<code>01112023</code> and <code>141530</code>), writing the 16-byte record to <code>GENASTRT</code>.</li>
+<li>Normalization logic converts legacy/alternate request ID <code>'02ACUS'</code> to standard <code>'01ACUS'</code>.</li>
+<li>The non-zero return code <code>'01'</code> is collapsed into failure status code <code>'99'</code>.</li>
+<li>The assembled counter name <code>'GENA01ACUS99    '</code> is retrieved and incremented in named counter pool <code>GENA</code>, advancing the failure count to <code>46</code>.</li>
+</ol>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a></li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a></li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a></li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a>
+<ul>
+<li class="toc-level-3"><a href="#61-cics-system-services-and-facilities">6.1 CICS System Services and Facilities</a></li>
+<li class="toc-level-3"><a href="#62-data-interfaces-and-structures">6.2 Data Interfaces and Structures</a></li>
+<li class="toc-level-3"><a href="#63-include-files-and-copybooks">6.3 Include Files and Copybooks</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a>
+<ul>
+<li class="toc-level-3"><a href="#71-input-and-invocation-constraints">7.1 Input and Invocation Constraints</a></li>
+<li class="toc-level-3"><a href="#72-data-formatting-and-normalization-constraints">7.2 Data Formatting and Normalization Constraints</a></li>
+<li class="toc-level-3"><a href="#73-cics-resource-and-state-constraints">7.3 CICS Resource and State Constraints</a></li>
+<li class="toc-level-3"><a href="#74-sequence-and-execution-flow-constraints">7.4 Sequence and Execution Flow Constraints</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-successful-channel-driven-transaction-counter-increment">9.1 Example 1: Successful Channel-Driven Transaction Counter Increment</a>
+<ul>
+<li class="toc-level-4"><a href="#911-input-data">9.1.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#912-expected-output">9.1.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#913-explanation">9.1.3 Explanation</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#92-example-2-failed-transaction-via-commarea-with-request-normalization-and-queue-initialization">9.2 Example 2: Failed Transaction via COMMAREA with Request Normalization and Queue Initialization</a>
+<ul>
+<li class="toc-level-4"><a href="#921-input-data">9.2.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#922-expected-output">9.2.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#923-explanation">9.2.3 Explanation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGASTAT1</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

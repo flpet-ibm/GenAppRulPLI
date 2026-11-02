@@ -1,2 +1,5 @@
 # Bob Z Extension - Local settings and generated files
 .bobz/
+
+# Bob Z Extension - Local data dictionary
+DD.json

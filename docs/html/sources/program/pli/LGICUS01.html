@@ -1,0 +1,1305 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGICUS01</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link active">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>LGICUS01 is a CICS business-logic program that handles requests to look up a customer’s details in the insurance application. It checks that the caller supplied a communication area large enough to hold a customer inquiry. If the area is missing or too small, it logs a diagnostic error message that includes the customer number and a portion of the received data. It then reads a CICS temporary storage queue to see whether a message-queue “hit” record is present. If none is found, it passes the request to the DB2 inquiry program (LGICDB01) to retrieve the customer and policy information. If a hit is found, it routes the request to an alternate program instead. The result is returned to the caller in the shared communication area, along with a return code showing whether the request was accepted.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<h3 id="21-program-parameter-and-communication-area" tabindex="-1">2.1 Program Parameter and Communication Area</h3>
+<ul>
+<li>COMM_AREA_PTR
+<ul>
+<li>Pointer parameter of the main procedure. It addresses the CICS communication area that the caller passes in, and all the communication area fields below are based on it.</li>
+</ul>
+</li>
+<li>COMM_AREA_RAW
+<ul>
+<li>32,500-character overlay of the whole incoming communication area.</li>
+<li>Error handling uses up to 90 bytes of it as diagnostic content for the error log.</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-caller-supplied-request-fields" tabindex="-1">2.2 Caller-Supplied Request Fields</h3>
+<ul>
+<li>CA_CUSTOMER_NUM
+<ul>
+<li>10-digit customer number to look up.</li>
+<li>It is the key for the inquiry, and the program copies it into the error message.</li>
+</ul>
+</li>
+<li>CA_RETURN_CODE
+<ul>
+<li>Return code field in the communication area.</li>
+<li>The program overwrites it: ‘00’ means the request was accepted, and ‘98’ means the communication area was too short.</li>
+</ul>
+</li>
+<li>CA_NUM_POLICIES
+<ul>
+<li>Policy count field in the communication area. The program resets it to zero on entry.</li>
+<li>The downstream inquiry populates it.</li>
+</ul>
+</li>
+<li>CA_FIRST_NAME, CA_LAST_NAME, CA_EMAIL_ADDRESS, CA_POLICY_DATA
+<ul>
+<li>Customer detail fields inside the communication area.</li>
+<li>They come in from the caller as part of the buffer and are filled in by the downstream DB2 inquiry program (LGICDB01) for the response.</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-cics-runtime-context" tabindex="-1">2.3 CICS Runtime Context</h3>
+<ul>
+<li>EIBCALEN
+<ul>
+<li>Length of the communication area received.</li>
+<li>A value of 0 triggers the “NO COMMAREA RECEIVED” error and an abend.</li>
+<li>A value below the required minimum (customer length 72 plus header/trailer 18) returns code ‘98’.</li>
+</ul>
+</li>
+<li>EIBTRNID, EIBTRMID, EIBTASKN
+<ul>
+<li>Transaction ID, terminal ID and task number from the CICS Execute Interface Block (EIB).</li>
+<li>They are copied into the runtime and debug header fields.</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-external-data-sources" tabindex="-1">2.4 External Data Sources</h3>
+<ul>
+<li>CICS temporary storage queue named by MQ_CONTROL (‘GENAWMQC’)
+<ul>
+<li>It is read item by item into MQ_READ_RECORD.</li>
+<li>A record whose first 6 characters are ‘MQHIT=’ sets MQ_HIT to 1.</li>
+<li>MQ_HIT controls routing: 0 sends the request to LGICDB01, and 1 sends it to the alternate program ‘AAAAAAAA’.</li>
+<li>The queue’s contents and its existence (the RESP value from READQ TS) decide the route.</li>
+</ul>
+</li>
+<li>System date and time from CICS ASKTIME and FORMATTIME
+<ul>
+<li>Used only to timestamp error messages.</li>
+</ul>
+</li>
+</ul>
+<h3 id="25-fixed-configuration-values" tabindex="-1">2.5 Fixed Configuration Values</h3>
+<ul>
+<li>WS_CA_HEADERTRAILER_LEN (18) and WS_CUSTOMER_LEN (72)
+<ul>
+<li>Hard-coded constants that set the minimum acceptable communication area length.</li>
+<li>They are not supplied externally.</li>
+</ul>
+</li>
+<li>LGICDB01
+<ul>
+<li>Name of the downstream DB2 inquiry program that the program links to. It is a fixed value, not an input.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<h3 id="31-communication-area-outputs-passed-back-to-calling-program" tabindex="-1">3.1 Communication Area Outputs (Passed Back to Calling Program)</h3>
+<ul>
+<li><code>CA_RETURN_CODE</code>
+<ul>
+<li>Two-digit status code returned to the calling program. It is initialized to <code>'00'</code> (success) and set to <code>'98'</code> if the incoming communication area length (<code>EIBCALEN</code>) is less than the required minimum length (<code>WS_REQUIRED_CA_LEN</code>). Downstream linked programs may also update this field.</li>
+</ul>
+</li>
+<li><code>CA_NUM_POLICIES</code>
+<ul>
+<li>Three-digit count field initialized to <code>0</code> at the start of the transaction. It is updated by downstream inquiry programs (such as <code>LGICDB01</code>) to reflect the total number of policies found for the requested customer.</li>
+</ul>
+</li>
+<li><code>COMM_AREA</code>
+<ul>
+<li>The primary data structure shared between the calling program and downstream subprograms. In addition to status codes, specific subfields are modified or populated downstream based on the inquiry execution:
+<ul>
+<li><code>CA_CUSTOMER_REQUEST</code>: Holds the retrieved customer profile details, including <code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_DOB</code>, <code>CA_HOUSE_NAME</code>, <code>CA_HOUSE_NUM</code>, <code>CA_POSTCODE</code>, <code>CA_PHONE_MOBILE</code>, <code>CA_PHONE_HOME</code>, <code>CA_EMAIL_ADDRESS</code>, and <code>CA_POLICY_DATA</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-cics-system-outputs-and-service-invocations" tabindex="-1">3.2 CICS System Outputs and Service Invocations</h3>
+<ul>
+<li><code>EXEC CICS LINK PROGRAM(LGICDB01)</code> / <code>EXEC CICS LINK PROGRAM('AAAAAAAA')</code>
+<ul>
+<li>Transfers control and passes <code>COMM_AREA</code> (length 32500) to the target subprogram to execute customer retrieval. If <code>MQ_HIT</code> is <code>0</code>, control is transferred to <code>LGICDB01</code>; otherwise, it links to <code>'AAAAAAAA'</code>.</li>
+</ul>
+</li>
+<li><code>EXEC CICS LINK PROGRAM('LGSTSQ')</code>
+<ul>
+<li>Invoked during error handling within <code>WRITE_ERROR_MESSAGE</code> to log failure information:
+<ul>
+<li>Passes <code>ERROR_MSG</code> containing timestamp information (<code>EM_DATE</code>, <code>EM_TIME</code>), program identifier (<code>LGICUS01</code>), customer number (<code>EM_CUSNUM</code>), and error description (<code>EM_MSG_TEXT</code> or SQL diagnostic fields).</li>
+<li>Passes <code>CA_ERROR_MSG</code> containing up to 90 bytes of raw input communication area data (<code>CA_DATA</code> / <code>COMM_AREA_RAW</code>) to assist with transaction diagnostics.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>EXEC CICS ABEND</code>
+<ul>
+<li>Issues an abnormal termination with abend code <code>'LGCA'</code> and suppresses dumps (<code>NODUMP</code>) when the program is invoked without a communication area (<code>EIBCALEN = 0</code>).</li>
+</ul>
+</li>
+<li><code>EXEC CICS RETURN</code>
+<ul>
+<li>Terminates execution and returns control along with the populated or updated <code>COMM_AREA</code> to the invoking CICS program.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<ul>
+<li>
+<p><strong>Initialisation and run-time identification</strong></p>
+<ul>
+<li>The program is a CICS main procedure, <code>LGICUS01</code>, entered with a pointer to the communication area (<code>COMM_AREA_PTR</code>). The communication area is based on that pointer and is 32,500 bytes long.</li>
+<li>It copies the transaction ID, terminal ID and task number from the CICS EIB fields (<code>EIBTRNID</code>, <code>EIBTRMID</code>, <code>EIBTASKN</code>) into the <code>WS_HEADER</code> work structure. This structure starts with the eyecatcher <code>LGICUS01------WS</code>, which helps identify the program in a dump.</li>
+<li>Working fields hold the error message layout, the temporary storage queue name <code>GENAWMQC</code> (<code>MQ_CONTROL</code>), the DB2-layer program name <code>LGICDB01</code>, and the length constants.
+<ul>
+<li><code>WS_CA_HEADERTRAILER_LEN</code> is 18.</li>
+<li><code>WS_CUSTOMER_LEN</code> is 72.</li>
+<li><code>MQ_HIT</code> starts at 0.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Communication area validation</strong></p>
+<ul>
+<li><strong>No communication area supplied</strong>
+<ul>
+<li>If <code>EIBCALEN = 0</code>, the program sets <code>EM_MSG_TEXT</code> to &quot; NO COMMAREA RECEIVED&quot;.</li>
+<li>It calls <code>WRITE_ERROR_MESSAGE</code>, then abends the task with <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>.</li>
+<li>This is the only path that ends in an abend. The program does not return after it.</li>
+</ul>
+</li>
+<li><strong>Default response values</strong>
+<ul>
+<li><code>CA_RETURN_CODE</code> is set to ‘00’ and <code>CA_NUM_POLICIES</code> to 0, so the response starts clean.</li>
+<li><code>EIBCALEN</code> is saved in <code>WS_CALEN</code>, and <code>COMM_AREA_PTR</code> is saved in <code>WS_ADDR_DFHCOMMAREA</code>.</li>
+</ul>
+</li>
+<li><strong>Minimum length check</strong>
+<ul>
+<li><code>WS_REQUIRED_CA_LEN</code> is computed as <code>WS_CUSTOMER_LEN + WS_CA_HEADERTRAILER_LEN</code>, which is 72 + 18 = 90.</li>
+<li>If <code>EIBCALEN</code> is less than 90, <code>CA_RETURN_CODE</code> is set to ‘98’ and the program ends at once with <code>EXEC CICS RETURN</code>. No lookup is attempted.</li>
+</ul>
+</li>
+<li><strong>Diagnostic preparation</strong>
+<ul>
+<li>If the length is sufficient, <code>CA_CUSTOMER_NUM</code> is copied into <code>EM_CUSNUM</code> of the error message structure. Any later error message therefore carries the customer number.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Main inquiry flow</strong></p>
+<ul>
+<li>The program calls the internal procedure <code>GET_CUSTOMER_INFO</code> once.</li>
+<li>When that procedure returns, the program issues <code>EXEC CICS RETURN</code>. The caller gets the communication area as updated by the downstream program.</li>
+<li>The program does not check the downstream result. <code>CA_RETURN_CODE</code> and the customer data returned from the linked program pass straight back to the caller.</li>
+</ul>
+</li>
+<li>
+<p><strong>Customer information retrieval (<code>GET_CUSTOMER_INFO</code>)</strong></p>
+<ul>
+<li><strong>Queue check for an <code>MQHIT=</code> record</strong>
+<ul>
+<li><code>MQ_HIT</code> is reset to 0.</li>
+<li>It reads item 1 of the temporary storage queue named in <code>MQ_CONTROL</code> (‘GENAWMQC’) into <code>MQ_READ_RECORD</code>, which is 80 characters. The response goes into <code>WS_RESP</code>.</li>
+<li>If the first read returns NORMAL, a loop runs <code>DO UNTIL (WS_RESP &gt; 0)</code>.
+<ul>
+<li>Each pass reads the next record from the queue with <code>READQ TS ... NEXT</code>.</li>
+<li>If the read is NORMAL and the first 6 characters of the record equal ‘MQHIT=’, <code>MQ_HIT</code> is set to 1.</li>
+<li>The loop does not stop when a match is found. It reads every remaining record until a non-zero response, normally end of queue (ITEMERR), so one matching record anywhere in the queue is enough.</li>
+</ul>
+</li>
+<li>If the first read is not NORMAL, for example because the queue does not exist, the loop is skipped and <code>MQ_HIT</code> stays 0.</li>
+</ul>
+</li>
+<li><strong>Routing decision</strong>
+<ul>
+<li>If <code>MQ_HIT = 0</code>, the program issues <code>EXEC CICS LINK PROGRAM(LGICDB01)</code>. The DB2 inquiry layer receives the 32,500-byte communication area and fills in the customer details, which include name, address, contact data, number of policies and policy data.</li>
+<li>If <code>MQ_HIT = 1</code>, the program links to the alternate program ‘AAAAAAAA’ with the same communication area and length.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Error logging (<code>WRITE_ERROR_MESSAGE</code>)</strong></p>
+<ul>
+<li>This procedure is currently called only when no communication area was received.</li>
+<li><strong>Timestamp</strong>
+<ul>
+<li><code>EXEC CICS ASKTIME</code> fetches the current absolute time into <code>WS_ABSTIME</code>.</li>
+<li><code>EXEC CICS FORMATTIME</code> converts it into <code>WS_DATE</code> (MMDDYYYY format) and <code>WS_TIME</code>.</li>
+<li>Both values are copied into <code>EM_DATE</code> and <code>EM_TIME</code> of the <code>ERROR_MSG</code> structure.</li>
+</ul>
+</li>
+<li><strong>Main error record</strong>
+<ul>
+<li>The program links to <code>LGSTSQ</code> and passes <code>ERROR_MSG</code> as the communication area. The length is <code>STG(ERROR_MSG)</code>.</li>
+<li><code>LGSTSQ</code> is the logging program that writes to the error queues.</li>
+<li><code>ERROR_MSG</code> holds the date, time, program name and message text. Its <code>EM_VARIABLE</code> area is a union, so it can hold either free text or a customer number, policy number and SQL code layout.</li>
+</ul>
+</li>
+<li><strong>Communication area dump record</strong>
+<ul>
+<li>The communication area is copied to the log only when <code>EIBCALEN &gt; 0</code>. In the <code>EIBCALEN = 0</code> case this block is skipped.</li>
+<li>If <code>EIBCALEN &lt; 91</code>, <code>CA_DATA</code> takes the left-justified first <code>EIBCALEN</code> bytes of <code>COMM_AREA_RAW</code>. The <code>LEFT</code> result is padded to 90 characters.</li>
+<li>Otherwise <code>CA_DATA</code> takes the first 90 bytes.</li>
+<li>In both cases the program links to <code>LGSTSQ</code> a second time and passes <code>CA_ERROR_MSG</code>, which is the ‘COMMAREA=’ prefix followed by the 90 data bytes.</li>
+</ul>
+</li>
+<li>The procedure then returns to its caller.</li>
+</ul>
+</li>
+<li>
+<p><strong>External interactions</strong></p>
+<ul>
+<li><strong>CICS temporary storage queue <code>GENAWMQC</code>:</strong> read-only, sequential reads, used to decide how to route the request.</li>
+<li><strong>CICS program links</strong>
+<ul>
+<li><code>LGICDB01</code> is the DB2 inquiry layer. It is the default route and receives the communication area.</li>
+<li><code>AAAAAAAA</code> is the alternate program, used when an <code>MQHIT=</code> record is found.</li>
+<li><code>LGSTSQ</code> is the error logging program.</li>
+</ul>
+</li>
+<li><strong>CICS services:</strong> <code>ASKTIME</code>, <code>FORMATTIME</code>, <code>ABEND</code> and <code>RETURN</code>.</li>
+<li>The program itself contains no direct DB2, file or MQ calls. All database access is delegated to <code>LGICDB01</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGICUS01 (main procedure body)</strong>: This is the entry point, declared <code>Options(Main)</code>. It receives the CICS communication area through <code>COMM_AREA_PTR</code> and drives the customer inquiry.</p>
+<ul>
+<li>Operations:
+<ul>
+<li>Copies <code>EIBTRNID</code>, <code>EIBTRMID</code> and <code>EIBTASKN</code> into <code>WS_TRANSID</code>, <code>WS_TERMID</code> and <code>WS_TASKNUM</code> for run-time diagnostics.</li>
+<li>Sets <code>CA_RETURN_CODE</code> to ‘00’ and <code>CA_NUM_POLICIES</code> to 0.</li>
+<li>Saves <code>EIBCALEN</code> in <code>WS_CALEN</code> and the commarea address in <code>WS_ADDR_DFHCOMMAREA</code>.</li>
+<li>Computes <code>WS_REQUIRED_CA_LEN</code> as <code>WS_CUSTOMER_LEN</code> (72) plus <code>WS_CA_HEADERTRAILER_LEN</code> (18), which is 90.</li>
+<li>Moves <code>CA_CUSTOMER_NUM</code> into <code>EM_CUSNUM</code> so the customer number appears in any error message.</li>
+<li>Calls <code>GET_CUSTOMER_INFO</code> to do the lookup.</li>
+<li>Issues <code>EXEC CICS RETURN</code> to hand control back to the caller.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>If <code>EIBCALEN = 0</code>, no commarea was passed. It sets <code>EM_MSG_TEXT</code> to ’ NO COMMAREA RECEIVED’, calls <code>WRITE_ERROR_MESSAGE</code>, and abends with code ‘LGCA’ (<code>NODUMP</code>).</li>
+<li>If <code>EIBCALEN</code> is less than <code>WS_REQUIRED_CA_LEN</code>, it sets <code>CA_RETURN_CODE</code> to ‘98’ and returns to CICS immediately without calling the lookup.</li>
+<li>Otherwise it calls <code>GET_CUSTOMER_INFO</code> and then returns. The final <code>RETURN;</code> statement is never reached because <code>EXEC CICS RETURN</code> comes first.</li>
+</ul>
+</li>
+<li>External interactions:
+<ul>
+<li>CICS EIB fields are read.</li>
+<li><code>EXEC CICS ABEND</code> and <code>EXEC CICS RETURN</code> end the task.</li>
+<li>It writes to the commarea, which is the interface to the caller.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_CUSTOMER_INFO</strong>: This internal procedure decides where to send the inquiry. It checks the temporary storage queue named in <code>MQ_CONTROL</code> (‘GENAWMQC’) for an ‘MQHIT=’ record. It then links either to the DB2 inquiry program or to an alternate program.</p>
+<ul>
+<li>Operations:
+<ul>
+<li>Resets <code>MQ_HIT</code> to 0.</li>
+<li>Reads item 1 of the TS queue into <code>MQ_READ_RECORD</code>, with the CICS response saved in <code>WS_RESP</code>.</li>
+<li>If that read succeeds, it reads the remaining items sequentially with <code>NEXT</code>, testing each one.</li>
+<li>Sets <code>MQ_HIT</code> to 1 when a record read successfully has ‘MQHIT=’ in its first 6 characters (<code>SUBSTR(MQ_READ_RECORD,1,6)</code>).</li>
+<li>After the queue scan, links to a program using the 32,500-byte <code>COMM_AREA</code>.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li><code>IF (WS_RESP = DFHRESP(NORMAL))</code> runs the scan only if the first read succeeded. If the queue is missing or empty, <code>MQ_HIT</code> stays 0.</li>
+<li><code>DO UNTIL (WS_RESP &gt; 0)</code> loops until a non-normal response, normally the end of the queue (ITEMERR). The test uses <code>WS_RESP &gt; 0</code>, so it exits on any non-zero response.</li>
+<li><code>IF (MQ_HIT = 0)</code> links to <code>LGICDB01</code>, the DB2 inquiry layer. This is the normal path.</li>
+<li><code>ELSE</code> links to the placeholder program ‘AAAAAAAA’. This is the alternate path when a message-queue hit was found.</li>
+</ul>
+</li>
+<li>External interactions:
+<ul>
+<li><code>EXEC CICS READQ TS</code> on queue ‘GENAWMQC’, both for the first item and with <code>NEXT</code>.</li>
+<li><code>EXEC CICS LINK</code> to <code>LGICDB01</code> or ‘AAAAAAAA’, passing the commarea.</li>
+<li><code>LGICDB01</code> fills in the customer details, including <code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_EMAIL_ADDRESS</code> and <code>CA_POLICY_DATA</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>WRITE_ERROR_MESSAGE</strong>: This internal procedure builds a time-stamped error record and sends it to the logging program. The record carries the program name, the customer number and the message text. It also logs part of the commarea for diagnosis.</p>
+<ul>
+<li>Operations:
+<ul>
+<li>Gets the current time with <code>EXEC CICS ASKTIME</code> into <code>WS_ABSTIME</code>.</li>
+<li>Formats it with <code>EXEC CICS FORMATTIME</code> into <code>WS_DATE</code> (MMDDYYYY) and <code>WS_TIME</code>.</li>
+<li>Moves the formatted values into <code>EM_DATE</code> and <code>EM_TIME</code> in <code>ERROR_MSG</code>.</li>
+<li>Links to ‘LGSTSQ’ with <code>ERROR_MSG</code> as the commarea, using <code>STG(ERROR_MSG)</code> as the length.</li>
+<li>Copies up to 90 bytes of <code>COMM_AREA_RAW</code> into <code>CA_DATA</code> and links to ‘LGSTSQ’ again with <code>CA_ERROR_MSG</code>.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>The commarea dump runs only when <code>EIBCALEN &gt; 0</code>.</li>
+<li>If <code>EIBCALEN &lt; 91</code>, it copies <code>LEFT(COMM_AREA_RAW, EIBCALEN)</code>, which is the whole commarea.</li>
+<li>Otherwise it copies the first 90 bytes with <code>LEFT(COMM_AREA_RAW, 90)</code>.</li>
+<li>Both branches then perform the same link to ‘LGSTSQ’.</li>
+<li>The procedure ends with <code>RETURN</code>.</li>
+</ul>
+</li>
+<li>External interactions:
+<ul>
+<li>CICS time services (<code>ASKTIME</code>, <code>FORMATTIME</code>).</li>
+<li>Up to two <code>EXEC CICS LINK</code> calls to ‘LGSTSQ’, which writes the error records to the queues.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<p><strong>Included Definitions and Copybooks</strong></p>
+<ul>
+<li>LGCMAREA (<code>plinc/LGCMAREA.inc</code>)
+<ul>
+<li>Supplies the shared communication area layout, which is based on <code>COMM_AREA_PTR</code> and overlaid by <code>COMM_AREA_RAW</code>.</li>
+<li>Defines the request and response fields the program reads and sets:
+<ul>
+<li><code>CA_REQUEST_ID</code></li>
+<li><code>CA_RETURN_CODE</code></li>
+<li><code>CA_CUSTOMER_NUM</code></li>
+<li><code>CA_NUM_POLICIES</code></li>
+<li><code>CA_FIRST_NAME</code></li>
+<li><code>CA_LAST_NAME</code></li>
+<li><code>CA_EMAIL_ADDRESS</code></li>
+<li><code>CA_POLICY_DATA</code></li>
+</ul>
+</li>
+<li>Also defines the policy, security and claim layouts, which this program doesn’t use.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Input Parameters and Caller-Provided Data</strong></p>
+<ul>
+<li><code>COMM_AREA_PTR</code> (procedure parameter)
+<ul>
+<li>It is the address of the CICS communication area (DFHCOMMAREA) passed by the calling program or transaction.</li>
+<li>It is the only data source the program needs to run.</li>
+</ul>
+</li>
+<li><code>CA_CUSTOMER_NUM</code>
+<ul>
+<li>The customer number, supplied by the caller, that drives the inquiry.</li>
+<li>It is copied into <code>EM_CUSNUM</code> for diagnostics.</li>
+</ul>
+</li>
+<li>Required communication area size
+<ul>
+<li><code>WS_CUSTOMER_LEN</code> (72) plus <code>WS_CA_HEADERTRAILER_LEN</code> (18) gives a minimum length of 90.</li>
+<li>The caller must supply at least this many bytes.</li>
+<li>If it supplies fewer, the program sets <code>CA_RETURN_CODE</code> to ‘98’ and returns.</li>
+</ul>
+</li>
+<li><code>EIBCALEN</code>
+<ul>
+<li>The length of the communication area passed in.</li>
+<li>A value of 0 triggers the error path.</li>
+<li>The program also checks it against the required length.</li>
+<li>The error handler uses it to decide how many bytes of the communication area to log.</li>
+</ul>
+</li>
+</ul>
+<p><strong>CICS Runtime Environment</strong></p>
+<ul>
+<li>Execute Interface Block (EIB) fields
+<ul>
+<li><code>EIBTRNID</code>, <code>EIBTRMID</code> and <code>EIBTASKN</code> populate the runtime debug header (<code>WS_TRANSID</code>, <code>WS_TERMID</code>, <code>WS_TASKNUM</code>).</li>
+<li><code>EIBCALEN</code> is described above.</li>
+</ul>
+</li>
+<li>CICS command-level API (<code>EXEC CICS</code>), used for:
+<ul>
+<li><code>RETURN</code>, to end the transaction.</li>
+<li><code>ABEND ABCODE('LGCA') NODUMP</code>, to terminate abnormally when no communication area is received.</li>
+<li><code>ASKTIME</code> and <code>FORMATTIME</code>, to obtain and format the current date and time (MMDDYYYY and time) for error messages.</li>
+<li><code>READQ TS</code>, to read the temporary storage queue.</li>
+<li><code>LINK PROGRAM</code>, to call other programs.</li>
+</ul>
+</li>
+<li><code>DFHRESP(NORMAL)</code>
+<ul>
+<li>Used to test the response code returned by the <code>READQ TS</code> commands.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Temporary Storage Queue</strong></p>
+<ul>
+<li><code>GENAWMQC</code> (held in <code>MQ_CONTROL</code>)
+<ul>
+<li>A CICS TS queue read by <code>READQ TS</code>, first at item 1 and then with <code>NEXT</code> until the response is not normal.</li>
+<li>Each record is received into <code>MQ_READ_RECORD</code>.</li>
+<li>A record starting with ‘MQHIT=’ sets <code>MQ_HIT</code> to 1, which controls how the request is routed.</li>
+<li>The queue must be defined and available in the CICS region. If it is absent or empty, <code>MQ_HIT</code> stays 0 and the request goes to the DB2 layer.</li>
+</ul>
+</li>
+</ul>
+<p><strong>External Programs Invoked (CICS LINK)</strong></p>
+<ul>
+<li><code>LGICDB01</code> (held in the <code>LGICDB01</code> variable)
+<ul>
+<li>The DB2 inquiry layer that retrieves the customer details and policies.</li>
+<li>It is linked when no MQHIT record is found.</li>
+<li>It receives <code>COMM_AREA</code> with a length of 32500 and fills in the customer fields in place.</li>
+</ul>
+</li>
+<li><code>AAAAAAAA</code>
+<ul>
+<li>A placeholder alternate program, linked when an MQHIT record is found.</li>
+<li>It receives the same <code>COMM_AREA</code> with a length of 32500.</li>
+<li>It must exist in the CICS program definitions if that path is used.</li>
+</ul>
+</li>
+<li><code>LGSTSQ</code>
+<ul>
+<li>The error logging program.</li>
+<li>It is linked from <code>WRITE_ERROR_MESSAGE</code> to write the formatted error message (<code>ERROR_MSG</code>) to the error queues.</li>
+<li>It is linked a second time with <code>CA_ERROR_MSG</code>, which carries up to 90 bytes of the incoming communication area.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Indirect Data Stores (via Linked Programs)</strong></p>
+<ul>
+<li>DB2 database
+<ul>
+<li>It is reached only through <code>LGICDB01</code>.</li>
+<li>This program has no embedded SQL of its own.</li>
+<li>The <code>EM_SQLREQ</code> and <code>EM_SQLRC</code> error message fields are defined but not populated here.</li>
+</ul>
+</li>
+<li>Error logging queues (TD/TS)
+<ul>
+<li>They are written by <code>LGSTSQ</code>.</li>
+<li>They record the date, time, program name, customer number and communication area content.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Configuration Constants and Internal Settings</strong></p>
+<ul>
+<li><code>ATRANID</code> = ‘DSC1’
+<ul>
+<li>It is declared as a transaction ID constant but not used in the logic.</li>
+</ul>
+</li>
+<li><code>WS_MODULENAME</code>
+<ul>
+<li>It is declared but not used.</li>
+</ul>
+</li>
+<li>Hard-coded program and queue names
+<ul>
+<li><code>LGICDB01</code></li>
+<li><code>AAAAAAAA</code></li>
+<li><code>LGSTSQ</code></li>
+<li><code>GENAWMQC</code></li>
+<li>They can’t be changed through environment variables or external configuration. They are fixed in the source.</li>
+</ul>
+</li>
+<li>Fixed lengths
+<ul>
+<li>32500 bytes for the commarea passed on <code>LINK</code>.</li>
+<li>90 bytes for the commarea snippet logged on error.</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<ul>
+<li>
+<p>Communication area presence and size</p>
+<ul>
+<li>A communication area must be supplied.
+<ul>
+<li>The program tests <code>EIBCALEN = 0</code>.</li>
+<li>If it is zero, it sets <code>EM_MSG_TEXT</code> to ’ NO COMMAREA RECEIVED’ and calls <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>It then ends the task with <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>, so no dump is produced.</li>
+</ul>
+</li>
+<li>The communication area must meet a minimum length.
+<ul>
+<li><code>WS_REQUIRED_CA_LEN</code> is computed as <code>WS_CUSTOMER_LEN</code> (72) plus <code>WS_CA_HEADERTRAILER_LEN</code> (18), which gives 90 bytes.</li>
+<li>If <code>EIBCALEN &lt; WS_REQUIRED_CA_LEN</code>, the program sets <code>CA_RETURN_CODE</code> to ‘98’ and issues <code>EXEC CICS RETURN</code>.</li>
+<li>No customer lookup is done when the area is too short.</li>
+<li>A short area is reported only through the return code. No error message is written and no abend is issued.</li>
+</ul>
+</li>
+<li>The communication area has a fixed maximum layout of 32,500 bytes.
+<ul>
+<li><code>COMM_AREA_RAW</code> is CHAR(32500).</li>
+<li>The <code>LINK</code> commands pass <code>LENGTH(32500)</code> to the called programs.</li>
+<li><code>CA_POLICY_DATA</code> is CHAR(32267), which limits the policy data returned.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Data format and field definitions</p>
+<ul>
+<li><code>CA_CUSTOMER_NUM</code> is PIC ‘9999999999’, so it holds exactly 10 numeric digits.</li>
+<li><code>CA_RETURN_CODE</code> is PIC ‘99’, so it holds a 2-digit numeric code.
+<ul>
+<li>‘00’ means success.</li>
+<li>‘98’ means the communication area is too short.</li>
+</ul>
+</li>
+<li><code>CA_NUM_POLICIES</code> is PIC ‘999’, so it can report at most 999 policies.</li>
+<li>Customer text fields have fixed maximum lengths.
+<ul>
+<li><code>CA_FIRST_NAME</code> is CHAR(10).</li>
+<li><code>CA_LAST_NAME</code> is CHAR(20).</li>
+<li><code>CA_EMAIL_ADDRESS</code> is CHAR(100).</li>
+<li>Longer values are truncated.</li>
+</ul>
+</li>
+<li>The request-specific section of the communication area is a UNION.
+<ul>
+<li>It overlays the customer, customer-security and policy layouts, so only one interpretation applies to a given request.</li>
+<li><code>CA_REQUEST_INITIALISER</code> is CHAR(32482).</li>
+</ul>
+</li>
+<li>The program does not check <code>CA_CUSTOMER_NUM</code> for numeric content or existence. It copies the value into <code>EM_CUSNUM</code> and passes it to the downstream program.</li>
+</ul>
+</li>
+<li>
+<p>Initialisation and state</p>
+<ul>
+<li><code>CA_RETURN_CODE</code> is set to ‘00’ and <code>CA_NUM_POLICIES</code> is set to 0 at the start of every request.
+<ul>
+<li>This happens only after the zero-length check passes.</li>
+<li>It happens before the length check.</li>
+</ul>
+</li>
+<li><code>MQ_HIT</code> is reset to 0 at the start of <code>GET_CUSTOMER_INFO</code>, so routing is decided afresh on each invocation.</li>
+<li>The program captures <code>EIBTRNID</code>, <code>EIBTRMID</code> and <code>EIBTASKN</code> into <code>WS_TRANSID</code>, <code>WS_TERMID</code> and <code>WS_TASKNUM</code> for diagnostics.
+<ul>
+<li>The communication area address and length are saved in <code>WS_ADDR_DFHCOMMAREA</code> and <code>WS_CALEN</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Sequencing</p>
+<ul>
+<li>Processing follows a fixed order.
+<ul>
+<li>Capture the CICS environment identifiers.</li>
+<li>Check for a zero-length communication area.</li>
+<li>Initialise the return code and policy count.</li>
+<li>Check the minimum length.</li>
+<li>Copy the customer number into the error message structure.</li>
+<li>Call <code>GET_CUSTOMER_INFO</code>.</li>
+<li>Return to the caller with <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li>Inside <code>GET_CUSTOMER_INFO</code>, the queue must be read before routing is chosen.
+<ul>
+<li>Item 1 is read first.</li>
+<li>Only if that read succeeds are the remaining items read with <code>NEXT</code>.</li>
+<li>The <code>LINK</code> happens only after <code>MQ_HIT</code> has been determined.</li>
+</ul>
+</li>
+<li>Inside <code>WRITE_ERROR_MESSAGE</code>, the steps are ordered.
+<ul>
+<li><code>ASKTIME</code> and <code>FORMATTIME</code> run first, so the error message has a date and time.</li>
+<li>The error message is linked to <code>LGSTSQ</code>.</li>
+<li>The communication area dump is linked to <code>LGSTSQ</code> afterwards.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Routing</p>
+<ul>
+<li>The temporary storage queue named in <code>MQ_CONTROL</code> (‘GENAWMQC’) decides which program handles the inquiry.
+<ul>
+<li>Routing depends only on whether a record in the queue starts with ‘MQHIT=’. The check is <code>SUBSTR(MQ_READ_RECORD,1,6) = 'MQHIT='</code>, and it only applies to a read with <code>RESP</code> of <code>DFHRESP(NORMAL)</code>.</li>
+<li>If <code>MQ_HIT = 0</code>, the request is linked to <code>LGICDB01</code>, the DB2 inquiry layer.</li>
+<li>If <code>MQ_HIT = 1</code>, the request is linked to the alternate program ‘AAAAAAAA’.</li>
+</ul>
+</li>
+<li>The queue is read as a whole.
+<ul>
+<li>If item 1 is read successfully, the <code>DO UNTIL (WS_RESP &gt; 0)</code> loop reads each following record.</li>
+<li>The loop ends on the first non-normal response, normally the end of the queue.</li>
+<li>Any matching record in the queue sets the hit flag.</li>
+<li>After a hit is found the loop does not stop early and keeps reading to the end of the queue.</li>
+</ul>
+</li>
+<li>If the first read of item 1 fails, for example because the queue does not exist or is empty, the program does not read further. <code>MQ_HIT</code> stays 0 and the request goes to <code>LGICDB01</code>.</li>
+<li>Only the first 6 characters of each 80-character record are compared, and the comparison is case-sensitive.</li>
+<li>The <code>LINK</code> commands do not use <code>RESP</code>, so a failure in the linked program is not handled in this program. CICS default condition handling applies.</li>
+</ul>
+</li>
+<li>
+<p>Error reporting</p>
+<ul>
+<li><code>WRITE_ERROR_MESSAGE</code> is called only for a missing communication area.</li>
+<li>The error message carries the date, time, program name ‘LGICUS01’ and a text of at most 63 characters (<code>EM_MSG_TEXT</code>).
+<ul>
+<li>The message area is a UNION, so the text overlays the customer number, policy number and SQL fields.</li>
+</ul>
+</li>
+<li>Error messages are written by linking to program <code>LGSTSQ</code> with the <code>ERROR_MSG</code> structure.</li>
+<li>Diagnostic communication area content is limited to 90 bytes (<code>CA_DATA</code> is CHAR(90)).
+<ul>
+<li>If <code>EIBCALEN</code> is above 0 and below 91, only <code>EIBCALEN</code> bytes are copied.</li>
+<li>If <code>EIBCALEN</code> is 91 or more, exactly the first 90 bytes are copied.</li>
+<li>The dump is written only if <code>EIBCALEN &gt; 0</code>.</li>
+<li>In the zero-length abend path this condition is false, so no communication area content is logged.</li>
+</ul>
+</li>
+<li>Date and time come from <code>ASKTIME</code> and <code>FORMATTIME</code>.
+<ul>
+<li>The date uses the <code>MMDDYYYY</code> format in a 10-character field.</li>
+<li>The time is held in an 8-character field.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Environment and runtime requirements</p>
+<ul>
+<li>The program must run in CICS (<code>Options(Main)</code> with <code>EXEC CICS</code> commands).</li>
+<li>The programs <code>LGICDB01</code>, ‘AAAAAAAA’ and <code>LGSTSQ</code> must be available to CICS.</li>
+<li>The program always ends with <code>EXEC CICS RETURN</code>, which includes the early exit for a too-short communication area.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<ul>
+<li>Input validation checks
+<ul>
+<li>Missing communication area check
+<ul>
+<li>The program tests whether the CICS-supplied communication area length (EIBCALEN) is zero at the start of processing, before it does any other work.</li>
+<li>If it is zero, the program sets the error message text to “NO COMMAREA RECEIVED”. It then calls the WRITE_ERROR_MESSAGE routine to log the problem and issues a CICS ABEND with abend code LGCA, with no dump (NODUMP).</li>
+<li>This is a fail-fast check. The transaction ends abnormally because nothing useful can be done without input.</li>
+</ul>
+</li>
+<li>Minimum communication area length check
+<ul>
+<li>The program computes the minimum acceptable size (WS_REQUIRED_CA_LEN) as the customer data length (72) plus the header/trailer overhead (18).</li>
+<li>If EIBCALEN is smaller than that value, the communication area is too small to hold a valid customer inquiry request.</li>
+<li>In that case the program sets the return code (CA_RETURN_CODE) to ‘98’ and issues a CICS RETURN. It does not call the downstream layers. The caller has to interpret the ‘98’ value, because the program does not log this condition or abend.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Return code signaling to the caller
+<ul>
+<li>CA_RETURN_CODE is set to ‘00’ as the default once the communication area is known to be present. This is the success indicator that is expected to stay in place if processing completes normally.</li>
+<li>CA_RETURN_CODE is set to ‘98’ for a communication area that is too short. This is the program’s own error code, passed back through the communication area.</li>
+<li>CA_NUM_POLICIES is reset to zero at the start of each request, so the response never carries stale policy counts.</li>
+</ul>
+</li>
+<li>Abnormal termination
+<ul>
+<li>The only abend in the program is the LGCA abend raised when no communication area is received.</li>
+<li>Because NODUMP is specified, the abend does not produce a transaction dump. The error is reported through the logged message and the abend code only.</li>
+</ul>
+</li>
+<li>Error logging and notification
+<ul>
+<li>The WRITE_ERROR_MESSAGE procedure formats and writes diagnostics.
+<ul>
+<li>It gets the current time with ASKTIME and formats it into date and time strings with FORMATTIME. It places these in the error message structure (EM_DATE, EM_TIME).</li>
+<li>The error message structure also carries the program name and either free-form message text or a customer number/policy number/SQL request/SQLCODE layout. The customer number field (EM_CUSNUM) is populated from CA_CUSTOMER_NUM before the customer lookup, so any later error message can include it.</li>
+<li>It sends the formatted message to the shared logging program LGSTSQ through a CICS LINK, passing the message structure as the communication area.</li>
+</ul>
+</li>
+<li>Raw communication area capture
+<ul>
+<li>If the communication area length is greater than zero, the routine also sends the contents of the incoming communication area (COMM_AREA_RAW) to LGSTSQ in a second message with the “COMMAREA=” prefix.</li>
+<li>If the length is under 91 bytes, it sends only the bytes actually received (EIBCALEN). Otherwise it sends the first 90 bytes. This prevents reading beyond the supplied data.</li>
+<li>In the no-communication-area case, this second step is skipped because the length is zero.</li>
+</ul>
+</li>
+<li>The runtime context fields (transaction ID, terminal ID, task number) are captured at program start in WS_HEADER. This gives diagnostic context in dumps or traces.</li>
+</ul>
+</li>
+<li>Recovery and fallback logic
+<ul>
+<li>Message queue routing fallback in GET_CUSTOMER_INFO
+<ul>
+<li>The MQ_HIT flag is initialised to 0 on every call. If no hit is detected, the default path stays in effect and the request is linked to the DB2 inquiry layer program LGICDB01.</li>
+<li>The program first reads item 1 of the temporary storage queue GENAWMQC and checks the response code (WS_RESP) against NORMAL. If the read fails for any reason, such as the queue not existing or being empty, the program takes no corrective action. It does not read further, leaves MQ_HIT at 0, and continues down the default DB2 path. In effect, a missing or unreadable control queue is treated as “no hit” rather than as an error.</li>
+<li>If the first read succeeds, the program keeps reading the following records with the NEXT option. The loop stops when WS_RESP becomes greater than 0, which is the loop’s exit condition. This normally happens at the end of the queue (for example, ITEMERR) and also on any other non-normal response. Both end the loop silently without an error message.</li>
+<li>The MQ_HIT flag is set only when a read is successful and the first six characters of the record equal “MQHIT=”. If a hit is found, the request is redirected to an alternate program (hard-coded as ‘AAAAAAAA’) instead of LGICDB01.</li>
+</ul>
+</li>
+<li>The queue-read response codes are captured with RESP rather than allowing the default CICS condition handling. A failure on the queue therefore cannot abend the transaction, and the program controls the outcome.</li>
+</ul>
+</li>
+<li>Gaps and notable absences
+<ul>
+<li>The two CICS LINK commands in GET_CUSTOMER_INFO (to LGICDB01 or the alternate program) have no RESP or RESP2 checks. A failure in the linked program, such as PGMIDERR or an abend, is not trapped locally. It goes to CICS default handling, and the program does not write an error message.</li>
+<li>The calls to LGSTSQ in the error-logging routine also have no response checking. A failure to log is not detected.</li>
+<li>The program does not inspect the return code that the downstream program sets in the communication area after the LINK. Any error indication from the DB2 layer passes back to the caller unchanged.</li>
+<li>The error message structure has fields for customer number, policy number, SQL request and SQLCODE. In this program only the customer number is populated, and only the “no communication area” path writes a message. The SQL-related fields are unused here and appear intended for the DB2 layer or other programs.</li>
+<li>The short communication area case (return code ‘98’) exits through a plain CICS RETURN without logging, so that rejection leaves no diagnostic record.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1--successful-customer-inquiry-via-db2-standard-path" tabindex="-1">9.1 Example 1 — Successful Customer Inquiry via DB2 (Standard Path)</h3>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>EIBCALEN</code> = 32500 (caller provides a full-sized communication area — well above the minimum of 90 bytes)</li>
+<li><code>CA_REQUEST_ID</code> = <code>'LGICUS'</code></li>
+<li><code>CA_CUSTOMER_NUM</code> = <code>'0000010001'</code></li>
+<li>TS queue <code>GENAWMQC</code> is <strong>empty</strong> (no records present, or no record beginning with <code>MQHIT=</code>)</li>
+</ul>
+<p><strong>Processing:</strong></p>
+<ol>
+<li><code>EIBCALEN</code> is non-zero, so no abend occurs.</li>
+<li><code>CA_RETURN_CODE</code> is set to <code>'00'</code>; <code>CA_NUM_POLICIES</code> is set to <code>0</code>.</li>
+<li>The minimum required length check passes (32500 ≥ 90).</li>
+<li><code>GET_CUSTOMER_INFO</code> is called. <code>MQ_HIT</code> starts at <code>0</code>.</li>
+<li><code>EXEC CICS READQ TS QUEUE('GENAWMQC')</code> returns a non-NORMAL response (queue is empty), so the <code>DO UNTIL</code> loop is never entered and <code>MQ_HIT</code> remains <code>0</code>.</li>
+<li>Because <code>MQ_HIT = 0</code>, the program issues <code>EXEC CICS LINK PROGRAM('LGICDB01')</code>, passing the full 32,500-byte communication area.</li>
+<li>LGICDB01 performs the DB2 lookup and populates <code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_NUM_POLICIES</code>, <code>CA_POLICY_DATA</code>, etc.</li>
+</ol>
+<p><strong>Expected Output (communication area on return):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value (example)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td><code>'00'</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>'0000010001'</code></td>
+</tr>
+<tr>
+<td><code>CA_FIRST_NAME</code></td>
+<td><code>'John      '</code></td>
+</tr>
+<tr>
+<td><code>CA_LAST_NAME</code></td>
+<td><code>'Smith               '</code></td>
+</tr>
+<tr>
+<td><code>CA_NUM_POLICIES</code></td>
+<td><code>'003'</code></td>
+</tr>
+<tr>
+<td><code>CA_POLICY_DATA</code></td>
+<td><em>(serialised policy records from DB2)</em></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="92-example-2--communication-area-too-short-validation-failure" tabindex="-1">9.2 Example 2 — Communication Area Too Short (Validation Failure)</h3>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>EIBCALEN</code> = 50 (caller provides a communication area smaller than the required 90 bytes: <code>WS_CUSTOMER_LEN</code>(72) + <code>WS_CA_HEADERTRAILER_LEN</code>(18) = 90)</li>
+<li><code>CA_CUSTOMER_NUM</code> = <code>'0000099999'</code></li>
+</ul>
+<p><strong>Processing:</strong></p>
+<ol>
+<li><code>EIBCALEN</code> is non-zero, so no abend occurs.</li>
+<li><code>CA_RETURN_CODE</code> is set to <code>'00'</code>; <code>CA_NUM_POLICIES</code> is set to <code>0</code>.</li>
+<li>The length check fires: 50 &lt; 90, so <code>CA_RETURN_CODE</code> is set to <code>'98'</code> and <code>EXEC CICS RETURN</code> is issued immediately.</li>
+<li><code>GET_CUSTOMER_INFO</code> is <strong>never called</strong>; no DB2 or MQ interaction occurs.</li>
+</ol>
+<p><strong>Expected Output:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td><code>'98'</code></td>
+</tr>
+<tr>
+<td>All other fields</td>
+<td>Unchanged / uninitialised</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="93-example-3--mq-hit-detected-alternate-routing-path" tabindex="-1">9.3 Example 3 — MQ Hit Detected (Alternate Routing Path)</h3>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>EIBCALEN</code> = 32500</li>
+<li><code>CA_CUSTOMER_NUM</code> = <code>'0000020002'</code></li>
+<li>TS queue <code>GENAWMQC</code> contains two records; the second record begins with <code>'MQHIT='</code> (e.g., <code>'MQHIT=ACTIVE                                                          '</code>)</li>
+</ul>
+<p><strong>Processing:</strong></p>
+<ol>
+<li>Validation passes; <code>CA_RETURN_CODE</code> = <code>'00'</code>.</li>
+<li><code>GET_CUSTOMER_INFO</code> is called. <code>MQ_HIT</code> starts at <code>0</code>.</li>
+<li>Item 1 of <code>GENAWMQC</code> is read successfully (NORMAL response), so the <code>DO UNTIL</code> loop begins.</li>
+<li>The <code>NEXT</code> read returns the second record; its first 6 characters equal <code>'MQHIT='</code>, so <code>MQ_HIT</code> is set to <code>1</code>.</li>
+<li>The loop ends when a subsequent <code>READQ TS NEXT</code> returns a non-NORMAL response (end of queue).</li>
+<li>Because <code>MQ_HIT = 1</code>, the program issues <code>EXEC CICS LINK PROGRAM('AAAAAAAA')</code> instead of LGICDB01, passing the same 32,500-byte communication area to the alternate program.</li>
+</ol>
+<p><strong>Expected Output:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td><code>'00'</code> <em>(set before routing; the alternate program may modify it)</em></td>
+</tr>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>'0000020002'</code></td>
+</tr>
+<tr>
+<td>Remaining fields</td>
+<td>Populated by program <code>AAAAAAAA</code></td>
+</tr>
+</tbody>
+</table>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a>
+<ul>
+<li class="toc-level-3"><a href="#21-program-parameter-and-communication-area">2.1 Program Parameter and Communication Area</a></li>
+<li class="toc-level-3"><a href="#22-caller-supplied-request-fields">2.2 Caller-Supplied Request Fields</a></li>
+<li class="toc-level-3"><a href="#23-cics-runtime-context">2.3 CICS Runtime Context</a></li>
+<li class="toc-level-3"><a href="#24-external-data-sources">2.4 External Data Sources</a></li>
+<li class="toc-level-3"><a href="#25-fixed-configuration-values">2.5 Fixed Configuration Values</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a>
+<ul>
+<li class="toc-level-3"><a href="#31-communication-area-outputs-passed-back-to-calling-program">3.1 Communication Area Outputs (Passed Back to Calling Program)</a></li>
+<li class="toc-level-3"><a href="#32-cics-system-outputs-and-service-invocations">3.2 CICS System Outputs and Service Invocations</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a></li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a></li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a></li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1--successful-customer-inquiry-via-db2-standard-path">9.1 Example 1 — Successful Customer Inquiry via DB2 (Standard Path)</a></li>
+<li class="toc-level-3"><a href="#92-example-2--communication-area-too-short-validation-failure">9.2 Example 2 — Communication Area Too Short (Validation Failure)</a></li>
+<li class="toc-level-3"><a href="#93-example-3--mq-hit-detected-alternate-routing-path">9.3 Example 3 — MQ Hit Detected (Alternate Routing Path)</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGICUS01</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

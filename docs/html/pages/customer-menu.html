@@ -1,0 +1,1397 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Menu (LGTESTC1, SSC1) - GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../assets/prism-tomorrow.css">
+    <script src="../assets/prism-core.js"></script>
+    <script src="../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="customer-menu.html" class="nav-link active" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="page-container">
+                <div class="content-layout">
+                    <div class="prose">
+                        <details class="source-files-disclosure">
+            <summary>
+                <svg class="sf-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Source Files
+                <span style="margin-left:4px;font-size:11px;color:var(--fg-subtle)">(1)</span>
+            </summary>
+            <div class="source-files-body">
+                <ul class="source-files-list">
+            <li><a href="../sources/program/pli/LGTESTC1.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGTESTC1
+            </a></li>
+                </ul>
+            </div>
+        </details>
+                        <h1 id="customer-menu-lgtestc1-ssc1" tabindex="-1">Customer Menu (LGTESTC1, SSC1)</h1>
+<h2 id="1-overview" tabindex="-1">1. Overview</h2>
+<p>LGTESTC1 is a CICS PL/I program that runs as transaction <strong>SSC1</strong>. It is the 3270 customer menu of the GenApp application. A user can do three things from the BMS map <code>SSMAPC1</code> (mapset <code>SSMAP</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Function</th>
+<th>Business service linked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td>Inquire a customer</td>
+<td><code>LGICUS01</code></td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Add a customer</td>
+<td><code>LGACUS01</code></td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>Update a customer</td>
+<td><code>LGICUS01</code> (read first), then <code>LGUCUS01</code></td>
+</tr>
+</tbody>
+</table>
+<p>The menu has no SQL or file I/O of its own. It does the following:</p>
+<ul>
+<li><strong>Delegates:</strong> it passes work to the customer business services through a shared 32,500-byte COMMAREA (<code>LGCMAREA</code>).</li>
+<li><strong>Displays results:</strong> it shows the returned customer data, or a confirmation or error message, on the 3270 screen.</li>
+<li><strong>Rejects invalid options:</strong> it warns the user and puts the cursor back on the option field.</li>
+<li><strong>Resets after failures:</strong> after any service failure it clears the screen and the COMMAREA.</li>
+<li><strong>Maintains <code>GENACNTL</code>:</strong> after a successful add, it records the range of issued customer numbers (lowest and highest) in the temporary storage queue <code>GENACNTL</code>. Access to the queue is serialised with <code>ENQ</code>/<code>DEQ</code>.</li>
+<li><strong>Is pseudo-conversational:</strong> it keeps its context between interactions and ends with a “Transaction ended” message when the user exits.</li>
+</ul>
+<p>The program is declared <code>Options(Main,Reentrant)</code>. It is compiled with <code>SYSTEM(CICS)</code> and the CICS and macro preprocessors, and deployed as a <code>CICSLOAD</code> module.</p>
+<h2 id="2-system-architecture" tabindex="-1">2. System Architecture</h2>
+<h3 id="21-component-view" tabindex="-1">2.1 Component View</h3>
+<p>The menu sits between the 3270 terminal and the customer business services. The services reach Db2 and the other downstream resources. The menu itself touches only the BMS map, the COMMAREA and the <code>GENACNTL</code> queue.</p>
+<div class="mermaid">
+graph TD
+    U[3270 Terminal User] -->|Enter / PF3 / CLEAR| T[Transaction SSC1]
+    T --> P[LGTESTC1 PL/I Program]
+    P <-->|SEND / RECEIVE MAP| M[BMS Mapset SSMAP / Map SSMAPC1]
+    P -->|LINK 01ICUS| S1[LGICUS01 Inquiry Service]
+    P -->|LINK 01ACUS| S2[LGACUS01 Add Service]
+    P -->|LINK 01UCUS| S3[LGUCUS01 Update Service]
+    P -->|ENQ / READQ / WRITEQ / DEQ| Q[(TS Queue GENACNTL)]
+    P -.->|shared COMMAREA 32500 bytes| C[LGCMAREA]
+    S1 --> D[(Db2 CUSTOMER)]
+    S2 --> D
+    S2 --> D2[(Db2 POLICY)]
+    S3 --> D
+    S2 -.-> N[Customer number counter GENACUSTNUM / pool GENA]
+</div>
+<h3 id="22-architectural-elements" tabindex="-1">2.2 Architectural Elements</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transaction <code>SSC1</code></td>
+<td>Re-invoked through <code>RETURN TRANSID('SSC1') COMMAREA(COMM_AREA)</code>. It needs a CSD definition that points to LGTESTC1.</td>
+</tr>
+<tr>
+<td>Map <code>SSMAPC1</code> / mapset <code>SSMAP</code></td>
+<td>Symbolic map from include <code>plinc/SSMAP.inc</code>. It also declares <code>SSMAPP1</code> to <code>SSMAPP5</code>. The BMS source is not in this repository.</td>
+</tr>
+<tr>
+<td>COMMAREA <code>LGCMAREA</code></td>
+<td>Include <code>plinc/LGCMAREA.inc</code>. A union of 32,500 bytes (<code>COMM_AREA_RAW CHAR(32500)</code>), and the only data contract between the menu and the services.</td>
+</tr>
+<tr>
+<td>TS queue <code>GENACNTL</code></td>
+<td>Holds the header, the low customer number and the high customer number.</td>
+</tr>
+<tr>
+<td><code>ENQ</code>/<code>DEQ</code> on <code>GENACNTL</code></td>
+<td>Stops concurrent adds from corrupting the high customer number.</td>
+</tr>
+<tr>
+<td><code>ADDIPGM1</code></td>
+<td>A counter-initialisation program. Its <code>LINK</code> is commented out, so it is not a runtime dependency.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-program-structure" tabindex="-1">2.3 Program Structure</h3>
+<div class="mermaid">
+graph TD
+    A[LGTESTC1 main entry] --> B{EIBCALEN = 0?}
+    B -->|Yes| C[Init maps and COMMAREA, SEND MAP ERASE]
+    B -->|No| D[A_GAIN]
+    C --> D
+    D --> E[HANDLE AID / HANDLE CONDITION]
+    E --> F[RECEIVE MAP]
+    F --> G{SELECT ENT1OPTO}
+    G -->|1| H[Inquire]
+    G -->|2| I[Add]
+    G -->|4| J[Update]
+    G -->|OTHERWISE| K[Invalid option message]
+    H --> L[ENDIT_STARTIT]
+    I --> L
+    J --> L
+    K --> L
+    H -.->|RC greater than 0| N1[NO_DATA]
+    I -.->|RC greater than 0| N2[NO_ADD]
+    J -.->|RC greater than 0| N3[NO_UPD]
+    N1 --> O[ERROR_OUT]
+    N2 --> O
+    N3 --> O
+    O --> L
+    D -.->|PF3 or MAPFAIL| X[ENDIT]
+    D -.->|CLEAR| Y[CLEARIT]
+    Y --> L
+    I --> W[WRITE_GENACNTL]
+</div>
+<h2 id="3-inputs" tabindex="-1">3. Inputs</h2>
+<h3 id="31-system-interface" tabindex="-1">3.1 System Interface</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DFHEIPTR</code></td>
+<td>Pointer to the CICS EXEC interface block. It supplies <code>EIBCALEN</code>, which detects the first invocation.</td>
+</tr>
+<tr>
+<td><code>COMM_AREA_PTR</code></td>
+<td>Pointer to the COMMAREA (<code>COMM_AREA</code> / <code>LGCMAREA</code>). It carries data across pseudo-conversational invocations and is used on every <code>LINK</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-screen-inputs-map-ssmapc1" tabindex="-1">3.2 Screen Inputs (Map <code>SSMAPC1</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENT1OPTI</code> / <code>ENT1OPTO</code></td>
+<td>Menu option (<code>1</code>, <code>2</code>, <code>4</code>)</td>
+<td>All</td>
+</tr>
+<tr>
+<td><code>ENT1CNOI</code> / <code>ENT1CNOO</code></td>
+<td>Customer number (10 digits)</td>
+<td>Inquire, Update</td>
+</tr>
+<tr>
+<td><code>ENT1FNAI</code></td>
+<td>First name</td>
+<td>Add, Update</td>
+</tr>
+<tr>
+<td><code>ENT1LNAI</code></td>
+<td>Last name</td>
+<td>Add, Update</td>
+</tr>
+<tr>
+<td><code>ENT1DOBI</code></td>
+<td>Date of birth</td>
+<td>Add, Update</td>
+</tr>
+<tr>
+<td><code>ENT1HNMI</code></td>
+<td>House name</td>
+<td>Add, Update</td>
+</tr>
+<tr>
+<td><code>ENT1HNOI</code></td>
+<td>House number</td>
+<td>Add, Update</td>
+</tr>
+<tr>
+<td><code>ENT1HPCI</code></td>
+<td>Postcode</td>
+<td>Add, Update</td>
+</tr>
+<tr>
+<td><code>ENT1HP1I</code></td>
+<td>Home phone</td>
+<td>Add, Update</td>
+</tr>
+<tr>
+<td><code>ENT1HP2I</code></td>
+<td>Mobile phone</td>
+<td>Add, Update</td>
+</tr>
+<tr>
+<td><code>ENT1HMOI</code></td>
+<td>Email address</td>
+<td>Add, Update</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-inputs-returned-by-the-services-lgcmarea" tabindex="-1">3.3 Inputs Returned by the Services (<code>LGCMAREA</code>)</h3>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>00</code> means success. Any value greater than 0 means failure.</li>
+<li><code>CA_CUSTOMER_NUM</code>: the new customer number, returned by <code>LGACUS01</code>.</li>
+<li><code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_DOB</code>, <code>CA_HOUSE_NAME</code>, <code>CA_HOUSE_NUM</code>, <code>CA_POSTCODE</code>, <code>CA_PHONE_HOME</code>, <code>CA_PHONE_MOBILE</code>, <code>CA_EMAIL_ADDRESS</code>: customer details returned by <code>LGICUS01</code>.</li>
+</ul>
+<h3 id="34-queue-input" tabindex="-1">3.4 Queue Input</h3>
+<p><code>READ_MSG</code> (<code>READ_MSG_MSG</code> / <code>READ_CUST_HIGH</code>) is an 80-byte area that receives records read from the <code>GENACNTL</code> queue. It is used to find the <code>HIGH CUSTOMER</code> record.</p>
+<h2 id="4-outputs" tabindex="-1">4. Outputs</h2>
+<h3 id="41-screen-outputs" tabindex="-1">4.1 Screen Outputs</h3>
+<ul>
+<li>The output map is <code>SSMAPC1O</code>. It returns the customer fields (<code>ENT1FNAO</code>, <code>ENT1LNAO</code> and so on) and the customer number.</li>
+<li><code>ENT1CNOO</code> is initialised to <code>'0000000000'</code> on first entry.</li>
+<li><code>ENT1OPTI</code> is cleared after a successful add or update.</li>
+<li><code>ERRFLDO</code> (maximum 40 characters) carries these messages:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Message</th>
+<th>Situation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>New Customer Inserted</code></td>
+<td>Successful add</td>
+</tr>
+<tr>
+<td><code>Customer details updated</code></td>
+<td>Successful update</td>
+</tr>
+<tr>
+<td><code>Please enter a valid option</code></td>
+<td>Option not 1, 2 or 4</td>
+</tr>
+<tr>
+<td><code>No data was returned.</code></td>
+<td>Inquiry failure (options 1 and 4)</td>
+</tr>
+<tr>
+<td><code>Error Adding Customer</code></td>
+<td>Add failure</td>
+</tr>
+<tr>
+<td><code>Error Updating Customer</code></td>
+<td>Update failure</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-terminal-messages" tabindex="-1">4.2 Terminal Messages</h3>
+<p><code>MSGEND</code> sends the text <code>'Transaction ended'</code> when the user presses PF3 or a <code>MAPFAIL</code> occurs.</p>
+<h3 id="43-commarea-contract" tabindex="-1">4.3 COMMAREA Contract</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_REQUEST_ID</code></td>
+<td><code>'01ICUS'</code>, <code>'01ACUS'</code> or <code>'01UCUS'</code></td>
+</tr>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td><code>PIC '99'</code>. Set to 0 before the call and tested after it.</td>
+</tr>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>PIC '9999999999'</code>. Input for inquire and update. Output of add (0 on input).</td>
+</tr>
+<tr>
+<td>Customer fields</td>
+<td>Name, DOB, address, phones and email for add and update</td>
+</tr>
+</tbody>
+</table>
+<div class="mermaid">
+classDiagram
+    class COMM_AREA {
+        +CHAR 32500 COMM_AREA_RAW
+        +CHAR 6 CA_REQUEST_ID
+        +PIC 99 CA_RETURN_CODE
+        +PIC 9999999999 CA_CUSTOMER_NUM
+    }
+    class CUSTOMER_FIELDS {
+        +CA_FIRST_NAME 10
+        +CA_LAST_NAME 20
+        +CA_DOB 10
+        +CA_HOUSE_NAME 20
+        +CA_HOUSE_NUM 4
+        +CA_POSTCODE 8
+        +CA_PHONE_HOME 20
+        +CA_PHONE_MOBILE 20
+        +CA_EMAIL_ADDRESS 100
+    }
+    COMM_AREA "1" *-- "1" CUSTOMER_FIELDS : request-specific area
+</div>
+<h3 id="44-control-queue-genacntl" tabindex="-1">4.4 Control Queue <code>GENACNTL</code></h3>
+<table>
+<thead>
+<tr>
+<th>Record</th>
+<th>Content</th>
+<th>Length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Header (<code>WRITE_MSG_E</code>)</td>
+<td><code>'**** GENAPP CNTL    '</code></td>
+<td>20</td>
+</tr>
+<tr>
+<td>Low (<code>WRITE_MSG_L</code>)</td>
+<td><code>'LOW CUSTOMER='</code> + 10 digits</td>
+<td>23</td>
+</tr>
+<tr>
+<td>High (<code>WRITE_MSG_H</code>)</td>
+<td><code>'HIGH CUSTOMER='</code> + 10 digits</td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-processing-logic" tabindex="-1">5. Processing Logic</h2>
+<h3 id="51-initialisation-and-first-invocation-detection" tabindex="-1">5.1 Initialisation and First-Invocation Detection</h3>
+<p>When <code>EIBCALEN</code> is zero, no COMMAREA was passed, so this is the first call. The program does the following:</p>
+<ol>
+<li>Points <code>COMM_AREA_PTR</code> at the local <code>BASE_COMM_AREA</code>.</li>
+<li>Blanks <code>SSMAPC1I</code> and <code>SSMAPC1O</code>.</li>
+<li>Resets <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code> and the request initialiser.</li>
+<li>Sets <code>ENT1CNOO</code> to <code>'0000000000'</code>.</li>
+<li>Sends <code>SSMAPC1</code> with <code>ERASE</code>.</li>
+</ol>
+<h3 id="52-receive-and-dispatch-loop" tabindex="-1">5.2 Receive-and-Dispatch Loop</h3>
+<p>At label <code>A_GAIN</code> the program registers the attention-key and condition handlers, then receives the map:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">EXEC CICS HANDLE AID CLEAR(CLEARIT) PF3(ENDIT);
+EXEC CICS HANDLE CONDITION MAPFAIL(ENDIT);
+EXEC CICS RECEIVE MAP(&#039;SSMAPC1&#039;) MAPSET(&#039;SSMAP&#039;) ...;</code></pre>
+</div>
+<p>The map is received with <code>ASIS</code> and <code>TERMINAL</code>, so the text is not folded to uppercase. The program then evaluates <code>ENT1OPTO</code> in a <code>SELECT</code> statement.</p>
+<div class="mermaid">
+flowchart TD
+    S[RECEIVE MAP] --> SEL{ENT1OPTO}
+    SEL -->|'1'| I1[Set 01ICUS, customer number from ENT1CNOO]
+    I1 --> I2[LINK LGICUS01]
+    I2 --> I3{CA_RETURN_CODE greater than 0?}
+    I3 -->|Yes| ND[NO_DATA]
+    I3 -->|No| I4[Copy fields to map, SEND MAP]
+    I4 --> R[ENDIT_STARTIT]
+    SEL -->|'2'| A1[Set 01ACUS, customer number 0, load fields]
+    A1 --> A2[TRANSLATE nulls, UPPERCASE postcode]
+    A2 --> A3[LINK LGACUS01]
+    A3 --> A4{CA_RETURN_CODE greater than 0?}
+    A4 -->|Yes| A5[SYNCPOINT ROLLBACK]
+    A5 --> NA[NO_ADD]
+    A4 -->|No| A6[WRITE_GENACNTL]
+    A6 --> A7[Show number, clear option, New Customer Inserted]
+    A7 --> R
+    SEL -->|'4'| U1[Inquire via LGICUS01, SEND MAP]
+    U1 --> U2[Second RECEIVE MAP]
+    U2 --> U3[Set 01UCUS, load fields, cleanse]
+    U3 --> U4[LINK LGUCUS01]
+    U4 --> U5{CA_RETURN_CODE greater than 0?}
+    U5 -->|Yes| NU[NO_UPD]
+    U5 -->|No| U6[Customer details updated]
+    U6 --> R
+    SEL -->|OTHER| O1[Please enter a valid option, cursor]
+    O1 --> R
+</div>
+<h3 id="53-option-1-inquire-customer" tabindex="-1">5.3 Option 1: Inquire Customer</h3>
+<p>The program sets the request ID and customer number, links to <code>LGICUS01</code>, and checks the return code. On success it copies the COMMAREA fields to the map:</p>
+<ul>
+<li><code>CA_FIRST_NAME</code> → <code>ENT1FNAI</code></li>
+<li><code>CA_LAST_NAME</code> → <code>ENT1LNAI</code></li>
+<li><code>CA_DOB</code> → <code>ENT1DOBI</code></li>
+<li><code>CA_HOUSE_NAME</code> → <code>ENT1HNMI</code></li>
+<li><code>CA_HOUSE_NUM</code> → <code>ENT1HNOI</code></li>
+<li><code>CA_POSTCODE</code> → <code>ENT1HPCI</code></li>
+<li><code>CA_PHONE_HOME</code> → <code>ENT1HP1I</code></li>
+<li><code>CA_PHONE_MOBILE</code> → <code>ENT1HP2I</code></li>
+<li><code>CA_EMAIL_ADDRESS</code> → <code>ENT1HMOI</code></li>
+</ul>
+<p>The map is sent without <code>ERASE</code>.</p>
+<div class="mermaid">
+sequenceDiagram
+    actor User
+    participant Menu as LGTESTC1 (SSC1)
+    participant Svc as LGICUS01
+    User->>Menu: Option 1 + customer number
+    Menu->>Menu: CA_REQUEST_ID = 01ICUS, CA_CUSTOMER_NUM = ENT1CNOO
+    Menu->>Svc: LINK COMMAREA(COMM_AREA) LENGTH(32500)
+    Svc-->>Menu: Customer details + CA_RETURN_CODE
+    alt CA_RETURN_CODE = 0
+        Menu-->>User: SEND MAP with customer data
+    else CA_RETURN_CODE greater than 0
+        Menu-->>User: "No data was returned."
+    end
+    Menu->>Menu: RETURN TRANSID(SSC1) COMMAREA
+</div>
+<h3 id="54-option-2-add-customer" tabindex="-1">5.4 Option 2: Add Customer</h3>
+<p>Before the link, the program zeroes the customer number, loads the screen fields into the COMMAREA, and cleanses the data:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">CA_REQUEST_ID   = &#039;01ACUS&#039;;
+CA_CUSTOMER_NUM = 0;
+/* ... screen fields moved into CA_ fields ... */
+COMM_AREA_RAW = TRANSLATE(COMM_AREA_RAW,&#039; &#039;,&#039;00&#039;X);
+CA_POSTCODE   = UPPERCASE(CA_POSTCODE);</code></pre>
+</div>
+<p>The null-to-space translation stops unmodified screen fields from passing nulls to the services. The program then links to <code>LGACUS01</code>:</p>
+<ul>
+<li><strong>Failure:</strong> the program issues <code>EXEC CICS SYNCPOINT ROLLBACK</code> and goes to <code>NO_ADD</code>.</li>
+<li><strong>Success:</strong> the program calls <code>WRITE_GENACNTL</code>, sets <code>ENT1CNOI</code> to the new customer number, clears <code>ENT1OPTI</code>, and sets <code>ERRFLDO</code> to <code>'New Customer Inserted'</code>.</li>
+</ul>
+<div class="mermaid">
+sequenceDiagram
+    actor User
+    participant Menu as LGTESTC1 (SSC1)
+    participant Add as LGACUS01
+    participant TSQ as TSQ GENACNTL
+    User->>Menu: Option 2 + customer details
+    Menu->>Menu: Load COMMAREA, TRANSLATE nulls, UPPERCASE postcode
+    Menu->>Add: LINK (01ACUS)
+    Add-->>Menu: CA_CUSTOMER_NUM + CA_RETURN_CODE
+    alt Success
+        Menu->>TSQ: ENQ, update or create high/low records, DEQ
+        Menu-->>User: New Customer Inserted
+    else Failure
+        Menu->>Menu: SYNCPOINT ROLLBACK
+        Menu-->>User: Error Adding Customer
+    end
+</div>
+<h3 id="55-option-4-update-customer" tabindex="-1">5.5 Option 4: Update Customer</h3>
+<p>Update is a two-step interaction within one task:</p>
+<ol>
+<li>The menu inquires with <code>'01ICUS'</code> and <code>LGICUS01</code>. A return code above 0 goes to <code>NO_DATA</code>.</li>
+<li>It sends the map with the current data so the user can edit it.</li>
+<li>It issues a second <code>RECEIVE MAP</code> to collect the edits.</li>
+<li>It sets <code>CA_REQUEST_ID = '01UCUS'</code>, reloads the COMMAREA, applies the same translate and uppercase steps, and links to <code>LGUCUS01</code>.</li>
+<li>On a return code above 0 it goes to <code>NO_UPD</code>. Otherwise it refreshes <code>ENT1CNOI</code>, clears <code>ENT1OPTI</code>, and shows <code>'Customer details updated'</code>.</li>
+</ol>
+<div class="mermaid">
+sequenceDiagram
+    actor User
+    participant Menu as LGTESTC1 (SSC1)
+    participant Inq as LGICUS01
+    participant Upd as LGUCUS01
+    User->>Menu: Option 4 + customer number
+    Menu->>Inq: LINK (01ICUS)
+    Inq-->>Menu: Current details
+    Menu-->>User: SEND MAP (current data)
+    User->>Menu: Edited fields (second RECEIVE MAP)
+    Menu->>Menu: 01UCUS, load fields, TRANSLATE, UPPERCASE
+    Menu->>Upd: LINK (01UCUS)
+    Upd-->>Menu: CA_RETURN_CODE
+    Menu-->>User: Customer details updated / Error Updating Customer
+</div>
+<h3 id="56-invalid-option" tabindex="-1">5.6 Invalid Option</h3>
+<p>Any other value, including <code>3</code>, blank or a non-digit, takes the <code>OTHERWISE</code> branch. The program sets <code>ERRFLDO = 'Please enter a valid option'</code> and <code>ENT1OPTL = -1</code>, sends the map with <code>CURSOR</code>, and returns to <code>SSC1</code>. No service is called.</p>
+<h3 id="57-error-paths-and-reset" tabindex="-1">5.7 Error Paths and Reset</h3>
+<p><code>NO_DATA</code>, <code>NO_ADD</code> and <code>NO_UPD</code> each set their message in <code>ERRFLDO</code> and fall to <code>ERROR_OUT</code>. <code>ERROR_OUT</code> does the following:</p>
+<ol>
+<li>Sends the map with the error message.</li>
+<li>Blanks the input and output maps.</li>
+<li>Blanks <code>COMM_AREA_RAW</code>.</li>
+<li>Resets <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code> and the request initialiser.</li>
+<li>Goes to <code>ENDIT_STARTIT</code>.</li>
+</ol>
+<p>The next interaction therefore starts from a clean COMMAREA.</p>
+<h3 id="58-session-control" tabindex="-1">5.8 Session Control</h3>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENDIT_STARTIT</code></td>
+<td><code>EXEC CICS RETURN TRANSID('SSC1') COMMAREA(COMM_AREA)</code> keeps the pseudo-conversation going.</td>
+</tr>
+<tr>
+<td><code>ENDIT</code></td>
+<td>Sends <code>'Transaction ended'</code> with <code>SEND TEXT ... ERASE FREEKB</code>, then does <code>RETURN</code> with no TRANSID.</td>
+</tr>
+<tr>
+<td><code>CLEARIT</code></td>
+<td>Blanks <code>SSMAPC1I</code>, sends the map with <code>MAPONLY</code>, and returns with <code>TRANSID('SSC1')</code> and the COMMAREA.</td>
+</tr>
+</tbody>
+</table>
+<div class="mermaid">
+stateDiagram-v2
+    [*] --> FirstEntry: EIBCALEN = 0
+    FirstEntry --> WaitingInput: SEND MAP ERASE, RETURN TRANSID SSC1
+    WaitingInput --> Dispatch: Enter
+    Dispatch --> WaitingInput: Result shown, ENDIT_STARTIT
+    Dispatch --> ErrorReset: RC greater than 0
+    ErrorReset --> WaitingInput: ERROR_OUT clears state
+    WaitingInput --> Cleared: CLEAR
+    Cleared --> WaitingInput: MAPONLY
+    WaitingInput --> Ended: PF3 or MAPFAIL
+    Ended --> [*]: Transaction ended
+</div>
+<h3 id="59-write_genacntl-control-queue-maintenance" tabindex="-1">5.9 <code>WRITE_GENACNTL</code>: Control Queue Maintenance</h3>
+<p>This internal procedure runs only after a successful add. It does the following:</p>
+<ol>
+<li><strong>Serialise:</strong> it takes <code>EXEC CICS ENQ RESOURCE(STSQ_NAME)</code> and initialises <code>WS_FLAG_TSQH = 'Y'</code> and <code>WS_ITEM_COUNT = 1</code>.</li>
+<li><strong>Probe:</strong> it reads item 1 of the queue.</li>
+<li><strong>Scan:</strong> if the read is <code>DFHRESP(NORMAL)</code>, it loops with <code>READQ TS ... NEXT</code> while <code>WS_RESP = 0</code>, incrementing <code>WS_ITEM_COUNT</code>.</li>
+<li><strong>Update in place:</strong> if the item’s first 13 characters are <code>'HIGH CUSTOMER'</code>, it sets <code>WRITE_MSG_HIGH = CA_CUSTOMER_NUM</code>, clears the flag, rewrites that item with <code>WRITEQ TS ... REWRITE ITEM(WS_ITEM_COUNT)</code> (length 24), and sets <code>WS_RESP = 99</code> to leave the loop.</li>
+<li><strong>Initialise if missing:</strong> if the flag is still <code>'Y'</code>, it sets both low and high to the new customer number. It then writes the header (20 bytes), low (23 bytes) and high (24 bytes) records with <code>NOSUSPEND</code>.</li>
+<li><strong>Release:</strong> it issues <code>EXEC CICS DEQ RESOURCE(STSQ_NAME)</code>.</li>
+</ol>
+<div class="mermaid">
+flowchart TD
+    A[ENQ GENACNTL] --> B[Flag = Y, item count = 1]
+    B --> C[READQ item 1]
+    C --> D{RESP NORMAL?}
+    D -->|Yes| E[Loop READQ NEXT while WS_RESP = 0]
+    E --> F{First 13 chars = HIGH CUSTOMER?}
+    F -->|Yes| G[Set HIGH = new number, REWRITE item, WS_RESP = 99]
+    F -->|No| E
+    D -->|No| H{Flag still Y?}
+    G --> H
+    E -->|End of queue| H
+    H -->|Yes| I[WRITEQ header, LOW and HIGH = new number]
+    H -->|No| J[DEQ GENACNTL]
+    I --> J
+</div>
+<p>The queue is created on the first successful add. Both bounds then equal the first customer number.</p>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<h3 id="61-called-programs" tabindex="-1">6.1 Called Programs</h3>
+<table>
+<thead>
+<tr>
+<th>Program</th>
+<th>Role</th>
+<th>Request ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LGICUS01</code></td>
+<td>Customer inquiry. Also the read step of option 4.</td>
+<td><code>01ICUS</code></td>
+</tr>
+<tr>
+<td><code>LGACUS01</code></td>
+<td>Customer add. Returns the new <code>CA_CUSTOMER_NUM</code>.</td>
+<td><code>01ACUS</code></td>
+</tr>
+<tr>
+<td><code>LGUCUS01</code></td>
+<td>Customer update</td>
+<td><code>01UCUS</code></td>
+</tr>
+<tr>
+<td><code>ADDIPGM1</code></td>
+<td>Counter initialisation. Its <code>LINK</code> is commented out, so it is not a runtime dependency.</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+<p>All calls use <code>COMM_AREA</code> with a length of 32500. A typical call looks like this:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">EXEC CICS LINK PROGRAM(&#039;LGICUS01&#039;)
+              COMMAREA(COMM_AREA)
+              LENGTH(32500);</code></pre>
+</div>
+<h3 id="62-include-files" tabindex="-1">6.2 Include Files</h3>
+<ul>
+<li><code>plinc/SSMAP.inc</code>: the symbolic map for <code>SSMAPC1</code> and <code>SSMAPP1</code> to <code>SSMAPP5</code>.</li>
+<li><code>plinc/LGCMAREA.inc</code>: the 32,500-byte COMMAREA layout.</li>
+<li>A change to either include requires an impact build or a full build. The compile parameters resolve <code>%INCLUDE</code> against the <code>plinc/*.inc</code> search path.</li>
+</ul>
+<h3 id="63-downstream-resources" tabindex="-1">6.3 Downstream Resources</h3>
+<p>The services reach the following resources on the menu’s behalf:</p>
+<ul>
+<li><code>LGACUS01</code> writes <code>CUSTOMER</code> and <code>POLICY</code>.</li>
+<li><code>LGICUS01</code> reads <code>CUSTOMER</code>.</li>
+<li><code>LGUCUS01</code> updates <code>CUSTOMER</code>.</li>
+<li>The customer number counter (<code>GENACUSTNUM</code>, pool <code>GENA</code>) is used on the add path by the services further down the chain.</li>
+</ul>
+<h3 id="64-built-in-functions-and-runtime" tabindex="-1">6.4 Built-in Functions and Runtime</h3>
+<ul>
+<li><code>TRANSLATE</code> replaces <code>X'00'</code> with blanks.</li>
+<li><code>UPPERCASE</code> converts the postcode.</li>
+<li><code>STG</code>, <code>ADDR</code> and <code>SUBSTR</code> provide lengths, pointers and queue-record matching.</li>
+<li>No environment variables are used.</li>
+<li>The program hard-codes these literals: mapset <code>SSMAP</code>, map <code>SSMAPC1</code>, transaction <code>SSC1</code>, queue <code>GENACNTL</code>, the program names above, and the COMMAREA length 32500.</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<h3 id="71-option-validation-and-input-handling" tabindex="-1">7.1 Option Validation and Input Handling</h3>
+<ul>
+<li>Only options <code>1</code>, <code>2</code> and <code>4</code> are accepted.</li>
+<li>The program does not check that the customer number is present, numeric or in range. The called services do those checks.</li>
+<li>On add, <code>CA_CUSTOMER_NUM</code> is forced to 0 and the service assigns the number.</li>
+<li>Fields are copied by assignment into fixed lengths, so longer or shorter values are truncated or padded without a report.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First name</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Last name</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Date of birth</td>
+<td>10</td>
+</tr>
+<tr>
+<td>House name</td>
+<td>20</td>
+</tr>
+<tr>
+<td>House number</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Postcode</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Phone (each)</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Customer number</td>
+<td>10 digits</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-return-codes-and-sequencing" tabindex="-1">7.2 Return Codes and Sequencing</h3>
+<ul>
+<li><code>CA_RETURN_CODE &gt; 0</code> means failure. The program does not distinguish individual failure codes.</li>
+<li>Only the add path issues <code>SYNCPOINT ROLLBACK</code>, and it does so before the error message is shown.</li>
+<li><code>WRITE_GENACNTL</code> runs after a successful add and before the confirmation map is sent.</li>
+<li>In the update path, the inquiry uses <code>ENT1CNOO</code>, but the update takes the customer number from <code>ENT1CNOI</code> after the second receive.</li>
+<li>Pressing Enter with no data raises <code>MAPFAIL</code>, which ends the transaction.</li>
+</ul>
+<h3 id="73-queue-consistency" tabindex="-1">7.3 Queue Consistency</h3>
+<ul>
+<li><strong>High-water mark:</strong> the high value is overwritten by the latest add without comparison, so the program assumes numbers only increase.</li>
+<li><strong>Low value:</strong> it is never changed after the queue is created.</li>
+<li><strong>Responses:</strong> <code>RESP</code> values on queue writes are captured but not tested, so a failed queue update does not stop the add or change the user’s reply.</li>
+</ul>
+<h3 id="74-capacity-limits" tabindex="-1">7.4 Capacity Limits</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COMMAREA</td>
+<td>32,500 bytes</td>
+</tr>
+<tr>
+<td>Customer number</td>
+<td>10 digits</td>
+</tr>
+<tr>
+<td><code>READ_MSG</code> buffer</td>
+<td>80 bytes</td>
+</tr>
+<tr>
+<td><code>WS_ITEM_COUNT</code></td>
+<td><code>FIXED BIN(15)</code>, up to 32,767 items</td>
+</tr>
+<tr>
+<td><code>ERRFLDO</code></td>
+<td>40 characters</td>
+</tr>
+</tbody>
+</table>
+<p>The program is reentrant. The queue name and exit message are <code>STATIC</code> constants, and no other static state is changed.</p>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Invalid option</td>
+<td><code>OTHERWISE</code> branch with message and cursor repositioning.</td>
+</tr>
+<tr>
+<td>CLEAR / PF3 / MAPFAIL</td>
+<td><code>HANDLE AID</code> and <code>HANDLE CONDITION</code> route to <code>CLEARIT</code> or <code>ENDIT</code>.</td>
+</tr>
+<tr>
+<td>Service failure</td>
+<td><code>CA_RETURN_CODE &gt; 0</code> leads to <code>NO_DATA</code>, <code>NO_ADD</code> or <code>NO_UPD</code>, then <code>ERROR_OUT</code>.</td>
+</tr>
+<tr>
+<td>Add failure</td>
+<td><code>SYNCPOINT ROLLBACK</code> undoes partial work. The control queue is not advanced.</td>
+</tr>
+<tr>
+<td>State reset</td>
+<td><code>ERROR_OUT</code> clears the maps, the COMMAREA and the key fields.</td>
+</tr>
+<tr>
+<td>Data normalisation</td>
+<td>Nulls are translated to blanks and the postcode is uppercased before add and update links.</td>
+</tr>
+<tr>
+<td>Queue self-healing</td>
+<td>If the <code>HIGH CUSTOMER</code> record is missing, the header, low and high records are recreated.</td>
+</tr>
+<tr>
+<td>Serialisation</td>
+<td><code>ENQ</code>/<code>DEQ</code> on <code>GENACNTL</code>. <code>DEQ</code> is always issued at the end of the procedure.</td>
+</tr>
+</tbody>
+</table>
+<p>Gaps:</p>
+<ul>
+<li>There is no general ON-unit.</li>
+<li><code>LINK</code> has no <code>RESP</code> option, so conditions such as <code>PGMIDERR</code> fall to the default CICS action (abend).</li>
+<li><code>SEND MAP</code> and <code>ENQ</code>/<code>DEQ</code> errors are not trapped either.</li>
+<li>The second <code>RECEIVE MAP</code> in the update path has no separate failure branch.</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-inquire-customer-option-1" tabindex="-1">9.1 Inquire Customer (Option 1)</h3>
+<p><strong>Input:</strong> <code>ENT1OPTO = '1'</code>, <code>ENT1CNOO = '0000000001'</code>.</p>
+<p><strong>Flow:</strong></p>
+<ol>
+<li>The program sets <code>CA_REQUEST_ID = '01ICUS'</code> and links to <code>LGICUS01</code>.</li>
+<li>With <code>CA_RETURN_CODE = 0</code>, the map is populated.</li>
+<li>The program returns with <code>TRANSID('SSC1')</code>.</li>
+</ol>
+<p><strong>Output:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENT1FNAI</code></td>
+<td><code>'JOHN      '</code></td>
+</tr>
+<tr>
+<td><code>ENT1LNAI</code></td>
+<td><code>'DOE                 '</code></td>
+</tr>
+<tr>
+<td><code>ENT1DOBI</code></td>
+<td><code>'1985-05-12'</code></td>
+</tr>
+<tr>
+<td><code>ENT1HNMI</code></td>
+<td><code>'THE COTTAGE         '</code></td>
+</tr>
+<tr>
+<td><code>ENT1HNOI</code></td>
+<td><code>'12        '</code></td>
+</tr>
+<tr>
+<td><code>ENT1HPCI</code></td>
+<td><code>'SW1A 1AA'</code></td>
+</tr>
+<tr>
+<td><code>ENT1HP1I</code></td>
+<td><code>'02079460000         '</code></td>
+</tr>
+<tr>
+<td><code>ENT1HP2I</code></td>
+<td><code>'07700900000         '</code></td>
+</tr>
+<tr>
+<td><code>ENT1HMOI</code></td>
+<td><code>'john.doe@example.com'</code> (padded)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="92-add-new-customer-option-2" tabindex="-1">9.2 Add New Customer (Option 2)</h3>
+<p><strong>Input:</strong> <code>ENT1OPTO = '2'</code>, first name <code>'ALICE'</code>, last name <code>'SMITH'</code>, DOB <code>'1990-10-25'</code>, house name <code>'HILLSIDE HOUSE'</code>, house number <code>'45'</code>, postcode <code>'e1 6an  '</code>, home phone <code>'02079460111'</code>, mobile <code>'07700900111'</code>, email <code>'alice.smith@example.com'</code>.</p>
+<p><strong>Flow:</strong></p>
+<ol>
+<li>The program sets <code>CA_REQUEST_ID = '01ACUS'</code> and <code>CA_CUSTOMER_NUM = 0</code>.</li>
+<li>The postcode becomes <code>'E1 6AN  '</code>.</li>
+<li>The program links to <code>LGACUS01</code>.</li>
+<li><code>WRITE_GENACNTL</code> records the new number.</li>
+</ol>
+<p><strong>Output:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENT1CNOI</code></td>
+<td>Generated number, for example <code>'0000000042'</code></td>
+</tr>
+<tr>
+<td><code>ENT1OPTI</code></td>
+<td><code>' '</code> (cleared)</td>
+</tr>
+<tr>
+<td><code>ERRFLDO</code></td>
+<td><code>'New Customer Inserted'</code></td>
+</tr>
+<tr>
+<td><code>GENACNTL</code></td>
+<td><code>HIGH CUSTOMER=0000000042</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="93-invalid-option-selection" tabindex="-1">9.3 Invalid Option Selection</h3>
+<p><strong>Input:</strong> <code>ENT1OPTO = '9'</code>.</p>
+<p><strong>Flow:</strong> The value matches none of <code>'1'</code>, <code>'2'</code> or <code>'4'</code>, so the <code>OTHERWISE</code> branch runs and sends the map with <code>CURSOR</code>.</p>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>ERRFLDO = 'Please enter a valid option'</code>.</li>
+<li>The cursor is placed on the option field (<code>ENT1OPTL = -1</code>).</li>
+<li>The program returns with <code>TRANSID('SSC1')</code>.</li>
+</ul>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">OTHERWISE DO;
+   ERRFLDO  = &#039;Please enter a valid option&#039;;
+   ENT1OPTL = -1;
+   EXEC CICS SEND MAP(&#039;SSMAPC1&#039;) MAPSET(&#039;SSMAP&#039;) CURSOR;
+   GO TO ENDIT_STARTIT;
+END;</code></pre>
+</div>
+                        <div class="related-pages">
+                            <p class="related-pages-title">Related Pages</p>
+                            <div class="card-grid">
+                                
+            <a href="customer-inquiry.html" class="card">
+                <span class="card-title">Customer Inquiry</span>
+                <span class="card-description">The customer lookup flow. The LGICUS01 business-logic entry point calls LGICDB01 for Db2 retrieval. LGICVS01 returns a valid random customer number from the VSAM file and the GENACNTL range queue.</span>
+            </a>
+            <a href="customer-creation.html" class="card">
+                <span class="card-title">Customer Creation and Security Registration</span>
+                <span class="card-description">How new customers are onboarded. This covers the Db2 insert with a customer number from the named counter, the VSAM record write, and the creation of the CUSTOMER_SECURE record.</span>
+            </a>
+            <a href="customer-update.html" class="card">
+                <span class="card-title">Customer Update</span>
+                <span class="card-description">The customer update chain. The LGUCUS01 orchestrator validates the request and links to LGUCDB01, which updates Db2. LGUCDB01 then calls LGUCVS01 to keep the VSAM customer file synchronised.</span>
+            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-overview">1. Overview</a></li>
+<li class="toc-level-2"><a href="#2-system-architecture">2. System Architecture</a>
+<ul>
+<li class="toc-level-3"><a href="#21-component-view">2.1 Component View</a></li>
+<li class="toc-level-3"><a href="#22-architectural-elements">2.2 Architectural Elements</a></li>
+<li class="toc-level-3"><a href="#23-program-structure">2.3 Program Structure</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-inputs">3. Inputs</a>
+<ul>
+<li class="toc-level-3"><a href="#31-system-interface">3.1 System Interface</a></li>
+<li class="toc-level-3"><a href="#32-screen-inputs-map-ssmapc1">3.2 Screen Inputs (Map SSMAPC1)</a></li>
+<li class="toc-level-3"><a href="#33-inputs-returned-by-the-services-lgcmarea">3.3 Inputs Returned by the Services (LGCMAREA)</a></li>
+<li class="toc-level-3"><a href="#34-queue-input">3.4 Queue Input</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-outputs">4. Outputs</a>
+<ul>
+<li class="toc-level-3"><a href="#41-screen-outputs">4.1 Screen Outputs</a></li>
+<li class="toc-level-3"><a href="#42-terminal-messages">4.2 Terminal Messages</a></li>
+<li class="toc-level-3"><a href="#43-commarea-contract">4.3 COMMAREA Contract</a></li>
+<li class="toc-level-3"><a href="#44-control-queue-genacntl">4.4 Control Queue GENACNTL</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-processing-logic">5. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#51-initialisation-and-first-invocation-detection">5.1 Initialisation and First-Invocation Detection</a></li>
+<li class="toc-level-3"><a href="#52-receive-and-dispatch-loop">5.2 Receive-and-Dispatch Loop</a></li>
+<li class="toc-level-3"><a href="#53-option-1-inquire-customer">5.3 Option 1: Inquire Customer</a></li>
+<li class="toc-level-3"><a href="#54-option-2-add-customer">5.4 Option 2: Add Customer</a></li>
+<li class="toc-level-3"><a href="#55-option-4-update-customer">5.5 Option 4: Update Customer</a></li>
+<li class="toc-level-3"><a href="#56-invalid-option">5.6 Invalid Option</a></li>
+<li class="toc-level-3"><a href="#57-error-paths-and-reset">5.7 Error Paths and Reset</a></li>
+<li class="toc-level-3"><a href="#58-session-control">5.8 Session Control</a></li>
+<li class="toc-level-3"><a href="#59-write_genacntl-control-queue-maintenance">5.9 WRITE_GENACNTL: Control Queue Maintenance</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a>
+<ul>
+<li class="toc-level-3"><a href="#61-called-programs">6.1 Called Programs</a></li>
+<li class="toc-level-3"><a href="#62-include-files">6.2 Include Files</a></li>
+<li class="toc-level-3"><a href="#63-downstream-resources">6.3 Downstream Resources</a></li>
+<li class="toc-level-3"><a href="#64-built-in-functions-and-runtime">6.4 Built-in Functions and Runtime</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a>
+<ul>
+<li class="toc-level-3"><a href="#71-option-validation-and-input-handling">7.1 Option Validation and Input Handling</a></li>
+<li class="toc-level-3"><a href="#72-return-codes-and-sequencing">7.2 Return Codes and Sequencing</a></li>
+<li class="toc-level-3"><a href="#73-queue-consistency">7.3 Queue Consistency</a></li>
+<li class="toc-level-3"><a href="#74-capacity-limits">7.4 Capacity Limits</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-inquire-customer-option-1">9.1 Inquire Customer (Option 1)</a></li>
+<li class="toc-level-3"><a href="#92-add-new-customer-option-2">9.2 Add New Customer (Option 2)</a></li>
+<li class="toc-level-3"><a href="#93-invalid-option-selection">9.3 Invalid Option Selection</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* sidebar-toggle.js — persists open/closed state across navigation */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — only stamps sessionStorage when clicking a source-file link
+       that lives inside the "Source Files" disclosure section, not from sidebar or cards. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('sources/') === -1) return;
+        /* Only set referrer when the click originates from inside the Source Files
+           disclosure (.source-files-disclosure). Any other path — sidebar, cards,
+           direct navigation — must not set a referrer. */
+        if (!link.closest('.source-files-disclosure')) return;
+        try {
+          sessionStorage.setItem('wiki_referrer', JSON.stringify({
+            href: location.href,
+            title: document.title,
+            file: location.pathname.split('/').pop()
+          }));
+        } catch (_e) {}
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>

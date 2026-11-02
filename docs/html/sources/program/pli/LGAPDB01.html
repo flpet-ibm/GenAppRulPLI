@@ -1,0 +1,1931 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGAPDB01</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link active">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>LGAPDB01 is a CICS-invoked PL/I program that adds a new insurance policy to the DB2 database. It handles endowment, house, motor, commercial and claim requests. It receives a communication area that identifies the request type, the customer and the policy details. It checks that a communication area was supplied, that the request identifier is recognised, and that the communication area is long enough for that policy type. It then records the policy: a general policy record with a DB2-generated policy number, plus a record in the table for that policy type, or a claim record for a claim request. While doing this it applies business rules to the amounts:</p>
+<ul>
+<li>Motor premiums are loaded according to the vehicle’s accident history.</li>
+<li>Commercial flood and weather premiums are surcharged when the postcode already has heavy exposure.</li>
+<li>House payments are increased for high-value properties in a specific postcode range.</li>
+<li>Customers who hold several active motor or house policies get a bundling discount.</li>
+<li>Broker commission is calculated from the adjusted payment and the broker’s active policy count.</li>
+<li>Broker commission is reduced when a policy has too many claims in the current year.</li>
+</ul>
+<p>The program reports success or failure to the caller through a return code. It covers an unrecognised request, a communication area that is too short, referential integrity violations and general database errors. It then links to a follow-on program, LGAPVS01, to complete processing.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<ul>
+<li>
+<p><strong>Program parameter</strong></p>
+<ul>
+<li>COMM_AREA_PTR: pointer to the CICS communication area (COMM_AREA) that the caller passes in. All request data is read from this area, and results are written back into it.</li>
+<li>EIBCALEN: length of the communication area received. A value of 0 causes an ABEND with code LGCA. It is also checked against the required length for the request type. For endowment requests it determines whether the variable-length padding data is inserted.</li>
+</ul>
+</li>
+<li>
+<p><strong>Request control fields (communication area header)</strong></p>
+<ul>
+<li>CA_REQUEST_ID: request type. It selects the processing path and the required communication area length. Valid values are ‘01AEND’ (endowment), ‘01AHOU’ (house), ‘01AMOT’ (motor), ‘01ACOM’ (commercial) and ‘01ACLM’ (claim). Any other value sets the return code to ‘99’.</li>
+<li>CA_CUSTOMER_NUM: customer number. It is converted to a DB2 integer and used in the POLICY insert and in the bundling discount count.</li>
+<li>CA_POLICY_NUM: policy number supplied by the caller. It is used as the claim’s associated policy number for claim processing (the claim insert, the yearly claim count and the commission update). It is overwritten with the DB2-generated policy number for the other request types.</li>
+</ul>
+</li>
+<li>
+<p><strong>Common policy fields (communication area)</strong></p>
+<ul>
+<li>CA_ISSUE_DATE: policy issue date. It is stored in the POLICY table. For commercial policies it is also stored as the commercial StartDate.</li>
+<li>CA_EXPIRY_DATE: policy expiry date. It is stored in the POLICY table. For commercial policies it is also stored as the commercial RenewalDate.</li>
+<li>CA_BROKERID: broker identifier. It is used for the policy insert and for the broker’s active policy count that drives the commission tier.</li>
+<li>CA_BROKERSREF: broker’s reference. It is stored in the POLICY table.</li>
+<li>CA_PAYMENT: base payment amount. It is adjusted by house value and postcode loading and by the bundling discount, and it is the basis of the commission calculation.</li>
+</ul>
+</li>
+<li>
+<p><strong>Endowment policy fields (communication area)</strong></p>
+<ul>
+<li>CA_E_WITH_PROFITS, CA_E_EQUITIES, CA_E_MANAGED_FUND: fund option flags.</li>
+<li>CA_E_FUND_NAME: fund name.</li>
+<li>CA_E_TERM: policy term.</li>
+<li>CA_E_SUM_ASSURED: sum assured.</li>
+<li>CA_E_LIFE_ASSURED: name of the life assured.</li>
+<li>CA_E_PADDING_DATA: optional variable-length padding data. It is inserted into the PADDINGDATA VARCHAR column only when the supplied communication area is longer than the required length.</li>
+</ul>
+</li>
+<li>
+<p><strong>House policy fields (communication area)</strong></p>
+<ul>
+<li>CA_H_PROPERTY_TYPE: property type.</li>
+<li>CA_H_BEDROOMS: number of bedrooms.</li>
+<li>CA_H_VALUE: property value. It is also used in the payment loading rule.</li>
+<li>CA_H_HOUSE_NAME, CA_H_HOUSE_NUMBER: property name and number.</li>
+<li>CA_H_POSTCODE: property postcode. It is also used in the payment loading rule.</li>
+</ul>
+</li>
+<li>
+<p><strong>Motor policy fields (communication area)</strong></p>
+<ul>
+<li>CA_M_MAKE, CA_M_MODEL: vehicle make and model.</li>
+<li>CA_M_VALUE: vehicle value.</li>
+<li>CA_M_REGNUMBER: registration number.</li>
+<li>CA_M_COLOUR: vehicle colour.</li>
+<li>CA_M_CC: engine capacity.</li>
+<li>CA_M_MANUFACTURED: year of manufacture.</li>
+<li>CA_M_PREMIUM: motor premium. It is scaled according to accident history.</li>
+<li>CA_M_ACCIDENTS: number of accidents. It determines the premium loading.</li>
+</ul>
+</li>
+<li>
+<p><strong>Commercial policy fields (communication area)</strong></p>
+<ul>
+<li>CA_B_Address, CA_B_Postcode, CA_B_Latitude, CA_B_Longitude: property location details. The postcode is also used to look up existing flood and weather peril exposure.</li>
+<li>CA_B_Customer, CA_B_PropType: customer and property type descriptions.</li>
+<li>CA_B_FirePeril, CA_B_FirePremium, CA_B_CrimePeril, CA_B_CrimePremium: fire and crime peril values and premiums.</li>
+<li>CA_B_FloodPeril, CA_B_FloodPremium, CA_B_WeatherPeril, CA_B_WeatherPremium: flood and weather peril values and premiums. The premiums are subject to a surcharge.</li>
+<li>CA_B_Status, CA_B_RejectReason: status code and rejection reason.</li>
+</ul>
+</li>
+<li>
+<p><strong>Claim fields (communication area)</strong></p>
+<ul>
+<li>CA_C_Date: claim date.</li>
+<li>CA_C_Paid: amount paid.</li>
+<li>CA_C_Value: claim value.</li>
+<li>CA_C_Cause: cause of the claim.</li>
+<li>CA_C_Observations: free-text observations.</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS environment inputs</strong></p>
+<ul>
+<li>EIBTRNID, EIBTRMID, EIBTASKN: transaction ID, terminal ID and task number of the current task. They are captured for run-time and diagnostic information.</li>
+<li>ABSTIME from EXEC CICS ASKTIME and FORMATTIME: current date and time. They are used to timestamp error messages.</li>
+</ul>
+</li>
+<li>
+<p><strong>External data sources (DB2)</strong></p>
+<ul>
+<li>POLICY table:
+<ul>
+<li>Active motor and house policies for the customer are counted. The count drives the bundling discount.</li>
+<li>Active policies for the broker are counted. The count drives the commission percentage.</li>
+<li>The generated policy number comes from IDENTITY_VAL_LOCAL.</li>
+<li>The LASTCHANGED timestamp of the new policy is read back.</li>
+</ul>
+</li>
+<li>COMMERCIAL table: summed flood and weather peril values for the same postcode (ZIPCODE) among active commercial records. They determine whether a surcharge applies.</li>
+<li>CLAIM table: count of claims on the policy in the current year. It determines whether the broker commission is halved.</li>
+<li>DB2 system values: CURRENT DATE and CURRENT TIMESTAMP are used for active-policy checks and for the LASTCHANGED timestamp.</li>
+<li>SQLCODE: DB2 return status that drives error handling and the return codes.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<ul>
+<li>
+<p><strong>Communication area returned to caller (COMM_AREA via COMM_AREA_PTR)</strong></p>
+<ul>
+<li>CA_RETURN_CODE: the status of the add operation.
+<ul>
+<li>‘00’ means success. It is set at the start and again after a successful POLICY insert.</li>
+<li>‘70’ means a referential integrity violation (SQLCODE -530) on the POLICY insert.</li>
+<li>‘90’ means a general DB2 error. Any failed insert, count, sum or update sets it, and each of those paths also abends with ‘LGSQ’.</li>
+<li>‘98’ means the communication area is shorter than the required length for the request type.</li>
+<li>‘99’ means the request identifier is not recognised.</li>
+</ul>
+</li>
+<li>CA_POLICY_NUM: set to the DB2-generated policy number (DB2_POLICYNUM_INT, from IDENTITY_VAL_LOCAL) after the POLICY insert. This gives the caller the new policy key.</li>
+<li>CA_LASTCHANGED: set to the LASTCHANGED timestamp read back from the new POLICY row.</li>
+<li>CA_M_PREMIUM: for motor requests, rewritten in the commarea with the accident-adjusted premium. The multiplier is 1.0 for up to 2 accidents, 1.2 for 3–5, 1.5 for 6–8 and 3.0 for more than 8, based on CA_M_ACCIDENTS.</li>
+<li>CA_C_Num: for claim requests, set from DB2_C_Num_INT after the CLAIM insert.</li>
+</ul>
+</li>
+<li>
+<p><strong>Database writes (DB2)</strong></p>
+<ul>
+<li>POLICY table
+<ul>
+<li>A row is inserted for every request type except claims (‘01ACLM’). The DB2 default supplies POLICYNUMBER and CURRENT TIMESTAMP supplies LASTCHANGED.</li>
+<li>Columns written are customer number (DB2_CUSTOMERNUM_INT), issue and expiry dates, policy type, broker id (DB2_BROKERID_INT), broker reference, payment (DB2_PAYMENT_INT) and commission (WS_COMMISSION).</li>
+<li>DB2_PAYMENT_INT is the stored payment after business-rule adjustments:
+<ul>
+<li>House policies with postcodes between ‘600000’ and ‘699999’ get a surcharge of 20% (value over 10,000,000 to 15,000,000), 40% (over 15,000,000 to 20,000,000) or 50% (over 20,000,000).</li>
+<li>A bundling discount of 15% applies when the customer holds more than 2 active motor or house policies.</li>
+</ul>
+</li>
+<li>WS_COMMISSION is the broker commission. It is 0% to 5% of the adjusted payment, depending on how many active policies the broker holds. The tiers are 0 policies = 0%, 1 = 1%, 2 = 2%, 3 = 3%, 4 = 4%, and 5 or more = 5%.</li>
+<li>On a claim request, the POLICY commission is halved with an UPDATE when the policy has more than 3 claims (WS_CLM_CNT) in the current year.</li>
+</ul>
+</li>
+<li>Type-specific policy tables, selected by CA_REQUEST_ID
+<ul>
+<li>ENDOWMENT (‘01AEND’)
+<ul>
+<li>The row holds the policy number, equities, with-profits, managed-fund, fund name, term, sum assured and life assured.</li>
+<li>PADDINGDATA is included only when EIBCALEN exceeds the required length. It carries the extra commarea data as a varying-length string (WS_VARCHAR).</li>
+</ul>
+</li>
+<li>HOUSE (‘01AHOU’): property type, bedrooms, value, house name, house number and postcode.</li>
+<li>MOTOR (‘01AMOT’): make, model, value, registration, colour, CC, year of manufacture, adjusted premium (DB2_M_PREMIUM_INT) and accidents (DB2_M_ACCIDENTS_INT).</li>
+<li>COMMERCIAL (‘01ACOM’)
+<ul>
+<li>Columns written are the policy number, dates, address, postcode, coordinates, customer, property type, the four peril and premium pairs (fire, crime, flood, weather), status and rejection reason.</li>
+<li>The flood and weather premiums are raised by 15% when the flag WS_FLOOD_FLG or WS_WEATHER_FLG is ‘Y’. A flag is set when the summed peril exposure (WS_PERILCNT) for the same postcode exceeds 3.</li>
+</ul>
+</li>
+<li>CLAIM (‘01ACLM’): claim number, policy number, claim date, paid, value, cause and observations.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Error logging and transaction-control side effects</strong></p>
+<ul>
+<li>Error message written to the LGSTSQ queue
+<ul>
+<li>WRITE_ERROR_MESSAGE links to program LGSTSQ with the ERROR_MSG structure.</li>
+<li>The message contains the date (EM_DATE), time (EM_TIME), program name, customer number (EM_CUSNUM), policy number (EM_POLNUM), the SQL request description (EM_SQLREQ) and SQLCODE (EM_SQLRC).</li>
+<li>It can also carry text such as ’ NO COMMAREA RECEIVED’ (EM_MSG_TEXT).</li>
+</ul>
+</li>
+<li>Commarea snapshot to the same queue
+<ul>
+<li>CA_ERROR_MSG is also sent through LGSTSQ. It holds up to the first 90 bytes of the commarea, or all of it if shorter.</li>
+</ul>
+</li>
+<li>CICS abends
+<ul>
+<li>‘LGCA’ is raised when no commarea is received (EIBCALEN = 0).</li>
+<li>‘LGSQ’ is raised on SQL failures, so that earlier updates, such as the POLICY insert, are backed out.</li>
+</ul>
+</li>
+<li>Early CICS RETURN
+<ul>
+<li>The program returns immediately, with CA_RETURN_CODE set, for unrecognised request ids (‘99’), a short commarea (‘98’) and the POLICY insert errors (SQLCODE -530 gives ‘70’, other failures give ‘90’).</li>
+</ul>
+</li>
+<li>Downstream program link
+<ul>
+<li>After the inserts, the program links to LGAPVS01 with the full 32,500-byte COMM_AREA. LGAPVS01 may modify the commarea, which then goes back to the caller on the final CICS RETURN.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    A([Start LGAPDB01]) --> B[Capture CICS transaction, terminal, task and commarea length<br>Initialise DB2 host variables]
+    B --> C{Commarea length is zero}
+    C -- Yes --> C1[Write error message NO COMMAREA RECEIVED]
+    C1 --> C2([Abend LGCA])
+    C -- No --> D[Set return code 00<br>Convert customer and policy numbers<br>Compute header length]
+    D --> E{Request ID}
+    E -- 01AEND --> E1[Add endowment length<br>Policy type E]
+    E -- 01AHOU --> E2[Add house length<br>Policy type H]
+    E -- 01AMOT --> E3[Add motor length<br>Policy type M]
+    E -- 01ACOM --> E4[Policy type C]
+    E -- 01ACLM --> E5[Policy type X]
+    E -- Other --> E6[Set return code 99]
+    E6 --> E7([Return to caller])
+    E1 --> F{Commarea shorter than required}
+    E2 --> F
+    E3 --> F
+    E4 --> F
+    E5 --> F
+    F -- Yes --> F1[Set return code 98]
+    F1 --> F2([Return to caller])
+    F -- No --> G{Request is a claim}
+    G -- No --> H[Insert policy row]
+    G -- Yes --> J
+    H --> H1{House request}
+    H1 -- Yes --> H2{Postcode between 600000 and 699999}
+    H2 -- Yes --> H3[Raise payment 20 percent for house value 10M to 15M<br>40 percent for 15M to 20M<br>50 percent above 20M]
+    H2 -- No --> H4
+    H1 -- No --> H4
+    H3 --> H4[Bundling discount query<br>Count active motor and house policies for customer]
+    H4 --> H5{More than 2 active policies}
+    H5 -- Yes --> H6[Reduce payment by 15 percent]
+    H5 -- No --> H7
+    H6 --> H7[Commission query<br>Count active policies for broker]
+    H7 --> H8[Commission 0 to 5 percent of payment by policy count]
+    H8 --> H9[Insert into POLICY table]
+    H9 --> H10{SQLCODE result}
+    H10 -- Minus 530 --> H11[Set return code 70<br>Write error message]
+    H11 --> H12([Return to caller])
+    H10 -- Other error --> H13[Set return code 90<br>Write error message]
+    H13 --> H12
+    H10 -- Zero --> H14[Get generated policy number<br>Read LASTCHANGED timestamp]
+    H14 --> J{Request ID}
+    J -- 01AEND --> K1[Insert ENDOWMENT row<br>Include padding data if extra commarea data]
+    J -- 01AHOU --> K2[Insert HOUSE row]
+    J -- 01AMOT --> K3[Scale premium by accident count<br>Insert MOTOR row]
+    J -- 01ACOM --> K4[Check flood and weather history for postcode]
+    J -- 01ACLM --> K5[Count claims this year for policy]
+    K4 --> K4A{Flood or weather total above 3}
+    K4A -- Yes --> K4B[Raise matching peril premium 15 percent]
+    K4A -- No --> K4C[Insert COMMERCIAL row]
+    K4B --> K4C
+    K5 --> K5A{More than 3 claims this year}
+    K5A -- Yes --> K5B[Halve policy commission]
+    K5A -- No --> K5C[Insert CLAIM row]
+    K5B --> K5C
+    K1 --> L{Insert succeeded}
+    K2 --> L
+    K3 --> L
+    K4C --> L
+    K5C --> L
+    L -- No --> L1[Set return code 90<br>Write error message]
+    L1 --> L2([Abend LGSQ to back out updates])
+    L -- Yes --> M[Link to LGAPVS01 with commarea]
+    M --> N([Return to caller])
+
+    classDef start fill:#d4f1d4,stroke:#7fb77f,color:#000;
+    classDef process fill:#dbe9ff,stroke:#8fb2e6,color:#000;
+    classDef decision fill:#fff3c4,stroke:#d9c26b,color:#000;
+    classDef error fill:#ffd6d6,stroke:#e09a9a,color:#000;
+    classDef db fill:#e6d9f5,stroke:#b39ad6,color:#000;
+
+    class A,N start;
+    class C1,C2,E6,E7,F1,F2,H11,H12,H13,L1,L2 error;
+    class B,D,E1,E2,E3,E4,E5,H3,H6,H8,K4B,K5B,K3,M process;
+    class C,E,F,G,H1,H2,H5,H10,J,K4A,K5A,L decision;
+    class H,H4,H7,H9,H14,K1,K2,K4,K4C,K5,K5C db;
+</div>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<h4 id="421-high-level-summary" tabindex="-1">4.2.1 High-level Summary</h4>
+<p>LGAPDB01 is a CICS PL/I program that adds a new insurance policy or claim to DB2. The caller passes a commarea whose request ID selects one of five operations:</p>
+<ul>
+<li>Endowment (<code>01AEND</code>)</li>
+<li>House (<code>01AHOU</code>)</li>
+<li>Motor (<code>01AMOT</code>)</li>
+<li>Commercial (<code>01ACOM</code>)</li>
+<li>Claim (<code>01ACLM</code>)</li>
+</ul>
+<p>For every request except a claim, the program first inserts a row into the POLICY table. That insert applies pricing rules (house loading, bundling discount, broker commission) and lets DB2 generate the policy number. It then inserts the type-specific detail row. Finally it links to <code>LGAPVS01</code> and returns the result in <code>CA_RETURN_CODE</code>.</p>
+<h4 id="422-execution-flow" tabindex="-1">4.2.2 Execution Flow</h4>
+<ol>
+<li>
+<p><strong>Initialisation.</strong> The program copies the transaction ID, terminal ID, task number and commarea length (EIBCALEN) into working storage. It zeroes the DB2 integer host variables.</p>
+</li>
+<li>
+<p><strong>Commarea presence check.</strong> If EIBCALEN is 0, the program sets the message “NO COMMAREA RECEIVED”, calls <code>WRITE_ERROR_MESSAGE</code> and abends with code <code>LGCA</code> (no dump).</p>
+</li>
+<li>
+<p><strong>Preparation.</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code> is set to <code>00</code>.</li>
+<li>The commarea address is saved.</li>
+<li><code>CA_CUSTOMER_NUM</code> is converted to <code>DB2_CUSTOMERNUM_INT</code>.</li>
+<li><code>CA_POLICY_NUM</code> is converted to <code>DB2_C_PolicyNum_INT</code>.</li>
+<li>The customer number is saved in the error message area.</li>
+</ul>
+</li>
+<li>
+<p><strong>Request validation and length calculation.</strong> The required length starts as the 28-byte header and depends on the request ID:</p>
+<table>
+<thead>
+<tr>
+<th>Request ID</th>
+<th>Policy type</th>
+<th>Required length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01AEND</code></td>
+<td><code>E</code></td>
+<td>header + 124</td>
+</tr>
+<tr>
+<td><code>01AHOU</code></td>
+<td><code>H</code></td>
+<td>header + 130</td>
+</tr>
+<tr>
+<td><code>01AMOT</code></td>
+<td><code>M</code></td>
+<td>header + 137</td>
+</tr>
+<tr>
+<td><code>01ACOM</code></td>
+<td><code>C</code></td>
+<td>header only (no full-length addition)</td>
+</tr>
+<tr>
+<td><code>01ACLM</code></td>
+<td><code>X</code></td>
+<td>header only (no full-length addition)</td>
+</tr>
+<tr>
+<td>Anything else</td>
+<td>–</td>
+<td><code>CA_RETURN_CODE</code> = <code>99</code>, then CICS RETURN</td>
+</tr>
+</tbody>
+</table>
+<p>If EIBCALEN is less than the required length, <code>CA_RETURN_CODE</code> = <code>98</code> and the program returns. The length formula uses <code>WS_REQUIRED_CA_LEN</code> before it is explicitly initialised, so it relies on the field starting at 0.</p>
+</li>
+<li>
+<p><strong>Policy insert (not for claims).</strong> <code>INSERT_POLICY</code> does the following:</p>
+<ul>
+<li>
+<p>It moves broker ID and payment to integer host variables.</p>
+</li>
+<li>
+<p><strong>House loading.</strong> For a house request whose postcode is above <code>600000</code> and below <code>699999</code>, it raises the payment by a percentage that depends on house value:</p>
+<ul>
+<li>value above 10,000,000 and below 15,000,000: +20%</li>
+<li>value above 15,000,000 and below 20,000,000: +40%</li>
+<li>value above 20,000,000: +50%</li>
+</ul>
+</li>
+<li>
+<p><strong>Bundling discount</strong> (<code>BUNDLING_DISCOUNT</code>). It counts the customer’s currently active policies of type M or H (issue date before today, expiry date after today). If the count is above 2, the payment is reduced by 15%. Any SQLCODE other than 0 sets return code <code>90</code>, writes an error message and abends with <code>LGSQ</code>.</p>
+</li>
+<li>
+<p><strong>Commission</strong> (<code>CALCULATE_COMMISSION</code>). It counts the broker’s currently active policies. The commission is a share of the adjusted payment:</p>
+<table>
+<thead>
+<tr>
+<th>Active policies</th>
+<th>Commission</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4%</td>
+</tr>
+<tr>
+<td>5 or more</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<p>A SQL error abends with <code>LGSQ</code>.</p>
+</li>
+<li>
+<p><strong>Insert.</strong> It inserts into POLICY with a DB2-generated policy number (<code>DEFAULT</code>), the current timestamp, the adjusted payment and the commission.</p>
+</li>
+<li>
+<p><strong>Insert result.</strong></p>
+<ul>
+<li>SQLCODE 0: return code <code>00</code>.</li>
+<li>SQLCODE -530 (referential integrity violation): return code <code>70</code>, error message written, CICS RETURN.</li>
+<li>Any other SQLCODE: return code <code>90</code>, error message written, CICS RETURN.</li>
+</ul>
+</li>
+<li>
+<p><strong>After a successful insert.</strong> <code>IDENTITY_VAL_LOCAL()</code> is read into <code>DB2_POLICYNUM_INT</code> and copied to <code>CA_POLICY_NUM</code> and the error message area. The program then selects <code>LASTCHANGED</code> back into the commarea.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Type-specific insert.</strong> A second SELECT on the request ID calls one of these procedures:</p>
+<ul>
+<li><code>INSERT_ENDOW</code> computes the spare length as EIBCALEN minus the required length. If it is greater than 0, it inserts the endowment row including the PADDINGDATA varchar. Otherwise it inserts without that column.</li>
+<li><code>INSERT_HOUSE</code> inserts the house row.</li>
+<li><code>INSERT_MOTOR</code> scales <code>CA_M_PREMIUM</code> by accident count (2 or fewer: ×1.0; 3–5: ×1.2; 6–8: ×1.5; more than 8: ×3.0). It then inserts the motor row with the adjusted premium and accident count.</li>
+<li><code>INSERT_COMMERCIAL</code> calls <code>VALIDATE_PREV_PERIL</code>, which sums FLOODPERIL and WEATHERPERIL in COMMERCIAL for the same postcode (ZIPCODE). A sum above 3 sets <code>WS_FLOOD_FLG</code> or <code>WS_WEATHER_FLG</code> to <code>Y</code>. A flagged peril premium is increased by 15% before the COMMERCIAL row is inserted.</li>
+<li><code>INSERT_CLAIM</code> calls <code>UPDATE_BROKER_COMM</code>, which counts the policy’s claims in the current year. If the count is above 3, it halves the policy’s COMMISSION with an UPDATE. The CLAIM row is then inserted.</li>
+<li>Any other request ID sets return code <code>99</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error handling in type-specific inserts.</strong> Any SQLCODE other than 0 sets <code>CA_RETURN_CODE</code> = <code>90</code>, writes an error message and abends with <code>LGSQ</code>. The abend backs out the earlier POLICY insert.</p>
+</li>
+<li>
+<p><strong>Completion.</strong> The program links to <code>LGAPVS01</code> with the 32,500-byte commarea, then issues CICS RETURN.</p>
+</li>
+<li>
+<p><strong>Error message routine</strong> (<code>WRITE_ERROR_MESSAGE</code>).</p>
+<ul>
+<li>It stores the SQLCODE, gets and formats the date and time with ASKTIME and FORMATTIME, and links to <code>LGSTSQ</code> with the formatted message.</li>
+<li>If a commarea exists, it sends up to the first 90 bytes of it (or all of it, if shorter) in a second link to <code>LGSTSQ</code>.</li>
+</ul>
+</li>
+</ol>
+<h4 id="423-external-interactions" tabindex="-1">4.2.3 External Interactions</h4>
+<ul>
+<li><strong>DB2 tables:</strong>
+<ul>
+<li>POLICY: insert, count queries, timestamp read, commission update.</li>
+<li>ENDOWMENT, HOUSE, MOTOR, COMMERCIAL, CLAIM: inserts.</li>
+<li>COMMERCIAL: also read for peril sums.</li>
+<li>CLAIM: also read for the claim count.</li>
+</ul>
+</li>
+<li><strong>CICS services:</strong>
+<ul>
+<li>ABEND, RETURN, ASKTIME and FORMATTIME.</li>
+<li>LINK to <code>LGSTSQ</code>, which logs error messages to a queue.</li>
+<li>LINK to <code>LGAPVS01</code>, called after the inserts, with the commarea.</li>
+</ul>
+</li>
+</ul>
+<h4 id="424-plain-language-summary" tabindex="-1">4.2.4 Plain Language Summary</h4>
+<p>The program takes a request to add a policy (endowment, house, motor or commercial) or a claim. It checks that the request type is known and that enough data was sent. For policies, it works out the price. A house in a high-value area costs more. A customer with several active motor or house policies gets 15% off. The broker earns a commission of 1% to 5%, depending on how many active policies they hold. It saves the main policy record and then the details for that policy type. Motor premiums rise with the number of accidents. Commercial flood and weather premiums rise 15% in postcodes with many earlier risks. For claims, a broker’s commission is halved when the policy has more than three claims this year. If anything fails, the program records an error, sets a return code, and cancels the work done in the same transaction where it can.</p>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+    POLICY {
+        int POLICYNUMBER "generated identity"
+        int CUSTOMERNUMBER
+        date ISSUEDATE
+        date EXPIRYDATE
+        string POLICYTYPE "length 1"
+        string LASTCHANGED "timestamp"
+        int BROKERID
+        string BROKERSREFERENCE "length 10"
+        int PAYMENT
+        int COMMISSION "smallint"
+    }
+    ENDOWMENT {
+        int POLICYNUMBER
+        string EQUITIES "length 1"
+        string WITHPROFITS "length 1"
+        string MANAGEDFUND "length 1"
+        string FUNDNAME "length 10"
+        int TERM "smallint"
+        int SUMASSURED
+        string LIFEASSURED "length 31"
+        string PADDINGDATA "varchar 32606"
+    }
+    HOUSE {
+        int POLICYNUMBER
+        string PROPERTYTYPE "length 15"
+        int BEDROOMS
+        int VALUE
+        string HOUSENAME "length 20"
+        string HOUSENUMBER "length 4"
+        string POSTCODE "length 8"
+    }
+    MOTOR {
+        int POLICYNUMBER
+        string MAKE "length 15"
+        string MODEL "length 15"
+        int VALUE
+        string REGNUMBER "length 7"
+        string COLOUR "length 8"
+        int CC
+        string YEAROFMANUFACTURE "length 10"
+        int PREMIUM
+        int ACCIDENTS
+    }
+    COMMERCIAL {
+        int POLICYNUMBER
+        string REQUESTDATE
+        date STARTDATE
+        date RENEWALDATE
+        string ADDRESS "length 255"
+        string ZIPCODE "length 8"
+        string LATITUDEN "length 11"
+        string LONGITUDEW "length 11"
+        string CUSTOMER "length 255"
+        string PROPERTYTYPE "length 255"
+        int FIREPERIL
+        int FIREPREMIUM
+        int CRIMEPERIL
+        int CRIMEPREMIUM
+        int FLOODPERIL
+        int FLOODPREMIUM
+        int WEATHERPERIL
+        int WEATHERPREMIUM
+        int STATUS
+        string REJECTIONREASON "length 255"
+    }
+    CLAIM {
+        int CLAIMNUMBER
+        int POLICYNUMBER
+        date CLAIMDATE
+        int PAID
+        int VALUE
+        string CAUSE "length 255"
+        string OBSERVATIONS "length 255"
+    }
+    POLICY ||--o| ENDOWMENT : has
+    POLICY ||--o| HOUSE : has
+    POLICY ||--o| MOTOR : has
+    POLICY ||--o| COMMERCIAL : has
+    POLICY ||--o{ CLAIM : has
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGAPDB01 (main procedure, <code>Options(Main)</code>)</strong></p>
+<ul>
+<li>Purpose: CICS entry point that adds a policy. It validates the commarea, adds the generic POLICY row, adds the type-specific row, and links to the follow-on program.</li>
+<li>Setup:
+<ul>
+<li>Copies EIBTRNID, EIBTRMID, EIBTASKN and EIBCALEN into the WS_HEADER fields.</li>
+<li>Zeroes the DB2 host-variable groups DB2_IN_INTEGERS and DB2_OUT_INTEGERS.</li>
+</ul>
+</li>
+<li>Commarea check:
+<ul>
+<li>If EIBCALEN = 0, it sets EM_MSG_TEXT to ’ NO COMMAREA RECEIVED’, calls WRITE_ERROR_MESSAGE, and issues <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>.</li>
+<li>It sets CA_RETURN_CODE to ‘00’ and saves the commarea address in WS_ADDR_DFHCOMMAREA.</li>
+<li>It converts CA_CUSTOMER_NUM to DB2_CUSTOMERNUM_INT and CA_POLICY_NUM to DB2_C_PolicyNum_INT.</li>
+<li>It copies CA_CUSTOMER_NUM to EM_CUSNUM for use in error messages.</li>
+</ul>
+</li>
+<li>First <code>SELECT (CA_REQUEST_ID)</code>: sets the required commarea length and the policy type.
+<ul>
+<li>‘01AEND’ adds WS_FULL_ENDOW_LEN to WS_REQUIRED_CA_LEN and sets DB2_POLICYTYPE to ‘E’.</li>
+<li>‘01AHOU’ adds WS_FULL_HOUSE_LEN and sets ‘H’.</li>
+<li>‘01AMOT’ adds WS_FULL_MOTOR_LEN and sets ‘M’.</li>
+<li>‘01ACOM’ sets ‘C’ and adds no length.</li>
+<li>‘01ACLM’ sets ‘X’ and adds no length.</li>
+<li>Any other value sets CA_RETURN_CODE to ‘99’ and issues <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li>Length check: if EIBCALEN is less than WS_REQUIRED_CA_LEN, it sets CA_RETURN_CODE to ‘98’ and issues <code>EXEC CICS RETURN</code>.</li>
+<li>Dispatch:
+<ul>
+<li>For any request other than ‘01ACLM’, it calls INSERT_POLICY.</li>
+<li>A second <code>SELECT (CA_REQUEST_ID)</code> calls INSERT_ENDOW, INSERT_HOUSE, INSERT_MOTOR, INSERT_COMMERCIAL or INSERT_CLAIM.</li>
+<li>The OTHERWISE branch sets CA_RETURN_CODE to ‘99’.</li>
+</ul>
+</li>
+<li>Finish: <code>EXEC CICS LINK PROGRAM('LGAPVS01')</code> passes COMM_AREA with length 32500, then <code>EXEC CICS RETURN</code> ends the transaction.</li>
+<li>External interactions: CICS ABEND, RETURN and LINK; the type-specific procedures it calls use DB2.</li>
+</ul>
+</li>
+<li>
+<p><strong>INSERT_POLICY</strong></p>
+<ul>
+<li>Purpose: inserts the generic row into the POLICY table and obtains the DB2-generated policy number.</li>
+<li>Operations:
+<ul>
+<li>Moves CA_BROKERID and CA_PAYMENT into DB2_BROKERID_INT and DB2_PAYMENT_INT.</li>
+<li>For house requests (‘01AHOU’), it loads DB2_H_VALUE_INT from CA_H_VALUE. If CA_H_POSTCODE is between ‘600000’ and ‘699999’, it raises the payment:
+<ul>
+<li>by 20% when the house value is over 10,000,000 and under 15,000,000;</li>
+<li>by 40% when it is over 15,000,000 and under 20,000,000;</li>
+<li>by 50% when it is over 20,000,000.</li>
+</ul>
+</li>
+<li>Calls BUNDLING_DISCOUNT, then CALCULATE_COMMISSION.</li>
+<li>Sets EM_SQLREQ and runs <code>INSERT INTO POLICY</code> with DEFAULT for POLICYNUMBER, CURRENT TIMESTAMP for LASTCHANGED, and WS_COMMISSION for COMMISSION.</li>
+<li>After the insert, it runs <code>SET :DB2_POLICYNUM_INT = IDENTITY_VAL_LOCAL()</code> and copies the result to CA_POLICY_NUM and EM_POLNUM.</li>
+<li>It then selects LASTCHANGED from POLICY into CA_LASTCHANGED.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>Nested IFs apply the house value and postcode surcharges.</li>
+<li><code>SELECT (SQLCODE)</code> handles the insert result:
+<ul>
+<li>0 sets CA_RETURN_CODE to ‘00’.</li>
+<li>-530 (referential integrity violation) sets ‘70’, calls WRITE_ERROR_MESSAGE and issues <code>EXEC CICS RETURN</code>.</li>
+<li>Any other value sets ‘90’, calls WRITE_ERROR_MESSAGE and issues <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>External interactions: DB2 INSERT into POLICY, <code>IDENTITY_VAL_LOCAL()</code>, and a SELECT from POLICY.</li>
+</ul>
+</li>
+<li>
+<p><strong>BUNDLING_DISCOUNT</strong></p>
+<ul>
+<li>Purpose: gives a payment discount to customers who hold several active motor or house policies.</li>
+<li>Operations:
+<ul>
+<li>Sets EM_SQLREQ to 'BUNDLE DISCNT ’ and resets WS_CNT_POLICY to 0.</li>
+<li>Counts the customer’s POLICY rows where ISSUEDATE is before CURRENT DATE, EXPIRYDATE is after it, and POLICYTYPE is ‘M’ or ‘H’.</li>
+<li>If SQLCODE = 0 and WS_CNT_POLICY &gt; 2, it reduces DB2_PAYMENT_INT by 15%.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>If SQLCODE is not 0, it sets CA_RETURN_CODE to ‘90’ and calls WRITE_ERROR_MESSAGE.</li>
+<li>It then issues <code>EXEC CICS ABEND ABCODE('LGSQ') NODUMP</code> so the POLICY update is backed out, followed by <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li>External interactions: DB2 SELECT COUNT on POLICY, and CICS ABEND on error.</li>
+</ul>
+</li>
+<li>
+<p><strong>CALCULATE_COMMISSION</strong></p>
+<ul>
+<li>Purpose: works out the broker’s commission from the number of policies the broker currently holds.</li>
+<li>Operations:
+<ul>
+<li>Sets EM_SQLREQ to 'CALULATE COMM ’ and resets WS_CNT_POLICY.</li>
+<li>Counts active POLICY rows for DB2_BROKERID_INT.</li>
+<li>On success, it sets WS_COMMISSION as a percentage of DB2_PAYMENT_INT. The count selects the rate:
+<ul>
+<li>0 gives 0;</li>
+<li>1 gives 1%;</li>
+<li>2 gives 2%;</li>
+<li>3 gives 3%;</li>
+<li>4 gives 4%;</li>
+<li>any higher count gives 5%.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li><code>SELECT (WS_CNT_POLICY)</code> is nested inside an IF on SQLCODE = 0.</li>
+<li>If SQLCODE is not 0, it sets CA_RETURN_CODE to ‘90’, calls WRITE_ERROR_MESSAGE, issues ABEND ‘LGSQ’ and then RETURN.</li>
+</ul>
+</li>
+<li>External interactions: DB2 SELECT COUNT on POLICY, and CICS ABEND on error.</li>
+</ul>
+</li>
+<li>
+<p><strong>INSERT_ENDOW</strong></p>
+<ul>
+<li>Purpose: inserts the endowment-specific row into the ENDOWMENT table.</li>
+<li>Operations:
+<ul>
+<li>Converts CA_E_TERM and CA_E_SUM_ASSURED to DB2_E_TERM_SINT and DB2_E_SUMASSURED_INT.</li>
+<li>Sets EM_SQLREQ and computes WS_VARY_LEN as EIBCALEN minus WS_REQUIRED_CA_LEN.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>If WS_VARY_LEN &gt; 0, the commarea holds padding data. It copies that data into WS_VARCHAR with <code>substr(CA_E_PADDING_DATA,1,WS_VARY_LEN)</code> and runs an INSERT that includes the PADDINGDATA column.</li>
+<li>Otherwise it runs an INSERT without PADDINGDATA.</li>
+<li>If SQLCODE is not 0, it sets CA_RETURN_CODE to ‘90’, calls WRITE_ERROR_MESSAGE, issues ABEND ‘LGSQ’ and then RETURN.</li>
+</ul>
+</li>
+<li>External interactions: DB2 INSERT into ENDOWMENT, and CICS ABEND on error.</li>
+</ul>
+</li>
+<li>
+<p><strong>INSERT_HOUSE</strong></p>
+<ul>
+<li>Purpose: inserts the house-specific row into the HOUSE table.</li>
+<li>Operations:
+<ul>
+<li>Converts CA_H_VALUE and CA_H_BEDROOMS to DB2_H_VALUE_INT and DB2_H_BEDROOMS_SINT.</li>
+<li>Inserts the policy number, property type, bedrooms, value, house name, house number and postcode.</li>
+</ul>
+</li>
+<li>Control flow: a non-zero SQLCODE sets CA_RETURN_CODE to ‘90’, calls WRITE_ERROR_MESSAGE, issues ABEND ‘LGSQ’ and then RETURN.</li>
+<li>External interactions: DB2 INSERT into HOUSE, and CICS ABEND on error.</li>
+</ul>
+</li>
+<li>
+<p><strong>INSERT_MOTOR</strong></p>
+<ul>
+<li>Purpose: inserts the motor-specific row into the MOTOR table, loading the premium for accident history first.</li>
+<li>Operations:
+<ul>
+<li>Converts CA_M_VALUE and CA_M_CC to integer host variables.</li>
+<li>Multiplies CA_M_PREMIUM by a factor based on CA_M_ACCIDENTS:
+<ul>
+<li>2 or fewer accidents: ×1.00.</li>
+<li>3 to 5 accidents: ×1.20.</li>
+<li>6 to 8 accidents: ×1.50.</li>
+<li>More than 8 accidents: ×3.00.</li>
+</ul>
+</li>
+<li>Moves the adjusted premium and the accident count to DB2_M_PREMIUM_INT and DB2_M_ACCIDENTS_INT, then inserts the row.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>A chain of independent IF tests on the accident count.</li>
+<li>A non-zero SQLCODE sets CA_RETURN_CODE to ‘90’, calls WRITE_ERROR_MESSAGE, issues ABEND ‘LGSQ’ and then RETURN.</li>
+</ul>
+</li>
+<li>External interactions: DB2 INSERT into MOTOR, and CICS ABEND on error.</li>
+</ul>
+</li>
+<li>
+<p><strong>INSERT_COMMERCIAL</strong></p>
+<ul>
+<li>Purpose: inserts the commercial-property row into the COMMERCIAL table, applying peril surcharges.</li>
+<li>Operations:
+<ul>
+<li>Converts the CA_B_* peril, premium and status fields to the DB2_B_*_INT host variables.</li>
+<li>Calls VALIDATE_PREV_PERIL.</li>
+<li>If WS_FLOOD_FLG = ‘Y’, it raises DB2_B_FloodPremium_INT by 15%.</li>
+<li>If WS_WEATHER_FLG = ‘Y’, it raises DB2_B_WeatherPremium_INT by 15%.</li>
+<li>Inserts the row. CA_LASTCHANGED is stored as the request date, and CA_ISSUE_DATE and CA_EXPIRY_DATE are stored as the start and renewal dates.</li>
+</ul>
+</li>
+<li>Control flow: two independent IFs on the flags, then the usual SQLCODE &lt;&gt; 0 handling (code ‘90’, WRITE_ERROR_MESSAGE, ABEND ‘LGSQ’, RETURN).</li>
+<li>External interactions: DB2 INSERT into COMMERCIAL, and CICS ABEND on error.</li>
+</ul>
+</li>
+<li>
+<p><strong>VALIDATE_PREV_PERIL</strong></p>
+<ul>
+<li>Purpose: finds out whether the property’s postcode already carries heavy flood or weather exposure.</li>
+<li>Operations:
+<ul>
+<li>Sets EM_SQLREQ to ’ VALIDATE PERIL’.</li>
+<li>Resets WS_PERILCNT and WS_FLOOD_FLG, then selects SUM(FLOODPERIL) from COMMERCIAL for rows where ZIPCODE matches CA_B_POSTCODE and STARTDATE is before CURRENT DATE or RENEWALDATE is after it.</li>
+<li>If SQLCODE = 0 and WS_PERILCNT &gt; 3, it sets WS_FLOOD_FLG to ‘Y’.</li>
+<li>It repeats the same steps for SUM(WEATHERPERIL), setting WS_WEATHER_FLG.</li>
+</ul>
+</li>
+<li>Control flow: after each query, a non-zero SQLCODE sets CA_RETURN_CODE to ‘90’, calls WRITE_ERROR_MESSAGE, issues ABEND ‘LGSQ’ and then RETURN.</li>
+<li>External interactions: two DB2 SELECT SUM queries on COMMERCIAL, and CICS ABEND on error.</li>
+</ul>
+</li>
+<li>
+<p><strong>INSERT_CLAIM</strong></p>
+<ul>
+<li>Purpose: inserts a claim row into the CLAIM table.</li>
+<li>Operations:
+<ul>
+<li>Converts CA_C_Paid and CA_C_Value to integer host variables.</li>
+<li>Calls UPDATE_BROKER_COMM.</li>
+<li>Inserts the claim number, policy number, claim date, paid amount, value, cause and observations.</li>
+<li>Copies DB2_C_Num_INT back to CA_C_Num.</li>
+</ul>
+</li>
+<li>Control flow: a non-zero SQLCODE sets CA_RETURN_CODE to ‘90’, calls WRITE_ERROR_MESSAGE, issues ABEND ‘LGSQ’ and then RETURN.</li>
+<li>External interactions: DB2 INSERT into CLAIM, and CICS ABEND on error.</li>
+</ul>
+</li>
+<li>
+<p><strong>UPDATE_BROKER_COMM</strong></p>
+<ul>
+<li>Purpose: penalises brokers when a policy has many claims in the current year.</li>
+<li>Operations:
+<ul>
+<li>Sets EM_SQLREQ to 'UPD BRK COMM ’ and resets WS_CLM_CNT.</li>
+<li>Counts CLAIM rows for the policy where YEAR(CLAIMDATE) equals YEAR(CURRENT DATE).</li>
+<li>If SQLCODE = 0 and WS_CLM_CNT &gt; 3, it runs <code>UPDATE POLICY SET COMMISSION = (COMMISSION / 2)</code> for that policy.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>SQLCODE is checked after the count and again after the optional update.</li>
+<li>A non-zero value sets CA_RETURN_CODE to ‘90’, calls WRITE_ERROR_MESSAGE, issues ABEND ‘LGSQ’ and then RETURN.</li>
+</ul>
+</li>
+<li>External interactions: DB2 SELECT COUNT on CLAIM, DB2 UPDATE on POLICY, and CICS ABEND on error.</li>
+</ul>
+</li>
+<li>
+<p><strong>WRITE_ERROR_MESSAGE</strong></p>
+<ul>
+<li>Purpose: shared error logger. It builds a timestamped message and sends it to the logging program.</li>
+<li>Operations:
+<ul>
+<li>Copies SQLCODE to EM_SQLRC.</li>
+<li>Gets the current time with <code>EXEC CICS ASKTIME</code> and formats it with <code>EXEC CICS FORMATTIME</code> (MMDDYYYY and TIME), then moves the results to EM_DATE and EM_TIME.</li>
+<li>Calls <code>EXEC CICS LINK PROGRAM('LGSTSQ')</code> with ERROR_MSG, which carries the date, time, program name, customer number, policy number, SQL request and SQLCODE.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>If EIBCALEN &gt; 0, it also logs the commarea contents.</li>
+<li>When EIBCALEN is less than 91, it sets CA_DATA to the commarea contents (LEFT(COMM_AREA_RAW, EIBCALEN)).</li>
+<li>Otherwise it sets CA_DATA to the first 90 bytes (LEFT(COMM_AREA_RAW, 90)).</li>
+<li>Either way it then links to LGSTSQ with CA_ERROR_MSG.</li>
+</ul>
+</li>
+<li>External interactions: CICS ASKTIME, FORMATTIME and two LINKs to LGSTSQ, the error-queue writer (the code comment says it writes to a TDQ).</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<h3 id="61-cics-and-runtime-environment" tabindex="-1">6.1 CICS and Runtime Environment</h3>
+<ul>
+<li><strong>CICS Transaction Server APIs</strong>
+<ul>
+<li><code>EXEC CICS ABEND</code>: Issues transaction abends with abend codes <code>'LGCA'</code> (when no COMMAREA is passed, <code>EIBCALEN = 0</code>) and <code>'LGSQ'</code> (when SQL errors occur during policy and subordinate record insertions, forcing transactional backout).</li>
+<li><code>EXEC CICS RETURN</code>: Terminates program execution and returns control to the calling CICS program or caller.</li>
+<li><code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code>: Obtains and formats the current system date (<code>MMDDYYYY</code>) and time (<code>TIME</code>) for error logging.</li>
+<li><code>EIB (Execute Interface Block)</code>: Provides execution context variables including <code>EIBCALEN</code> (communication area length), <code>EIBTRNID</code> (transaction ID), <code>EIBTRMID</code> (terminal ID), and <code>EIBTASKN</code> (task number).</li>
+</ul>
+</li>
+</ul>
+<h3 id="62-external-programs-and-subroutines" tabindex="-1">6.2 External Programs and Subroutines</h3>
+<ul>
+<li><strong>LGAPVS01</strong>
+<ul>
+<li>Invoked via <code>EXEC CICS LINK PROGRAM('LGAPVS01')</code> passing the 32,500-byte COMMAREA to propagate policy addition data to the VSAM backend store after Db2 processing completes.</li>
+</ul>
+</li>
+<li><strong>LGSTSQ</strong>
+<ul>
+<li>Invoked via <code>EXEC CICS LINK PROGRAM('LGSTSQ')</code> within the <code>WRITE_ERROR_MESSAGE</code> subroutine to write formatted error details and COMMAREA dumps into CICS transient data / temporary storage queues.</li>
+</ul>
+</li>
+</ul>
+<h3 id="63-database-resources-db2-for-zos" tabindex="-1">6.3 Database Resources (Db2 for z/OS)</h3>
+<ul>
+<li><strong>POLICY Table</strong>
+<ul>
+<li>Target of <code>INSERT</code> statements to create master policy records with customer ID, broker ID, payment, commission, issue/expiry dates, policy type, and timestamp.</li>
+<li>Target of <code>SELECT</code> queries to retrieve DB2-generated timestamp (<code>LASTCHANGED</code>) and calculate bundling discounts (counting active <code>'M'</code> and <code>'H'</code> policies) as well as broker commission tiers (counting active broker policies).</li>
+<li>Target of <code>UPDATE</code> statements to halve broker commission when excessive claims occur within the current calendar year.</li>
+</ul>
+</li>
+<li><strong>ENDOWMENT Table</strong>
+<ul>
+<li>Target of <code>INSERT</code> operations storing endowment-specific attributes (terms, sum assured, equities, with-profits, managed fund, fund name, life assured, and optional padding varchar data).</li>
+</ul>
+</li>
+<li><strong>HOUSE Table</strong>
+<ul>
+<li>Target of <code>INSERT</code> operations storing house policy attributes (property type, bedroom count, property value, house name, house number, and postcode).</li>
+</ul>
+</li>
+<li><strong>MOTOR Table</strong>
+<ul>
+<li>Target of <code>INSERT</code> operations storing motor vehicle details (make, model, value, registration number, colour, CC, year of manufacture, accident count, and risk-adjusted premium).</li>
+</ul>
+</li>
+<li><strong>COMMERCIAL Table</strong>
+<ul>
+<li>Target of <code>INSERT</code> operations storing commercial property policy records (address, postcode, latitude, longitude, peril indicators, and peril premiums).</li>
+<li>Target of <code>SELECT SUM(FLOODPERIL)</code> and <code>SELECT SUM(WEATHERPERIL)</code> queries in <code>VALIDATE_PREV_PERIL</code> to evaluate historical peril risk in the property’s postal code area.</li>
+</ul>
+</li>
+<li><strong>CLAIM Table</strong>
+<ul>
+<li>Target of <code>INSERT</code> operations adding claim details (claim number, policy number, claim date, paid amount, claim value, cause, and observations).</li>
+<li>Target of <code>SELECT COUNT(CLAIMNUMBER)</code> queries in <code>UPDATE_BROKER_COMM</code> to determine the frequency of claims for a policy in the current calendar year.</li>
+</ul>
+</li>
+<li><strong>Db2 Special Function <code>IDENTITY_VAL_LOCAL()</code></strong>
+<ul>
+<li>Used after inserting a <code>POLICY</code> row to retrieve the assigned identity sequence value (<code>POLICYNUMBER</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="64-include-files-copybooks--header-declarations" tabindex="-1">6.4 Include Files (Copybooks / Header Declarations)</h3>
+<ul>
+<li><strong>SQLCA (<code>EXEC SQL INCLUDE SQLCA;</code>)</strong>
+<ul>
+<li>Defines the SQL Communication Area structure and fields (such as <code>SQLCODE</code>) for monitoring Db2 statement execution statuses.</li>
+</ul>
+</li>
+<li><strong>LGCMAREA (<code>EXEC SQL INCLUDE LGCMAREA;</code>)</strong>
+<ul>
+<li>Defines the standard 32,500-byte communication area layout, including input/output headers and policy-specific data overlays (<code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code>, <code>CA_PAYMENT</code>, <code>CA_BROKERID</code>, and type-specific structures).</li>
+</ul>
+</li>
+<li><strong>LGPOLICY (<code>EXEC SQL INCLUDE LGPOLICY;</code>)</strong>
+<ul>
+<li>Supplies structure definitions and length constants (<code>WS_FULL_ENDOW_LEN</code>, <code>WS_FULL_HOUSE_LEN</code>, <code>WS_FULL_MOTOR_LEN</code>, etc.) used to validate COMMAREA lengths for each policy type.</li>
+</ul>
+</li>
+<li><strong>DCLPOLIC (<code>EXEC SQL INCLUDE DCLPOLIC;</code>)</strong>
+<ul>
+<li>Db2 table declaration (DCLGEN) providing host variable and column mappings for the <code>POLICY</code> table.</li>
+</ul>
+</li>
+<li><strong>DCLENDOW (<code>EXEC SQL INCLUDE DCLENDOW;</code>)</strong>
+<ul>
+<li>Db2 table declaration (DCLGEN) providing host variable and column mappings for the <code>ENDOWMENT</code> table.</li>
+</ul>
+</li>
+</ul>
+<h3 id="65-input-parameters-and-data-contracts" tabindex="-1">6.5 Input Parameters and Data Contracts</h3>
+<ul>
+<li><strong>DFHCOMMAREA (COMM_AREA_PTR)</strong>
+<ul>
+<li>Primary communication parameter passed via pointer from the calling program containing transaction request types (<code>01AEND</code>, <code>01AHOU</code>, <code>01AMOT</code>, <code>01ACOM</code>, <code>01ACLM</code>), customer identifiers, policy data, and return code status fields.</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<ul>
+<li>
+<p><strong>Communication area presence and size</strong></p>
+<ul>
+<li>A communication area must be supplied.
+<ul>
+<li>If <code>EIBCALEN = 0</code>, the program writes <code>' NO COMMAREA RECEIVED'</code> through <code>WRITE_ERROR_MESSAGE</code>. It then abends with <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>.</li>
+<li>This is the only check that abends before any database work.</li>
+</ul>
+</li>
+<li>The communication area must be at least as long as the request needs.
+<ul>
+<li><code>WS_REQUIRED_CA_LEN</code> starts as the header length, <code>WS_CA_HEADER_LEN</code> (28).</li>
+<li>The first <code>SELECT (CA_REQUEST_ID)</code> adds a full-length constant for the request type:
+<ul>
+<li><code>01AEND</code> adds <code>WS_FULL_ENDOW_LEN</code> (124).</li>
+<li><code>01AHOU</code> adds <code>WS_FULL_HOUSE_LEN</code> (130).</li>
+<li><code>01AMOT</code> adds <code>WS_FULL_MOTOR_LEN</code> (137).</li>
+<li><code>01ACOM</code> and <code>01ACLM</code> add nothing, so they only need the 28-byte header.</li>
+</ul>
+</li>
+<li>If <code>EIBCALEN &lt; WS_REQUIRED_CA_LEN</code>, the program sets <code>CA_RETURN_CODE = '98'</code> and issues <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li>The communication area is limited to 32,500 bytes.
+<ul>
+<li><code>COMM_AREA</code> is declared as 32,500 bytes: a 6-byte request ID, a 2-byte return code, a 10-byte customer number, and 32,482 bytes of request-specific data.</li>
+<li>The follow-on <code>EXEC CICS LINK PROGRAM('LGAPVS01')</code> passes a fixed <code>LENGTH(32500)</code>.</li>
+</ul>
+</li>
+<li>The error log copies at most 90 bytes of the communication area.
+<ul>
+<li><code>WRITE_ERROR_MESSAGE</code> copies <code>LEFT(COMM_AREA_RAW,EIBCALEN)</code> when <code>EIBCALEN &lt; 91</code>. Otherwise it copies the first 90 bytes.</li>
+<li>Nothing is logged when <code>EIBCALEN</code> is 0.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Request identification and routing</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code> must be one of <code>01AEND</code>, <code>01AHOU</code>, <code>01AMOT</code>, <code>01ACOM</code> or <code>01ACLM</code>.
+<ul>
+<li>The first <code>SELECT</code> also sets <code>DB2_POLICYTYPE</code> to <code>E</code>, <code>H</code>, <code>M</code>, <code>C</code> or <code>X</code> respectively.</li>
+<li>Any other value sets <code>CA_RETURN_CODE = '99'</code> and issues <code>EXEC CICS RETURN</code>, so no insert happens.</li>
+<li>The second <code>SELECT</code> has an <code>OTHERWISE</code> branch that sets <code>'99'</code> again. Because the first check already returns, this branch cannot be reached.</li>
+</ul>
+</li>
+<li>Each request ID drives exactly one insert path.
+<ul>
+<li><code>INSERT_ENDOW</code>, <code>INSERT_HOUSE</code>, <code>INSERT_MOTOR</code>, <code>INSERT_COMMERCIAL</code> or <code>INSERT_CLAIM</code> is called according to the request ID.</li>
+</ul>
+</li>
+<li>A claim request does not create a policy.
+<ul>
+<li><code>INSERT_POLICY</code> is called only when <code>CA_REQUEST_ID &lt;&gt; '01ACLM'</code>.</li>
+<li>The claim is linked to an existing policy through <code>CA_POLICY_NUM</code>, which was copied to <code>DB2_C_Policynum_INT</code> on entry.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sequencing and dependency constraints</strong></p>
+<ul>
+<li>The checks run in a fixed order:
+<ul>
+<li>The program first checks that a communication area exists.</li>
+<li>It then sets <code>CA_RETURN_CODE</code> to <code>'00'</code>.</li>
+<li>It then validates the request ID and the length.</li>
+<li>It then inserts the policy row.</li>
+<li>It then inserts the type-specific row.</li>
+<li>Finally it links to <code>LGAPVS01</code>.</li>
+</ul>
+</li>
+<li>The POLICY row must exist before any type-specific row.
+<ul>
+<li><code>INSERT_POLICY</code> runs first. DB2 allocates the policy number (<code>VALUES (DEFAULT, ...)</code>).</li>
+<li><code>SET :DB2_POLICYNUM_INT = IDENTITY_VAL_LOCAL()</code> then retrieves the number.</li>
+<li>That number is copied to <code>CA_POLICY_NUM</code> and <code>EM_POLNUM</code>. The ENDOWMENT, HOUSE, MOTOR and COMMERCIAL inserts use it as their foreign key.</li>
+</ul>
+</li>
+<li>The pricing steps run in a fixed order inside <code>INSERT_POLICY</code>:
+<ul>
+<li>First the house-location loading is applied.</li>
+<li><code>BUNDLING_DISCOUNT</code> follows.</li>
+<li><code>CALCULATE_COMMISSION</code> follows that.</li>
+<li>The POLICY insert comes last, so it stores the adjusted payment and commission.</li>
+</ul>
+</li>
+<li>Commission is calculated from the payment after the loading and discount have been applied.</li>
+<li>The issue timestamp is set by the database, not the caller.
+<ul>
+<li><code>LASTCHANGED</code> is set from <code>CURRENT TIMESTAMP</code>.</li>
+<li>It is read back into <code>CA_LASTCHANGED</code> after the insert, and the commercial insert uses it as <code>RequestDate</code>.</li>
+</ul>
+</li>
+<li>In <code>INSERT_COMMERCIAL</code>, <code>VALIDATE_PREV_PERIL</code> must run before the insert, because the surcharge flags it sets control the premium that is inserted.</li>
+<li>In <code>INSERT_CLAIM</code>, <code>UPDATE_BROKER_COMM</code> runs before the claim row is inserted.
+<ul>
+<li>The claim count therefore does not include the claim being added.</li>
+<li>The commission halving triggers when the existing count is already above 3.</li>
+</ul>
+</li>
+<li><code>LGAPVS01</code> is linked after every insert path has completed, and only if none of them returned early.</li>
+</ul>
+</li>
+<li>
+<p><strong>Data validation and format rules</strong></p>
+<ul>
+<li>Fixed-length character fields: <code>CA_REQUEST_ID</code> is <code>CHAR(6)</code>, the dates are <code>CHAR(10)</code>, and <code>CA_BROKERSREF</code> is <code>CHAR(10)</code>.
+<ul>
+<li>The commercial address, customer and property type fields are <code>CHAR(255)</code>.</li>
+<li>The postcode is <code>CHAR(8)</code>.</li>
+</ul>
+</li>
+<li>Numeric commarea fields are fixed-width <code>PIC</code> fields, so only the digits they hold are valid:
+<ul>
+<li><code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code> and <code>CA_BROKERID</code> have 10 digits.</li>
+<li><code>CA_PAYMENT</code>, <code>CA_M_PREMIUM</code> and <code>CA_M_ACCIDENTS</code> have 6 digits.</li>
+<li><code>CA_H_VALUE</code> has 8 digits.</li>
+</ul>
+</li>
+<li>Numeric fields are converted to binary host variables before use.
+<ul>
+<li><code>DB2_CUSTOMERNUM_INT</code> and <code>DB2_BROKERID_INT</code> are <code>FIXED BIN(31)</code>.</li>
+<li><code>DB2_PAYMENT_INT</code> is <code>FIXED BIN(31)</code>.</li>
+<li>The DB2 bind and insert are the only places where these values are checked.</li>
+</ul>
+</li>
+<li>The program does not check dates, postcode format, or value ranges for any field.
+<ul>
+<li>It does not check for a missing broker, nor for a negative or zero payment.</li>
+<li>It also does not check the <code>Y</code>/<code>N</code> indicators or the term of an endowment.</li>
+<li>The only data checks are the ones the database enforces and the length check.</li>
+</ul>
+</li>
+<li>Length constants for each table row are declared in <code>WS_POLICY_LENGTHS</code>.
+<ul>
+<li>The varchar endowment padding is limited to <code>WS_VARCHAR CHAR(3900) VARYING</code>.</li>
+<li>The <code>ENDOWMENT.PADDINGDATA</code> column is <code>VARCHAR(32606)</code>.</li>
+</ul>
+</li>
+<li>The endowment padding insert depends on the communication area length.
+<ul>
+<li><code>WS_VARY_LEN = EIBCALEN - WS_REQUIRED_CA_LEN</code>.</li>
+<li>If it is greater than 0, the program copies that many bytes of <code>CA_E_PADDING_DATA</code> into <code>WS_VARCHAR</code> and uses the insert that includes <code>PADDINGDATA</code>.</li>
+<li>Otherwise it uses the insert without <code>PADDINGDATA</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Premium and payment business rules</strong></p>
+<ul>
+<li>House loading applies only to a house request (<code>01AHOU</code>).
+<ul>
+<li>It applies only when <code>CA_H_POSTCODE &gt; '600000'</code> and <code>&lt; '699999'</code>.</li>
+<li>It is a string comparison on the 8-character postcode field.</li>
+<li>For a house value from 10,000,001 to 14,999,999, the payment is increased by 20%.</li>
+<li>For a value from 15,000,001 to 19,999,999, the payment is increased by 40%.</li>
+<li>For a value above 20,000,000, the payment is increased by 50%.</li>
+<li>The conditions use strict inequalities, so values of exactly 10,000,000, 15,000,000 and 20,000,000 receive no increase.</li>
+</ul>
+</li>
+<li>A bundling discount applies when the customer has more than two active motor or house policies.
+<ul>
+<li>The count is <code>WS_CNT_POLICY &gt; 2</code> and <code>SQLCODE = 0</code>.</li>
+<li>A policy is active when <code>ISSUEDATE &lt; CURRENT DATE</code> and <code>EXPIRYDATE &gt; CURRENT DATE</code>, with <code>POLICYTYPE IN ('M','H')</code>.</li>
+<li>The payment is reduced by 15%.</li>
+<li>The discount can apply to any request that reaches <code>INSERT_POLICY</code>, not only to motor and house requests.</li>
+</ul>
+</li>
+<li>Commission is a percentage of the adjusted payment, and the percentage depends on the broker’s active policy count.
+<ul>
+<li>The count covers policies where <code>BROKERID</code> matches and the policy is currently active.</li>
+<li>A count of 0 gives 0, and counts of 1 to 4 give 1% to 4% respectively.</li>
+<li>A count of 5 or more gives 5%.</li>
+<li>Commission is only recalculated when <code>SQLCODE = 0</code>.</li>
+<li><code>WS_COMMISSION</code> is <code>FIXED BIN(31)</code>, but the <code>COMMISSION</code> column is <code>SMALLINT</code> (<code>BIN FIXED(15)</code> in <code>DCLPOLICY</code>), so large commissions can overflow it.</li>
+</ul>
+</li>
+<li>Motor premium is scaled by accident history.
+<ul>
+<li>Up to 2 accidents: unchanged.</li>
+<li>3 to 5 accidents: 20% increase.</li>
+<li>6 to 8 accidents: 50% increase.</li>
+<li>More than 8 accidents: 300% increase (tripling).</li>
+<li>The scaled value is written back to <code>CA_M_PREMIUM</code> and then to <code>DB2_M_PREMIUM_INT</code>.</li>
+<li>Because <code>CA_M_PREMIUM</code> is a 6-digit field, a scaled premium of 1,000,000 or more would not fit.</li>
+</ul>
+</li>
+<li>Commercial peril surcharges depend on the postcode.
+<ul>
+<li><code>VALIDATE_PREV_PERIL</code> sums <code>FLOODPERIL</code> and <code>WEATHERPERIL</code> across <code>COMMERCIAL</code> rows with the same <code>ZIPCODE</code> as <code>CA_B_POSTCODE</code>.</li>
+<li>The date test is <code>STARTDATE &lt; CURRENT DATE OR RENEWALDATE &gt; CURRENT DATE</code>.</li>
+<li>If either sum is greater than 3, the matching flag (<code>WS_FLOOD_FLG</code> or <code>WS_WEATHER_FLG</code>) is set to <code>'Y'</code>.</li>
+<li>The matching premium is then increased by 15%.</li>
+<li>Fire and crime premiums have no surcharge.</li>
+</ul>
+</li>
+<li>Claim frequency reduces commission.
+<ul>
+<li><code>UPDATE_BROKER_COMM</code> counts the claims on the policy in the current calendar year (<code>YEAR(CLAIMDATE) = YEAR(CURRENT DATE)</code>).</li>
+<li>If the count is more than 3, <code>UPDATE POLICY SET COMMISSION = COMMISSION / 2</code> is issued for that policy.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Database and error-handling constraints</strong></p>
+<ul>
+<li>Every SQL statement in the program is followed by an <code>SQLCODE</code> check, except the following:
+<ul>
+<li><code>IDENTITY_VAL_LOCAL</code> is not checked.</li>
+<li>The <code>LASTCHANGED</code> read-back after the POLICY insert is not checked.</li>
+<li>The <code>CLAIM</code> insert is checked, but only after <code>CA_C_Num</code> has been set from <code>DB2_C_Num_INT</code>.</li>
+</ul>
+</li>
+<li>The policy insert is the only one with a distinct handling of SQLCODE:
+<ul>
+<li><code>0</code> sets the return code to <code>'00'</code>.</li>
+<li><code>-530</code> (referential integrity violation) sets <code>'70'</code>, writes an error message and returns.</li>
+<li>Any other code sets <code>'90'</code>, writes an error message and returns.</li>
+</ul>
+</li>
+<li>Failures after the policy row is written cause a backout.
+<ul>
+<li>A non-zero <code>SQLCODE</code> in <code>BUNDLING_DISCOUNT</code>, <code>CALCULATE_COMMISSION</code>, the type-specific inserts, <code>VALIDATE_PREV_PERIL</code> and <code>UPDATE_BROKER_COMM</code> sets <code>CA_RETURN_CODE = '90'</code>.</li>
+<li>It then writes an error message and issues <code>EXEC CICS ABEND ABCODE('LGSQ') NODUMP</code>.</li>
+<li>The abend rolls back the policy insert, so a policy row cannot exist without its type-specific row.</li>
+</ul>
+</li>
+<li>Errors are logged for diagnosis.
+<ul>
+<li><code>ERROR_MSG</code> carries the date, time, program name, customer number, policy number, SQL request label and <code>SQLCODE</code>.</li>
+<li>It is passed to <code>LGSTSQ</code> through <code>EXEC CICS LINK</code>.</li>
+<li>The date format is <code>MMDDYYYY</code>.</li>
+</ul>
+</li>
+<li>The customer number is held in <code>EM_CUSNUM</code> early, so errors that happen before a policy number exists can still be reported.</li>
+<li>The return code values are:
+<ul>
+<li><code>'00'</code>: success.</li>
+<li><code>'70'</code>: referential integrity violation on the policy insert.</li>
+<li><code>'90'</code>: DB2 error.</li>
+<li><code>'98'</code>: communication area too short.</li>
+<li><code>'99'</code>: request ID not recognised.</li>
+</ul>
+</li>
+<li>Table-level constraints come from the <code>DECLARE TABLE</code> definitions:
+<ul>
+<li><code>POLICYNUMBER</code>, <code>CUSTOMERNUMBER</code> and <code>LASTCHANGED</code> cannot be null in the POLICY table.</li>
+<li>The <code>ENDOWMENT</code> table requires a non-null <code>POLICYNUMBER</code>.</li>
+<li>The other tables enforce whatever constraints the database defines. A violation of a constraint other than a referential one on the POLICY insert gives <code>'90'</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Resource and transaction constraints</strong></p>
+<ul>
+<li>The program runs as a CICS main program and receives its input only through the communication area. It has no files of its own.</li>
+<li>There is no explicit commit or rollback. The unit of work is the CICS task, and the <code>LGSQ</code> abend is the rollback mechanism.</li>
+<li><code>NODUMP</code> suppresses the dump on both abends (<code>LGCA</code> and <code>LGSQ</code>).</li>
+<li>Each invocation handles exactly one policy or claim, so there are no loops or record-count limits.</li>
+<li>A single run issues a limited number of SQL calls. They cover the policy insert, the identity lookup, the timestamp read, the discount count, the commission count, and the type-specific insert. The commercial path adds two peril sums, and the claim path adds one count and an optional update.</li>
+</ul>
+</li>
+<li>
+<p><strong>Known inconsistencies</strong></p>
+<ul>
+<li>The <code>CA_REQUEST_ID</code> comments describe a requirement that every request needs its own length. In the code, commercial and claim requests only need the 28-byte header, so a short communication area can pass the length check for those two request types.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<h3 id="81-commarea-validation" tabindex="-1">8.1 COMMAREA Validation</h3>
+<ul>
+<li>
+<p><strong>Missing COMMAREA — immediate ABEND</strong>: At program entry, <code>EIBCALEN</code> is tested for zero. If no COMMAREA was passed, an error message is written via <code>WRITE_ERROR_MESSAGE</code> and a CICS ABEND with code <code>LGCA</code> is issued with <code>NODUMP</code>. This is the only path in the program that produces a hard abend rather than a graceful return.</p>
+</li>
+<li>
+<p><strong>Unrecognised request identifier — return code 99</strong>: A <code>SELECT</code> statement evaluates <code>CA_REQUEST_ID</code> against the five known values. If none match, the <code>OTHERWISE</code> branch sets <code>CA_RETURN_CODE</code> to <code>'99'</code> and immediately issues <code>EXEC CICS RETURN</code>, returning control to the caller without performing any database work.</p>
+<ul>
+<li>The same guard is repeated in the second <code>SELECT (CA_REQUEST_ID)</code> block that dispatches to insert procedures, where <code>OTHERWISE</code> again sets <code>CA_RETURN_CODE</code> to <code>'99'</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>COMMAREA too short — return code 98</strong>: After deriving the minimum required COMMAREA length for the given request type, <code>EIBCALEN</code> is compared against <code>WS_REQUIRED_CA_LEN</code>. If the actual length is less than required, <code>CA_RETURN_CODE</code> is set to <code>'98'</code> and <code>EXEC CICS RETURN</code> is issued immediately, preventing any DB2 calls with an undersized data area.</p>
+</li>
+</ul>
+<hr>
+<h3 id="82-db2-error-handling--insert_policy" tabindex="-1">8.2 DB2 Error Handling — INSERT_POLICY</h3>
+<ul>
+<li>
+<p><strong>Referential integrity violation (SQLCODE -530) — return code 70</strong>: After the <code>INSERT INTO POLICY</code>, <code>SQLCODE</code> is evaluated in a <code>SELECT</code> statement. A value of <code>-530</code> indicates a referential integrity constraint failure (the customer number does not exist). <code>CA_RETURN_CODE</code> is set to <code>'70'</code>, <code>WRITE_ERROR_MESSAGE</code> is called to log the event, and <code>EXEC CICS RETURN</code> is issued.</p>
+</li>
+<li>
+<p><strong>Any other non-zero SQLCODE — return code 90</strong>: The <code>OTHERWISE</code> branch of the same <code>SELECT (SQLCODE)</code> catches all remaining DB2 errors. <code>CA_RETURN_CODE</code> is set to <code>'90'</code>, the error is logged, and the program returns to the caller.</p>
+</li>
+<li>
+<p><strong>Successful insert — return code 00</strong>: An explicit <code>WHEN (0)</code> branch sets <code>CA_RETURN_CODE</code> to <code>'00'</code>, confirming success before proceeding.</p>
+</li>
+</ul>
+<hr>
+<h3 id="83-db2-error-handling--supporting-procedures-abend--return-code-90-pattern" tabindex="-1">8.3 DB2 Error Handling — Supporting Procedures (ABEND + return code 90 pattern)</h3>
+<p>All procedures called before or after <code>INSERT_POLICY</code> share a uniform error response pattern: on a non-zero <code>SQLCODE</code>, <code>CA_RETURN_CODE</code> is set to <code>'90'</code>, <code>WRITE_ERROR_MESSAGE</code> is called, a CICS ABEND with code <code>LGSQ</code> and <code>NODUMP</code> is issued to force DB2 rollback of any work already committed in the unit of work, and then <code>EXEC CICS RETURN</code> is issued. This pattern is applied in:</p>
+<ul>
+<li>
+<p><strong>BUNDLING_DISCOUNT</strong>: After a <code>SELECT COUNT</code> against the POLICY table to determine whether a bundling discount applies, a non-zero <code>SQLCODE</code> triggers the abend/return sequence.</p>
+</li>
+<li>
+<p><strong>CALCULATE_COMMISSION</strong>: After a <code>SELECT COUNT</code> against POLICY to derive the broker’s policy count tier, a non-zero <code>SQLCODE</code> triggers the same sequence.</p>
+</li>
+<li>
+<p><strong>INSERT_ENDOW</strong>: After inserting into the ENDOWMENT table (either with or without the VARCHAR padding column depending on available COMMAREA length), a non-zero <code>SQLCODE</code> triggers the sequence.</p>
+</li>
+<li>
+<p><strong>INSERT_HOUSE</strong>: After inserting into the HOUSE table, a non-zero <code>SQLCODE</code> triggers the sequence.</p>
+</li>
+<li>
+<p><strong>INSERT_MOTOR</strong>: After inserting into the MOTOR table, a non-zero <code>SQLCODE</code> triggers the sequence.</p>
+</li>
+<li>
+<p><strong>INSERT_COMMERCIAL</strong>: After inserting into the COMMERCIAL table, a non-zero <code>SQLCODE</code> triggers the sequence.</p>
+</li>
+<li>
+<p><strong>VALIDATE_PREV_PERIL</strong>: Two separate <code>SELECT SUM</code> queries (one for flood peril, one for weather peril) are each individually guarded; a non-zero <code>SQLCODE</code> from either triggers the sequence.</p>
+</li>
+<li>
+<p><strong>INSERT_CLAIM</strong>: After inserting into the CLAIM table, a non-zero <code>SQLCODE</code> triggers the sequence.</p>
+</li>
+<li>
+<p><strong>UPDATE_BROKER_COMM</strong>: Two separate SQLCODE checks are made — one after the initial <code>SELECT COUNT</code> of claims for the current year, and a second after the conditional <code>UPDATE POLICY</code> that halves the broker’s commission. Both independently trigger the abend/return sequence on failure.</p>
+</li>
+</ul>
+<hr>
+<h3 id="84-error-logging--write_error_message-procedure" tabindex="-1">8.4 Error Logging — WRITE_ERROR_MESSAGE Procedure</h3>
+<ul>
+<li>
+<p><strong>Structured error message to CICS TDQ via LGSTSQ</strong>: The shared <code>WRITE_ERROR_MESSAGE</code> procedure is invoked from every error path. It captures the current SQLCODE into <code>EM_SQLRC</code>, retrieves the current timestamp via <code>EXEC CICS ASKTIME</code> / <code>EXEC CICS FORMATTIME</code>, and then links to the <code>LGSTSQ</code> program passing the <code>ERROR_MSG</code> structure, which contains the date, time, program name (<code>LGAPDB01</code>), customer number, policy number, the SQL request label set before each statement, and the SQLCODE.</p>
+<ul>
+<li>A second call to <code>LGSTSQ</code> also logs up to 90 bytes of the raw COMMAREA content for diagnostic purposes, with the actual length clamped to <code>EIBCALEN</code> if the COMMAREA is shorter than 90 bytes.</li>
+</ul>
+</li>
+<li>
+<p><strong>WS_EYECATCHER for dump identification</strong>: The working-storage header field <code>WS_EYECATCHER</code> is initialised to <code>'LGAPDB01------WS'</code> and persists in memory throughout execution, providing a recognisable anchor in any storage dump taken against the program.</p>
+</li>
+<li>
+<p><strong>EM_SQLREQ label set before each SQL statement</strong>: Immediately before every DB2 call, the field <code>EM_SQLREQ</code> is set to a short text label identifying the operation (e.g., <code>' INSERT POLICY'</code>, <code>' INSERT HOUSE'</code>, <code>'BUNDLE DISCNT '</code>). If an error subsequently triggers <code>WRITE_ERROR_MESSAGE</code>, this label is included in the logged message, identifying precisely which SQL statement failed.</p>
+</li>
+<li>
+<p><strong>EM_CUSNUM and EM_POLNUM pre-loaded into the error structure</strong>: Customer and policy numbers are copied into the error message structure early in the main flow so they are always available in the event message, even if the error occurs before the policy number is generated.</p>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-motor-policy-with-accident-loading-and-bundling-discount" tabindex="-1">9.1 Example 1: Motor policy with accident loading and bundling discount</h3>
+<p><strong>Input</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA_REQUEST_ID</td>
+<td><code>01AMOT</code></td>
+</tr>
+<tr>
+<td>CA_CUSTOMER_NUM</td>
+<td><code>0000000042</code></td>
+</tr>
+<tr>
+<td>CA_PAYMENT</td>
+<td><code>001000</code></td>
+</tr>
+<tr>
+<td>CA_M_PREMIUM</td>
+<td><code>000500</code></td>
+</tr>
+<tr>
+<td>CA_M_ACCIDENTS</td>
+<td><code>000004</code></td>
+</tr>
+<tr>
+<td>EIBCALEN</td>
+<td>200 (at least 165 required)</td>
+</tr>
+<tr>
+<td>Active motor/house policies for the customer</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Active policies for the broker</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Output</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Motor premium stored in MOTOR</td>
+<td>600</td>
+</tr>
+<tr>
+<td>Payment stored in POLICY</td>
+<td>850</td>
+</tr>
+<tr>
+<td>Commission stored in POLICY</td>
+<td>17</td>
+</tr>
+<tr>
+<td>CA_POLICY_NUM</td>
+<td>The DB2-generated identity value</td>
+</tr>
+<tr>
+<td>CA_RETURN_CODE</td>
+<td><code>00</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The program checks the commarea length for <code>01AMOT</code>: 28 header bytes plus 137 = 165. EIBCALEN of 200 passes.</li>
+<li><code>INSERT_POLICY</code> runs first. <code>BUNDLING_DISCOUNT</code> counts 3 active motor/house policies. That is more than 2, so the payment drops by 15%: 1000 − 150 = 850.</li>
+<li><code>CALCULATE_COMMISSION</code> finds 2 active broker policies, so commission is 850 × 0.02 = 17.</li>
+<li>The POLICY row is inserted and the generated policy number is copied to <code>CA_POLICY_NUM</code>.</li>
+<li><code>INSERT_MOTOR</code> then applies the accident loading. 4 accidents falls in the 3–5 band, so the multiplier is 1.20 and the premium becomes 500 × 1.2 = 600.</li>
+</ul>
+<h3 id="92-example-2-house-policy-in-a-high-value-postcode-range" tabindex="-1">9.2 Example 2: House policy in a high-value postcode range</h3>
+<p><strong>Input</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA_REQUEST_ID</td>
+<td><code>01AHOU</code></td>
+</tr>
+<tr>
+<td>CA_PAYMENT</td>
+<td><code>001000</code></td>
+</tr>
+<tr>
+<td>CA_H_POSTCODE</td>
+<td><code>640000</code></td>
+</tr>
+<tr>
+<td>CA_H_VALUE</td>
+<td><code>12000000</code></td>
+</tr>
+<tr>
+<td>Active motor/house policies for the customer</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Active policies for the broker</td>
+<td>4</td>
+</tr>
+<tr>
+<td>EIBCALEN</td>
+<td>Large enough for the house request (at least 158)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Output</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Payment stored in POLICY</td>
+<td>1200</td>
+</tr>
+<tr>
+<td>Commission stored in POLICY</td>
+<td>48</td>
+</tr>
+<tr>
+<td>CA_RETURN_CODE</td>
+<td><code>00</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The postcode is between <code>600000</code> and <code>699999</code>, and the house value is between 10,000,000 and 15,000,000. The payment is therefore raised by 20%: 1000 → 1200.</li>
+<li>The customer has only 1 active motor/house policy. The count is not above 2, so there is no bundling discount.</li>
+<li>The broker has 4 active policies, so the 4% commission tier applies: 1200 × 0.04 = 48.</li>
+<li><code>INSERT_HOUSE</code> then writes the HOUSE row using the new policy number.</li>
+</ul>
+<h3 id="93-example-3-rejected-requests" tabindex="-1">9.3 Example 3: Rejected requests</h3>
+<table>
+<thead>
+<tr>
+<th>CA_REQUEST_ID</th>
+<th>EIBCALEN</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01AXYZ</code></td>
+<td>any non-zero</td>
+<td><code>CA_RETURN_CODE = '99'</code>. The request ID is not recognised, so the program returns at once and nothing is inserted.</td>
+</tr>
+<tr>
+<td><code>01AMOT</code></td>
+<td>100</td>
+<td><code>CA_RETURN_CODE = '98'</code>. The commarea is shorter than the required 165 bytes, so the program returns without any DB2 insert.</td>
+</tr>
+<tr>
+<td>any</td>
+<td>0</td>
+<td>The program writes the error message <code>NO COMMAREA RECEIVED</code> and abends with code <code>LGCA</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Explanation:</strong> The request ID and commarea length are validated before any database work. Invalid requests exit early with a return code and make no DB2 changes.</p>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a></li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a></li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a>
+<ul>
+<li class="toc-level-4"><a href="#421-high-level-summary">4.2.1 High-level Summary</a></li>
+<li class="toc-level-4"><a href="#422-execution-flow">4.2.2 Execution Flow</a></li>
+<li class="toc-level-4"><a href="#423-external-interactions">4.2.3 External Interactions</a></li>
+<li class="toc-level-4"><a href="#424-plain-language-summary">4.2.4 Plain Language Summary</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a>
+<ul>
+<li class="toc-level-3"><a href="#61-cics-and-runtime-environment">6.1 CICS and Runtime Environment</a></li>
+<li class="toc-level-3"><a href="#62-external-programs-and-subroutines">6.2 External Programs and Subroutines</a></li>
+<li class="toc-level-3"><a href="#63-database-resources-db2-for-zos">6.3 Database Resources (Db2 for z/OS)</a></li>
+<li class="toc-level-3"><a href="#64-include-files-copybooks--header-declarations">6.4 Include Files (Copybooks / Header Declarations)</a></li>
+<li class="toc-level-3"><a href="#65-input-parameters-and-data-contracts">6.5 Input Parameters and Data Contracts</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a></li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a>
+<ul>
+<li class="toc-level-3"><a href="#81-commarea-validation">8.1 COMMAREA Validation</a></li>
+<li class="toc-level-3"><a href="#82-db2-error-handling--insert_policy">8.2 DB2 Error Handling — INSERT_POLICY</a></li>
+<li class="toc-level-3"><a href="#83-db2-error-handling--supporting-procedures-abend--return-code-90-pattern">8.3 DB2 Error Handling — Supporting Procedures (ABEND + return code 90 pattern)</a></li>
+<li class="toc-level-3"><a href="#84-error-logging--write_error_message-procedure">8.4 Error Logging — WRITE_ERROR_MESSAGE Procedure</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-motor-policy-with-accident-loading-and-bundling-discount">9.1 Example 1: Motor policy with accident loading and bundling discount</a></li>
+<li class="toc-level-3"><a href="#92-example-2-house-policy-in-a-high-value-postcode-range">9.2 Example 2: House policy in a high-value postcode range</a></li>
+<li class="toc-level-3"><a href="#93-example-3-rejected-requests">9.3 Example 3: Rejected requests</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGAPDB01</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

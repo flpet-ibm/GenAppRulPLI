@@ -1,0 +1,1180 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSAM KSDS Data Access Programs - GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../assets/prism-tomorrow.css">
+    <script src="../assets/prism-core.js"></script>
+    <script src="../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="vsam-data-access.html" class="nav-link active" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="page-container">
+                <div class="content-layout">
+                    <div class="prose">
+                        <details class="source-files-disclosure">
+            <summary>
+                <svg class="sf-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Source Files
+                <span style="margin-left:4px;font-size:11px;color:var(--fg-subtle)">(7)</span>
+            </summary>
+            <div class="source-files-body">
+                <ul class="source-files-list">
+            <li><a href="../sources/program/pli/LGICVS01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGICVS01
+            </a></li>
+            <li><a href="../sources/program/pli/LGDPVS01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGDPVS01
+            </a></li>
+            <li><a href="../sources/program/pli/LGAPVS01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGAPVS01
+            </a></li>
+            <li><a href="../sources/program/pli/LGACVS01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGACVS01
+            </a></li>
+            <li><a href="../sources/program/pli/LGIPVS01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGIPVS01
+            </a></li>
+            <li><a href="../sources/program/pli/LGUCVS01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGUCVS01
+            </a></li>
+            <li><a href="../sources/program/pli/LGUPVS01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGUPVS01
+            </a></li>
+                </ul>
+            </div>
+        </details>
+                        <h1 id="vsam-ksds-data-access-programs" tabindex="-1">VSAM KSDS Data Access Programs</h1>
+<p>The VSAM Key-Sequenced Data Set (KSDS) data access programs form the persistence and retrieval layer of the General Insurance (GenApp) application under CICS. These programs manage record-level operations against the customer master file (<code>KSDSCUST</code>) and the policy master file (<code>KSDSPOLY</code>). They support read, write, update (read-for-update and rewrite), delete, generic partial-key browsing, and pseudo-random customer range inquiries. When data store operations fail, these routines coordinate structured error reporting, logging diagnostic payloads via a central temporary storage logging module (<code>LGSTSQ</code>), assigning return codes, and triggering specific CICS transaction abends.</p>
+<hr>
+<h2 id="1-overview" tabindex="-1">1. Overview</h2>
+<p>The GenApp core data model segregates business data into customer master entities and associated multi-type policy entities. Interaction with these entities is partitioned across dedicated CICS PL/I subprograms that handle specific file access operations:</p>
+<ul>
+<li>
+<p><strong>Customer Data Set (<code>KSDSCUST</code>) Operations</strong>:</p>
+<ul>
+<li><code>LGICVS01</code>: Customer inquiry and pseudo-random customer record retrieval using range boundaries maintained in CICS Temporary Storage Queues (<code>GENACNTL</code>) and generic <code>GTEQ</code> reads.</li>
+<li><code>LGACVS01</code>: Customer insertion (<code>EXEC CICS WRITE</code>) keyed by a 10-digit customer number.</li>
+<li><code>LGUCVS01</code>: Customer modification using exclusive lock acquisition (<code>EXEC CICS READ ... UPDATE</code>) followed by replacement (<code>EXEC CICS REWRITE</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Policy Data Set (<code>KSDSPOLY</code>) Operations</strong>:</p>
+<ul>
+<li><code>LGIPVS01</code>: Generic partial-key policy inquiry (<code>EXEC CICS READ ... GENERIC GTEQ</code>) matching on policy type and customer number.</li>
+<li><code>LGAPVS01</code>: Policy record insertion (<code>EXEC CICS WRITE</code>) formatting type-specific polymorphic payloads (Commercial, Endowment, House, Motor) indexed by a 21-character composite key.</li>
+<li><code>LGUPVS01</code>: Policy update using exclusive record locking (<code>READ ... UPDATE</code>) and subsequent replacement (<code>REWRITE</code>).</li>
+<li><code>LGDPVS01</code>: Direct policy deletion (<code>EXEC CICS DELETE</code>) keyed by the 21-character composite policy identifier.</li>
+</ul>
+</li>
+</ul>
+<p>All write and update routines enforce strict response code verification (<code>DFHRESP(NORMAL)</code>), routing failures through diagnostic routines that capture CICS <code>EIBRESP</code>/<code>EIBRESP2</code> values, assemble standardized error structures, capture input communication area snapshots, and issue designated failure codes.</p>
+<hr>
+<h2 id="2-system-architecture-and-component-interaction" tabindex="-1">2. System Architecture and Component Interaction</h2>
+<p>The VSAM data access modules operate as back-end services invoked by business orchestrators (e.g., <code>LGACDB01</code>, <code>LGAPOL01</code>, <code>LGUPOL01</code>) via <code>EXEC CICS LINK</code>, or directly via CICS 3270 terminal transactions.</p>
+<h3 id="21-architectural-overview-diagram" tabindex="-1">2.1 Architectural Overview Diagram</h3>
+<p>The diagram below illustrates the relationship between invoking sources, the VSAM access programs, external VSAM files, CICS serialization mechanisms, and centralized logging services.</p>
+<div class="mermaid">
+graph TD
+    subgraph Invocation Layer
+        ORCH[Business Orchestrators<br/>LGACDB01 / LGAPOL01 / LGUPOL01]
+        TERM[3270 CICS Terminal User]
+    end
+
+    subgraph VSAM Access Layer
+        direction TB
+        subgraph Customer Management
+            LGICVS01[LGICVS01<br/>Customer Range & GTEQ Read]
+            LGACVS01[LGACVS01<br/>Customer Add / WRITE]
+            LGUCVS01[LGUCVS01<br/>Customer READ UPDATE / REWRITE]
+        end
+        subgraph Policy Management
+            LGIPVS01[LGIPVS01<br/>Policy Generic GTEQ Read]
+            LGAPVS01[LGAPVS01<br/>Policy Add / WRITE]
+            LGUPVS01[LGUPVS01<br/>Policy READ UPDATE / REWRITE]
+            LGDPVS01[LGDPVS01<br/>Policy DELETE]
+        end
+    end
+
+    subgraph Data Stores and Queues
+        KSDSCUST[(VSAM KSDS<br/>KSDSCUST)]
+        KSDSPOLY[(VSAM KSDS<br/>KSDSPOLY)]
+        GENACNTL{{TSQ: GENACNTL<br/>Customer Bounds}}
+        ENQRES[CICS ENQ/DEQ<br/>Resource Lock]
+    end
+
+    subgraph Diagnostic Services
+        LGSTSQ[LGSTSQ<br/>Logging Utility]
+        TSQLOG{{CICS TSQ<br/>Error Logs}}
+    end
+
+    ORCH -->|EXEC CICS LINK<br/>COMMAREA| LGACVS01
+    ORCH -->|EXEC CICS LINK<br/>COMMAREA| LGUCVS01
+    ORCH -->|EXEC CICS LINK<br/>COMMAREA| LGAPVS01
+    ORCH -->|EXEC CICS LINK<br/>COMMAREA| LGUPVS01
+    ORCH -->|EXEC CICS LINK<br/>COMMAREA| LGDPVS01
+    ORCH -->|EXEC CICS LINK| LGICVS01
+    ORCH -->|EXEC CICS LINK| LGIPVS01
+
+    TERM -->|Terminal RECEIVE| LGICVS01
+    TERM -->|Terminal RECEIVE| LGIPVS01
+
+    LGICVS01 <-->|ENQ / DEQ & READQ / WRITEQ| GENACNTL
+    LGICVS01 -->|READ GTEQ| KSDSCUST
+    LGACVS01 -->|WRITE| KSDSCUST
+    LGUCVS01 -->|READ UPDATE / REWRITE| KSDSCUST
+
+    LGIPVS01 -->|READ GENERIC GTEQ| KSDSPOLY
+    LGAPVS01 -->|WRITE| KSDSPOLY
+    LGUPVS01 -->|READ UPDATE / REWRITE| KSDSPOLY
+    LGDPVS01 -->|DELETE| KSDSPOLY
+
+    LGACVS01 -.->|Failure LINK| LGSTSQ
+    LGUCVS01 -.->|Failure LINK| LGSTSQ
+    LGAPVS01 -.->|Failure LINK| LGSTSQ
+    LGUPVS01 -.->|Failure LINK| LGSTSQ
+    LGDPVS01 -.->|Failure LINK| LGSTSQ
+    LGSTSQ --> TSQLOG
+</div>
+<h3 id="22-component-roles-and-call-interfaces" tabindex="-1">2.2 Component Roles and Call Interfaces</h3>
+<p>Programs dynamically determine execution context at runtime using <code>EXEC CICS ASSIGN STARTCODE</code> and <code>EXEC CICS ASSIGN INVOKINGPROG</code>. If initiated via program link or Distributed Program Link (DPL), communication occurs across the shared <code>LGCMAREA</code> communication area pointer (<code>COMM_AREA_PTR</code>). If executed directly as a 3270 terminal transaction, data is received via <code>EXEC CICS RECEIVE</code> and returned formatted through <code>EXEC CICS SEND TEXT</code>.</p>
+<hr>
+<h2 id="3-vsam-datasets-and-key-structures" tabindex="-1">3. VSAM Datasets and Key Structures</h2>
+<h3 id="31-customer-master-dataset-ksdscust" tabindex="-1">3.1 Customer Master Dataset (<code>KSDSCUST</code>)</h3>
+<p>The <code>KSDSCUST</code> dataset contains customer demographic, address, contact, and security summaries.</p>
+<ul>
+<li><strong>Record Length</strong>: 225 bytes (fixed buffer layout)</li>
+<li><strong>Primary Key</strong>: <code>CA_CUSTOMER_NUM</code> (10 bytes, <code>PIC '9999999999'</code>)</li>
+<li><strong>Key Offset</strong>: Position 0 (starting at the front of the record)</li>
+</ul>
+<h4 id="record-layout-overview" tabindex="-1">Record Layout Overview:</h4>
+<ul>
+<li><code>01-10</code>: Customer Number (<code>CA_CUSTOMER_NUM</code>, 10 digits)</li>
+<li><code>11-20</code>: First Name (<code>CA_FIRST_NAME</code>, 10 characters)</li>
+<li><code>21-40</code>: Last Name (<code>CA_LAST_NAME</code>, 20 characters)</li>
+<li><code>41-50</code>: Date of Birth (<code>CA_DOB</code>, 10 characters)</li>
+<li><code>51-70</code>: House Name (<code>CA_HOUSE_NAME</code>, 20 characters)</li>
+<li><code>71-74</code>: House Number (<code>CA_HOUSE_NUM</code>, 4 characters)</li>
+<li><code>75-82</code>: Postcode (<code>CA_POSTCODE</code>, 8 characters)</li>
+<li><code>83-85</code>: Number of Active Policies (<code>CA_NUM_POLICIES</code>, 3 digits)</li>
+<li><code>86-105</code>: Mobile Phone (<code>CA_PHONE_MOBILE</code>, 20 characters)</li>
+<li><code>106-125</code>: Home Phone (<code>CA_PHONE_HOME</code>, 20 characters)</li>
+<li><code>126-225</code>: Email Address (<code>CA_EMAIL_ADDRESS</code>, 100 characters)</li>
+</ul>
+<h3 id="32-policy-master-dataset-ksdspoly" tabindex="-1">3.2 Policy Master Dataset (<code>KSDSPOLY</code>)</h3>
+<p>The <code>KSDSPOLY</code> dataset contains all active insurance policies across multiple lines of business.</p>
+<ul>
+<li><strong>Record Length</strong>: 64 bytes (fixed layout <code>WF_Policy_Info</code>)</li>
+<li><strong>Primary Key</strong>: <code>WF_POLICY_KEY</code> (21 bytes composite)
+<ul>
+<li><code>WF_REQUEST_ID</code>: 1-byte policy type discriminator (<code>C</code> = Commercial, <code>E</code> = Endowment, <code>H</code> = House, <code>M</code> = Motor)</li>
+<li><code>WF_CUSTOMER_NUM</code>: 10-byte customer number (<code>PIC '9999999999'</code>)</li>
+<li><code>WF_POLICY_NUM</code>: 10-byte policy identifier (<code>PIC '9999999999'</code>)</li>
+</ul>
+</li>
+<li><strong>Payload Data</strong>: <code>WF_POLICY_DATA</code> (43-byte polymorphic union mapping specific policy properties)</li>
+</ul>
+<h4 id="polymorphic-43-byte-data-union-structures" tabindex="-1">Polymorphic 43-Byte Data Union Structures:</h4>
+<ul>
+<li><strong>Commercial (<code>'C'</code>)</strong>:
+<ul>
+<li><code>WF_B_POSTCODE</code> (8 chars), <code>WF_B_STATUS</code> (halfword binary), <code>WF_B_CUSTOMER</code> (31 chars)</li>
+</ul>
+</li>
+<li><strong>Endowment (<code>'E'</code>)</strong>:
+<ul>
+<li><code>WF_E_WITH_PROFITS</code> (1 char), <code>WF_E_EQUITIES</code> (1 char), <code>WF_E_MANAGED_FUND</code> (1 char), <code>WF_E_FUND_NAME</code> (10 chars), <code>WF_E_LIFE_ASSURED</code> (30 chars)</li>
+</ul>
+</li>
+<li><strong>House (<code>'H'</code>)</strong>:
+<ul>
+<li><code>WF_H_PROPERTY_TYPE</code> (15 chars), <code>WF_H_BEDROOMS</code> (3 digits), <code>WF_H_VALUE</code> (8 digits), <code>WF_H_POSTCODE</code> (8 chars), <code>WF_H_HOUSE_NAME</code> (9 chars)</li>
+</ul>
+</li>
+<li><strong>Motor (<code>'M'</code>)</strong>:
+<ul>
+<li><code>WF_M_MAKE</code> (15 chars), <code>WF_M_MODEL</code> (15 chars), <code>WF_M_VALUE</code> (6 digits), <code>WF_M_REGNUMBER</code> (7 chars)</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-dataset-entity-relationship-model" tabindex="-1">3.3 Dataset Entity-Relationship Model</h3>
+<div class="mermaid">
+erDiagram
+    KSDSCUST {
+        string CA_CUSTOMER_NUM PK "Length 10 (numeric digits)"
+        string CA_FIRST_NAME "Length 10"
+        string CA_LAST_NAME "Length 20"
+        string CA_DOB "Length 10"
+        string CA_HOUSE_NAME "Length 20"
+        string CA_HOUSE_NUM "Length 4"
+        string CA_POSTCODE "Length 8"
+        int CA_NUM_POLICIES "3 digits"
+        string CA_PHONE_MOBILE "Length 20"
+        string CA_PHONE_HOME "Length 20"
+        string CA_EMAIL_ADDRESS "Length 100"
+    }
+
+    KSDSPOLY {
+        string WF_REQUEST_ID PK "Length 1 (Type: C, E, H, M)"
+        string WF_CUSTOMER_NUM PK "Length 10 (Customer Reference)"
+        string WF_POLICY_NUM PK "Length 10 (Policy Identifier)"
+        string WF_POLICY_DATA "Length 43 (Polymorphic Union)"
+    }
+
+    TSQ_GENACNTL {
+        string EYECATCHER "Length 20 (**** GENAPP CNTL)"
+        string LOW_BOUND "LOW CUSTOMER= + 10 digits"
+        string HIGH_BOUND "HIGH CUSTOMER= + 10 digits"
+    }
+
+    TSQ_ERROR_LOG {
+        string TIMESTAMP "Date (10) + Time (8)"
+        string PROGRAM_ID "Length 8 (Calling Program)"
+        string CUSTOMER_NUM "Length 10"
+        int RESP_CODE "CICS primary RESP"
+        int RESP2_CODE "CICS secondary RESP2"
+        string CA_DATA_DUMP "First 90 bytes of COMMAREA"
+    }
+
+    KSDSCUST ||--o{ KSDSPOLY : "owns policies"
+    TSQ_GENACNTL ||--o{ KSDSCUST : "defines lookup key boundaries"
+    KSDSCUST ||--o{ TSQ_ERROR_LOG : "generates write/read failure diagnostics"
+    KSDSPOLY ||--o{ TSQ_ERROR_LOG : "generates I/O failure diagnostics"
+</div>
+<p>The entity-relationship diagram shows how customer master records in <code>KSDSCUST</code> relate to associated policies in <code>KSDSPOLY</code> via <code>CUSTOMER_NUM</code>. It also depicts the operational reliance on <code>TSQ_GENACNTL</code> for key-range limits and <code>TSQ_ERROR_LOG</code> (via <code>LGSTSQ</code>) for fault capture.</p>
+<hr>
+<h2 id="4-customer-data-access-programs" tabindex="-1">4. Customer Data Access Programs</h2>
+<h3 id="41-inquiry-and-key-range-selection-lgicvs01" tabindex="-1">4.1 Inquiry and Key Range Selection (<code>LGICVS01</code>)</h3>
+<p><code>LGICVS01</code> supplies a valid, existing customer number for inquiry and testing tasks. It implements pseudo-random selection bounded by control limits stored in the <code>GENACNTL</code> Temporary Storage Queue (TSQ).</p>
+<h4 id="processing-flow" tabindex="-1">Processing Flow:</h4>
+<ol>
+<li><strong>Invocation Check</strong>: Inspects <code>STARTCODE</code> and <code>INVOKINGPROG</code>. If called via LINK/DPL, it flags mode <code>'C'</code>. If called via 3270 terminal, it receives input and flags mode <code>'R'</code>.</li>
+<li><strong>Control Queue Serialization</strong>: Executes <code>EXEC CICS ENQ RESOURCE('GENACNTL')</code> to serialize access across concurrent tasks.</li>
+<li><strong>Queue Reading and Initialization</strong>:
+<ul>
+<li>Reads item 1 of <code>GENACNTL</code>. If the queue is missing, boundaries default to <code>1000001</code> (low) and <code>1000001</code> (high).</li>
+<li>Loops sequentially reading items: parses <code>LOW CUSTOMER=</code> into <code>WS_CUST_LOW</code> and <code>HIGH CUSTOMER=</code> into <code>WS_CUST_HIGH</code>.</li>
+<li>Writes missing records using <code>EXEC CICS WRITEQ TS QUEUE('GENACNTL') NOSUSPEND</code> to populate initial control entries.</li>
+</ul>
+</li>
+<li><strong>Lock Release</strong>: Releases serialization via <code>EXEC CICS DEQ RESOURCE('GENACNTL')</code>.</li>
+<li><strong>Key Generation</strong>: Uses the CICS task number (<code>EIBTASKN</code>) as a seed:
+$\text{WS_RANDOM_NUMBER} = \lfloor \text{RANDOM}(\text{EIBTASKN}) \times (\text{WS_CUST_HIGH} - \text{WS_CUST_LOW}) + \text{WS_CUST_LOW} \rfloor$</li>
+<li><strong>VSAM Greater-Than-or-Equal Search</strong>:
+Executes <code>EXEC CICS READ FILE('KSDSCUST') RIDFLD(WRITE_MSG_HIGH) KEYLENGTH(10) GTEQ</code>. If a record is found, it extracts <code>CA_CUSTOMER_NUM</code>. If <code>NOTFND</code>, it keeps the random number.</li>
+<li><strong>Output Routing</strong>: Returns <code>HIGH CUSTOMER=</code> and the 10-digit customer number in the caller’s COMMAREA (<code>WS_FLAG = 'C'</code>) or transmits it to the terminal screen via <code>EXEC CICS SEND TEXT</code> (<code>WS_FLAG = 'R'</code>).</li>
+</ol>
+<h3 id="42-customer-creation-lgacvs01" tabindex="-1">4.2 Customer Creation (<code>LGACVS01</code>)</h3>
+<p><code>LGACVS01</code> performs direct customer inserts into <code>KSDSCUST</code>.</p>
+<ul>
+<li>Invoked via <code>EXEC CICS LINK</code> from orchestrator <code>LGACDB01</code>.</li>
+<li>Issues <code>EXEC CICS WRITE FILE('KSDSCUST') FROM(CA_CUSTOMER_NUM) LENGTH(EIBCALEN) RIDFLD(CA_CUSTOMER_NUM) KEYLENGTH(10)</code>.</li>
+<li>If <code>WS_RESP ^= DFHRESP(NORMAL)</code>:
+<ul>
+<li>Captures <code>EIBRESP2</code> into <code>WS_RESP2</code>.</li>
+<li>Sets <code>CA_RETURN_CODE = '80'</code>.</li>
+<li>Calls <code>WRITE_ERROR_MESSAGE</code> to log the failure and COMMAREA snapshot to <code>LGSTSQ</code>.</li>
+<li>Abends the task immediately via <code>EXEC CICS ABEND ABCODE('LGV0') NODUMP</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="43-customer-update-lgucvs01" tabindex="-1">4.3 Customer Update (<code>LGUCVS01</code>)</h3>
+<p><code>LGUCVS01</code> executes atomic customer record updates.</p>
+<ul>
+<li>Reads and locks the target record via <code>EXEC CICS READ FILE('KSDSCUST') UPDATE INTO(WS_CUSTOMER_AREA) RIDFLD(CA_CUSTOMER_NUM) KEYLENGTH(10)</code>.
+<ul>
+<li>On failure: Captures <code>RESP2</code>, sets <code>CA_RETURN_CODE = '81'</code>, links to <code>LGSTSQ</code>, and abends with <code>ABCODE('LGV1') NODUMP</code>.</li>
+</ul>
+</li>
+<li>Rewrites the updated record from COMMAREA data via <code>EXEC CICS REWRITE FILE('KSDSCUST') FROM(CA_CUSTOMER_NUM) LENGTH(WS_COMMAREA_LENF)</code>.
+<ul>
+<li>On failure: Captures <code>RESP2</code>, sets <code>CA_RETURN_CODE = '82'</code>, links to <code>LGSTSQ</code>, and abends with <code>ABCODE('LGV2') NODUMP</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="44-customer-data-flow-and-sequence" tabindex="-1">4.4 Customer Data Flow and Sequence</h3>
+<p>The sequence diagram below traces customer record insertion and update cycles, detailing the error capture and abend trigger points.</p>
+<div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Caller as Calling Orchestrator / User
+    participant Mod as Customer Access Module<br/>(LGACVS01 / LGUCVS01)
+    participant VSAM as VSAM KSDS<br/>(KSDSCUST)
+    participant Log as Error Logger<br/>(LGSTSQ)
+
+    alt Customer Addition (LGACVS01)
+        Caller->>Mod: EXEC CICS LINK with Customer COMMAREA
+        Mod->>VSAM: EXEC CICS WRITE FILE('KSDSCUST')
+        alt Normal Response
+            VSAM-->>Mod: DFHRESP(NORMAL)
+            Mod-->>Caller: Return (COMMAREA unchanged)
+        else Write Failure (Duplicate / Full)
+            VSAM-->>Mod: Non-Normal RESP (e.g. DUPREC)
+            Mod->>Mod: Set CA_RETURN_CODE = '80'
+            Mod->>Log: LINK with ERROR_MSG (RESP, RESP2, Timestamp)
+            Mod->>Log: LINK with CA_ERROR_MSG (COMMAREA dump)
+            Mod->>Mod: EXEC CICS ABEND ABCODE('LGV0') NODUMP
+        end
+    else Customer Update (LGUCVS01)
+        Caller->>Mod: EXEC CICS LINK with Updated COMMAREA
+        Mod->>VSAM: EXEC CICS READ FILE('KSDSCUST') UPDATE
+        alt Read Lock Failure
+            VSAM-->>Mod: Non-Normal RESP (e.g. NOTFND)
+            Mod->>Mod: Set CA_RETURN_CODE = '81'
+            Mod->>Log: LINK with ERROR_MSG & Dump
+            Mod->>Mod: EXEC CICS ABEND ABCODE('LGV1') NODUMP
+        else Read Lock Success
+            VSAM-->>Mod: DFHRESP(NORMAL)
+            Mod->>VSAM: EXEC CICS REWRITE FILE('KSDSCUST')
+            alt Rewrite Success
+                VSAM-->>Mod: DFHRESP(NORMAL)
+                Mod-->>Caller: Return (Success)
+            else Rewrite Failure
+                VSAM-->>Mod: Non-Normal RESP
+                Mod->>Mod: Set CA_RETURN_CODE = '82'
+                Mod->>Log: LINK with ERROR_MSG & Dump
+                Mod->>Mod: EXEC CICS ABEND ABCODE('LGV2') NODUMP
+            end
+        end
+    end
+</div>
+<hr>
+<h2 id="5-policy-data-access-programs" tabindex="-1">5. Policy Data Access Programs</h2>
+<h3 id="51-generic-policy-inquiry-and-browse-lgipvs01" tabindex="-1">5.1 Generic Policy Inquiry and Browse (<code>LGIPVS01</code>)</h3>
+<p><code>LGIPVS01</code> executes a generic partial-key browse across <code>KSDSPOLY</code>.</p>
+<ol>
+<li><strong>Input Key Assembly</strong>: Reads 1-byte policy type (<code>PART_KEY_TYPE</code>) and up to 10-digit customer number (<code>PART_KEY_NUM</code>) from COMMAREA (<code>WS_FLAG = 'C'</code>) or terminal input (<code>WS_FLAG = 'R'</code>).</li>
+<li><strong>Generic GTEQ Execution</strong>:
+Issues <code>EXEC CICS READ FILE('KSDSPOLY') INTO(CA_AREA) LENGTH(64) RIDFLD(PART_KEY) KEYLENGTH(11) GENERIC GTEQ</code>.</li>
+<li><strong>Type Match Validation</strong>:
+<ul>
+<li>Because <code>GTEQ</code> can locate records with a higher key, the program explicitly compares the retrieved <code>CA_POLICY_TYPE</code> against the requested <code>PART_KEY_TYPE</code>.</li>
+<li><strong>Match &amp; NORMAL</strong>: Formats output with header <code>'Policy Key='</code> and composite key <code>CA_POLICY_TYPE || CA_CUSTOMER_NUM</code>.</li>
+<li><strong>Mismatch or Non-NORMAL</strong>: Formats output with header <code>'Policy Bad='</code> and placeholder numeric keys <code>0000000013</code> for customer and policy fields.</li>
+</ul>
+</li>
+<li><strong>Delivery</strong>: Transmits via 3270 <code>SEND TEXT</code> or returns within <code>COMMA_DATA</code>.</li>
+</ol>
+<h3 id="52-policy-creation-lgapvs01" tabindex="-1">5.2 Policy Creation (<code>LGAPVS01</code>)</h3>
+<p><code>LGAPVS01</code> creates new policy records in <code>KSDSPOLY</code>.</p>
+<ul>
+<li><strong>Key Formation</strong>: Extracts <code>WF_REQUEST_ID</code> from character 4 of <code>CA_REQUEST_ID</code>, <code>WF_CUSTOMER_NUM</code> from <code>CA_CUSTOMER_NUM</code>, and <code>WF_POLICY_NUM</code> from <code>CA_POLICY_NUM</code> to construct the 21-byte <code>WF_POLICY_KEY</code>.</li>
+<li><strong>Polymorphic Mapping</strong>: Evaluates <code>WF_REQUEST_ID</code> in a <code>SELECT</code> statement:
+<ul>
+<li><code>'C'</code>: Maps <code>CA_B_*</code> fields into commercial structure.</li>
+<li><code>'E'</code>: Maps <code>CA_E_*</code> fields into endowment structure.</li>
+<li><code>'H'</code>: Maps <code>CA_H_*</code> fields into house structure.</li>
+<li><code>'M'</code>: Maps <code>CA_M_*</code> fields into motor structure.</li>
+<li><code>OTHERWISE</code>: Blanks out <code>WF_POLICY_TEXT</code>.</li>
+</ul>
+</li>
+<li><strong>VSAM Insertion</strong>: Issues <code>EXEC CICS WRITE FILE('KSDSPOLY') FROM(WF_POLICY_INFO) LENGTH(64) RIDFLD(WF_POLICY_KEY) KEYLENGTH(21)</code>.</li>
+<li><strong>Failure Handling</strong>: If not <code>NORMAL</code>, sets <code>CA_RETURN_CODE = '80'</code>, formats error records, links to <code>LGSTSQ</code>, and executes <code>EXEC CICS RETURN</code> (returns control without abending).</li>
+</ul>
+<h3 id="53-policy-update-lgupvs01" tabindex="-1">5.3 Policy Update (<code>LGUPVS01</code>)</h3>
+<p><code>LGUPVS01</code> performs in-place modifications of existing policy records.</p>
+<ul>
+<li>Constructs the 21-byte <code>WF_POLICY_KEY</code> and maps the appropriate polymorphic data union.</li>
+<li>Locks the record via <code>EXEC CICS READ FILE('KSDSPOLY') UPDATE INTO(WS_FILEIN) RIDFLD(WF_POLICY_KEY) KEYLENGTH(21)</code>.
+<ul>
+<li>Failure: Sets <code>CA_RETURN_CODE = '81'</code>, logs diagnostics to <code>LGSTSQ</code>, and abends with <code>ABCODE('LGV3') NODUMP</code>.</li>
+</ul>
+</li>
+<li>Replaces the record via <code>EXEC CICS REWRITE FILE('KSDSPOLY') FROM(WF_POLICY_INFO) LENGTH(64)</code>.
+<ul>
+<li>Failure: Sets <code>CA_RETURN_CODE = '82'</code>, logs diagnostics to <code>LGSTSQ</code>, and abends with <code>ABCODE('LGV4') NODUMP</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="54-policy-deletion-lgdpvs01" tabindex="-1">5.4 Policy Deletion (<code>LGDPVS01</code>)</h3>
+<p><code>LGDPVS01</code> deletes policy records directly.</p>
+<ul>
+<li>Assembles <code>WF_POLICY_KEY</code> (21 bytes) using the 4th character of <code>CA_REQUEST_ID</code>, <code>CA_CUSTOMER_NUM</code>, and <code>CA_POLICY_NUM</code>.</li>
+<li>Issues <code>EXEC CICS DELETE FILE('KSDSPOLY') RIDFLD(WF_POLICY_KEY) KEYLENGTH(21)</code>.</li>
+<li>If <code>WS_RESP ^= DFHRESP(NORMAL)</code>:
+<ul>
+<li>Captures <code>EIBRESP2</code>.</li>
+<li>Sets <code>CA_RETURN_CODE = '81'</code>.</li>
+<li>Calls <code>WRITE_ERROR_MESSAGE</code> to log diagnostics to <code>LGSTSQ</code>.</li>
+<li>Concludes with <code>EXEC CICS RETURN</code> (no abend issued).</li>
+</ul>
+</li>
+</ul>
+<h3 id="55-policy-processing-sequence" tabindex="-1">5.5 Policy Processing Sequence</h3>
+<p>The sequence diagram below illustrates the generic browse, polymorphic addition, update, and deletion processes across <code>KSDSPOLY</code>.</p>
+<div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Caller as Orchestrator / User
+    participant IP as LGIPVS01<br/>(Inquire / Browse)
+    participant AP as LGAPVS01<br/>(Add / Insert)
+    participant UP as LGUPVS01<br/>(Update / Lock)
+    participant DP as LGDPVS01<br/>(Delete)
+    participant VSAM as VSAM KSDS<br/>(KSDSPOLY)
+
+    Note over Caller,VSAM: 1. Generic GTEQ Inquiry
+    Caller->>IP: Request with Policy Type + Partial Key
+    IP->>VSAM: READ FILE('KSDSPOLY') GENERIC GTEQ (Keylen 11)
+    VSAM-->>IP: Record Data / Status
+    IP->>IP: Validate CA_POLICY_TYPE == PART_KEY_TYPE
+    IP-->>Caller: Return 'Policy Key=' or 'Policy Bad='
+
+    Note over Caller,VSAM: 2. Polymorphic Policy Creation
+    Caller->>AP: LINK with Polymorphic COMMAREA
+    AP->>AP: Assemble 21-byte Key & Populate Type Union (C, E, H, M)
+    AP->>VSAM: WRITE FILE('KSDSPOLY') Length 64 Keylen 21
+    VSAM-->>AP: Status Response
+    AP-->>Caller: Return (RC='80' on failure, logs to LGSTSQ)
+
+    Note over Caller,VSAM: 3. Policy Update (Lock & Rewrite)
+    Caller->>UP: LINK with Update Payload
+    UP->>VSAM: READ FILE('KSDSPOLY') UPDATE (Keylen 21)
+    VSAM-->>UP: Lock Acknowledged
+    UP->>VSAM: REWRITE FILE('KSDSPOLY') Length 64
+    VSAM-->>UP: Rewrite Status
+    UP-->>Caller: Return (Abends LGV3 or LGV4 on failure)
+
+    Note over Caller,VSAM: 4. Direct Policy Deletion
+    Caller->>DP: LINK with Delete Key Parameters
+    DP->>VSAM: DELETE FILE('KSDSPOLY') Keylen 21
+    VSAM-->>DP: Delete Status
+    DP-->>Caller: Return (RC='81' on failure, logs to LGSTSQ)
+</div>
+<hr>
+<h2 id="6-error-handling-return-codes-and-diagnostics" tabindex="-1">6. Error Handling, Return Codes, and Diagnostics</h2>
+<h3 id="61-return-code-and-abend-code-conventions" tabindex="-1">6.1 Return Code and Abend Code Conventions</h3>
+<p>The VSAM access programs utilize dedicated return codes within <code>CA_RETURN_CODE</code> and distinct CICS transaction abend codes to differentiate failure points:</p>
+<table>
+<thead>
+<tr>
+<th>Program</th>
+<th>Operation Targeted</th>
+<th>CICS Condition / Trigger</th>
+<th><code>CA_RETURN_CODE</code></th>
+<th>CICS ABEND Code</th>
+<th>Task Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LGACVS01</code></td>
+<td>Customer <code>WRITE</code> (<code>KSDSCUST</code>)</td>
+<td><code>WS_RESP ^= DFHRESP(NORMAL)</code></td>
+<td><code>'80'</code></td>
+<td><code>LGV0</code> (NODUMP)</td>
+<td>Abends task</td>
+</tr>
+<tr>
+<td><code>LGUCVS01</code></td>
+<td>Customer <code>READ UPDATE</code> (<code>KSDSCUST</code>)</td>
+<td><code>WS_RESP ^= DFHRESP(NORMAL)</code></td>
+<td><code>'81'</code></td>
+<td><code>LGV1</code> (NODUMP)</td>
+<td>Abends task</td>
+</tr>
+<tr>
+<td><code>LGUCVS01</code></td>
+<td>Customer <code>REWRITE</code> (<code>KSDSCUST</code>)</td>
+<td><code>WS_RESP ^= DFHRESP(NORMAL)</code></td>
+<td><code>'82'</code></td>
+<td><code>LGV2</code> (NODUMP)</td>
+<td>Abends task</td>
+</tr>
+<tr>
+<td><code>LGIPVS01</code></td>
+<td>Policy <code>READ GTEQ</code> (<code>KSDSPOLY</code>)</td>
+<td>Non-NORMAL RESP or Type Mismatch</td>
+<td>N/A</td>
+<td>None</td>
+<td>Returns <code>'Policy Bad='</code></td>
+</tr>
+<tr>
+<td><code>LGAPVS01</code></td>
+<td>Policy <code>WRITE</code> (<code>KSDSPOLY</code>)</td>
+<td><code>WS_RESP ^= DFHRESP(NORMAL)</code></td>
+<td><code>'80'</code></td>
+<td>None</td>
+<td>Returns to caller</td>
+</tr>
+<tr>
+<td><code>LGUPVS01</code></td>
+<td>Policy <code>READ UPDATE</code> (<code>KSDSPOLY</code>)</td>
+<td><code>WS_RESP ^= DFHRESP(NORMAL)</code></td>
+<td><code>'81'</code></td>
+<td><code>LGV3</code> (NODUMP)</td>
+<td>Abends task</td>
+</tr>
+<tr>
+<td><code>LGUPVS01</code></td>
+<td>Policy <code>REWRITE</code> (<code>KSDSPOLY</code>)</td>
+<td><code>WS_RESP ^= DFHRESP(NORMAL)</code></td>
+<td><code>'82'</code></td>
+<td><code>LGV4</code> (NODUMP)</td>
+<td>Abends task</td>
+</tr>
+<tr>
+<td><code>LGDPVS01</code></td>
+<td>Policy <code>DELETE</code> (<code>KSDSPOLY</code>)</td>
+<td><code>WS_RESP ^= DFHRESP(NORMAL)</code></td>
+<td><code>'81'</code></td>
+<td>None</td>
+<td>Returns to caller</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-diagnostic-logging-protocol-lgstsq" tabindex="-1">6.2 Diagnostic Logging Protocol (<code>LGSTSQ</code>)</h3>
+<p>When a file operation fails in <code>LGACVS01</code>, <code>LGUCVS01</code>, <code>LGAPVS01</code>, <code>LGUPVS01</code>, or <code>LGDPVS01</code>, the internal procedure <code>WRITE_ERROR_MESSAGE</code> is executed prior to termination:</p>
+<ol>
+<li><strong>Timestamp Generation</strong>: Retrieves absolute system time using <code>EXEC CICS ASKTIME</code> and formats date (<code>MMDDYYYY</code>) and time (<code>HH:MM:SS</code>) using <code>EXEC CICS FORMATTIME</code>.</li>
+<li><strong>Primary Diagnostic Record (<code>ERROR_MSG</code>)</strong>:
+<ul>
+<li>Formatted structure containing timestamp, program identifier, customer number (<code>EM_CUSNUM</code>), operation description (e.g., <code>&quot;Write file KSDSCUST&quot;</code> or <code>&quot;Re-write KSDSPOLY&quot;</code>), signed numeric <code>RESP</code> (<code>EM_RESPRC</code>), and signed numeric <code>RESP2</code> (<code>EM_RESP2RC</code>).</li>
+<li>Transmitted via <code>EXEC CICS LINK PROGRAM('LGSTSQ') COMMAREA(ERROR_MSG) LENGTH(STG(ERROR_MSG))</code>.</li>
+</ul>
+</li>
+<li><strong>Payload Diagnostic Record (<code>CA_ERROR_MSG</code>)</strong>:
+<ul>
+<li>If <code>EIBCALEN &gt; 0</code>, the first 90 bytes of raw COMMAREA data are extracted (<code>LEFT(COMM_AREA_RAW, 90)</code>) with prefix <code>COMMAREA=</code>.</li>
+<li>Transmitted via a second <code>EXEC CICS LINK PROGRAM('LGSTSQ')</code>.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="7-program-code-logic-and-implementation-examples" tabindex="-1">7. Program Code Logic and Implementation Examples</h2>
+<h3 id="71-generic-gteq-read-implementation" tabindex="-1">7.1 Generic GTEQ Read Implementation</h3>
+<p>In <code>LGIPVS01</code>, generic partial key reads allow browsing for the first policy record matching a specified policy type and customer key:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">/* Build partial search key: 1 byte type + 10 digits customer number */
+CA_AREA = &#039;&#039;;
+PART_KEY_TYPE = SUBSTR(WS_COMMAREA, 1, 1);
+PART_KEY_NUM  = SUBSTR(WS_COMMAREA, 2, WS_RECV_LEN);
+
+/* Execute generic GTEQ search */
+EXEC CICS READ FILE(&#039;KSDSPOLY&#039;)
+          INTO(CA_AREA)
+          LENGTH(F64)
+          RIDFLD(PART_KEY)
+          KEYLENGTH(F11)
+          GENERIC
+          GTEQ
+          RESP(WS_RESP);
+
+/* Validate both normal response and exact type match */
+IF (CA_POLICY_TYPE ^= PART_KEY_TYPE | WS_RESP ^= DFHRESP(NORMAL)) THEN DO;
+    WRITE_MSG_TEXT = &#039;Policy Bad=&#039;;
+    WRITE_MSG_CUSTNUM = 13;
+    WRITE_MSG_POLNUM  = 13;
+END;
+ELSE DO;
+    WRITE_MSG_KEY_CH = CA_POLICY_TYPE || CA_CUSTOMER_NUM;
+END;</code></pre>
+</div>
+<h3 id="72-read-for-update-and-rewrite-pattern" tabindex="-1">7.2 Read-for-Update and Rewrite Pattern</h3>
+<p>In <code>LGUCVS01</code> and <code>LGUPVS01</code>, atomic updates require acquiring an exclusive lock via <code>READ UPDATE</code> prior to <code>REWRITE</code>:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">/* Step 1: Read for update to acquire exclusive record lock */
+EXEC CICS READ FILE(&#039;KSDSCUST&#039;)
+          UPDATE
+          INTO(WS_CUSTOMER_AREA)
+          LENGTH(WS_COMMAREA_LEN)
+          RIDFLD(CA_CUSTOMER_NUM)
+          KEYLENGTH(10)
+          RESP(WS_RESP);
+
+IF (WS_RESP ^= DFHRESP(NORMAL)) THEN DO;
+    WS_RESP2 = EIBRESP2;
+    CA_RETURN_CODE = &#039;81&#039;;
+    CALL WRITE_ERROR_MESSAGE;
+    EXEC CICS ABEND ABCODE(&#039;LGV1&#039;) NODUMP;
+    EXEC CICS RETURN;
+END;
+
+/* Step 2: Rewrite record with updated content from COMMAREA */
+EXEC CICS REWRITE FILE(&#039;KSDSCUST&#039;)
+          FROM(CA_CUSTOMER_NUM)
+          LENGTH(WS_COMMAREA_LENF)
+          RESP(WS_RESP);
+
+IF (WS_RESP ^= DFHRESP(NORMAL)) THEN DO;
+    WS_RESP2 = EIBRESP2;
+    CA_RETURN_CODE = &#039;82&#039;;
+    CALL WRITE_ERROR_MESSAGE;
+    EXEC CICS ABEND ABCODE(&#039;LGV2&#039;) NODUMP;
+    EXEC CICS RETURN;
+END;</code></pre>
+</div>
+<h3 id="73-direct-record-deletion-pattern" tabindex="-1">7.3 Direct Record Deletion Pattern</h3>
+<p>In <code>LGDPVS01</code>, records are removed from <code>KSDSPOLY</code> using the full 21-character composite key:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">/* Construct 21-byte composite key */
+WF_REQUEST_ID   = SUBSTR(CA_REQUEST_ID, 4, 1);
+WF_POLICY_NUM   = CA_POLICY_NUM;
+WF_CUSTOMER_NUM = CA_CUSTOMER_NUM;
+
+/* Execute direct delete */
+EXEC CICS DELETE FILE(&#039;KSDSPOLY&#039;)
+          RIDFLD(WF_POLICY_KEY)
+          KEYLENGTH(21)
+          RESP(WS_RESP);
+
+IF (WS_RESP ^= DFHRESP(NORMAL)) THEN DO;
+    WS_RESP2 = EIBRESP2;
+    CA_RETURN_CODE = &#039;81&#039;;
+    CALL WRITE_ERROR_MESSAGE;
+    EXEC CICS RETURN;
+END;</code></pre>
+</div>
+<h3 id="74-diagnostic-message-assembly-and-logging" tabindex="-1">7.4 Diagnostic Message Assembly and Logging</h3>
+<p>The standardized error reporting implementation across the data access suite captures environmental data and payload dumps:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">WRITE_ERROR_MESSAGE: PROC;
+    /* Retrieve and format system timestamp */
+    EXEC CICS ASKTIME ABSTIME(WS_ABSTIME);
+    EXEC CICS FORMATTIME ABSTIME(WS_ABSTIME)
+              MMDDYYYY(WS_DATE)
+              TIME(WS_TIME);
+
+    /* Assemble structured error information */
+    EM_DATE    = WS_DATE;
+    EM_TIME    = WS_TIME;
+    EM_CUSNUM  = CA_CUSTOMER_NUM;
+    EM_RESPRC  = WS_RESP;
+    EM_RESP2RC = WS_RESP2;
+
+    /* Link to logging utility */
+    EXEC CICS LINK PROGRAM(&#039;LGSTSQ&#039;)
+              COMMAREA(ERROR_MSG)
+              LENGTH(STG(ERROR_MSG));
+
+    /* Conditionally capture raw COMMAREA payload snapshot */
+    IF (EIBCALEN &gt; 0) THEN DO;
+        IF (EIBCALEN &lt; 91) THEN
+            CA_DATA = LEFT(COMM_AREA_RAW, EIBCALEN);
+        ELSE
+            CA_DATA = LEFT(COMM_AREA_RAW, 90);
+
+        EXEC CICS LINK PROGRAM(&#039;LGSTSQ&#039;)
+                  COMMAREA(CA_ERROR_MSG)
+                  LENGTH(STG(ERROR_MSG));
+    END;
+END WRITE_ERROR_MESSAGE;</code></pre>
+</div>
+                        <div class="related-pages">
+                            <p class="related-pages-title">Related Pages</p>
+                            <div class="card-grid">
+                                
+            <a href="db2-data-access.html" class="card">
+                <span class="card-title">Db2 Data Access Programs</span>
+                <span class="card-description">The Db2 back-end programs that read and modify the CUSTOMER, CUSTOMER_SECURE, POLICY and policy-type tables (ENDOWMENT, HOUSE, MOTOR, COMMERCIAL, CLAIM). Covers SQL usage, cursors, foreign-key cascades, SQLCODE-to-return-code handling and the LINKs to the VSAM programs.</span>
+            </a>
+            <a href="layered-architecture.html" class="card">
+                <span class="card-title">Layered Architecture and Call Flow</span>
+                <span class="card-description">Describes the layering of the application. 3270 menu programs call business-logic orchestrators (LGxxOL01 and LGxxUS01). These LINK to Db2 back ends, which in turn LINK to VSAM synchronisation programs. The page covers COMMAREA conventions, request identifiers and return-code handling across layers.</span>
+            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-overview">1. Overview</a></li>
+<li class="toc-level-2"><a href="#2-system-architecture-and-component-interaction">2. System Architecture and Component Interaction</a>
+<ul>
+<li class="toc-level-3"><a href="#21-architectural-overview-diagram">2.1 Architectural Overview Diagram</a></li>
+<li class="toc-level-3"><a href="#22-component-roles-and-call-interfaces">2.2 Component Roles and Call Interfaces</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-vsam-datasets-and-key-structures">3. VSAM Datasets and Key Structures</a>
+<ul>
+<li class="toc-level-3"><a href="#31-customer-master-dataset-ksdscust">3.1 Customer Master Dataset (KSDSCUST)</a>
+<ul>
+<li class="toc-level-4"><a href="#record-layout-overview">Record Layout Overview:</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#32-policy-master-dataset-ksdspoly">3.2 Policy Master Dataset (KSDSPOLY)</a>
+<ul>
+<li class="toc-level-4"><a href="#polymorphic-43-byte-data-union-structures">Polymorphic 43-Byte Data Union Structures:</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#33-dataset-entity-relationship-model">3.3 Dataset Entity-Relationship Model</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-customer-data-access-programs">4. Customer Data Access Programs</a>
+<ul>
+<li class="toc-level-3"><a href="#41-inquiry-and-key-range-selection-lgicvs01">4.1 Inquiry and Key Range Selection (LGICVS01)</a>
+<ul>
+<li class="toc-level-4"><a href="#processing-flow">Processing Flow:</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#42-customer-creation-lgacvs01">4.2 Customer Creation (LGACVS01)</a></li>
+<li class="toc-level-3"><a href="#43-customer-update-lgucvs01">4.3 Customer Update (LGUCVS01)</a></li>
+<li class="toc-level-3"><a href="#44-customer-data-flow-and-sequence">4.4 Customer Data Flow and Sequence</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-policy-data-access-programs">5. Policy Data Access Programs</a>
+<ul>
+<li class="toc-level-3"><a href="#51-generic-policy-inquiry-and-browse-lgipvs01">5.1 Generic Policy Inquiry and Browse (LGIPVS01)</a></li>
+<li class="toc-level-3"><a href="#52-policy-creation-lgapvs01">5.2 Policy Creation (LGAPVS01)</a></li>
+<li class="toc-level-3"><a href="#53-policy-update-lgupvs01">5.3 Policy Update (LGUPVS01)</a></li>
+<li class="toc-level-3"><a href="#54-policy-deletion-lgdpvs01">5.4 Policy Deletion (LGDPVS01)</a></li>
+<li class="toc-level-3"><a href="#55-policy-processing-sequence">5.5 Policy Processing Sequence</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#6-error-handling-return-codes-and-diagnostics">6. Error Handling, Return Codes, and Diagnostics</a>
+<ul>
+<li class="toc-level-3"><a href="#61-return-code-and-abend-code-conventions">6.1 Return Code and Abend Code Conventions</a></li>
+<li class="toc-level-3"><a href="#62-diagnostic-logging-protocol-lgstsq">6.2 Diagnostic Logging Protocol (LGSTSQ)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-program-code-logic-and-implementation-examples">7. Program Code Logic and Implementation Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#71-generic-gteq-read-implementation">7.1 Generic GTEQ Read Implementation</a></li>
+<li class="toc-level-3"><a href="#72-read-for-update-and-rewrite-pattern">7.2 Read-for-Update and Rewrite Pattern</a></li>
+<li class="toc-level-3"><a href="#73-direct-record-deletion-pattern">7.3 Direct Record Deletion Pattern</a></li>
+<li class="toc-level-3"><a href="#74-diagnostic-message-assembly-and-logging">7.4 Diagnostic Message Assembly and Logging</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* sidebar-toggle.js — persists open/closed state across navigation */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — only stamps sessionStorage when clicking a source-file link
+       that lives inside the "Source Files" disclosure section, not from sidebar or cards. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('sources/') === -1) return;
+        /* Only set referrer when the click originates from inside the Source Files
+           disclosure (.source-files-disclosure). Any other path — sidebar, cards,
+           direct navigation — must not set a referrer. */
+        if (!link.closest('.source-files-disclosure')) return;
+        try {
+          sessionStorage.setItem('wiki_referrer', JSON.stringify({
+            href: location.href,
+            title: document.title,
+            file: location.pathname.split('/').pop()
+          }));
+        } catch (_e) {}
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>

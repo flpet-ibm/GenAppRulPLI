@@ -1,0 +1,1059 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy Update - GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../assets/prism-tomorrow.css">
+    <script src="../assets/prism-core.js"></script>
+    <script src="../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="policy-update.html" class="nav-link active" data-page-id="policy-update">Policy Update</a>
+                <a href="policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="page-container">
+                <div class="content-layout">
+                    <div class="prose">
+                        <details class="source-files-disclosure">
+            <summary>
+                <svg class="sf-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Source Files
+                <span style="margin-left:4px;font-size:11px;color:var(--fg-subtle)">(3)</span>
+            </summary>
+            <div class="source-files-body">
+                <ul class="source-files-list">
+            <li><a href="../sources/program/pli/LGUPOL01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGUPOL01
+            </a></li>
+            <li><a href="../sources/program/pli/LGUPVS01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGUPVS01
+            </a></li>
+            <li><a href="../sources/program/pli/LGUPDB01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGUPDB01
+            </a></li>
+                </ul>
+            </div>
+        </details>
+                        <h1 id="policy-update" tabindex="-1">Policy Update</h1>
+<p>The Policy Update subsystem in the GenApp core insurance application manages the modification and synchronization of active insurance policies across relational and keyed file storage layers. It coordinates request validation, optimistic concurrency verification, Db2 table updates across base and subtype tables, and VSAM KSDS record rewriting within a CICS transaction boundary.</p>
+<hr>
+<h2 id="1-overview" tabindex="-1">1. Overview</h2>
+<p>The policy update flow is executed across a three-tiered modular architecture:</p>
+<ol>
+<li><strong>Request Validation and Dispatch (<code>LGUPOL01</code>)</strong>: Acts as the business layer orchestrator. It receives the CICS Communication Area (<code>COMM_AREA</code>), verifies that the payload meets policy-type length requirements, and links to the Db2 persistence backend.</li>
+<li><strong>Relational Persistence and Concurrency Management (<code>LGUPDB01</code>)</strong>: Implements optimistic concurrency control (OCC) using timestamp comparison combined with pessimistic Db2 cursor locking (<code>SELECT FOR UPDATE</code>). It persists modifications to subtype tables (<code>ENDOWMENT</code>, <code>HOUSE</code>, or <code>MOTOR</code>), executes a positioned update against the core <code>POLICY</code> table, generates a new timestamp, and synchronizes the VSAM layer.</li>
+<li><strong>VSAM Data Store Synchronization (<code>LGUPVS01</code>)</strong>: Receives the updated policy context, constructs a 21-character composite key, locks the existing VSAM Key Sequenced Data Set (<code>KSDSPOLY</code>) record via <code>READ UPDATE</code>, and applies the changes via <code>REWRITE</code>.</li>
+</ol>
+<p>Diagnostic logging across all components is routed through the centralized logging module <code>LGSTSQ</code> to capture error state and payload snapshots.</p>
+<hr>
+<h2 id="2-system-architecture" tabindex="-1">2. System Architecture</h2>
+<h3 id="21-component-interaction-architecture" tabindex="-1">2.1 Component Interaction Architecture</h3>
+<p>The update chain coordinates CICS program-control links, Db2 relational tables, and VSAM KSDS datasets. The orchestrator <code>LGUPOL01</code> delegates processing to <code>LGUPDB01</code>, which in turn delegates VSAM persistence to <code>LGUPVS01</code>.</p>
+<div class="mermaid">
+graph TD
+    Client[Calling Program / CICS Transaction] -->|EXEC CICS LINK COMMAREA| LGUPOL01[LGUPOL01<br/>Policy Update Orchestrator]
+    
+    LGUPOL01 -->|EXEC CICS LINK COMMAREA 32.5KB| LGUPDB01[LGUPDB01<br/>Db2 Update Backend]
+    LGUPOL01 -.->|On Error: LINK| LGSTSQ[LGSTSQ<br/>Diagnostic Queue Logger]
+    
+    LGUPDB01 -->|SELECT FOR UPDATE / UPDATE| DB2[(Db2 for z/OS<br/>POLICY, ENDOWMENT,<br/>HOUSE, MOTOR Tables)]
+    LGUPDB01 -->|EXEC CICS LINK COMMAREA 225B| LGUPVS01[LGUPVS01<br/>VSAM Update Backend]
+    LGUPDB01 -.->|On Error: LINK| LGSTSQ
+    
+    LGUPVS01 -->|READ UPDATE / REWRITE| VSAM[(VSAM KSDS<br/>KSDSPOLY)]
+    LGUPVS01 -.->|On Error: LINK| LGSTSQ
+    
+    LGSTSQ --> TDQ[CICS Transient Data /<br/>CSMT Queue]
+</div>
+<h3 id="22-system-component-flowchart" tabindex="-1">2.2 System Component Flowchart</h3>
+<p>The following flowchart illustrates the control flow and conditional decision paths across each component in the update chain:</p>
+<div class="mermaid">
+graph TD
+    Start([Initiate Policy Update]) --> V_CA{EIBCALEN > 0?}
+    V_CA -- No --> AB_LGCA[Log Error & ABEND LGCA]
+    V_CA -- Yes --> V_LEN{Check Request ID &<br/>Length >= Min Required}
+    
+    V_LEN -- Length Fail --> RC98[Set CA_RETURN_CODE = '98' & RETURN]
+    V_LEN -- Pass / Unknown --> DB_LINK[LINK LGUPDB01]
+    
+    DB_LINK --> DB_OPEN[OPEN POLICY_CURSOR FOR UPDATE]
+    DB_OPEN --> DB_FETCH[FETCH POLICY Row & Indicators]
+    DB_FETCH --> DB_OCC{CA_LASTCHANGED ==<br/>DB2_LASTCHANGED?}
+    
+    DB_OCC -- Mismatch --> RC02[Set CA_RETURN_CODE = '02' & CLOSE CURSOR]
+    DB_OCC -- Match --> DB_SUB[Update Subtype Table:<br/>ENDOWMENT / HOUSE / MOTOR]
+    
+    DB_SUB --> DB_POS[UPDATE POLICY ...<br/>WHERE CURRENT OF POLICY_CURSOR]
+    DB_POS --> DB_TS[SELECT New CURRENT TIMESTAMP]
+    DB_TS --> VS_LINK[LINK LGUPVS01]
+    
+    VS_LINK --> VS_LOCK[READ KSDSPOLY UPDATE KeyLength 21]
+    VS_LOCK --> VS_REW[REWRITE KSDSPOLY Length 64]
+    VS_REW --> DB_CLOSE[CLOSE POLICY_CURSOR]
+    DB_CLOSE --> End([Return to Caller])
+</div>
+<hr>
+<h2 id="3-end-to-end-processing-logic-and-workflow" tabindex="-1">3. End-to-End Processing Logic and Workflow</h2>
+<h3 id="31-orchestration-and-validation-lgupol01" tabindex="-1">3.1 Orchestration and Validation (LGUPOL01)</h3>
+<p><code>LGUPOL01</code> serves as the entry point and boundary controller:</p>
+<ul>
+<li><strong>Commarea Presence</strong>: Inspects <code>EIBCALEN</code>. If <code>EIBCALEN = 0</code>, it writes a failure message via <code>LGSTSQ</code> and terminates execution with abend code <code>LGCA</code> (<code>NODUMP</code>).</li>
+<li><strong>Request Type Identification &amp; Length Validation</strong>: Evaluates <code>CA_REQUEST_ID</code> and verifies that the payload length satisfies the minimum threshold:
+<ul>
+<li><code>'01UEND'</code> (Endowment): Minimum required length = Header (28 bytes) + Full Endowment (124 bytes) = 152 bytes.</li>
+<li><code>'01UHOU'</code> (House): Minimum required length = Header (28 bytes) + Full House (130 bytes) = 158 bytes.</li>
+<li><code>'01UMOT'</code> (Motor): Minimum required length = Header (28 bytes) + Full Motor (137 bytes) = 165 bytes.</li>
+<li><em>Other Request Types</em>: Sets <code>CA_RETURN_CODE = '99'</code> (unsupported) and proceeds without short-circuiting.</li>
+</ul>
+</li>
+<li><strong>Length Rejection</strong>: If <code>EIBCALEN &lt; WS_REQUIRED_CA_LEN</code>, <code>CA_RETURN_CODE</code> is set to <code>'98'</code> and control returns immediately to the caller without invoking backend persistence routines.</li>
+<li><strong>Backend Invocation</strong>: Validated requests trigger <code>UPDATE_POLICY_DB2_INFO</code>, issuing <code>EXEC CICS LINK PROGRAM('LGUPDB01')</code> passing the full 32,500-byte <code>COMM_AREA_RAW</code>.</li>
+</ul>
+<h3 id="32-relational-persistence-and-concurrency-lgupdb01" tabindex="-1">3.2 Relational Persistence and Concurrency (LGUPDB01)</h3>
+<p><code>LGUPDB01</code> handles relational persistence and data integrity:</p>
+<ul>
+<li><strong>Lock Acquisition</strong>: Opens <code>POLICY_CURSOR</code> configured <code>WITH HOLD ... FOR UPDATE OF ISSUEDATE, EXPIRYDATE, LASTCHANGED, BROKERID, BROKERSREFERENCE</code> filtered by <code>CUSTOMERNUMBER</code> and <code>POLICYNUMBER</code>.</li>
+<li><strong>Fetch &amp; Null Handling</strong>: Executes <code>FETCH_DB2_POLICY_ROW</code> using null indicators (<code>IND_BROKERID</code>, <code>IND_BROKERSREF</code>, <code>IND_PAYMENT</code>).</li>
+<li><strong>Optimistic Concurrency Check</strong>: Compares the incoming <code>CA_LASTCHANGED</code> with the fetched <code>DB2_LASTCHANGED</code>. If they differ, the record has been concurrently modified; processing stops, <code>CA_RETURN_CODE</code> is set to <code>'02'</code>, and the cursor is closed.</li>
+<li><strong>Subtype Table Updates</strong>: Upon timestamp validation, routes to the appropriate sub-procedure based on <code>CA_REQUEST_ID</code>:
+<ul>
+<li><code>UPDATE_ENDOWMENT</code>: Updates <code>WITHPROFITS</code>, <code>EQUITIES</code>, <code>MANAGEDFUND</code>, <code>FUNDNAME</code>, <code>TERM</code>, <code>SUMASSURED</code>, <code>LIFEASSURED</code>.</li>
+<li><code>UPDATE_HOUSE</code>: Updates <code>PROPERTYTYPE</code>, <code>BEDROOMS</code>, <code>VALUE</code>, <code>HOUSENAME</code>, <code>HOUSENUMBER</code>, <code>POSTCODE</code>.</li>
+<li><code>UPDATE_MOTOR</code>: Updates <code>MAKE</code>, <code>MODEL</code>, <code>VALUE</code>, <code>REGNUMBER</code>, <code>COLOUR</code>, <code>CC</code>, <code>YEAROFMANUFACTURE</code>, <code>PREMIUM</code>, <code>ACCIDENTS</code>.</li>
+</ul>
+</li>
+<li><strong>Core Table Positioned Update</strong>: Executes <code>UPDATE POLICY ... WHERE CURRENT OF POLICY_CURSOR</code> applying <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>DB2_BROKERID_INT</code>, <code>CA_BROKERSREF</code>, and setting <code>LASTCHANGED = CURRENT TIMESTAMP</code>.</li>
+<li><strong>Timestamp Refresh &amp; Unit of Recovery</strong>: Re-queries <code>LASTCHANGED</code> into <code>CA_LASTCHANGED</code> to provide the calling client with the new concurrency token. If this query or the update fails, an explicit <code>EXEC CICS SYNCPOINT ROLLBACK</code> is executed, undoing both subtype and base updates.</li>
+<li><strong>Downstream Sync</strong>: Issues <code>EXEC CICS LINK PROGRAM('LGUPVS01')</code> passing the updated <code>COMM_AREA</code> with a length of 225 bytes.</li>
+</ul>
+<h3 id="33-vsam-keyed-record-persistence-lgupvs01" tabindex="-1">3.3 VSAM Keyed Record Persistence (LGUPVS01)</h3>
+<p><code>LGUPVS01</code> updates the corresponding record in <code>KSDSPOLY</code>:</p>
+<ul>
+<li><strong>Key Construction</strong>: Extracts the 4th character of <code>CA_REQUEST_ID</code> (<code>C</code>, <code>E</code>, <code>H</code>, or <code>M</code>) as <code>WF_Request_ID</code> and combines it with <code>CA_CUSTOMER_NUM</code> (10 digits) and <code>CA_POLICY_NUM</code> (10 digits) to form the 21-character <code>WF_Policy_Key</code>.</li>
+<li><strong>Record Mapping</strong>: Populates <code>WF_Policy_Info</code> with type-specific attributes based on <code>WF_Request_ID</code> (or blanks <code>WF_Policy_Text</code> if unrecognised).</li>
+<li><strong>Record Locking</strong>: Executes <code>EXEC CICS READ FILE('KSDSPOLY') UPDATE</code> using <code>WF_Policy_Key</code>. If non-normal, sets <code>CA_RETURN_CODE = '81'</code>, logs diagnostics via <code>LGSTSQ</code>, and abends <code>LGV3</code>.</li>
+<li><strong>Record Persistence</strong>: Executes <code>EXEC CICS REWRITE FILE('KSDSPOLY') FROM(WF_POLICY_INFO) LENGTH(64)</code>. If non-normal, sets <code>CA_RETURN_CODE = '82'</code>, logs diagnostics via <code>LGSTSQ</code>, and abends <code>LGV4</code>.</li>
+</ul>
+<h3 id="34-sequence-of-operations" tabindex="-1">3.4 Sequence of Operations</h3>
+<p>The sequence diagram below displays the end-to-end operational flow, highlighting optimistic locking checks, table updates, and error rollback points:</p>
+<div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Caller as Calling Application
+    participant LGUPOL01 as LGUPOL01 (Orchestrator)
+    participant LGUPDB01 as LGUPDB01 (Db2 Engine)
+    participant Db2 as Db2 for z/OS
+    participant LGUPVS01 as LGUPVS01 (VSAM Engine)
+    participant KSDSPOLY as VSAM KSDSPOLY
+    participant LGSTSQ as LGSTSQ (Logger)
+
+    Caller->>LGUPOL01: EXEC CICS LINK COMMAREA
+    alt EIBCALEN == 0
+        LGUPOL01->>LGSTSQ: LINK (Error Msg)
+        LGUPOL01-->>Caller: ABEND LGCA
+    else EIBCALEN < Required Length
+        LGUPOL01-->>Caller: Return CA_RETURN_CODE = '98'
+    end
+
+    LGUPOL01->>LGUPDB01: LINK COMMAREA (32,500 bytes)
+    LGUPDB01->>Db2: OPEN POLICY_CURSOR (FOR UPDATE)
+    LGUPDB01->>Db2: FETCH POLICY_CURSOR
+    Db2-->>LGUPDB01: DB2_LASTCHANGED, Policy Row
+    
+    alt CA_LASTCHANGED != DB2_LASTCHANGED (OCC Stale)
+        LGUPDB01->>Db2: CLOSE POLICY_CURSOR
+        LGUPDB01-->>LGUPOL01: CA_RETURN_CODE = '02'
+    else OCC Match (Valid)
+        LGUPDB01->>Db2: UPDATE Subtype Table (ENDOWMENT/HOUSE/MOTOR)
+        LGUPDB01->>Db2: UPDATE POLICY ... WHERE CURRENT OF POLICY_CURSOR
+        LGUPDB01->>Db2: SELECT LASTCHANGED INTO :CA_LASTCHANGED
+        
+        alt Db2 Update/Select Fails
+            LGUPDB01->>Db2: EXEC CICS SYNCPOINT ROLLBACK
+            LGUPDB01->>LGSTSQ: LINK (Error Msg + Dump)
+            LGUPDB01-->>LGUPOL01: CA_RETURN_CODE = '90'
+        else Db2 Update Successful
+            LGUPDB01->>LGUPVS01: LINK COMMAREA (225 bytes)
+            LGUPVS01->>KSDSPOLY: READ UPDATE (Key length 21)
+            alt VSAM Read Error
+                LGUPVS01->>LGSTSQ: LINK (Error Msg + Dump)
+                LGUPVS01-->>LGUPDB01: ABEND LGV3 (RC 81)
+            else VSAM Read OK
+                LGUPVS01->>KSDSPOLY: REWRITE Record (Length 64)
+                alt VSAM Rewrite Error
+                    LGUPVS01->>LGSTSQ: LINK (Error Msg + Dump)
+                    LGUPVS01-->>LGUPDB01: ABEND LGV4 (RC 82)
+                else VSAM Rewrite OK
+                    LGUPVS01-->>LGUPDB01: Normal Return
+                end
+            end
+            LGUPDB01->>Db2: CLOSE POLICY_CURSOR
+            LGUPDB01-->>LGUPOL01: CA_RETURN_CODE = '00', New Timestamp
+        end
+    end
+    LGUPOL01-->>Caller: EXEC CICS RETURN (COMMAREA)
+</div>
+<hr>
+<h2 id="4-concurrency-control-and-data-integrity" tabindex="-1">4. Concurrency Control and Data Integrity</h2>
+<p>The subsystem combines pessimistic relational locking with optimistic application-level version checking to maintain data integrity across distributed and concurrent update transactions.</p>
+<h3 id="41-optimistic-concurrency-control-occ" tabindex="-1">4.1 Optimistic Concurrency Control (OCC)</h3>
+<ul>
+<li><strong>Token Verification</strong>: When reading a policy record, the client receives <code>CA_LASTCHANGED</code>. During the update phase, <code>LGUPDB01</code> fetches the latest row and compares <code>CA_LASTCHANGED</code> with <code>DB2_LASTCHANGED</code>.</li>
+<li><strong>Collision Mitigation</strong>: If another transaction has modified the row in the interim, the timestamps mismatch, preventing “lost updates”. The update is rejected with <code>CA_RETURN_CODE = '02'</code> without modifying any table.</li>
+</ul>
+<h3 id="42-pessimistic-row-locking-and-positioned-updates" tabindex="-1">4.2 Pessimistic Row Locking and Positioned Updates</h3>
+<ul>
+<li><strong>Cursor Locking</strong>: <code>POLICY_CURSOR</code> is declared <code>WITH HOLD ... FOR UPDATE OF ISSUEDATE, EXPIRYDATE, LASTCHANGED, BROKERID, BROKERSREFERENCE</code>.</li>
+<li><strong>Positioned Update</strong>: Executing <code>UPDATE POLICY ... WHERE CURRENT OF POLICY_CURSOR</code> ensures that the write lock held during the fetch phase directly protects the positioned row update.</li>
+</ul>
+<h3 id="43-transactional-rollback" tabindex="-1">4.3 Transactional Rollback</h3>
+<ul>
+<li><strong>Syncpoint Rollback</strong>: If an error occurs while writing the core <code>POLICY</code> row or retrieving the refreshed timestamp (<code>SELECT LASTCHANGED</code>), <code>LGUPDB01</code> issues <code>EXEC CICS SYNCPOINT ROLLBACK</code>.</li>
+<li><strong>Integrity Boundary</strong>: This rollback cleans up changes applied to the subtype tables (<code>ENDOWMENT</code>, <code>HOUSE</code>, or <code>MOTOR</code>) earlier in the same logical unit of work (LUW).</li>
+</ul>
+<hr>
+<h2 id="5-data-structures-and-entity-relationships" tabindex="-1">5. Data Structures and Entity Relationships</h2>
+<h3 id="51-communication-area-contracts" tabindex="-1">5.1 Communication Area Contracts</h3>
+<p>The primary communication interface structure (<code>COMM_AREA</code>, defined in <code>LGCMAREA.inc</code>) coordinates data exchange across all participating programs:</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Type / Picture</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_REQUEST_ID</code></td>
+<td><code>CHAR(6)</code></td>
+<td>Request type code (<code>01UEND</code>, <code>01UHOU</code>, <code>01UMOT</code>, <code>01UCOM</code>)</td>
+</tr>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td><code>PIC '99'</code></td>
+<td>Output return status code</td>
+</tr>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>PIC '9999999999'</code></td>
+<td>10-digit customer identifier</td>
+</tr>
+<tr>
+<td><code>CA_POLICY_NUM</code></td>
+<td><code>PIC '9999999999'</code></td>
+<td>10-digit policy identifier</td>
+</tr>
+<tr>
+<td><code>CA_LASTCHANGED</code></td>
+<td><code>CHAR(26)</code></td>
+<td>ISO timestamp used for optimistic concurrency control</td>
+</tr>
+<tr>
+<td><code>CA_ISSUE_DATE</code></td>
+<td><code>CHAR(10)</code></td>
+<td>Policy issuance start date</td>
+</tr>
+<tr>
+<td><code>CA_EXPIRY_DATE</code></td>
+<td><code>CHAR(10)</code></td>
+<td>Policy expiration date</td>
+</tr>
+<tr>
+<td><code>CA_BROKERID</code></td>
+<td><code>PIC '9999999999'</code></td>
+<td>Associated broker identifier</td>
+</tr>
+<tr>
+<td><code>CA_BROKERSREF</code></td>
+<td><code>CHAR(10)</code></td>
+<td>External broker policy reference</td>
+</tr>
+<tr>
+<td><code>CA_PAYMENT</code></td>
+<td><code>PIC '999999'</code></td>
+<td>Premium payment amount</td>
+</tr>
+<tr>
+<td><code>CA_POLICY_SPECIFIC</code></td>
+<td><code>UNION</code></td>
+<td>Overlaid subtype data (<code>CA_ENDOWMENT</code>, <code>CA_HOUSE</code>, <code>CA_MOTOR</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-entity-relationship-model" tabindex="-1">5.2 Entity-Relationship Model</h3>
+<p>The underlying persistent entities across Db2 and VSAM are modeled as follows:</p>
+<div class="mermaid">
+erDiagram
+    CUSTOMER ||--o{ POLICY : "owns"
+    POLICY ||--o| ENDOWMENT : "subtype (01UEND)"
+    POLICY ||--o| HOUSE : "subtype (01UHOU)"
+    POLICY ||--o| MOTOR : "subtype (01UMOT)"
+    POLICY ||--|| KSDSPOLY : "replicated in"
+
+    POLICY {
+        int CUSTOMERNUMBER PK,FK
+        int POLICYNUMBER PK
+        string ISSUEDATE
+        string EXPIRYDATE
+        timestamp LASTCHANGED
+        int BROKERID
+        string BROKERSREFERENCE
+        int PAYMENT
+    }
+
+    ENDOWMENT {
+        int POLICYNUMBER PK,FK
+        string WITHPROFITS
+        string EQUITIES
+        string MANAGEDFUND
+        string FUNDNAME
+        int TERM
+        int SUMASSURED
+        string LIFEASSURED
+    }
+
+    HOUSE {
+        int POLICYNUMBER PK,FK
+        string PROPERTYTYPE
+        int BEDROOMS
+        int VALUE
+        string HOUSENAME
+        string HOUSENUMBER
+        string POSTCODE
+    }
+
+    MOTOR {
+        int POLICYNUMBER PK,FK
+        string MAKE
+        string MODEL
+        int VALUE
+        string REGNUMBER
+        string COLOUR
+        int CC
+        int YEAROFMANUFACTURE
+        int PREMIUM
+        int ACCIDENTS
+    }
+
+    KSDSPOLY {
+        string RECORD_KEY PK "Type(1) + CustNum(10) + PolNum(10)"
+        string POLICY_DATA "64 bytes fixed structure"
+    }
+</div>
+<hr>
+<h2 id="6-error-handling-and-diagnostics" tabindex="-1">6. Error Handling and Diagnostics</h2>
+<h3 id="61-return-code-matrix" tabindex="-1">6.1 Return Code Matrix</h3>
+<p>The following table lists all status codes generated across the policy update chain:</p>
+<table>
+<thead>
+<tr>
+<th>Return Code</th>
+<th>Issuing Module</th>
+<th>Description</th>
+<th>Severity / Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'00'</code></td>
+<td>All</td>
+<td>Update completed successfully across Db2 and VSAM.</td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>'01'</code></td>
+<td><code>LGUPDB01</code></td>
+<td>Policy record not found in Db2 (<code>SQLCODE 100</code>).</td>
+<td>Warning / Business Error</td>
+</tr>
+<tr>
+<td><code>'02'</code></td>
+<td><code>LGUPDB01</code></td>
+<td>Optimistic lock failure (<code>CA_LASTCHANGED</code> mismatch).</td>
+<td>Concurrency Conflict</td>
+</tr>
+<tr>
+<td><code>'81'</code></td>
+<td><code>LGUPVS01</code></td>
+<td>VSAM <code>READ UPDATE</code> failure against <code>KSDSPOLY</code>.</td>
+<td>Fatal / Abend <code>LGV3</code></td>
+</tr>
+<tr>
+<td><code>'82'</code></td>
+<td><code>LGUPVS01</code></td>
+<td>VSAM <code>REWRITE</code> failure against <code>KSDSPOLY</code>.</td>
+<td>Fatal / Abend <code>LGV4</code></td>
+</tr>
+<tr>
+<td><code>'90'</code></td>
+<td><code>LGUPDB01</code></td>
+<td>General Db2 SQL error or cursor failure.</td>
+<td>Critical / Rolled Back</td>
+</tr>
+<tr>
+<td><code>'98'</code></td>
+<td><code>LGUPOL01</code></td>
+<td>Supplied COMMAREA length is less than minimum required.</td>
+<td>Validation Failure</td>
+</tr>
+<tr>
+<td><code>'99'</code></td>
+<td><code>LGUPOL01</code></td>
+<td>Unsupported <code>CA_REQUEST_ID</code> action code.</td>
+<td>Warning / Forwarded</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-abend-codes-and-queue-logging-lgstsq" tabindex="-1">6.2 Abend Codes and Queue Logging (LGSTSQ)</h3>
+<p>When critical unrecoverable conditions occur, diagnostic error records are formatted and dispatched to <code>LGSTSQ</code> before triggering a CICS abnormal termination:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>+-------------------------------------------------------------------------+
+| ERROR_MSG Layout                                                        |
+|  EM_DATE (10) | EM_TIME (8) | Program Name (8)                          |
+|  EM_CUSNUM (10) | EM_POLNUM (10) | EM_SQLREQ / Text (16) | EM_SQLRC (4) |
++-------------------------------------------------------------------------+
+| CA_ERROR_MSG Layout                                                     |
+|  &quot;COMMAREA=&quot; (9) | CA_DATA (First 90 bytes of incoming payload)         |
++-------------------------------------------------------------------------+</code></pre>
+</div>
+<ul>
+<li><strong>Abend <code>LGCA</code> (<code>NODUMP</code>)</strong>: Triggered by <code>LGUPOL01</code> or <code>LGUPDB01</code> when <code>EIBCALEN = 0</code>.</li>
+<li><strong>Abend <code>LGV3</code> (<code>NODUMP</code>)</strong>: Triggered by <code>LGUPVS01</code> when <code>EXEC CICS READ UPDATE</code> on <code>KSDSPOLY</code> returns a non-normal response code.</li>
+<li><strong>Abend <code>LGV4</code> (<code>NODUMP</code>)</strong>: Triggered by <code>LGUPVS01</code> when <code>EXEC CICS REWRITE</code> on <code>KSDSPOLY</code> returns a non-normal response code.</li>
+</ul>
+<hr>
+<h2 id="7-code-examples-and-implementation-snippets" tabindex="-1">7. Code Examples and Implementation Snippets</h2>
+<h3 id="71-lgupol01-request-routing-and-length-validation" tabindex="-1">7.1 LGUPOL01 Request Routing and Length Validation</h3>
+<p><code>LGUPOL01</code> verifies incoming commarea lengths before invoking backend modules:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">/* Evaluate Request Type and Required COMMAREA Length */
+SELECT ( CA_REQUEST_ID );
+  WHEN ( &#039;01UEND&#039; ) DO;
+    WS_REQUIRED_CA_LEN = WS_CA_HEADER_LEN + WS_FULL_ENDOW_LEN;
+    IF ( EIBCALEN &lt; WS_REQUIRED_CA_LEN ) THEN DO;
+      CA_RETURN_CODE = &#039;98&#039;;
+      EXEC CICS RETURN;
+    END;
+  END;
+  WHEN ( &#039;01UHOU&#039; ) DO;
+    WS_REQUIRED_CA_LEN = WS_CA_HEADER_LEN + WS_FULL_HOUSE_LEN;
+    IF ( EIBCALEN &lt; WS_REQUIRED_CA_LEN ) THEN DO;
+      CA_RETURN_CODE = &#039;98&#039;;
+      EXEC CICS RETURN;
+    END;
+  END;
+  WHEN ( &#039;01UMOT&#039; ) DO;
+    WS_REQUIRED_CA_LEN = WS_CA_HEADER_LEN + WS_FULL_MOTOR_LEN;
+    IF ( EIBCALEN &lt; WS_REQUIRED_CA_LEN ) THEN DO;
+      CA_RETURN_CODE = &#039;98&#039;;
+      EXEC CICS RETURN;
+    END;
+  END;
+  OTHERWISE DO;
+    CA_RETURN_CODE = &#039;99&#039;;
+  END;
+END;
+
+/* Delegate to Db2 Persistence Layer */
+CALL UPDATE_POLICY_DB2_INFO;
+
+UPDATE_POLICY_DB2_INFO: PROCEDURE;
+  EXEC CICS LINK PROGRAM(&#039;LGUPDB01&#039;)
+            COMMAREA(COMM_AREA_RAW)
+            LENGTH(32500);
+END UPDATE_POLICY_DB2_INFO;</code></pre>
+</div>
+<h3 id="72-lgupdb01-optimistic-lock-and-positioned-cursor-update" tabindex="-1">7.2 LGUPDB01 Optimistic Lock and Positioned Cursor Update</h3>
+<p><code>LGUPDB01</code> executes optimistic timestamp validation and positioned updates:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">/* Declare and Open Update Cursor */
+EXEC SQL DECLARE POLICY_CURSOR CURSOR WITH HOLD FOR
+  SELECT ISSUEDATE, EXPIRYDATE, LASTCHANGED, BROKERID, BROKERSREFERENCE
+    FROM POLICY
+    WHERE CUSTOMERNUMBER = :DB2_CUSTOMERNUM_INT
+      AND POLICYNUMBER   = :DB2_POLICYNUM_INT
+    FOR UPDATE OF ISSUEDATE, EXPIRYDATE, LASTCHANGED, BROKERID, BROKERSREFERENCE;
+
+EXEC SQL OPEN POLICY_CURSOR;
+
+/* Fetch and OCC Verification */
+CALL FETCH_DB2_POLICY_ROW;
+IF ( SQLCODE = 0 ) THEN DO;
+  IF ( CA_LASTCHANGED = DB2_LASTCHANGED ) THEN DO;
+    /* Route to Subtype Table Update */
+    SELECT ( CA_REQUEST_ID );
+      WHEN ( &#039;01UEND&#039; ) CALL UPDATE_ENDOW_DB2_INFO;
+      WHEN ( &#039;01UHOU&#039; ) CALL UPDATE_HOUSE_DB2_INFO;
+      WHEN ( &#039;01UMOT&#039; ) CALL UPDATE_MOTOR_DB2_INFO;
+    END;
+    
+    /* Positioned Update on Base POLICY Table */
+    EXEC SQL
+      UPDATE POLICY
+        SET ISSUEDATE        = :CA_ISSUE_DATE,
+            EXPIRYDATE       = :CA_EXPIRY_DATE,
+            LASTCHANGED      = CURRENT TIMESTAMP,
+            BROKERID         = :DB2_BROKERID_INT,
+            BROKERSREFERENCE = :CA_BROKERSREF
+        WHERE CURRENT OF POLICY_CURSOR;
+        
+    /* Retrieve Generated Timestamp */
+    EXEC SQL
+      SELECT LASTCHANGED
+        INTO :CA_LASTCHANGED
+        FROM POLICY
+        WHERE POLICYNUMBER = :DB2_POLICYNUM_INT;
+        
+    IF ( SQLCODE &lt;&gt; 0 ) THEN DO;
+      EXEC CICS SYNCPOINT ROLLBACK;
+      CA_RETURN_CODE = &#039;90&#039;;
+    END;
+  END;
+  ELSE DO;
+    /* OCC Mismatch Collision */
+    CA_RETURN_CODE = &#039;02&#039;;
+  END;
+END;
+CALL CLOSE_PCURSOR;</code></pre>
+</div>
+<h3 id="73-lgupvs01-vsam-record-locking-and-rewrite" tabindex="-1">7.3 LGUPVS01 VSAM Record Locking and Rewrite</h3>
+<p><code>LGUPVS01</code> performs key preparation, record locking, and rewriting against <code>KSDSPOLY</code>:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">/* Construct 21-Byte Composite Key */
+WF_REQUEST_ID   = SUBSTR(CA_REQUEST_ID, 4, 1);
+WF_CUSTOMER_NUM = CA_CUSTOMER_NUM;
+WF_POLICY_NUM   = CA_POLICY_NUM;
+
+/* Populate Type-Specific Working Record */
+SELECT ( WF_REQUEST_ID );
+  WHEN ( &#039;M&#039; ) DO;
+    WF_M_MAKE      = CA_M_MAKE;
+    WF_M_MODEL     = CA_M_MODEL;
+    WF_M_VALUE     = CA_M_VALUE;
+    WF_M_REGNUMBER = CA_M_REGNUMBER;
+  END;
+  OTHERWISE DO;
+    WF_POLICY_TEXT = &#039; &#039;;
+  END;
+END;
+
+/* Lock Record in KSDSPOLY */
+EXEC CICS READ
+          FILE(&#039;KSDSPOLY&#039;)
+          INTO(WS_FILEIN)
+          RIDFLD(WF_POLICY_KEY)
+          KEYLENGTH(21)
+          UPDATE
+          RESP(WS_RESP)
+          RESP2(WS_RESP2);
+
+IF WS_RESP ^= DFHRESP(NORMAL) THEN DO;
+  CA_RETURN_CODE = &#039;81&#039;;
+  CALL WRITE_ERROR_MESSAGE;
+  EXEC CICS ABEND ABCODE(&#039;LGV3&#039;) NODUMP;
+END;
+
+/* Rewrite Updated Record */
+EXEC CICS REWRITE
+          FILE(&#039;KSDSPOLY&#039;)
+          FROM(WF_POLICY_INFO)
+          LENGTH(WS_COMMAREA_LENF)
+          RESP(WS_RESP)
+          RESP2(WS_RESP2);
+
+IF WS_RESP ^= DFHRESP(NORMAL) THEN DO;
+  CA_RETURN_CODE = &#039;82&#039;;
+  CALL WRITE_ERROR_MESSAGE;
+  EXEC CICS ABEND ABCODE(&#039;LGV4&#039;) NODUMP;
+END;</code></pre>
+</div>
+                        <div class="related-pages">
+                            <p class="related-pages-title">Related Pages</p>
+                            <div class="card-grid">
+                                
+            <a href="policy-inquiry.html" class="card">
+                <span class="card-title">Policy Inquiry</span>
+                <span class="card-description">The policy and claim inquiry flow. LGIPOL01 is the business-logic entry point and LGIPDB01 retrieves data from Db2 for each policy type, claims, and multi-record lookups. LGIPVS01 does the generic key browse on the VSAM policy file.</span>
+            </a>
+            <a href="policy-add.html" class="card">
+                <span class="card-title">Policy Add</span>
+                <span class="card-description">The new-policy flow. LGAPOL01 orchestrates, optionally calling the ODM business-rules program LGAPBR01. LGAPDB01 inserts into Db2 and LGAPVS01 persists the policy record to the VSAM KSDS.</span>
+            </a>
+            <a href="policy-delete.html" class="card">
+                <span class="card-title">Policy Delete</span>
+                <span class="card-description">The policy deletion chain. LGDPOL01 dispatches by policy type and LGDPDB01 deletes from the Db2 POLICY table, with child rows removed by foreign-key cascade. LGDPVS01 removes the matching record from the VSAM policy file.</span>
+            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-overview">1. Overview</a></li>
+<li class="toc-level-2"><a href="#2-system-architecture">2. System Architecture</a>
+<ul>
+<li class="toc-level-3"><a href="#21-component-interaction-architecture">2.1 Component Interaction Architecture</a></li>
+<li class="toc-level-3"><a href="#22-system-component-flowchart">2.2 System Component Flowchart</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-end-to-end-processing-logic-and-workflow">3. End-to-End Processing Logic and Workflow</a>
+<ul>
+<li class="toc-level-3"><a href="#31-orchestration-and-validation-lgupol01">3.1 Orchestration and Validation (LGUPOL01)</a></li>
+<li class="toc-level-3"><a href="#32-relational-persistence-and-concurrency-lgupdb01">3.2 Relational Persistence and Concurrency (LGUPDB01)</a></li>
+<li class="toc-level-3"><a href="#33-vsam-keyed-record-persistence-lgupvs01">3.3 VSAM Keyed Record Persistence (LGUPVS01)</a></li>
+<li class="toc-level-3"><a href="#34-sequence-of-operations">3.4 Sequence of Operations</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-concurrency-control-and-data-integrity">4. Concurrency Control and Data Integrity</a>
+<ul>
+<li class="toc-level-3"><a href="#41-optimistic-concurrency-control-occ">4.1 Optimistic Concurrency Control (OCC)</a></li>
+<li class="toc-level-3"><a href="#42-pessimistic-row-locking-and-positioned-updates">4.2 Pessimistic Row Locking and Positioned Updates</a></li>
+<li class="toc-level-3"><a href="#43-transactional-rollback">4.3 Transactional Rollback</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-data-structures-and-entity-relationships">5. Data Structures and Entity Relationships</a>
+<ul>
+<li class="toc-level-3"><a href="#51-communication-area-contracts">5.1 Communication Area Contracts</a></li>
+<li class="toc-level-3"><a href="#52-entity-relationship-model">5.2 Entity-Relationship Model</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#6-error-handling-and-diagnostics">6. Error Handling and Diagnostics</a>
+<ul>
+<li class="toc-level-3"><a href="#61-return-code-matrix">6.1 Return Code Matrix</a></li>
+<li class="toc-level-3"><a href="#62-abend-codes-and-queue-logging-lgstsq">6.2 Abend Codes and Queue Logging (LGSTSQ)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-code-examples-and-implementation-snippets">7. Code Examples and Implementation Snippets</a>
+<ul>
+<li class="toc-level-3"><a href="#71-lgupol01-request-routing-and-length-validation">7.1 LGUPOL01 Request Routing and Length Validation</a></li>
+<li class="toc-level-3"><a href="#72-lgupdb01-optimistic-lock-and-positioned-cursor-update">7.2 LGUPDB01 Optimistic Lock and Positioned Cursor Update</a></li>
+<li class="toc-level-3"><a href="#73-lgupvs01-vsam-record-locking-and-rewrite">7.3 LGUPVS01 VSAM Record Locking and Rewrite</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* sidebar-toggle.js — persists open/closed state across navigation */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — only stamps sessionStorage when clicking a source-file link
+       that lives inside the "Source Files" disclosure section, not from sidebar or cards. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('sources/') === -1) return;
+        /* Only set referrer when the click originates from inside the Source Files
+           disclosure (.source-files-disclosure). Any other path — sidebar, cards,
+           direct navigation — must not set a referrer. */
+        if (!link.closest('.source-files-disclosure')) return;
+        try {
+          sessionStorage.setItem('wiki_referrer', JSON.stringify({
+            href: location.href,
+            title: document.title,
+            file: location.pathname.split('/').pop()
+          }));
+        } catch (_e) {}
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>

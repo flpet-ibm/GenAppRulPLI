@@ -1,0 +1,1612 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House and Commercial Policy Menus - GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../assets/prism-tomorrow.css">
+    <script src="../assets/prism-core.js"></script>
+    <script src="../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="house-and-commercial-menus.html" class="nav-link active" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="page-container">
+                <div class="content-layout">
+                    <div class="prose">
+                        <details class="source-files-disclosure">
+            <summary>
+                <svg class="sf-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Source Files
+                <span style="margin-left:4px;font-size:11px;color:var(--fg-subtle)">(2)</span>
+            </summary>
+            <div class="source-files-body">
+                <ul class="source-files-list">
+            <li><a href="../sources/program/pli/LGTESTP4.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGTESTP4
+            </a></li>
+            <li><a href="../sources/program/pli/LGTESTP3.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGTESTP3
+            </a></li>
+                </ul>
+            </div>
+        </details>
+                        <h1 id="house-and-commercial-policy-menus" tabindex="-1">House and Commercial Policy Menus</h1>
+<p>This page documents the two 3270 menu programs that drive house and commercial policy maintenance in the GenApp PL/I application:</p>
+<ul>
+<li><strong>LGTESTP3</strong> runs as transaction <strong>SSP3</strong> and uses BMS map <code>SSMAPP3</code>. It handles house policies.</li>
+<li><strong>LGTESTP4</strong> runs as transaction <strong>SSP4</strong> and uses BMS map <code>SSMAPP4</code>. It handles commercial policies.</li>
+</ul>
+<p>Both programs are pseudo-conversational CICS front ends. They do no database access of their own. Each one reads a single-character option from the screen and builds a request in the shared 32,500-byte COMMAREA. It then calls a back-end orchestrator (<code>LGIPOL01</code>, <code>LGAPOL01</code>, <code>LGDPOL01</code> or <code>LGUPOL01</code>) with <code>EXEC CICS LINK</code>. Finally it shows the result or an error message on the same screen. This page covers the request codes, the back-end services, the rollback behaviour and the screen handling.</p>
+<h2 id="1-overview" tabindex="-1">1. Overview</h2>
+<h3 id="11-purpose" tabindex="-1">1.1 Purpose</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>House menu (LGTESTP3)</th>
+<th>Commercial menu (LGTESTP4)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transaction</td>
+<td><code>SSP3</code></td>
+<td><code>SSP4</code></td>
+</tr>
+<tr>
+<td>BMS map / mapset</td>
+<td><code>SSMAPP3</code> / <code>SSMAP</code></td>
+<td><code>SSMAPP4</code> / <code>SSMAP</code></td>
+</tr>
+<tr>
+<td>Operations</td>
+<td>Inquire (1), Add (2), Delete (3), Update (4)</td>
+<td>Inquire (1), Add (2), Delete (3)</td>
+</tr>
+<tr>
+<td>Back-end programs</td>
+<td><code>LGIPOL01</code>, <code>LGAPOL01</code>, <code>LGDPOL01</code>, <code>LGUPOL01</code></td>
+<td><code>LGIPOL01</code>, <code>LGAPOL01</code>, <code>LGDPOL01</code></td>
+</tr>
+<tr>
+<td>Option field</td>
+<td><code>ENP3OPTO</code></td>
+<td><code>ENP4OPTO</code></td>
+</tr>
+<tr>
+<td>Message field</td>
+<td><code>ERP3FLDO</code> (CHAR 40)</td>
+<td><code>ERP4FLDO</code> (CHAR 40)</td>
+</tr>
+<tr>
+<td>Exit text</td>
+<td>“Transaction ended”</td>
+<td>“Transaction ended”</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-key-characteristics" tabindex="-1">1.2 Key Characteristics</h3>
+<ul>
+<li><strong>Pseudo-conversational.</strong> Each successful or error-handled path ends with <code>EXEC CICS RETURN TRANSID(...) COMMAREA(COMM_AREA)</code>.</li>
+<li><strong>Reentrant.</strong> Both programs are declared <code>Options(Main,Reentrant)</code>. State lives in the COMMAREA, not in static storage.</li>
+<li><strong>Request-code driven.</strong> <code>CA_REQUEST_ID</code> tells the back-end which operation to run.</li>
+<li><strong>Return-code driven.</strong> After every <code>LINK</code>, the programs test <code>CA_RETURN_CODE</code>. A value above 0 means failure.</li>
+<li><strong>Rollback on failure.</strong> A failed add or delete issues <code>EXEC CICS SYNCPOINT ROLLBACK</code>.</li>
+<li><strong>Clean reset after errors.</strong> <code>ERROR_OUT</code> blanks the maps and the COMMAREA before it returns.</li>
+</ul>
+<h2 id="2-system-architecture" tabindex="-1">2. System Architecture</h2>
+<h3 id="21-component-overview" tabindex="-1">2.1 Component Overview</h3>
+<p>The menu programs sit between the 3270 terminal and the back-end policy orchestrators. The orchestrators own all Db2 access.</p>
+<div class="mermaid">
+graph TD
+    T[3270 Terminal] <--> BMS[BMS Mapset SSMAP]
+    BMS --> P3[LGTESTP3<br>Transaction SSP3<br>Map SSMAPP3]
+    BMS --> P4[LGTESTP4<br>Transaction SSP4<br>Map SSMAPP4]
+
+    P3 -->|LINK| IP[LGIPOL01<br>Inquiry]
+    P3 -->|LINK| AP[LGAPOL01<br>Add]
+    P3 -->|LINK| DP[LGDPOL01<br>Delete]
+    P3 -->|LINK| UP[LGUPOL01<br>Update]
+
+    P4 -->|LINK| IP
+    P4 -->|LINK| AP
+    P4 -->|LINK| DP
+
+    IP --> DB[(Db2 Policy Tables)]
+    AP --> DB
+    DP --> DB
+    UP --> DB
+
+    CA[(COMM_AREA<br>32500 bytes<br>LGCMAREA.inc)] -.shared by.- P3
+    CA -.shared by.- P4
+</div>
+<p>Each menu program talks to the terminal through the BMS mapset <code>SSMAP</code>. Each uses the symbolic map include <code>SSMAP.inc</code> and the COMMAREA layout <code>LGCMAREA.inc</code>. Both are inlined with <code>%INCLUDE</code>.</p>
+<h3 id="22-shared-infrastructure" tabindex="-1">2.2 Shared Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CICS <code>HANDLE AID</code></td>
+<td>Routes PF3 to <code>ENDIT</code> and CLEAR to <code>CLEARIT</code>.</td>
+</tr>
+<tr>
+<td>CICS <code>HANDLE CONDITION MAPFAIL</code></td>
+<td>Routes to <code>ENDIT</code> when no screen data is received.</td>
+</tr>
+<tr>
+<td><code>COMM_AREA</code> / <code>COMM_AREA_RAW</code></td>
+<td>32,500-byte union overlay. It holds the request, customer, policy-common, house and commercial sections.</td>
+</tr>
+<tr>
+<td><code>BASE_COMM_AREA</code></td>
+<td>Local storage that <code>COMM_AREA_PTR</code> points to on first entry (<code>EIBCALEN = 0</code>).</td>
+</tr>
+<tr>
+<td><code>MSGEND</code></td>
+<td>Static CHAR(24) with the text “Transaction ended”.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-program-structure" tabindex="-1">2.3 Program Structure</h3>
+<p>Both programs share the same paragraph structure. LGTESTP3 adds one extra branch for update.</p>
+<div class="mermaid">
+graph TD
+    START([Entry]) --> FIRST{EIBCALEN = 0}
+    FIRST -- Yes --> INIT[Initialise COMMAREA and map<br>SEND MAP ERASE]
+    FIRST -- No --> AGAIN
+    INIT --> AGAIN[A_GAIN<br>HANDLE AID / CONDITION<br>RECEIVE MAP]
+    AGAIN --> SEL{SELECT option}
+    SEL -- Valid --> BR[Option branch<br>LINK back-end]
+    SEL -- Other --> INV[Invalid option message<br>CURSOR on option]
+    BR --> RC{Return code > 0}
+    RC -- No --> OK[Show result<br>SEND MAP]
+    RC -- Yes --> ERR[NO_ADD / NO_UPD<br>NO_DELETE / NO_DATA]
+    ERR --> EO[ERROR_OUT<br>SEND MAP, reset state]
+    OK --> ES[ENDIT_STARTIT<br>RETURN TRANSID]
+    INV --> ES
+    EO --> ES
+    AGAIN -. CLEAR .-> CL[CLEARIT<br>MAPONLY, RETURN TRANSID]
+    AGAIN -. PF3 / MAPFAIL .-> EN[ENDIT<br>SEND TEXT, RETURN]
+</div>
+<h2 id="3-request-codes-and-back-end-services" tabindex="-1">3. Request Codes and Back-End Services</h2>
+<p><code>CA_REQUEST_ID</code> is a six-character code. The first two characters are a sequence number (<code>01</code>, <code>02</code>, <code>03</code> or <code>05</code>). The next one is the operation: <strong>I</strong>nquire, <strong>A</strong>dd, <strong>D</strong>elete or <strong>U</strong>pdate. The last three name the policy type (<code>HOU</code> or <code>COM</code>).</p>
+<h3 id="31-house-policy-request-codes-lgtestp3" tabindex="-1">3.1 House Policy Request Codes (LGTESTP3)</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Operation</th>
+<th><code>CA_REQUEST_ID</code></th>
+<th>Program linked</th>
+<th>Key inputs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Inquire</td>
+<td><code>01IHOU</code></td>
+<td><code>LGIPOL01</code></td>
+<td><code>ENP3CNOO</code>, <code>ENP3PNOO</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Add</td>
+<td><code>01AHOU</code></td>
+<td><code>LGAPOL01</code></td>
+<td><code>ENP3CNOI</code> plus all house fields</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Delete</td>
+<td><code>01DHOU</code></td>
+<td><code>LGDPOL01</code></td>
+<td><code>ENP3CNOO</code>, <code>ENP3PNOO</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Update</td>
+<td><code>01IHOU</code>, then <code>01UHOU</code></td>
+<td><code>LGIPOL01</code>, then <code>LGUPOL01</code></td>
+<td>Customer and policy numbers, then the edited fields</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-commercial-policy-request-codes-lgtestp4" tabindex="-1">3.2 Commercial Policy Request Codes (LGTESTP4)</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Operation</th>
+<th><code>CA_REQUEST_ID</code></th>
+<th>Condition</th>
+<th>Program linked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Inquire (customer and policy)</td>
+<td><code>01ICOM</code></td>
+<td>Both keys supplied</td>
+<td><code>LGIPOL01</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Inquire (policy only)</td>
+<td><code>02ICOM</code></td>
+<td>Only the policy number supplied</td>
+<td><code>LGIPOL01</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Inquire (customer only)</td>
+<td><code>03ICOM</code></td>
+<td>Only the customer number supplied</td>
+<td><code>LGIPOL01</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Inquire (postcode)</td>
+<td><code>05ICOM</code></td>
+<td>Postcode not blank. This takes precedence.</td>
+<td><code>LGIPOL01</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Add</td>
+<td><code>01ACOM</code></td>
+<td>None</td>
+<td><code>LGAPOL01</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Delete</td>
+<td><code>01DCOM</code></td>
+<td>None</td>
+<td><code>LGDPOL01</code></td>
+</tr>
+</tbody>
+</table>
+<p>A key field counts as “not supplied” if it is blank or all zeros.</p>
+<h3 id="33-commarea-fields" tabindex="-1">3.3 COMMAREA Fields</h3>
+<div class="mermaid">
+graph TD
+    CA[COMM_AREA 32500 bytes] --> HDR[Header<br>CA_REQUEST_ID<br>CA_RETURN_CODE<br>CA_CUSTOMER_NUM]
+    CA --> POL[Policy common<br>CA_POLICY_NUM<br>CA_ISSUE_DATE<br>CA_EXPIRY_DATE<br>CA_PAYMENT<br>CA_BROKERID<br>CA_BROKERSREF]
+    CA --> HOU[CA_HOUSE<br>CA_H_PROPERTY_TYPE<br>CA_H_BEDROOMS<br>CA_H_VALUE<br>CA_H_HOUSE_NAME<br>CA_H_HOUSE_NUMBER<br>CA_H_POSTCODE]
+    CA --> COM[CA_COMMERCIAL<br>CA_B_Address, CA_B_Postcode<br>CA_B_Latitude, CA_B_Longitude<br>CA_B_Customer, CA_B_PropType<br>Perils and premiums<br>CA_B_Status, CA_B_RejectReason]
+</div>
+<p>House fields have these lengths and types:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code></td>
+<td>PIC ‘9999999999’</td>
+</tr>
+<tr>
+<td><code>CA_H_BEDROOMS</code></td>
+<td>PIC ‘999’</td>
+</tr>
+<tr>
+<td><code>CA_H_VALUE</code></td>
+<td>PIC ‘99999999’</td>
+</tr>
+<tr>
+<td><code>CA_H_PROPERTY_TYPE</code></td>
+<td>CHAR(15)</td>
+</tr>
+<tr>
+<td><code>CA_H_HOUSE_NAME</code></td>
+<td>CHAR(20)</td>
+</tr>
+<tr>
+<td><code>CA_H_HOUSE_NUMBER</code></td>
+<td>CHAR(4)</td>
+</tr>
+<tr>
+<td><code>CA_H_POSTCODE</code></td>
+<td>CHAR(8)</td>
+</tr>
+</tbody>
+</table>
+<p>Commercial fields have these lengths and types:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Peril fields and <code>CA_B_Status</code></td>
+<td>4 digits</td>
+</tr>
+<tr>
+<td>Premium fields</td>
+<td>8 digits</td>
+</tr>
+<tr>
+<td><code>CA_B_Address</code>, <code>CA_B_Customer</code>, <code>CA_B_PropType</code>, <code>CA_B_RejectReason</code></td>
+<td>CHAR(255)</td>
+</tr>
+<tr>
+<td><code>CA_B_Latitude</code>, <code>CA_B_Longitude</code></td>
+<td>CHAR(11)</td>
+</tr>
+<tr>
+<td><code>CA_B_Postcode</code></td>
+<td>CHAR(8)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-return-codes" tabindex="-1">3.4 Return Codes</h3>
+<table>
+<thead>
+<tr>
+<th><code>CA_RETURN_CODE</code></th>
+<th>Meaning for the menus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Success. The result is displayed.</td>
+</tr>
+<tr>
+<td><code>70</code></td>
+<td>On add, the customer does not exist.</td>
+</tr>
+<tr>
+<td>Any other value above 0</td>
+<td>General failure. The operation-specific error message is shown.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-screen-handling" tabindex="-1">4. Screen Handling</h2>
+<h3 id="41-initial-display" tabindex="-1">4.1 Initial Display</h3>
+<p>On first entry (<code>EIBCALEN = 0</code>), each program points <code>COMM_AREA_PTR</code> at <code>BASE_COMM_AREA</code>. It blanks the output map and the COMMAREA request area. It then sets the numeric display fields to zeros and sends the map with <code>ERASE</code>.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">IF EIBCALEN = 0 THEN DO;
+   COMM_AREA_PTR = ADDR(BASE_COMM_AREA);
+   SSMAPP3O = &#039;&#039;;
+   CA_REQUEST_ID = &#039;&#039;;
+   CA_RETURN_CODE = 0;
+   CA_CUSTOMER_NUM = 0;
+   CA_REQUEST_INITIALISER = &#039;&#039;;
+   ENP3CNOO = &#039;0000000000&#039;;
+   ENP3PNOO = &#039;0000000000&#039;;
+   ENP3VALO = &#039;00000000&#039;;
+   ENP3BEDO = &#039;000&#039;;
+   EXEC CICS SEND MAP(&#039;SSMAPP3&#039;) MAPSET(&#039;SSMAP&#039;) ERASE;
+END;</code></pre>
+</div>
+<p>This is an illustrative sketch of the logic described. The LGTESTP4 version sets <code>ENP4CNOO</code> and <code>ENP4PNOO</code> to ten zeros and blanks the peril, premium and status fields.</p>
+<h3 id="42-receive-and-dispatch" tabindex="-1">4.2 Receive and Dispatch</h3>
+<p>Handlers are registered before each <code>RECEIVE MAP</code>. A <code>SELECT</code> on the option field then picks the branch.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">A_GAIN:
+   EXEC CICS HANDLE AID CLEAR(CLEARIT) PF3(ENDIT);
+   EXEC CICS HANDLE CONDITION MAPFAIL(ENDIT);
+   EXEC CICS RECEIVE MAP(&#039;SSMAPP3&#039;) INTO(SSMAPP3I) MAPSET(&#039;SSMAP&#039;);
+
+   SELECT (ENP3OPTO);
+      WHEN (&#039;1&#039;) ...   /* inquire */
+      WHEN (&#039;2&#039;) ...   /* add     */
+      WHEN (&#039;3&#039;) ...   /* delete  */
+      WHEN (&#039;4&#039;) ...   /* update  */
+      OTHERWISE ...    /* invalid */
+   END;</code></pre>
+</div>
+<h3 id="43-attention-keys-and-exit-paths" tabindex="-1">4.3 Attention Keys and Exit Paths</h3>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Label</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal completion or handled error</td>
+<td><code>ENDIT_STARTIT</code></td>
+<td><code>RETURN TRANSID('SSP3'/'SSP4') COMMAREA(COMM_AREA)</code></td>
+</tr>
+<tr>
+<td>PF3</td>
+<td><code>ENDIT</code></td>
+<td>Sends “Transaction ended” with <code>ERASE</code> and <code>FREEKB</code>, then issues a plain <code>RETURN</code>.</td>
+</tr>
+<tr>
+<td>MAPFAIL (no data entered)</td>
+<td><code>ENDIT</code></td>
+<td>Same as PF3.</td>
+</tr>
+<tr>
+<td>CLEAR</td>
+<td><code>CLEARIT</code></td>
+<td>Blanks the input map, sends the map with <code>MAPONLY</code>, then returns with the transaction ID and COMMAREA.</td>
+</tr>
+<tr>
+<td>Invalid option</td>
+<td>In-line</td>
+<td>Shows “Please enter a valid option”, sets the option length field to -1 and sends the map with <code>CURSOR</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">OTHERWISE: DO;
+   ERP3FLDO = &#039;Please enter a valid option&#039;;
+   ENP3OPTL = -1;
+   EXEC CICS SEND MAP(&#039;SSMAPP3&#039;) FROM(SSMAPP3O) MAPSET(&#039;SSMAP&#039;) CURSOR;
+   GO TO ENDIT_STARTIT;
+END;</code></pre>
+</div>
+<h3 id="44-screen-field-mapping" tabindex="-1">4.4 Screen Field Mapping</h3>
+<p>On a successful inquiry the returned COMMAREA values are moved into the input view of the map and the map is sent.</p>
+<table>
+<thead>
+<tr>
+<th>COMMAREA field (house)</th>
+<th>Screen field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_ISSUE_DATE</code></td>
+<td><code>ENP3IDAI</code></td>
+</tr>
+<tr>
+<td><code>CA_EXPIRY_DATE</code></td>
+<td><code>ENP3EDAI</code></td>
+</tr>
+<tr>
+<td><code>CA_H_PROPERTY_TYPE</code></td>
+<td><code>ENP3TYPI</code></td>
+</tr>
+<tr>
+<td><code>CA_H_BEDROOMS</code></td>
+<td><code>ENP3BEDI</code></td>
+</tr>
+<tr>
+<td><code>CA_H_VALUE</code></td>
+<td><code>ENP3VALI</code></td>
+</tr>
+<tr>
+<td><code>CA_H_HOUSE_NAME</code></td>
+<td><code>ENP3HNMI</code></td>
+</tr>
+<tr>
+<td><code>CA_H_HOUSE_NUMBER</code></td>
+<td><code>ENP3HNOI</code></td>
+</tr>
+<tr>
+<td><code>CA_H_POSTCODE</code></td>
+<td><code>ENP3HPCI</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>COMMAREA field (commercial)</th>
+<th>Screen field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>ENP4CNOI</code></td>
+</tr>
+<tr>
+<td><code>CA_ISSUE_DATE</code> / <code>CA_EXPIRY_DATE</code></td>
+<td><code>ENP4IDAI</code> / <code>ENP4EDAI</code></td>
+</tr>
+<tr>
+<td><code>CA_B_Address</code></td>
+<td><code>ENP4ADDI</code></td>
+</tr>
+<tr>
+<td><code>CA_B_Postcode</code></td>
+<td><code>ENP4HPCI</code></td>
+</tr>
+<tr>
+<td><code>CA_B_Latitude</code> / <code>CA_B_Longitude</code></td>
+<td><code>ENP4LATI</code> / <code>ENP4LONI</code></td>
+</tr>
+<tr>
+<td><code>CA_B_Customer</code> / <code>CA_B_PropType</code></td>
+<td><code>ENP4CUSI</code> / <code>ENP4PTYI</code></td>
+</tr>
+<tr>
+<td>Fire, crime, flood and weather peril and premium</td>
+<td><code>ENP4FPEI</code>/<code>FPRI</code>, <code>CPEI</code>/<code>CPRI</code>, <code>XPEI</code>/<code>XPRI</code>, <code>WPEI</code>/<code>WPRI</code></td>
+</tr>
+<tr>
+<td><code>CA_B_Status</code> / <code>CA_B_RejectReason</code></td>
+<td><code>ENP4STAI</code> / <code>ENP4REJI</code></td>
+</tr>
+</tbody>
+</table>
+<p>The commercial COMMAREA address and customer fields are 255 characters, but the screen fields are 25 characters wide. Values are truncated on display.</p>
+<h2 id="5-house-policy-menu-lgtestp3" tabindex="-1">5. House Policy Menu (LGTESTP3)</h2>
+<h3 id="51-processing-flow" tabindex="-1">5.1 Processing Flow</h3>
+<div class="mermaid">
+graph TD
+    A([SSP3 start]) --> B{EIBCALEN = 0}
+    B -- Yes --> C[Initialise and SEND MAP ERASE]
+    B -- No --> D
+    C --> D[HANDLE AID / MAPFAIL<br>RECEIVE MAP SSMAPP3]
+    D --> F{ENP3OPTO}
+    F -- 1 --> G[01IHOU<br>LINK LGIPOL01]
+    F -- 2 --> H[01AHOU<br>LINK LGAPOL01]
+    F -- 3 --> I[01DHOU<br>LINK LGDPOL01]
+    F -- 4 --> J[01IHOU<br>LINK LGIPOL01<br>SEND, RECEIVE<br>01UHOU, LINK LGUPOL01]
+    F -- Other --> K[Invalid option]
+    G --> G1{RC > 0}
+    G1 -- Yes --> ND[NO_DATA]
+    G1 -- No --> G2[Show policy details]
+    H --> H1{RC > 0}
+    H1 -- Yes --> RB1[SYNCPOINT ROLLBACK] --> NA[NO_ADD]
+    H1 -- No --> H2[Show new policy number]
+    I --> I1{RC > 0}
+    I1 -- Yes --> RB2[SYNCPOINT ROLLBACK] --> NDEL[NO_DELETE]
+    I1 -- No --> I2[Clear fields]
+    J --> J1{Inquiry RC > 0}
+    J1 -- Yes --> ND
+    J1 -- No --> J2{Update RC > 0}
+    J2 -- Yes --> NU[NO_UPD]
+    J2 -- No --> J3[House Policy Updated]
+    ND --> EO[ERROR_OUT]
+    NA --> EO
+    NDEL --> EO
+    NU --> EO
+    G2 --> R([RETURN TRANSID SSP3])
+    H2 --> R
+    I2 --> R
+    J3 --> R
+    K --> R
+    EO --> R
+</div>
+<h3 id="52-inquire-option-1" tabindex="-1">5.2 Inquire (Option 1)</h3>
+<p>The program sets <code>CA_REQUEST_ID</code> to <code>01IHOU</code> and copies the customer and policy numbers from the output view of the map. It then links to <code>LGIPOL01</code>. A return code above 0 goes to <code>NO_DATA</code>. Otherwise the house details are moved to the screen and the map is sent.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">WHEN (&#039;1&#039;) DO;
+   CA_REQUEST_ID   = &#039;01IHOU&#039;;
+   CA_CUSTOMER_NUM = ENP3CNOO;
+   CA_POLICY_NUM   = ENP3PNOO;
+   EXEC CICS LINK PROGRAM(&#039;LGIPOL01&#039;)
+        COMMAREA(COMM_AREA) LENGTH(32500);
+   IF CA_RETURN_CODE &gt; 0 THEN GO TO NO_DATA;
+   ENP3IDAI = CA_ISSUE_DATE;
+   ENP3EDAI = CA_EXPIRY_DATE;
+   /* ... property type, bedrooms, value, name, number, postcode ... */
+   EXEC CICS SEND MAP(&#039;SSMAPP3&#039;) FROM(SSMAPP3O) MAPSET(&#039;SSMAP&#039;);
+   GO TO ENDIT_STARTIT;
+END;</code></pre>
+</div>
+<h3 id="53-add-option-2" tabindex="-1">5.3 Add (Option 2)</h3>
+<p>The program takes the customer number from the input view <code>ENP3CNOI</code>. It resets the broker and payment defaults (<code>CA_PAYMENT</code> = 0, <code>CA_BROKERID</code> = 0, <code>CA_BROKERSREF</code> = blank). It copies the dates and house fields into the COMMAREA, then links to <code>LGAPOL01</code>. On failure it issues a rollback and goes to <code>NO_ADD</code>. On success it echoes the new customer and policy numbers, clears the option field and shows “New House Policy Inserted”.</p>
+<h3 id="54-delete-option-3" tabindex="-1">5.4 Delete (Option 3)</h3>
+<p>The request is <code>01DHOU</code> with the customer and policy numbers. A failure issues <code>SYNCPOINT ROLLBACK</code> and goes to <code>NO_DELETE</code>. On success the dates, property fields and option are blanked and “House Policy Deleted” is shown.</p>
+<h3 id="55-update-option-4" tabindex="-1">5.5 Update (Option 4)</h3>
+<p>Update is the only operation that holds the task across two terminal interactions. This is a two-phase flow.</p>
+<div class="mermaid">
+sequenceDiagram
+    participant U as Operator
+    participant P as LGTESTP3
+    participant I as LGIPOL01
+    participant UP as LGUPOL01
+    U->>P: Option 4, customer, policy
+    P->>I: LINK 01IHOU
+    I-->>P: Current house data, RC 0
+    P-->>U: SEND MAP pre-filled
+    U->>P: Edited fields (second RECEIVE MAP)
+    P->>UP: LINK 01UHOU
+    UP-->>P: RC 0
+    P-->>U: "House Policy Updated"
+    P->>P: RETURN TRANSID SSP3
+</div>
+<p>If the initial inquiry fails, the program goes to <code>NO_DATA</code> and never reaches the update. If the update fails, it goes to <code>NO_UPD</code> with “Error Updating House Policy”. <strong>No explicit <code>SYNCPOINT ROLLBACK</code> is issued for update</strong>, unlike add and delete.</p>
+<h2 id="6-commercial-policy-menu-lgtestp4" tabindex="-1">6. Commercial Policy Menu (LGTESTP4)</h2>
+<h3 id="61-processing-flow" tabindex="-1">6.1 Processing Flow</h3>
+<div class="mermaid">
+graph TD
+    A([SSP4 start]) --> B{EIBCALEN = 0}
+    B -- Yes --> C[Initialise and SEND MAP ERASE]
+    B -- No --> D
+    C --> D[HANDLE AID / MAPFAIL<br>RECEIVE MAP SSMAPP4]
+    D --> G{ENP4OPTO}
+    G -- 1 --> H[Choose request ID<br>01ICOM / 02ICOM / 03ICOM<br>postcode: 05ICOM]
+    H --> H1[LINK LGIPOL01]
+    H1 --> H2{RC > 0}
+    H2 -- Yes --> ND[NO_DATA]
+    H2 -- No --> H3[Show policy details]
+    G -- 2 --> I[01ACOM<br>LINK LGAPOL01]
+    I --> I1{RC > 0}
+    I1 -- Yes --> RB1[SYNCPOINT ROLLBACK] --> NA[NO_ADD]
+    I1 -- No --> I2[New Commercial Policy Inserted]
+    G -- 3 --> J[01DCOM<br>LINK LGDPOL01]
+    J --> J1{RC > 0}
+    J1 -- Yes --> RB2[SYNCPOINT ROLLBACK] --> NDEL[NO_DELETE]
+    J1 -- No --> J2[Commercial Policy Deleted]
+    G -- Other --> K[Invalid option]
+    ND --> EO[ERROR_OUT]
+    NA --> EO
+    NDEL --> EO
+    H3 --> R([RETURN TRANSID SSP4])
+    I2 --> R
+    J2 --> R
+    K --> R
+    EO --> R
+</div>
+<h3 id="62-inquiry-request-selection" tabindex="-1">6.2 Inquiry Request Selection</h3>
+<p>The request code depends on which keys are supplied. A non-blank postcode always overrides the key-based choice.</p>
+<div class="mermaid">
+graph TD
+    S([Option 1]) --> A{Customer and policy supplied}
+    A -- Yes --> R1[01ICOM]
+    A -- No --> B{Policy only}
+    B -- Yes --> R2[02ICOM]
+    B -- No --> C{Customer only}
+    C -- Yes --> R3[03ICOM]
+    C -- No --> R4[Request ID unchanged]
+    R1 --> P{Postcode entered}
+    R2 --> P
+    R3 --> P
+    R4 --> P
+    P -- Yes --> R5[05ICOM<br>CA_B_Postcode set]
+    P -- No --> L[LINK LGIPOL01]
+    R5 --> L
+</div>
+<p>If neither key nor postcode is supplied, no request ID is set. The previous value is kept, which is blank after start-up or after an error. The program still links to <code>LGIPOL01</code>, and the back-end decides the outcome through its return code.</p>
+<h3 id="63-add-option-2" tabindex="-1">6.3 Add (Option 2)</h3>
+<p>The program sets <code>CA_REQUEST_ID</code> to <code>01ACOM</code>. It copies the customer number and all policy fields from the screen into the COMMAREA. These are the dates, address, postcode, coordinates, customer name, property type, the four peril and premium pairs, status and reject reason. It then links to <code>LGAPOL01</code>.</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">WHEN (&#039;2&#039;) DO;
+   CA_REQUEST_ID = &#039;01ACOM&#039;;
+   /* copy screen fields to CA_ISSUE_DATE ... CA_B_RejectReason */
+   EXEC CICS LINK PROGRAM(&#039;LGAPOL01&#039;)
+        COMMAREA(COMM_AREA) LENGTH(32500);
+   IF CA_RETURN_CODE &gt; 0 THEN DO;
+      EXEC CICS SYNCPOINT ROLLBACK;
+      GO TO NO_ADD;
+   END;
+   ENP4CNOI = CA_CUSTOMER_NUM;
+   ENP4PNOI = CA_POLICY_NUM;
+   ENP4OPTI = &#039; &#039;;
+   ERP4FLDO = &#039;New Commercial Policy Inserted&#039;;
+   EXEC CICS SEND MAP(&#039;SSMAPP4&#039;) FROM(SSMAPP4O) MAPSET(&#039;SSMAP&#039;);
+   GO TO ENDIT_STARTIT;
+END;</code></pre>
+</div>
+<h3 id="64-delete-option-3" tabindex="-1">6.4 Delete (Option 3)</h3>
+<p>The request is <code>01DCOM</code>. A failure issues <code>SYNCPOINT ROLLBACK</code> and goes to <code>NO_DELETE</code>, whatever the return code. On success the expiry date, address, postcode, coordinates, customer, property type, perils, premiums, status, reject reason and option fields are blanked. The issue date field is not cleared. The program then shows “Commercial Policy Deleted”.</p>
+<h2 id="7-error-handling-and-rollback" tabindex="-1">7. Error Handling and Rollback</h2>
+<h3 id="71-error-routing" tabindex="-1">7.1 Error Routing</h3>
+<p>Every failed back-end call goes to an operation-specific label. That label sets a message and falls into the common <code>ERROR_OUT</code> routine.</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Used by</th>
+<th>Message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NO_ADD</code></td>
+<td>P3, P4</td>
+<td>Return code 70: “Customer does not exist”. Otherwise “Error Adding House Policy” or “Error Adding Commercial Policy”.</td>
+</tr>
+<tr>
+<td><code>NO_UPD</code></td>
+<td>P3 only</td>
+<td>“Error Updating House Policy”</td>
+</tr>
+<tr>
+<td><code>NO_DELETE</code></td>
+<td>P3, P4</td>
+<td>“Error Deleting House Policy” or “Error Deleting Commercial Policy”</td>
+</tr>
+<tr>
+<td><code>NO_DATA</code></td>
+<td>P3, P4</td>
+<td>“No data was returned.”</td>
+</tr>
+</tbody>
+</table>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">NO_ADD:
+   SELECT (CA_RETURN_CODE);
+      WHEN (70)  ERP3FLDO = &#039;Customer does not exist&#039;;
+      OTHERWISE  ERP3FLDO = &#039;Error Adding House Policy&#039;;
+   END;
+   GO TO ERROR_OUT;</code></pre>
+</div>
+<h3 id="72-rollback-policy" tabindex="-1">7.2 Rollback Policy</h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>House (SSP3)</th>
+<th>Commercial (SSP4)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inquire failure</td>
+<td>No rollback</td>
+<td>No rollback</td>
+</tr>
+<tr>
+<td>Add failure</td>
+<td><code>SYNCPOINT ROLLBACK</code></td>
+<td><code>SYNCPOINT ROLLBACK</code></td>
+</tr>
+<tr>
+<td>Delete failure</td>
+<td><code>SYNCPOINT ROLLBACK</code></td>
+<td><code>SYNCPOINT ROLLBACK</code></td>
+</tr>
+<tr>
+<td>Update failure</td>
+<td>No rollback</td>
+<td>Not applicable</td>
+</tr>
+</tbody>
+</table>
+<p>An inquiry is read-only, so it needs no rollback. The house update path relies on the back-end program or CICS to handle recovery.</p>
+<h3 id="73-error_out-reset" tabindex="-1">7.3 ERROR_OUT Reset</h3>
+<p><code>ERROR_OUT</code> sends the map with the error text. It then clears all working state so that stale data does not carry into the next iteration. The reset covers these items:</p>
+<ul>
+<li>The input map <code>SSMAPP3I</code> / <code>SSMAPP4I</code> is blanked.</li>
+<li><code>COMM_AREA_RAW</code> is blanked.</li>
+<li><code>CA_REQUEST_ID</code> is blank.</li>
+<li><code>CA_RETURN_CODE</code> and <code>CA_CUSTOMER_NUM</code> are 0.</li>
+<li><code>CA_REQUEST_INITIALISER</code> is blank.</li>
+</ul>
+<p>It then goes to <code>ENDIT_STARTIT</code>.</p>
+<h3 id="74-failure-sequence-add" tabindex="-1">7.4 Failure Sequence (Add)</h3>
+<div class="mermaid">
+sequenceDiagram
+    participant U as Operator
+    participant M as Menu program
+    participant A as LGAPOL01
+    participant C as CICS
+    U->>M: Option 2 with policy data
+    M->>A: LINK 01AHOU / 01ACOM
+    A-->>M: CA_RETURN_CODE > 0
+    M->>C: SYNCPOINT ROLLBACK
+    alt RC = 70
+        M->>M: "Customer does not exist"
+    else other RC
+        M->>M: "Error Adding ... Policy"
+    end
+    M-->>U: SEND MAP with message
+    M->>M: Reset map and COMMAREA
+    M->>C: RETURN TRANSID
+</div>
+<h3 id="75-unhandled-conditions" tabindex="-1">7.5 Unhandled Conditions</h3>
+<p>The programs have no <code>RESP</code>/<code>RESP2</code> checks and no PL/I <code>ON ERROR</code> units. Only <code>MAPFAIL</code> is explicitly handled. Any other condition, such as a <code>LINK</code> to an uninstalled program, gets default CICS handling, which normally abends the transaction.</p>
+<h2 id="8-sequence-of-operations" tabindex="-1">8. Sequence of Operations</h2>
+<h3 id="81-house-policy-inquiry" tabindex="-1">8.1 House Policy Inquiry</h3>
+<div class="mermaid">
+sequenceDiagram
+    participant U as Operator
+    participant P as LGTESTP3
+    participant I as LGIPOL01
+    participant D as Db2
+    U->>P: SSP3, option 1, customer, policy
+    P->>P: CA_REQUEST_ID = 01IHOU
+    P->>I: EXEC CICS LINK COMMAREA
+    I->>D: Read policy and house data
+    D-->>I: Rows
+    I-->>P: CA_RETURN_CODE = 0 and house fields
+    P-->>U: SEND MAP SSMAPP3 with details
+    P->>P: RETURN TRANSID SSP3
+</div>
+<h3 id="82-commercial-policy-inquiry-by-postcode" tabindex="-1">8.2 Commercial Policy Inquiry by Postcode</h3>
+<div class="mermaid">
+sequenceDiagram
+    participant U as Operator
+    participant P as LGTESTP4
+    participant I as LGIPOL01
+    U->>P: SSP4, option 1, postcode
+    P->>P: CA_REQUEST_ID = 05ICOM
+    P->>P: CA_B_Postcode = ENP4HPCO
+    P->>I: EXEC CICS LINK COMMAREA
+    I-->>P: CA_RETURN_CODE and CA_B_* fields
+    P-->>U: SEND MAP SSMAPP4 with details
+    P->>P: RETURN TRANSID SSP4
+</div>
+<h2 id="9-data-model" tabindex="-1">9. Data Model</h2>
+<p>The menu programs do not run SQL. The data they reach through the COMMAREA corresponds to the following structures. The house model is shown here, and the commercial fields are carried in the <code>CA_COMMERCIAL</code> COMMAREA branch.</p>
+<div class="mermaid">
+erDiagram
+    CUSTOMER ||--o{ POLICY : owns
+    POLICY ||--o| HOUSE : describes
+    POLICY ||--o| COMMERCIAL : describes
+    POLICY {
+        int POLICY_NUM
+        int CUSTOMER_NUM
+        string ISSUE_DATE
+        string EXPIRY_DATE
+        string LASTCHANGED
+        int BROKERID
+        string BROKERSREF
+        int PAYMENT
+    }
+    HOUSE {
+        int POLICY_NUM
+        string PROPERTY_TYPE
+        int BEDROOMS
+        int VALUE
+        string HOUSE_NAME
+        string HOUSE_NUMBER
+        string POSTCODE
+    }
+    COMMERCIAL {
+        string ADDRESS
+        string POSTCODE
+        string LATITUDE
+        string LONGITUDE
+        string CUSTOMER
+        string PROPTYPE
+        int STATUS
+        string REJECTREASON
+    }
+</div>
+<h2 id="10-constraints-and-design-notes" tabindex="-1">10. Constraints and Design Notes</h2>
+<ul>
+<li><strong>Option validation.</strong> Only one option is processed per screen interaction. Any other value, including blank, gets the invalid-option message.</li>
+<li><strong>No field validation in the menus.</strong> The programs copy screen data straight to the COMMAREA. The back-end services must validate dates, numbers and required fields.</li>
+<li><strong>Add and update defaults (house).</strong> <code>CA_PAYMENT</code> = 0, <code>CA_BROKERID</code> = 0 and <code>CA_BROKERSREF</code> = blank.</li>
+<li><strong>Policy number on add.</strong> It is not supplied from the screen. The back-end generates it and the menu shows it.</li>
+<li><strong>COMMAREA size.</strong> All <code>LINK</code> commands pass <code>LENGTH(32500)</code>, matching <code>COMM_AREA_RAW</code>.</li>
+<li><strong>Message length.</strong> Messages are limited to 40 characters because <code>ERP3FLDO</code> and <code>ERP4FLDO</code> are CHAR(40).</li>
+<li><strong>Screen widths.</strong> Wider COMMAREA values are truncated on display. Examples are the 25-character address and customer fields on the commercial map.</li>
+<li><strong>Unreachable code.</strong> In LGTESTP3, the plain <code>EXEC CICS RETURN</code> after the <code>SELECT</code> is effectively unreachable. Every branch ends in a <code>GO TO</code>.</li>
+<li><strong>Inquiry with no keys (commercial).</strong> The request ID keeps its earlier value and the back-end is still called.</li>
+</ul>
+<h2 id="11-usage-examples" tabindex="-1">11. Usage Examples</h2>
+<h3 id="111-house-inquiry-option-1" tabindex="-1">11.1 House Inquiry (Option 1)</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>Option <code>1</code>, customer <code>0000000001</code>, policy <code>0000000100</code></td>
+</tr>
+<tr>
+<td>Request</td>
+<td><code>CA_REQUEST_ID = '01IHOU'</code>, <code>LINK LGIPOL01</code></td>
+</tr>
+<tr>
+<td>Back-end result</td>
+<td><code>CA_RETURN_CODE = 0</code>, issue date <code>2023-01-15</code>, expiry date <code>2024-01-14</code>, <code>Detached</code>, 4 bedrooms, value <code>00350000</code>, <code>Rose Cottage</code>, number <code>12</code>, postcode <code>AB12 3CD</code></td>
+</tr>
+<tr>
+<td>Screen result</td>
+<td>The fields <code>ENP3IDAI</code> through <code>ENP3HPCI</code> are filled with the returned values.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="112-house-add-option-2" tabindex="-1">11.2 House Add (Option 2)</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>Option <code>2</code>, customer <code>0000000001</code>, dates <code>2024-05-01</code> to <code>2025-04-30</code>, <code>Semi-Detached</code>, 3 bedrooms, value <code>00250000</code>, <code>Oak Villa</code>, number <code>45</code>, postcode <code>XY98 7ZT</code></td>
+</tr>
+<tr>
+<td>Request</td>
+<td><code>01AHOU</code>, <code>LINK LGAPOL01</code></td>
+</tr>
+<tr>
+<td>Back-end result</td>
+<td><code>CA_RETURN_CODE = 0</code>, <code>CA_POLICY_NUM = 0000000105</code></td>
+</tr>
+<tr>
+<td>Screen result</td>
+<td><code>ENP3PNOI = 0000000105</code>, the option is cleared, and <code>ERP3FLDO = 'New House Policy Inserted'</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="113-house-delete-option-3" tabindex="-1">11.3 House Delete (Option 3)</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>Option <code>3</code>, customer <code>0000000001</code>, policy <code>0000000100</code></td>
+</tr>
+<tr>
+<td>Request</td>
+<td><code>01DHOU</code>, <code>LINK LGDPOL01</code></td>
+</tr>
+<tr>
+<td>Back-end result</td>
+<td><code>CA_RETURN_CODE = 0</code></td>
+</tr>
+<tr>
+<td>Screen result</td>
+<td>The detail fields and the option are blank, and <code>ERP3FLDO = 'House Policy Deleted'</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="114-commercial-inquiry-by-policy-number-option-1" tabindex="-1">11.4 Commercial Inquiry by Policy Number (Option 1)</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>Option <code>1</code>, customer <code>0000000000</code>, policy <code>0000001001</code>, postcode blank</td>
+</tr>
+<tr>
+<td>Request</td>
+<td><code>02ICOM</code>, <code>LINK LGIPOL01</code></td>
+</tr>
+<tr>
+<td>Back-end result</td>
+<td><code>CA_RETURN_CODE = 0</code>, customer <code>0000000025</code>, dates <code>2023-01-15</code> and <code>2024-01-15</code>, <code>100 Industrial Way</code>, <code>AB12 3CD</code>, <code>ACME Corp</code>, <code>Warehouse</code>, fire peril <code>1000</code>, fire premium <code>00050000</code>, status <code>0001</code></td>
+</tr>
+<tr>
+<td>Screen result</td>
+<td>The map shows the returned values in the <code>ENP4...I</code> fields.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="115-commercial-add-option-2" tabindex="-1">11.5 Commercial Add (Option 2)</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>Option <code>2</code>, customer <code>0000000025</code>, dates <code>2023-05-01</code> to <code>2024-05-01</code>, <code>500 High Street</code>, <code>SW1A 1AA</code>, <code>Global Logistics Ltd</code>, <code>Office</code>, fire peril <code>0500</code>, fire premium <code>00025000</code>, status <code>0001</code></td>
+</tr>
+<tr>
+<td>Request</td>
+<td><code>01ACOM</code>, <code>LINK LGAPOL01</code></td>
+</tr>
+<tr>
+<td>Back-end result</td>
+<td><code>CA_RETURN_CODE = 0</code>, <code>CA_POLICY_NUM = 0000001042</code></td>
+</tr>
+<tr>
+<td>Screen result</td>
+<td><code>ENP4PNOI = 0000001042</code>, the option is cleared, and <code>ERP4FLDO = 'New Commercial Policy Inserted'</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="116-invalid-option" tabindex="-1">11.6 Invalid Option</h3>
+<p>Entering <code>9</code> as the option in either menu produces this result:</p>
+<ul>
+<li>The message “Please enter a valid option” is placed in the message field.</li>
+<li>The option length field is set to -1, so the cursor is positioned on the option field.</li>
+<li>No back-end program is called.</li>
+<li>The map is resent with <code>CURSOR</code> and the transaction returns under its own transaction ID.</li>
+</ul>
+<h2 id="12-dependencies-summary" tabindex="-1">12. Dependencies Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Dependency</th>
+<th>Used by</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mapset <code>SSMAP</code> (maps <code>SSMAPP3</code>, <code>SSMAPP4</code>)</td>
+<td>P3, P4</td>
+<td>3270 screen definitions. The BMS source is not part of this repository.</td>
+</tr>
+<tr>
+<td><code>SSMAP.inc</code></td>
+<td>P3, P4</td>
+<td>PL/I symbolic map structures (<code>SSMAPP3I/O</code>, <code>SSMAPP4I/O</code>).</td>
+</tr>
+<tr>
+<td><code>LGCMAREA.inc</code></td>
+<td>P3, P4</td>
+<td>Shared <code>COMM_AREA</code> definition.</td>
+</tr>
+<tr>
+<td><code>LGIPOL01</code></td>
+<td>P3, P4</td>
+<td>Policy inquiry orchestrator.</td>
+</tr>
+<tr>
+<td><code>LGAPOL01</code></td>
+<td>P3, P4</td>
+<td>Policy add orchestrator.</td>
+</tr>
+<tr>
+<td><code>LGDPOL01</code></td>
+<td>P3, P4</td>
+<td>Policy delete orchestrator.</td>
+</tr>
+<tr>
+<td><code>LGUPOL01</code></td>
+<td>P3</td>
+<td>House policy update orchestrator.</td>
+</tr>
+<tr>
+<td>CICS Transaction Server</td>
+<td>P3, P4</td>
+<td>BMS, <code>LINK</code>, <code>RETURN</code>, <code>HANDLE AID</code>, <code>HANDLE CONDITION</code>, <code>SYNCPOINT</code>.</td>
+</tr>
+</tbody>
+</table>
+
+                        <div class="related-pages">
+                            <p class="related-pages-title">Related Pages</p>
+                            <div class="card-grid">
+                                
+            <a href="motor-and-endowment-menus.html" class="card">
+                <span class="card-title">Motor and Endowment Policy Menus</span>
+                <span class="card-description">The 3270 menu programs for motor policies (LGTESTP1, map SSMAPP1) and endowment policies (LGTESTP2). They cover inquire, add, delete and update, plus pseudo-conversational handling and PF3 exit.</span>
+            </a>
+            <a href="policy-inquiry.html" class="card">
+                <span class="card-title">Policy Inquiry</span>
+                <span class="card-description">The policy and claim inquiry flow. LGIPOL01 is the business-logic entry point and LGIPDB01 retrieves data from Db2 for each policy type, claims, and multi-record lookups. LGIPVS01 does the generic key browse on the VSAM policy file.</span>
+            </a>
+            <a href="policy-add.html" class="card">
+                <span class="card-title">Policy Add</span>
+                <span class="card-description">The new-policy flow. LGAPOL01 orchestrates, optionally calling the ODM business-rules program LGAPBR01. LGAPDB01 inserts into Db2 and LGAPVS01 persists the policy record to the VSAM KSDS.</span>
+            </a>
+            <a href="policy-delete.html" class="card">
+                <span class="card-title">Policy Delete</span>
+                <span class="card-description">The policy deletion chain. LGDPOL01 dispatches by policy type and LGDPDB01 deletes from the Db2 POLICY table, with child rows removed by foreign-key cascade. LGDPVS01 removes the matching record from the VSAM policy file.</span>
+            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-overview">1. Overview</a>
+<ul>
+<li class="toc-level-3"><a href="#11-purpose">1.1 Purpose</a></li>
+<li class="toc-level-3"><a href="#12-key-characteristics">1.2 Key Characteristics</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#2-system-architecture">2. System Architecture</a>
+<ul>
+<li class="toc-level-3"><a href="#21-component-overview">2.1 Component Overview</a></li>
+<li class="toc-level-3"><a href="#22-shared-infrastructure">2.2 Shared Infrastructure</a></li>
+<li class="toc-level-3"><a href="#23-program-structure">2.3 Program Structure</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-request-codes-and-back-end-services">3. Request Codes and Back-End Services</a>
+<ul>
+<li class="toc-level-3"><a href="#31-house-policy-request-codes-lgtestp3">3.1 House Policy Request Codes (LGTESTP3)</a></li>
+<li class="toc-level-3"><a href="#32-commercial-policy-request-codes-lgtestp4">3.2 Commercial Policy Request Codes (LGTESTP4)</a></li>
+<li class="toc-level-3"><a href="#33-commarea-fields">3.3 COMMAREA Fields</a></li>
+<li class="toc-level-3"><a href="#34-return-codes">3.4 Return Codes</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-screen-handling">4. Screen Handling</a>
+<ul>
+<li class="toc-level-3"><a href="#41-initial-display">4.1 Initial Display</a></li>
+<li class="toc-level-3"><a href="#42-receive-and-dispatch">4.2 Receive and Dispatch</a></li>
+<li class="toc-level-3"><a href="#43-attention-keys-and-exit-paths">4.3 Attention Keys and Exit Paths</a></li>
+<li class="toc-level-3"><a href="#44-screen-field-mapping">4.4 Screen Field Mapping</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-house-policy-menu-lgtestp3">5. House Policy Menu (LGTESTP3)</a>
+<ul>
+<li class="toc-level-3"><a href="#51-processing-flow">5.1 Processing Flow</a></li>
+<li class="toc-level-3"><a href="#52-inquire-option-1">5.2 Inquire (Option 1)</a></li>
+<li class="toc-level-3"><a href="#53-add-option-2">5.3 Add (Option 2)</a></li>
+<li class="toc-level-3"><a href="#54-delete-option-3">5.4 Delete (Option 3)</a></li>
+<li class="toc-level-3"><a href="#55-update-option-4">5.5 Update (Option 4)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#6-commercial-policy-menu-lgtestp4">6. Commercial Policy Menu (LGTESTP4)</a>
+<ul>
+<li class="toc-level-3"><a href="#61-processing-flow">6.1 Processing Flow</a></li>
+<li class="toc-level-3"><a href="#62-inquiry-request-selection">6.2 Inquiry Request Selection</a></li>
+<li class="toc-level-3"><a href="#63-add-option-2">6.3 Add (Option 2)</a></li>
+<li class="toc-level-3"><a href="#64-delete-option-3">6.4 Delete (Option 3)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-error-handling-and-rollback">7. Error Handling and Rollback</a>
+<ul>
+<li class="toc-level-3"><a href="#71-error-routing">7.1 Error Routing</a></li>
+<li class="toc-level-3"><a href="#72-rollback-policy">7.2 Rollback Policy</a></li>
+<li class="toc-level-3"><a href="#73-error_out-reset">7.3 ERROR_OUT Reset</a></li>
+<li class="toc-level-3"><a href="#74-failure-sequence-add">7.4 Failure Sequence (Add)</a></li>
+<li class="toc-level-3"><a href="#75-unhandled-conditions">7.5 Unhandled Conditions</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-sequence-of-operations">8. Sequence of Operations</a>
+<ul>
+<li class="toc-level-3"><a href="#81-house-policy-inquiry">8.1 House Policy Inquiry</a></li>
+<li class="toc-level-3"><a href="#82-commercial-policy-inquiry-by-postcode">8.2 Commercial Policy Inquiry by Postcode</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-data-model">9. Data Model</a></li>
+<li class="toc-level-2"><a href="#10-constraints-and-design-notes">10. Constraints and Design Notes</a></li>
+<li class="toc-level-2"><a href="#11-usage-examples">11. Usage Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#111-house-inquiry-option-1">11.1 House Inquiry (Option 1)</a></li>
+<li class="toc-level-3"><a href="#112-house-add-option-2">11.2 House Add (Option 2)</a></li>
+<li class="toc-level-3"><a href="#113-house-delete-option-3">11.3 House Delete (Option 3)</a></li>
+<li class="toc-level-3"><a href="#114-commercial-inquiry-by-policy-number-option-1">11.4 Commercial Inquiry by Policy Number (Option 1)</a></li>
+<li class="toc-level-3"><a href="#115-commercial-add-option-2">11.5 Commercial Add (Option 2)</a></li>
+<li class="toc-level-3"><a href="#116-invalid-option">11.6 Invalid Option</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#12-dependencies-summary">12. Dependencies Summary</a></li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* sidebar-toggle.js — persists open/closed state across navigation */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — only stamps sessionStorage when clicking a source-file link
+       that lives inside the "Source Files" disclosure section, not from sidebar or cards. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('sources/') === -1) return;
+        /* Only set referrer when the click originates from inside the Source Files
+           disclosure (.source-files-disclosure). Any other path — sidebar, cards,
+           direct navigation — must not set a referrer. */
+        if (!link.closest('.source-files-disclosure')) return;
+        try {
+          sessionStorage.setItem('wiki_referrer', JSON.stringify({
+            href: location.href,
+            title: document.title,
+            file: location.pathname.split('/').pop()
+          }));
+        } catch (_e) {}
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>

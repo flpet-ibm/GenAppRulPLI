@@ -1,0 +1,1413 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGDPDB01</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link active">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>LGDPDB01 is a CICS/Db2 PL/I program that deletes an insurance policy. It is part of a general insurance application. The caller passes a communication area with a customer number, a policy number, and a request code for an endowment, house, commercial, or motor delete. The program checks that the communication area is present and big enough. It then removes the matching row from the Db2 POLICY table. Foreign key relationships carry the delete through to the policy-type table. Once the delete succeeds, it links to a follow-on program, LGDPVS01, to continue processing the same request. It reports the outcome to the caller through a return code. That code covers success, a communication area that is too small, a Db2 failure, and an unrecognized request. Failures are logged with a timestamp, customer and policy numbers, the SQLCODE, and part of the communication area. These log entries are written through a shared logging program, LGSTSQ.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<p><strong>CICS Communication Area (COMMAREA)</strong></p>
+<p>Passed to the program via <code>COMM_AREA_PTR</code> on entry through <code>EXEC CICS LINK</code> from the orchestrator <code>LGDPOL01</code>. The program validates its presence and minimum length before use.</p>
+<ul>
+<li>
+<p><strong><code>CA_REQUEST_ID</code></strong> — 6-character operation code that drives the main <code>SELECT</code> branch; recognised values are <code>'01DEND'</code> (Endowment), <code>'01DHOU'</code> (House), <code>'01DCOM'</code> (Commercial), and <code>'01DMOT'</code> (Motor). Any other value causes return code <code>'99'</code>.</p>
+</li>
+<li>
+<p><strong><code>CA_CUSTOMER_NUM</code></strong> — 10-digit customer identifier; converted to a <code>FIXED BIN(31)</code> host variable (<code>DB2_CUSTOMERNUM_INT</code>) and used as the <code>CUSTOMERNUMBER</code> predicate in the <code>DELETE FROM POLICY</code> SQL statement.</p>
+</li>
+<li>
+<p><strong><code>CA_POLICY_NUM</code></strong> — 10-digit policy identifier; converted to <code>DB2_POLICYNUM_INT</code> and used as the <code>POLICYNUMBER</code> predicate in the same <code>DELETE FROM POLICY</code> SQL statement.</p>
+<p>The following COMMAREA fields are passed through unchanged to <code>LGDPVS01</code> via <code>EXEC CICS LINK</code>. They are not read by this program but must be present in the COMMAREA for the downstream VSAM delete step:</p>
+<ul>
+<li><strong><code>CA_ISSUE_DATE</code></strong> — 10-character policy issue date.</li>
+<li><strong><code>CA_EXPIRY_DATE</code></strong> — 10-character policy expiry date.</li>
+<li><strong><code>CA_PAYMENT</code></strong> — 6-digit periodic premium/payment amount.</li>
+<li><strong><code>CA_BROKERID</code></strong> — 10-digit broker identifier.</li>
+<li><strong><code>CA_BROKERSREF</code></strong> — 10-character broker reference code.</li>
+<li><strong><code>CA_E_SUM_ASSURED</code></strong> — Endowment sum assured (used when <code>CA_REQUEST_ID</code> is <code>'01DEND'</code>).</li>
+<li><strong><code>CA_E_LIFE_ASSURED</code></strong> — 31-character name of the life assured under an endowment policy.</li>
+<li><strong><code>CA_H_VALUE</code></strong> — 8-digit insured valuation of a house property (used when <code>CA_REQUEST_ID</code> is <code>'01DHOU'</code>).</li>
+<li><strong><code>CA_H_PROPERTY_TYPE</code></strong> — 15-character residential property classification.</li>
+<li><strong><code>CA_M_PREMIUM</code></strong> — 6-digit motor insurance premium (used when <code>CA_REQUEST_ID</code> is <code>'01DMOT'</code>).</li>
+<li><strong><code>CA_M_REGNUMBER</code></strong> — 7-character vehicle registration number.</li>
+<li><strong><code>CA_B_PropType</code></strong> — 255-character commercial property type (used when <code>CA_REQUEST_ID</code> is <code>'01DCOM'</code>).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Db2 Database</strong></p>
+<ul>
+<li><strong><code>POLICY</code> table</strong> — The program issues <code>DELETE FROM POLICY WHERE CUSTOMERNUMBER = :DB2_CUSTOMERNUM_INT AND POLICYNUMBER = :DB2_POLICYNUM_INT</code>. Due to foreign-key cascade rules defined in the schema, the delete propagates automatically to the corresponding child table (<code>ENDOWMENT</code>, <code>HOUSE</code>, <code>MOTOR</code>, or <code>COMMERCIAL</code>). The table content is therefore an implicit external input that determines whether the delete succeeds or returns <code>SQLCODE 100</code> (row not found).</li>
+</ul>
+<p><strong>CICS Execution Environment</strong></p>
+<ul>
+<li><strong><code>EIBCALEN</code></strong> — Length of the received COMMAREA, supplied by CICS in the Execute Interface Block. Used to detect a missing COMMAREA (<code>= 0</code>, triggers abend <code>LGCA</code>) and an undersized COMMAREA (<code>&lt; 28</code>, sets return code <code>'98'</code>).</li>
+<li><strong><code>EIBTRNID</code></strong> / <strong><code>EIBTRMID</code></strong> / <strong><code>EIBTASKN</code></strong> — Transaction ID, terminal ID, and task number from the EIB; copied into <code>WS_HEADER</code> fields for diagnostic identification in error messages.</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<h3 id="31-communication-area-dfhcommarea" tabindex="-1">3.1 Communication Area (DFHCOMMAREA)</h3>
+<ul>
+<li><code>COMM_AREA</code>: The primary communication data structure returned to the calling program or passed downstream to linked programs (<code>LGDPVS01</code>), containing the processing status and policy request details.
+<ul>
+<li><code>CA_RETURN_CODE</code>: A two-digit numeric status indicator set by the program to signal the outcome of the policy deletion request:
+<ul>
+<li><code>00</code>: Success (policy deletion completed or forwarded).</li>
+<li><code>90</code>: Database error encountered during the DB2 delete operation.</li>
+<li><code>98</code>: Invalid communication area length (less than the minimum header length).</li>
+<li><code>99</code>: Unrecognized request identifier.</li>
+</ul>
+</li>
+<li><code>CA_REQUEST_ID</code>: Identifies the policy deletion request type passed to the downstream program (<code>01DEND</code>, <code>01DHOU</code>, <code>01DCOM</code>, or <code>01DMOT</code>).</li>
+<li><code>CA_CUSTOMER_NUM</code>: The 10-digit customer number associated with the target policy record.</li>
+<li><code>CA_POLICY_NUM</code>: The 10-digit policy identifier targeted for deletion.</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-relational-database-updates-db2" tabindex="-1">3.2 Relational Database Updates (DB2)</h3>
+<ul>
+<li><code>POLICY</code>: Target relational database table where policy records are deleted based on the customer number (<code>CUSTOMERNUMBER</code>) and policy number (<code>POLICYNUMBER</code>). Due to foreign key cascading constraints, deletion from this table propagates to the corresponding policy-specific detail tables (Endowment, House, Motor, or Commercial).</li>
+</ul>
+<h3 id="33-program-linkage-and-inter-program-interfaces" tabindex="-1">3.3 Program Linkage and Inter-Program Interfaces</h3>
+<ul>
+<li><code>LGDPVS01</code>: Target CICS program invoked via <code>EXEC CICS LINK</code> when a valid delete request is processed, receiving the full 32,500-byte <code>COMM_AREA</code> to perform downstream policy deletion tasks (such as VSAM record cleanup).</li>
+<li><code>LGSTSQ</code>: Error-logging utility program invoked via <code>EXEC CICS LINK</code> to log error diagnostics to transient data queues when failures occur:
+<ul>
+<li><code>ERROR_MSG</code>: Formatted error message structure passed to <code>LGSTSQ</code> containing the date (<code>EM_DATE</code>), time (<code>EM_TIME</code>), program identifier (<code>LGDPDB01</code>), customer number (<code>EM_CUSNUM</code>), policy number (<code>EM_POLNUM</code>), operation name (<code>EM_SQLREQ</code>), and DB2 return code (<code>EM_SQLRC</code>).</li>
+<li><code>CA_ERROR_MSG</code>: Error payload structure containing up to 90 bytes of the raw communication area data (<code>CA_DATA</code>) passed to <code>LGSTSQ</code> for diagnostic context.</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-cics-system-side-effects" tabindex="-1">3.4 CICS System Side Effects</h3>
+<ul>
+<li><code>EXEC CICS ABEND</code>: Abnormal termination issued with abend code <code>LGCA</code> (without a dump) if the program is invoked without an incoming communication area (<code>EIBCALEN = 0</code>).</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    A([Start LGDPDB01]) --> B[Save transaction id, terminal id and task number<br>Reset DB2 host variables]
+    B --> C{Commarea length is zero}
+    C -- Yes --> D[Set message NO COMMAREA RECEIVED]
+    D --> E[Write error message to queue]
+    E --> F([Abend task with code LGCA])
+    C -- No --> G[Set return code to 00<br>Save commarea length and address]
+    G --> H{Commarea shorter than 28 bytes}
+    H -- Yes --> I[Set return code to 98]
+    I --> J([Return to CICS])
+    H -- No --> K[Convert customer and policy numbers to integers<br>Save them in error message]
+    K --> L{Request id is 01DEND, 01DHOU, 01DCOM or 01DMOT}
+    L -- No --> M[Set return code to 99]
+    M --> Z([Return to CICS])
+    L -- Yes --> N[Set SQL request text to DELETE POLICY]
+    N --> O[Delete row from POLICY table<br>by customer number and policy number]
+    O --> P{SQLCODE not zero}
+    P -- Yes --> Q[Set return code to 90]
+    Q --> R[Write error message to queue]
+    R --> S([Return to CICS])
+    P -- No --> T[Link to LGDPVS01 with commarea]
+    T --> U([Return to CICS])
+
+    subgraph WEM [Write error message routine]
+        W1[Move SQLCODE into message] --> W2[Get current time and format date and time]
+        W2 --> W3[Link to LGSTSQ with error message]
+        W3 --> W4{Commarea length greater than zero}
+        W4 -- No --> W8([End routine])
+        W4 -- Yes --> W5{Commarea length less than 91}
+        W5 -- Yes --> W6[Copy whole commarea into CA_DATA<br>Link to LGSTSQ]
+        W5 -- No --> W7[Copy first 90 bytes into CA_DATA<br>Link to LGSTSQ]
+        W6 --> W8
+        W7 --> W8
+    end
+
+    classDef startend fill:#C8E6C9,stroke:#6A9F6E,color:#000;
+    classDef process fill:#BBDEFB,stroke:#6A93BF,color:#000;
+    classDef decision fill:#FFF9C4,stroke:#BFB76A,color:#000;
+    classDef error fill:#F8BBD0,stroke:#BF6A87,color:#000;
+
+    class A,J,Z,S,U,W8 startend;
+    class F error;
+    class B,G,K,N,O,T,W1,W2,W3,W6,W7 process;
+    class D,E,I,M,Q,R error;
+    class C,H,L,P,W4,W5 decision;
+</div>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<p><strong>High-level Summary</strong></p>
+<p>LGDPDB01 is a reentrant CICS PL/I program in the insurance policy application. It deletes one policy row from the DB2 POLICY table. The row is identified by customer number and policy number. The delete is expected to cascade to the matching policy-type table (Endowment, House, Motor or Commercial) through foreign key definitions. The program validates the commarea and the request id first. After a successful delete it links to a second program, LGDPVS01, and then returns to the caller. It reports problems through a return code in the commarea and through error messages written to a queue.</p>
+<p><strong>Execution Flow</strong></p>
+<ol>
+<li><strong>Initialisation.</strong> The program copies the transaction id (EIBTRNID), terminal id (EIBTRMID) and task number (EIBTASKN) into the WS_HEADER diagnostic fields. It also resets the DB2 host integer variables to 0.</li>
+<li><strong>No commarea.</strong> If EIBCALEN is 0, the program sets the message text to “NO COMMAREA RECEIVED” and calls WRITE_ERROR_MESSAGE. It then abends the task with code <code>LGCA</code> and no dump.</li>
+<li><strong>Commarea present.</strong> The program sets <code>CA_RETURN_CODE</code> to ‘00’. It stores the commarea length in WS_CALEN and the commarea address in WS_ADDR_DFHCOMMAREA.</li>
+<li><strong>Length check.</strong> The minimum commarea length is the 28-byte header (WS_CA_HEADER_LEN). If EIBCALEN is less than 28, the program sets the return code to ‘98’ and returns to CICS. It writes no error message in this case.</li>
+<li><strong>Key conversion.</strong> <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code> are converted into the DB2 integer host variables DB2_CUSTOMERNUM_INT and DB2_POLICYNUM_INT. Both numbers are also stored in the error message fields EM_CUSNUM and EM_POLNUM, in case an error has to be reported.</li>
+<li><strong>Request routing.</strong> The program tests <code>CA_REQUEST_ID</code> with a SELECT/WHEN construct:
+<ul>
+<li><code>01DEND</code> (Endowment), <code>01DHOU</code> (House), <code>01DCOM</code> (Commercial) and <code>01DMOT</code> (Motor) are the recognised delete requests. The program calls DELETE_POLICY_DB2_INFO and then links to <code>LGDPVS01</code>, passing the whole commarea with a length of 32500.</li>
+<li>Any other value (OTHERWISE) sets the return code to ‘99’ (unrecognised request).</li>
+</ul>
+</li>
+<li><strong>DELETE_POLICY_DB2_INFO.</strong> The program sets EM_SQLREQ to &quot; DELETE POLICY &quot; and runs <code>DELETE FROM POLICY WHERE CUSTOMERNUMBER = :customer AND POLICYNUMBER = :policy</code>.
+<ul>
+<li>SQLCODE 0 (deleted) and SQLCODE 100 (not found) are both treated as success.</li>
+<li>The code comment says both are treated as success, because the end result is that the record no longer exists. The actual test is <code>SQLCODE &lt;&gt; 0</code>, so a non-zero SQLCODE, including 100, takes the error path. Any such SQLCODE sets the return code to ‘90’, calls WRITE_ERROR_MESSAGE and returns to CICS immediately. In this case LGDPVS01 is not called.</li>
+</ul>
+</li>
+<li><strong>Return.</strong> After the SELECT, the program issues <code>EXEC CICS RETURN</code>. The return code in the commarea tells the caller what happened:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Return code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>90</td>
+<td>DB2 error on delete</td>
+</tr>
+<tr>
+<td>98</td>
+<td>Commarea too short</td>
+</tr>
+<tr>
+<td>99</td>
+<td>Unrecognised request id</td>
+</tr>
+</tbody>
+</table>
+<ol start="9">
+<li><strong>WRITE_ERROR_MESSAGE.</strong>
+<ul>
+<li>It moves SQLCODE into EM_SQLRC and issues ASKTIME and FORMATTIME (MMDDYYYY date and time) to fill EM_DATE and EM_TIME.</li>
+<li>It links to program <code>LGSTSQ</code> with the ERROR_MSG structure, which writes the message to the queue.</li>
+<li>If EIBCALEN is greater than 0, it copies up to 90 bytes of the commarea into CA_DATA. This is the whole commarea when EIBCALEN is under 91, and the first 90 bytes otherwise. It then links to <code>LGSTSQ</code> again with CA_ERROR_MSG (prefix “COMMAREA=”). Both branches use <code>LENGTH(STG(ERROR_MSG))</code> for the link length.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Business Rules</strong></p>
+<ul>
+<li>Only the four request ids <code>01DEND</code>, <code>01DHOU</code>, <code>01DCOM</code> and <code>01DMOT</code> are accepted. All four run the same delete against the POLICY table.</li>
+<li>The delete is keyed on both customer number and policy number.</li>
+<li>Policy-type child rows are expected to be removed by database cascade, not by this program.</li>
+<li>The commarea must be at least 28 bytes long.</li>
+<li>The commarea fields in the request include <code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code> and <code>CA_REQUEST_ID</code>. Policy detail fields such as <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_PAYMENT</code>, <code>CA_BROKERID</code> and <code>CA_BROKERSREF</code> are defined in the shared layout, but this program does not use them.</li>
+</ul>
+<p><strong>External Interactions</strong></p>
+<ul>
+<li><strong>DB2 table POLICY.</strong> A DELETE by CUSTOMERNUMBER and POLICYNUMBER. The delete cascades to the Endowment, House, Motor or Commercial child tables.</li>
+<li><strong>CICS LINK to LGDPVS01.</strong> It is called after a successful delete, with the full 32500-byte commarea. Its purpose is not shown in this source. The name suggests a related follow-up step, such as VSAM handling.</li>
+<li><strong>CICS LINK to LGSTSQ.</strong> It writes error messages and commarea contents to a queue (TDQ/TSQ).</li>
+<li><strong>CICS ASKTIME and FORMATTIME.</strong> These supply the timestamps for error messages.</li>
+<li><strong>CICS ABEND <code>LGCA</code>.</strong> It is issued when no commarea is received.</li>
+<li><strong>CICS RETURN.</strong> It ends the transaction and returns control to the caller.</li>
+</ul>
+<p><strong>Plain Language Summary</strong></p>
+<p>The program receives a request to delete an insurance policy. It first checks that it was given enough information. It then checks that the request is one of the four known delete types: endowment, house, motor or commercial. If so, it removes the policy from the main policy table, and the database automatically removes the matching detail record. If the delete works, it calls another program to finish related work. If anything goes wrong, it sets a code in the shared data area so the caller knows the cause: 90 for a database problem, 98 for too little data and 99 for an unknown request. When a database error occurs, it also logs a time-stamped message with the customer number, policy number and database error code. If no data at all was passed, it logs the problem and stops the task abnormally.</p>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+    POLICY {
+        int POLICYNUMBER "key, delete criterion"
+        int CUSTOMERNUMBER "delete criterion"
+        string ISSUEDATE "length 10"
+        string EXPIRYDATE "length 10"
+        int BROKERID
+        string BROKERSREFERENCE "length 10"
+        int PAYMENT
+    }
+    ENDOWMENT {
+        int POLICYNUMBER "foreign key, cascade delete"
+        int SUMASSURED
+        string LIFEASSURED "length 31"
+    }
+    HOUSE {
+        int POLICYNUMBER "foreign key, cascade delete"
+        string PROPERTYTYPE "length 15"
+        int VALUE
+    }
+    MOTOR {
+        int POLICYNUMBER "foreign key, cascade delete"
+        string REGNUMBER "length 7"
+        int PREMIUM
+    }
+    COMMERCIAL {
+        int POLICYNUMBER "foreign key, cascade delete"
+        string PROPTYPE "length 255"
+    }
+    POLICY ||--o| ENDOWMENT : "has"
+    POLICY ||--o| HOUSE : "has"
+    POLICY ||--o| MOTOR : "has"
+    POLICY ||--o| COMMERCIAL : "has"
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGDPDB01 (main procedure, lines 10–256)</strong>: Entry point of the CICS reentrant program, <code>Proc(DFHEIPTR, COMM_AREA_PTR) Options(Main,Reentrant)</code>. It deletes a policy row from the DB2 POLICY table. Foreign-key cascade also removes the matching Endowment, House, Motor or Commercial row.</p>
+<ul>
+<li><strong>Declarations and setup</strong>
+<ul>
+<li>It declares the working storage, the error message structures (<code>ERROR_MSG</code>, <code>CA_ERROR_MSG</code>), the DB2 host integers and the SQLCA.</li>
+<li>It declares the <code>COMM_AREA</code> structure, which is based on <code>COMM_AREA_PTR</code>. The structure holds <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code> and the policy-specific data.</li>
+<li>It copies the transaction ID, terminal ID and task number from the EIB (<code>EIBTRNID</code>, <code>EIBTRMID</code>, <code>EIBTASKN</code>) into the <code>WS_HEADER</code> fields.</li>
+<li>It resets the DB2 host variables to 0.</li>
+</ul>
+</li>
+<li><strong>Commarea validation</strong>
+<ul>
+<li>If <code>EIBCALEN = 0</code>, it sets <code>EM_MSG_TEXT</code> to “NO COMMAREA RECEIVED” and calls <code>WRITE_ERROR_MESSAGE</code>. It then issues <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>.</li>
+<li>Otherwise it sets <code>CA_RETURN_CODE</code> to ‘00’ and saves the commarea length and address in <code>WS_CALEN</code> and <code>WS_ADDR_DFHCOMMAREA</code>.</li>
+<li>If <code>EIBCALEN</code> is less than the minimum header length (<code>WS_CA_HEADER_LEN</code> = 28), it sets <code>CA_RETURN_CODE</code> to ‘98’ and issues <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li><strong>Data preparation</strong>
+<ul>
+<li>It converts <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code> into the DB2 integer host variables <code>DB2_CUSTOMERNUM_INT</code> and <code>DB2_POLICYNUM_INT</code>.</li>
+<li>It also copies both numbers into <code>EM_CUSNUM</code> and <code>EM_POLNUM</code>, so they appear in any error message.</li>
+</ul>
+</li>
+<li><strong>Request dispatch</strong>
+<ul>
+<li>A <code>SELECT (CA_REQUEST_ID)</code> statement handles the request codes.</li>
+<li>For ‘01DEND’, ‘01DHOU’, ‘01DCOM’ and ‘01DMOT’ (the delete requests for Endowment, House, Commercial and Motor), it calls <code>DELETE_POLICY_DB2_INFO</code>. It then issues <code>EXEC CICS LINK PROGRAM('LGDPVS01')</code> with the commarea and a length of 32500.</li>
+<li>For any other value (<code>OTHERWISE</code>), it sets <code>CA_RETURN_CODE</code> to ‘99’.</li>
+</ul>
+</li>
+<li><strong>Termination</strong>: It issues <code>EXEC CICS RETURN</code> to give control back to the caller.</li>
+<li><strong>External interactions</strong>: CICS ABEND, RETURN and LINK to LGDPVS01. The DB2 work is done in the internal procedures below.</li>
+</ul>
+</li>
+<li>
+<p><strong>DELETE_POLICY_DB2_INFO (lines 263–280)</strong>: Internal procedure that deletes the policy row from DB2.</p>
+<ul>
+<li>It sets <code>EM_SQLREQ</code> to ’ DELETE POLICY  ', so an error message identifies the failing request.</li>
+<li>It runs <code>EXEC SQL DELETE FROM POLICY WHERE CUSTOMERNUMBER = :DB2_CUSTOMERNUM_INT AND POLICYNUMBER = :DB2_POLICYNUM_INT</code>.</li>
+<li><strong>Control flow</strong>
+<ul>
+<li>If <code>SQLCODE &lt;&gt; 0</code>, it sets <code>CA_RETURN_CODE</code> to ‘90’ and calls <code>WRITE_ERROR_MESSAGE</code>. It then issues <code>EXEC CICS RETURN</code>, which ends the transaction without running the later LINK to LGDPVS01.</li>
+<li>On success it returns to the caller, and the main flow continues to the LINK.</li>
+</ul>
+</li>
+<li><strong>External interactions</strong>: DB2 DELETE on the POLICY table. The cascade to the policy-type tables comes from the foreign-key definitions. A CICS RETURN is issued on failure.</li>
+<li>The in-code comment says SQLCODE 100 (row not found) should be treated as success, but the code only accepts SQLCODE 0. A SQLCODE of 100 therefore sets return code ‘90’.</li>
+</ul>
+</li>
+<li>
+<p><strong>WRITE_ERROR_MESSAGE (lines 287–320)</strong>: Internal procedure that builds an error message and writes it to the error queue through the LGSTSQ program.</p>
+<ul>
+<li><strong>Message preparation</strong>
+<ul>
+<li>It copies <code>SQLCODE</code> into <code>EM_SQLRC</code>.</li>
+<li>It issues <code>EXEC CICS ASKTIME ABSTIME(WS_ABSTIME)</code>.</li>
+<li>It issues <code>EXEC CICS FORMATTIME</code> with <code>MMDDYYYY(WS_DATE)</code> and <code>TIME(WS_TIME)</code>.</li>
+<li>It moves the formatted date and time to <code>EM_DATE</code> and <code>EM_TIME</code>.</li>
+</ul>
+</li>
+<li><strong>First write</strong>: It issues <code>EXEC CICS LINK PROGRAM('LGSTSQ')</code> with <code>ERROR_MSG</code> as the commarea. The message holds the date, time, program name, customer number, policy number, SQL request and SQLCODE.</li>
+<li><strong>Commarea dump (conditional)</strong>
+<ul>
+<li>If <code>EIBCALEN &gt; 0</code>, it also writes the commarea contents.</li>
+<li>If <code>EIBCALEN &lt; 91</code>, <code>CA_DATA</code> gets the whole commarea, left-justified with <code>LEFT(COMM_AREA_RAW, EIBCALEN)</code>. It then links to LGSTSQ with <code>CA_ERROR_MSG</code>.</li>
+<li>Otherwise, <code>CA_DATA</code> gets the first 90 bytes with <code>LEFT(COMM_AREA_RAW, 90)</code>, and it links to LGSTSQ again.</li>
+<li>Both LINK calls specify <code>LENGTH(STG(ERROR_MSG))</code> rather than the length of <code>CA_ERROR_MSG</code>.</li>
+</ul>
+</li>
+<li>It ends with <code>RETURN</code>.</li>
+<li><strong>External interactions</strong>: CICS ASKTIME, FORMATTIME and LINK to LGSTSQ, which writes to the queue.</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<ul>
+<li>
+<p><strong>Runtime and transaction environment</strong></p>
+<ul>
+<li>CICS transaction runtime
+<ul>
+<li>The program is <code>Options(Main,Reentrant)</code> and runs as a CICS program. It needs the CICS execution interface (<code>DFHEIPTR</code>) as its first parameter.</li>
+<li>It reads the EIB fields <code>EIBTRNID</code>, <code>EIBTRMID</code>, <code>EIBTASKN</code> and <code>EIBCALEN</code>. These supply the transaction ID, terminal ID, task number and commarea length. They are used for diagnostics and for commarea validation.</li>
+<li>It issues <code>EXEC CICS RETURN</code> to hand control back to the caller. It issues <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code> when no commarea is received.</li>
+</ul>
+</li>
+<li>DB2 precompiler and runtime
+<ul>
+<li>The program embeds SQL, so it needs the DB2 precompiler and the CICS-DB2 attachment at run time.</li>
+<li><code>EXEC SQL INCLUDE SQLCA</code> supplies the SQL communication area. The program reads <code>SQLCODE</code> from it to check the result of the delete.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Input parameters and data sources</strong></p>
+<ul>
+<li>CICS commarea passed by the caller
+<ul>
+<li><code>COMM_AREA_PTR</code> is the second parameter of the main procedure. It points to the <code>COMM_AREA</code> structure, which is based on that pointer.</li>
+<li>The commarea must be at least 28 bytes (<code>WS_CA_HEADER_LEN</code>). If it is shorter, the program sets <code>CA_RETURN_CODE</code> to ‘98’ and returns.</li>
+<li>The commarea must be present (<code>EIBCALEN</code> not 0). Otherwise the program writes an error message and abends with <code>LGCA</code>.</li>
+</ul>
+</li>
+<li>Commarea fields read as input
+<ul>
+<li><code>CA_REQUEST_ID</code> selects the operation. The accepted values are ‘01DEND’ (Endowment), ‘01DHOU’ (House), ‘01DCOM’ (Commercial) and ‘01DMOT’ (Motor). Any other value sets <code>CA_RETURN_CODE</code> to ‘99’.</li>
+<li><code>CA_CUSTOMER_NUM</code> is the 10-digit customer number. It is moved to the DB2 host variable <code>DB2_CUSTOMERNUM_INT</code> and also into the error message.</li>
+<li><code>CA_POLICY_NUM</code> is the 10-digit policy number. It is moved to the DB2 host variable <code>DB2_POLICYNUM_INT</code> and also into the error message.</li>
+</ul>
+</li>
+<li>Other commarea fields
+<ul>
+<li>These are defined in the commarea layout but not used by this program’s logic:
+<ul>
+<li>Common policy fields: <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_PAYMENT</code>, <code>CA_BROKERID</code>, <code>CA_BROKERSREF</code></li>
+<li>Endowment fields: <code>CA_E_SUM_ASSURED</code>, <code>CA_E_LIFE_ASSURED</code></li>
+<li>House fields: <code>CA_H_VALUE</code>, <code>CA_H_PROPERTY_TYPE</code></li>
+<li>Motor fields: <code>CA_M_PREMIUM</code>, <code>CA_M_REGNUMBER</code></li>
+<li>Commercial field: <code>CA_B_PROPTYPE</code></li>
+</ul>
+</li>
+<li>They are part of the shared commarea layout that other policy functions use.</li>
+</ul>
+</li>
+<li>Commarea field written as output
+<ul>
+<li><code>CA_RETURN_CODE</code> is the status returned to the caller. ‘00’ means success, ‘90’ means a DB2 error, ‘98’ means the commarea is too small, and ‘99’ means the request ID is not recognised.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Data stores (DB2)</strong></p>
+<ul>
+<li>DB2 table <code>POLICY</code>
+<ul>
+<li>The program issues <code>DELETE FROM POLICY WHERE CUSTOMERNUMBER = :DB2_CUSTOMERNUM_INT AND POLICYNUMBER = :DB2_POLICYNUM_INT</code>.</li>
+<li>The comments say the delete cascades through foreign key definitions to the policy-type tables: Endowment, House, Motor and Commercial. Those tables are therefore indirect dependencies, and the cascade must be defined in the database.</li>
+</ul>
+</li>
+<li>DB2 host variables
+<ul>
+<li><code>DB2_CUSTOMERNUM_INT</code> and <code>DB2_POLICYNUM_INT</code> are <code>FIXED BIN(31)</code> fields. They must be declared in the program so the SQL precompiler can resolve them.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>External programs and modules (CICS LINK targets)</strong></p>
+<ul>
+<li><code>LGDPVS01</code>
+<ul>
+<li>The program links to it after a successful <code>POLICY</code> delete. It passes the whole commarea (<code>COMM_AREA</code>) with a length of 32500 bytes.</li>
+<li>It is probably the VSAM-side delete or follow-on delete program.</li>
+<li>The data name <code>LGDPVS1</code> (<code>CHAR(8)</code>, value ‘LGDPVS1’) is declared in the program but is not used in any command.</li>
+</ul>
+</li>
+<li><code>LGSTSQ</code>
+<ul>
+<li>The error-logging program is called in <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>It writes the formatted <code>ERROR_MSG</code> structure to queues. The program comments describe this as writing to TDQ.</li>
+<li>It is linked up to two more times to log the first 90 bytes, or fewer, of the commarea (<code>CA_ERROR_MSG</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS services used</strong></p>
+<ul>
+<li><code>EXEC CICS ASKTIME ABSTIME</code>
+<ul>
+<li>It gets the current absolute time.</li>
+</ul>
+</li>
+<li><code>EXEC CICS FORMATTIME</code>
+<ul>
+<li>It formats the absolute time as an <code>MMDDYYYY</code> date and a time. The results go into the error message’s date and time fields.</li>
+</ul>
+</li>
+<li><code>EXEC CICS LINK</code>
+<ul>
+<li>Used to call <code>LGDPVS01</code> and <code>LGSTSQ</code>.</li>
+</ul>
+</li>
+<li><code>EXEC CICS ABEND</code> and <code>EXEC CICS RETURN</code>
+<ul>
+<li>They end the task abnormally or return control to the caller.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Copybooks and include files</strong></p>
+<ul>
+<li><code>SQLCA</code>
+<ul>
+<li>It is included through <code>EXEC SQL INCLUDE</code>.</li>
+</ul>
+</li>
+<li><code>LGCMAREA</code> (<code>plinc/LGCMAREA.inc</code>)
+<ul>
+<li>The <code>INCLUDE</code> statement is commented out, but its content is expanded inline.</li>
+<li>It defines the common commarea structure <code>COMM_AREA</code>, with <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code> and the policy-type-specific layouts for Endowment, House, Motor, Commercial and Claim.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Configuration and environment values</strong></p>
+<ul>
+<li>Constants and literals coded in the program:
+<ul>
+<li>Program names ‘LGDPVS01’ and ‘LGSTSQ’</li>
+<li>Abend code ‘LGCA’</li>
+<li>Minimum commarea length of 28 (<code>WS_CA_HEADER_LEN</code>)</li>
+<li>Link length of 32500</li>
+<li>Request codes ‘01DEND’, ‘01DHOU’, ‘01DCOM’ and ‘01DMOT’</li>
+</ul>
+</li>
+<li>The queue names that <code>LGSTSQ</code> writes to are not defined in this program. They are defined in <code>LGSTSQ</code> and in the CICS resource definitions.</li>
+<li>The program uses no files, environment variables or external parameter files.</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<ul>
+<li>
+<p><strong>Communication area presence and size</strong></p>
+<ul>
+<li>A commarea must be supplied.
+<ul>
+<li><code>EIBCALEN = 0</code> writes the error message “NO COMMAREA RECEIVED” through <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>The program then issues <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>, so processing stops with no dump.</li>
+</ul>
+</li>
+<li>The commarea must be at least <code>WS_CA_HEADER_LEN</code> (28) bytes long.
+<ul>
+<li>If <code>EIBCALEN &lt; 28</code>, the program sets <code>CA_RETURN_CODE</code> to ‘98’ and issues <code>EXEC CICS RETURN</code>.</li>
+<li>It does no database work or request validation in that case.</li>
+</ul>
+</li>
+<li>The commarea is declared as a 32,500-byte area (<code>COMM_AREA_RAW</code>).
+<ul>
+<li>The <code>LINK</code> to <code>LGDPVS01</code> passes <code>COMM_AREA</code> with <code>LENGTH(32500)</code>. This fixes the size of the data handed to the downstream program.</li>
+</ul>
+</li>
+<li>The code comments say the minimum-length calculation does not allow for the VARCHAR in the Endowment policy.
+<ul>
+<li>Only the common header length is checked. No policy-type-specific minimum length is enforced.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Request identification and allowed operations</strong></p>
+<ul>
+<li>Only four request IDs are accepted in <code>CA_REQUEST_ID</code>, a 6-character field: ‘01DEND’ (Endowment), ‘01DHOU’ (House), ‘01DCOM’ (Commercial) and ‘01DMOT’ (Motor).
+<ul>
+<li>A <code>SELECT</code>/<code>WHEN</code> block enforces this.</li>
+<li>Any other value goes to <code>OTHERWISE</code>, which sets <code>CA_RETURN_CODE</code> to ‘99’ (unrecognised request).</li>
+<li>No deletion is attempted for an unrecognised request.</li>
+</ul>
+</li>
+<li>The program only supports deletion.
+<ul>
+<li>Inquiry, add and update request IDs are rejected through the ‘99’ path, even though the shared commarea layout covers them.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Data format and type constraints</strong></p>
+<ul>
+<li><code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code> are declared <code>PIC '9999999999'</code>, so each is a 10-digit numeric value.</li>
+<li>Both numbers are converted to <code>FIXED BIN(31)</code> host variables (<code>DB2_CUSTOMERNUM_INT</code>, <code>DB2_POLICYNUM_INT</code>) before being used in SQL.
+<ul>
+<li>The program does not explicitly check that the picture fields hold valid numerics before the conversion.</li>
+</ul>
+</li>
+<li><code>CA_RETURN_CODE</code> is <code>PIC '99'</code>, so it is limited to a two-digit numeric code.</li>
+<li>Other commarea fields in scope are fixed-width.
+<ul>
+<li>Character fields: <code>CA_ISSUE_DATE</code> and <code>CA_EXPIRY_DATE</code> (10 characters each), <code>CA_BROKERSREF</code> (10), <code>CA_E_LIFE_ASSURED</code> (31), <code>CA_H_PROPERTY_TYPE</code> (15), <code>CA_M_REGNUMBER</code> (7) and <code>CA_B_PROPTYPE</code> (255).</li>
+<li>Numeric picture fields: <code>CA_BROKERID</code> (10 digits), <code>CA_PAYMENT</code> (6), <code>CA_E_SUM_ASSURED</code> (6), <code>CA_H_VALUE</code> (8) and <code>CA_M_PREMIUM</code> (6).</li>
+<li>This program neither validates nor uses these fields. They exist only as part of the shared layout, and the program does not check them.</li>
+</ul>
+</li>
+<li>The policy-type-specific areas (Endowment, House, Motor, Commercial, Claim) overlay one another in a <code>UNION</code> over <code>CA_POLICY_SPECIFIC</code>.
+<ul>
+<li>Only one interpretation of that area is valid at a time.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Delete processing rules</strong></p>
+<ul>
+<li>Both the customer number and the policy number must match.
+<ul>
+<li>The SQL <code>DELETE FROM POLICY</code> uses <code>CUSTOMERNUMBER = :DB2_CUSTOMERNUM_INT AND POLICYNUMBER = :DB2_POLICYNUM_INT</code>.</li>
+<li>A policy can therefore be deleted only under the customer who owns it.</li>
+</ul>
+</li>
+<li>Deletion cascades through foreign keys.
+<ul>
+<li>The program deletes only from the <code>POLICY</code> table.</li>
+<li>Per the code comments, the foreign key definitions propagate the delete to the Endowment, House, Motor or Commercial table. The program does not delete from those tables itself.</li>
+</ul>
+</li>
+<li>The SQL result is checked after the delete.
+<ul>
+<li>The code comment says SQLCODE 0 and SQLCODE 100 (row not found) should be treated as successful, because the end result is that the record does not exist.</li>
+<li>The code itself tests <code>SQLCODE &lt;&gt; 0</code>. That means an SQLCODE of 100 would also take the error path, which contradicts the comment.</li>
+<li>On any non-zero SQLCODE, the program sets <code>CA_RETURN_CODE</code> to ‘90’, writes an error message and issues <code>EXEC CICS RETURN</code>.</li>
+<li>The call to <code>LGDPVS01</code> is skipped on that path.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sequencing constraints</strong></p>
+<ul>
+<li>The program runs its checks in a fixed order.
+<ul>
+<li>It first sets the transaction, terminal and task identifiers.</li>
+<li>It resets the DB2 host variables to 0.</li>
+<li>It checks that a commarea is present (<code>EIBCALEN = 0</code>).</li>
+<li>It sets <code>CA_RETURN_CODE</code> to ‘00’.</li>
+<li>It checks the minimum commarea length.</li>
+<li>It converts and saves the customer and policy numbers.</li>
+<li>It validates the request ID.</li>
+</ul>
+</li>
+<li>The DB2 delete must succeed before the VSAM-side deletion starts.
+<ul>
+<li><code>DELETE_POLICY_DB2_INFO</code> runs first.</li>
+<li>The program then issues <code>EXEC CICS LINK PROGRAM('LGDPVS01')</code>, which is the follow-on delete step. The program name suggests VSAM, but the code does not confirm that.</li>
+<li>The <code>RETURN</code> inside the DB2 error handling prevents the link when the delete fails.</li>
+</ul>
+</li>
+<li>The return code is set to ‘00’ only after the commarea has been shown to exist.
+<ul>
+<li>The ‘no commarea’ abend path leaves it untouched, because the code cannot safely address the commarea.</li>
+</ul>
+</li>
+<li>Customer and policy numbers are saved in the error message fields before any processing.
+<ul>
+<li>This makes sure later error messages (<code>EM_CUSNUM</code>, <code>EM_POLNUM</code>) carry the right keys.</li>
+</ul>
+</li>
+<li>The error message is written before the abend.
+<ul>
+<li>On the no-commarea path, <code>WRITE_ERROR_MESSAGE</code> runs before <code>EXEC CICS ABEND</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Return code protocol</strong></p>
+<ul>
+<li>The program reports status to the caller through <code>CA_RETURN_CODE</code>.
+<ul>
+<li>‘00’ means success or initial state.</li>
+<li>‘90’ means a DB2 delete failure.</li>
+<li>‘98’ means the commarea is too small.</li>
+<li>‘99’ means the request ID was not recognised.</li>
+<li>The abend code ‘LGCA’ is used when no commarea is passed.</li>
+</ul>
+</li>
+<li>The return code ‘00’ is set before the later checks. It is not set again after the <code>LINK</code> to <code>LGDPVS01</code>, so any change made by that program is passed back to the caller.</li>
+</ul>
+</li>
+<li>
+<p><strong>Logging and diagnostics</strong></p>
+<ul>
+<li>Errors are logged to a queue by linking to the program <code>LGSTSQ</code>, which writes to a TDQ.
+<ul>
+<li>The message includes the date, time, program name, customer number, policy number, SQL request text and SQLCODE.</li>
+<li>The date and time come from <code>ASKTIME</code> and <code>FORMATTIME</code>.</li>
+<li>The date is in MMDDYYYY format.</li>
+</ul>
+</li>
+<li>A second message contains the commarea contents.
+<ul>
+<li>This message is limited to 90 bytes (<code>CA_DATA</code> is <code>CHAR(90)</code>).</li>
+<li>If <code>EIBCALEN &lt; 91</code>, only the <code>EIBCALEN</code> bytes received are copied, left-justified.</li>
+<li>Otherwise, the first 90 bytes are copied.</li>
+<li>The code passes <code>LENGTH(STG(ERROR_MSG))</code>, the length of <code>ERROR_MSG</code>, on the commarea link instead of the length of <code>CA_ERROR_MSG</code>. This is an implementation inconsistency.</li>
+</ul>
+</li>
+<li>The <code>EM_MSG_TEXT</code> field is <code>CHAR(63)</code>, so message text is limited to 63 characters.
+<ul>
+<li>It shares storage with the CNUM/PNUM/SQL detail fields through a <code>UNION</code>.</li>
+<li>The text message and the key/SQL detail layout cannot both appear in the same message.</li>
+</ul>
+</li>
+<li><code>EM_SQLRC</code> is <code>PIC '+(5)9'</code>, so the SQLCODE is shown with a sign and at most six positions.</li>
+</ul>
+</li>
+<li>
+<p><strong>Execution environment constraints</strong></p>
+<ul>
+<li>The program is a main, reentrant CICS program (<code>Options(Main,Reentrant)</code>) that gets the CICS interface block pointer (<code>DFHEIPTR</code>) and the commarea pointer (<code>COMM_AREA_PTR</code>).
+<ul>
+<li>It must run under CICS with DB2 access.</li>
+<li>It has no state that persists between invocations, apart from the commarea.</li>
+</ul>
+</li>
+<li>The CICS-related programs it depends on (<code>LGDPVS01</code> and <code>LGSTSQ</code>) must be available.
+<ul>
+<li>The program name <code>LGDPVS1</code> is also defined in working storage but is not used.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<h3 id="81-input-validation-and-precondition-checks" tabindex="-1">8.1 Input validation and precondition checks</h3>
+<ul>
+<li>Missing COMMAREA check
+<ul>
+<li>The program tests whether the CICS-supplied COMMAREA length is zero.</li>
+<li>If it is, the program sets the error message text to “NO COMMAREA RECEIVED” and calls the internal error-writing procedure.</li>
+<li>It then abends the task with abend code <code>LGCA</code> and suppresses the dump.</li>
+<li>This is the only abnormal termination in the program. All other failures use return codes.</li>
+</ul>
+</li>
+<li>COMMAREA length check
+<ul>
+<li>After the return code is set to ‘00’, the program checks that the COMMAREA is at least as long as the 28-byte header.</li>
+<li>If it is shorter, the return code is set to ‘98’ (COMMAREA too short).</li>
+<li>The program then issues an immediate CICS RETURN, so no database work is done.</li>
+</ul>
+</li>
+<li>Request identifier validation
+<ul>
+<li>A SELECT on the request ID accepts only the delete codes <code>01DEND</code>, <code>01DHOU</code>, <code>01DCOM</code> and <code>01DMOT</code>.</li>
+<li>Any other value goes to the OTHERWISE branch. That branch sets the return code to ‘99’ and skips the delete and the link to the VSAM program.</li>
+<li>The program then falls through to the normal CICS RETURN, so the caller sees the ‘99’ in the COMMAREA.</li>
+</ul>
+</li>
+</ul>
+<h3 id="82-database-error-handling" tabindex="-1">8.2 Database error handling</h3>
+<ul>
+<li>SQLCODE check after DELETE
+<ul>
+<li>The procedure that deletes from the POLICY table sets a request description for the error message before running the SQL.</li>
+<li>The description is &quot; DELETE POLICY  &quot;.</li>
+<li>After the DELETE, it tests whether SQLCODE is non-zero.</li>
+<li>Any non-zero SQLCODE sets the return code to ‘90’, calls the error-writing procedure and returns to CICS immediately.</li>
+<li>The delete is keyed on both customer number and policy number.</li>
+</ul>
+</li>
+<li>Handling of “row not found”
+<ul>
+<li>A comment says SQLCODE 0 and SQLCODE 100 should both count as success, because the end result is that the record does not exist.</li>
+<li>The code does not do this. It treats every non-zero SQLCODE, including +100, as an error.</li>
+<li>A delete that finds no matching row therefore returns code ‘90’ and writes an error message.</li>
+</ul>
+</li>
+<li>Context captured for diagnostics
+<ul>
+<li>The customer number and policy number are converted to DB2 integer host variables.</li>
+<li>Before the request is processed, they are also saved in the error message structure.</li>
+<li>If a failure occurs, the log entry identifies the affected customer and policy.</li>
+</ul>
+</li>
+</ul>
+<h3 id="83-error-logging-and-notification" tabindex="-1">8.3 Error logging and notification</h3>
+<ul>
+<li>Error message structure
+<ul>
+<li>A structured message holds the date, time, program name (LGDPDB01), a free-text message or a diagnostic layout, and the SQLCODE.</li>
+<li>The diagnostic layout shows customer number, policy number, SQL request description and SQLCODE.</li>
+<li>The free-text message and the diagnostic layout share storage through a union.</li>
+</ul>
+</li>
+<li>Error-writing procedure
+<ul>
+<li>It copies the SQLCODE into the message.</li>
+<li>It gets the current time with ASKTIME and formats it with FORMATTIME into date (MMDDYYYY) and time fields.</li>
+<li>It then links to the shared logging program <code>LGSTSQ</code>, passing the error message.</li>
+<li><code>LGSTSQ</code> writes to the CICS queues.</li>
+</ul>
+</li>
+<li>COMMAREA content logging
+<ul>
+<li>After logging the error message, the procedure also logs the COMMAREA contents.</li>
+<li>It does this only when the COMMAREA length is greater than zero.</li>
+<li>If the COMMAREA is shorter than 91 bytes, it logs only the bytes received, left-justified in the 90-byte data field.</li>
+<li>Otherwise it logs the first 90 bytes.</li>
+<li>Both cases link to <code>LGSTSQ</code> with a second message that carries the “COMMAREA=” prefix.</li>
+<li>In both cases the link length is taken from the main error message structure rather than the COMMAREA message structure. This is a possible length mismatch.</li>
+</ul>
+</li>
+</ul>
+<h3 id="84-return-code-signalling-to-the-caller" tabindex="-1">8.4 Return code signalling to the caller</h3>
+<ul>
+<li>Return codes are written to the COMMAREA return code field. The caller inspects them, because the program does not raise exceptions for business or database errors.
+<ul>
+<li>‘00’ means success. It is set after the COMMAREA presence check.</li>
+<li>‘90’ means the DB2 DELETE failed.</li>
+<li>‘98’ means the COMMAREA is too short.</li>
+<li>‘99’ means the request ID is not recognised.</li>
+</ul>
+</li>
+<li>After each error return code is set, the program leaves through CICS RETURN, either directly or by falling through to the final RETURN.
+<ul>
+<li>This ends the task and hands control back to the caller.</li>
+</ul>
+</li>
+</ul>
+<h3 id="85-gaps-and-limitations" tabindex="-1">8.5 Gaps and limitations</h3>
+<ul>
+<li>Unchecked RESP values
+<ul>
+<li>The program does not check RESP or RESP2 on any CICS command. These commands are ASKTIME, FORMATTIME, LINK to <code>LGSTSQ</code> and LINK to <code>LGDPVS01</code>.</li>
+<li>It has no HANDLE CONDITION or HANDLE ABEND logic.</li>
+<li>It has no PL/I ON-unit handling for conditions such as ERROR or ENDFILE.</li>
+</ul>
+</li>
+<li>No check after the VSAM link
+<ul>
+<li>After linking to <code>LGDPVS01</code> for the VSAM-side delete, the program does not examine a return code or any response.</li>
+<li>A failure in that program would pass through unnoticed unless the called program reports it in the COMMAREA.</li>
+<li>The CICS RETURN that follows does not change the return code.</li>
+</ul>
+</li>
+<li>Link ordering
+<ul>
+<li>The DB2 delete runs first. Only if it succeeds does control reach the link to <code>LGDPVS01</code>.</li>
+<li>A failed DB2 delete returns immediately from within the delete procedure. The VSAM step is skipped, so there is no partial delete.</li>
+</ul>
+</li>
+<li>No retry or fallback
+<ul>
+<li>The program has no retry logic, no default values and no alternative path for any failure.</li>
+<li>Each failure goes straight to a return code, a log entry and a return to the caller.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<p>The code has been successfully read and analysed.</p>
+<p>Let’s review the behavior of <code>LGDPDB01.pli</code>:</p>
+<ul>
+<li>Purpose: Delete a policy from DB2 and VSAM.</li>
+<li>It receives a CICS COMMAREA structure.</li>
+<li>It validates the input length (<code>EIBCALEN</code> must not be 0, and must be at least <code>WS_CA_HEADER_LEN</code> which is 28). If <code>EIBCALEN</code> is 0, it abends with <code>LGCA</code>. If <code>&lt; 28</code>, it returns <code>98</code>.</li>
+<li>It initializes <code>CA_RETURN_CODE = '00'</code>.</li>
+<li>It converts <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code> to DB2 integer variables <code>DB2_CUSTOMERNUM_INT</code> and <code>DB2_POLICYNUM_INT</code>.</li>
+<li>It checks <code>CA_REQUEST_ID</code>:
+<ul>
+<li>If it is <code>'01DEND'</code> (Delete Endowment), <code>'01DHOU'</code> (Delete House), <code>'01DCOM'</code> (Delete Commercial), or <code>'01DMOT'</code> (Delete Motor):
+<ul>
+<li>It calls <code>DELETE_POLICY_DB2_INFO</code> to perform a SQL delete statement on the <code>POLICY</code> table.
+<ul>
+<li><code>DELETE FROM POLICY WHERE CUSTOMERNUMBER = :DB2_CUSTOMERNUM_INT AND POLICYNUMBER = :DB2_POLICYNUM_INT</code>.</li>
+<li>Note: Due to DB2 foreign key constraints (ON DELETE CASCADE), deleting the row in <code>POLICY</code> will automatically delete the related row in the specific policy table (<code>ENDOWMENT</code>, <code>HOUSE</code>, <code>MOTOR</code>, or <code>COMMERCIAL</code>).</li>
+<li>If SQLCODE is 0 or 100 (which are both treated as successful, meaning the record is gone/does not exist), it completes successfully.</li>
+<li>If SQLCODE is anything else, it sets <code>CA_RETURN_CODE = '90'</code>, writes an error message to the queues via <code>LGSTSQ</code> (calling <code>WRITE_ERROR_MESSAGE</code>), and returns to the caller.</li>
+</ul>
+</li>
+<li>If DB2 delete is successful, it calls <code>EXEC CICS LINK PROGRAM('LGDPVS01') Commarea(COMM_AREA) LENGTH(32500);</code> to delete the policy information from VSAM storage as well.</li>
+</ul>
+</li>
+<li>If it is any other request ID, it sets <code>CA_RETURN_CODE = '99'</code> and returns.</li>
+</ul>
+</li>
+</ul>
+<p>Let’s formulate the representative usage examples.</p>
+<h3 id="91-example-1-successful-deletion-of-an-endowment-policy" tabindex="-1">9.1 Example 1: Successful Deletion of an Endowment Policy</h3>
+<p><strong>Scenario:</strong>
+A client requests to delete an existing endowment policy for customer number <code>12345</code> with policy number <code>987654321</code>. The input is valid, and the record exists in the DB2 <code>POLICY</code> table.</p>
+<ul>
+<li>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code>: <code>'01DEND'</code></li>
+<li><code>CA_CUSTOMER_NUM</code>: <code>0000012345</code></li>
+<li><code>CA_POLICY_NUM</code>: <code>0000987654</code> (represented as 10-digit PIC ‘9999999999’)</li>
+<li><code>EIBCALEN</code>: <code>32500</code></li>
+<li>DB2 State: A row exists in <code>POLICY</code> with <code>CUSTOMERNUMBER = 12345</code> and <code>POLICYNUMBER = 987654</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>'00'</code></li>
+<li>DB2 State: The row is successfully deleted from the <code>POLICY</code> table. Due to foreign key cascades, the matching row in <code>ENDOWMENT</code> is also deleted.</li>
+<li>Program Flow: The program invokes <code>DELETE_POLICY_DB2_INFO</code> (which returns SQLCODE <code>0</code> or <code>100</code>), and then issues an <code>EXEC CICS LINK</code> to <code>LGDPVS01</code> to complete the VSAM deletion. Finally, it returns control with code <code>'00'</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="92-example-2-invalid-request-code-action" tabindex="-1">9.2 Example 2: Invalid Request Code Action</h3>
+<p><strong>Scenario:</strong>
+An external application passes a delete request with an unrecognized request ID (e.g., <code>'01DXYZ'</code>).</p>
+<ul>
+<li>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code>: <code>'01DXYZ'</code></li>
+<li><code>CA_CUSTOMER_NUM</code>: <code>0000012345</code></li>
+<li><code>CA_POLICY_NUM</code>: <code>0000987654</code></li>
+<li><code>EIBCALEN</code>: <code>32500</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>'99'</code></li>
+<li>DB2/VSAM State: Unchanged. No database action is performed.</li>
+<li>Program Flow: The <code>SELECT ( CA_REQUEST_ID )</code> statement evaluates the input and matches the <code>OTHERWISE</code> block because <code>'01DXYZ'</code> does not match <code>'01DEND'</code>, <code>'01DHOU'</code>, <code>'01DCOM'</code>, or <code>'01DMOT'</code>. It sets the return code to <code>'99'</code> and terminates without calling DB2 or VSAM delete logic.</li>
+</ul>
+</li>
+</ul>
+<h3 id="93-example-3-db2-error-encountered-eg-connection-error--sql-error" tabindex="-1">9.3 Example 3: DB2 Error Encountered (e.g. Connection Error / SQL Error)</h3>
+<p><strong>Scenario:</strong>
+A request to delete a motor policy is received, but a database failure occurs during the DB2 delete statement execution, returning a negative SQLCODE (e.g., <code>-911</code> for deadlock).</p>
+<ul>
+<li>
+<p><strong>Input:</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code>: <code>'01DMOT'</code></li>
+<li><code>CA_CUSTOMER_NUM</code>: <code>0000012345</code></li>
+<li><code>CA_POLICY_NUM</code>: <code>0000987654</code></li>
+<li><code>EIBCALEN</code>: <code>32500</code></li>
+<li>DB2 State: DB2 engine returns SQLCODE <code>-911</code> upon executing the query.</li>
+</ul>
+</li>
+<li>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>'90'</code></li>
+<li>Logged Data: A diagnostic log message containing the failing SQLCODE is routed to the queue utility <code>LGSTSQ</code> via the internal <code>WRITE_ERROR_MESSAGE</code> routine.</li>
+<li>Program Flow: The program executes the <code>DELETE</code> statement, which fails with <code>SQLCODE &lt;&gt; 0</code> and <code>SQLCODE &lt;&gt; 100</code>. The code sets <code>CA_RETURN_CODE = '90'</code>, calls <code>WRITE_ERROR_MESSAGE</code>, and returns immediately to CICS. <code>LGDPVS01</code> is not linked.</li>
+</ul>
+</li>
+</ul>
+<p>I will write down these examples in a structured, direct, and clear manner, conforming strictly to the requested instructions. No top-level markdown heading, direct to the body. No introductory or transition text. Let’s write.### Example 1: Successful Deletion of an Endowment Policy</p>
+<ul>
+<li>
+<p><strong>Sample Input Data:</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code>: <code>&quot;01DEND&quot;</code></li>
+<li><code>CA_CUSTOMER_NUM</code>: <code>0000012345</code></li>
+<li><code>CA_POLICY_NUM</code>: <code>0000987654</code></li>
+<li><code>EIBCALEN</code>: <code>32500</code></li>
+<li><strong>DB2 Database State:</strong> A row with <code>CUSTOMERNUMBER = 12345</code> and <code>POLICYNUMBER = 987654</code> exists in the <code>POLICY</code> table.</li>
+</ul>
+</li>
+<li>
+<p><strong>Expected Output:</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>&quot;00&quot;</code></li>
+<li><strong>DB2 Database State:</strong> The target row in the <code>POLICY</code> table is deleted. Corresponding records in the <code>ENDOWMENT</code> table are automatically removed via database cascade delete constraints.</li>
+<li><strong>External Program Links:</strong> The CICS program links to <code>LGDPVS01</code> to remove the matching policy record from VSAM.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The program validates the COMMAREA length against <code>WS_CA_HEADER_LEN</code> (28 bytes).</li>
+<li>The request code <code>&quot;01DEND&quot;</code> is matched in the <code>SELECT</code> statement, routing execution to <code>DELETE_POLICY_DB2_INFO</code>.</li>
+<li>The database <code>DELETE</code> statement executes successfully, returning <code>SQLCODE = 0</code>. Since this is a valid success code, the program proceeds to link to <code>LGDPVS01</code> to delete the VSAM counterpart.</li>
+<li>Control returns to the caller with <code>CA_RETURN_CODE = &quot;00&quot;</code>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="94-example-2-invalid-request-code-action" tabindex="-1">9.4 Example 2: Invalid Request Code Action</h3>
+<ul>
+<li>
+<p><strong>Sample Input Data:</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code>: <code>&quot;01DXYZ&quot;</code></li>
+<li><code>CA_CUSTOMER_NUM</code>: <code>0000012345</code></li>
+<li><code>CA_POLICY_NUM</code>: <code>0000987654</code></li>
+<li><code>EIBCALEN</code>: <code>32500</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Expected Output:</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>&quot;99&quot;</code></li>
+<li><strong>DB2 Database State:</strong> Unchanged; no SQL delete statement is executed.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The COMMAREA length check passes.</li>
+<li>The <code>SELECT ( CA_REQUEST_ID )</code> statement checks the input value <code>&quot;01DXYZ&quot;</code>. Because it does not match any expected transaction identifiers (<code>&quot;01DEND&quot;</code>, <code>&quot;01DHOU&quot;</code>, <code>&quot;01DCOM&quot;</code>, or <code>&quot;01DMOT&quot;</code>), the program falls into the <code>OTHERWISE</code> clause.</li>
+<li>The return code is set to <code>&quot;99&quot;</code> and the program issues an <code>EXEC CICS RETURN</code> without attempting database or VSAM operations.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="95-example-3-database-error-handling" tabindex="-1">9.5 Example 3: Database Error Handling</h3>
+<ul>
+<li>
+<p><strong>Sample Input Data:</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code>: <code>&quot;01DMOT&quot;</code></li>
+<li><code>CA_CUSTOMER_NUM</code>: <code>0000012345</code></li>
+<li><code>CA_POLICY_NUM</code>: <code>0000987654</code></li>
+<li><code>EIBCALEN</code>: <code>32500</code></li>
+<li><strong>DB2 Database State:</strong> The database returns a transient error code (e.g., deadlocked transaction, <code>SQLCODE = -911</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Expected Output:</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>&quot;90&quot;</code></li>
+<li><strong>Error Logs:</strong> A formatted error queue record is written to the <code>LGSTSQ</code> program indicating <code>SQLCODE = -911</code> for <code>DELETE POLICY</code>.</li>
+<li><strong>External Program Links:</strong> <code>LGDPVS01</code> is not linked.</li>
+</ul>
+</li>
+<li>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>The request code <code>&quot;01DMOT&quot;</code> triggers <code>DELETE_POLICY_DB2_INFO</code>.</li>
+<li>The <code>DELETE</code> statement is executed, but the database returns an error code (<code>SQLCODE = -911</code>).</li>
+<li>Because <code>SQLCODE</code> is neither <code>0</code> nor <code>100</code> (not found), the program sets <code>CA_RETURN_CODE</code> to <code>&quot;90&quot;</code> and triggers <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li><code>WRITE_ERROR_MESSAGE</code> grabs the current time and date, logs the details to a transient data queue via <code>LGSTSQ</code>, and immediately exits via <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a></li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a>
+<ul>
+<li class="toc-level-3"><a href="#31-communication-area-dfhcommarea">3.1 Communication Area (DFHCOMMAREA)</a></li>
+<li class="toc-level-3"><a href="#32-relational-database-updates-db2">3.2 Relational Database Updates (DB2)</a></li>
+<li class="toc-level-3"><a href="#33-program-linkage-and-inter-program-interfaces">3.3 Program Linkage and Inter-Program Interfaces</a></li>
+<li class="toc-level-3"><a href="#34-cics-system-side-effects">3.4 CICS System Side Effects</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a></li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a></li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a></li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a>
+<ul>
+<li class="toc-level-3"><a href="#81-input-validation-and-precondition-checks">8.1 Input validation and precondition checks</a></li>
+<li class="toc-level-3"><a href="#82-database-error-handling">8.2 Database error handling</a></li>
+<li class="toc-level-3"><a href="#83-error-logging-and-notification">8.3 Error logging and notification</a></li>
+<li class="toc-level-3"><a href="#84-return-code-signalling-to-the-caller">8.4 Return code signalling to the caller</a></li>
+<li class="toc-level-3"><a href="#85-gaps-and-limitations">8.5 Gaps and limitations</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-successful-deletion-of-an-endowment-policy">9.1 Example 1: Successful Deletion of an Endowment Policy</a></li>
+<li class="toc-level-3"><a href="#92-example-2-invalid-request-code-action">9.2 Example 2: Invalid Request Code Action</a></li>
+<li class="toc-level-3"><a href="#93-example-3-db2-error-encountered-eg-connection-error--sql-error">9.3 Example 3: DB2 Error Encountered (e.g. Connection Error / SQL Error)</a></li>
+<li class="toc-level-3"><a href="#94-example-2-invalid-request-code-action">9.4 Example 2: Invalid Request Code Action</a></li>
+<li class="toc-level-3"><a href="#95-example-3-database-error-handling">9.5 Example 3: Database Error Handling</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGDPDB01</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

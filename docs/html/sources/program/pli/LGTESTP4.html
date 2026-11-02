@@ -1,0 +1,1474 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGTESTP4</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link active">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p><code>LGTESTP4</code> is the CICS interactive menu program for the GenApp <strong>Commercial Policy</strong> transaction (<code>SSP4</code>). It presents the BMS map <code>SSMAPP4</code> to a terminal user and handles three policy operations driven by a single-character option field: option <code>1</code> performs an inquiry by linking to <code>LGIPOL01</code> with one of four request codes (<code>01ICOM</code>, <code>02ICOM</code>, <code>03ICOM</code>, or <code>05ICOM</code>) depending on whether the user supplies a customer number, a policy number, a postcode, or a combination; option <code>2</code> adds a new commercial policy by populating the full set of commercial policy fields in the COMMAREA and linking to <code>LGAPOL01</code>; and option <code>3</code> deletes an existing policy by linking to <code>LGDPOL01</code>. After each successful operation the program redisplays the map with returned or cleared data and re-invokes the transaction pseudo-conversationally via <code>EXEC CICS RETURN TRANSID('SSP4')</code>. Errors from the back-end programs are caught, a rollback is issued where appropriate, a diagnostic message is written to the error field on the map, the COMMAREA is reset, and the transaction restarts cleanly.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<ul>
+<li>
+<p>Procedure parameters (CICS-supplied)</p>
+<ul>
+<li>DFHEIPTR: CICS EXEC interface pointer. CICS supplies it, and the program needs it to run EXEC CICS commands and read EIB fields.</li>
+<li>COMM_AREA_PTR: Pointer to the communication area that CICS passes in. It holds state between pseudo-conversational runs of transaction SSP4.
+<ul>
+<li>When the transaction first starts, the commarea length (EIBCALEN) is 0. The program then points the pointer at its own local storage and initialises it.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>CICS execution interface and terminal-control inputs</p>
+<ul>
+<li>EIBCALEN: Length of the commarea received. A value of 0 means this is the first entry. The program then initialises the commarea and sends the menu map.</li>
+<li>Terminal attention keys (HANDLE AID): CLEAR clears the screen and restarts the transaction. PF3 ends the transaction.</li>
+<li>MAPFAIL condition: Raised when RECEIVE MAP finds no data. The program ends the transaction.</li>
+</ul>
+</li>
+<li>
+<p>Terminal user input (map SSMAPP4 in mapset SSMAP, received into SSMAPP4I and read through the SSMAPP4O output view)</p>
+<ul>
+<li>Menu option
+<ul>
+<li>ENP4OPTO: Selects the operation. “1” is inquire, “2” is add, “3” is delete. Any other value gives an invalid-option message.</li>
+</ul>
+</li>
+<li>Policy keys
+<ul>
+<li>ENP4CNOO: Customer number. A blank or all-zero value means no customer was supplied. It selects the inquiry type and supplies the customer for add and delete.</li>
+<li>ENP4PNOO: Policy number. A blank or all-zero value means no policy was supplied. It selects the inquiry type and identifies the policy to inquire on or delete.</li>
+</ul>
+</li>
+<li>Policy dates
+<ul>
+<li>ENP4IDAO: Issue date. Used when adding a policy.</li>
+<li>ENP4EDAO: Expiry date. Used when adding a policy.</li>
+</ul>
+</li>
+<li>Property details
+<ul>
+<li>ENP4ADDO: Business property address.</li>
+<li>ENP4HPCO: Postcode. On inquiry, a non-blank value selects a postcode search. On add, it is stored with the policy.</li>
+<li>ENP4LATO: Latitude.</li>
+<li>ENP4LONO: Longitude.</li>
+<li>ENP4CUSO: Business customer name.</li>
+<li>ENP4PTYO: Property type.</li>
+</ul>
+</li>
+<li>Peril and premium details
+<ul>
+<li>ENP4FPEO and ENP4FPRO: Fire peril and fire premium.</li>
+<li>ENP4CPEO and ENP4CPRO: Crime peril and crime premium.</li>
+<li>ENP4XPEO and ENP4XPRO: Flood peril and flood premium.</li>
+<li>ENP4WPEO and ENP4WPRO: Weather peril and weather premium.</li>
+</ul>
+</li>
+<li>Status details
+<ul>
+<li>ENP4STAO: Policy status code.</li>
+<li>ENP4REJO: Reject reason text.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Commarea values returned by called programs (each is read after an EXEC CICS LINK)</p>
+<ul>
+<li>LGIPOL01 (policy inquiry)
+<ul>
+<li>CA_RETURN_CODE: Result code. A value above 0 gives a “No data was returned” message.</li>
+<li>CA_CUSTOMER_NUM, CA_POLICY_NUM: Customer and policy numbers returned.</li>
+<li>CA_ISSUE_DATE, CA_EXPIRY_DATE: Policy dates.</li>
+<li>CA_B_Address, CA_B_Postcode, CA_B_Latitude, CA_B_Longitude: Property address and location.</li>
+<li>CA_B_Customer, CA_B_PropType: Business customer name and property type.</li>
+<li>CA_B_FirePeril, CA_B_FirePremium, CA_B_CrimePeril, CA_B_CrimePremium, CA_B_FloodPeril, CA_B_FloodPremium, CA_B_WeatherPeril, CA_B_WeatherPremium: Peril and premium values.</li>
+<li>CA_B_Status, CA_B_RejectReason: Policy status and reject reason.</li>
+</ul>
+</li>
+<li>LGAPOL01 (policy add)
+<ul>
+<li>CA_RETURN_CODE: Result code. 70 means the customer does not exist. Any other value above 0 is a general add error.</li>
+<li>CA_POLICY_NUM: Newly generated policy number, shown back to the user.</li>
+</ul>
+</li>
+<li>LGDPOL01 (policy delete)
+<ul>
+<li>CA_RETURN_CODE: Result code. A value above 0 gives a delete error message.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Commarea fields that the program sets as request data for the called programs</p>
+<ul>
+<li>CA_REQUEST_ID: Operation code built from the menu option and key fields. The values are ‘01ICOM’, ‘02ICOM’, ‘03ICOM’, ‘05ICOM’, ‘01ACOM’ and ‘01DCOM’.</li>
+<li>CA_CUSTOMER_NUM, CA_POLICY_NUM: Keys copied from the screen.</li>
+<li>CA_B_Postcode: Search key for the postcode inquiry.</li>
+<li>CA_ISSUE_DATE, CA_EXPIRY_DATE, CA_B_Address, CA_B_Latitude, CA_B_Longitude, CA_B_Customer, CA_B_PropType, CA_B_FirePeril, CA_B_FirePremium, CA_B_CrimePeril, CA_B_CrimePremium, CA_B_FloodPeril, CA_B_FloodPremium, CA_B_WeatherPeril, CA_B_WeatherPremium, CA_B_Status, CA_B_RejectReason: Policy details copied from the screen for the add operation.</li>
+</ul>
+</li>
+<li>
+<p>External programs and files</p>
+<ul>
+<li>LGIPOL01, LGAPOL01, LGDPOL01: Back-end programs invoked through EXEC CICS LINK. They read and write the policy data (typically in Db2). The program does not access files or databases directly.</li>
+<li>Mapset SSMAP: BMS mapset that defines the screen layout for map SSMAPP4.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<ul>
+<li>
+<p><strong>Terminal screen output (map SSMAPP4 in mapset SSMAP, sent with CICS SEND MAP)</strong></p>
+<ul>
+<li>Initial menu display
+<ul>
+<li>Sent with ERASE when no COMMAREA exists (EIBCALEN = 0).</li>
+<li>The screen is blanked first. The customer number (ENP4CNOO) and policy number (ENP4PNOO) show zeros. The peril, premium and status fields are blank.</li>
+</ul>
+</li>
+<li>Inquiry result display (option ‘1’)
+<ul>
+<li>Policy details returned by LGIPOL01 are moved into the map input fields and sent back to the user.</li>
+<li>Policy identification and dates
+<ul>
+<li>ENP4CNOI shows the customer number (CA_CUSTOMER_NUM).</li>
+<li>ENP4IDAI shows the issue date (CA_ISSUE_DATE).</li>
+<li>ENP4EDAI shows the expiry date (CA_EXPIRY_DATE).</li>
+</ul>
+</li>
+<li>Property location and ownership
+<ul>
+<li>ENP4ADDI shows the business address (CA_B_Address).</li>
+<li>ENP4HPCI shows the postcode (CA_B_Postcode).</li>
+<li>ENP4LATI and ENP4LONI show the latitude and longitude.</li>
+<li>ENP4CUSI shows the business customer name (CA_B_Customer).</li>
+<li>ENP4PTYI shows the property type (CA_B_PropType).</li>
+</ul>
+</li>
+<li>Coverage and premiums
+<ul>
+<li>ENP4FPEI and ENP4FPRI show the fire peril and fire premium (CA_B_FirePeril, CA_B_FirePremium).</li>
+<li>ENP4CPEI and ENP4CPRI show the crime peril and crime premium.</li>
+<li>ENP4XPEI and ENP4XPRI show the flood peril and flood premium.</li>
+<li>ENP4WPEI and ENP4WPRI show the weather peril and weather premium.</li>
+</ul>
+</li>
+<li>Status
+<ul>
+<li>ENP4STAI shows the policy status (CA_B_Status).</li>
+<li>ENP4REJI shows the reject reason (CA_B_RejectReason).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Add confirmation display (option ‘2’)
+<ul>
+<li>ENP4CNOI shows the customer number and ENP4PNOI shows the newly generated policy number (CA_POLICY_NUM).</li>
+<li>ENP4OPTI is cleared.</li>
+<li>The message ERP4FLDO is “New Commercial Policy Inserted”.</li>
+</ul>
+</li>
+<li>Delete confirmation display (option ‘3’)
+<ul>
+<li>The detail fields are blanked: expiry date, address, postcode, latitude, longitude, customer, property type, all peril and premium fields, status, reject reason and option.</li>
+<li>The message ERP4FLDO is “Commercial Policy Deleted”.</li>
+</ul>
+</li>
+<li>Invalid option display
+<ul>
+<li>The message ERP4FLDO is “Please enter a valid option”.</li>
+<li>The cursor is placed on the option field (ENP4OPTL = -1, sent with CURSOR).</li>
+</ul>
+</li>
+<li>Error displays (ERROR_OUT)
+<ul>
+<li>Message ERP4FLDO is “Customer does not exist” when the add returns CA_RETURN_CODE 70.</li>
+<li>Message ERP4FLDO is “Error Adding Commercial Policy” for any other add failure.</li>
+<li>Message ERP4FLDO is “Error Deleting Commercial Policy” when the delete fails.</li>
+<li>Message ERP4FLDO is “No data was returned.” when the inquiry returns CA_RETURN_CODE &gt; 0.</li>
+<li>After the error map is sent, the input map and the COMMAREA are reset to blanks and zeros.</li>
+</ul>
+</li>
+<li>Clear key handling
+<ul>
+<li>A blank SSMAPP4 map is sent with MAPONLY, which redisplays the empty menu.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Requests and data passed to called programs (COMMAREA COMM_AREA, 32500 bytes, via CICS LINK)</strong></p>
+<ul>
+<li>Request control fields
+<ul>
+<li>CA_REQUEST_ID tells the back-end program which operation to run.
+<ul>
+<li>‘01ICOM’ inquires by customer and policy.</li>
+<li>‘02ICOM’ inquires by policy only.</li>
+<li>‘03ICOM’ inquires by customer only.</li>
+<li>‘05ICOM’ inquires by postcode.</li>
+<li>‘01ACOM’ adds a policy.</li>
+<li>‘01DCOM’ deletes a policy.</li>
+</ul>
+</li>
+<li>CA_CUSTOMER_NUM and CA_POLICY_NUM identify the customer and policy for the request.</li>
+<li>CA_B_Postcode is the search key for a postcode inquiry.</li>
+</ul>
+</li>
+<li>Inquiry request to LGIPOL01
+<ul>
+<li>The program is invoked for option ‘1’.</li>
+<li>It returns the commercial policy details and CA_RETURN_CODE.</li>
+</ul>
+</li>
+<li>Add request to LGAPOL01
+<ul>
+<li>The program is invoked for option ‘2’.</li>
+<li>The commercial policy data comes from the screen and is stored by the called program.</li>
+<li>Dates and location: CA_ISSUE_DATE, CA_EXPIRY_DATE, CA_B_Address, CA_B_Postcode, CA_B_Latitude, CA_B_Longitude.</li>
+<li>Customer and property: CA_B_Customer, CA_B_PropType.</li>
+<li>Perils and premiums: CA_B_FirePeril, CA_B_FirePremium, CA_B_CrimePeril, CA_B_CrimePremium, CA_B_FloodPeril, CA_B_FloodPremium, CA_B_WeatherPeril, CA_B_WeatherPremium.</li>
+<li>Status: CA_B_Status, CA_B_RejectReason.</li>
+<li>On success it returns the new CA_POLICY_NUM.</li>
+</ul>
+</li>
+<li>Delete request to LGDPOL01
+<ul>
+<li>The program is invoked for option ‘3’.</li>
+<li>CA_CUSTOMER_NUM and CA_POLICY_NUM identify the policy to delete.</li>
+</ul>
+</li>
+<li>Return status
+<ul>
+<li>CA_RETURN_CODE comes back from each called program.</li>
+<li>A value above 0 selects the error path, and 70 means the customer does not exist.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Transaction control and persisted state</strong></p>
+<ul>
+<li>EXEC CICS SYNCPOINT ROLLBACK is issued when an add or delete returns a non-zero CA_RETURN_CODE. This backs out database changes made by the called program.</li>
+<li>EXEC CICS RETURN TRANSID(‘SSP4’) COMMAREA(COMM_AREA) ends the task after each successful screen. It reschedules the SSP4 transaction and passes the COMMAREA on to the next iteration.</li>
+<li>The COMMAREA is reset after errors and at start-up: CA_REQUEST_ID is blank, CA_RETURN_CODE and CA_CUSTOMER_NUM are 0, and the request area is blank. This gives the next transaction iteration a clean state.</li>
+</ul>
+</li>
+<li>
+<p><strong>Termination output</strong></p>
+<ul>
+<li>On PF3, or on a MAPFAIL condition, the program sends the text “Transaction ended” (MSGEND) to the terminal. It uses ERASE and FREEKB, then returns to CICS and ends the conversation.</li>
+</ul>
+</li>
+<li>
+<p><strong>Return values</strong></p>
+<ul>
+<li>The program has no function return value. Its observable results are the screens, the COMMAREA passed to the next SSP4 iteration, the LINK calls to the back-end programs, and the rollback on failure.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    A([Start transaction SSP4]) --> B{Commarea length is zero}
+    B -- Yes --> C[Point to base commarea<br>Clear map and commarea fields<br>Set customer and policy to zeros]
+    C --> D[Send menu map SSMAPP4 with erase]
+    D --> E[Register handlers<br>CLEAR to clear screen<br>PF3 and MAPFAIL to end]
+    B -- No --> E
+    E --> F[Receive map SSMAPP4]
+    F --> G{Option entered}
+
+    G -- 1 Inquire --> H{Customer and policy both supplied}
+    H -- Yes --> H1[Request 01ICOM<br>Set customer and policy]
+    H -- No --> H2{Policy only supplied}
+    H2 -- Yes --> H3[Request 02ICOM<br>Set policy]
+    H2 -- No --> H4{Customer only supplied}
+    H4 -- Yes --> H5[Request 03ICOM<br>Set customer]
+    H4 -- No --> H6[Request id left unchanged]
+    H1 --> H7{Postcode entered}
+    H3 --> H7
+    H5 --> H7
+    H6 --> H7
+    H7 -- Yes --> H8[Request 05ICOM<br>Set postcode]
+    H7 -- No --> H9[Link to LGIPOL01]
+    H8 --> H9
+    H9 --> H10{Return code above zero}
+    H10 -- Yes --> N3[Message No data was returned]
+    H10 -- No --> H11[Copy policy details to map output fields]
+    H11 --> H12[Send map with policy details]
+    H12 --> R[Return to SSP4 with commarea]
+
+    G -- 2 Add --> I[Request 01ACOM<br>Copy screen fields to commarea]
+    I --> I1[Link to LGAPOL01]
+    I1 --> I2{Return code above zero}
+    I2 -- Yes --> I3[Syncpoint rollback]
+    I3 --> I4{Return code is 70}
+    I4 -- Yes --> N1[Message Customer does not exist]
+    I4 -- No --> N2[Message Error Adding Commercial Policy]
+    I2 -- No --> I5[Show new policy number<br>Message New Commercial Policy Inserted]
+    I5 --> I6[Send map]
+    I6 --> R
+
+    G -- 3 Delete --> J[Request 01DCOM<br>Set customer and policy]
+    J --> J1[Link to LGDPOL01]
+    J1 --> J2{Return code above zero}
+    J2 -- Yes --> J3[Syncpoint rollback]
+    J3 --> N4[Message Error Deleting Commercial Policy]
+    J2 -- No --> J4[Clear displayed policy fields<br>Message Commercial Policy Deleted]
+    J4 --> J5[Send map]
+    J5 --> R
+
+    G -- Other --> K[Message Please enter a valid option<br>Place cursor on option field]
+    K --> K1[Send map with cursor]
+    K1 --> R
+
+    N1 --> E1
+    N2 --> E1
+    N3 --> E1
+    N4 --> E1
+    E1[Send map with error message] --> E2[Clear map input and commarea<br>Reset request id return code and customer]
+    E2 --> R
+
+    R([Return to transaction SSP4 with commarea])
+
+    E -. CLEAR key .-> L[Clear map input<br>Send empty map only]
+    L --> R
+    E -. PF3 or MAPFAIL .-> M[Send text Transaction ended<br>Erase and free keyboard]
+    M --> Z([End transaction])
+
+    classDef start fill:#d4f1f4,stroke:#7fb5b5,color:#000;
+    classDef proc fill:#e8f5e9,stroke:#8fbc8f,color:#000;
+    classDef decision fill:#fff3cd,stroke:#d4b96a,color:#000;
+    classDef err fill:#fde2e4,stroke:#d49a9f,color:#000;
+    classDef send fill:#e6e6fa,stroke:#a49bc9,color:#000;
+
+    class A,R,Z start;
+    class C,E,F,H1,H3,H5,H6,H8,H9,H11,I,I1,I3,J,J1,J3,J4,L,E2,I5 proc;
+    class B,G,H,H2,H4,H7,H10,I2,I4,J2 decision;
+    class N1,N2,N3,N4,K,E1 err;
+    class D,H12,I6,J5,K1,M send;
+</div>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<h4 id="421-high-level-summary" tabindex="-1">4.2.1 High-level Summary</h4>
+<p>LGTESTP4 is a CICS pseudo-conversational menu program for commercial insurance policies. It runs as transaction SSP4 and uses the BMS map SSMAPP4 in mapset SSMAP.</p>
+<p>From one screen the user can:</p>
+<ul>
+<li>inquire on a commercial policy (option 1)</li>
+<li>add a commercial policy (option 2)</li>
+<li>delete a commercial policy (option 3)</li>
+</ul>
+<p>The program does not read or write data itself. It builds a request in the shared communication area (COMM_AREA) and links to a back-end program to do the work:</p>
+<ul>
+<li>LGIPOL01 for inquiry</li>
+<li>LGAPOL01 for add</li>
+<li>LGDPOL01 for delete</li>
+</ul>
+<p>It then shows the result or an error message on the same screen.</p>
+<h4 id="422-execution-flow" tabindex="-1">4.2.2 Execution Flow</h4>
+<p><strong>1. First entry</strong></p>
+<ul>
+<li>If the commarea length (EIBCALEN) is 0, this is the first call.
+<ul>
+<li>The program points COMM_AREA_PTR at a local base storage area.</li>
+<li>It blanks the output map and the commarea request ID.</li>
+<li>It sets CA_RETURN_CODE and CA_CUSTOMER_NUM to 0 and blanks the request-specific area.</li>
+<li>It sets the customer and policy number map fields to ten zeros and blanks the peril, premium and status fields.</li>
+<li>It sends the empty menu with ERASE.</li>
+</ul>
+</li>
+<li>On later entries (commarea present), it goes straight to receiving the screen.</li>
+</ul>
+<p><strong>2. Setup at A_GAIN</strong></p>
+<ul>
+<li>HANDLE AID routes CLEAR to CLEARIT and PF3 to ENDIT.</li>
+<li>HANDLE CONDITION routes MAPFAIL to ENDIT.</li>
+<li>RECEIVE MAP reads the user’s input into SSMAPP4I.</li>
+</ul>
+<p><strong>3. Option selection</strong></p>
+<p>The program branches on the option field ENP4OPTO.</p>
+<p><em>Option 1 – Inquiry</em></p>
+<ul>
+<li>The program picks the request ID from the key fields. A field counts as “not supplied” if it is blank or all zeros.
+<ul>
+<li>Customer and policy both supplied: <code>01ICOM</code>, and both numbers are copied to the commarea.</li>
+<li>Policy only: <code>02ICOM</code>, and the policy number is copied.</li>
+<li>Customer only: <code>03ICOM</code>, and the customer number is copied.</li>
+</ul>
+</li>
+<li>If the postcode field is not blank, the request ID is overridden to <code>05ICOM</code> and the postcode is placed in CA_B_Postcode. This is a postcode search and it takes precedence over the other two checks.</li>
+<li>If neither key is supplied and no postcode is entered, the request ID is left as it was.</li>
+<li>The program links to LGIPOL01 with a 32500-byte commarea.</li>
+<li>If CA_RETURN_CODE is above 0, it goes to NO_DATA.</li>
+<li>Otherwise it copies the returned data to the map fields:
+<ul>
+<li>customer number</li>
+<li>issue and expiry dates</li>
+<li>address, postcode, latitude and longitude</li>
+<li>customer name and property type</li>
+<li>fire, crime, flood and weather perils and premiums</li>
+<li>status and reject reason</li>
+</ul>
+</li>
+<li>It sends the map and returns to transaction SSP4 with the commarea (ENDIT_STARTIT).</li>
+</ul>
+<p><em>Option 2 – Add</em></p>
+<ul>
+<li>The request ID is set to <code>01ACOM</code>.</li>
+<li>The customer number and all policy fields from the screen are copied into the commarea:
+<ul>
+<li>dates</li>
+<li>address, postcode, latitude and longitude</li>
+<li>customer name and property type</li>
+<li>perils and premiums</li>
+<li>status and reject reason</li>
+</ul>
+</li>
+<li>The program links to LGAPOL01.</li>
+<li>If CA_RETURN_CODE is above 0, the program issues SYNCPOINT ROLLBACK and goes to NO_ADD:
+<ul>
+<li>Return code 70 gives the message “Customer does not exist”.</li>
+<li>Any other value gives “Error Adding Commercial Policy”.</li>
+</ul>
+</li>
+<li>On success, it shows the customer number and the newly generated policy number. It clears the option field and shows “New Commercial Policy Inserted”. It then sends the map and returns to SSP4.</li>
+</ul>
+<p><em>Option 3 – Delete</em></p>
+<ul>
+<li>The request ID is set to <code>01DCOM</code>, and the customer and policy numbers are copied to the commarea.</li>
+<li>The program links to LGDPOL01.</li>
+<li>If CA_RETURN_CODE is above 0, it issues SYNCPOINT ROLLBACK and goes to NO_DELETE, with the message “Error Deleting Commercial Policy”.</li>
+<li>On success, it blanks the displayed expiry date, address, postcode, coordinates, customer, property type, perils, premiums, status, reject reason and option. It shows “Commercial Policy Deleted”, sends the map and returns to SSP4.</li>
+</ul>
+<p><em>Any other option</em></p>
+<ul>
+<li>The program shows “Please enter a valid option” and sets the option field length to -1 so the cursor lands there. It sends the map with CURSOR and returns to SSP4.</li>
+</ul>
+<p><strong>4. Error handling (ERROR_OUT)</strong></p>
+<ul>
+<li>The messages are:
+<ul>
+<li>“No data was returned.” (inquiry failed)</li>
+<li>“Error Adding Commercial Policy” or “Customer does not exist” (add failed)</li>
+<li>“Error Deleting Commercial Policy” (delete failed)</li>
+</ul>
+</li>
+<li>The map is sent with the message.</li>
+<li>The program then blanks the input map and COMM_AREA_RAW. It resets the request ID, return code and customer number, and clears the request-specific area.</li>
+<li>It returns to SSP4 with the cleared commarea.</li>
+</ul>
+<p><strong>5. Special keys</strong></p>
+<ul>
+<li>CLEAR: the program blanks the input map, sends the map with MAPONLY (screen layout only) and returns to SSP4 with the commarea.</li>
+<li>PF3 or MAPFAIL (no data entered): the program sends the text “Transaction ended” with ERASE and FREEKB, then ends with a plain RETURN. SSP4 is not restarted.</li>
+</ul>
+<p><strong>Business rules</strong></p>
+<ul>
+<li>A key field is empty if it is blank or all zeros.</li>
+<li>A postcode search takes priority over customer and policy keys.</li>
+<li>Any non-zero return code from a back-end program is a failure.</li>
+<li>Failed add or delete requests are rolled back.</li>
+<li>Return code 70 on an add specifically means the customer does not exist.</li>
+</ul>
+<h4 id="423-external-interactions" tabindex="-1">4.2.3 External Interactions</h4>
+<ul>
+<li><strong>CICS BMS:</strong> map SSMAPP4 in mapset SSMAP is received from and sent to the terminal.</li>
+<li><strong>CICS LINK to LGIPOL01:</strong> retrieves commercial policy details by customer, policy or postcode.</li>
+<li><strong>CICS LINK to LGAPOL01:</strong> inserts a new commercial policy and returns the new policy number.</li>
+<li><strong>CICS LINK to LGDPOL01:</strong> deletes a commercial policy.</li>
+<li><strong>CICS SYNCPOINT ROLLBACK:</strong> undoes changes when an add or delete fails.</li>
+<li><strong>CICS RETURN with TRANSID SSP4:</strong> keeps the dialogue going and passes the commarea to the next iteration.</li>
+<li>No SQL or files are accessed directly in this program. Any database access happens in the linked programs.</li>
+</ul>
+<h4 id="424-plain-language-summary" tabindex="-1">4.2.4 Plain Language Summary</h4>
+<p>The program shows a screen for managing commercial insurance policies.</p>
+<ul>
+<li>The user types an option: 1 to look up a policy, 2 to create one, or 3 to delete one.</li>
+<li>For a lookup, the user can give a customer number, a policy number, or a postcode. The program uses whichever is given, and a postcode takes priority.</li>
+<li>The program does not do the work itself. It passes the request to a specialist program and shows what comes back.</li>
+<li>If something goes wrong, it shows a plain message, such as “Customer does not exist” or “Error Deleting Commercial Policy”. It also undoes any partial change, wipes the working data and waits for the next entry.</li>
+<li>PF3 ends the session, and CLEAR resets the screen.</li>
+</ul>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+    COMMERCIAL_POLICY_COMMAREA {
+        string CA_REQUEST_ID "length 6"
+        int CA_RETURN_CODE "2 digits"
+        int CA_CUSTOMER_NUM "10 digits"
+        int CA_POLICY_NUM "10 digits"
+        string CA_ISSUE_DATE "length 10"
+        string CA_EXPIRY_DATE "length 10"
+        string CA_B_Address "length 255"
+        string CA_B_Postcode "length 8"
+        string CA_B_Latitude "length 11"
+        string CA_B_Longitude "length 11"
+        string CA_B_Customer "length 255"
+        string CA_B_PropType "length 255"
+        int CA_B_FirePeril "4 digits"
+        int CA_B_FirePremium "8 digits"
+        int CA_B_CrimePeril "4 digits"
+        int CA_B_CrimePremium "8 digits"
+        int CA_B_FloodPeril "4 digits"
+        int CA_B_FloodPremium "8 digits"
+        int CA_B_WeatherPeril "4 digits"
+        int CA_B_WeatherPremium "8 digits"
+        int CA_B_Status "4 digits"
+        string CA_B_RejectReason "length 255"
+    }
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>Initial Screen Send (EIBCALEN = 0 block)</strong></p>
+<ul>
+<li>Handles the very first entry into transaction SSP4 when no COMMAREA exists (<code>EIBCALEN = 0</code>).</li>
+<li>Sets the local <code>COMM_AREA_PTR</code> to the address of the working-storage <code>BASE_COMM_AREA</code>.</li>
+<li>Clears the <code>SSMAPP4O</code> map output structure, resets <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, and <code>CA_CUSTOMER_NUM</code> to their initial values, and pre-fills all peril, premium, and status output fields with blanks or zeros.</li>
+<li>Issues <code>EXEC CICS SEND MAP('SSMAPP4') MAPSET('SSMAP') ERASE</code> to display the blank commercial policy menu screen and then falls through to <code>A_GAIN</code> to wait for input.</li>
+</ul>
+</li>
+<li>
+<p><strong>A_GAIN (main input loop label)</strong></p>
+<ul>
+<li>Acts as the re-entry point for every conversation cycle of the transaction.</li>
+<li>Registers AID-key handlers: CLEAR key routes to <code>CLEARIT</code>, PF3 routes to <code>ENDIT</code>.</li>
+<li>Registers a MAPFAIL condition handler that also routes to <code>ENDIT</code>.</li>
+<li>Receives the commercial policy map from the terminal (<code>EXEC CICS RECEIVE MAP('SSMAPP4') INTO(SSMAPP4I) MAPSET('SSMAP')</code>), populating <code>SSMAPP4I</code> with the user’s keystrokes.</li>
+<li>Dispatches on the single-character option field <code>ENP4OPTO</code> using a <code>SELECT</code> statement:
+<ul>
+<li><code>'1'</code> → inquiry branch</li>
+<li><code>'2'</code> → add branch</li>
+<li><code>'3'</code> → delete branch</li>
+<li>Any other value → invalid-option branch</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Option ‘1’ — Inquiry Branch</strong></p>
+<ul>
+<li>Determines the correct inquiry request type from the combination of <code>ENP4CNOO</code> (customer number) and <code>ENP4PNOO</code> (policy number) supplied on the screen:
+<ul>
+<li>Both present: <code>CA_REQUEST_ID = '01ICOM'</code> (inquire by customer and policy).</li>
+<li>Policy only: <code>CA_REQUEST_ID = '02ICOM'</code>.</li>
+<li>Customer only: <code>CA_REQUEST_ID = '03ICOM'</code>.</li>
+</ul>
+</li>
+<li>If a non-blank postcode (<code>ENP4HPCO</code>) is also present, overrides the request type with <code>CA_REQUEST_ID = '05ICOM'</code> and loads <code>CA_B_Postcode</code>.</li>
+<li>Calls <code>LGIPOL01</code> via <code>EXEC CICS LINK PROGRAM('LGIPOL01') COMMAREA(COMM_AREA) LENGTH(32500)</code>.</li>
+<li>Checks <code>CA_RETURN_CODE</code>; a non-zero value branches to <code>NO_DATA</code>.</li>
+<li>On success, copies all returned commercial policy fields from the COMMAREA (<code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_B_Address</code>, <code>CA_B_Postcode</code>, <code>CA_B_Latitude</code>, <code>CA_B_Longitude</code>, <code>CA_B_Customer</code>, <code>CA_B_PropType</code>, all four perils and premiums, <code>CA_B_Status</code>, <code>CA_B_RejectReason</code>) into the corresponding <code>SSMAPP4I</code> input fields for redisplay.</li>
+<li>Sends the refreshed map with <code>EXEC CICS SEND MAP('SSMAPP4') FROM(SSMAPP4O)</code> and branches to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Option ‘2’ — Add Branch</strong></p>
+<ul>
+<li>Sets <code>CA_REQUEST_ID = '01ACOM'</code> and loads all editable screen fields from <code>SSMAPP4O</code> into the COMMAREA commercial policy structure (<code>CA_CUSTOMER_NUM</code>, <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_B_Address</code>, <code>CA_B_Postcode</code>, coordinates, customer name, property type, all four perils and premiums, status, and reject reason).</li>
+<li>Calls <code>LGAPOL01</code> via <code>EXEC CICS LINK PROGRAM('LGAPOL01') COMMAREA(COMM_AREA) LENGTH(32500)</code>.</li>
+<li>On a non-zero <code>CA_RETURN_CODE</code>, issues <code>EXEC CICS SYNCPOINT ROLLBACK</code> and branches to <code>NO_ADD</code>.</li>
+<li>On success, copies the returned <code>CA_CUSTOMER_NUM</code> and newly generated <code>CA_POLICY_NUM</code> back to the screen input fields, clears the option field, writes the confirmation message <code>'New Commercial Policy Inserted'</code> to <code>ERP4FLDO</code>, sends the updated map, and branches to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Option ‘3’ — Delete Branch</strong></p>
+<ul>
+<li>Sets <code>CA_REQUEST_ID = '01DCOM'</code> and loads <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code> from the screen fields.</li>
+<li>Calls <code>LGDPOL01</code> via <code>EXEC CICS LINK PROGRAM('LGDPOL01') COMMAREA(COMM_AREA) LENGTH(32500)</code>.</li>
+<li>On a non-zero <code>CA_RETURN_CODE</code>, issues <code>EXEC CICS SYNCPOINT ROLLBACK</code> and branches to <code>NO_DELETE</code>.</li>
+<li>On success, blanks all policy-detail screen input fields (<code>ENP4EDAI</code>, address, postcode, coordinates, customer, property type, all perils and premiums, status, reject reason, option), writes the confirmation message <code>'Commercial Policy Deleted'</code> to <code>ERP4FLDO</code>, sends the refreshed map, and branches to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>OTHERWISE — Invalid Option Branch</strong></p>
+<ul>
+<li>Writes <code>'Please enter a valid option'</code> to <code>ERP4FLDO</code> and sets <code>ENP4OPTL = -1</code> to position the cursor on the option field.</li>
+<li>Sends the map back with <code>EXEC CICS SEND MAP ... CURSOR</code> to highlight the erroneous field and branches to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>ENDIT_STARTIT (pseudo-conversational return)</strong></p>
+<ul>
+<li>Issues <code>EXEC CICS RETURN TRANSID('SSP4') COMMAREA(COMM_AREA)</code> to end the current task while scheduling transaction SSP4 to restart on the next user input, preserving the COMMAREA state across the conversation.</li>
+</ul>
+</li>
+<li>
+<p><strong>ENDIT (normal termination)</strong></p>
+<ul>
+<li>Triggered by PF3, MAPFAIL, or any normal end-of-transaction path.</li>
+<li>Sends the literal <code>'Transaction ended'</code> text to the terminal via <code>EXEC CICS SEND TEXT ... ERASE FREEKB</code> then issues an unconditional <code>EXEC CICS RETURN</code> to close the transaction.</li>
+</ul>
+</li>
+<li>
+<p><strong>CLEARIT (CLEAR key handler)</strong></p>
+<ul>
+<li>Blanks the entire <code>SSMAPP4I</code> map input structure.</li>
+<li>Repaints the screen with a map-only send (<code>EXEC CICS SEND MAP('SSMAPP4') MAPSET('SSMAP') MAPONLY</code>) to show the blank form.</li>
+<li>Returns via <code>EXEC CICS RETURN TRANSID('SSP4') COMMAREA(COMM_AREA)</code> to stay in pseudo-conversational mode.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_ADD (add-failure error routing)</strong></p>
+<ul>
+<li>Checks <code>CA_RETURN_CODE</code> with a <code>SELECT</code>:
+<ul>
+<li>Return code 70: writes <code>'Customer does not exist'</code> to <code>ERP4FLDO</code>.</li>
+<li>Any other non-zero code: writes <code>'Error Adding Commercial Policy'</code>.</li>
+</ul>
+</li>
+<li>Both cases branch to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_DELETE (delete-failure error routing)</strong></p>
+<ul>
+<li>Writes <code>'Error Deleting Commercial Policy'</code> to <code>ERP4FLDO</code> and branches unconditionally to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_DATA (inquiry-failure error routing)</strong></p>
+<ul>
+<li>Writes <code>'No data was returned.'</code> to <code>ERP4FLDO</code> and branches unconditionally to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>ERROR_OUT (common error display and reset)</strong></p>
+<ul>
+<li>Sends the current <code>SSMAPP4O</code> map (containing the error message in <code>ERP4FLDO</code>) to the terminal via <code>EXEC CICS SEND MAP('SSMAPP4') FROM(SSMAPP4O)</code>.</li>
+<li>Resets all state: blanks <code>SSMAPP4I</code> and <code>COMM_AREA_RAW</code>, clears <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, and <code>CA_CUSTOMER_NUM</code> so the next interaction starts clean.</li>
+<li>Branches to <code>ENDIT_STARTIT</code> to return control to CICS in pseudo-conversational mode.</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<h3 id="61-cics-infrastructure" tabindex="-1">6.1 CICS Infrastructure</h3>
+<ul>
+<li><strong>CICS transaction <code>SSP4</code></strong> — the transaction identifier under which <code>LGTESTP4</code> runs; used in every <code>EXEC CICS RETURN TRANSID('SSP4')</code> to keep the pseudo-conversational loop alive</li>
+<li><strong>CICS COMMAREA (<code>COMM_AREA</code> / <code>COMM_AREA_PTR</code>)</strong> — 32,500-byte inter-program data contract passed on every <code>EXEC CICS LINK</code> and <code>EXEC CICS RETURN COMMAREA</code>; its layout is the universal data contract for all GenApp programs</li>
+<li><strong><code>EIBCALEN</code> (Execute Interface Block field)</strong> — tested at start-up to detect the first invocation; controls whether the map is sent with <code>ERASE</code> before any data is collected</li>
+<li><strong>CICS <code>HANDLE AID</code> / <code>HANDLE CONDITION</code></strong> — used to intercept PF3, CLEAR key, and <code>MAPFAIL</code> condition, routing them to <code>ENDIT</code> and <code>CLEARIT</code> respectively</li>
+</ul>
+<h3 id="62-bms-mapset" tabindex="-1">6.2 BMS Mapset</h3>
+<ul>
+<li><strong>Mapset <code>SSMAP</code></strong> — the BMS mapset that contains all screen maps used by the GenApp menus; the source is <strong>not</strong> in this repository
+<ul>
+<li><strong>Map <code>SSMAPP4</code></strong> — the commercial policy screen; sent (<code>EXEC CICS SEND MAP</code>) and received (<code>EXEC CICS RECEIVE MAP</code>) on every pseudo-conversational cycle; its symbolic layout is provided by <code>plinc/SSMAP.inc</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="63-pli-include-files-copybooks" tabindex="-1">6.3 PL/I Include Files (Copybooks)</h3>
+<ul>
+<li><strong><code>plinc/SSMAP.inc</code></strong> — PL/I symbolic map for mapset <code>SSMAP</code>; inlined via <code>%INCLUDE SSMAP</code>; defines all <code>SSMAPP4I</code> / <code>SSMAPP4O</code> input/output field structures (<code>ENP4OPTO</code>, <code>ENP4CNOO</code>, <code>ENP4PNOO</code>, <code>ENP4HPCO</code>, and all display fields)</li>
+<li><strong><code>plinc/LGCMAREA.inc</code></strong> — COMMAREA copybook; inlined via <code>%INCLUDE LGCMAREA</code>; declares the <code>COMM_AREA</code> union including the <code>CA_COMMERCIAL</code> branch (<code>CA_B_Address</code>, <code>CA_B_Postcode</code>, <code>CA_B_Customer</code>, <code>CA_B_PropType</code>, <code>CA_B_FirePeril</code>, <code>CA_B_FirePremium</code>, <code>CA_B_Status</code>, <code>CA_B_RejectReason</code>, etc.) together with <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code>, <code>CA_ISSUE_DATE</code>, and <code>CA_EXPIRY_DATE</code></li>
+</ul>
+<h3 id="64-external-programs-cics-link" tabindex="-1">6.4 External Programs (CICS LINK)</h3>
+<ul>
+<li><strong><code>LGIPOL01</code></strong> — commercial policy inquiry orchestrator; linked with <code>EXEC CICS LINK PROGRAM('LGIPOL01')</code> when option <code>'1'</code> is chosen; accepts request IDs <code>01ICOM</code>, <code>02ICOM</code>, <code>03ICOM</code>, and <code>05ICOM</code> for inquiry by customer+policy, policy only, customer only, and postcode respectively; returns policy data in the COMMAREA</li>
+<li><strong><code>LGAPOL01</code></strong> — commercial policy add orchestrator; linked when option <code>'2'</code> is chosen with request ID <code>01ACOM</code>; receives all commercial policy fields from the screen via COMMAREA and returns the newly assigned policy number; a <code>SYNCPOINT ROLLBACK</code> is issued on failure</li>
+<li><strong><code>LGDPOL01</code></strong> — commercial policy delete orchestrator; linked when option <code>'3'</code> is chosen with request ID <code>01DCOM</code>; identified by customer number and policy number; a <code>SYNCPOINT ROLLBACK</code> is issued on failure</li>
+</ul>
+<h3 id="65-input-data-sources" tabindex="-1">6.5 Input Data Sources</h3>
+<ul>
+<li><strong>Screen input fields (BMS map <code>SSMAPP4</code>)</strong> — all user-entered values are the sole runtime input source:
+<ul>
+<li><code>ENP4OPTO</code> — menu option (<code>1</code>=inquire, <code>2</code>=add, <code>3</code>=delete)</li>
+<li><code>ENP4CNOO</code> — customer number</li>
+<li><code>ENP4PNOO</code> — policy number</li>
+<li><code>ENP4HPCO</code> — business postcode (also triggers postcode-based inquiry)</li>
+<li><code>ENP4ADDO</code>, <code>ENP4LATO</code>, <code>ENP4LONO</code>, <code>ENP4CUSO</code>, <code>ENP4PTYO</code>, <code>ENP4FPEO</code>, <code>ENP4FPRO</code>, <code>ENP4CPEO</code>, <code>ENP4CPRO</code>, <code>ENP4XPEO</code>, <code>ENP4XPRO</code>, <code>ENP4WPEO</code>, <code>ENP4WPRO</code>, <code>ENP4STAO</code>, <code>ENP4REJO</code>, <code>ENP4IDAO</code>, <code>ENP4EDAO</code> — commercial policy detail fields used on add</li>
+</ul>
+</li>
+</ul>
+<h3 id="66-commarea-fields-passed-tofrom-back-end-programs" tabindex="-1">6.6 COMMAREA Fields Passed to/from Back-end Programs</h3>
+<ul>
+<li><strong><code>CA_REQUEST_ID</code></strong> — six-character operation code (<code>01ICOM</code>, <code>02ICOM</code>, <code>03ICOM</code>, <code>05ICOM</code>, <code>01ACOM</code>, <code>01DCOM</code>) set before each <code>EXEC CICS LINK</code></li>
+<li><strong><code>CA_RETURN_CODE</code></strong> — numeric return code inspected after each link; non-zero routes to error handling</li>
+<li><strong><code>CA_CUSTOMER_NUM</code></strong> — ten-digit customer number passed to and returned from back-end programs</li>
+<li><strong><code>CA_POLICY_NUM</code></strong> — ten-digit policy number passed on inquiry/delete; holds the new number returned after a successful add</li>
+<li><strong><code>CA_ISSUE_DATE</code></strong>, <strong><code>CA_EXPIRY_DATE</code></strong> — policy validity dates exchanged with back-end programs</li>
+<li><strong><code>CA_B_*</code> fields</strong> (<code>CA_B_Address</code>, <code>CA_B_Postcode</code>, <code>CA_B_Latitude</code>, <code>CA_B_Longitude</code>, <code>CA_B_Customer</code>, <code>CA_B_PropType</code>, <code>CA_B_FirePeril</code>, <code>CA_B_FirePremium</code>, <code>CA_B_CrimePeril</code>, <code>CA_B_CrimePremium</code>, <code>CA_B_FloodPeril</code>, <code>CA_B_FloodPremium</code>, <code>CA_B_WeatherPeril</code>, <code>CA_B_WeatherPremium</code>, <code>CA_B_Status</code>, <code>CA_B_RejectReason</code>) — the full set of commercial policy attributes in the <code>CA_COMMERCIAL</code> COMMAREA branch</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<ul>
+<li></li>
+</ul>
+<p>Menu option constraints</p>
+<ul>
+<li>
+<p>The option field (ENP4OPTO, mapped from the map’s ENP4OPT) must be ‘1’ (inquire), ‘2’ (add) or ‘3’ (delete). It is checked with <code>SELECT (ENP4OPTO)</code>.</p>
+</li>
+<li>
+<p>Any other value, including blank, goes to the <code>OTHERWISE</code> branch. That branch sets “Please enter a valid option” in ERP4FLDO and sets ENP4OPTL to -1 to put the cursor on the option field. It then resends the map with <code>CURSOR</code> and returns to transaction SSP4.</p>
+</li>
+<li>
+<p>Only one operation can run per screen interaction. Each <code>WHEN</code> branch ends by sending the map and returning to SSP4.</p>
+</li>
+<li>
+<p>Key-field presence rules for inquiry (option ‘1’)</p>
+<ul>
+<li>A key field (ENP4CNOO or ENP4PNOO) counts as “not supplied” if it is all blanks or ‘0000000000’. Any other value counts as supplied.</li>
+<li>The request type is chosen from which keys are present:
+<ul>
+<li>Customer number and policy number both supplied: CA_REQUEST_ID is ‘01ICOM’, and both CA_CUSTOMER_NUM and CA_POLICY_NUM are set.</li>
+<li>Only policy number supplied: CA_REQUEST_ID is ‘02ICOM’, and only CA_POLICY_NUM is set.</li>
+<li>Only customer number supplied: CA_REQUEST_ID is ‘03ICOM’, and only CA_CUSTOMER_NUM is set.</li>
+<li>Neither supplied: none of the three branches runs, so CA_REQUEST_ID keeps its earlier value (blank after start-up or an error). The called program is still linked.</li>
+</ul>
+</li>
+<li>If the postcode field ENP4HPCO is neither blank nor all spaces, it overrides the choice above. CA_REQUEST_ID becomes ‘05ICOM’ and CA_B_Postcode is set to the postcode. This is a postcode-based inquiry. It takes precedence over the customer and policy number combinations.</li>
+<li>The postcode is an 8-character field (CA_B_Postcode CHAR(8)).</li>
+</ul>
+</li>
+<li>
+<p>Inquiry result constraints</p>
+<ul>
+<li>After the link to LGIPOL01, CA_RETURN_CODE must be 0. Any value above 0 goes to NO_DATA and shows “No data was returned.”</li>
+<li>The inquiry result is only displayed when the return code is 0. Policy details (dates, address, postcode, latitude, longitude, customer, property type, the four peril and premium pairs, status and reject reason) are copied to the map and sent.</li>
+</ul>
+</li>
+<li>
+<p>Add policy constraints (option ‘2’)</p>
+<ul>
+<li>The request is always CA_REQUEST_ID ‘01ACOM’. The program does not check that the customer number, dates, address or any other field is present or valid. It copies the screen values straight into the commarea, and validation is left to LGAPOL01.</li>
+<li>The commarea field types and lengths set formats that the back-end program must accept:
+<ul>
+<li>CA_CUSTOMER_NUM is 10 numeric digits.</li>
+<li>CA_B_FirePeril, CA_B_CrimePeril, CA_B_FloodPeril, CA_B_WeatherPeril and CA_B_Status are 4 numeric digits.</li>
+<li>The four premium fields are 8 numeric digits.</li>
+<li>CA_ISSUE_DATE and CA_EXPIRY_DATE are 10-character strings.</li>
+<li>CA_B_Address, CA_B_Customer, CA_B_PropType and CA_B_RejectReason are 255-character strings.</li>
+<li>CA_B_Latitude and CA_B_Longitude are 11-character strings.</li>
+</ul>
+</li>
+<li>The add is only successful if CA_RETURN_CODE from LGAPOL01 is 0. A return code above 0 triggers <code>EXEC CICS SYNCPOINT ROLLBACK</code>, so the add is undone before the error is shown.</li>
+<li>Return code 70 shows “Customer does not exist”, so the customer must already exist for a policy to be added. Any other non-zero return code shows “Error Adding Commercial Policy”.</li>
+<li>On success, the generated policy number (CA_POLICY_NUM) and the customer number are returned to the screen. The option field is cleared and “New Commercial Policy Inserted” is shown.</li>
+</ul>
+</li>
+<li>
+<p>Delete policy constraints (option ‘3’)</p>
+<ul>
+<li>The request is always CA_REQUEST_ID ‘01DCOM’, and both the customer number (CA_CUSTOMER_NUM) and the policy number (CA_POLICY_NUM) are passed from the screen.</li>
+<li>The program does not check that these keys are present. The back-end program LGDPOL01 does that.</li>
+<li>A non-zero CA_RETURN_CODE triggers <code>EXEC CICS SYNCPOINT ROLLBACK</code>. The program then shows “Error Deleting Commercial Policy” whatever the return code.</li>
+<li>On success, the expiry date, address, postcode, latitude, longitude, customer, property type, all perils and premiums, status, reject reason and option fields are blanked. “Commercial Policy Deleted” is shown. The issue date field is not cleared.</li>
+</ul>
+</li>
+<li>
+<p>Sequencing and transaction flow constraints</p>
+<ul>
+<li>On first entry (<code>EIBCALEN = 0</code>) the commarea is pointed at BASE_COMM_AREA and the output map is blanked. The request ID is blanked and the return code and customer number are set to 0. The request initialiser area is blanked.</li>
+<li>The customer and policy number fields are set to ‘0000000000’. The peril, premium and status fields are blanked.</li>
+<li>The menu map SSMAPP4 in mapset SSMAP is sent with <code>ERASE</code>, and the program then falls through to receive the input.</li>
+<li>Handler setup must happen before the receive. <code>HANDLE AID</code> is set for CLEAR and PF3. <code>HANDLE CONDITION</code> is set for MAPFAIL.</li>
+<li>The map must be received before the option is evaluated.</li>
+<li>PF3 and MAPFAIL both go to ENDIT. This sends “Transaction ended” with <code>ERASE</code> and <code>FREEKB</code>, then ends the transaction.</li>
+<li>CLEAR blanks the input map and sends the empty map (<code>MAPONLY</code>). The program then returns to SSP4 with the commarea.</li>
+<li>After each processed option, the program returns with <code>TRANSID('SSP4')</code> and passes the commarea. This keeps the conversation pseudo-conversational.</li>
+<li>A back-end link must complete and be checked for its return code before results are displayed or updates are accepted.</li>
+</ul>
+</li>
+<li>
+<p>Error handling and reset constraints</p>
+<ul>
+<li>All errors (NO_ADD, NO_DELETE, NO_DATA) go through ERROR_OUT. It sends the map with the error message, then resets state before returning to SSP4.</li>
+<li>The reset blanks SSMAPP4I and the whole commarea (COMM_AREA_RAW). It also blanks CA_REQUEST_ID, sets CA_RETURN_CODE and CA_CUSTOMER_NUM to 0, and blanks the request initialiser. No stale data from a failed request carries into the next one.</li>
+<li>The error message field is limited to 40 characters (ERP4FLDO CHAR(40)). Messages must fit that length.</li>
+</ul>
+</li>
+<li>
+<p>Resource and size constraints</p>
+<ul>
+<li>The commarea is a fixed 32500 bytes (<code>COMM_AREA_RAW CHAR(32500)</code>). Every <code>LINK</code> to LGIPOL01, LGAPOL01 and LGDPOL01 passes it with <code>LENGTH(32500)</code>.</li>
+<li>The commercial-policy detail area (CA_B_FILLER and related fields) must fit inside that size.</li>
+<li>Screen fields have fixed widths:
+<ul>
+<li>Customer and policy numbers are 10 characters.</li>
+<li>Postcode is 8.</li>
+<li>Address is 25.</li>
+<li>Peril fields are 4.</li>
+<li>Premium fields are 8.</li>
+<li>Status is 4.</li>
+<li>Reject reason is 25.</li>
+<li>Option is 1.</li>
+</ul>
+</li>
+<li>Moving the 255-character commarea fields to the narrower screen fields (for example 25-character address and customer) truncates the data.</li>
+<li>The program is <code>Options(Main,Reentrant)</code>, so it must not hold changeable state in static storage. The only static item is the constant MSGEND, a 24-character string.</li>
+</ul>
+</li>
+<li>
+<p>Dependency constraints</p>
+<ul>
+<li>Inquiry depends on LGIPOL01, add on LGAPOL01, and delete on LGDPOL01. Each must return a CA_RETURN_CODE that the program can interpret: 0 for success, 70 for customer-not-found on add, and any other positive value for a general failure.</li>
+<li>The BMS mapset SSMAP and the commarea layout from the SSMAP and LGCMAREA includes must match what the back-end programs expect.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<ul>
+<li>
+<p><strong>Terminal and key-based CICS handling</strong></p>
+<ul>
+<li>Exceptions from the map receive are handled with condition handlers set up before the screen is received.
+<ul>
+<li>A MAPFAIL condition (no data entered on the screen) branches to the ENDIT routine. That routine sends “Transaction ended” to the terminal, erases the screen, frees the keyboard and returns without a transaction ID. This ends the conversation cleanly.</li>
+<li>The PF3 key is routed to the same ENDIT routine, so the user can leave the transaction.</li>
+<li>The CLEAR key is routed to the CLEARIT routine. It blanks the input map, resends the empty map in map-only mode, and returns to transaction SSP4 with the commarea. This resets the screen and keeps the conversation going.</li>
+</ul>
+</li>
+<li>No RESP or RESP2 checks follow the LINK, SEND or RECEIVE commands.
+<ul>
+<li>Any condition other than MAPFAIL, such as a LINK failure for a program that is not found, is not handled. CICS default handling applies, which normally abends the transaction.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Input validation</strong></p>
+<ul>
+<li>The menu option (ENP4OPTO) is evaluated in a SELECT statement. Any value other than ‘1’, ‘2’ or ‘3’ goes to the OTHERWISE branch.
+<ul>
+<li>That branch puts the message “Please enter a valid option” in the error field.</li>
+<li>It sets the option field length to -1, which positions the cursor on the option field.</li>
+<li>It resends the map with the CURSOR option and returns to transaction SSP4 with the commarea, so the user can retry.</li>
+</ul>
+</li>
+<li>For the inquiry option, the customer and policy number fields are tested for blank or all-zero values.
+<ul>
+<li>These tests choose the request type. Both keys give ‘01ICOM’, policy only gives ‘02ICOM’, and customer only gives ‘03ICOM’.</li>
+<li>They are not rejections. If neither key is supplied, no request ID is set by this logic. The request ID keeps its earlier value, and a non-blank postcode can still override it with ‘05ICOM’.</li>
+<li>There is no explicit error for the case where neither key nor postcode is given. Handling of that case is left to the called program, through its return code.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Return-code checks on called back-end programs</strong></p>
+<ul>
+<li>After each LINK to a policy program, the program tests the return code (CA_RETURN_CODE) set by the callee. A value above zero means failure.
+<ul>
+<li>For inquiry (LGIPOL01), a non-zero return code goes to NO_DATA. That sets the message “No data was returned.” and falls into the common error-out routine.</li>
+<li>For add (LGAPOL01), a non-zero return code first issues a SYNCPOINT ROLLBACK, then goes to NO_ADD.</li>
+<li>For delete (LGDPOL01), a non-zero return code first issues a SYNCPOINT ROLLBACK, then goes to NO_DELETE. That sets the message “Error Deleting Commercial Policy”.</li>
+</ul>
+</li>
+<li>In the add failure path, the return code is examined in a SELECT statement.
+<ul>
+<li>Return code 70 gives the specific message “Customer does not exist”.</li>
+<li>Any other value gives the generic message “Error Adding Commercial Policy”.</li>
+<li>Both messages continue to the common error-out routine.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Transactional recovery</strong></p>
+<ul>
+<li>A syncpoint rollback is issued on add and delete failures. This backs out any recoverable updates the called program made before it failed, so no partial changes remain.</li>
+<li>The inquiry path does not roll back, because it is read-only.</li>
+</ul>
+</li>
+<li>
+<p><strong>Recovery and reset logic</strong></p>
+<ul>
+<li>The common ERROR_OUT routine sends the map with the error message to the user. It then resets the working state.
+<ul>
+<li>The input map is blanked.</li>
+<li>The raw commarea is cleared.</li>
+<li>The request ID is set to blanks.</li>
+<li>The return code and customer number are set to zero.</li>
+<li>The request-specific area is blanked.</li>
+</ul>
+</li>
+<li>It then returns to transaction SSP4 with the cleaned commarea, so the next interaction starts from a clean state and a failed request does not carry over.</li>
+<li>At first entry (EIBCALEN of zero), the program initialises the commarea pointer and the commarea fields. It also sets the customer and policy number fields to zeros and blanks the peril, premium and status fields. It then sends the initial menu map with the screen erased. This prevents use of uninitialised data.</li>
+<li>The commarea pointer is set to a local storage area on first entry. This is a fallback for when no commarea was passed.</li>
+</ul>
+</li>
+<li>
+<p><strong>User notifications</strong></p>
+<ul>
+<li>All errors are shown to the user through the error field (ERP4FLDO) on the SSMAPP4 map.
+<ul>
+<li>The messages used are “Please enter a valid option”, “Customer does not exist”, “Error Adding Commercial Policy”, “Error Deleting Commercial Policy” and “No data was returned.”</li>
+</ul>
+</li>
+<li>Success is also reported in the same field, with “New Commercial Policy Inserted” and “Commercial Policy Deleted”. This lets the user tell failure from success.</li>
+<li>The termination message “Transaction ended” is sent on PF3 or MAPFAIL.</li>
+</ul>
+</li>
+<li>
+<p><strong>Program termination and flow control</strong></p>
+<ul>
+<li>Failure paths use GO TO branches (NO_DATA, NO_ADD, NO_DELETE, ERROR_OUT, ENDIT_STARTIT). Together they act as a centralised error-exit structure.</li>
+<li>All error paths end in a pseudo-conversational return to SSP4, except the ENDIT path, which ends the transaction.</li>
+<li>The program has no PL/I ON-unit handling (such as ON ERROR) and no explicit abend or logging of errors. Error reporting is limited to the screen messages and the CICS default handling.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-inquire-commercial-policy-by-policy-number-option-1" tabindex="-1">9.1 Example 1: Inquire Commercial Policy by Policy Number (Option ‘1’)</h3>
+<h4 id="911-input-data" tabindex="-1">9.1.1 Input Data</h4>
+<ul>
+<li><strong>Map Fields (<code>SSMAPP4</code>):</strong>
+<ul>
+<li><code>ENP4OPTO</code> (Option): <code>'1'</code></li>
+<li><code>ENP4CNOO</code> (Customer Number): <code>'0000000000'</code> (or spaces)</li>
+<li><code>ENP4PNOO</code> (Policy Number): <code>'0000001001'</code></li>
+<li><code>ENP4HPCO</code> (Postcode): <code>'        '</code> (spaces)</li>
+</ul>
+</li>
+<li><strong>Backend Data Returned via COMMAREA:</strong>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>00</code></li>
+<li><code>CA_CUSTOMER_NUM</code>: <code>0000000025</code></li>
+<li><code>CA_ISSUE_DATE</code>: <code>'2023-01-15'</code></li>
+<li><code>CA_EXPIRY_DATE</code>: <code>'2024-01-15'</code></li>
+<li><code>CA_B_Address</code>: <code>'100 Industrial Way'</code></li>
+<li><code>CA_B_Postcode</code>: <code>'AB12 3CD'</code></li>
+<li><code>CA_B_Customer</code>: <code>'ACME Corp'</code></li>
+<li><code>CA_B_PropType</code>: <code>'Warehouse'</code></li>
+<li><code>CA_B_FirePeril</code>: <code>'1000'</code></li>
+<li><code>CA_B_FirePremium</code>: <code>'00050000'</code></li>
+<li><code>CA_B_Status</code>: <code>'0001'</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="912-expected-output" tabindex="-1">9.1.2 Expected Output</h4>
+<ul>
+<li><strong>Target Program Linked:</strong> <code>LGIPOL01</code> with <code>CA_REQUEST_ID = '02ICOM'</code></li>
+<li><strong>Map Fields Displayed (<code>SSMAPP4</code>):</strong>
+<ul>
+<li><code>ENP4CNOI</code>: <code>0000000025</code></li>
+<li><code>ENP4IDAI</code>: <code>'2023-01-15'</code></li>
+<li><code>ENP4EDAI</code>: <code>'2024-01-15'</code></li>
+<li><code>ENP4ADDI</code>: <code>'100 Industrial Way'</code></li>
+<li><code>ENP4HPCI</code>: <code>'AB12 3CD'</code></li>
+<li><code>ENP4CUSI</code>: <code>'ACME Corp'</code></li>
+<li><code>ENP4PTYI</code>: <code>'Warehouse'</code></li>
+<li><code>ENP4FPEI</code>: <code>'1000'</code></li>
+<li><code>ENP4FPRI</code>: <code>'00050000'</code></li>
+<li><code>ENP4STAI</code>: <code>'0001'</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="913-explanation" tabindex="-1">9.1.3 Explanation</h4>
+<p>When option <code>'1'</code> is entered with a non-zero policy number and an unpopulated customer number, the program sets the COMMAREA request ID to <code>'02ICOM'</code> (inquiry by policy only). It executes <code>EXEC CICS LINK</code> to <code>LGIPOL01</code>. Upon receiving return code <code>00</code>, the program populates the screen fields from the commercial policy structure in the COMMAREA and re-displays the map.</p>
+<hr>
+<h3 id="92-example-2-add-new-commercial-policy-option-2" tabindex="-1">9.2 Example 2: Add New Commercial Policy (Option ‘2’)</h3>
+<h4 id="921-input-data" tabindex="-1">9.2.1 Input Data</h4>
+<ul>
+<li><strong>Map Fields (<code>SSMAPP4</code>):</strong>
+<ul>
+<li><code>ENP4OPTO</code> (Option): <code>'2'</code></li>
+<li><code>ENP4CNOO</code> (Customer Number): <code>'0000000025'</code></li>
+<li><code>ENP4IDAO</code> (Issue Date): <code>'2023-05-01'</code></li>
+<li><code>ENP4EDAO</code> (Expiry Date): <code>'2024-05-01'</code></li>
+<li><code>ENP4ADDO</code> (Address): <code>'500 High Street'</code></li>
+<li><code>ENP4HPCO</code> (Postcode): <code>'SW1A 1AA'</code></li>
+<li><code>ENP4CUSO</code> (Customer): <code>'Global Logistics Ltd'</code></li>
+<li><code>ENP4PTYO</code> (Property Type): <code>'Office'</code></li>
+<li><code>ENP4FPEO</code> (Fire Peril): <code>'0500'</code></li>
+<li><code>ENP4FPRO</code> (Fire Premium): <code>'00025000'</code></li>
+<li><code>ENP4STAO</code> (Status): <code>'0001'</code></li>
+</ul>
+</li>
+<li><strong>Backend Data Returned via COMMAREA:</strong>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>00</code></li>
+<li><code>CA_POLICY_NUM</code>: <code>0000001042</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="922-expected-output" tabindex="-1">9.2.2 Expected Output</h4>
+<ul>
+<li><strong>Target Program Linked:</strong> <code>LGAPOL01</code> with <code>CA_REQUEST_ID = '01ACOM'</code></li>
+<li><strong>Map Fields Displayed (<code>SSMAPP4</code>):</strong>
+<ul>
+<li><code>ENP4CNOI</code>: <code>'0000000025'</code></li>
+<li><code>ENP4PNOI</code>: <code>'0000001042'</code> (generated policy number)</li>
+<li><code>ENP4OPTI</code>: <code>' '</code></li>
+<li><code>ERP4FLDO</code> (Message): <code>'New Commercial Policy Inserted'</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="923-explanation" tabindex="-1">9.2.3 Explanation</h4>
+<p>Selecting option <code>'2'</code> sets <code>CA_REQUEST_ID</code> to <code>'01ACOM'</code> and transfers all commercial policy details entered on the map into <code>COMM_AREA</code>. The program calls <code>LGAPOL01</code> via <code>EXEC CICS LINK</code>. On successful return (<code>CA_RETURN_CODE = 0</code>), the new policy number generated by the back-end is copied to <code>ENP4PNOI</code> and the success message is presented to the user.</p>
+<hr>
+<h3 id="93-example-3-invalid-menu-option-error-case" tabindex="-1">9.3 Example 3: Invalid Menu Option (Error Case)</h3>
+<h4 id="931-input-data" tabindex="-1">9.3.1 Input Data</h4>
+<ul>
+<li><strong>Map Fields (<code>SSMAPP4</code>):</strong>
+<ul>
+<li><code>ENP4OPTO</code> (Option): <code>'9'</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="932-expected-output" tabindex="-1">9.3.2 Expected Output</h4>
+<ul>
+<li><strong>Map Fields Displayed (<code>SSMAPP4</code>):</strong>
+<ul>
+<li><code>ERP4FLDO</code> (Error Message): <code>'Please enter a valid option'</code></li>
+<li>Screen cursor positioned on <code>ENP4OPT</code> (<code>ENP4OPTL = -1</code>)</li>
+</ul>
+</li>
+</ul>
+<h4 id="933-explanation" tabindex="-1">9.3.3 Explanation</h4>
+<p>When <code>ENP4OPTO</code> is not <code>'1'</code>, <code>'2'</code>, or <code>'3'</code>, execution branches to the <code>OTHERWISE</code> clause. The error message is loaded into <code>ERP4FLDO</code>, the option field length flag is set to <code>-1</code> to position the terminal cursor on the option input, and the map is redisplayed without invoking any back-end service.</p>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a></li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a></li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a>
+<ul>
+<li class="toc-level-4"><a href="#421-high-level-summary">4.2.1 High-level Summary</a></li>
+<li class="toc-level-4"><a href="#422-execution-flow">4.2.2 Execution Flow</a></li>
+<li class="toc-level-4"><a href="#423-external-interactions">4.2.3 External Interactions</a></li>
+<li class="toc-level-4"><a href="#424-plain-language-summary">4.2.4 Plain Language Summary</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a>
+<ul>
+<li class="toc-level-3"><a href="#61-cics-infrastructure">6.1 CICS Infrastructure</a></li>
+<li class="toc-level-3"><a href="#62-bms-mapset">6.2 BMS Mapset</a></li>
+<li class="toc-level-3"><a href="#63-pli-include-files-copybooks">6.3 PL/I Include Files (Copybooks)</a></li>
+<li class="toc-level-3"><a href="#64-external-programs-cics-link">6.4 External Programs (CICS LINK)</a></li>
+<li class="toc-level-3"><a href="#65-input-data-sources">6.5 Input Data Sources</a></li>
+<li class="toc-level-3"><a href="#66-commarea-fields-passed-tofrom-back-end-programs">6.6 COMMAREA Fields Passed to/from Back-end Programs</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a></li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-inquire-commercial-policy-by-policy-number-option-1">9.1 Example 1: Inquire Commercial Policy by Policy Number (Option ‘1’)</a>
+<ul>
+<li class="toc-level-4"><a href="#911-input-data">9.1.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#912-expected-output">9.1.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#913-explanation">9.1.3 Explanation</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#92-example-2-add-new-commercial-policy-option-2">9.2 Example 2: Add New Commercial Policy (Option ‘2’)</a>
+<ul>
+<li class="toc-level-4"><a href="#921-input-data">9.2.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#922-expected-output">9.2.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#923-explanation">9.2.3 Explanation</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#93-example-3-invalid-menu-option-error-case">9.3 Example 3: Invalid Menu Option (Error Case)</a>
+<ul>
+<li class="toc-level-4"><a href="#931-input-data">9.3.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#932-expected-output">9.3.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#933-explanation">9.3.3 Explanation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGTESTP4</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

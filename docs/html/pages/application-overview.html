@@ -1,0 +1,961 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Overview - GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../assets/prism-tomorrow.css">
+    <script src="../assets/prism-core.js"></script>
+    <script src="../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="application-overview.html" class="nav-link active" data-page-id="application-overview">Application Overview</a>
+                <a href="program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items">
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="page-container">
+                <div class="content-layout">
+                    <div class="prose">
+                        <details class="source-files-disclosure">
+            <summary>
+                <svg class="sf-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Source Files
+                <span style="margin-left:4px;font-size:11px;color:var(--fg-subtle)">(6)</span>
+            </summary>
+            <div class="source-files-body">
+                <ul class="source-files-list">
+            <li><a href="../sources/program/pli/LGICUS01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGICUS01
+            </a></li>
+            <li><a href="../sources/program/pli/LGBATCH.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGBATCH
+            </a></li>
+            <li><a href="../sources/program/pli/LGAPOL01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGAPOL01
+            </a></li>
+            <li><a href="../sources/program/pli/LGTESTC1.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGTESTC1
+            </a></li>
+            <li><a href="../sources/program/pli/LGSETUP.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGSETUP
+            </a></li>
+            <li><a href="../sources/program/pli/LGIPOL01.html">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+                    <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                LGIPOL01
+            </a></li>
+                </ul>
+            </div>
+        </details>
+                        <h1 id="application-overview" tabindex="-1">Application Overview</h1>
+<p>The General Insurance (GenApp) application is an enterprise-grade z/OS system designed to manage core insurance operations, including customer demographics, multi-line policy administration, and claims processing. GenApp provides a hybrid transaction processing architecture, supporting interactive online interfaces (CICS 3270 BMS menus), modular business services, integration with business rules engines (Operational Decision Manager / ODM), and sequential batch processing for customer reporting.</p>
+<hr>
+<h2 id="1-overview" tabindex="-1">1. Overview</h2>
+<p>GenApp manages the full lifecycle of general insurance products. It coordinates customer data and cross-domain policy types—<strong>Endowment</strong>, <strong>House</strong>, <strong>Motor</strong>, <strong>Commercial</strong>, and <strong>Claim</strong>—through standardized communication contracts.</p>
+<p>The application architecture cleanly separates Presentation and Ingestion, Orchestration and Business Logic, Enterprise Business Rules, Diagnostic Logging, and Data Persistence.</p>
+<div class="mermaid">
+graph TD
+    subgraph "Entry Points"
+        UI[3270 Terminal / CICS BMS Map SSMAP] -->|Trans SSC1| LGTESTC1[Customer Menu Driver LGTESTC1]
+        TERM[CICS Terminal] -->|Trans LGSE| LGSETUP[Environment Setup LGSETUP]
+        BATCH[JCL Batch Job] -->|Sequential Input CUSTIN| LGBATCH[Batch Reporting LGBATCH]
+    end
+
+    subgraph "Business Orchestration Layer"
+        LGTESTC1 -->|CICS LINK COMMAREA| LGICUS01[Customer Inquiry LGICUS01]
+        LGTESTC1 -->|CICS LINK COMMAREA| LGACUS01[Customer Add LGACUS01]
+        LGTESTC1 -->|CICS LINK COMMAREA| LGUCUS01[Customer Update LGUCUS01]
+        
+        LGIPOL01[Policy Inquiry LGIPOL01]
+        LGAPOL01[Policy Add LGAPOL01]
+    end
+
+    subgraph "Business Rules & Integration"
+        LGAPOL01 -.->|Conditional CICS LINK| LGAPBR01[ODM Business Rules LGAPBR01]
+        LGICUS01 -.->|READQ TS GENAWMQC| MQ_ROUTER{MQ Hit Detected?}
+        MQ_ROUTER -->|MQHIT=0| LGICDB01
+        MQ_ROUTER -->|MQHIT=1| AAAAAAAA[Alternate Router AAAAAAAA]
+    end
+
+    subgraph "Data Persistence Layer"
+        LGICUS01 -->|CICS LINK| LGICDB01[Customer DB2 Inquiry LGICDB01]
+        LGIPOL01 -->|CICS LINK| LGIPDB01[Policy DB2 Inquiry LGIPDB01]
+        LGAPOL01 -->|CICS LINK| LGAPDB01[Policy DB2 Insert LGAPDB01]
+        LGBATCH -->|Singleton Embedded SQL| DB2_CUST[(Db2 CUSTOMER Table)]
+        LGICDB01 --> DB2[(Db2 Tables)]
+        LGIPDB01 --> DB2
+        LGAPDB01 --> DB2
+    end
+
+    subgraph "Infrastructure & Diagnostics"
+        LGICUS01 & LGIPOL01 & LGAPOL01 -->|CICS LINK Error Msg| LGSTSQ[Logging Queue Writer LGSTSQ]
+        LGSETUP -->|Named Counter Server| GENA_POOL[Pool GENA Named Counters]
+        LGSETUP -->|CICS TSQ| TSQ_CTL[Queues: GENACNTL, GENAERRS, GENASTAT, GENASTRT]
+        LGBATCH -->|Dynamic FETCH / CALL| LGBATCHF[Report Line Formatter LGBATCHF]
+        LGBATCHF -->|WRITE| CUSTRPT[Output File CUSTRPT]
+    end
+</div>
+<p>The system is engineered around modular CICS programs linked via fixed 32,500-byte Communication Areas (<code>COMM_AREA</code> defined in <code>LGCMAREA.inc</code>). Orchestrators handle validation, routing, and diagnostic tracking, while delegating relational database operations directly to dedicated database subprograms.</p>
+<hr>
+<h2 id="2-system-architecture" tabindex="-1">2. System Architecture</h2>
+<p>GenApp follows a multi-tiered architecture that standardizes communication between online presentation, batch facilities, core orchestration, rule execution, and data access.</p>
+<h3 id="21-layered-architecture-overview" tabindex="-1">2.1 Layered Architecture Overview</h3>
+<ol>
+<li><strong>Presentation / Entry Tier:</strong>
+<ul>
+<li><strong>CICS BMS Interface (<code>LGTESTC1</code>):</strong> Pseudo-conversational 3270 screen handler providing customer search, addition, and modification functions.</li>
+<li><strong>Batch Entry (<code>LGBATCH</code>):</strong> Non-CICS Enterprise PL/I batch utility that reads flat files (<code>CUSTIN</code>), coordinates database lookups, and generates report lines (<code>CUSTRPT</code>).</li>
+<li><strong>Environment Control (<code>LGSETUP</code>):</strong> CICS utility initializing application state, temporary storage queues, and named counter sequences.</li>
+</ul>
+</li>
+<li><strong>Business Orchestration Tier:</strong>
+<ul>
+<li>Modular CICS programs (<code>LGICUS01</code>, <code>LGIPOL01</code>, <code>LGAPOL01</code>) that enforce interface contracts, validate buffer sizes, manage routing logic, and format runtime diagnostics.</li>
+</ul>
+</li>
+<li><strong>Decision &amp; Rule Processing Tier:</strong>
+<ul>
+<li>Externalized decision logic (<code>LGAPBR01</code>) integrated via conditional links to apply ODM validation on transactions such as endowment policy additions.</li>
+</ul>
+</li>
+<li><strong>Data Access &amp; Persistence Tier:</strong>
+<ul>
+<li>Dedicated Db2 persistence programs (<code>LGICDB01</code>, <code>LGIPDB01</code>, <code>LGAPDB01</code>) executing embedded SQL against normalized relational entities.</li>
+</ul>
+</li>
+<li><strong>System Services &amp; Diagnostic Infrastructure:</strong>
+<ul>
+<li>Shared logging routines (<code>LGSTSQ</code>), transient data/temporary storage queues (<code>GENAERRS</code>, <code>GENACNTL</code>, <code>GENASTAT</code>, <code>GENASTRT</code>), and CICS Named Counters (pool <code>GENA</code>).</li>
+</ul>
+</li>
+</ol>
+<div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User as 3270 Terminal User
+    participant Menu as LGTESTC1 (Menu Driver)
+    participant Orch as LGIPOL01 (Policy Orchestrator)
+    participant DBHandler as LGIPDB01 (Db2 Handler)
+    participant Db2 as Db2 Database
+    participant Log as LGSTSQ (Logging)
+
+    User->>Menu: Submit Policy Inquiry Request
+    Menu->>Orch: EXEC CICS LINK PROGRAM('LGIPOL01') with COMM_AREA (32.5KB)
+    alt EIBCALEN = 0
+        Orch->>Log: EXEC CICS LINK 'LGSTSQ' (Error Msg: NO COMMAREA RECEIVED)
+        Orch-->>User: EXEC CICS ABEND ABCODE('LGCA') NODUMP
+    else Valid COMMAREA
+        Orch->>Orch: Init CA_RETURN_CODE='00', Capture EIB Identifiers
+        Orch->>DBHandler: EXEC CICS LINK PROGRAM('LGIPDB01') Length 32000
+        DBHandler->>Db2: Embedded SQL SELECT (POLICY & Specific Table)
+        Db2-->>DBHandler: SQL Data / SQLCODE
+        DBHandler->>DBHandler: Populate COMM_AREA (Endow, Motor, House, Comm, Claim)
+        DBHandler-->>Orch: Return updated COMM_AREA + CA_RETURN_CODE
+        Orch-->>Menu: EXEC CICS RETURN (COMM_AREA populated)
+        Menu-->>User: Format & Send BMS Screen Map
+    end
+</div>
+<hr>
+<h2 id="3-insurance-business-domains" tabindex="-1">3. Insurance Business Domains</h2>
+<p>GenApp manages two primary structural entities: <strong>Customers</strong> and multi-line <strong>Policies</strong>.</p>
+<h3 id="31-customer-domain" tabindex="-1">3.1 Customer Domain</h3>
+<p>Customers are the core entity in the GenApp suite. Each customer is assigned a 10-digit numeric customer number (<code>PIC '9999999999'</code>).</p>
+<ul>
+<li><strong>Core Attributes:</strong> First Name (<code>CHAR(10)</code>), Last Name (<code>CHAR(20)</code>), Date of Birth (<code>CHAR(10)</code>), House Name (<code>CHAR(20)</code>), House Number (<code>CHAR(4)</code>), Postal Code (<code>CHAR(8)</code>), Mobile Phone (<code>CHAR(20)</code>), Home Phone (<code>CHAR(20)</code>), and Email Address (<code>CHAR(100)</code>).</li>
+<li><strong>Control &amp; Allocation:</strong> New customer numbers are seeded and generated using CICS Named Counters (<code>GENACUSTNUM</code> in pool <code>GENA</code>) and recorded within boundaries tracked in the <code>GENACNTL</code> CICS Temporary Storage Queue.</li>
+</ul>
+<h3 id="32-policy-domain-and-product-types" tabindex="-1">3.2 Policy Domain and Product Types</h3>
+<p>Policies are linked to customers via a 10-digit customer number reference (<code>CA_CUSTOMER_NUM</code>). All policies share common administrative metadata, overlaid with specialized product fields within the <code>LGCMAREA</code> communication area.</p>
+<div class="mermaid">
+erDiagram
+    CUSTOMER ||--o{ POLICY : "owns"
+    POLICY ||--o| ENDOWMENT : "type E"
+    POLICY ||--o| HOUSE : "type H"
+    POLICY ||--o| MOTOR : "type M"
+    POLICY ||--o| COMMERCIAL : "type B"
+    POLICY ||--o| CLAIM : "type C"
+
+    CUSTOMER {
+        string CUSTOMERNUMBER "10 digits"
+        string FIRSTNAME "CHAR(10)"
+        string LASTNAME "CHAR(20)"
+        string DATEOFBIRTH "CHAR(10)"
+        string HOUSENAME "CHAR(20)"
+        string HOUSENUMBER "CHAR(4)"
+        string POSTCODE "CHAR(8)"
+        string PHONEMOBILE "CHAR(20)"
+        string PHONEHOME "CHAR(20)"
+        string EMAILADDRESS "CHAR(100)"
+    }
+
+    POLICY {
+        string POLICYNUMBER "10 digits"
+        string POLICYTYPE "CHAR(1) - E, H, M, B, C"
+        string ISSUEDATE "CHAR(10)"
+        string EXPIRYDATE "CHAR(10)"
+        string LASTCHANGED "CHAR(26) Timestamp"
+        int BROKERID "10 digits"
+        string BROKERSREF "CHAR(10)"
+        int PAYMENT "6 digits"
+    }
+
+    ENDOWMENT {
+        string WITHPROFITS "1 char flag"
+        string EQUITIES "1 char flag"
+        string MANAGEDFUND "1 char flag"
+        string FUNDNAME "CHAR(10)"
+        int TERM "2 digits"
+        int SUMASSURED "6 digits"
+        string LIFEASSURED "CHAR(31)"
+    }
+
+    HOUSE {
+        string PROPERTYTYPE "CHAR(15)"
+        int BEDROOMS "3 digits"
+        int VALUE "8 digits"
+        string HOUSENAME "CHAR(20)"
+        string HOUSENUMBER "CHAR(4)"
+        string POSTCODE "CHAR(8)"
+    }
+
+    MOTOR {
+        string MAKE "CHAR(15)"
+        string MODEL "CHAR(15)"
+        int VALUE "6 digits"
+        string REGNUMBER "CHAR(7)"
+        string COLOUR "CHAR(8)"
+        int CC "4 digits"
+        string MANUFACTURED "CHAR(10)"
+        int PREMIUM "6 digits"
+        int ACCIDENTS "6 digits"
+    }
+
+    COMMERCIAL {
+        string ADDRESS "CHAR(255)"
+        string POSTCODE "CHAR(8)"
+        string LATITUDE "CHAR(11)"
+        string LONGITUDE "CHAR(11)"
+        string CUSTOMER "CHAR(255)"
+        string PROPTYPE "CHAR(255)"
+        int FIREPERIL "4 digits"
+        int FIREPREMIUM "8 digits"
+        int CRIMEPERIL "4 digits"
+        int CRIMEPREMIUM "8 digits"
+        int FLOODPERIL "4 digits"
+        int FLOODPREMIUM "8 digits"
+        int WEATHERPERIL "4 digits"
+        int WEATHERPREMIUM "8 digits"
+        int STATUS "4 digits"
+        string REJECTREASON "CHAR(255)"
+    }
+
+    CLAIM {
+        int CLAIMNUMBER "10 digits"
+        string CLAIMDATE "CHAR(10)"
+        int PAID "8 digits"
+        int VALUE "8 digits"
+        string CAUSE "CHAR(255)"
+        string OBSERVATIONS "CHAR(255)"
+    }
+</div>
+<h4 id="321-product-type-specifications" tabindex="-1">3.2.1 Product Type Specifications</h4>
+<ol>
+<li><strong>Endowment Policies (<code>POLICYTYPE = 'E'</code>):</strong> Investment and life-coverage policies featuring profit flags (<code>WITHPROFITS</code>, <code>EQUITIES</code>, <code>MANAGEDFUND</code>), fund names, duration term (<code>TERM</code>), sum assured, and beneficiary names. Subject to ODM rules verification via <code>LGAPBR01</code>.</li>
+<li><strong>House Policies (<code>POLICYTYPE = 'H'</code>):</strong> Real estate insurance defining property type, bedroom counts, structural replacement value, and property address attributes.</li>
+<li><strong>Motor Policies (<code>POLICYTYPE = 'M'</code>):</strong> Vehicle insurance tracking vehicle make, model, valuation, registration number, engine CC capacity, manufacturing date, premium rate, and accident history count.</li>
+<li><strong>Commercial Policies (<code>POLICYTYPE = 'B'</code>):</strong> Enterprise risk coverage containing geolocation data (latitude/longitude), peril categories (Fire, Crime, Flood, Weather), individual premium breakdowns, underwriting status, and rejection rationale codes.</li>
+<li><strong>Claims Domain (<code>POLICYTYPE = 'C'</code>):</strong> Incident claims tracking claim identifiers, incident dates, amounts paid to date, claim estimated values, incident cause descriptions, and adjuster observations.</li>
+</ol>
+<hr>
+<h2 id="4-online-and-batch-entry-points" tabindex="-1">4. Online and Batch Entry Points</h2>
+<h3 id="41-online-cics-interactive-menu-lgtestc1" tabindex="-1">4.1 Online CICS Interactive Menu (<code>LGTESTC1</code>)</h3>
+<p>Online terminal interactions execute via transaction ID <code>SSC1</code>, managed by <code>LGTESTC1</code>:</p>
+<ul>
+<li><strong>Screen Mapping:</strong> Utilizes BMS mapset <code>SSMAP</code> (screen map <code>SSMAPC1</code>).</li>
+<li><strong>Pseudo-Conversational Design:</strong> Restarts via <code>EXEC CICS RETURN TRANSID('SSC1') COMMAREA(COMM_AREA)</code> to maintain transaction context across user entries.</li>
+<li><strong>Functions Supported:</strong>
+<ul>
+<li><code>Option 1</code> (Inquire): Populates COMMAREA with <code>CA_REQUEST_ID = '01ICUS'</code>, links to <code>LGICUS01</code>, and renders customer profile details.</li>
+<li><code>Option 2</code> (Add): Cleanses input data (translating <code>00'X</code> nulls to spaces, uppercasing postcodes), sets <code>CA_REQUEST_ID = '01ACUS'</code>, links to <code>LGACUS01</code>, and upon success updates high customer number tracking in <code>GENACNTL</code> via internal routine <code>WRITE_GENACNTL</code>.</li>
+<li><code>Option 4</code> (Update): Performs a pre-inquiry via <code>LGICUS01</code>, awaits user field edits on a secondary <code>RECEIVE MAP</code>, sets <code>CA_REQUEST_ID = '01UCUS'</code>, and executes update persistence via <code>LGUCUS01</code>.</li>
+</ul>
+</li>
+<li><strong>Failure Recovery:</strong> Reverses failed additions using <code>EXEC CICS SYNCPOINT ROLLBACK</code> before alerting the operator.</li>
+</ul>
+<h3 id="42-online-administration-and-environment-setup-lgsetup" tabindex="-1">4.2 Online Administration and Environment Setup (<code>LGSETUP</code>)</h3>
+<p>Triggered via transaction code <code>LGSE</code> (with an optional 10-digit high customer number parameter, e.g. <code>LGSE 0000000500</code>):</p>
+<ul>
+<li>Clears and rebuilds four runtime temporary storage queues:
+<ul>
+<li><code>GENAERRS</code> (runtime error queue)</li>
+<li><code>GENASTRT</code> (system startup metadata)</li>
+<li><code>GENASTAT</code> (transaction statistics records)</li>
+<li><code>GENACNTL</code> (customer number bounds: header, <code>LOW CUSTOMER=0000000001</code>, <code>HIGH CUSTOMER=nnnnnnnnnn</code>)</li>
+</ul>
+</li>
+<li>Initializes CICS Named Counter <code>GENACUSTNUM</code> in pool <code>GENA</code> to seed automated customer ID assignment.</li>
+<li>Resets 36 distinct transaction-statistics counters tracking success (<code>00</code>) and failure (<code>99</code>) for all operations across customer and policy types.</li>
+</ul>
+<h3 id="43-batch-customer-reporting-lgbatch" tabindex="-1">4.3 Batch Customer Reporting (<code>LGBATCH</code>)</h3>
+<p>Non-CICS batch driver for offline reporting:</p>
+<ul>
+<li>Opens sequential fixed-block dataset <code>CUSTIN</code> (<code>RECSIZE(10)</code>).</li>
+<li>Dynamically loads (<code>FETCH LGBATCHF</code>) the line formatting subroutine.</li>
+<li>Iterates through customer numbers in <code>CUSTIN</code>, executing singleton embedded SQL <code>SELECT</code> queries against the Db2 <code>CUSTOMER</code> table.</li>
+<li>Converts status codes (<code>0</code> → <code>'00'</code>, <code>100</code> → <code>'01'</code>, other → <code>'90'</code>), formats 80-character report records via <code>LGBATCHF</code>, and writes them out to sequential file <code>CUSTRPT</code>.</li>
+<li>Handles file-open failures via an <code>ON UNDEFINEDFILE(CUSTIN)</code> unit that alerts the console and terminates with return code 16 via <code>PLIRETC(16)</code>.</li>
+</ul>
+<hr>
+<h2 id="5-program-families-and-execution-flow" tabindex="-1">5. Program Families and Execution Flow</h2>
+<p>GenApp components are organized by functional domain and architectural responsibility:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Program Family</th>
+<th style="text-align:left">Component</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Invocation / Protocol</th>
+<th style="text-align:left">Downstream Dependencies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Presentation</strong></td>
+<td style="text-align:left"><code>LGTESTC1</code></td>
+<td style="text-align:left">CICS 3270 Customer Menu Driver</td>
+<td style="text-align:left">Trans <code>SSC1</code> / BMS Map <code>SSMAPC1</code></td>
+<td style="text-align:left"><code>LGICUS01</code>, <code>LGACUS01</code>, <code>LGUCUS01</code>, <code>GENACNTL</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Administration</strong></td>
+<td style="text-align:left"><code>LGSETUP</code></td>
+<td style="text-align:left">Environment Reset &amp; Counter Initializer</td>
+<td style="text-align:left">Trans <code>LGSE</code> / CICS Terminal</td>
+<td style="text-align:left">Pool <code>GENA</code> Counters, TSQs (<code>GENACNTL</code>, etc.)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Customer Services</strong></td>
+<td style="text-align:left"><code>LGICUS01</code></td>
+<td style="text-align:left">Customer Inquiry Business Orchestrator</td>
+<td style="text-align:left"><code>EXEC CICS LINK</code> (Commarea)</td>
+<td style="text-align:left"><code>LGICDB01</code>, <code>AAAAAAAA</code>, <code>LGSTSQ</code>, <code>GENAWMQC</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Policy Services</strong></td>
+<td style="text-align:left"><code>LGIPOL01</code></td>
+<td style="text-align:left">Policy Inquiry Business Orchestrator</td>
+<td style="text-align:left"><code>EXEC CICS LINK</code> (Commarea)</td>
+<td style="text-align:left"><code>LGIPDB01</code>, <code>LGSTSQ</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Policy Services</strong></td>
+<td style="text-align:left"><code>LGAPOL01</code></td>
+<td style="text-align:left">Policy Add Business Orchestrator</td>
+<td style="text-align:left"><code>EXEC CICS LINK</code> (Commarea)</td>
+<td style="text-align:left"><code>LGAPDB01</code>, <code>LGAPBR01</code> (ODM), <code>LGSTSQ</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Batch Processing</strong></td>
+<td style="text-align:left"><code>LGBATCH</code></td>
+<td style="text-align:left">Sequential Batch Customer Reporter</td>
+<td style="text-align:left">Batch OS Executable (<code>Options(Main)</code>)</td>
+<td style="text-align:left">Db2 <code>CUSTOMER</code>, <code>LGBATCHF</code>, <code>CUSTIN</code>, <code>CUSTRPT</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Logging &amp; Audit</strong></td>
+<td style="text-align:left"><code>LGSTSQ</code></td>
+<td style="text-align:left">Central Diagnostic &amp; Error Log Writer</td>
+<td style="text-align:left"><code>EXEC CICS LINK</code> (Error Commarea)</td>
+<td style="text-align:left">CICS Transient Data Queues (TDQ/TSQ)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="6-communication-area-and-data-contracts" tabindex="-1">6. Communication Area and Data Contracts</h2>
+<p>Cross-program communication in GenApp relies on the shared 32,500-byte <code>LGCMAREA</code> layout overlaid across caller buffers.</p>
+<h3 id="61-lgcmarea-structure-definition" tabindex="-1">6.1 <code>LGCMAREA</code> Structure Definition</h3>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PL1</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pl1">/* Master Communication Area Structure (LGCMAREA.inc) */
+DCL 1 COMM_AREA BASED(COMM_AREA_PTR),
+      2 CA_REQUEST_ID          CHAR(6),       /* e.g., &#039;01ICUS&#039;, &#039;01AEND&#039; */
+      2 CA_RETURN_CODE         PIC &#039;99&#039;,      /* &#039;00&#039;=Success, &#039;98&#039;=Len, &#039;99&#039;=Err */
+      2 CA_CUSTOMER_NUM        PIC &#039;9999999999&#039;, /* 10-digit Customer ID */
+      2 CA_REQUEST_SPECIFIC    UNION,
+        3 CA_CUSTOMER_REQUEST,
+          4 CA_FIRST_NAME      CHAR(10),
+          4 CA_LAST_NAME       CHAR(20),
+          4 CA_DOB             CHAR(10),
+          4 CA_HOUSE_NAME      CHAR(20),
+          4 CA_HOUSE_NUM       CHAR(4),
+          4 CA_POSTCODE        CHAR(8),
+          4 CA_PHONE_HOME      CHAR(20),
+          4 CA_PHONE_MOBILE    CHAR(20),
+          4 CA_EMAIL_ADDRESS   CHAR(100),
+          4 CA_NUM_POLICIES    PIC &#039;999&#039;,
+          4 CA_POLICY_DATA     CHAR(32267),
+        3 CA_POLICY_REQUEST,
+          4 CA_POLICY_NUM      PIC &#039;9999999999&#039;,
+          4 CA_POLICY_COMMON,
+            5 CA_ISSUE_DATE    CHAR(10),
+            5 CA_EXPIRY_DATE   CHAR(10),
+            5 CA_LASTCHANGED   CHAR(26),
+            5 CA_BROKERID      PIC &#039;9999999999&#039;,
+            5 CA_BROKERSREF    CHAR(10),
+            5 CA_PAYMENT       PIC &#039;999999&#039;,
+          4 CA_POLICY_SPECIFIC UNION,
+            5 CA_ENDOWMENT     CHAR(32400),
+            5 CA_HOUSE         CHAR(32400),
+            5 CA_MOTOR         CHAR(32400),
+            5 CA_COMMERCIAL    CHAR(32400),
+            5 CA_CLAIM         CHAR(32400),
+        3 CA_REQUEST_INITIALISER CHAR(32482);</code></pre>
+</div>
+<h3 id="62-standard-return-codes" tabindex="-1">6.2 Standard Return Codes</h3>
+<ul>
+<li><code>'00'</code>: Transaction processed successfully.</li>
+<li><code>'01'</code>: Target record not found (Db2 SQLCODE 100 in batch lookups).</li>
+<li><code>'90'</code>: Unhandled relational database / SQL error encountered.</li>
+<li><code>'98'</code>: Communication area length validation error (supplied buffer shorter than minimum required length).</li>
+<li><code>'99'</code>: Generic backend service error or fatal Db2 failure.</li>
+</ul>
+<hr>
+<h2 id="7-diagnostic-logging-and-error-architecture" tabindex="-1">7. Diagnostic Logging and Error Architecture</h2>
+<p>Orchestrator programs implement a uniform validation and diagnostic logging mechanism.</p>
+<div class="mermaid">
+graph TD
+    classDef startEnd fill:#b5ead7,stroke:#5a9e82,color:#000
+    classDef process fill:#c7ceea,stroke:#6a75b0,color:#000
+    classDef decision fill:#ffdac1,stroke:#d4895a,color:#000
+    classDef error fill:#ffb7b2,stroke:#c05050,color:#000
+    classDef external fill:#e2f0cb,stroke:#7aab52,color:#000
+
+    REQ([Caller Invocation]):::startEnd --> V1{{EIBCALEN = 0?}}:::decision
+    V1 -- Yes --> W1[Format ERROR_MSG:<br>' NO COMMAREA RECEIVED']:::error
+    W1 --> W2[EXEC CICS ASKTIME & FORMATTIME]:::process
+    W2 --> W3[EXEC CICS LINK PROGRAM 'LGSTSQ'<br>Pass ERROR_MSG]:::external
+    W3 --> AB1[EXEC CICS ABEND ABCODE 'LGCA' NODUMP]:::error
+
+    V1 -- No --> V2{{EIBCALEN < Required Length?}}:::decision
+    V2 -- Yes --> R98[Set CA_RETURN_CODE = '98'<br>EXEC CICS RETURN]:::process
+    
+    V2 -- No --> SETOK[Set CA_RETURN_CODE = '00'<br>Capture Identifiers to EM_CUSNUM]:::process
+    SETOK --> ROUTE{Route / Link Execution}:::process
+    ROUTE --> SUCCESS([Normal EXEC CICS RETURN]):::startEnd
+</div>
+<h3 id="71-fail-fast-validation-and-logging-pattern" tabindex="-1">7.1 Fail-Fast Validation and Logging Pattern</h3>
+<p>If an orchestrator receives an empty communication area (<code>EIBCALEN = 0</code>), it generates a timestamped diagnostic record, links to the shared logging routine <code>LGSTSQ</code>, and abends immediately:</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PL1</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pl1">/* Defensive Validation Pattern in LGICUS01 / LGIPOL01 / LGAPOL01 */
+IF EIBCALEN = 0 THEN DO;
+   EM_MSG_TEXT = &#039; NO COMMAREA RECEIVED&#039;;
+   CALL WRITE_ERROR_MESSAGE;
+   EXEC CICS ABEND
+        ABCODE(&#039;LGCA&#039;)
+        NODUMP;
+END;
+
+/* Internal Logging Routine */
+WRITE_ERROR_MESSAGE: PROC;
+   EXEC CICS ASKTIME ABSTIME(WS_ABSTIME);
+   EXEC CICS FORMATTIME ABSTIME(WS_ABSTIME)
+        MMDDYYYY(WS_DATE)
+        TIME(WS_TIME);
+        
+   EM_DATE = WS_DATE;
+   EM_TIME = WS_TIME;
+   
+   EXEC CICS LINK PROGRAM(&#039;LGSTSQ&#039;)
+        COMMAREA(ERROR_MSG)
+        LENGTH(STG(ERROR_MSG));
+        
+   IF EIBCALEN &gt; 0 THEN DO;
+      IF EIBCALEN &lt; 91 THEN
+         CA_DATA = LEFT(COMM_AREA_RAW, EIBCALEN);
+      ELSE
+         CA_DATA = LEFT(COMM_AREA_RAW, 90);
+         
+      EXEC CICS LINK PROGRAM(&#039;LGSTSQ&#039;)
+           COMMAREA(CA_ERROR_MSG)
+           LENGTH(STG(ERROR_MSG));
+   END;
+END WRITE_ERROR_MESSAGE;</code></pre>
+</div>
+                        <div class="related-pages">
+                            <p class="related-pages-title">Related Pages</p>
+                            <div class="card-grid">
+                                
+            <a href="program-catalog.html" class="card">
+                <span class="card-title">Program Catalog and Naming Conventions</span>
+                <span class="card-description">Index of all PL/I programs, grouped by function (inquiry, add, update, delete, test menus, batch, utilities). It explains the naming scheme: the IC/AC/UC/DC prefixes for customer operations, the IP/AP/UP/DP prefixes for policy operations, and the -01/-DB/-VS suffixes for business-logic, Db2 and VSAM programs.</span>
+            </a>
+            <a href="layered-architecture.html" class="card">
+                <span class="card-title">Layered Architecture and Call Flow</span>
+                <span class="card-description">Describes the layering of the application. 3270 menu programs call business-logic orchestrators (LGxxOL01 and LGxxUS01). These LINK to Db2 back ends, which in turn LINK to VSAM synchronisation programs. The page covers COMMAREA conventions, request identifiers and return-code handling across layers.</span>
+            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-overview">1. Overview</a></li>
+<li class="toc-level-2"><a href="#2-system-architecture">2. System Architecture</a>
+<ul>
+<li class="toc-level-3"><a href="#21-layered-architecture-overview">2.1 Layered Architecture Overview</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-insurance-business-domains">3. Insurance Business Domains</a>
+<ul>
+<li class="toc-level-3"><a href="#31-customer-domain">3.1 Customer Domain</a></li>
+<li class="toc-level-3"><a href="#32-policy-domain-and-product-types">3.2 Policy Domain and Product Types</a>
+<ul>
+<li class="toc-level-4"><a href="#321-product-type-specifications">3.2.1 Product Type Specifications</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-online-and-batch-entry-points">4. Online and Batch Entry Points</a>
+<ul>
+<li class="toc-level-3"><a href="#41-online-cics-interactive-menu-lgtestc1">4.1 Online CICS Interactive Menu (LGTESTC1)</a></li>
+<li class="toc-level-3"><a href="#42-online-administration-and-environment-setup-lgsetup">4.2 Online Administration and Environment Setup (LGSETUP)</a></li>
+<li class="toc-level-3"><a href="#43-batch-customer-reporting-lgbatch">4.3 Batch Customer Reporting (LGBATCH)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-program-families-and-execution-flow">5. Program Families and Execution Flow</a></li>
+<li class="toc-level-2"><a href="#6-communication-area-and-data-contracts">6. Communication Area and Data Contracts</a>
+<ul>
+<li class="toc-level-3"><a href="#61-lgcmarea-structure-definition">6.1 LGCMAREA Structure Definition</a></li>
+<li class="toc-level-3"><a href="#62-standard-return-codes">6.2 Standard Return Codes</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-diagnostic-logging-and-error-architecture">7. Diagnostic Logging and Error Architecture</a>
+<ul>
+<li class="toc-level-3"><a href="#71-fail-fast-validation-and-logging-pattern">7.1 Fail-Fast Validation and Logging Pattern</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* sidebar-toggle.js — persists open/closed state across navigation */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var activeIdx = -1;
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+          if (items.querySelector('.nav-link.active')) {
+            activeIdx = idx;
+          }
+        });
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        if (activeIdx !== -1) {
+          openSet[toggleKey(toggles[activeIdx], activeIdx)] = true;
+        }
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+    <script>
+    /* nav-tracking.js — only stamps sessionStorage when clicking a source-file link
+       that lives inside the "Source Files" disclosure section, not from sidebar or cards. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('sources/') === -1) return;
+        /* Only set referrer when the click originates from inside the Source Files
+           disclosure (.source-files-disclosure). Any other path — sidebar, cards,
+           direct navigation — must not set a referrer. */
+        if (!link.closest('.source-files-disclosure')) return;
+        try {
+          sessionStorage.setItem('wiki_referrer', JSON.stringify({
+            href: location.href,
+            title: document.title,
+            file: location.pathname.split('/').pop()
+          }));
+        } catch (_e) {}
+      });
+    })();
+    </script>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+</body>
+</html>

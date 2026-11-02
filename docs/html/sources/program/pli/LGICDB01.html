@@ -1,0 +1,1462 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGICDB01</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link active">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>LGICDB01 is a CICS customer inquiry program. A calling application passes it a customer number. It looks that customer up in the DB2 CUSTOMER table and returns the customer’s name, date of birth, address, phone numbers and email address in the shared communication area. It first checks that the caller supplied a communication area that is long enough, and it sets a return code for the caller. That code shows whether the lookup succeeded, the customer was not found or the resource was unavailable, a database error occurred, or the communication area was too short. When a failure occurs, the program writes a diagnostic message to a queue. The message has the date, time, customer number, SQL code and part of the communication area, so operations staff can troubleshoot the failure.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<h3 id="21-cics-execution-interface-block-eib" tabindex="-1">2.1 CICS Execution Interface Block (EIB)</h3>
+<ul>
+<li><code>EIBCALEN</code>
+<ul>
+<li>Provides the length of the communication area passed by the calling program. Used to validate that a communication area was supplied (<code>EIBCALEN &gt; 0</code>) and meets the minimum required length (90 bytes: 18 header/trailer bytes plus 72 customer data bytes).</li>
+</ul>
+</li>
+<li><code>EIBTRNID</code>
+<ul>
+<li>Transaction identifier of the executing CICS task; recorded in the program’s runtime working-storage header (<code>WS_TRANSID</code>).</li>
+</ul>
+</li>
+<li><code>EIBTRMID</code>
+<ul>
+<li>Terminal identifier associated with the executing task; recorded in the program’s runtime working-storage header (<code>WS_TERMID</code>).</li>
+</ul>
+</li>
+<li><code>EIBTASKN</code>
+<ul>
+<li>Task number assigned to the current CICS task; recorded in the program’s runtime working-storage header (<code>WS_TASKNUM</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-communication-area-commarea--comm_area" tabindex="-1">2.2 Communication Area (COMMAREA / <code>COMM_AREA</code>)</h3>
+<ul>
+<li><code>COMM_AREA_PTR</code>
+<ul>
+<li>Input parameter pointer passed into the <code>LGICDB01</code> entry point referencing the incoming CICS communication area structure.</li>
+</ul>
+</li>
+<li><code>CA_CUSTOMER_NUM</code>
+<ul>
+<li>A 10-digit customer number supplied by the caller in the communication area. Acts as the primary search key, converted to a DB2 binary integer (<code>DB2_CUSTOMERNUMBER_INT</code>) for querying customer records.</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-external-database-db2-customer-table" tabindex="-1">2.3 External Database (Db2 <code>CUSTOMER</code> Table)</h3>
+<ul>
+<li><code>CUSTOMER</code> Table Row
+<ul>
+<li>Records retrieved via embedded SQL <code>SELECT</code> using <code>CUSTOMERNUMBER = :DB2_CUSTOMERNUMBER_INT</code>:
+<ul>
+<li><code>FIRSTNAME</code>: Populates <code>CA_FIRST_NAME</code> in the commarea.</li>
+<li><code>LASTNAME</code>: Populates <code>CA_LAST_NAME</code> in the commarea.</li>
+<li><code>DATEOFBIRTH</code>: Populates <code>CA_DOB</code> in the commarea.</li>
+<li><code>HOUSENAME</code>: Populates <code>CA_HOUSE_NAME</code> in the commarea.</li>
+<li><code>HOUSENUMBER</code>: Populates <code>CA_HOUSE_NUM</code> in the commarea.</li>
+<li><code>POSTCODE</code>: Populates <code>CA_POSTCODE</code> in the commarea.</li>
+<li><code>PHONEMOBILE</code>: Populates <code>CA_PHONE_MOBILE</code> in the commarea.</li>
+<li><code>PHONEHOME</code>: Populates <code>CA_PHONE_HOME</code> in the commarea.</li>
+<li><code>EMAILADDRESS</code>: Populates <code>CA_EMAIL_ADDRESS</code> in the commarea.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>SQLCODE</code> (from <code>SQLCA</code>)
+<ul>
+<li>Status code returned by Db2 following execution of the SQL <code>SELECT</code> statement, evaluated to determine query success (<code>0</code>), row not found / deadlock (<code>100</code>, <code>-913</code>), or database error.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<h3 id="31-communication-area-outputs-caller-return-data" tabindex="-1">3.1 Communication Area Outputs (Caller Return Data)</h3>
+<ul>
+<li>
+<p><strong>Return Status</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code>: Communicates the execution status back to the calling program. Set to <code>'00'</code> for a successful query, <code>'01'</code> when the customer is not found (<code>SQLCODE = 100</code>) or a deadlock/timeout occurs (<code>SQLCODE = -913</code>), <code>'90'</code> for unexpected database errors, and <code>'98'</code> when the provided communication area length is insufficient.</li>
+</ul>
+</li>
+<li>
+<p><strong>Customer Information Fields</strong></p>
+<ul>
+<li><code>CA_FIRST_NAME</code>: Returns the customer’s first name retrieved from the <code>FIRSTNAME</code> column of the <code>CUSTOMER</code> table.</li>
+<li><code>CA_LAST_NAME</code>: Returns the customer’s surname retrieved from the <code>LASTNAME</code> column of the <code>CUSTOMER</code> table.</li>
+<li><code>CA_DOB</code>: Returns the customer’s date of birth retrieved from the <code>DATEOFBIRTH</code> column of the <code>CUSTOMER</code> table.</li>
+<li><code>CA_HOUSE_NAME</code>: Returns the house or building name retrieved from the <code>HOUSENAME</code> column of the <code>CUSTOMER</code> table.</li>
+<li><code>CA_HOUSE_NUM</code>: Returns the street house number retrieved from the <code>HOUSENUMBER</code> column of the <code>CUSTOMER</code> table.</li>
+<li><code>CA_POSTCODE</code>: Returns the postal code retrieved from the <code>POSTCODE</code> column of the <code>CUSTOMER</code> table.</li>
+<li><code>CA_PHONE_MOBILE</code>: Returns the mobile phone contact number retrieved from the <code>PHONEMOBILE</code> column of the <code>CUSTOMER</code> table.</li>
+<li><code>CA_PHONE_HOME</code>: Returns the home phone contact number retrieved from the <code>PHONEHOME</code> column of the <code>CUSTOMER</code> table.</li>
+<li><code>CA_EMAIL_ADDRESS</code>: Returns the customer’s email address retrieved from the <code>EMAILADDRESS</code> column of the <code>CUSTOMER</code> table.</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-error-logging-and-diagnostic-outputs" tabindex="-1">3.2 Error Logging and Diagnostic Outputs</h3>
+<ul>
+<li><strong>Error and Diagnostic Messages (via <code>LGSTSQ</code> Program Call)</strong>
+<ul>
+<li><code>ERROR_MSG</code>: Formatted error structure passed to the external logging program <code>LGSTSQ</code> via <code>EXEC CICS LINK</code>. Transmits runtime execution context including timestamp (<code>EM_DATE</code>, <code>EM_TIME</code>), program identifier (<code>LGICDB01</code>), context message (<code>EM_MSG_TEXT</code>) or SQL query diagnostic information (<code>EM_CUSNUM</code>, <code>EM_SQLREQ</code>, <code>EM_SQLRC</code>).</li>
+<li><code>CA_ERROR_MSG</code>: Diagnostic structure passed to <code>LGSTSQ</code> via <code>EXEC CICS LINK</code> containing the literal prefix <code>'COMMAREA='</code> and up to the first 90 bytes of the raw incoming communication area (<code>CA_DATA</code>) for troubleshooting failed requests.</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-cics-control-signals-and-side-effects" tabindex="-1">3.3 CICS Control Signals and Side Effects</h3>
+<ul>
+<li><strong>Abend Signal</strong>
+<ul>
+<li>Issues an <code>EXEC CICS ABEND</code> with abend code <code>'LGCA'</code> (without a dump) when invoked without an incoming communication area (<code>EIBCALEN = 0</code>).</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    classDef startEnd fill:#b5ead7,stroke:#4caf7d,color:#000
+    classDef process fill:#c7ceea,stroke:#6c7abf,color:#000
+    classDef decision fill:#ffdac1,stroke:#e8935a,color:#000
+    classDef error fill:#ffb7b2,stroke:#d95f5f,color:#000
+    classDef db fill:#e2f0cb,stroke:#7bbf5e,color:#000
+
+    A([Start LGICDB01<br>Proc with COMM_AREA_PTR]):::startEnd
+    B[Initialise WS_HEADER<br>Capture EIBTRNID EIBTRMID EIBTASKN<br>Zero DB2 host variables]:::process
+    C{{EIBCALEN = 0}}:::decision
+    D[Write error message<br>ABEND LGCA]:::error
+    E[Set CA_RETURN_CODE to 00<br>Save EIBCALEN and COMM_AREA_PTR]:::process
+    F[Calculate WS_REQUIRED_CA_LEN<br>Header 18 + Customer 72 = 90]:::process
+    G{{EIBCALEN less than<br>WS_REQUIRED_CA_LEN}}:::decision
+    H[Set CA_RETURN_CODE to 98<br>EXEC CICS RETURN]:::error
+    I[Convert CA_CUSTOMER_NUM<br>to DB2_CUSTOMERNUMBER_INT<br>Save customer num in EM_CUSNUM]:::process
+    J[CALL GET_CUSTOMER_INFO]:::process
+    K[SQL SELECT from CUSTOMER<br>WHERE CUSTOMERNUMBER = host var]:::db
+    L{{SQLCODE value}}:::decision
+    M[Set CA_RETURN_CODE to 00<br>Return customer fields to commarea]:::process
+    N[Set CA_RETURN_CODE to 01<br>Customer not found or locked]:::process
+    O[Set CA_RETURN_CODE to 90<br>CALL WRITE_ERROR_MESSAGE<br>EXEC CICS RETURN]:::error
+    P[EXEC CICS RETURN<br>Return to caller]:::startEnd
+    Z([End]):::startEnd
+
+    A --> B
+    B --> C
+    C -- Yes --> D
+    C -- No --> E
+    E --> F
+    F --> G
+    G -- Yes --> H
+    G -- No --> I
+    I --> J
+    J --> K
+    K --> L
+    L -- SQLCODE 0 --> M
+    L -- SQLCODE 100 or -913 --> N
+    L -- Other --> O
+    M --> P
+    N --> P
+    P --> Z
+</div>
+<hr>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<h4 id="421-high-level-summary" tabindex="-1">4.2.1 High-level Summary</h4>
+<p><strong>LGICDB01</strong> is a CICS-attached Db2 back-end program that retrieves a single customer record from the <code>CUSTOMER</code> table and returns the data to its caller through a shared communication area (COMMAREA). It is invoked by the orchestrator program <code>LGICDB01</code> via a CICS LINK from the customer-inquiry flow (<code>LGICUS01</code>). The program performs no business calculations; its sole responsibility is a single-row SELECT and structured error reporting.</p>
+<hr>
+<h4 id="422-execution-flow" tabindex="-1">4.2.2 Execution Flow</h4>
+<p><strong>Step 1 — Entry and initialisation</strong>
+On entry, the program receives <code>COMM_AREA_PTR</code>, a pointer to the shared COMMAREA. It immediately captures the CICS execution context (<code>EIBTRNID</code>, <code>EIBTRMID</code>, <code>EIBTASKN</code>) into the working-storage diagnostic header and zeroes the Db2 integer host variable block.</p>
+<p><strong>Step 2 — COMMAREA presence check</strong>
+<code>EIBCALEN</code> is tested. If it is zero, no COMMAREA was passed: the program writes a diagnostic error message and issues an <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>. This is the only scenario that ends in an abend rather than a controlled return.</p>
+<p><strong>Step 3 — Initialise return code and save COMMAREA address</strong>
+With a valid COMMAREA confirmed, <code>CA_RETURN_CODE</code> is set to <code>'00'</code> (success) and the COMMAREA length and pointer are preserved in working storage for diagnostic use.</p>
+<p><strong>Step 4 — Minimum COMMAREA length check</strong>
+<code>WS_REQUIRED_CA_LEN</code> is computed as the sum of the header/trailer constant (18 bytes) and the customer data area constant (72 bytes), giving a minimum of 90 bytes. If <code>EIBCALEN</code> is less than this threshold, <code>CA_RETURN_CODE</code> is set to <code>'98'</code> and <code>EXEC CICS RETURN</code> is issued immediately. This protects against truncated or malformed COMMAREA layouts.</p>
+<p><strong>Step 5 — Customer number conversion</strong>
+<code>CA_CUSTOMER_NUM</code> (a 10-digit picture field from the COMMAREA) is converted to the binary integer host variable <code>DB2_CUSTOMERNUMBER_INT</code> for use in the SQL WHERE clause. A copy of the customer number is also placed in <code>EM_CUSNUM</code> inside the error message structure for diagnostic purposes.</p>
+<p><strong>Step 6 — Db2 SELECT (GET_CUSTOMER_INFO)</strong>
+The internal procedure <code>GET_CUSTOMER_INFO</code> executes a single-row SELECT against the <code>CUSTOMER</code> table:</p>
+<table>
+<thead>
+<tr>
+<th>Db2 Column</th>
+<th>COMMAREA Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FIRSTNAME</code></td>
+<td><code>CA_FIRST_NAME</code></td>
+</tr>
+<tr>
+<td><code>LASTNAME</code></td>
+<td><code>CA_LAST_NAME</code></td>
+</tr>
+<tr>
+<td><code>DATEOFBIRTH</code></td>
+<td><code>CA_DOB</code></td>
+</tr>
+<tr>
+<td><code>HOUSENAME</code></td>
+<td><code>CA_HOUSE_NAME</code></td>
+</tr>
+<tr>
+<td><code>HOUSENUMBER</code></td>
+<td><code>CA_HOUSE_NUM</code></td>
+</tr>
+<tr>
+<td><code>POSTCODE</code></td>
+<td><code>CA_POSTCODE</code></td>
+</tr>
+<tr>
+<td><code>PHONEMOBILE</code></td>
+<td><code>CA_PHONE_MOBILE</code></td>
+</tr>
+<tr>
+<td><code>PHONEHOME</code></td>
+<td><code>CA_PHONE_HOME</code></td>
+</tr>
+<tr>
+<td><code>EMAILADDRESS</code></td>
+<td><code>CA_EMAIL_ADDRESS</code></td>
+</tr>
+</tbody>
+</table>
+<p>The WHERE predicate is <code>CUSTOMERNUMBER = :DB2_CUSTOMERNUMBER_INT</code>.</p>
+<p><strong>Step 7 — SQLCODE handling</strong></p>
+<table>
+<thead>
+<tr>
+<th>SQLCODE</th>
+<th>Meaning</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Row found</td>
+<td><code>CA_RETURN_CODE = '00'</code> — success</td>
+</tr>
+<tr>
+<td><code>100</code></td>
+<td>Row not found</td>
+<td><code>CA_RETURN_CODE = '01'</code> — customer unknown</td>
+</tr>
+<tr>
+<td><code>-913</code></td>
+<td>Deadlock / timeout</td>
+<td><code>CA_RETURN_CODE = '01'</code> — resource unavailable</td>
+</tr>
+<tr>
+<td>Any other</td>
+<td>Unexpected Db2 error</td>
+<td><code>CA_RETURN_CODE = '90'</code>, call <code>WRITE_ERROR_MESSAGE</code>, then <code>EXEC CICS RETURN</code></td>
+</tr>
+</tbody>
+</table>
+<p>Both SQLCODE 100 (not found) and -913 (row locked/deadlock) map to the same <code>'01'</code> return code, communicating to the caller that the customer data is currently unavailable.</p>
+<p><strong>Step 8 — Return to caller</strong>
+After <code>GET_CUSTOMER_INFO</code> completes (for success or soft-error paths), the main routine issues <code>EXEC CICS RETURN</code>, passing control back to the orchestrator with the populated COMMAREA.</p>
+<p><strong>WRITE_ERROR_MESSAGE procedure</strong>
+When called, this procedure:</p>
+<ol>
+<li>Captures <code>SQLCODE</code> into the error message structure.</li>
+<li>Calls <code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code> to obtain the current timestamp.</li>
+<li>Links to the <code>LGSTSQ</code> helper program to write the formatted error message to a CICS transient data queue (TDQ).</li>
+<li>If a COMMAREA was present, writes up to 90 bytes of raw COMMAREA content to the same TDQ for additional context.</li>
+</ol>
+<hr>
+<h4 id="423-external-interactions" tabindex="-1">4.2.3 External Interactions</h4>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Interaction</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Db2 <code>CUSTOMER</code> table</strong></td>
+<td><code>SELECT … WHERE CUSTOMERNUMBER = :host_var</code></td>
+<td>Retrieves all customer demographic fields for the requested customer number</td>
+</tr>
+<tr>
+<td><strong>CICS (ABEND)</strong></td>
+<td><code>EXEC CICS ABEND ABCODE('LGCA')</code></td>
+<td>Fatal exit when no COMMAREA is present</td>
+</tr>
+<tr>
+<td><strong>CICS (RETURN)</strong></td>
+<td><code>EXEC CICS RETURN</code></td>
+<td>Normal and error return to calling orchestrator</td>
+</tr>
+<tr>
+<td><strong>LGSTSQ</strong> (via <code>EXEC CICS LINK</code>)</td>
+<td>Transient data queue writer</td>
+<td>Records diagnostic error messages and raw COMMAREA snapshots to a TDQ for problem determination</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="424-plain-language-summary" tabindex="-1">4.2.4 Plain Language Summary</h4>
+<p>When a user or a calling program wants to look up a customer’s details, LGICDB01 is the component that goes to the database and fetches the record. It checks that the incoming request is well-formed (has a COMMAREA of sufficient size and a valid customer number), runs a database query using the customer number as the search key, and then fills the result fields — name, address, date of birth, phone numbers, and email — back into the same shared memory block so the caller can read them. If the customer is not found or the database is temporarily locked, the program signals that with return code <code>'01'</code>. If a more serious database error occurs, it logs the full details (timestamp, SQLCODE, and raw COMMAREA snapshot) to a diagnostic queue and returns code <code>'90'</code>. Only if no shared memory was provided at all does the program take the drastic step of abending.</p>
+<hr>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+    CUSTOMER {
+        int    CUSTOMERNUMBER   "primary key integer"
+        string FIRSTNAME        "char 10"
+        string LASTNAME         "char 20"
+        string DATEOFBIRTH      "char 10"
+        string HOUSENAME        "char 20"
+        string HOUSENUMBER      "char 4"
+        string POSTCODE         "char 8"
+        string PHONEMOBILE      "char 20"
+        string PHONEHOME        "char 20"
+        string EMAILADDRESS     "char 100"
+    }
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGICDB01</strong></p>
+<ul>
+<li><strong>Purpose</strong>: Serves as the main entry point procedure for the customer inquiry program, validating incoming communication area data and orchestrating the customer lookup.</li>
+<li><strong>Operations</strong>:
+<ul>
+<li>Initializes execution interface block (EIB) tracking variables (<code>WS_TRANSID</code>, <code>WS_TERMID</code>, <code>WS_TASKNUM</code>) and DB2 host variables.</li>
+<li>Validates that a communication area was passed (<code>EIBCALEN &gt; 0</code>) and checks that its length meets the minimum required size (<code>WS_REQUIRED_CA_LEN</code>).</li>
+<li>Converts the communication area customer number (<code>CA_CUSTOMER_NUM</code>) into a binary integer host variable (<code>DB2_CUSTOMERNUMBER_INT</code>) and saves it to the error message structure.</li>
+<li>Calls <code>GET_CUSTOMER_INFO</code> to retrieve customer details from the database.</li>
+<li>Returns control to the calling CICS program.</li>
+</ul>
+</li>
+<li><strong>Control Flow</strong>:
+<ul>
+<li>Evaluates <code>IF (EIBCALEN = 0)</code>: triggers <code>WRITE_ERROR_MESSAGE</code> and terminates processing via <code>EXEC CICS ABEND</code> with abend code <code>'LGCA'</code>.</li>
+<li>Evaluates <code>IF (EIBCALEN &lt; WS_REQUIRED_CA_LEN)</code>: sets <code>CA_RETURN_CODE</code> to <code>'98'</code> and terminates via <code>EXEC CICS RETURN</code>.</li>
+<li>Proceeds sequentially to execute <code>CALL GET_CUSTOMER_INFO</code> and final <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li><strong>External Interactions</strong>:
+<ul>
+<li>Interacts with CICS runtime environment via <code>EXEC CICS ABEND</code> and <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_CUSTOMER_INFO</strong></p>
+<ul>
+<li><strong>Purpose</strong>: Retrieves customer details from the Db2 <code>CUSTOMER</code> table using the supplied customer number and sets the appropriate return status.</li>
+<li><strong>Operations</strong>:
+<ul>
+<li>Sets SQL request identifier text to <code>' SELECT CUSTOMER'</code>.</li>
+<li>Executes an embedded SQL <code>SELECT</code> against the <code>CUSTOMER</code> table matching <code>CUSTOMERNUMBER</code> with <code>:DB2_CUSTOMERNUMBER_INT</code>, populating customer name, date of birth, address, phone numbers, and email address into the communication area fields.</li>
+<li>Evaluates <code>SQLCODE</code> to determine operation outcome and assigns <code>CA_RETURN_CODE</code>.</li>
+</ul>
+</li>
+<li><strong>Control Flow</strong>:
+<ul>
+<li>Evaluates <code>SELECT (SQLCODE)</code>:
+<ul>
+<li><code>WHEN (0)</code>: sets <code>CA_RETURN_CODE</code> to <code>'00'</code> (success).</li>
+<li><code>WHEN (100, -913)</code>: sets <code>CA_RETURN_CODE</code> to <code>'01'</code> (customer not found or deadlock/timeout).</li>
+<li><code>OTHERWISE</code>: sets <code>CA_RETURN_CODE</code> to <code>'90'</code> (database error), calls <code>WRITE_ERROR_MESSAGE</code>, and issues <code>EXEC CICS RETURN</code> to terminate.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>External Interactions</strong>:
+<ul>
+<li>Queries the IBM Db2 database table <code>CUSTOMER</code>.</li>
+<li>Issues <code>EXEC CICS RETURN</code> on unhandled database errors.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>WRITE_ERROR_MESSAGE</strong></p>
+<ul>
+<li><strong>Purpose</strong>: Formats and logs diagnostic error information and communication area content to the error queue program (<code>LGSTSQ</code>).</li>
+<li><strong>Operations</strong>:
+<ul>
+<li>Captures <code>SQLCODE</code> into the error message structure (<code>EM_SQLRC</code>).</li>
+<li>Requests system timestamp via <code>EXEC CICS ASKTIME</code> and formats date (<code>MMDDYYYY</code>) and time (<code>TIME</code>) using <code>EXEC CICS FORMATTIME</code>.</li>
+<li>Links to program <code>LGSTSQ</code> passing <code>ERROR_MSG</code> via COMMAREA.</li>
+<li>Extracts up to 90 bytes of raw input communication area data (<code>COMM_AREA_RAW</code>) and sends a second log entry via <code>LGSTSQ</code>.</li>
+</ul>
+</li>
+<li><strong>Control Flow</strong>:
+<ul>
+<li>Evaluates <code>IF (EIBCALEN &gt; 0)</code>:
+<ul>
+<li>Checks <code>IF (EIBCALEN &lt; 91)</code>: slices <code>COMM_AREA_RAW</code> to length <code>EIBCALEN</code> using <code>LEFT()</code> and links to <code>LGSTSQ</code>.</li>
+<li><code>ELSE</code>: slices first 90 bytes using <code>LEFT()</code> and links to <code>LGSTSQ</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>External Interactions</strong>:
+<ul>
+<li>Interacts with CICS date/time services (<code>EXEC CICS ASKTIME</code>, <code>EXEC CICS FORMATTIME</code>).</li>
+<li>Calls external CICS logging program <code>LGSTSQ</code> via <code>EXEC CICS LINK</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<ul>
+<li>
+<p><strong>Database (Db2)</strong></p>
+<ul>
+<li>Table <code>CUSTOMER</code>
+<ul>
+<li>It is read with a singleton <code>SELECT</code> in <code>GET_CUSTOMER_INFO</code>. The key is <code>CUSTOMERNUMBER</code>.</li>
+<li>Columns read: <code>FIRSTNAME</code>, <code>LASTNAME</code>, <code>DATEOFBIRTH</code>, <code>HOUSENAME</code>, <code>HOUSENUMBER</code>, <code>POSTCODE</code>, <code>PHONEMOBILE</code>, <code>PHONEHOME</code> and <code>EMAILADDRESS</code>.</li>
+<li>Each column is returned into the matching commarea field: <code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_DOB</code>, <code>CA_HOUSE_NAME</code>, <code>CA_HOUSE_NUM</code>, <code>CA_POSTCODE</code>, <code>CA_PHONE_MOBILE</code>, <code>CA_PHONE_HOME</code> and <code>CA_EMAIL_ADDRESS</code>.</li>
+<li>The CHAR host variables must match the column lengths exactly.</li>
+<li>No indicator variables are used, so a nullable column would give SQLCODE -305.</li>
+</ul>
+</li>
+<li>Host variable <code>DB2_CUSTOMERNUMBER_INT</code>
+<ul>
+<li>It is a <code>FIXED BIN(31)</code> field converted from <code>CA_CUSTOMER_NUM</code>. It is the <code>WHERE</code> predicate input.</li>
+</ul>
+</li>
+<li><code>SQLCA</code> (<code>EXEC SQL INCLUDE SQLCA</code>)
+<ul>
+<li><code>SQLCODE</code> is checked after the <code>SELECT</code>.</li>
+<li>0 gives <code>CA_RETURN_CODE</code> ‘00’.</li>
+<li>100 and -913 give ‘01’ (customer not found or resource unavailable).</li>
+<li>Any other value gives ‘90’, after which the program logs the error and returns.</li>
+<li><code>SQLCODE</code> is also copied into <code>EM_SQLRC</code> for the error message.</li>
+</ul>
+</li>
+<li>Db2 environment
+<ul>
+<li>The program needs a Db2 subsystem connection through the CICS-Db2 attachment.</li>
+<li>It needs a bound plan or package with execute authority on <code>CUSTOMER</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Include files and data structures</strong></p>
+<ul>
+<li><code>SQLCA</code> is included through <code>EXEC SQL INCLUDE SQLCA</code>.</li>
+<li><code>LGCMAREA</code> (<code>plinc/LGCMAREA.inc</code>) holds the COMMAREA layout.
+<ul>
+<li>It is shown expanded in the source. The original <code>EXEC SQL INCLUDE LGCMAREA</code> is commented out.</li>
+<li>It is the only data contract with callers.</li>
+<li>Key fields are <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code> and the customer request block.</li>
+<li>The policy, security, endowment, house, motor, commercial and claim branches share the same union storage.</li>
+<li>The total size is 32500 bytes.</li>
+<li>The union branch sizes must stay unchanged.</li>
+<li>The include is resolved through the build include search path (<code>pliincludeSearch</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS runtime and services</strong></p>
+<ul>
+<li>Execution environment
+<ul>
+<li>The program runs as a CICS transaction, compiled with <code>SYSTEM(CICS)</code> and <code>PP(MACRO,CICS)</code>.</li>
+<li>It is defined as <code>Proc(COMM_AREA_PTR) Options(Main)</code>.</li>
+<li>It is deployed as <code>CICSLOAD</code>.</li>
+<li>It needs a CICS program definition in the CSD (<code>Resources/</code>).</li>
+</ul>
+</li>
+<li>Execute Interface Block (EIB) fields
+<ul>
+<li><code>EIBTRNID</code>, <code>EIBTRMID</code> and <code>EIBTASKN</code> fill the debug header <code>WS_TRANSID</code>, <code>WS_TERMID</code> and <code>WS_TASKNUM</code>.</li>
+<li><code>EIBCALEN</code> is used for the following:
+<ul>
+<li>Zero length: the program writes an error message, then abends.</li>
+<li>Minimum length: the program checks the received length against <code>WS_REQUIRED_CA_LEN</code>.</li>
+<li>Error dump: it limits how many bytes of the commarea are written to the error queue.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CICS commands
+<ul>
+<li><code>EXEC CICS RETURN</code> returns control to the caller on these paths:
+<ul>
+<li>Normal completion.</li>
+<li>Commarea too short (<code>CA_RETURN_CODE</code> ‘98’).</li>
+<li>Db2 error (<code>CA_RETURN_CODE</code> ‘90’).</li>
+</ul>
+</li>
+<li><code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code> is issued when no commarea is received.</li>
+<li><code>EXEC CICS ASKTIME ABSTIME</code> gets the current absolute time.</li>
+<li><code>EXEC CICS FORMATTIME ABSTIME MMDDYYYY TIME</code> formats the date and time for the error message.</li>
+<li><code>EXEC CICS LINK PROGRAM('LGSTSQ')</code> writes the error messages.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>External programs</strong></p>
+<ul>
+<li><code>LGSTSQ</code>
+<ul>
+<li>It is invoked by CICS LINK from <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>It writes error records to the CICS queues (a TS queue and/or TD queue). The queue definitions are outside this program.</li>
+<li>Two commareas are passed:
+<ul>
+<li><code>ERROR_MSG</code> has the date, time, program name, customer number, SQL request text and <code>SQLCODE</code>.</li>
+<li><code>CA_ERROR_MSG</code> has up to 90 bytes of the incoming commarea, prefixed with ‘COMMAREA=’.</li>
+</ul>
+</li>
+<li>Both LINKs have no <code>RESP</code> handling.</li>
+</ul>
+</li>
+<li>Calling programs
+<ul>
+<li>The orchestrator that links to this program is <code>LGICUS01</code>, or <code>LGIPOL01</code> in the policy flow. It must supply the commarea.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Input parameters</strong></p>
+<ul>
+<li><code>COMM_AREA_PTR</code> is the pointer to the DFHCOMMAREA passed by the caller.</li>
+<li>Required commarea input
+<ul>
+<li><code>CA_CUSTOMER_NUM</code> is the 10-digit lookup key.</li>
+<li><code>CA_REQUEST_ID</code> identifies the request type.</li>
+</ul>
+</li>
+<li>Minimum length
+<ul>
+<li>90 bytes, which is <code>WS_CA_HEADERTRAILER_LEN</code> (18) plus <code>WS_CUSTOMER_LEN</code> (72).</li>
+<li>Shorter input gives return code ‘98’.</li>
+</ul>
+</li>
+<li>Outputs written back to the caller
+<ul>
+<li>The customer fields listed under the <code>CUSTOMER</code> table.</li>
+<li><code>CA_RETURN_CODE</code>, with values ‘00’, ‘01’, ‘90’ and ‘98’.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Configuration and constants</strong></p>
+<ul>
+<li>Hard-coded length constants
+<ul>
+<li><code>WS_CA_HEADERTRAILER_LEN</code> = 18.</li>
+<li><code>WS_CUSTOMER_LEN</code> = 72.</li>
+<li>These duplicate the length constants in other programs and must be kept consistent.</li>
+</ul>
+</li>
+<li>Hard-coded identifiers
+<ul>
+<li>ABEND code <code>LGCA</code>.</li>
+<li>Linked program name <code>LGSTSQ</code>.</li>
+<li>Eye-catcher <code>LGICDB01------WS</code>.</li>
+<li>Error message program tag <code> LGICDB01</code>.</li>
+</ul>
+</li>
+<li>There are no environment variables, external files or VSAM datasets.</li>
+</ul>
+</li>
+<li>
+<p><strong>Build and deployment</strong></p>
+<ul>
+<li>zAppBuild (DBB/Groovy) with the PL/I compiler V52.
+<ul>
+<li>Compile options: <code>PP(INCLUDE('ID(++INCLUDE)')),SOURCE</code>.</li>
+<li>Link edit options: <code>MAP,RENT,COMPAT(PM5)</code>.</li>
+</ul>
+</li>
+<li>A Db2 bind step and the Db2 table DDL (<code>jcl/</code>).</li>
+<li>A CICS CSD definition for the program (<code>Resources/</code>).</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<h3 id="71-communication-area-commarea-constraints" tabindex="-1">7.1 Communication Area (COMMAREA) Constraints</h3>
+<ul>
+<li><strong>COMMAREA must be present</strong>: If <code>EIBCALEN = 0</code> (no COMMAREA received), the program immediately writes an error message and issues <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>. Processing cannot continue without a COMMAREA.</li>
+<li><strong>COMMAREA minimum length</strong>: The received COMMAREA length (<code>EIBCALEN</code>) must be at least <code>WS_CA_HEADERTRAILER_LEN (18) + WS_CUSTOMER_LEN (72) = 90</code> bytes. If <code>EIBCALEN &lt; 90</code>, the program sets <code>CA_RETURN_CODE = '98'</code> and returns immediately without performing any DB2 access.</li>
+<li><strong>COMMAREA total size</strong>: The full COMMAREA layout is fixed at 32500 bytes (<code>COMM_AREA_RAW CHAR(32500)</code>). No branch of the union structure may exceed this size.</li>
+<li><strong>CA_CUSTOMER_NUM format</strong>: Declared as <code>PIC '9999999999'</code> — a 10-digit numeric picture field. Only numeric digit characters are structurally valid; the field is used as the sole lookup key for the customer inquiry.</li>
+</ul>
+<h3 id="72-input-data-constraints" tabindex="-1">7.2 Input Data Constraints</h3>
+<ul>
+<li><strong>Customer number required as lookup key</strong>: <code>CA_CUSTOMER_NUM</code> must be supplied by the caller before invocation; it is the only input used in the <code>WHERE CUSTOMERNUMBER = :DB2_CUSTOMERNUMBER_INT</code> predicate of the SELECT. No alternative lookup path exists.</li>
+<li><strong>Customer number converted to binary integer</strong>: <code>CA_CUSTOMER_NUM</code> is converted to <code>DB2_CUSTOMERNUMBER_INT</code> (<code>FIXED BIN(31)</code>) before the SQL query. The value must be representable as a 31-bit signed binary integer; values outside that range would cause a conversion error.</li>
+<li><strong>No policy-level input accepted</strong>: Although the COMMAREA structure contains a <code>CA_POLICY_REQUEST</code> section, this program reads only the customer section (<code>CA_CUSTOMER_REQUEST</code>). No policy number or policy-type input is examined or processed.</li>
+</ul>
+<h3 id="73-db2-query-constraints" tabindex="-1">7.3 DB2 Query Constraints</h3>
+<ul>
+<li><strong>Single-row SELECT with no cursor</strong>: The SQL <code>SELECT … INTO</code> targets a single row. The query implicitly assumes at most one row exists for a given <code>CUSTOMERNUMBER</code>; if the table has duplicate customer numbers, the query would raise a DB2 error (SQLCODE -811, which falls into the OTHERWISE branch and returns <code>CA_RETURN_CODE = '90'</code>).</li>
+<li><strong>Columns retrieved are fixed</strong>: The SELECT retrieves exactly nine columns (<code>FIRSTNAME</code>, <code>LASTNAME</code>, <code>DATEOFBIRTH</code>, <code>HOUSENAME</code>, <code>HOUSENUMBER</code>, <code>POSTCODE</code>, <code>PHONEMOBILE</code>, <code>PHONEHOME</code>, <code>EMAILADDRESS</code>). No other CUSTOMER table columns are accessible through this program.</li>
+<li><strong>Host variable sizes must match column lengths</strong>: Each host variable (<code>CA_FIRST_NAME CHAR(10)</code>, <code>CA_LAST_NAME CHAR(20)</code>, etc.) must exactly match the corresponding DB2 column length. A mismatch would cause a truncation or padding discrepancy at runtime.</li>
+<li><strong>No nullable column indicator variables</strong>: No SQL indicator variables are declared for any of the nine retrieved columns. If any CUSTOMER column is defined as <code>NULL</code>-able in the table and contains a NULL value, DB2 will raise SQLCODE -305, which falls into the OTHERWISE branch and triggers <code>CA_RETURN_CODE = '90'</code>.</li>
+</ul>
+<h3 id="74-return-code-and-error-handling-constraints" tabindex="-1">7.4 Return Code and Error Handling Constraints</h3>
+<ul>
+<li><strong><code>CA_RETURN_CODE = '00'</code></strong>: Set only when <code>SQLCODE = 0</code> (row found and fetched successfully).</li>
+<li><strong><code>CA_RETURN_CODE = '01'</code></strong>: Set when <code>SQLCODE = 100</code> (no matching customer row found) or <code>SQLCODE = -913</code> (deadlock or timeout — resource unavailable). These two conditions are treated as equivalent “not found / unavailable” outcomes; no distinction is surfaced to the caller.</li>
+<li><strong><code>CA_RETURN_CODE = '90'</code></strong>: Set for any other SQL error. The program logs the error to the CICS TS queue via <code>LGSTSQ</code> and returns immediately; no partial customer data is returned.</li>
+<li><strong><code>CA_RETURN_CODE = '98'</code></strong>: Set exclusively when the incoming COMMAREA is shorter than the required minimum. The program returns without any DB2 call.</li>
+<li><strong>No ABEND on SQL errors</strong>: All SQL error conditions are handled by setting a return code and returning to the caller, except the zero-length COMMAREA case which unconditionally ABENDs with code <code>LGCA</code>.</li>
+</ul>
+<h3 id="75-sequencing-and-operational-constraints" tabindex="-1">7.5 Sequencing and Operational Constraints</h3>
+<ul>
+<li><strong>Strict execution order</strong>: The program enforces a fixed sequence — COMMAREA presence check → COMMAREA length check → customer number conversion → DB2 SELECT. No step may be skipped or reordered; a failure at any earlier step short-circuits all subsequent steps.</li>
+<li><strong>DB2 access only after COMMAREA validation</strong>: The <code>GET_CUSTOMER_INFO</code> procedure is called only after both COMMAREA checks pass. A short or absent COMMAREA prevents any database interaction.</li>
+<li><strong>Error logging before early return</strong>: Whenever <code>WRITE_ERROR_MESSAGE</code> is called (on DB2 errors or absent COMMAREA), it must complete — obtaining timestamp via <code>EXEC CICS ASKTIME</code>/<code>FORMATTIME</code> and writing to the TS queue via <code>LGSTSQ</code> — before the program returns to the caller.</li>
+<li><strong>COMMAREA dump limited to 90 bytes</strong>: Inside <code>WRITE_ERROR_MESSAGE</code>, if <code>EIBCALEN &lt; 91</code>, only the actual COMMAREA bytes are copied; otherwise exactly 90 bytes are written. This caps the diagnostic output regardless of actual COMMAREA size.</li>
+<li><strong>No data written to COMMAREA on error paths</strong>: Output fields (<code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, etc.) are populated only on SQLCODE 0. On any error return code (<code>'01'</code>, <code>'90'</code>, <code>'98'</code>), those fields are left in their uninitialised state.</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<ul>
+<li>
+<p><strong>Input validation and request pre-checks</strong></p>
+<ul>
+<li>Missing commarea check
+<ul>
+<li>The program tests whether the CICS-supplied commarea length is zero, which means the caller passed no communication area.</li>
+<li>When it is zero, the program sets the message text to “NO COMMAREA RECEIVED” and calls the shared error-logging procedure.</li>
+<li>It then abends the task with abend code LGCA and suppresses the dump. This is the only unrecoverable, abend-style termination in the program.</li>
+</ul>
+</li>
+<li>Minimum commarea length check
+<ul>
+<li>The program computes the required length as the header/trailer length (18) plus the customer data length (72), which gives 90 bytes.</li>
+<li>If the received length is smaller, it sets the commarea return code to ‘98’ and returns to CICS immediately.</li>
+<li>No database access happens in this case, and no error message is written to the queue. The caller learns of the problem only through the return code.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Database (DB2) error handling</strong></p>
+<ul>
+<li>SQLCODE evaluation after the customer SELECT
+<ul>
+<li>The program evaluates the SQL return code with a multi-branch select after the single-row query on the CUSTOMER table.</li>
+<li>A zero SQLCODE is success, and the return code is set to ‘00’.</li>
+<li>SQLCODE +100 (row not found) and -913 (deadlock or timeout, so the resource is unavailable) are both treated as “not found or resource unavailable”. The return code is set to ‘01’. Nothing is logged and processing returns normally to the caller.</li>
+<li>Any other SQLCODE falls into the default branch and is treated as a database error. The return code is set to ‘90’, the error-logging procedure is called, and the program returns to CICS immediately.</li>
+</ul>
+</li>
+<li>Diagnostic context preparation
+<ul>
+<li>Before the query, the program saves the customer number in the error message structure so it appears in any later error record.</li>
+<li>It also sets the SQL request label to &quot; SELECT CUSTOMER&quot;, which identifies the failing operation in the log.</li>
+<li>The SQLCODE is placed in the error message only when the logging procedure runs.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Return code signaling to the caller</strong></p>
+<ul>
+<li>The return code starts as ‘00’ once a commarea is confirmed to be present.</li>
+<li>Later checks overwrite it to report the outcome:
+<ul>
+<li>‘00’ means success.</li>
+<li>‘01’ means customer not found or resource unavailable.</li>
+<li>‘90’ means a database error.</li>
+<li>‘98’ means the commarea is too short.</li>
+</ul>
+</li>
+<li>The caller reads this field to decide what to do next. It is the program’s main way of reporting failures.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error logging and notification</strong></p>
+<ul>
+<li>Central error-logging procedure
+<ul>
+<li>A single procedure builds and writes the error records. Both the missing-commarea path and the unexpected-SQLCODE path call it.</li>
+<li>It formats the error message with the current date, time, program identifier, customer number, SQL request label and SQLCODE.</li>
+<li>It gets the timestamp from the CICS system clock (ASKTIME) and formats it into date and time strings (FORMATTIME).</li>
+</ul>
+</li>
+<li>Queue-based logging
+<ul>
+<li>The procedure links to the helper program LGSTSQ to write the formatted error message to the error queue.</li>
+<li>It then writes a second record containing the commarea contents, so the failing request can be reconstructed.</li>
+<li>If the commarea is shorter than 91 bytes, the record holds as much of it as exists. Otherwise it holds the first 90 bytes.</li>
+<li>This second record is written only when a commarea is present.</li>
+</ul>
+</li>
+<li>No explicit error handling around the logging calls
+<ul>
+<li>The program does not check whether the queue-writing links succeed. A failure in logging would not be detected or recovered from by this program.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Program termination and control flow on error</strong></p>
+<ul>
+<li>Early return to CICS
+<ul>
+<li>After the too-short-commarea and database-error cases, the program returns control to CICS straight away. This prevents further processing with bad data or state.</li>
+</ul>
+</li>
+<li>Abend termination
+<ul>
+<li>Only the missing-commarea case abends the task, with abend code LGCA. This reflects a severe invocation error.</li>
+</ul>
+</li>
+<li>Normal completion
+<ul>
+<li>If the lookup succeeds or the row is not found, the program falls through to a normal return to CICS. The return code tells the caller which of the two happened.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Limitations and gaps in error handling</strong></p>
+<ul>
+<li>No PL/I ON-unit or condition handling
+<ul>
+<li>The program defines no ON-units for conditions such as ERROR, CONVERSION or SIZE.</li>
+<li>It relies entirely on explicit checks of the commarea length and SQLCODE.</li>
+</ul>
+</li>
+<li>No CICS response checking
+<ul>
+<li>The program does not check the response codes of the CICS time, formatting and link commands. It also sets up no CICS HANDLE or RESP handling.</li>
+</ul>
+</li>
+<li>No retry or fallback logic
+<ul>
+<li>The program has no retries and no alternate data sources.</li>
+<li>A deadlock or timeout (-913) is not retried. It is mapped to the same “not found” return code as a missing row.</li>
+</ul>
+</li>
+<li>No validation of the customer number content
+<ul>
+<li>The program does not check that the customer number is numeric or non-zero before the lookup. An invalid number would show up as a not-found or database error result.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-customer-found" tabindex="-1">9.1 Example 1: Customer found</h3>
+<p><strong>Input (COMMAREA, EIBCALEN = 200)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA_REQUEST_ID</td>
+<td><code>01ICUS</code></td>
+</tr>
+<tr>
+<td>CA_CUSTOMER_NUM</td>
+<td><code>0000000001</code></td>
+</tr>
+</tbody>
+</table>
+<p>The CUSTOMER table has a row for customer 1:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FIRSTNAME</td>
+<td>Andrew</td>
+</tr>
+<tr>
+<td>LASTNAME</td>
+<td>Pandy</td>
+</tr>
+<tr>
+<td>DATEOFBIRTH</td>
+<td>1950-07-11</td>
+</tr>
+<tr>
+<td>HOUSENAME</td>
+<td>Pandy Mansion</td>
+</tr>
+<tr>
+<td>HOUSENUMBER</td>
+<td>1</td>
+</tr>
+<tr>
+<td>POSTCODE</td>
+<td>PO1 1AA</td>
+</tr>
+<tr>
+<td>PHONEMOBILE</td>
+<td>07722 123456</td>
+</tr>
+<tr>
+<td>PHONEHOME</td>
+<td>01962 123456</td>
+</tr>
+<tr>
+<td>EMAILADDRESS</td>
+<td><a href="mailto:a.pandy@example.com">a.pandy@example.com</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Output (COMMAREA returned to caller)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA_RETURN_CODE</td>
+<td><code>00</code></td>
+</tr>
+<tr>
+<td>CA_FIRST_NAME</td>
+<td><code>Andrew</code></td>
+</tr>
+<tr>
+<td>CA_LAST_NAME</td>
+<td><code>Pandy</code></td>
+</tr>
+<tr>
+<td>CA_DOB</td>
+<td><code>1950-07-11</code></td>
+</tr>
+<tr>
+<td>CA_HOUSE_NAME</td>
+<td><code>Pandy Mansion</code></td>
+</tr>
+<tr>
+<td>CA_HOUSE_NUM</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>CA_POSTCODE</td>
+<td><code>PO1 1AA</code></td>
+</tr>
+<tr>
+<td>CA_PHONE_MOBILE</td>
+<td><code>07722 123456</code></td>
+</tr>
+<tr>
+<td>CA_PHONE_HOME</td>
+<td><code>01962 123456</code></td>
+</tr>
+<tr>
+<td>CA_EMAIL_ADDRESS</td>
+<td><code>a.pandy@example.com</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>EIBCALEN (200) is at least the required length of 90 (<code>WS_REQUIRED_CA_LEN</code> = 18 + 72), so processing continues.</li>
+<li><code>CA_CUSTOMER_NUM</code> is converted to <code>DB2_CUSTOMERNUMBER_INT</code> = 1 and used in the SELECT.</li>
+<li>SQLCODE is 0, so <code>CA_RETURN_CODE</code> stays <code>00</code> and the customer columns are copied into the COMMAREA fields.</li>
+<li>The program ends with <code>EXEC CICS RETURN</code>.</li>
+</ul>
+<h3 id="92-example-2-customer-not-found" tabindex="-1">9.2 Example 2: Customer not found</h3>
+<p><strong>Input (EIBCALEN = 200)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA_REQUEST_ID</td>
+<td><code>01ICUS</code></td>
+</tr>
+<tr>
+<td>CA_CUSTOMER_NUM</td>
+<td><code>0000999999</code></td>
+</tr>
+</tbody>
+</table>
+<p>No row exists for customer 999999.</p>
+<p><strong>Output</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA_RETURN_CODE</td>
+<td><code>01</code></td>
+</tr>
+<tr>
+<td>Customer detail fields</td>
+<td>Not populated</td>
+</tr>
+</tbody>
+</table>
+<p>No error message is written.</p>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The SELECT returns SQLCODE +100 (no row).</li>
+<li>The <code>WHEN (100, -913)</code> branch sets <code>CA_RETURN_CODE</code> to <code>01</code>.</li>
+<li>SQLCODE -913 (resource unavailable) gives the same result.</li>
+<li>The program returns normally without calling <code>WRITE_ERROR_MESSAGE</code>.</li>
+</ul>
+<h3 id="93-example-3-commarea-too-short" tabindex="-1">9.3 Example 3: COMMAREA too short</h3>
+<p><strong>Input (EIBCALEN = 50)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA_REQUEST_ID</td>
+<td><code>01ICUS</code></td>
+</tr>
+<tr>
+<td>CA_CUSTOMER_NUM</td>
+<td><code>0000000001</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Output</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA_RETURN_CODE</td>
+<td><code>98</code></td>
+</tr>
+</tbody>
+</table>
+<p>There is no DB2 access and no customer data is returned.</p>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The program sets <code>CA_RETURN_CODE</code> to <code>00</code> and computes <code>WS_REQUIRED_CA_LEN</code> = 18 + 72 = 90.</li>
+<li>Because 50 &lt; 90, it sets <code>CA_RETURN_CODE</code> to <code>98</code> and issues <code>EXEC CICS RETURN</code> immediately.</li>
+</ul>
+<h3 id="94-example-4-db2-error-or-no-commarea" tabindex="-1">9.4 Example 4: DB2 error or no COMMAREA</h3>
+<p><strong>Input A: SELECT fails with SQLCODE -904 (EIBCALEN = 200, CA_CUSTOMER_NUM = <code>0000000001</code>)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA_RETURN_CODE</td>
+<td><code>90</code></td>
+</tr>
+<tr>
+<td>Message sent to LGSTSQ</td>
+<td>Date, time, <code> LGICDB01</code>, <code> CNUM=0000000001</code>, <code> SELECT CUSTOMER</code>, <code> SQLCODE=-00904</code></td>
+</tr>
+<tr>
+<td>Second message sent to LGSTSQ</td>
+<td><code>COMMAREA=</code> followed by the first 90 bytes of the COMMAREA</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Any SQLCODE other than 0, 100 or -913 takes the <code>OTHERWISE</code> branch.</li>
+<li>The program sets <code>CA_RETURN_CODE</code> to <code>90</code>, calls <code>WRITE_ERROR_MESSAGE</code>, and returns.</li>
+</ul>
+<p><strong>Input B: EIBCALEN = 0</strong></p>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Message sent to LGSTSQ</td>
+<td><code> NO COMMAREA RECEIVED</code></td>
+</tr>
+<tr>
+<td>Result</td>
+<td>Task abends with code <code>LGCA</code>, with no dump</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>With no COMMAREA, the program logs the message and abends.</li>
+<li>It never reaches the return-code logic.</li>
+</ul>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a>
+<ul>
+<li class="toc-level-3"><a href="#21-cics-execution-interface-block-eib">2.1 CICS Execution Interface Block (EIB)</a></li>
+<li class="toc-level-3"><a href="#22-communication-area-commarea--comm_area">2.2 Communication Area (COMMAREA / COMM_AREA)</a></li>
+<li class="toc-level-3"><a href="#23-external-database-db2-customer-table">2.3 External Database (Db2 CUSTOMER Table)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a>
+<ul>
+<li class="toc-level-3"><a href="#31-communication-area-outputs-caller-return-data">3.1 Communication Area Outputs (Caller Return Data)</a></li>
+<li class="toc-level-3"><a href="#32-error-logging-and-diagnostic-outputs">3.2 Error Logging and Diagnostic Outputs</a></li>
+<li class="toc-level-3"><a href="#33-cics-control-signals-and-side-effects">3.3 CICS Control Signals and Side Effects</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a>
+<ul>
+<li class="toc-level-4"><a href="#421-high-level-summary">4.2.1 High-level Summary</a></li>
+<li class="toc-level-4"><a href="#422-execution-flow">4.2.2 Execution Flow</a></li>
+<li class="toc-level-4"><a href="#423-external-interactions">4.2.3 External Interactions</a></li>
+<li class="toc-level-4"><a href="#424-plain-language-summary">4.2.4 Plain Language Summary</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a></li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a>
+<ul>
+<li class="toc-level-3"><a href="#71-communication-area-commarea-constraints">7.1 Communication Area (COMMAREA) Constraints</a></li>
+<li class="toc-level-3"><a href="#72-input-data-constraints">7.2 Input Data Constraints</a></li>
+<li class="toc-level-3"><a href="#73-db2-query-constraints">7.3 DB2 Query Constraints</a></li>
+<li class="toc-level-3"><a href="#74-return-code-and-error-handling-constraints">7.4 Return Code and Error Handling Constraints</a></li>
+<li class="toc-level-3"><a href="#75-sequencing-and-operational-constraints">7.5 Sequencing and Operational Constraints</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-customer-found">9.1 Example 1: Customer found</a></li>
+<li class="toc-level-3"><a href="#92-example-2-customer-not-found">9.2 Example 2: Customer not found</a></li>
+<li class="toc-level-3"><a href="#93-example-3-commarea-too-short">9.3 Example 3: COMMAREA too short</a></li>
+<li class="toc-level-3"><a href="#94-example-4-db2-error-or-no-commarea">9.4 Example 4: DB2 error or no COMMAREA</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGICDB01</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1316 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGACDB02</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link active">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>I have analyzed the <code>LGACDB02.pli</code> source file and its comments.</p>
+<p>Here is the breakdown of the program:</p>
+<ul>
+<li>It is a CICS Db2 program named <code>LGACDB02</code> (as part of the GenApp application).</li>
+<li>Its main entry point takes <code>COMM_AREA_PTR</code>.</li>
+<li>It processes requests with a <code>CA_REQUEST_ID</code> of <code>'02ACUS'</code> (Add customer security details / new customer add).</li>
+<li>It extracts the customer number (<code>CA_CUSTOMER_NUM</code>), customer security password (<code>CA_CUSTSECR_PASS</code>), password changes count (<code>CA_CUSTSECR_COUNT</code>), and state indicator (<code>CA_CUSTSECR_STATE</code>) from the incoming CICS communication area (COMMAREA).</li>
+<li>It inserts these values into the <code>CUSTOMER_SECURE</code> Db2 table to register or assign a security password/profile for a newly added customer (the default is often an MD5 checksum).</li>
+<li>It includes error-handling logic to write issues to a transient data queue via <code>LGSTSQ</code> in case of failure (such as Db2 errors or missing communication area).</li>
+</ul>
+<p>I will now write a single paragraph that describes the overall purpose of the program without discussing how it works or using transition phrases, starting directly with the section body content.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<h3 id="21-cics-communication-area-commarea" tabindex="-1">2.1 CICS Communication Area (COMMAREA)</h3>
+<ul>
+<li><code>COMM_AREA_PTR</code>: Pointer to the caller-supplied communication area passed via <code>DFHCOMMAREA</code> during CICS program linkage.</li>
+<li>Request Control:
+<ul>
+<li><code>CA_REQUEST_ID</code>: A 6-character field identifying the requested operation. The program verifies this matches <code>'02ACUS'</code> (Add Customer Security) before proceeding.</li>
+</ul>
+</li>
+<li>Customer Identification:
+<ul>
+<li><code>CA_CUSTOMER_NUM</code>: A 10-digit numeric customer identifier used as the primary key when inserting the security record into the database.</li>
+</ul>
+</li>
+<li>Customer Security Information (<code>CA_CUSTSECR_REQUEST</code>):
+<ul>
+<li><code>CA_CUSTSECR_PASS</code>: A 32-character string holding the customer password (or MD5 checksum hash) to be stored in the database.</li>
+<li><code>CA_CUSTSECR_STATE</code>: A 1-character status indicator representing the state of the customer password record (for example, <code>'N'</code> for new).</li>
+<li><code>CA_CUSTSECR_COUNT</code>: A 4-character field specifying the count of password changes for the customer, converted to an integer host variable before insertion.</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-cics-system-fields-execute-interface-block---eib" tabindex="-1">2.2 CICS System Fields (Execute Interface Block - EIB)</h3>
+<ul>
+<li><code>EIBCALEN</code>: The length of the incoming COMMAREA; used to determine if valid communication area data was supplied to the program.</li>
+<li><code>EIBTRNID</code>: The CICS transaction identifier invoking the program.</li>
+<li><code>EIBTRMID</code>: The CICS terminal identifier associated with the executing task.</li>
+<li><code>EIBTASKN</code>: The CICS task number assigned to the current execution instance.</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<ul>
+<li>
+<p><strong>Return status to caller (via the communication area)</strong></p>
+<ul>
+<li>CA_RETURN_CODE
+<ul>
+<li>Initialised to ‘00’ once a communication area is received.</li>
+<li>Set to ‘99’ when CA_REQUEST_ID is anything other than ‘02ACUS’. The program then returns without doing any work.</li>
+<li>Set to ‘98’ when the insert into the customer security table fails (SQLCODE not 0).</li>
+<li>The caller uses it to see whether the request succeeded, was unsupported, or hit a database error.</li>
+</ul>
+</li>
+<li>CA_REQUEST_ID
+<ul>
+<li>The only value that triggers processing is ‘02ACUS’.</li>
+<li>It is read and not changed, so it decides whether the database write happens.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Data written to the database</strong></p>
+<ul>
+<li>CUSTOMER_SECURE table, one new row per successful ‘02ACUS’ request:
+<ul>
+<li>customerNumber comes from CA_CUSTOMER_NUM, through the integer host variable DB2_CUSTOMERNUM_INT.</li>
+<li>customerPass comes from CA_CUSTSECR_PASS, the 32-character password value (an MD5 checksum by default).</li>
+<li>state_indicator comes from CA_CUSTSECR_STATE, for example ‘N’ for a new password.</li>
+<li>pass_changes comes from CA_CUSTSECR_COUNT, converted to the integer host variable DB2_CUSTOMERCNT_INT.</li>
+</ul>
+</li>
+<li>This insert is the program’s main business result. It registers the customer’s security credentials.</li>
+<li>SQLCODE from the insert determines whether the program continues normally or reports an error.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error messages written to the CICS queue (through the LGSTSQ program)</strong></p>
+<ul>
+<li>Written when the insert fails or when no communication area is received.</li>
+<li>Error message record (ERROR_MSG):
+<ul>
+<li>Contents: current date (EM_DATE) and time (EM_TIME), the program name, and a message text (EM_MSG_TEXT).</li>
+<li>EM_MSG_TEXT carries ’ NO COMMAREA RECEIVED’ when no communication area is present.</li>
+<li>For a database failure, the record carries the customer number (EM_CUSNUM), policy number (EM_POLNUM), the SQL request label (EM_SQLREQ, ’ INSERT SECURITY’) and the SQLCODE (EM_SQLRC).</li>
+</ul>
+</li>
+<li>Communication area dump message (CA_ERROR_MSG):
+<ul>
+<li>Contains ‘COMMAREA=’ followed by up to the first 90 bytes of the communication area (CA_DATA).</li>
+<li>It is written after the error message to give the caller’s input as context for diagnosis.</li>
+<li>If the communication area is shorter than 91 bytes, the whole area is written. Otherwise the first 90 bytes are written.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Abnormal termination</strong></p>
+<ul>
+<li>If no communication area is received (EIBCALEN = 0), the program writes the error message and abends the task with code ‘LGCA’ and no dump.</li>
+<li>This signals an invalid invocation to the CICS region and the calling transaction.</li>
+</ul>
+</li>
+<li>
+<p><strong>Control returned to the caller</strong></p>
+<ul>
+<li>The program ends with EXEC CICS RETURN on all paths except the abend:
+<ul>
+<li>Successful insert.</li>
+<li>Unsupported request (‘99’).</li>
+<li>Database error (‘98’).</li>
+</ul>
+</li>
+<li>The communication area, with the updated CA_RETURN_CODE, goes back to the caller.</li>
+</ul>
+</li>
+<li>
+<p><strong>Communication area fields that are inputs and not changed</strong></p>
+<ul>
+<li>Customer security request data: CA_CUSTOMER_NUM, CA_CUSTSECR_PASS, CA_CUSTSECR_STATE, CA_CUSTSECR_COUNT. These feed the database row.</li>
+<li>Other fields in the shared layout are left as received: CA_POLICY_NUM, CA_FIRST_NAME, CA_LAST_NAME, CA_DOB, CA_EMAIL_ADDRESS, CA_NUM_POLICIES, CA_BROKERID, CA_PAYMENT, CA_ISSUE_DATE, CA_EXPIRY_DATE. They are not used for output.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    A([Start LGACDB02]) --> B[Copy transaction id, terminal id and task number into work fields]
+    B --> C{Commarea received?}
+    C -- No --> D[Set message text to NO COMMAREA RECEIVED]
+    D --> E[Write error message]
+    E --> F([Abend task with code LGCA])
+    C -- Yes --> G[Set return code to 00<br>Save commarea length and address]
+    G --> H{Request id is 02ACUS?}
+    H -- No --> I[Set return code to 99]
+    I --> J([Return to CICS])
+    H -- Yes --> K[Copy customer number and password change count to integer host variables]
+    K --> L[Set SQL request label to INSERT SECURITY]
+    L --> M[Insert row into CUSTOMER_SECURE table]
+    M --> N{SQLCODE is zero?}
+    N -- Yes --> O([Return to CICS])
+    N -- No --> P[Set return code to 98]
+    P --> Q[Write error message]
+    Q --> R([Return to CICS])
+
+    subgraph WEM [Write error message routine]
+        W1[Store SQLCODE in message]
+        W1 --> W2[Get current time and format date and time]
+        W2 --> W3[Link to LGSTSQ with error message]
+        W3 --> W4{Commarea length greater than 0?}
+        W4 -- No --> W8([Exit routine])
+        W4 -- Yes --> W5{Commarea length less than 91?}
+        W5 -- Yes --> W6[Copy whole commarea into message data]
+        W5 -- No --> W7[Copy first 90 bytes of commarea into message data]
+        W6 --> W9[Link to LGSTSQ with commarea message]
+        W7 --> W9
+        W9 --> W8
+    end
+
+    classDef start fill:#c8e6c9,stroke:#6a9f6e,color:#000;
+    classDef process fill:#bbdefb,stroke:#6b94c4,color:#000;
+    classDef decision fill:#fff9c4,stroke:#c9bb5e,color:#000;
+    classDef error fill:#ffcdd2,stroke:#c98a92,color:#000;
+    classDef db fill:#e1bee7,stroke:#a47bb0,color:#000;
+
+    class A,J,O,R,W8 start;
+    class F error;
+    class B,G,K,L,W1,W2,W3,W6,W7,W9 process;
+    class C,H,N,W4,W5 decision;
+    class D,E,I,P,Q error;
+    class M db;
+</div>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<p><strong>High-level Summary</strong></p>
+<p>LGACDB02 is a CICS PL/I program, called by other programs, that adds a customer’s security record (password data) to the DB2 table CUSTOMER_SECURE. It receives a communication area (commarea) with the request id, customer number, password, state indicator and password change count. If the request id is <code>02ACUS</code>, it inserts one row. It reports the outcome to the caller in the commarea return code. It logs failures to a CICS queue through the helper program LGSTSQ.</p>
+<p><strong>Execution Flow</strong></p>
+<ol>
+<li><strong>Initialisation.</strong> The program copies the CICS transaction id (EIBTRNID), terminal id (EIBTRMID) and task number (EIBTASKN) into the work header. These values are used for diagnostics.</li>
+<li><strong>Commarea check.</strong> If the commarea length (EIBCALEN) is 0, the program sets the message text to &quot; NO COMMAREA RECEIVED&quot; and calls the error routine. It then abends the task with code <code>LGCA</code> and no dump. Without a commarea there is nothing to process and no way to return a code to the caller.</li>
+<li><strong>Setup.</strong> The program sets <code>CA_RETURN_CODE</code> to <code>00</code>, which means success. It saves the commarea length and address in the work header.</li>
+<li><strong>Request routing.</strong> The program checks <code>CA_REQUEST_ID</code>.
+<ul>
+<li>If it is <code>02ACUS</code> (add new customer security), it copies the customer number (<code>CA_CUSTOMER_NUM</code>) into an integer host variable. It also converts the password change count (<code>CA_CUSTSECR_COUNT</code>, a 4-character field) into an integer host variable. Then it performs the insert.</li>
+<li>For any other value, it sets the return code to <code>99</code> (unsupported request) and returns to CICS immediately.</li>
+</ul>
+</li>
+<li><strong>Insert.</strong> The program sets the SQL request label to &quot; INSERT SECURITY&quot;. It then inserts a row into CUSTOMER_SECURE with these values:
+<ul>
+<li>customerNumber, from the integer copy of the customer number</li>
+<li>customerPass, from <code>CA_CUSTSECR_PASS</code> (32 characters, by default an MD5 checksum)</li>
+<li>state_indicator, from <code>CA_CUSTSECR_STATE</code> (for example <code>N</code> for a new password)</li>
+<li>pass_changes, from the integer copy of the change count</li>
+</ul>
+</li>
+<li><strong>Insert result.</strong>
+<ul>
+<li>If SQLCODE is 0, control returns to the main line and the program issues <code>EXEC CICS RETURN</code>. The return code stays <code>00</code>.</li>
+<li>If SQLCODE is not 0, the program sets the return code to <code>98</code>, calls the error routine and returns to CICS.</li>
+</ul>
+</li>
+<li><strong>Error routine (WRITE_ERROR_MESSAGE).</strong>
+<ul>
+<li>It places SQLCODE in the message and obtains the current time with ASKTIME.</li>
+<li>It formats the date as MMDDYYYY and the time with FORMATTIME, and stores both in the message.</li>
+<li>It links to program LGSTSQ with the error message structure, which holds the date, time, program name, and customer number, policy number, SQL request text and SQLCODE. LGSTSQ writes this to the logging queue.</li>
+<li>If the commarea length is greater than 0, it copies the commarea content into a 90-byte data area. It copies the whole commarea if the length is under 91, or the first 90 bytes otherwise. It then links to LGSTSQ a second time with this “COMMAREA=” message.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Business rules and return codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>98</td>
+<td>DB2 insert failed</td>
+</tr>
+<tr>
+<td>99</td>
+<td>Request id not recognised</td>
+</tr>
+<tr>
+<td>Abend LGCA</td>
+<td>No commarea supplied</td>
+</tr>
+</tbody>
+</table>
+<p>The defaults <code>WS_CS_PASSWORD</code> (‘NewPass’), <code>WS_CS_STATE</code> (‘N’) and <code>WS_CA_COUNT</code> are declared but not used in the logic. The password, state and count values come from the caller’s commarea.</p>
+<p><strong>External Interactions</strong></p>
+<ul>
+<li><strong>DB2.</strong> The program inserts a row into table CUSTOMER_SECURE.</li>
+<li><strong>CICS services.</strong> It uses ABEND, RETURN, ASKTIME and FORMATTIME.</li>
+<li><strong>LGSTSQ.</strong> The program links to this subprogram to write error and commarea messages to the logging queue.</li>
+<li><strong>Caller.</strong> The caller communicates through the commarea. The program writes the return code back into it.</li>
+</ul>
+<p><strong>Plain Language Summary</strong></p>
+<p>Another program asks this one to save a new customer’s password record. The program first checks that it was given the data. If not, it stops and logs the problem. It then checks that the request is the “add customer security” type. If the request is a different type, it sends back code 99. If the request is the right type, it saves the customer number, password, state and change count in the security table. If the save works, the caller gets code 00. If the save fails, the program writes a log entry with the date, time, customer number and error code, then sends back code 98.</p>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+    CUSTOMER_SECURE {
+        int customerNumber "key, from CA_CUSTOMER_NUM"
+        string customerPass "length 32"
+        string state_indicator "length 1"
+        int pass_changes "from CA_CUSTSECR_COUNT"
+    }
+    TDQ_LGSTSQ_LOG {
+        string DATA "error message via LGSTSQ"
+    }
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGACDB02 (main procedure, lines 21–244)</strong>: Entry point of the program (<code>Options(Main)</code>). It is a CICS/DB2 program that adds a customer’s password record to the customer security table. It receives the pointer <code>COMM_AREA_PTR</code> to the communication area.</p>
+<ul>
+<li>Declarations
+<ul>
+<li>Declares the working-storage structures: the debug header <code>WS_HEADER</code>, the error message layouts <code>ERROR_MSG</code> and <code>CA_ERROR_MSG</code>, and the DB2 integer host variables <code>DB2_CUSTOMERNUM_INT</code> and <code>DB2_CUSTOMERCNT_INT</code>.</li>
+<li>Includes <code>SQLCA</code>.</li>
+<li>Declares the based <code>COMM_AREA</code> union over <code>COMM_AREA_PTR</code>. It carries the customer request, customer security request and policy request layouts.</li>
+</ul>
+</li>
+<li>Setup
+<ul>
+<li>Copies the CICS transaction ID, terminal ID and task number (<code>EIBTRNID</code>, <code>EIBTRMID</code>, <code>EIBTASKN</code>) into <code>WS_TRANSID</code>, <code>WS_TERMID</code> and <code>WS_TASKNUM</code>.</li>
+</ul>
+</li>
+<li>Commarea check
+<ul>
+<li>If <code>EIBCALEN = 0</code>, it sets <code>EM_MSG_TEXT</code> to ’ NO COMMAREA RECEIVED’ and calls <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>It then issues <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>.</li>
+</ul>
+</li>
+<li>Initialization
+<ul>
+<li>Sets <code>CA_RETURN_CODE</code> to ‘00’.</li>
+<li>Saves the commarea length and address in <code>WS_CALEN</code> and <code>WS_ADDR_DFHCOMMAREA</code>.</li>
+</ul>
+</li>
+<li>Request dispatch
+<ul>
+<li>A <code>SELECT</code> on <code>CA_REQUEST_ID</code> chooses the action.</li>
+<li>For <code>'02ACUS'</code> (add customer security):
+<ul>
+<li>It copies <code>CA_CUSTOMER_NUM</code> to <code>DB2_CUSTOMERNUM_INT</code>.</li>
+<li>It converts <code>CA_CUSTSECR_COUNT</code> into <code>DB2_CUSTOMERCNT_INT</code>.</li>
+<li>It calls <code>INSERT_CUSTOMER_PASSWORD</code>.</li>
+</ul>
+</li>
+<li>For any other value (<code>OTHERWISE</code>):
+<ul>
+<li>It sets <code>CA_RETURN_CODE</code> to ‘99’.</li>
+<li>It issues <code>EXEC CICS RETURN</code> immediately.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Completion
+<ul>
+<li>After a successful insert, it issues <code>EXEC CICS RETURN</code> to give control back to the caller.</li>
+<li>The trailing <code>RETURN</code> statement is not reached.</li>
+</ul>
+</li>
+<li>External interactions
+<ul>
+<li>Uses CICS commands ABEND and RETURN.</li>
+<li>Receives the commarea from the calling program.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>INSERT_CUSTOMER_PASSWORD (lines 249–269)</strong>: Internal procedure that inserts the customer’s security record into DB2.</p>
+<ul>
+<li>Sets <code>EM_SQLREQ</code> to ’ INSERT SECURITY’ so any error message identifies the failing request.</li>
+<li>Runs <code>EXEC SQL INSERT INTO CUSTOMER_SECURE</code> for the columns <code>customerNumber</code>, <code>customerPass</code>, <code>state_indicator</code> and <code>pass_changes</code>.
+<ul>
+<li>The values come from the host variables <code>DB2_CUSTOMERNUM_INT</code>, <code>CA_CUSTSECR_PASS</code>, <code>CA_CUSTSECR_STATE</code> and <code>DB2_CUSTOMERCNT_INT</code>.</li>
+</ul>
+</li>
+<li>Control flow
+<ul>
+<li>If <code>SQLCODE &lt;&gt; 0</code>, it sets <code>CA_RETURN_CODE</code> to ‘98’.</li>
+<li>It then calls <code>WRITE_ERROR_MESSAGE</code> and issues <code>EXEC CICS RETURN</code>, which ends the transaction without going back to the main line.</li>
+<li>If the insert succeeds, it falls through and returns to the caller.</li>
+</ul>
+</li>
+<li>External interactions
+<ul>
+<li>DB2 table <code>CUSTOMER_SECURE</code> (insert).</li>
+<li>CICS RETURN on failure.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>WRITE_ERROR_MESSAGE (lines 276–309)</strong>: Internal procedure that builds a timestamped error message and writes it to the error queue through the <code>LGSTSQ</code> program.</p>
+<ul>
+<li>Operations
+<ul>
+<li>Moves <code>SQLCODE</code> into <code>EM_SQLRC</code>.</li>
+<li>Issues <code>EXEC CICS ASKTIME ABSTIME(WS_ABSTIME)</code> to get the current time.</li>
+<li>Issues <code>EXEC CICS FORMATTIME</code> to produce <code>WS_DATE</code> (MMDDYYYY) and <code>WS_TIME</code>.</li>
+<li>Copies the date and time into <code>EM_DATE</code> and <code>EM_TIME</code>.</li>
+<li>Issues <code>EXEC CICS LINK PROGRAM('LGSTSQ')</code> with <code>ERROR_MSG</code> as the commarea, with its length taken from <code>STG(ERROR_MSG)</code>.</li>
+</ul>
+</li>
+<li>Commarea dump (conditional)
+<ul>
+<li>If <code>EIBCALEN &gt; 0</code>, it also logs the received commarea.</li>
+<li>If <code>EIBCALEN &lt; 91</code>, it moves the available commarea bytes (<code>LEFT(COMM_AREA_RAW, EIBCALEN)</code>) into <code>CA_DATA</code>.</li>
+<li>Otherwise, it moves the first 90 bytes into <code>CA_DATA</code>.</li>
+<li>In both cases it links to <code>LGSTSQ</code> again with <code>CA_ERROR_MSG</code> as the commarea.</li>
+</ul>
+</li>
+<li>External interactions
+<ul>
+<li>CICS ASKTIME, FORMATTIME and LINK.</li>
+<li>The linked program <code>LGSTSQ</code> writes the messages to the queue (TDQ/TSQ).</li>
+</ul>
+</li>
+<li>It returns to its caller with <code>RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<ul>
+<li>
+<p><strong>Calling program and input data</strong></p>
+<ul>
+<li>Caller-supplied CICS COMMAREA, addressed through the <code>COMM_AREA_PTR</code> parameter and the <code>EIBCALEN</code> length check
+<ul>
+<li>If <code>EIBCALEN</code> is 0, the program writes an error message and abends with code <code>LGCA</code> (NODUMP).</li>
+<li><code>CA_REQUEST_ID</code> selects the operation. Only <code>'02ACUS'</code> (add customer security record) is supported. Any other value sets <code>CA_RETURN_CODE</code> to <code>'99'</code> and returns.</li>
+<li><code>CA_CUSTOMER_NUM</code> is copied to <code>DB2_CUSTOMERNUM_INT</code> and used as the customer key.</li>
+<li><code>CA_CUSTSECR_PASS</code> is the password value, by default an MD5 checksum. It is inserted into the password column.</li>
+<li><code>CA_CUSTSECR_STATE</code> is the state indicator, for example <code>'N'</code> for a new password.</li>
+<li><code>CA_CUSTSECR_COUNT</code> is the password-change count. It is converted to <code>DB2_CUSTOMERCNT_INT</code>.</li>
+<li><code>CA_RETURN_CODE</code> is the output field returned to the caller. <code>'00'</code> means success, <code>'98'</code> means a DB2 insert failure, and <code>'99'</code> means an unsupported request.</li>
+</ul>
+</li>
+<li>Other COMMAREA fields are defined in the shared layout but not used by this program’s logic:
+<ul>
+<li>Customer fields: <code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_DOB</code>, <code>CA_EMAIL_ADDRESS</code>, <code>CA_NUM_POLICIES</code></li>
+<li>Policy fields: <code>CA_POLICY_NUM</code>, <code>CA_BROKERID</code>, <code>CA_PAYMENT</code>, <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code></li>
+</ul>
+</li>
+<li>The program defines no working-storage input of its own beyond the COMMAREA. <code>WS_CS_PASSWORD</code> (<code>'NewPass'</code>), <code>WS_CS_STATE</code> (<code>'N'</code>) and <code>WS_CA_COUNT</code> are declared with defaults but not used in the logic.</li>
+</ul>
+</li>
+<li>
+<p><strong>Database (Db2 for z/OS)</strong></p>
+<ul>
+<li>Table <code>CUSTOMER_SECURE</code>
+<ul>
+<li>The program inserts one row.</li>
+<li>Columns written are <code>customerNumber</code>, <code>customerPass</code>, <code>state_indicator</code> and <code>pass_changes</code>.</li>
+<li>Host variables are <code>DB2_CUSTOMERNUM_INT</code>, <code>CA_CUSTSECR_PASS</code>, <code>CA_CUSTSECR_STATE</code> and <code>DB2_CUSTOMERCNT_INT</code>.</li>
+</ul>
+</li>
+<li><code>SQLCA</code> (<code>EXEC SQL INCLUDE SQLCA</code>)
+<ul>
+<li>It supplies <code>SQLCODE</code>.</li>
+<li>A non-zero <code>SQLCODE</code> after the insert sets <code>CA_RETURN_CODE</code> to <code>'98'</code>, writes an error message and returns.</li>
+</ul>
+</li>
+<li>An active Db2 connection and plan or package are needed, along with authority to insert into <code>CUSTOMER_SECURE</code>. This is implied by the embedded SQL under CICS.</li>
+</ul>
+</li>
+<li>
+<p><strong>Included or shared definitions</strong></p>
+<ul>
+<li><code>LGCMAREA</code> COMMAREA layout, located at <code>plinc/LGCMAREA.inc</code>
+<ul>
+<li>It defines the <code>COMM_AREA</code> structure based on <code>COMM_AREA_PTR</code>, shared across the application’s programs.</li>
+<li>The structure is declared inline in the source, and the <code>INCLUDE LGCMAREA</code> statement is commented out.</li>
+</ul>
+</li>
+<li><code>SQLCA</code>, the standard Db2 communication area include.</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS runtime services</strong></p>
+<ul>
+<li>EIB fields: <code>EIBTRNID</code>, <code>EIBTRMID</code>, <code>EIBTASKN</code> and <code>EIBCALEN</code>
+<ul>
+<li>The program copies them into the working-storage header and uses <code>EIBCALEN</code> to validate and truncate the COMMAREA.</li>
+</ul>
+</li>
+<li><code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code> for the missing COMMAREA case</li>
+<li><code>EXEC CICS RETURN</code> to return control to the caller after success, failure or an invalid request</li>
+<li><code>EXEC CICS ASKTIME ABSTIME</code> to get the current absolute time</li>
+<li><code>EXEC CICS FORMATTIME ABSTIME MMDDYYYY TIME</code> to format the date and time for the error message</li>
+</ul>
+</li>
+<li>
+<p><strong>External programs invoked</strong></p>
+<ul>
+<li><code>LGSTSQ</code>, called with <code>EXEC CICS LINK PROGRAM('LGSTSQ')</code>
+<ul>
+<li>It receives the <code>ERROR_MSG</code> structure (date, time, program name, customer and policy number, SQL request, SQLCODE) through <code>COMMAREA</code> with <code>LENGTH(STG(ERROR_MSG))</code>.</li>
+<li>It receives the <code>CA_ERROR_MSG</code> structure, which holds up to 90 bytes of the incoming COMMAREA, through a second link.</li>
+<li>Its role is to write the messages to the error logging queues (TDQ/TSQ).</li>
+<li>It must be defined to CICS and available at run time.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Output destinations</strong></p>
+<ul>
+<li>Error logging queues, written indirectly through <code>LGSTSQ</code>
+<ul>
+<li>Queue names and definitions are owned by <code>LGSTSQ</code>, not by this program.</li>
+<li>The messages are the formatted error message and the COMMAREA dump (<code>COMMAREA=</code> followed by up to 90 bytes).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Configuration and environment</strong></p>
+<ul>
+<li>A CICS region with program definitions for <code>LGACDB02</code> and <code>LGSTSQ</code>, and the Db2 attachment facility</li>
+<li>No environment variables, parameter files or other external configuration are referenced.</li>
+<li>The request code literal <code>'02ACUS'</code> and the program names <code>LGSTSQ</code> and <code>LGACDB02</code> are hard-coded.</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<ul>
+<li>
+<p><strong>Input and commarea constraints</strong></p>
+<ul>
+<li>A commarea must be supplied.
+<ul>
+<li><code>EIBCALEN = 0</code> is checked first.</li>
+<li>If it is true, the program sets <code>EM_MSG_TEXT</code> to ’ NO COMMAREA RECEIVED’ and calls <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>It then ends the task with <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>, so no processing happens without input.</li>
+</ul>
+</li>
+<li>The commarea layout is fixed.
+<ul>
+<li><code>COMM_AREA</code> is a BASED structure addressed through <code>COMM_AREA_PTR</code>.</li>
+<li>Its raw size is 32,500 bytes.</li>
+<li><code>CA_REQUEST_ID</code> is CHAR(6), <code>CA_RETURN_CODE</code> is PIC ‘99’, and <code>CA_CUSTOMER_NUM</code> is PIC ‘9999999999’.</li>
+<li>The request-specific area is a 32,482-byte UNION that overlays the customer request, customer security request, and policy request layouts.</li>
+<li>The program does not compare <code>EIBCALEN</code> with the full layout length. It only tests for zero.</li>
+</ul>
+</li>
+<li>The fields are typed and sized.
+<ul>
+<li><code>CA_CUSTOMER_NUM</code> is a 10-digit numeric field.</li>
+<li><code>CA_CUSTSECR_PASS</code> is CHAR(32), which fits the MD5 checksum default.</li>
+<li><code>CA_CUSTSECR_COUNT</code> is CHAR(4).</li>
+<li><code>CA_CUSTSECR_STATE</code> is a single CHAR.</li>
+<li><code>CA_POLICY_NUM</code> and <code>CA_BROKERID</code> are 10-digit numeric fields.</li>
+<li><code>CA_PAYMENT</code> is a 6-digit numeric field.</li>
+<li><code>CA_NUM_POLICIES</code> is a 3-digit numeric field.</li>
+<li><code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_DOB</code>, <code>CA_EMAIL_ADDRESS</code>, <code>CA_ISSUE_DATE</code> and <code>CA_EXPIRY_DATE</code> are fixed-length character fields of 10, 20, 10, 100, 10 and 10 bytes.</li>
+<li>The program does no explicit content validation (range, format or required-value checks) on any of these fields.</li>
+</ul>
+</li>
+<li>The password count is held as CHAR(4) but must hold a value that converts to a FIXED BIN(31) integer.
+<ul>
+<li>The move <code>DB2_CUSTOMERCNT_INT = CA_CUSTSECR_COUNT</code> is an implicit character-to-numeric conversion.</li>
+<li>The program does not check the value before converting it.</li>
+<li>Non-numeric content would cause a conversion error at run time.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Request type restrictions</strong></p>
+<ul>
+<li>Only the request identifier <code>'02ACUS'</code> (add a new customer security record) is accepted.
+<ul>
+<li>A <code>SELECT (CA_REQUEST_ID)</code> statement enforces this.</li>
+<li>Its only <code>WHEN</code> branch is <code>'02ACUS'</code>.</li>
+</ul>
+</li>
+<li>Any other request ID is rejected.
+<ul>
+<li>The <code>OTHERWISE</code> branch sets <code>CA_RETURN_CODE = '99'</code> and issues <code>EXEC CICS RETURN</code>.</li>
+<li>Nothing is written to the database or the error queue in this case.</li>
+</ul>
+</li>
+<li>The customer security fields (<code>CA_CUSTSECR_PASS</code>, <code>CA_CUSTSECR_COUNT</code>, <code>CA_CUSTSECR_STATE</code>) are only used for <code>'02ACUS'</code>.
+<ul>
+<li>They overlay the customer and policy request areas in the same UNION.</li>
+<li>A caller must therefore populate the security layout, not the customer or policy layout, for this request.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sequencing constraints</strong></p>
+<ul>
+<li>Setup comes before validation and processing.
+<ul>
+<li><code>WS_TRANSID</code>, <code>WS_TERMID</code> and <code>WS_TASKNUM</code> are set from <code>EIBTRNID</code>, <code>EIBTRMID</code> and <code>EIBTASKN</code>.</li>
+<li>Only then is the commarea length checked.</li>
+</ul>
+</li>
+<li>The return code is initialised to <code>'00'</code> after the commarea check passes.
+<ul>
+<li><code>WS_CALEN</code> and <code>WS_ADDR_DFHCOMMAREA</code> are saved at the same point.</li>
+</ul>
+</li>
+<li>Host variables are populated before the insert.
+<ul>
+<li><code>DB2_CUSTOMERNUM_INT</code> and <code>DB2_CUSTOMERCNT_INT</code> are filled from the commarea.</li>
+<li>Only then is <code>INSERT_CUSTOMER_PASSWORD</code> called.</li>
+</ul>
+</li>
+<li>The SQL request label <code>EM_SQLREQ = ' INSERT SECURITY'</code> is set before the insert, so any error message identifies the failing request.</li>
+<li>Inside <code>WRITE_ERROR_MESSAGE</code>, the order is fixed.
+<ul>
+<li>The SQLCODE is saved.</li>
+<li>The time is obtained with <code>ASKTIME</code>.</li>
+<li>The time is formatted with <code>FORMATTIME</code>.</li>
+<li>The error message is sent to <code>LGSTSQ</code>.</li>
+<li>The commarea dump is sent to <code>LGSTSQ</code>.</li>
+</ul>
+</li>
+<li>Control always returns to CICS through <code>EXEC CICS RETURN</code> after the single insert.</li>
+</ul>
+</li>
+<li>
+<p><strong>Data integrity and database constraints</strong></p>
+<ul>
+<li>Exactly one row is inserted into <code>CUSTOMER_SECURE</code> per request.
+<ul>
+<li>The columns are <code>customerNumber</code>, <code>customerPass</code>, <code>state_indicator</code> and <code>pass_changes</code>.</li>
+<li>The host variables are <code>DB2_CUSTOMERNUM_INT</code>, <code>CA_CUSTSECR_PASS</code>, <code>CA_CUSTSECR_STATE</code> and <code>DB2_CUSTOMERCNT_INT</code>.</li>
+</ul>
+</li>
+<li>Success requires <code>SQLCODE = 0</code>.
+<ul>
+<li>Any non-zero SQLCODE is treated as a failure.</li>
+<li>A duplicate customer key, a constraint violation or a resource problem would all be handled this way.</li>
+</ul>
+</li>
+<li>Any other uniqueness or key rules are enforced by the <code>CUSTOMER_SECURE</code> table definition, not by this program.</li>
+<li>The program has no explicit commit or rollback. Unit-of-work handling is left to CICS, which commits at task end or syncpoint.</li>
+<li><code>CA_CUSTOMER_NUM</code> is the key for the security record and is copied to the integer host variable.</li>
+<li>Default values <code>WS_CS_PASSWORD</code> (‘NewPass’), <code>WS_CS_STATE</code> (‘N’) and <code>WS_CA_COUNT</code> (0) are declared but not used in the insert.
+<ul>
+<li>The password, state and count therefore come entirely from the caller’s commarea.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Return code and error handling rules</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code> can hold these values:
+<ul>
+<li><code>'00'</code> means success. It is the initial value.</li>
+<li><code>'98'</code> means the DB2 insert failed (<code>SQLCODE &lt;&gt; 0</code>).</li>
+<li><code>'99'</code> means an unsupported request ID.</li>
+</ul>
+</li>
+<li>A DB2 failure causes three things.
+<ul>
+<li><code>CA_RETURN_CODE</code> is set to <code>'98'</code>.</li>
+<li><code>WRITE_ERROR_MESSAGE</code> is called.</li>
+<li><code>EXEC CICS RETURN</code> is issued immediately.</li>
+</ul>
+</li>
+<li>No retry is attempted after a failed insert.</li>
+<li>A missing commarea ends in an abend (<code>LGCA</code>) rather than a return code, because there is nowhere to return a code to.</li>
+<li>Error messages use fixed-format structures.
+<ul>
+<li><code>EM_MSG_TEXT</code> is CHAR(63).</li>
+<li><code>EM_SQLRC</code> is PIC ‘+(5)9’.</li>
+<li>The message includes date, time, program name, customer number, policy number, SQL request and SQLCODE.</li>
+<li>The message layout is a UNION, so the plain-text message and the SQL detail format overlay each other.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Resource and size limits</strong></p>
+<ul>
+<li>The commarea is limited to 32,500 bytes by the declared layout.</li>
+<li>The error commarea dump is limited to 90 bytes (<code>CA_DATA</code> is CHAR(90)).
+<ul>
+<li>If <code>EIBCALEN &lt; 91</code>, only the received length is copied with <code>LEFT(COMM_AREA_RAW, EIBCALEN)</code>.</li>
+<li>Otherwise the first 90 bytes are copied with <code>LEFT(COMM_AREA_RAW, 90)</code>.</li>
+</ul>
+</li>
+<li>The dump is written only when <code>EIBCALEN &gt; 0</code>.</li>
+<li>The error message passed to <code>LGSTSQ</code> has a fixed length, <code>STG(ERROR_MSG)</code>.
+<ul>
+<li>The commarea dump also has a fixed length, <code>STG(CA_ERROR_MSG)</code>.</li>
+</ul>
+</li>
+<li><code>WS_CALEN</code> is FIXED BIN(15), so it can hold a maximum of 32,767.
+<ul>
+<li>This matches the commarea limit.</li>
+</ul>
+</li>
+<li><code>WS_TASKNUM</code> is a 7-digit numeric field, which limits the task number it can hold.</li>
+</ul>
+</li>
+<li>
+<p><strong>Environment and dependency constraints</strong></p>
+<ul>
+<li>The program must run under CICS.
+<ul>
+<li>It uses <code>EIBCALEN</code>, <code>EIBTRNID</code>, <code>EIBTRMID</code> and <code>EIBTASKN</code>.</li>
+<li>It uses <code>EXEC CICS ABEND</code>, <code>RETURN</code>, <code>ASKTIME</code>, <code>FORMATTIME</code> and <code>LINK</code>.</li>
+</ul>
+</li>
+<li>The program is the main procedure (<code>Options(Main)</code>) and receives its commarea pointer as the parameter <code>COMM_AREA_PTR</code>.</li>
+<li>The program needs DB2 access.
+<ul>
+<li>It includes <code>SQLCA</code>.</li>
+<li>The <code>CUSTOMER_SECURE</code> table must exist and be accessible.</li>
+</ul>
+</li>
+<li>Error logging depends on the <code>LGSTSQ</code> program being available for <code>LINK</code>.
+<ul>
+<li>Two links are used: one for the error message and one for the commarea dump.</li>
+<li>The links have no <code>RESP</code> or <code>NOHANDLE</code> handling.</li>
+<li>Their failure is therefore not trapped by this program and follows default CICS condition handling.</li>
+</ul>
+</li>
+<li>The date is formatted as MMDDYYYY into a 10-character field, and the time into an 8-character field.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<ul>
+<li>
+<p>Commarea Length and Availability Validation</p>
+<ul>
+<li>Communication Area Validation: The program evaluates the length of the incoming communication area using the executive interface block communication area length field.</li>
+<li>Abrupt Abnormal Termination (ABEND): If no communication area is supplied (length equals zero), the program prepares an error message in the error message record, invokes the error logging routine, and triggers a CICS ABEND with the abend code ‘LGCA’ and the NODUMP option.</li>
+</ul>
+</li>
+<li>
+<p>Request Identifier Validation</p>
+<ul>
+<li>Unsupported Request Rejection: The program verifies the incoming request code against expected values using a selection construct. If the request identifier does not match the supported customer security addition code (‘02ACUS’), the program branches to the default handler.</li>
+<li>Error Return Code Assignment: Upon detecting an invalid or unrecognized request identifier, the program sets the communication area return code to ‘99’ and issues a CICS RETURN command to exit immediately and pass control back to the caller.</li>
+</ul>
+</li>
+<li>
+<p>Database Operation Error Handling</p>
+<ul>
+<li>SQL Execution Status Verification: After executing the SQL INSERT into the database table, the program verifies the SQL return code to ensure successful row insertion.</li>
+<li>Non-Zero SQLCODE Handling: If the SQLCODE is anything other than zero, the program detects the error condition, assigns a return code of ‘98’ to the communication area return code, invokes the error logging procedure, and performs a CICS RETURN to terminate execution and notify the calling program.</li>
+</ul>
+</li>
+<li>
+<p>Diagnostic Logging and Notification</p>
+<ul>
+<li>Error Message Formatting and Capture: When an error is encountered, the internal error logging routine records the current SQL return code, acquires the system timestamp using CICS ASKTIME, and formats the date and time strings via CICS FORMATTIME.</li>
+<li>Error Logging Delegation: The program formats an error message structure containing timestamp information, program identifier, customer number, policy number, SQL request text, and the SQL return code, and invokes the logging subprogram ‘LGSTSQ’ via CICS LINK.</li>
+<li>Partial or Full Commarea Data Capture: If the incoming communication area length is greater than zero, the error logging procedure dynamically copies up to the first 90 bytes of the raw communication area into a secondary error structure and links to ‘LGSTSQ’ to persist the caller payload for debugging and audit purposes.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1--successful-customer-security-record-insert" tabindex="-1">9.1 Example 1 — Successful Customer Security Record Insert</h3>
+<p><strong>Input commarea fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_REQUEST_ID</code></td>
+<td><code>02ACUS</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>0000012345</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTSECR_PASS</code></td>
+<td><code>5f4dcc3b5aa765d61d8327deb882cf99</code> (32-char MD5)</td>
+</tr>
+<tr>
+<td><code>CA_CUSTSECR_STATE</code></td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTSECR_COUNT</code></td>
+<td><code>0001</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td><code>00</code></td>
+</tr>
+</tbody>
+</table>
+<p>A new row is inserted into the <code>CUSTOMER_SECURE</code> table:</p>
+<table>
+<thead>
+<tr>
+<th><code>customerNumber</code></th>
+<th><code>customerPass</code></th>
+<th><code>state_indicator</code></th>
+<th><code>pass_changes</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>12345</code></td>
+<td><code>5f4dcc3b5aa765d61d8327deb882cf99</code></td>
+<td><code>N</code></td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>How it works:</strong>
+<code>CA_REQUEST_ID</code> equals <code>02ACUS</code>, so the <code>SELECT</code> routes execution to the <code>INSERT_CUSTOMER_PASSWORD</code> path. <code>CA_CUSTOMER_NUM</code> is copied into the integer host variable <code>DB2_CUSTOMERNUM_INT</code> and <code>CA_CUSTSECR_COUNT</code> into <code>DB2_CUSTOMERCNT_INT</code>. The SQL <code>INSERT</code> places the four values into <code>CUSTOMER_SECURE</code>. Because <code>SQLCODE</code> returns <code>0</code>, <code>CA_RETURN_CODE</code> remains <code>00</code> and CICS <code>RETURN</code> is issued to the caller.</p>
+<hr>
+<h3 id="92-example-2--invalid-request-id-rejected-with-return-code-99" tabindex="-1">9.2 Example 2 — Invalid Request ID (Rejected with Return Code 99)</h3>
+<p><strong>Input commarea fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_REQUEST_ID</code></td>
+<td><code>01ICUS</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>0000099999</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTSECR_PASS</code></td>
+<td><code>abc123...</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTSECR_STATE</code></td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTSECR_COUNT</code></td>
+<td><code>0000</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td><code>99</code></td>
+</tr>
+</tbody>
+</table>
+<p>No database activity occurs.</p>
+<p><strong>How it works:</strong>
+The <code>SELECT (CA_REQUEST_ID)</code> statement does not match <code>02ACUS</code>, so the <code>OTHERWISE</code> branch fires. <code>CA_RETURN_CODE</code> is set to <code>99</code> and CICS <code>RETURN</code> is issued immediately, bypassing <code>INSERT_CUSTOMER_PASSWORD</code> entirely. The caller receives the commarea back with the error code indicating an unrecognised request type.</p>
+<hr>
+<h3 id="93-example-3--db2-insert-failure-return-code-98" tabindex="-1">9.3 Example 3 — DB2 Insert Failure (Return Code 98)</h3>
+<p><strong>Input commarea fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_REQUEST_ID</code></td>
+<td><code>02ACUS</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>0000012345</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTSECR_PASS</code></td>
+<td><code>5f4dcc3b5aa765d61d8327deb882cf99</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTSECR_STATE</code></td>
+<td><code>N</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTSECR_COUNT</code></td>
+<td><code>0001</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>(Assume a duplicate key already exists for customer <code>12345</code> in <code>CUSTOMER_SECURE</code>.)</em></p>
+<p><strong>Expected output:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td><code>98</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>How it works:</strong>
+The request ID is valid and <code>INSERT_CUSTOMER_PASSWORD</code> is called, but the <code>INSERT</code> fails (e.g., duplicate key), leaving <code>SQLCODE</code> non-zero. The program sets <code>CA_RETURN_CODE</code> to <code>98</code>, calls <code>WRITE_ERROR_MESSAGE</code> to log the error details (timestamp, customer number, and SQLCODE) to the transient data queue via <code>LGSTSQ</code>, then issues CICS <code>RETURN</code>. The caller receives <code>98</code> as a signal that the security record could not be created.</p>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a>
+<ul>
+<li class="toc-level-3"><a href="#21-cics-communication-area-commarea">2.1 CICS Communication Area (COMMAREA)</a></li>
+<li class="toc-level-3"><a href="#22-cics-system-fields-execute-interface-block---eib">2.2 CICS System Fields (Execute Interface Block - EIB)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a></li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a></li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a></li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a></li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1--successful-customer-security-record-insert">9.1 Example 1 — Successful Customer Security Record Insert</a></li>
+<li class="toc-level-3"><a href="#92-example-2--invalid-request-id-rejected-with-return-code-99">9.2 Example 2 — Invalid Request ID (Rejected with Return Code 99)</a></li>
+<li class="toc-level-3"><a href="#93-example-3--db2-insert-failure-return-code-98">9.3 Example 3 — DB2 Insert Failure (Return Code 98)</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGACDB02</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

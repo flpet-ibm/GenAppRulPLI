@@ -1,0 +1,1509 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGTESTP3</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link active">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>LGTESTP3 is a CICS online menu program for house insurance policies, run under transaction SSP3. It shows a house policy screen (map SSMAPP3) where an operator picks one of four actions: inquire about a policy, add a new one, delete one, or update one. For each choice it passes the entered customer, policy and property details to the matching back-end service (LGIPOL01 for inquiry, LGAPOL01 for add, LGDPOL01 for delete, LGUPOL01 for update). It then shows the result on the screen. A successful add, update or delete shows a confirmation message, and an inquiry fills the screen with the stored policy and property details. An update first retrieves the current policy so the operator can edit it. Invalid options, missing data and failures in the back-end services produce error messages. A failed add or delete rolls back the work done so far. The program keeps the conversation going by returning to its own transaction after each screen. It ends with a “Transaction ended” message when the operator presses PF3 or no screen input arrives.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<h3 id="21-cics-execution-and-interface-parameters" tabindex="-1">2.1 CICS Execution and Interface Parameters</h3>
+<ul>
+<li><code>DFHEIPTR</code> - Pointer to the CICS Execute Interface Block (EIB), supplying runtime transaction control information such as <code>EIBCALEN</code> to determine whether communication area data was passed on invocation.</li>
+<li><code>COMM_AREA_PTR</code> - Pointer to the incoming CICS communication area (<code>COMM_AREA</code>), passed from previous transactions or pseudo-conversational returns across menu interactions.</li>
+</ul>
+<h3 id="22-user-interface-inputs-bms-map-ssmapp3" tabindex="-1">2.2 User Interface Inputs (BMS Map SSMAPP3)</h3>
+<ul>
+<li><code>ENP3OPTI</code> / <code>ENP3OPTO</code> - Menu option entered by the user selecting the transaction action (‘1’ for Inquire, ‘2’ for Add, ‘3’ for Delete, ‘4’ for Update).</li>
+<li><code>ENP3CNOI</code> / <code>ENP3CNOO</code> - Customer number entered by the user to identify the customer associated with the house policy.</li>
+<li><code>ENP3PNOI</code> / <code>ENP3PNOO</code> - Policy number entered by the user to identify the specific house policy for inquiry, deletion, or update.</li>
+<li><code>ENP3IDAI</code> - Policy issue date entered by the user for adding or updating a house policy.</li>
+<li><code>ENP3EDAI</code> - Policy expiry date entered by the user for adding or updating a house policy.</li>
+<li><code>ENP3TYPI</code> - Property type (e.g., Detached, Semi-Detached, Flat) entered by the user for adding or updating a house policy.</li>
+<li><code>ENP3BEDI</code> - Number of bedrooms in the insured property entered by the user for adding or updating a house policy.</li>
+<li><code>ENP3VALI</code> - Property valuation amount entered by the user for adding or updating a house policy.</li>
+<li><code>ENP3HNMI</code> - House name entered by the user as part of the property address for adding or updating a house policy.</li>
+<li><code>ENP3HNOI</code> - House or street number entered by the user as part of the property address for adding or updating a house policy.</li>
+<li><code>ENP3HPCI</code> - Postal code of the insured property entered by the user for adding or updating a house policy.</li>
+</ul>
+<h3 id="23-external-service-responses-cics-linked-programs" tabindex="-1">2.3 External Service Responses (CICS Linked Programs)</h3>
+<ul>
+<li><code>CA_RETURN_CODE</code> - Return status code received in the communication area from linked programs (<code>LGIPOL01</code>, <code>LGAPOL01</code>, <code>LGDPOL01</code>, <code>LGUPOL01</code>), indicating whether the requested operation succeeded or resulted in an error.</li>
+<li><code>CA_POLICY_NUM</code> - Generated policy number returned in the communication area by <code>LGAPOL01</code> upon successful creation of a new house policy.</li>
+<li>Policy Details from <code>LGIPOL01</code> (Inquiry Service) - Fields returned in the communication area and mapped to the display screen upon successful inquiry:
+<ul>
+<li><code>CA_ISSUE_DATE</code> - Issue date of the retrieved policy.</li>
+<li><code>CA_EXPIRY_DATE</code> - Expiration date of the retrieved policy.</li>
+<li><code>CA_H_PROPERTY_TYPE</code> - Property classification of the retrieved house policy.</li>
+<li><code>CA_H_BEDROOMS</code> - Number of bedrooms of the retrieved house policy.</li>
+<li><code>CA_H_VALUE</code> - Assessed property value of the retrieved house policy.</li>
+<li><code>CA_H_HOUSE_NAME</code> - House name of the retrieved property address.</li>
+<li><code>CA_H_HOUSE_NUMBER</code> - House number of the retrieved property address.</li>
+<li><code>CA_H_POSTCODE</code> - Postal code of the retrieved property address.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<ul>
+<li>
+<p>Screen output (BMS map SSMAPP3 in mapset SSMAP)</p>
+<ul>
+<li>Initial menu display
+<ul>
+<li>When the program starts with no commarea, a blank house policy menu is sent with the screen erased.</li>
+<li>The customer number and policy number fields are shown as zeros, the value field as zeros, and the bedrooms field as zeros.</li>
+</ul>
+</li>
+<li>Policy detail display after an inquiry (option 1)
+<ul>
+<li>Issue date and expiry date, as ENP3IDAI and ENP3EDAI, are taken from CA_ISSUE_DATE and CA_EXPIRY_DATE.</li>
+<li>Property type, bedrooms and value are taken from CA_H_PROPERTY_TYPE, CA_H_BEDROOMS and CA_H_VALUE.</li>
+<li>House name, house number and postcode are taken from CA_H_HOUSE_NAME, CA_H_HOUSE_NUMBER and CA_H_POSTCODE.</li>
+<li>The screen is sent and the transaction then returns to wait for the next input.</li>
+</ul>
+</li>
+<li>Policy detail display before an update (option 4)
+<ul>
+<li>The same current policy details are retrieved with an inquiry and shown on the screen so the operator can change them.</li>
+<li>The program then receives the changed screen and sends it to the update service.</li>
+</ul>
+</li>
+<li>Result after a successful add (option 2)
+<ul>
+<li>The customer number (ENP3CNOI) and policy number (ENP3PNOI) are set from CA_CUSTOMER_NUM and CA_POLICY_NUM, so the new policy number is returned to the screen.</li>
+<li>The option field ENP3OPTI is cleared.</li>
+<li>The message “New House Policy Inserted” is shown in ERP3FLDO.</li>
+</ul>
+</li>
+<li>Result after a successful update (option 4)
+<ul>
+<li>The customer number and policy number are refreshed from the commarea.</li>
+<li>The option field ENP3OPTI is cleared.</li>
+<li>The message “House Policy Updated” is shown.</li>
+</ul>
+</li>
+<li>Result after a successful delete (option 3)
+<ul>
+<li>The issue date, expiry date, property type, bedrooms, value, house name, house number, postcode and option fields are blanked.</li>
+<li>The message “House Policy Deleted” is shown.</li>
+</ul>
+</li>
+<li>Invalid option feedback
+<ul>
+<li>The message “Please enter a valid option” is shown in ERP3FLDO.</li>
+<li>The cursor is positioned on the option field (ENP3OPTL = -1).</li>
+</ul>
+</li>
+<li>Error messages, sent in ERP3FLDO
+<ul>
+<li>“Customer does not exist” is shown when an add fails with return code 70.</li>
+<li>“Error Adding House Policy” is shown for any other add failure.</li>
+<li>“Error Updating House Policy” is shown when an update fails.</li>
+<li>“Error Deleting House Policy” is shown when a delete fails.</li>
+<li>“No data was returned.” is shown when an inquiry (option 1, or the inquiry step of option 4) returns a non-zero return code.</li>
+</ul>
+</li>
+<li>Clear key
+<ul>
+<li>The input map is blanked and the map is sent with MAPONLY, which redisplays an empty menu.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Terminal text output</p>
+<ul>
+<li>When PF3 is pressed or no map data is received (MAPFAIL), the text “Transaction ended” (MSGEND) is sent with the screen erased and the keyboard freed. The task then ends.</li>
+</ul>
+</li>
+<li>
+<p>Calls to back-end services (data passed in the commarea, with the database effects happening in the called programs)</p>
+<ul>
+<li>Request routing
+<ul>
+<li>CA_REQUEST_ID tells the called program which operation to run:
+<ul>
+<li>‘01IHOU’ calls LGIPOL01 to inquire.</li>
+<li>‘01AHOU’ calls LGAPOL01 to add.</li>
+<li>‘01DHOU’ calls LGDPOL01 to delete.</li>
+<li>‘01UHOU’ calls LGUPOL01 to update.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Keys sent to the services
+<ul>
+<li>CA_CUSTOMER_NUM identifies the policy owner.</li>
+<li>CA_POLICY_NUM identifies the policy to inquire about or delete.</li>
+</ul>
+</li>
+<li>Policy data sent on add and update
+<ul>
+<li>CA_ISSUE_DATE and CA_EXPIRY_DATE</li>
+<li>CA_H_PROPERTY_TYPE, CA_H_BEDROOMS and CA_H_VALUE</li>
+<li>CA_H_HOUSE_NAME, CA_H_HOUSE_NUMBER and CA_H_POSTCODE</li>
+</ul>
+</li>
+<li>Defaults set before add and update
+<ul>
+<li>CA_BROKERID is 0, CA_PAYMENT is 0 and CA_BROKERSREF is blank.</li>
+</ul>
+</li>
+<li>Results returned by the services
+<ul>
+<li>CA_RETURN_CODE decides whether the screen shows success data or an error message.</li>
+<li>CA_POLICY_NUM is returned by the add and update services and shown on the screen.</li>
+<li>The house details fields are returned by the inquiry service for display.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Transaction control and commit behaviour</p>
+<ul>
+<li>After a successful add, update, delete or inquiry, or after an invalid option, the program returns to CICS with transaction ID SSP3 and passes the commarea (COMM_AREA) to the next run. The conversation continues.</li>
+<li>After a failed add or delete, a syncpoint rollback undoes any changes made by the called service.</li>
+<li>After a failed update or inquiry, the program does not issue a rollback.</li>
+<li>After any error, the error message is displayed and then the following are reset before the transaction returns with SSP3:
+<ul>
+<li>The input map and the raw commarea are blanked.</li>
+<li>CA_REQUEST_ID is blank.</li>
+<li>CA_RETURN_CODE is 0.</li>
+<li>CA_CUSTOMER_NUM is 0.</li>
+<li>The request-specific area (CA_REQUEST_INITIALISER) is blank.</li>
+</ul>
+</li>
+<li>The program ends without a transaction ID when PF3 is pressed, MAPFAIL occurs, or the code reaches the fall-through return after the option selection.</li>
+</ul>
+</li>
+<li>
+<p>Return values</p>
+<ul>
+<li>The program has no function return value. Its results are observable through the screen output, the commarea passed to the next transaction, and the database changes made by the called services.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    classDef startEnd fill:#b5ead7,stroke:#5a9e82,color:#000
+    classDef process fill:#c7ceea,stroke:#5a6ea1,color:#000
+    classDef decision fill:#ffdac1,stroke:#c28050,color:#000
+    classDef ioNode fill:#ffe4e1,stroke:#c07070,color:#000
+    classDef errorNode fill:#ffb7b2,stroke:#b05050,color:#000
+
+    A([Start - LGTESTP3 invoked]):::startEnd
+    B{{EIBCALEN = 0<br>First invocation}}:::decision
+    C[Initialise COMMAREA and map<br>Set zeroes and blanks<br>Send SSMAPP3 map ERASE]:::process
+    D[Set AID handlers<br>PF3 and CLEAR go to exit<br>MAPFAIL goes to exit]:::process
+    E[RECEIVE MAP SSMAPP3<br>Read screen input into SSMAPP3I]:::ioNode
+    F{{Option entered<br>ENP3OPTO}}:::decision
+
+    G1[Option 1 - Inquire<br>Set CA_REQUEST_ID = 01IHOU<br>Set customer and policy numbers]:::process
+    G2[CICS LINK LGIPOL01]:::ioNode
+    G3{{Return code = 0}}:::decision
+    G4[Populate screen fields<br>from COMMAREA house data<br>Send SSMAPP3]:::process
+
+    H1[Option 2 - Add<br>Set CA_REQUEST_ID = 01AHOU<br>Copy screen fields to COMMAREA]:::process
+    H2[CICS LINK LGAPOL01]:::ioNode
+    H3{{Return code = 0}}:::decision
+    H4[Show customer and policy numbers<br>Clear option<br>Display success message<br>Send SSMAPP3]:::process
+
+    I1[Option 3 - Delete<br>Set CA_REQUEST_ID = 01DHOU<br>Set customer and policy numbers]:::process
+    I2[CICS LINK LGDPOL01]:::ioNode
+    I3{{Return code = 0}}:::decision
+    I4[Clear all house policy fields<br>Clear option<br>Display House Policy Deleted<br>Send SSMAPP3]:::process
+
+    J1[Option 4 - Update<br>Set CA_REQUEST_ID = 01IHOU<br>CICS LINK LGIPOL01 to prefill screen]:::process
+    J2[CICS LINK LGIPOL01<br>Fetch current data]:::ioNode
+    J3{{Return code = 0}}:::decision
+    J4[Send prefilled SSMAPP3<br>RECEIVE MAP - wait for user edits]:::ioNode
+    J5[Set CA_REQUEST_ID = 01UHOU<br>Copy updated fields to COMMAREA]:::process
+    J6[CICS LINK LGUPOL01]:::ioNode
+    J7{{Return code = 0}}:::decision
+    J8[Display House Policy Updated<br>Send SSMAPP3]:::process
+
+    K[Invalid option<br>Display Please enter a valid option<br>Send SSMAPP3 with CURSOR]:::process
+
+    L[ENDIT_STARTIT<br>CICS RETURN TRANSID SSP3<br>Pass COMMAREA]:::startEnd
+
+    M[CLEARIT<br>Clear SSMAPP3I<br>Send map MAPONLY<br>CICS RETURN TRANSID SSP3]:::process
+
+    N[ENDIT<br>Send Transaction ended text<br>CICS RETURN - no transid]:::startEnd
+
+    E1[NO_ADD<br>Return code 70 - Customer does not exist<br>Otherwise - Error Adding House Policy]:::errorNode
+    E2[NO_UPD<br>Error Updating House Policy]:::errorNode
+    E3[NO_DELETE<br>Error Deleting House Policy]:::errorNode
+    E4[NO_DATA<br>No data was returned]:::errorNode
+    E5[ERROR_OUT<br>Send SSMAPP3 with error message<br>Rollback COMMAREA and screen<br>Go to ENDIT_STARTIT]:::errorNode
+
+    A --> B
+    B -- Yes --> C
+    C --> D
+    B -- No --> D
+    D --> E
+    E --> F
+
+    F -- 1 --> G1
+    G1 --> G2
+    G2 --> G3
+    G3 -- Yes --> G4
+    G3 -- No --> E4
+    G4 --> L
+
+    F -- 2 --> H1
+    H1 --> H2
+    H2 --> H3
+    H3 -- Yes --> H4
+    H3 -- No --> E1
+    H4 --> L
+
+    F -- 3 --> I1
+    I1 --> I2
+    I2 --> I3
+    I3 -- Yes --> I4
+    I3 -- No --> E3
+    I4 --> L
+
+    F -- 4 --> J1
+    J1 --> J2
+    J2 --> J3
+    J3 -- No --> E4
+    J3 -- Yes --> J4
+    J4 --> J5
+    J5 --> J6
+    J6 --> J7
+    J7 -- Yes --> J8
+    J7 -- No --> E2
+    J8 --> L
+
+    F -- Other --> K
+    K --> L
+
+    E1 --> E5
+    E2 --> E5
+    E3 --> E5
+    E4 --> E5
+    E5 --> L
+
+    D -- PF3 or MAPFAIL --> N
+    D -- CLEAR --> M
+    M --> L
+</div>
+<hr>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<h4 id="421-high-level-summary" tabindex="-1">4.2.1 High-level Summary</h4>
+<p>LGTESTP3 is the <strong>House Policy Menu</strong> program for CICS transaction <code>SSP3</code>. It presents a single BMS screen (<code>SSMAPP3</code>) to an operator, accepts a one-character option code (<code>1</code>=Inquire, <code>2</code>=Add, <code>3</code>=Delete, <code>4</code>=Update), calls the appropriate back-end policy orchestrator over a CICS LINK, and redisplays the screen with results or error messages. Between invocations the COMMAREA is passed back through <code>EXEC CICS RETURN TRANSID(SSP3)</code>, making the program pseudo-conversational.</p>
+<hr>
+<h4 id="422-execution-flow" tabindex="-1">4.2.2 Execution Flow</h4>
+<p><strong>Step 1 — First-time initialisation (<code>EIBCALEN = 0</code>)</strong><br>
+When the transaction is started fresh (no COMMAREA from a prior invocation), the program:</p>
+<ul>
+<li>Anchors <code>COMM_AREA_PTR</code> to a local storage base area.</li>
+<li>Zeroes and blanks every COMMAREA field (<code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code>, <code>CA_REQUEST_INITIALISER</code>).</li>
+<li>Pre-fills the numeric output fields on the screen map with <code>0000000000</code> / <code>00000000</code> / <code>000</code> so they display correctly.</li>
+<li>Issues <code>EXEC CICS SEND MAP ('SSMAPP3') ERASE</code> to paint the blank house-policy screen.</li>
+</ul>
+<p><strong>Step 2 — AID and condition handlers (<code>A_GAIN</code>)</strong><br>
+Every cycle (first and subsequent) the program registers:</p>
+<ul>
+<li><code>PF3</code> → <code>ENDIT</code> (end transaction).</li>
+<li><code>CLEAR</code> → <code>CLEARIT</code> (blank the screen and loop).</li>
+<li><code>MAPFAIL</code> → <code>ENDIT</code> (no data entered — end gracefully).</li>
+</ul>
+<p><strong>Step 3 — Receive screen input</strong><br>
+<code>EXEC CICS RECEIVE MAP ('SSMAPP3')</code> reads the operator’s input into <code>SSMAPP3I</code>. The key field is <code>ENP3OPTO</code> (the option character). Customer number and policy number are on the screen in both input (<code>ENP3CNOI</code>, <code>ENP3PNOI</code>) and output (<code>ENP3CNOO</code>, <code>ENP3PNOO</code>) variants due to the BMS symbolic map split.</p>
+<p><strong>Step 4 — Option dispatch (<code>SELECT ENP3OPTO</code>)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Operation</th>
+<th>Request ID</th>
+<th>Back-end called</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td>Inquire</td>
+<td><code>01IHOU</code></td>
+<td><code>LGIPOL01</code></td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Add</td>
+<td><code>01AHOU</code></td>
+<td><code>LGAPOL01</code></td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>Delete</td>
+<td><code>01DHOU</code></td>
+<td><code>LGDPOL01</code></td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>Update</td>
+<td><code>01IHOU</code> then <code>01UHOU</code></td>
+<td><code>LGIPOL01</code> then <code>LGUPOL01</code></td>
+</tr>
+<tr>
+<td>other</td>
+<td>Invalid</td>
+<td>—</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Option 1 — Inquire</strong><br>
+Sets <code>CA_REQUEST_ID='01IHOU'</code>, copies the screen’s customer number (<code>ENP3CNOO</code>) and policy number (<code>ENP3PNOO</code>) into the COMMAREA, then links to <code>LGIPOL01</code>. On success the returned house policy fields (<code>CA_H_PROPERTY_TYPE</code>, <code>CA_H_BEDROOMS</code>, <code>CA_H_VALUE</code>, <code>CA_H_HOUSE_NAME</code>, <code>CA_H_HOUSE_NUMBER</code>, <code>CA_H_POSTCODE</code>, <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>) are moved into the screen input map and the refreshed screen is sent.</p>
+<p><strong>Option 2 — Add</strong><br>
+Sets <code>CA_REQUEST_ID='01AHOU'</code>, reads the customer number from the screen input variant (<code>ENP3CNOI</code>), clears broker/payment fields to zero/blank, copies all house property fields from the screen into the COMMAREA, then links to <code>LGAPOL01</code>. On success the new customer and policy numbers returned in the COMMAREA are echoed back to the screen and the message <code>New House Policy Inserted</code> is displayed. On failure, a <code>SYNCPOINT ROLLBACK</code> is issued before branching to the error handler; return code <code>70</code> maps to <code>Customer does not exist</code>.</p>
+<p><strong>Option 3 — Delete</strong><br>
+Sets <code>CA_REQUEST_ID='01DHOU'</code>, supplies the customer and policy numbers from the output map fields, then links to <code>LGDPOL01</code>. On success all policy-detail fields are blanked on the screen and the message <code>House Policy Deleted</code> is shown. On failure a <code>SYNCPOINT ROLLBACK</code> is issued.</p>
+<p><strong>Option 4 — Update (two-phase)</strong><br>
+This is the only option that stays in the same CICS task long enough for a second RECEIVE:</p>
+<ol>
+<li>First it inquires the existing policy (<code>01IHOU</code> → <code>LGIPOL01</code>) to pre-populate the screen.</li>
+<li>Sends the pre-filled screen and immediately issues a second <code>EXEC CICS RECEIVE MAP</code> to collect the operator’s changes.</li>
+<li>Then sets <code>CA_REQUEST_ID='01UHOU'</code>, copies all edited fields from the screen into the COMMAREA, clears broker/payment ancillary fields, and links to <code>LGUPOL01</code>.</li>
+<li>On success displays <code>House Policy Updated</code>; on failure branches to <code>NO_UPD</code>.</li>
+</ol>
+<p><strong>Invalid option</strong><br>
+Writes <code>Please enter a valid option</code> to the error field <code>ERP3FLDO</code>, sets the option field length to <code>-1</code> (cursor placement), and sends the map with <code>CURSOR</code>.</p>
+<p><strong>Step 5 — Return / termination paths</strong></p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENDIT_STARTIT</code></td>
+<td><code>EXEC CICS RETURN TRANSID('SSP3') COMMAREA(COMM_AREA)</code> — keeps the transaction alive for the next operator action</td>
+</tr>
+<tr>
+<td><code>ENDIT</code></td>
+<td>Sends the <code>Transaction ended</code> text, then plain <code>EXEC CICS RETURN</code> — ends the transaction</td>
+</tr>
+<tr>
+<td><code>CLEARIT</code></td>
+<td>Blanks <code>SSMAPP3I</code>, sends the map skeleton (MAPONLY), returns with <code>TRANSID('SSP3')</code> and the COMMAREA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 6 — Error handling (<code>ERROR_OUT</code>)</strong><br>
+All four error labels (<code>NO_ADD</code>, <code>NO_UPD</code>, <code>NO_DELETE</code>, <code>NO_DATA</code>) set an appropriate message in <code>ERP3FLDO</code> and fall through to <code>ERROR_OUT</code>. <code>ERROR_OUT</code>:</p>
+<ul>
+<li>Sends <code>SSMAPP3</code> with the error message.</li>
+<li>Resets <code>SSMAPP3I</code>, <code>COMM_AREA_RAW</code>, <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code>, and <code>CA_REQUEST_INITIALISER</code> to zero/blank, preventing stale data from persisting.</li>
+<li>Transfers to <code>ENDIT_STARTIT</code> to allow the operator to retry.</li>
+</ul>
+<hr>
+<h4 id="423-external-interactions" tabindex="-1">4.2.3 External Interactions</h4>
+<table>
+<thead>
+<tr>
+<th>Called program</th>
+<th>Request ID</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LGIPOL01</code></td>
+<td><code>01IHOU</code></td>
+<td>Retrieve an existing house policy from Db2</td>
+</tr>
+<tr>
+<td><code>LGAPOL01</code></td>
+<td><code>01AHOU</code></td>
+<td>Add a new house policy to Db2</td>
+</tr>
+<tr>
+<td><code>LGDPOL01</code></td>
+<td><code>01DHOU</code></td>
+<td>Delete a house policy from Db2</td>
+</tr>
+<tr>
+<td><code>LGUPOL01</code></td>
+<td><code>01UHOU</code></td>
+<td>Update an existing house policy in Db2</td>
+</tr>
+</tbody>
+</table>
+<p>All interactions use a 32 500-byte COMMAREA (<code>COMM_AREA</code>) passed via <code>EXEC CICS LINK</code>. Each orchestrator populates the relevant <code>CA_HOUSE</code> sub-structure and sets <code>CA_RETURN_CODE</code> (<code>00</code> = success, non-zero = error).</p>
+<hr>
+<h4 id="424-plain-language-summary" tabindex="-1">4.2.4 Plain Language Summary</h4>
+<p>LGTESTP3 is the house insurance policy screen handler. When an operator opens the <code>SSP3</code> transaction, they see a form asking for a customer number, a policy number, and property details (type, bedrooms, value, address, postcode). They type a single digit to choose what to do:</p>
+<ul>
+<li><strong>1</strong> looks up an existing policy and fills the screen with its details.</li>
+<li><strong>2</strong> takes what is typed on screen and creates a brand-new policy record in the database.</li>
+<li><strong>3</strong> deletes the policy identified by the customer and policy numbers.</li>
+<li><strong>4</strong> first retrieves the current policy to let the operator see and change it, then saves the changes.</li>
+</ul>
+<p>After each successful action the screen stays up so the operator can do another transaction. Pressing PF3 or CLEAR exits cleanly. If anything goes wrong (unknown customer, database error, etc.) an error message appears on screen and the form is reset so the operator can try again.</p>
+<hr>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<p>The program itself contains no embedded SQL; all database access is delegated to the linked orchestrators and their Db2 back-end programs. The house policy data touched through the COMMAREA corresponds to the following Db2 structures:</p>
+<div class="mermaid">
+erDiagram
+    POLICY {
+        int POLICY_NUM "10 digits"
+        int CUSTOMER_NUM "10 digits"
+        string ISSUE_DATE "length 10"
+        string EXPIRY_DATE "length 10"
+        string LASTCHANGED "length 26"
+        int BROKERID "10 digits"
+        string BROKERSREF "length 10"
+        int PAYMENT "6 digits"
+    }
+    HOUSE {
+        int POLICY_NUM "FK to POLICY"
+        string PROPERTY_TYPE "length 15"
+        int BEDROOMS "3 digits"
+        int VALUE "8 digits"
+        string HOUSE_NAME "length 20"
+        string HOUSE_NUMBER "length 4"
+        string POSTCODE "length 8"
+    }
+    CUSTOMER {
+        int CUSTOMER_NUM "10 digits"
+    }
+    CUSTOMER ||--o{ POLICY : "owns"
+    POLICY ||--|| HOUSE : "describes"
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGTESTP3 (main procedure, initial entry block)</strong></p>
+<ul>
+<li>Purpose: Entry point of the house policy menu transaction SSP3. It is a reentrant main procedure that receives the CICS interface pointer and <code>COMM_AREA_PTR</code>. It also holds the declarations for the BMS map structures (SSMAPC1/P1/P2/P3/P4/P5 input and output) and the COMMAREA layout.</li>
+<li>Operations:
+<ul>
+<li>Declares <code>MSGEND</code> (“Transaction ended”) and the COMMAREA as a based union over <code>COMM_AREA_PTR</code>. The union has request, customer, policy-common and house, endowment, motor, commercial and claim overlays.</li>
+<li>Declares <code>BASE_COMM_AREA</code> as storage sized to the COMMAREA.</li>
+<li>When <code>EIBCALEN = 0</code> (first invocation), it points <code>COMM_AREA_PTR</code> at <code>BASE_COMM_AREA</code>. It blanks the output map <code>SSMAPP3O</code>, clears <code>CA_REQUEST_ID</code> and <code>CA_REQUEST_INITIALISER</code>, and sets <code>CA_RETURN_CODE</code> and <code>CA_CUSTOMER_NUM</code> to 0. It then sets the customer number, policy number, value and bedroom output fields to zeros.</li>
+</ul>
+</li>
+<li>Control flow: One <code>IF EIBCALEN = 0</code> guard. Otherwise, execution falls through to <code>A_GAIN</code>.</li>
+<li>External interaction: <code>EXEC CICS SEND MAP('SSMAPP3') MAPSET('SSMAP') ERASE</code> displays the menu screen.</li>
+</ul>
+</li>
+<li>
+<p><strong>A_GAIN (receive and dispatch)</strong></p>
+<ul>
+<li>
+<p>Purpose: Main processing point for each user interaction. It reads the screen and dispatches on the option entered.</p>
+</li>
+<li>
+<p>Operations:</p>
+<ul>
+<li><code>HANDLE AID</code> routes CLEAR to <code>CLEARIT</code> and PF3 to <code>ENDIT</code>.</li>
+<li><code>HANDLE CONDITION MAPFAIL</code> routes to <code>ENDIT</code>.</li>
+<li><code>RECEIVE MAP('SSMAPP3')</code> reads the screen into <code>SSMAPP3I</code>.</li>
+<li>A <code>SELECT</code> on <code>ENP3OPTO</code> chooses the transaction branch.</li>
+</ul>
+</li>
+<li>
+<p>Control flow: <code>SELECT</code> with <code>WHEN</code> branches for ‘1’, ‘2’, ‘3’ and ‘4’ and an <code>OTHERWISE</code> branch. Each branch ends with <code>GO TO</code> to a label.</p>
+</li>
+<li>
+<p>External interaction: CICS terminal I/O (BMS RECEIVE MAP) and CICS condition and AID handling.</p>
+</li>
+<li>
+<p><strong>WHEN ‘1’ (inquire house policy)</strong></p>
+<ul>
+<li>Sets <code>CA_REQUEST_ID</code> to ‘01IHOU’. It copies the customer and policy numbers from the screen into <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code>.</li>
+<li>Links to program <code>LGIPOL01</code> with the 32500-byte COMMAREA.</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, it goes to <code>NO_DATA</code>.</li>
+<li>Otherwise it moves the issue date, expiry date, property type, bedrooms, value, house name, house number and postcode to the screen fields. It sends the map and goes to <code>ENDIT_STARTIT</code>.</li>
+<li>External interaction: CICS LINK to <code>LGIPOL01</code> (which reads the policy data) and SEND MAP.</li>
+</ul>
+</li>
+<li>
+<p><strong>WHEN ‘2’ (add house policy)</strong></p>
+<ul>
+<li>Sets <code>CA_REQUEST_ID</code> to ‘01AHOU’. It takes the customer number from the screen input and resets <code>CA_PAYMENT</code>, <code>CA_BROKERID</code> and <code>CA_BROKERSREF</code>.</li>
+<li>Copies the issue date, expiry date and house details from the screen into the COMMAREA.</li>
+<li>Links to <code>LGAPOL01</code>.</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, it issues <code>SYNCPOINT ROLLBACK</code> and goes to <code>NO_ADD</code>.</li>
+<li>On success it writes the returned customer and policy numbers back to the screen and blanks the option field. It sets the message “New House Policy Inserted”, sends the map and goes to <code>ENDIT_STARTIT</code>.</li>
+<li>External interaction: CICS LINK to <code>LGAPOL01</code> (which inserts the policy), a conditional SYNCPOINT ROLLBACK and SEND MAP.</li>
+</ul>
+</li>
+<li>
+<p><strong>WHEN ‘3’ (delete house policy)</strong></p>
+<ul>
+<li>Sets <code>CA_REQUEST_ID</code> to ‘01DHOU’. It sets the customer and policy numbers from the screen.</li>
+<li>Links to <code>LGDPOL01</code>.</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, it issues <code>SYNCPOINT ROLLBACK</code> and goes to <code>NO_DELETE</code>.</li>
+<li>On success it blanks the detail and option fields. It sets the message “House Policy Deleted”, sends the map and goes to <code>ENDIT_STARTIT</code>.</li>
+<li>External interaction: CICS LINK to <code>LGDPOL01</code> (which deletes the policy), a conditional SYNCPOINT ROLLBACK and SEND MAP.</li>
+</ul>
+</li>
+<li>
+<p><strong>WHEN ‘4’ (update house policy)</strong></p>
+<ul>
+<li>First does an inquiry. It sets ‘01IHOU’ and links to <code>LGIPOL01</code>. If <code>CA_RETURN_CODE &gt; 0</code>, it goes to <code>NO_DATA</code>.</li>
+<li>It displays the current values with SEND MAP, then issues a second RECEIVE MAP so the user can edit them.</li>
+<li>It sets <code>CA_REQUEST_ID</code> to ‘01UHOU’ and rebuilds the COMMAREA from the edited screen fields. It resets payment, broker ID and broker reference.</li>
+<li>Links to <code>LGUPOL01</code>.</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, it goes to <code>NO_UPD</code>.</li>
+<li>On success it refreshes the customer and policy numbers, blanks the option and sets the message “House Policy Updated”. It sends the map and goes to <code>ENDIT_STARTIT</code>.</li>
+<li>External interaction: two CICS LINKs (<code>LGIPOL01</code>, <code>LGUPOL01</code>), two BMS sends and one extra BMS receive.</li>
+</ul>
+</li>
+<li>
+<p><strong>OTHERWISE (invalid option)</strong></p>
+<ul>
+<li>Sets the message “Please enter a valid option” and sets <code>ENP3OPTL = -1</code> to position the cursor on the option field.</li>
+<li>Sends the map with <code>CURSOR</code> and goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li>
+<p>After the <code>SELECT</code>, a plain <code>EXEC CICS RETURN</code> is coded. Every <code>SELECT</code> branch ends in a <code>GO TO</code>, so it is effectively unreachable.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>ENDIT_STARTIT</strong></p>
+<ul>
+<li>Purpose: Normal pseudo-conversational exit.</li>
+<li>Operations: Returns to CICS with <code>TRANSID('SSP3')</code> and passes <code>COMM_AREA</code>, so the next terminal input restarts the transaction with the COMMAREA.</li>
+<li>Control flow: Reached by <code>GO TO</code> from every successful branch and from <code>ERROR_OUT</code>. It does not return to the caller.</li>
+<li>External interaction: CICS RETURN with TRANSID and COMMAREA.</li>
+</ul>
+</li>
+<li>
+<p><strong>ENDIT</strong></p>
+<ul>
+<li>Purpose: Terminates the transaction when the user presses PF3 or a MAPFAIL occurs.</li>
+<li>Operations: Sends the text “Transaction ended” (<code>MSGEND</code>) with ERASE and FREEKB, then issues a plain <code>RETURN</code> without a TRANSID.</li>
+<li>Control flow: Reached only through the <code>HANDLE AID PF3</code> and <code>HANDLE CONDITION MAPFAIL</code> routing.</li>
+<li>External interaction: CICS SEND TEXT and RETURN.</li>
+</ul>
+</li>
+<li>
+<p><strong>CLEARIT</strong></p>
+<ul>
+<li>Purpose: Handles the CLEAR key by resetting the screen.</li>
+<li>Operations: Blanks the input map <code>SSMAPP3I</code>. It sends the map with <code>MAPONLY</code>, which shows the blank menu. It then returns to transaction SSP3 with the COMMAREA.</li>
+<li>Control flow: Reached only through the <code>HANDLE AID CLEAR</code> routing.</li>
+<li>External interaction: CICS SEND MAP (MAPONLY) and RETURN with TRANSID.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_ADD</strong></p>
+<ul>
+<li>Purpose: Error handler for a failed add.</li>
+<li>Operations: Runs a <code>SELECT</code> on <code>CA_RETURN_CODE</code>. Code 70 sets the message “Customer does not exist”. Any other code sets “Error Adding House Policy”. Both cases go to <code>ERROR_OUT</code>.</li>
+<li>Control flow: <code>SELECT</code> with a <code>WHEN (70)</code> and an <code>OTHERWISE</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_UPD</strong></p>
+<ul>
+<li>Purpose: Error handler for a failed update.</li>
+<li>Operations: Sets the message “Error Updating House Policy” and goes to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_DELETE</strong></p>
+<ul>
+<li>Purpose: Error handler for a failed delete.</li>
+<li>Operations: Sets the message “Error Deleting House Policy” and goes to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_DATA</strong></p>
+<ul>
+<li>Purpose: Error handler used when the inquiry (options 1 and 4) fails or returns nothing.</li>
+<li>Operations: Sets the message “No data was returned.” and goes to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>ERROR_OUT</strong></p>
+<ul>
+<li>Purpose: Common error exit that shows the message and resets state.</li>
+<li>Operations:
+<ul>
+<li>Sends the map <code>SSMAPP3O</code>, which includes the error text in <code>ERP3FLDO</code>.</li>
+<li>Blanks the input map and the raw COMMAREA (<code>COMM_AREA_RAW</code>).</li>
+<li>Clears <code>CA_REQUEST_ID</code> and <code>CA_REQUEST_INITIALISER</code>, and sets <code>CA_RETURN_CODE</code> and <code>CA_CUSTOMER_NUM</code> to 0.</li>
+<li>Goes to <code>ENDIT_STARTIT</code> to return to SSP3.</li>
+</ul>
+</li>
+<li>External interaction: CICS SEND MAP.</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<h3 id="61-cics-environment-and-system-services" tabindex="-1">6.1 CICS Environment and System Services</h3>
+<ul>
+<li>CICS Transaction Server
+<ul>
+<li>Provides the execution environment and transaction runtime context.</li>
+<li>Manages pseudo-conversational state transitions and next-transaction routing via <code>EXEC CICS RETURN TRANSID('SSP3')</code>.</li>
+<li>Handles screen I/O operations through Basic Mapping Support (<code>EXEC CICS SEND MAP</code>, <code>EXEC CICS RECEIVE MAP</code>, and <code>EXEC CICS SEND TEXT</code>).</li>
+<li>Manages attention identifier conditions (<code>EXEC CICS HANDLE AID</code> for <code>CLEAR</code> and <code>PF3</code>) and exceptional mapping conditions (<code>EXEC CICS HANDLE CONDITION MAPFAIL</code>).</li>
+<li>Controls transaction work boundaries and error rollbacks via <code>EXEC CICS SYNCPOINT ROLLBACK</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="62-invoked-programs-and-subroutines" tabindex="-1">6.2 Invoked Programs and Subroutines</h3>
+<ul>
+<li><code>LGIPOL01</code>
+<ul>
+<li>Policy inquiry orchestrator module called via <code>EXEC CICS LINK PROGRAM('LGIPOL01')</code> using request ID <code>'01IHOU'</code> to retrieve existing house policy and property risk details.</li>
+</ul>
+</li>
+<li><code>LGAPOL01</code>
+<ul>
+<li>Policy creation orchestrator module invoked via <code>EXEC CICS LINK PROGRAM('LGAPOL01')</code> using request ID <code>'01AHOU'</code> to add a new house policy record for a customer.</li>
+</ul>
+</li>
+<li><code>LGUPOL01</code>
+<ul>
+<li>Policy update orchestrator module invoked via <code>EXEC CICS LINK PROGRAM('LGUPOL01')</code> using request ID <code>'01UHOU'</code> to update property and house policy details.</li>
+</ul>
+</li>
+<li><code>LGDPOL01</code>
+<ul>
+<li>Policy deletion orchestrator module invoked via <code>EXEC CICS LINK PROGRAM('LGDPOL01')</code> using request ID <code>'01DHOU'</code> to remove an existing house policy.</li>
+</ul>
+</li>
+</ul>
+<h3 id="63-user-interface-and-map-definitions" tabindex="-1">6.3 User Interface and Map Definitions</h3>
+<ul>
+<li>Mapset <code>SSMAP</code> / Map <code>SSMAPP3</code>
+<ul>
+<li>CICS Basic Mapping Support (BMS) screen definitions used to present the House Policy Menu to the terminal operator and capture interactive transaction requests (Inquire, Add, Delete, Update) along with property data fields.</li>
+</ul>
+</li>
+<li>Include File <code>SSMAP.inc</code>
+<ul>
+<li>PL/I structure definitions mapping the symbolic BMS layout for input structure <code>SSMAPP3I</code> and output overlay <code>SSMAPP3O</code> (including field length, flag, attribute, and value descriptors for policy and house attributes).</li>
+</ul>
+</li>
+</ul>
+<h3 id="64-data-interfaces-and-communication-structures" tabindex="-1">6.4 Data Interfaces and Communication Structures</h3>
+<ul>
+<li>Include File <code>LGCMAREA.inc</code>
+<ul>
+<li>Standard application COMMAREA definition (<code>COMM_AREA</code>) shared across all CICS LINK program calls. It structures the 32,500-byte data exchange buffer including:
+<ul>
+<li>Control header fields: <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, and <code>CA_CUSTOMER_NUM</code>.</li>
+<li>General policy fields: <code>CA_POLICY_NUM</code>, <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_PAYMENT</code>, <code>CA_BROKERID</code>, and <code>CA_BROKERSREF</code>.</li>
+<li>House policy specific fields (<code>CA_HOUSE</code>): <code>CA_H_PROPERTY_TYPE</code>, <code>CA_H_BEDROOMS</code>, <code>CA_H_VALUE</code>, <code>CA_H_HOUSE_NAME</code>, <code>CA_H_HOUSE_NUMBER</code>, and <code>CA_H_POSTCODE</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Input Parameters
+<ul>
+<li><code>DFHEIPTR</code>: CICS Execution Interface Block (EIB) pointer passed by the CICS environment.</li>
+<li><code>COMM_AREA_PTR</code>: Pointer to the communication area used to retain conversational state between pseudo-conversational invocations.</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<ul>
+<li>
+<p><strong>Menu option validation</strong></p>
+<ul>
+<li>The menu option field ENP3OPTO accepts only ‘1’ (inquire), ‘2’ (add), ‘3’ (delete) and ‘4’ (update).
+<ul>
+<li>A SELECT/WHEN structure enforces this. Any other value falls into OTHERWISE.</li>
+<li>OTHERWISE sets the message ‘Please enter a valid option’ in ERP3FLDO and sets ENP3OPTL = -1, which places the cursor on the option field.</li>
+<li>OTHERWISE then redisplays the map with the CURSOR option and goes to ENDIT_STARTIT, so the transaction continues.</li>
+</ul>
+</li>
+<li>Only one option is processed per screen interaction. The SELECT runs once per RECEIVE, and each branch ends by sending the map and returning to the transaction.</li>
+<li>The program does no explicit validation of the data fields: customer number, policy number, dates, property type, bedrooms, value, house name, house number and postcode.
+<ul>
+<li>It copies them as entered into the commarea fields and into the CA_ fields, which have fixed lengths and PIC types.</li>
+<li>The called back-end services (LGIPOL01, LGAPOL01, LGUPOL01, LGDPOL01) must do any validation. The program only reacts to a non-zero CA_RETURN_CODE.</li>
+</ul>
+</li>
+<li>Data length and format limits come from the field definitions.
+<ul>
+<li>CA_CUSTOMER_NUM and CA_POLICY_NUM are PIC ‘9999999999’ (10 digits).</li>
+<li>CA_H_BEDROOMS is PIC ‘999’ (3 digits).</li>
+<li>CA_H_VALUE is PIC ‘99999999’ (8 digits).</li>
+<li>CA_H_PROPERTY_TYPE is CHAR(15), CA_H_HOUSE_NAME is CHAR(20), CA_H_HOUSE_NUMBER is CHAR(4) and CA_H_POSTCODE is CHAR(8).</li>
+<li>CA_ISSUE_DATE and CA_EXPIRY_DATE are CHAR(10).</li>
+<li>CA_BROKERID is PIC ‘9999999999’, CA_PAYMENT is PIC ‘999999’ and CA_BROKERSREF is CHAR(10).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Request and commarea content rules</strong></p>
+<ul>
+<li>Each option sets a fixed CA_REQUEST_ID that selects the back-end operation:
+<ul>
+<li>‘01IHOU’ for inquire (options 1 and 4)</li>
+<li>‘01AHOU’ for add</li>
+<li>‘01DHOU’ for delete</li>
+<li>‘01UHOU’ for update</li>
+</ul>
+</li>
+<li>Each option links to a fixed back-end program:
+<ul>
+<li>Inquire: LGIPOL01</li>
+<li>Add: LGAPOL01</li>
+<li>Delete: LGDPOL01</li>
+<li>Update: LGUPOL01</li>
+</ul>
+</li>
+<li>Add and update requests must send neutral defaults for broker and payment data: CA_PAYMENT = 0, CA_BROKERID = 0 and CA_BROKERSREF = blank.</li>
+<li>Inquire and delete take the customer and policy numbers from the output map fields (ENP3CNOO and ENP3PNOO). Add and update take the customer number from the input field ENP3CNOI.</li>
+<li>Add and update populate the house attributes from the screen input fields (ENP3IDAI, ENP3EDAI, ENP3TYPI, ENP3BEDI, ENP3VALI, ENP3HNMI, ENP3HNOI, ENP3HPCI).</li>
+<li>The commarea has a fixed layout. Every LINK passes COMM_AREA with LENGTH(32500), matching the 32500-byte COMM_AREA_RAW. The house policy data must fit within this area, whose sub-structure ends with a filler field CA_H_FILLER.</li>
+<li>The policy number is not set from the screen for add. The back-end must generate it, and the program returns it to the screen (ENP3PNOI = CA_POLICY_NUM).</li>
+<li>Input field ENP3OPTI is blanked after a successful add or update, and after a successful delete.</li>
+</ul>
+</li>
+<li>
+<p><strong>Sequencing and flow control</strong></p>
+<ul>
+<li>First-time entry: when EIBCALEN = 0, the program must initialise the commarea and the map before anything else.
+<ul>
+<li>It points COMM_AREA_PTR at BASE_COMM_AREA, blanks SSMAPP3O and CA_REQUEST_ID, and zeroes CA_RETURN_CODE and CA_CUSTOMER_NUM.</li>
+<li>It blanks CA_REQUEST_INITIALISER and sets ENP3CNOO = ‘0000000000’, ENP3PNOO = ‘0000000000’, ENP3VALO = ‘00000000’ and ENP3BEDO = ‘000’.</li>
+<li>It then sends the menu map with ERASE.</li>
+</ul>
+</li>
+<li>Handlers are registered before the RECEIVE MAP: PF3 goes to ENDIT, CLEAR goes to CLEARIT, and MAPFAIL goes to ENDIT.
+<ul>
+<li>If no data is entered, the MAPFAIL condition ends the transaction.</li>
+</ul>
+</li>
+<li>The screen must be received (RECEIVE MAP) before any option is evaluated.</li>
+<li>Update is a two-step conversation.
+<ul>
+<li>The current policy is first retrieved with LGIPOL01 (request ‘01IHOU’) and displayed.</li>
+<li>The program then does a second RECEIVE MAP to capture the user’s changes.</li>
+<li>Only then does it set ‘01UHOU’ and call LGUPOL01.</li>
+<li>If the inquiry fails (CA_RETURN_CODE &gt; 0), the program goes to NO_DATA and never reaches the update.</li>
+</ul>
+</li>
+<li>After every successful or error-handled path, the program returns with TRANSID(‘SSP3’) and the commarea, which keeps the pseudo-conversational cycle going (ENDIT_STARTIT).</li>
+<li>Only PF3 or a MAPFAIL ends the conversation. Both go through ENDIT, which sends the ‘Transaction ended’ message with ERASE and FREEKB, then returns without a TRANSID.</li>
+<li>CLEAR (CLEARIT) blanks the input map, sends the empty map with MAPONLY and returns with the TRANSID and commarea.</li>
+<li>Control flow relies on GO TO labels in a fixed order. The main SELECT never falls through to the error paragraphs. After the SELECT, the code only reaches EXEC CICS RETURN, which is the unreachable fall-through path.</li>
+<li>The program is declared Options(Main,Reentrant), so it cannot keep state in static storage across tasks. The commarea carries state between transactions.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error handling and recovery</strong></p>
+<ul>
+<li>Back-end failure for any LINK is detected by CA_RETURN_CODE &gt; 0.</li>
+<li>Add failure
+<ul>
+<li>Rolls back with EXEC CICS SYNCPOINT ROLLBACK and goes to NO_ADD.</li>
+<li>Return code 70 gives ‘Customer does not exist’.</li>
+<li>Any other non-zero code gives ‘Error Adding House Policy’.</li>
+</ul>
+</li>
+<li>Delete failure
+<ul>
+<li>Rolls back with SYNCPOINT ROLLBACK and goes to NO_DELETE.</li>
+<li>The message is ‘Error Deleting House Policy’.</li>
+</ul>
+</li>
+<li>Update failure
+<ul>
+<li>Goes to NO_UPD with the message ‘Error Updating House Policy’.</li>
+<li>The program issues no explicit SYNCPOINT ROLLBACK for update, unlike add and delete. It relies on the back-end program or on CICS to handle recovery.</li>
+</ul>
+</li>
+<li>Inquiry failure (options 1 and 4) goes to NO_DATA with the message ‘No data was returned.’, with no rollback.</li>
+<li>Inquiry results are displayed only when CA_RETURN_CODE is 0.</li>
+<li>The ERROR_OUT paragraph sends the error message map, then resets the state.
+<ul>
+<li>It blanks the input map and COMM_AREA_RAW.</li>
+<li>It blanks CA_REQUEST_ID, zeroes CA_RETURN_CODE and CA_CUSTOMER_NUM, and blanks CA_REQUEST_INITIALISER.</li>
+<li>This ensures stale data is not carried into the next transaction. It then returns to ENDIT_STARTIT.</li>
+</ul>
+</li>
+<li>The messages are fixed text of at most 40 characters, matching ERP3FLDO (CHAR(40)).</li>
+</ul>
+</li>
+<li>
+<p><strong>Output and display rules</strong></p>
+<ul>
+<li>On a successful add or update, the screen shows the generated customer and policy numbers and the message ‘New House Policy Inserted’ or ‘House Policy Updated’.</li>
+<li>On a successful delete, all house detail fields and the option are blanked and the message ‘House Policy Deleted’ is shown.</li>
+<li>On a successful inquiry, the screen is filled with issue date, expiry date, property type, bedrooms, value, house name, house number and postcode.</li>
+<li>The map and mapset names (SSMAPP3 and SSMAP) are fixed. The map data areas (SSMAPP3I and SSMAPP3O) must keep the fixed field lengths.
+<ul>
+<li>The map field widths limit what the user can enter: for example, the option is 1 character, bedrooms 3, value 8, house number 4, postcode 8, property type 15 and house name 20.</li>
+</ul>
+</li>
+<li>The success-path output uses the SSMAPP3O/SSMAPP3I overlay and the display uses SEND MAP FROM(SSMAPP3O).</li>
+</ul>
+</li>
+<li>
+<p><strong>Environment and resource limits</strong></p>
+<ul>
+<li>The commarea is limited to 32,500 bytes, fixed by the COMM_AREA_RAW declaration and the LENGTH(32500) value on all LINK commands.</li>
+<li>The program runs under transaction SSP3 as a CICS pseudo-conversational program. It depends on the SSMAP mapset and on the four back-end programs being installed.</li>
+<li>The exit message MSGEND is a static CHAR(24) with the text ‘Transaction ended’.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<h3 id="81-user-input-and-option-validation" tabindex="-1">8.1 User Input and Option Validation</h3>
+<ul>
+<li>Option Selection Validation:
+<ul>
+<li>An explicit check evaluates the user-entered option field on the house policy screen. If the value entered is not one of the supported menu actions (inquire, add, delete, or update), execution branches to an invalid option handler.</li>
+<li>The program populates an error message prompting the user to enter a valid option, sets the option field length indicator to reposition the cursor to the input field, redisplays the map with the cursor positioned at the invalid field, and re-initiates the pseudo-conversational transaction loop.</li>
+</ul>
+</li>
+</ul>
+<h3 id="82-cics-exception-and-attention-identifier-handling" tabindex="-1">8.2 CICS Exception and Attention Identifier Handling</h3>
+<ul>
+<li>CICS Condition Handling:
+<ul>
+<li>An explicit condition handler is established for the map failure condition before receiving screen input.</li>
+<li>If a map failure condition occurs when attempting to read the screen map, execution redirects to the transaction termination routine, which sends a termination message and ends the CICS task.</li>
+</ul>
+</li>
+<li>Attention Identifier (AID) Exception Trapping:
+<ul>
+<li>Attention identifier handlers intercept key presses:
+<ul>
+<li>Pressing the Program Function 3 (PF3) key routes control directly to the termination routine, sending a transaction ended message and terminating the session.</li>
+<li>Pressing the CLEAR key routes control to a screen clear routine, which resets the input map area, sends an empty map layout back to the terminal, and restarts the transaction pseudo-conversationally.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="83-service-invocation-and-return-code-checks" tabindex="-1">8.3 Service Invocation and Return Code Checks</h3>
+<ul>
+<li>Business Service Return Code Verification:
+<ul>
+<li>Following each linked backend policy service invocation (inquiry, add, delete, and update orchestrators), the program inspects the communication area return code.</li>
+<li>If the return code indicates a non-zero status (failure or abnormal condition), standard execution halts, and the program branches to dedicated error routines tailored to the specific operation:
+<ul>
+<li>Inquiry Failure: When a policy inquiry service returns a non-zero code, execution branches to a no-data handler that sets a descriptive message indicating no data was returned before transferring control to the common error processing routine.</li>
+<li>Add Policy Failure: When the policy add service returns a non-zero code, the program initiates transactional rollback, checks whether the return code indicates a missing customer, sets a specific missing-customer message or a generic error message, and routes to common error handling.</li>
+<li>Delete Policy Failure: When the policy deletion service returns a non-zero code, the program initiates transactional rollback, sets an error message indicating failure to delete the house policy, and proceeds to common error handling.</li>
+<li>Update Policy Failure: When the policy update service returns a non-zero code, the program sets an update failure error message and proceeds to common error handling.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="84-recovery-transaction-rollback-and-error-reset-logic" tabindex="-1">8.4 Recovery, Transaction Rollback, and Error Reset Logic</h3>
+<ul>
+<li>CICS Syncpoint Rollback:
+<ul>
+<li>When errors occur during add or delete operations, an explicit syncpoint rollback is issued to revert any uncommitted updates and database changes across the linked programs, maintaining transactional data consistency.</li>
+</ul>
+</li>
+<li>Common Error Cleanup and State Reset:
+<ul>
+<li>After displaying the mapped error message to the terminal screen, the shared error routing routine resets the entire screen structure, clears the raw communication area buffer, and re-initialises operational control fields (request identifier, customer number, return code, and initialiser area) back to default empty and zero states before re-invoking the transaction for subsequent user input.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-inquire-house-policy-option-1" tabindex="-1">9.1 Example 1: Inquire House Policy (Option 1)</h3>
+<p>This scenario demonstrates retrieving details for an existing house policy.</p>
+<h4 id="911-sample-input-data" tabindex="-1">9.1.1 Sample Input Data</h4>
+<ul>
+<li><strong>Map Screen Fields (<code>SSMAPP3I</code> / <code>SSMAPP3O</code>):</strong>
+<ul>
+<li>Option (<code>ENP3OPTO</code>): <code>'1'</code></li>
+<li>Customer Number (<code>ENP3CNOO</code>): <code>'0000000001'</code></li>
+<li>Policy Number (<code>ENP3PNOO</code>): <code>'0000000100'</code></li>
+</ul>
+</li>
+<li><strong>Mocked Backend Return Data (<code>LGIPOL01</code> COMMAREA):</strong>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>0</code></li>
+<li><code>CA_ISSUE_DATE</code>: <code>'2023-01-15'</code></li>
+<li><code>CA_EXPIRY_DATE</code>: <code>'2024-01-14'</code></li>
+<li><code>CA_H_PROPERTY_TYPE</code>: <code>'Detached       '</code></li>
+<li><code>CA_H_BEDROOMS</code>: <code>004</code></li>
+<li><code>CA_H_VALUE</code>: <code>00350000</code></li>
+<li><code>CA_H_HOUSE_NAME</code>: <code>'Rose Cottage        '</code></li>
+<li><code>CA_H_HOUSE_NUMBER</code>: <code>'12  '</code></li>
+<li><code>CA_H_POSTCODE</code>: <code>'AB12 3CD'</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="912-expected-output" tabindex="-1">9.1.2 Expected Output</h4>
+<ul>
+<li><strong>CICS Action:</strong> <code>EXEC CICS LINK PROGRAM('LGIPOL01')</code> executed with <code>CA_REQUEST_ID = '01IHOU'</code>.</li>
+<li><strong>Map Screen Display (<code>SSMAPP3O</code>):</strong>
+<ul>
+<li>Issue Date (<code>ENP3IDAI</code>): <code>'2023-01-15'</code></li>
+<li>Expiry Date (<code>ENP3EDAI</code>): <code>'2024-01-14'</code></li>
+<li>Property Type (<code>ENP3TYPI</code>): <code>'Detached       '</code></li>
+<li>Bedrooms (<code>ENP3BEDI</code>): <code>'004'</code></li>
+<li>Property Value (<code>ENP3VALI</code>): <code>'00350000'</code></li>
+<li>House Name (<code>ENP3HNMI</code>): <code>'Rose Cottage        '</code></li>
+<li>House Number (<code>ENP3HNOI</code>): <code>'12  '</code></li>
+<li>Postcode (<code>ENP3HPCI</code>): <code>'AB12 3CD'</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="913-explanation" tabindex="-1">9.1.3 Explanation</h4>
+<ol>
+<li>The operator enters option <code>'1'</code> along with customer number <code>'0000000100'</code> and policy number <code>'0000000100'</code>.</li>
+<li><code>LGTESTP3</code> prepares <code>COMM_AREA</code> by setting <code>CA_REQUEST_ID</code> to <code>'01IHOU'</code>, copying <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code>, and executing <code>CICS LINK</code> to <code>LGIPOL01</code>.</li>
+<li>Upon successful retrieval (<code>CA_RETURN_CODE = 0</code>), the program populates the map output fields from the returned <code>CA_HOUSE</code> structure and sends map <code>SSMAPP3</code> back to the terminal.</li>
+</ol>
+<hr>
+<h3 id="92-example-2-add-new-house-policy-option-2" tabindex="-1">9.2 Example 2: Add New House Policy (Option 2)</h3>
+<p>This scenario demonstrates creating a new house policy record for an existing customer.</p>
+<h4 id="921-sample-input-data" tabindex="-1">9.2.1 Sample Input Data</h4>
+<ul>
+<li><strong>Map Screen Fields (<code>SSMAPP3I</code>):</strong>
+<ul>
+<li>Option (<code>ENP3OPTI</code>): <code>'2'</code></li>
+<li>Customer Number (<code>ENP3CNOI</code>): <code>'0000000001'</code></li>
+<li>Issue Date (<code>ENP3IDAI</code>): <code>'2024-05-01'</code></li>
+<li>Expiry Date (<code>ENP3EDAI</code>): <code>'2025-04-30'</code></li>
+<li>Property Type (<code>ENP3TYPI</code>): <code>'Semi-Detached  '</code></li>
+<li>Bedrooms (<code>ENP3BEDI</code>): <code>'003'</code></li>
+<li>Property Value (<code>ENP3VALI</code>): <code>'00250000'</code></li>
+<li>House Name (<code>ENP3HNMI</code>): <code>'Oak Villa           '</code></li>
+<li>House Number (<code>ENP3HNOI</code>): <code>'45  '</code></li>
+<li>Postcode (<code>ENP3HPCI</code>): <code>'XY98 7ZT'</code></li>
+</ul>
+</li>
+<li><strong>Mocked Backend Return Data (<code>LGAPOL01</code> COMMAREA):</strong>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>0</code></li>
+<li><code>CA_POLICY_NUM</code>: <code>0000000105</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="922-expected-output" tabindex="-1">9.2.2 Expected Output</h4>
+<ul>
+<li><strong>CICS Action:</strong> <code>EXEC CICS LINK PROGRAM('LGAPOL01')</code> executed with <code>CA_REQUEST_ID = '01AHOU'</code>.</li>
+<li><strong>Map Screen Display (<code>SSMAPP3O</code>):</strong>
+<ul>
+<li>Customer Number (<code>ENP3CNOI</code>): <code>'0000000001'</code></li>
+<li>Policy Number (<code>ENP3PNOI</code>): <code>'0000000105'</code></li>
+<li>Option (<code>ENP3OPTI</code>): <code>' '</code> (cleared)</li>
+<li>Error/Status Message (<code>ERP3FLDO</code>): <code>'New House Policy Inserted'</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="923-explanation" tabindex="-1">9.2.3 Explanation</h4>
+<ol>
+<li>The operator selects option <code>'2'</code> and enters the property details and customer number.</li>
+<li><code>LGTESTP3</code> formats <code>COMM_AREA</code>, setting <code>CA_REQUEST_ID</code> to <code>'01AHOU'</code>, mapping input property attributes into <code>CA_HOUSE</code>, and initialising <code>CA_PAYMENT</code>, <code>CA_BROKERID</code>, and <code>CA_BROKERSREF</code>.</li>
+<li>It links to <code>LGAPOL01</code>. Because <code>CA_RETURN_CODE</code> is <code>0</code>, it reflects the newly generated policy number (<code>0000000105</code>) on the screen, clears the option field, sets the confirmation message in <code>ERP3FLDO</code>, and sends map <code>SSMAPP3</code>.</li>
+</ol>
+<hr>
+<h3 id="93-example-3-delete-house-policy-option-3" tabindex="-1">9.3 Example 3: Delete House Policy (Option 3)</h3>
+<p>This scenario demonstrates removing an existing house policy.</p>
+<h4 id="931-sample-input-data" tabindex="-1">9.3.1 Sample Input Data</h4>
+<ul>
+<li><strong>Map Screen Fields (<code>SSMAPP3I</code> / <code>SSMAPP3O</code>):</strong>
+<ul>
+<li>Option (<code>ENP3OPTO</code>): <code>'3'</code></li>
+<li>Customer Number (<code>ENP3CNOO</code>): <code>'0000000001'</code></li>
+<li>Policy Number (<code>ENP3PNOO</code>): <code>'0000000100'</code></li>
+</ul>
+</li>
+<li><strong>Mocked Backend Return Data (<code>LGDPOL01</code> COMMAREA):</strong>
+<ul>
+<li><code>CA_RETURN_CODE</code>: <code>0</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="932-expected-output" tabindex="-1">9.3.2 Expected Output</h4>
+<ul>
+<li><strong>CICS Action:</strong> <code>EXEC CICS LINK PROGRAM('LGDPOL01')</code> executed with <code>CA_REQUEST_ID = '01DHOU'</code>.</li>
+<li><strong>Map Screen Display (<code>SSMAPP3O</code>):</strong>
+<ul>
+<li>Issue Date, Expiry Date, Type, Bedrooms, Value, House Name, Number, Postcode (<code>ENP3IDAI</code> through <code>ENP3HPCI</code>): All cleared to <code>' '</code></li>
+<li>Option (<code>ENP3OPTI</code>): <code>' '</code></li>
+<li>Error/Status Message (<code>ERP3FLDO</code>): <code>'House Policy Deleted'</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="933-explanation" tabindex="-1">9.3.3 Explanation</h4>
+<ol>
+<li>The operator submits option <code>'3'</code> with the target customer and policy numbers.</li>
+<li><code>LGTESTP3</code> sets <code>CA_REQUEST_ID</code> to <code>'01DHOU'</code> and links to <code>LGDPOL01</code>.</li>
+<li>When the deletion succeeds (<code>CA_RETURN_CODE = 0</code>), the program blanks all property detail fields, blanks the option field, sets <code>ERP3FLDO</code> to <code>'House Policy Deleted'</code>, and sends map <code>SSMAPP3</code>.</li>
+</ol>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a>
+<ul>
+<li class="toc-level-3"><a href="#21-cics-execution-and-interface-parameters">2.1 CICS Execution and Interface Parameters</a></li>
+<li class="toc-level-3"><a href="#22-user-interface-inputs-bms-map-ssmapp3">2.2 User Interface Inputs (BMS Map SSMAPP3)</a></li>
+<li class="toc-level-3"><a href="#23-external-service-responses-cics-linked-programs">2.3 External Service Responses (CICS Linked Programs)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a></li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a>
+<ul>
+<li class="toc-level-4"><a href="#421-high-level-summary">4.2.1 High-level Summary</a></li>
+<li class="toc-level-4"><a href="#422-execution-flow">4.2.2 Execution Flow</a></li>
+<li class="toc-level-4"><a href="#423-external-interactions">4.2.3 External Interactions</a></li>
+<li class="toc-level-4"><a href="#424-plain-language-summary">4.2.4 Plain Language Summary</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a>
+<ul>
+<li class="toc-level-3"><a href="#61-cics-environment-and-system-services">6.1 CICS Environment and System Services</a></li>
+<li class="toc-level-3"><a href="#62-invoked-programs-and-subroutines">6.2 Invoked Programs and Subroutines</a></li>
+<li class="toc-level-3"><a href="#63-user-interface-and-map-definitions">6.3 User Interface and Map Definitions</a></li>
+<li class="toc-level-3"><a href="#64-data-interfaces-and-communication-structures">6.4 Data Interfaces and Communication Structures</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a></li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a>
+<ul>
+<li class="toc-level-3"><a href="#81-user-input-and-option-validation">8.1 User Input and Option Validation</a></li>
+<li class="toc-level-3"><a href="#82-cics-exception-and-attention-identifier-handling">8.2 CICS Exception and Attention Identifier Handling</a></li>
+<li class="toc-level-3"><a href="#83-service-invocation-and-return-code-checks">8.3 Service Invocation and Return Code Checks</a></li>
+<li class="toc-level-3"><a href="#84-recovery-transaction-rollback-and-error-reset-logic">8.4 Recovery, Transaction Rollback, and Error Reset Logic</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-inquire-house-policy-option-1">9.1 Example 1: Inquire House Policy (Option 1)</a>
+<ul>
+<li class="toc-level-4"><a href="#911-sample-input-data">9.1.1 Sample Input Data</a></li>
+<li class="toc-level-4"><a href="#912-expected-output">9.1.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#913-explanation">9.1.3 Explanation</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#92-example-2-add-new-house-policy-option-2">9.2 Example 2: Add New House Policy (Option 2)</a>
+<ul>
+<li class="toc-level-4"><a href="#921-sample-input-data">9.2.1 Sample Input Data</a></li>
+<li class="toc-level-4"><a href="#922-expected-output">9.2.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#923-explanation">9.2.3 Explanation</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#93-example-3-delete-house-policy-option-3">9.3 Example 3: Delete House Policy (Option 3)</a>
+<ul>
+<li class="toc-level-4"><a href="#931-sample-input-data">9.3.1 Sample Input Data</a></li>
+<li class="toc-level-4"><a href="#932-expected-output">9.3.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#933-explanation">9.3.3 Explanation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGTESTP3</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

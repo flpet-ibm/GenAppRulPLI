@@ -1,0 +1,1380 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGTESTP2</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link active">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p><code>LGTESTP2</code> serves as the CICS 3270 screen presentation and user interface driver for endowment life insurance policy operations within the GenApp application. It is designed to provide an interactive menu interface that allows end users to inquire on, add, delete, and update endowment policy records. By capturing user selections and input parameters—such as customer numbers, policy numbers, coverage amounts, policy terms, and investment fund selections—from BMS map screens and coordinating with backend policy management services, the program facilitates the complete lifecycle management of endowment policies while returning transaction status and validation feedback to the terminal.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<ul>
+<li>
+<p><strong>Procedure parameters (CICS environment)</strong></p>
+<ul>
+<li><code>DFHEIPTR</code>: CICS-supplied pointer to the EXEC interface block. The program reads <code>EIBCALEN</code> from it to tell whether this is the first invocation or a re-entry.</li>
+<li><code>COMM_AREA_PTR</code>: pointer to the CICS COMMAREA passed in by the previous pseudo-conversational iteration of transaction SSP2. It addresses the <code>COMM_AREA</code> structure, which is 32,500 bytes.
+<ul>
+<li>On first entry (<code>EIBCALEN = 0</code>) the program ignores this pointer and points it at its own working storage area.</li>
+<li><code>CA_REQUEST_ID</code>: 6-character code showing which endowment operation is requested. It is blank on first entry.</li>
+<li><code>CA_CUSTOMER_NUM</code>: 10-digit customer number carried in the COMMAREA.</li>
+<li><code>CA_POLICY_NUM</code>: 10-digit policy number carried in the COMMAREA.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>User inputs (3270 terminal screen, map <code>SSMAPP2</code> in mapset <code>SSMAP</code>)</strong></p>
+<ul>
+<li>The program reads the Endowment Policy screen into the input map <code>SSMAPP2I</code> with <code>EXEC CICS RECEIVE MAP</code>. If no map data is available (MAPFAIL), the transaction ends.</li>
+<li>Menu selection
+<ul>
+<li><code>ENP2OPTO</code>: one-character option that selects the operation.
+<ul>
+<li><code>1</code>: inquire.</li>
+<li><code>2</code>: add.</li>
+<li><code>3</code>: delete.</li>
+<li><code>4</code>: update.</li>
+<li>Any other value produces the message “Please enter a valid option”.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Key identifiers
+<ul>
+<li><code>ENP2PNOO</code>: 10-character policy number. It is the key for inquire, delete and update. It is set to zeros when the screen is first displayed.</li>
+<li><code>ENP2CNOO</code>: 10-character customer number linked to the policy. It is set to zeros when the screen is first displayed. It is copied to the COMMAREA customer number for inquire, delete and the inquiry step of update.</li>
+<li><code>ENP2CNOI</code>: customer number typed on the screen. It is used for add requests and for the update step after the second screen receive.</li>
+</ul>
+</li>
+<li>Policy details entered on the screen (used for add, and for update after the second <code>RECEIVE MAP</code>)
+<ul>
+<li><code>ENP2IDAI</code>: policy issue date, which becomes <code>CA_ISSUE_DATE</code>.</li>
+<li><code>ENP2EDAI</code>: policy expiry date, which becomes <code>CA_EXPIRY_DATE</code>.</li>
+<li><code>ENP2FNMI</code>: fund name, which becomes <code>CA_E_FUND_NAME</code>.</li>
+<li><code>ENP2TERI</code>: term in years, which becomes <code>CA_E_TERM</code>.</li>
+<li><code>ENP2SUMI</code>: sum assured, which becomes <code>CA_E_SUM_ASSURED</code>.</li>
+<li><code>ENP2LIFI</code>: life assured name, which becomes <code>CA_E_LIFE_ASSURED</code>.</li>
+<li><code>ENP2WPRI</code>: with-profits indicator, which becomes <code>CA_E_WITH_PROFITS</code>.</li>
+<li><code>ENP2EQUI</code>: equities indicator, which becomes <code>CA_E_EQUITIES</code>.</li>
+<li><code>ENP2MANI</code>: managed fund indicator, which becomes <code>CA_E_MANAGED_FUND</code>.</li>
+</ul>
+</li>
+<li>Terminal attention keys
+<ul>
+<li>PF3: ends the transaction.</li>
+<li>CLEAR: clears the screen and returns to the menu.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>External programs whose returned data the program depends on (CICS LINK with the COMMAREA)</strong></p>
+<ul>
+<li><code>LGIPOL01</code> (policy inquiry), used for options 1 and 4.
+<ul>
+<li>Returns <code>CA_RETURN_CODE</code>.</li>
+<li>Returns the policy details <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_E_FUND_NAME</code>, <code>CA_E_TERM</code>, <code>CA_E_SUM_ASSURED</code>, <code>CA_E_LIFE_ASSURED</code>, <code>CA_E_WITH_PROFITS</code>, <code>CA_E_MANAGED_FUND</code> and <code>CA_E_EQUITIES</code>.</li>
+</ul>
+</li>
+<li><code>LGAPOL01</code> (policy add), used for option 2.
+<ul>
+<li>Returns <code>CA_RETURN_CODE</code>, with 70 meaning the customer does not exist.</li>
+<li>Returns the generated <code>CA_POLICY_NUM</code>.</li>
+<li>Returns <code>CA_CUSTOMER_NUM</code>.</li>
+<li>Returns <code>CA_E_FUND_NAME</code>.</li>
+</ul>
+</li>
+<li><code>LGDPOL01</code> (policy delete), used for option 3.
+<ul>
+<li>Returns <code>CA_RETURN_CODE</code>.</li>
+</ul>
+</li>
+<li><code>LGUPOL01</code> (policy update), used for option 4.
+<ul>
+<li>Returns <code>CA_RETURN_CODE</code>.</li>
+<li>Returns <code>CA_CUSTOMER_NUM</code>.</li>
+<li>Returns <code>CA_POLICY_NUM</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Defaults set by the program that go into the COMMAREA before a call</strong></p>
+<ul>
+<li><code>CA_PAYMENT</code>: set to 0 for add and update.</li>
+<li><code>CA_BROKERID</code>: set to 0 for add and update.</li>
+<li><code>CA_BROKERSREF</code>: set to blank for add and update.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<h3 id="31-terminal-and-screen-display-outputs" tabindex="-1">3.1 Terminal and Screen Display Outputs</h3>
+<ul>
+<li>
+<p>BMS Screen Map Output (<code>SSMAPP2O</code> / <code>SSMAP</code>)</p>
+<ul>
+<li>Transmits formatted endowment policy data, input echoes, and status messages to the 3270 user terminal.</li>
+<li><code>ENP2PNOO</code> / <code>ENP2PNOI</code>: Displays the unique 10-digit endowment policy number, either initialised to <code>'0000000000'</code> on first entry, preserved during inquiry/update, or assigned/returned from policy creation.</li>
+<li><code>ENP2CNOO</code> / <code>ENP2CNOI</code>: Displays the 10-digit customer number linked to the policy, echoing the input or displaying the value returned by backend transactions.</li>
+<li><code>ENP2IDAO</code> / <code>ENP2IDAI</code>: Displays the policy issue date retrieved via inquiry or cleared upon deletion.</li>
+<li><code>ENP2EDAO</code> / <code>ENP2EDAI</code>: Displays the policy maturity/expiry date retrieved via inquiry or cleared upon deletion.</li>
+<li><code>ENP2FNMO</code> / <code>ENP2FNMI</code>: Displays the investment fund name associated with the endowment policy.</li>
+<li><code>ENP2TERO</code> / <code>ENP2TERI</code>: Displays the term of the policy in years.</li>
+<li><code>ENP2SUMO</code> / <code>ENP2SUMI</code>: Displays the guaranteed sum assured amount.</li>
+<li><code>ENP2LIFO</code> / <code>ENP2LIFI</code>: Displays the name of the life assured.</li>
+<li><code>ENP2WPRO</code> / <code>ENP2WPRI</code>: Displays the with-profits indicator flag.</li>
+<li><code>ENP2EQUI</code> / <code>ENP2EQUO</code>: Displays the equities investment indicator flag.</li>
+<li><code>ENP2MANI</code> / <code>ENP2MANO</code>: Displays the managed fund indicator flag.</li>
+<li><code>ENP2OPTO</code> / <code>ENP2OPTI</code>: Cleared or highlighted to prompt for menu option input.</li>
+<li><code>ENP2OPTL</code>: Cursor positioning flag; set to <code>-1</code> when an invalid option is entered to place the screen cursor at the option field.</li>
+<li><code>ERP2FLDO</code>: Screen message field that presents user feedback and error descriptions:
+<ul>
+<li><code>'New Life Policy Inserted'</code>: Successful policy addition.</li>
+<li><code>'Life Policy Deleted'</code>: Successful policy deletion.</li>
+<li><code>'Life Policy Updated'</code>: Successful policy update.</li>
+<li><code>'Please enter a valid option'</code>: Validation failure for unsupported menu options.</li>
+<li><code>'Customer does not exist'</code>: Add operation failed because the customer number was not found (return code 70).</li>
+<li><code>'Error Adding Life Policy'</code>: General failure during policy creation.</li>
+<li><code>'Error Updating Life Policy'</code>: General failure during policy modification.</li>
+<li><code>'Error Deleting Life Policy'</code>: General failure during policy deletion.</li>
+<li><code>'No data was returned.'</code>: Inquire operation failure or policy record not found.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Terminal Plain Text Message</p>
+<ul>
+<li><code>MSGEND</code>: Transmits <code>'Transaction ended'</code> to the terminal when the user presses <code>PF3</code> or when a <code>MAPFAIL</code> condition occurs, signaling normal transaction termination.</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-inter-program-communication-and-service-interface-outputs" tabindex="-1">3.2 Inter-Program Communication and Service Interface Outputs</h3>
+<ul>
+<li>CICS Communication Area (<code>COMM_AREA</code>)
+<ul>
+<li>Parameters passed across program links to policy orchestrators (<code>LGIPOL01</code>, <code>LGAPOL01</code>, <code>LGDPOL01</code>, <code>LGUPOL01</code>) and preserved across pseudo-conversational returns under transaction ID <code>SSP2</code>.</li>
+<li><code>CA_REQUEST_ID</code>: Operation action code passed to target subprograms (<code>'01IEND'</code> for Inquire, <code>'01AEND'</code> for Add, <code>'01DEND'</code> for Delete, <code>'01UEND'</code> for Update).</li>
+<li><code>CA_CUSTOMER_NUM</code>: Passes the target customer number to backend programs and receives the confirmed customer number back.</li>
+<li><code>CA_POLICY_NUM</code>: Passes the policy identifier for inquiry, deletion, and update, and receives the newly generated policy number on add.</li>
+<li><code>CA_PAYMENT</code>: Initialised to <code>0</code> prior to calling policy add and update services.</li>
+<li><code>CA_BROKERID</code>: Initialised to <code>0</code> prior to calling policy add and update services.</li>
+<li><code>CA_BROKERSREF</code>: Initialised to spaces prior to calling policy add and update services.</li>
+<li><code>CA_ISSUE_DATE</code>: Passes the requested policy issue date for add and update requests.</li>
+<li><code>CA_EXPIRY_DATE</code>: Passes the requested policy maturity/expiry date for add and update requests.</li>
+<li><code>CA_E_FUND_NAME</code>: Passes the fund name for add and update requests.</li>
+<li><code>CA_E_TERM</code>: Passes the policy term length for add and update requests.</li>
+<li><code>CA_E_SUM_ASSURED</code>: Passes the guaranteed sum assured value for add and update requests.</li>
+<li><code>CA_E_LIFE_ASSURED</code>: Passes the life assured name for add and update requests.</li>
+<li><code>CA_E_WITH_PROFITS</code>: Passes the with-profits indicator for add and update requests.</li>
+<li><code>CA_E_MANAGED_FUND</code>: Passes the managed fund indicator for add and update requests.</li>
+<li><code>CA_E_EQUITIES</code>: Passes the equities investment indicator for add and update requests.</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-transactional-and-execution-side-effects" tabindex="-1">3.3 Transactional and Execution Side Effects</h3>
+<ul>
+<li>Database and Resource State Controls
+<ul>
+<li><code>EXEC CICS SYNCPOINT ROLLBACK</code>: Issued when policy creation (<code>LGAPOL01</code>) or deletion (<code>LGDPOL01</code>) returns a non-zero return code, backing out any partial uncommitted updates made during the unit of work.</li>
+</ul>
+</li>
+<li>CICS Pseudo-Conversational State
+<ul>
+<li><code>EXEC CICS RETURN TRANSID('SSP2') COMMAREA(...)</code>: Sets the next transaction identifier to <code>SSP2</code> with the updated communication area to maintain conversation continuity across user interactions.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<ul>
+<li>
+<p><strong>Initialization and first-time entry</strong></p>
+<ul>
+<li>The program is the CICS main routine for the Endowment Policy menu, transaction SSP2. It is reentrant and works on the shared communication area through a pointer.</li>
+<li>It first checks whether a communication area was passed in (<code>EIBCALEN = 0</code>).
+<ul>
+<li>If none was passed, this is the first entry of the conversation.
+<ul>
+<li>The communication area pointer is set to a local base storage area.</li>
+<li>The output map <code>SSMAPP2O</code> is blanked.</li>
+<li><code>CA_REQUEST_ID</code> is blanked.</li>
+<li><code>CA_RETURN_CODE</code> and <code>CA_CUSTOMER_NUM</code> are set to zero.</li>
+<li>The request-specific area is cleared with <code>CA_REQUEST_INITIALISER</code>.</li>
+<li>The screen policy number <code>ENP2PNOO</code> and customer number <code>ENP2CNOO</code> are set to ‘0000000000’.</li>
+<li>The menu map <code>SSMAPP2</code> in mapset <code>SSMAP</code> is sent with ERASE.</li>
+</ul>
+</li>
+<li>If a communication area was passed, the program skips the initial display and goes straight to the receive step.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Terminal input handling and AID/condition setup</strong></p>
+<ul>
+<li>The label <code>A_GAIN</code> marks the start of the input-processing section.</li>
+<li><code>HANDLE AID</code> routes the CLEAR key to <code>CLEARIT</code> and PF3 to <code>ENDIT</code>.</li>
+<li><code>HANDLE CONDITION</code> routes a MAPFAIL to <code>ENDIT</code>. A MAPFAIL means the terminal sent no map data.</li>
+<li><code>RECEIVE MAP('SSMAPP2')</code> reads the user’s entries into the input map <code>SSMAPP2I</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Option dispatch</strong></p>
+<ul>
+<li>A <code>SELECT</code> on the option field <code>ENP2OPTO</code> chooses one of five paths: ‘1’ (inquire), ‘2’ (add), ‘3’ (delete), ‘4’ (update), or any other value.</li>
+<li>Each valid option sets <code>CA_REQUEST_ID</code> and fills the communication area. It then uses <code>EXEC CICS LINK</code> with a 32500-byte COMMAREA to call a back-end program.</li>
+<li>After each LINK, the program tests <code>CA_RETURN_CODE</code>. A value above zero sends the flow to an error path.</li>
+</ul>
+</li>
+<li>
+<p><strong>Option 1: Inquire policy</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code> is set to ‘01IEND’.</li>
+<li><code>CA_CUSTOMER_NUM</code> is taken from <code>ENP2CNOO</code> and <code>CA_POLICY_NUM</code> from <code>ENP2PNOO</code>.</li>
+<li>The program links to <code>LGIPOL01</code>.</li>
+<li>If the return code is above zero, it goes to <code>NO_DATA</code>.</li>
+<li>Otherwise the returned data is moved to the screen fields:
+<ul>
+<li><code>CA_ISSUE_DATE</code> goes to <code>ENP2IDAI</code>.</li>
+<li><code>CA_EXPIRY_DATE</code> goes to <code>ENP2EDAI</code>.</li>
+<li><code>CA_E_FUND_NAME</code> goes to <code>ENP2FNMI</code>.</li>
+<li><code>CA_E_TERM</code> goes to <code>ENP2TERI</code>.</li>
+<li><code>CA_E_SUM_ASSURED</code> goes to <code>ENP2SUMI</code>.</li>
+<li><code>CA_E_LIFE_ASSURED</code> goes to <code>ENP2LIFI</code>.</li>
+<li><code>CA_E_WITH_PROFITS</code> goes to <code>ENP2WPRI</code>.</li>
+<li><code>CA_E_MANAGED_FUND</code> goes to <code>ENP2MANI</code>.</li>
+<li><code>CA_E_EQUITIES</code> goes to <code>ENP2EQUI</code>.</li>
+</ul>
+</li>
+<li>The map is sent, and control goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Option 2: Add policy</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code> is set to ‘01AEND’.</li>
+<li><code>CA_CUSTOMER_NUM</code> is taken from <code>ENP2CNOI</code>.</li>
+<li><code>CA_PAYMENT</code> and <code>CA_BROKERID</code> are reset to zero, and <code>CA_BROKERSREF</code> is blanked.</li>
+<li>The screen values are copied into the communication area:
+<ul>
+<li>the issue and expiry dates;</li>
+<li>the fund name;</li>
+<li>the term;</li>
+<li>the sum assured;</li>
+<li>the life assured;</li>
+<li>the with-profits, managed-fund and equities indicators.</li>
+</ul>
+</li>
+<li>The program links to <code>LGAPOL01</code>.</li>
+<li>If the return code is above zero:
+<ul>
+<li>It issues <code>SYNCPOINT ROLLBACK</code> to undo any updates.</li>
+<li>It goes to <code>NO_ADD</code>.</li>
+</ul>
+</li>
+<li>On success:
+<ul>
+<li>The customer number, the new policy number and the fund name are echoed back to the screen.</li>
+<li>The option field is blanked.</li>
+<li>The message “New Life Policy Inserted” is set.</li>
+<li>The map is sent, and control goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Option 3: Delete policy</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code> is set to ‘01DEND’.</li>
+<li>The customer and policy numbers come from <code>ENP2CNOO</code> and <code>ENP2PNOO</code>.</li>
+<li>The program links to <code>LGDPOL01</code>.</li>
+<li>If the return code is above zero:
+<ul>
+<li>It issues <code>SYNCPOINT ROLLBACK</code>.</li>
+<li>It goes to <code>NO_DELETE</code>.</li>
+</ul>
+</li>
+<li>On success:
+<ul>
+<li>All the policy detail fields on the screen are blanked.</li>
+<li>The message “Life Policy Deleted” is set.</li>
+<li>The map is sent, and control goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Option 4: Update policy (two-step conversation)</strong></p>
+<ul>
+<li>Step one retrieves the current data.
+<ul>
+<li><code>CA_REQUEST_ID</code> is set to ‘01IEND’, and the customer and policy numbers come from the output fields.</li>
+<li>The program links to <code>LGIPOL01</code>.</li>
+<li>If the return code is above zero, it goes to <code>NO_DATA</code>.</li>
+<li>Otherwise the policy details are moved to the screen and the map is sent.</li>
+</ul>
+</li>
+<li>Step two receives the user’s edits and applies them.
+<ul>
+<li>A second <code>RECEIVE MAP</code> reads the changed values.</li>
+<li><code>CA_REQUEST_ID</code> is set to ‘01UEND’.</li>
+<li><code>CA_CUSTOMER_NUM</code> is taken from <code>ENP2CNOI</code>.</li>
+<li><code>CA_PAYMENT</code> and <code>CA_BROKERID</code> are reset to zero, and <code>CA_BROKERSREF</code> is blanked.</li>
+<li>The screen values are copied into the communication area as in the add path.</li>
+<li>The program links to <code>LGUPOL01</code>.</li>
+<li>If the return code is above zero, it goes to <code>NO_UPD</code>. There is no explicit rollback on this path.</li>
+<li>On success:
+<ul>
+<li>The customer and policy numbers are echoed back.</li>
+<li>The option field is blanked.</li>
+<li>The message “Life Policy Updated” is set.</li>
+<li>The map is sent, and control goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Invalid option handling</strong></p>
+<ul>
+<li>Any other option value sets the message “Please enter a valid option”.</li>
+<li>The cursor is positioned on the option field by setting <code>ENP2OPTL = -1</code>.</li>
+<li>The map is sent with <code>CURSOR</code>, and control goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error handling routines</strong></p>
+<ul>
+<li><code>NO_ADD</code> examines <code>CA_RETURN_CODE</code> with a <code>SELECT</code>.
+<ul>
+<li>Code 70 sets “Customer does not exist”.</li>
+<li>Any other code sets “Error Adding Life Policy”.</li>
+<li>Both go to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li><code>NO_UPD</code> sets “Error Updating Life Policy” and goes to <code>ERROR_OUT</code>.</li>
+<li><code>NO_DELETE</code> sets “Error Deleting Life Policy” and goes to <code>ERROR_OUT</code>.</li>
+<li><code>NO_DATA</code> sets “No data was returned.” and goes to <code>ERROR_OUT</code>.</li>
+<li><code>ERROR_OUT</code> does the following:
+<ul>
+<li>It sends the map with the error message.</li>
+<li>It blanks the input map and the raw communication area.</li>
+<li>It resets <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code> and <code>CA_REQUEST_INITIALISER</code>.</li>
+<li>It goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Conversation control and termination</strong></p>
+<ul>
+<li><code>ENDIT_STARTIT</code> is the pseudo-conversational exit used after every successful or failed request.
+<ul>
+<li>It issues <code>RETURN TRANSID('SSP2') COMMAREA(COMM_AREA)</code>.</li>
+<li>This makes the next terminal input restart the same transaction with the communication area preserved.</li>
+</ul>
+</li>
+<li><code>ENDIT</code> is reached by PF3 or MAPFAIL.
+<ul>
+<li>It sends the text “Transaction ended” with ERASE and FREEKB.</li>
+<li>It then returns to CICS without a transaction ID, which ends the conversation.</li>
+</ul>
+</li>
+<li><code>CLEARIT</code> is reached by the CLEAR key.
+<ul>
+<li>It blanks the input map.</li>
+<li>It sends the map with <code>MAPONLY</code>, which shows the empty screen.</li>
+<li>It returns with <code>TRANSID('SSP2')</code> and the communication area.</li>
+</ul>
+</li>
+<li>The plain <code>EXEC CICS RETURN</code> after the <code>SELECT</code> is never reached in normal flow, because every branch jumps away first.</li>
+</ul>
+</li>
+<li>
+<p><strong>Control flow structures</strong></p>
+<ul>
+<li>There are no explicit loops. Repetition comes from the pseudo-conversational pattern: the program returns to CICS with the transaction ID and is restarted for each user interaction.</li>
+<li>Branching uses <code>IF</code>, <code>SELECT/WHEN/OTHERWISE</code> and <code>GO TO</code> to the labels <code>NO_DATA</code>, <code>NO_ADD</code>, <code>NO_UPD</code>, <code>NO_DELETE</code>, <code>ERROR_OUT</code>, <code>ENDIT_STARTIT</code>, <code>ENDIT</code> and <code>CLEARIT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Interactions with external systems</strong></p>
+<ul>
+<li><strong>Terminal and BMS:</strong>
+<ul>
+<li><code>SEND MAP</code>, <code>RECEIVE MAP</code> and <code>SEND TEXT</code> exchange data with the 3270 terminal through mapset <code>SSMAP</code>, map <code>SSMAPP2</code>.</li>
+</ul>
+</li>
+<li><strong>Called business programs:</strong>
+<ul>
+<li><code>LGIPOL01</code> inquires.</li>
+<li><code>LGAPOL01</code> adds.</li>
+<li><code>LGDPOL01</code> deletes.</li>
+<li><code>LGUPOL01</code> updates.</li>
+<li>All four are called through <code>EXEC CICS LINK</code>.</li>
+<li>These programs are presumably where any database access happens. This program contains no direct file or database I/O.</li>
+</ul>
+</li>
+<li><strong>Transaction management:</strong>
+<ul>
+<li><code>SYNCPOINT ROLLBACK</code> backs out a failed add or delete.</li>
+<li><code>RETURN TRANSID</code> and the communication area carry the conversation across interactions.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGTESTP2 (main procedure entry and declarations)</strong></p>
+<ul>
+<li>Purpose: Main reentrant PL/I CICS program for the Endowment Policy menu (transaction SSP2). It drives inquire, add, delete and update of endowment policies.</li>
+<li>Declares the static message <code>MSGEND</code> (“Transaction ended”). Declares the BMS map structures for the SSMAP mapset (input <code>...I</code> and output <code>...O</code> overlays for SSMAPC1, P1, P2, P3, P4 and P5). Declares the <code>COMM_AREA</code> structure, which is a union based on <code>COMM_AREA_PTR</code>. It holds the request ID, return code, customer number and policy request data, including the endowment fields. <code>BASE_COMM_AREA</code> provides the storage used on first entry.</li>
+<li>External interaction: none in the declarations. The program works with the BMS mapset SSMAP and the COMMAREA.</li>
+</ul>
+</li>
+<li>
+<p><strong>First-time initialization (IF EIBCALEN = 0)</strong></p>
+<ul>
+<li>Purpose: Prepares and displays the empty endowment menu screen when the transaction starts with no COMMAREA.</li>
+<li>Points <code>COMM_AREA_PTR</code> at <code>BASE_COMM_AREA</code>. Blanks the output map <code>SSMAPP2O</code>. Resets <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code> and <code>CA_REQUEST_INITIALISER</code>. Sets <code>ENP2CNOO</code> and <code>ENP2PNOO</code> to zeros.</li>
+<li>Control flow: runs only when <code>EIBCALEN = 0</code>. Execution then falls through to <code>A_GAIN</code>.</li>
+<li>External interaction: CICS SEND MAP(‘SSMAPP2’) MAPSET(‘SSMAP’) with ERASE.</li>
+</ul>
+</li>
+<li>
+<p><strong>A_GAIN (receive and dispatch)</strong></p>
+<ul>
+<li>Purpose: Main processing point. It receives the user’s input and dispatches on the menu option.</li>
+<li>Registers HANDLE AID for CLEAR (to <code>CLEARIT</code>) and PF3 (to <code>ENDIT</code>). Registers HANDLE CONDITION for MAPFAIL (to <code>ENDIT</code>). Receives map SSMAPP2 into <code>SSMAPP2I</code>. Then evaluates <code>SELECT (ENP2OPTO)</code>.</li>
+<li>Control flow: the SELECT/WHEN structure has four options and an OTHERWISE branch, described below. After the SELECT, an unconditional <code>EXEC CICS RETURN</code> follows. In practice every branch transfers control before reaching it.</li>
+<li>External interaction: CICS RECEIVE MAP.</li>
+<li><strong>WHEN (‘1’) – Inquire</strong>
+<ul>
+<li>Sets <code>CA_REQUEST_ID</code> to ‘01IEND’. Moves the customer and policy numbers from the screen to the COMMAREA.</li>
+<li>Links to LGIPOL01 with COMMAREA (length 32500).</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, goes to <code>NO_DATA</code>.</li>
+<li>Otherwise it copies the issue date, expiry date, fund name, term, sum assured, life assured, with-profits, managed-fund and equities values to the screen fields. It sends the map and goes to <code>ENDIT_STARTIT</code>.</li>
+<li>External interaction: CICS LINK to LGIPOL01 and CICS SEND MAP.</li>
+</ul>
+</li>
+<li><strong>WHEN (‘2’) – Add</strong>
+<ul>
+<li>Sets <code>CA_REQUEST_ID</code> to ‘01AEND’. Moves the customer number from the screen input. Zeroes payment and broker ID, and blanks broker reference. Loads the issue date, expiry date and the endowment fields from the screen.</li>
+<li>Links to LGAPOL01.</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, issues SYNCPOINT ROLLBACK and goes to <code>NO_ADD</code>.</li>
+<li>Otherwise it echoes the customer number, policy number and fund name back to the screen. It clears the option, sets “New Life Policy Inserted” and sends the map. Then it goes to <code>ENDIT_STARTIT</code>.</li>
+<li>External interaction: CICS LINK to LGAPOL01, CICS SYNCPOINT ROLLBACK and CICS SEND MAP.</li>
+</ul>
+</li>
+<li><strong>WHEN (‘3’) – Delete</strong>
+<ul>
+<li>Sets <code>CA_REQUEST_ID</code> to ‘01DEND’. Moves the customer and policy numbers from the screen.</li>
+<li>Links to LGDPOL01.</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, issues SYNCPOINT ROLLBACK and goes to <code>NO_DELETE</code>.</li>
+<li>Otherwise it blanks the detail screen fields, sets “Life Policy Deleted” and sends the map. Then it goes to <code>ENDIT_STARTIT</code>.</li>
+<li>External interaction: CICS LINK to LGDPOL01, CICS SYNCPOINT ROLLBACK and CICS SEND MAP.</li>
+</ul>
+</li>
+<li><strong>WHEN (‘4’) – Update</strong>
+<ul>
+<li>First performs an inquire using ‘01IEND’ with a link to LGIPOL01. A non-zero return code goes to <code>NO_DATA</code>. Otherwise it displays the current policy data and sends the map.</li>
+<li>Then it receives the user’s modified screen. It sets <code>CA_REQUEST_ID</code> to ‘01UEND’, loads the customer number and the changed fields, and zeroes payment and broker ID.</li>
+<li>Links to LGUPOL01. If <code>CA_RETURN_CODE &gt; 0</code>, goes to <code>NO_UPD</code>.</li>
+<li>Otherwise it echoes the customer and policy numbers, clears the option, sets “Life Policy Updated” and sends the map. Then it goes to <code>ENDIT_STARTIT</code>.</li>
+<li>External interaction: CICS LINK to LGIPOL01 and LGUPOL01, CICS SEND MAP and CICS RECEIVE MAP.</li>
+</ul>
+</li>
+<li><strong>OTHERWISE – Invalid option</strong>
+<ul>
+<li>Sets the message “Please enter a valid option”. Sets <code>ENP2OPTL</code> to -1 to position the cursor on the option field. Sends the map with CURSOR and goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>ENDIT_STARTIT</strong></p>
+<ul>
+<li>Purpose: Pseudo-conversational return point. It ends the current task and schedules transaction SSP2 for the next user input.</li>
+<li>Issues CICS RETURN with TRANSID(‘SSP2’) and COMMAREA(COMM_AREA).</li>
+<li>External interaction: CICS RETURN.</li>
+</ul>
+</li>
+<li>
+<p><strong>ENDIT</strong></p>
+<ul>
+<li>Purpose: Normal termination, reached by PF3 or by a MAPFAIL condition.</li>
+<li>Sends the text “Transaction ended” (<code>MSGEND</code>) with ERASE and FREEKB. Then it issues a plain CICS RETURN, which ends the transaction without a TRANSID.</li>
+<li>External interaction: CICS SEND TEXT and CICS RETURN.</li>
+</ul>
+</li>
+<li>
+<p><strong>CLEARIT</strong></p>
+<ul>
+<li>Purpose: Handles the CLEAR key.</li>
+<li>Blanks the input map <code>SSMAPP2I</code>. Sends the map with MAPONLY, which displays only the screen layout. Then it returns with TRANSID(‘SSP2’) and the COMMAREA.</li>
+<li>External interaction: CICS SEND MAP (MAPONLY) and CICS RETURN.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_ADD</strong></p>
+<ul>
+<li>Purpose: Error handler for a failed add.</li>
+<li>Control flow: SELECT on <code>CA_RETURN_CODE</code>. When the code is 70, the message is “Customer does not exist”. Otherwise it is “Error Adding Life Policy”. Both paths go to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_UPD</strong></p>
+<ul>
+<li>Purpose: Error handler for a failed update.</li>
+<li>Sets “Error Updating Life Policy” and goes to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_DELETE</strong></p>
+<ul>
+<li>Purpose: Error handler for a failed delete.</li>
+<li>Sets “Error Deleting Life Policy” and goes to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_DATA</strong></p>
+<ul>
+<li>Purpose: Error handler for an inquiry that returned no data. It is also used by the first step of update.</li>
+<li>Sets “No data was returned.” and goes to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>ERROR_OUT</strong></p>
+<ul>
+<li>Purpose: Common error display and reset routine.</li>
+<li>Sends map SSMAPP2 from <code>SSMAPP2O</code>, which carries the error message. Then it blanks the input map and the whole COMMAREA (<code>COMM_AREA_RAW</code>). It resets the request ID, return code, customer number and request initialiser. Then it goes to <code>ENDIT_STARTIT</code>.</li>
+<li>External interaction: CICS SEND MAP, then control passes to the CICS RETURN with TRANSID in <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<ul>
+<li>
+<p><strong>CICS runtime environment</strong></p>
+<ul>
+<li>CICS transaction SSP2: The program runs as this transaction and pseudo-conversationally re-invokes itself with <code>EXEC CICS RETURN TRANSID('SSP2')</code>, passing the COMMAREA back each time.</li>
+<li>CICS PL/I translator and EXEC interface: The program receives the EIB pointer <code>DFHEIPTR</code> and the COMMAREA pointer <code>COMM_AREA_PTR</code> as parameters. It reads <code>EIBCALEN</code> to tell whether this is the first invocation (length 0) or a re-entry.</li>
+<li>Reentrant main-procedure attributes: <code>Options(Main,Reentrant)</code> requires a reentrant-capable CICS PL/I runtime.</li>
+<li>CICS terminal and 3270 session: The program sends and receives maps and text to and from the terminal that started the transaction.</li>
+<li>CICS AID and condition handling: <code>HANDLE AID</code> routes CLEAR to the <code>CLEARIT</code> routine and PF3 to <code>ENDIT</code>. <code>HANDLE CONDITION MAPFAIL</code> routes to <code>ENDIT</code>.</li>
+<li>CICS syncpoint services: <code>SYNCPOINT ROLLBACK</code> backs out recoverable work when the add or delete link returns a non-zero return code.</li>
+</ul>
+</li>
+<li>
+<p><strong>BMS mapset and screen definitions</strong></p>
+<ul>
+<li>Mapset SSMAP: The compiled BMS mapset must be defined to CICS. It is the source of the screen layouts used by every <code>SEND MAP</code> and <code>RECEIVE MAP</code>.</li>
+<li>Map SSMAPP2: This is the Endowment Policy menu screen. The program uses it for the initial display, for receiving user input, and for all result and error displays.
+<ul>
+<li>Input structure <code>SSMAPP2I</code> receives terminal data. It carries the option, customer number, policy number, issue and expiry dates, fund name, term, sum assured, life assured, and the with-profits, equities and managed-fund indicators.</li>
+<li>Output structure <code>SSMAPP2O</code> is overlaid on the input structure and drives screen output. It includes <code>ENP2OPTO</code>, <code>ENP2PNOO</code>, <code>ENP2CNOO</code> and the message field <code>ERP2FLDO</code>.</li>
+</ul>
+</li>
+<li>Other maps in SSMAP (SSMAPC1, SSMAPP1, SSMAPP3, SSMAPP4, SSMAPP5): Their structures are declared through the include, but this program does not use them.</li>
+<li>Standard 3270 terminal output: <code>SEND TEXT</code> with <code>ERASE</code> and <code>FREEKB</code> shows the “Transaction ended” message (<code>MSGEND</code>) when the user exits.</li>
+</ul>
+</li>
+<li>
+<p><strong>Included source members (copybooks)</strong></p>
+<ul>
+<li>SSMAP include (<code>plinc/SSMAP.inc</code>): Supplies the symbolic map structures for the SSMAP mapset. These are the <code>…I</code> input and <code>…O</code> output layouts.</li>
+<li>LGCMAREA include (<code>plinc/LGCMAREA.inc</code>): Supplies the shared COMMAREA layout, <code>COMM_AREA</code>. The layout is a union that covers customer, security, policy, endowment, house, motor, commercial and claim data.
+<ul>
+<li>Fields used by this program: <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code>, <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_PAYMENT</code>, <code>CA_BROKERID</code>, <code>CA_BROKERSREF</code>, and the <code>CA_E_*</code> endowment fields.</li>
+<li>Fields used for initialisation and reset: <code>CA_REQUEST_INITIALISER</code> and <code>COMM_AREA_RAW</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Called programs (CICS LINK targets)</strong></p>
+<ul>
+<li>LGIPOL01: The policy inquiry program. It is called with <code>CA_REQUEST_ID = '01IEND'</code> for inquire (option 1) and for the pre-update read (option 4). It returns the endowment details, which the program shows on the screen.</li>
+<li>LGAPOL01: The policy add program. It is called with <code>CA_REQUEST_ID = '01AEND'</code> (option 2) and returns the new policy number. A return code of 70 means the customer does not exist. Any other non-zero return code is reported as a generic add error.</li>
+<li>LGDPOL01: The policy delete program. It is called with <code>CA_REQUEST_ID = '01DEND'</code> (option 3) and receives the customer number and policy number.</li>
+<li>LGUPOL01: The policy update program. It is called with <code>CA_REQUEST_ID = '01UEND'</code> (option 4) after the user edits the inquired data.</li>
+<li>Interface contract: All four programs are linked with <code>COMMAREA(COMM_AREA)</code> and <code>LENGTH(32500)</code>. They must set <code>CA_RETURN_CODE</code>, where a non-zero value signals failure.</li>
+<li>Downstream resources: The called programs are expected to access the policy data store, which is probably Db2. The program does not reference that store directly.</li>
+</ul>
+</li>
+<li>
+<p><strong>Input parameters and data sources</strong></p>
+<ul>
+<li>Terminal user input from map SSMAPP2: This is the main runtime input.
+<ul>
+<li>Menu option, <code>ENP2OPTO</code>: 1 = inquire, 2 = add, 3 = delete, 4 = update. Any other value gives an invalid-option message.</li>
+<li>Customer number: <code>ENP2CNOO</code> or <code>ENP2CNOI</code>. It is moved to <code>CA_CUSTOMER_NUM</code>, 10 digits.</li>
+<li>Policy number: <code>ENP2PNOO</code>. It is moved to <code>CA_POLICY_NUM</code>, 10 digits.</li>
+<li>Policy details: issue date, expiry date, fund name, term, sum assured, life assured, with-profits flag, equities flag and managed-fund flag. These feed add and update requests.</li>
+</ul>
+</li>
+<li>Attention keys: CLEAR resets the screen and PF3 ends the transaction.</li>
+<li>COMMAREA passed on re-entry:
+<ul>
+<li><code>EIBCALEN = 0</code> triggers first-time initialisation and the initial map display.</li>
+<li>Otherwise the COMMAREA from the previous pseudo-conversational step supplies the shared storage <code>COMM_AREA</code>.</li>
+</ul>
+</li>
+<li>Working storage for the first invocation: <code>BASE_COMM_AREA</code> is sized with <code>STG(COMM_AREA)</code>. It provides storage for the COMMAREA when none is passed in.</li>
+</ul>
+</li>
+<li>
+<p><strong>Configuration values and hard-coded identifiers</strong></p>
+<ul>
+<li>Transaction ID ‘SSP2’: This must be defined in the CICS PCT or CSD and associated with LGTESTP2. It is also the TRANSID used for the pseudo-conversational return.</li>
+<li>Mapset name ‘SSMAP’ and map name ‘SSMAPP2’: These must be installed and available in CICS.</li>
+<li>Program names ‘LGIPOL01’, ‘LGAPOL01’, ‘LGDPOL01’ and ‘LGUPOL01’: These must be defined as programs in the CICS region.</li>
+<li>Request ID codes ‘01IEND’, ‘01AEND’, ‘01DEND’ and ‘01UEND’: These are the contract values that tell the called programs which operation to run.</li>
+<li>COMMAREA length constant 32500: It must match the length of <code>COMM_AREA</code>.</li>
+<li>Return-code convention: 0 = success. Any value above 0 is an error, and 70 specifically means customer not found.</li>
+<li>Message literals: ‘Transaction ended’, ‘New Life Policy Inserted’, ‘Life Policy Deleted’, ‘Life Policy Updated’, ‘Error Adding Life Policy’, ‘Error Updating Life Policy’, ‘Error Deleting Life Policy’, ‘Customer does not exist’, ‘No data was returned.’ and ‘Please enter a valid option’.</li>
+<li>No environment variables, external files, queues, or direct database or API access appear in this program.</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<h3 id="71-input-data-validation-constraints" tabindex="-1">7.1 Input Data Validation Constraints</h3>
+<ul>
+<li>Menu Option Selection
+<ul>
+<li>The menu option field <code>ENP2OPTO</code> must contain one of the single-character values <code>'1'</code> (Inquiry), <code>'2'</code> (Add), <code>'3'</code> (Delete), or <code>'4'</code> (Update).</li>
+<li>Any value other than <code>'1'</code>, <code>'2'</code>, <code>'3'</code>, or <code>'4'</code> is rejected in the <code>SELECT (ENP2OPTO)</code> statement under <code>OTHERWISE</code>. The program sets the error message <code>'Please enter a valid option'</code> into <code>ERP2FLDO</code>, sets the cursor indicator <code>ENP2OPTL = -1</code> to position the cursor at the option field, and re-sends map <code>SSMAPP2</code>.</li>
+</ul>
+</li>
+<li>Customer Number and Policy Number Formats
+<ul>
+<li><code>ENP2CNOO</code> / <code>ENP2CNOI</code> and <code>ENP2PNOO</code> / <code>ENP2PNOI</code> are defined as 10-character alphanumeric fields mapping into 10-digit numeric fields (<code>CA_CUSTOMER_NUM</code> with picture <code>'9999999999'</code> and <code>CA_POLICY_NUM</code> with picture <code>'9999999999'</code>).</li>
+<li>On initial entry (<code>EIBCALEN = 0</code>), customer and policy number output fields are strictly initialized to zero strings (<code>'0000000000'</code>).</li>
+</ul>
+</li>
+<li>Endowment Detail Field Formats and Lengths
+<ul>
+<li>Issue Date (<code>ENP2IDAI</code>) and Expiry Date (<code>ENP2EDAI</code>) are constrained to 10-character formats mapped to <code>CA_ISSUE_DATE</code> and <code>CA_EXPIRY_DATE</code>.</li>
+<li>Fund Name (<code>ENP2FNMI</code>) is constrained to a 10-character string mapped to <code>CA_E_FUND_NAME</code>.</li>
+<li>Policy Term (<code>ENP2TERI</code>) is constrained to a 2-character field mapped to <code>CA_E_TERM</code> (picture <code>'99'</code>).</li>
+<li>Sum Assured (<code>ENP2SUMI</code>) is constrained to a 6-character field mapped to <code>CA_E_SUM_ASSURED</code> (picture <code>'999999'</code>).</li>
+<li>Life Assured (<code>ENP2LIFI</code>) is defined as a 25-character screen field mapped into the 31-character communication area field <code>CA_E_LIFE_ASSURED</code>.</li>
+<li>Indicators for With-Profits (<code>ENP2WPRI</code>), Managed Fund (<code>ENP2MANI</code>), and Equities (<code>ENP2EQUI</code>) are restricted to single-character values (<code>CHAR(1)</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="72-processing-flow-and-operational-constraints" tabindex="-1">7.2 Processing Flow and Operational Constraints</h3>
+<ul>
+<li>First-Time Entry Initialization
+<ul>
+<li>When invoked with <code>EIBCALEN = 0</code>, the program suppresses transaction processing, establishes pointer addressing for <code>COMM_AREA_PTR</code> via <code>BASE_COMM_AREA</code>, clears map output buffer <code>SSMAPP2O</code>, initializes commarea fields (<code>CA_REQUEST_ID = ' '</code>, <code>CA_RETURN_CODE = 0</code>, <code>CA_CUSTOMER_NUM = 0</code>), sets <code>ENP2CNOO</code> and <code>ENP2PNOO</code> to <code>'0000000000'</code>, sends map <code>SSMAPP2</code> with <code>ERASE</code>, and exits without linking to backend services.</li>
+</ul>
+</li>
+<li>Conversational / Pseudo-Conversational Flow
+<ul>
+<li>Normal transaction termination returns control to CICS via <code>EXEC CICS RETURN TRANSID('SSP2') COMMAREA(COMM_AREA)</code>, enforcing pseudo-conversational state preservation under transaction ID <code>SSP2</code>.</li>
+<li>Session exit via PF3 or MAPFAIL sends the termination text <code>'Transaction ended'</code> and executes <code>EXEC CICS RETURN</code> without <code>TRANSID</code>, ending the transaction flow.</li>
+<li>Session reset via CLEAR key (<code>CLEARIT</code>) clears <code>SSMAPP2I</code>, sends the map with <code>MAPONLY</code>, and re-invokes <code>SSP2</code> with the commarea.</li>
+</ul>
+</li>
+<li>Hardcoded Request Identifiers
+<ul>
+<li>Specific operation codes must be populated into <code>CA_REQUEST_ID</code> before invoking orchestrators:
+<ul>
+<li><code>'01IEND'</code> for Inquiry (Option 1) and pre-update fetch (Option 4).</li>
+<li><code>'01AEND'</code> for Add (Option 2).</li>
+<li><code>'01DEND'</code> for Delete (Option 3).</li>
+<li><code>'01UEND'</code> for Update (Option 4).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Forced Defaults for Add and Update Operations
+<ul>
+<li>During Add (<code>WHEN ('2')</code>) and Update (<code>WHEN ('4')</code>) operations, <code>CA_PAYMENT</code> is enforced to <code>0</code>, <code>CA_BROKERID</code> is enforced to <code>0</code>, and <code>CA_BROKERSREF</code> is enforced to spaces (<code>' '</code>) prior to calling the backend services.</li>
+</ul>
+</li>
+</ul>
+<h3 id="73-transactional-and-error-handling-constraints" tabindex="-1">7.3 Transactional and Error Handling Constraints</h3>
+<ul>
+<li>Synchronous Orchestrator Invocations
+<ul>
+<li>External program calls must pass an exact commarea length of 32,500 bytes:
+<ul>
+<li>Option 1 invokes <code>LGIPOL01</code> with <code>LENGTH(32500)</code>.</li>
+<li>Option 2 invokes <code>LGAPOL01</code> with <code>LENGTH(32500)</code>.</li>
+<li>Option 3 invokes <code>LGDPOL01</code> with <code>LENGTH(32500)</code>.</li>
+<li>Option 4 invokes <code>LGIPOL01</code> followed by <code>LGUPOL01</code>, both with <code>LENGTH(32500)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Transaction Rollback on Failure
+<ul>
+<li>For Add (<code>WHEN ('2')</code>) and Delete (<code>WHEN ('3')</code>), if <code>CA_RETURN_CODE &gt; 0</code>, the program issues an explicit <code>EXEC CICS SYNCPOINT ROLLBACK</code> before branching to error routines, ensuring transactional atomicity and preventing partial database updates.</li>
+</ul>
+</li>
+<li>Return Code Handling and Message Mapping
+<ul>
+<li>For Inquiry (<code>WHEN ('1')</code> or Option 4 fetch), any <code>CA_RETURN_CODE &gt; 0</code> branches to <code>NO_DATA</code>, setting message <code>'No data was returned.'</code>.</li>
+<li>For Add (<code>WHEN ('2')</code>), a return code of <code>70</code> sets <code>ERP2FLDO = 'Customer does not exist'</code>, while any other non-zero code sets <code>ERP2FLDO = 'Error Adding Life Policy'</code>.</li>
+<li>For Delete (<code>WHEN ('3')</code>), any non-zero return code sets <code>ERP2FLDO = 'Error Deleting Life Policy'</code>.</li>
+<li>For Update (<code>WHEN ('4')</code>), any non-zero return code during the update call sets <code>ERP2FLDO = 'Error Updating Life Policy'</code>.</li>
+<li>When an error occurs (<code>ERROR_OUT</code>), the program re-sends the map, reinitializes input buffer <code>SSMAPP2I</code>, clears <code>COMM_AREA_RAW</code>, resets <code>CA_RETURN_CODE</code> and <code>CA_CUSTOMER_NUM</code> to <code>0</code>, and re-invokes <code>SSP2</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="74-sequencing-and-timing-constraints" tabindex="-1">7.4 Sequencing and Timing Constraints</h3>
+<ul>
+<li>Attention Identifier (AID) and Condition Interception
+<ul>
+<li><code>EXEC CICS HANDLE AID</code> and <code>EXEC CICS HANDLE CONDITION</code> must be executed prior to <code>EXEC CICS RECEIVE MAP</code> to capture <code>CLEAR</code>, <code>PF3</code>, and <code>MAPFAIL</code>.</li>
+</ul>
+</li>
+<li>Multi-Step Update Sequence
+<ul>
+<li>Option 4 (Update) strictly requires a two-phase flow:
+<ul>
+<li>Phase 1: An inquiry call (<code>01IEND</code>) via <code>LGIPOL01</code> retrieves the existing policy data and displays it on the screen.</li>
+<li>Phase 2: A synchronous <code>RECEIVE MAP</code> captures updated values from the terminal before linking to <code>LGUPOL01</code> with request code <code>01UEND</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Screen Reset Following Mutation
+<ul>
+<li>Upon successful Add (<code>WHEN ('2')</code>), fields <code>ENP2CNOI</code>, <code>ENP2PNOI</code>, and <code>ENP2FNMI</code> are echoed back from the commarea, the option field <code>ENP2OPTI</code> is blanked out, and <code>ERP2FLDO</code> is set to <code>'New Life Policy Inserted'</code>.</li>
+<li>Upon successful Delete (<code>WHEN ('3')</code>), all endowment policy detail screen fields (<code>ENP2IDAI</code>, <code>ENP2EDAI</code>, <code>ENP2FNMI</code>, <code>ENP2TERI</code>, <code>ENP2SUMI</code>, <code>ENP2LIFI</code>, <code>ENP2WPRI</code>, <code>ENP2MANI</code>, <code>ENP2EQUI</code>) are cleared to spaces, and <code>ERP2FLDO</code> is set to <code>'Life Policy Deleted'</code>.</li>
+<li>Upon successful Update (<code>WHEN ('4')</code>), <code>ENP2CNOI</code> and <code>ENP2PNOI</code> are updated from the commarea, <code>ENP2OPTI</code> is blanked out, and <code>ERP2FLDO</code> is set to <code>'Life Policy Updated'</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<ul>
+<li>
+<p><strong>Terminal key and screen-input handling (CICS AID and condition handling)</strong></p>
+<ul>
+<li>A CICS HANDLE AID routes the CLEAR key to a clear-screen routine and PF3 to the program’s termination routine.
+<ul>
+<li>The CLEAR routine blanks the input map structure and resends the map with the map data only. It then returns to transaction SSP2 and passes the communication area back, so the session continues with a clean screen.</li>
+<li>The PF3 routine sends the “Transaction ended” text to the terminal. It erases the screen, frees the keyboard, and returns without a transaction ID, which ends the conversation.</li>
+</ul>
+</li>
+<li>A CICS HANDLE CONDITION routes a MAPFAIL on the map receive to the same termination routine. This covers the case where the user sends no data. The program ends cleanly instead of abending.</li>
+<li>No RESP or RESP2 checks follow any CICS command. Any CICS condition other than MAPFAIL, such as a failure on a LINK or SEND, is not handled in the program. It falls to the CICS default action, which is normally an abend.</li>
+</ul>
+</li>
+<li>
+<p><strong>Input validation</strong></p>
+<ul>
+<li>The option field (ENP2OPTO) is evaluated in a SELECT. Only ‘1’ (inquire), ‘2’ (add), ‘3’ (delete) and ‘4’ (update) are accepted.</li>
+<li>Any other value takes the OTHERWISE branch.
+<ul>
+<li>The program puts “Please enter a valid option” in the screen error field (ERP2FLDO).</li>
+<li>It sets the option field length to -1, so the cursor is placed on the option field.</li>
+<li>It resends the map with the CURSOR option.</li>
+<li>It then returns to the same transaction so the user can retry.</li>
+</ul>
+</li>
+<li>No other field is validated here. This includes policy number, customer number, dates and amounts. Those values are passed to the called programs, which are expected to validate them.</li>
+</ul>
+</li>
+<li>
+<p><strong>Return-code checking after called programs</strong></p>
+<ul>
+<li>After each CICS LINK to a back-end policy program, the program tests the return code in the communication area (CA_RETURN_CODE). A value greater than zero means failure.</li>
+<li>Inquire (option 1), through LGIPOL01: a non-zero return code branches to the “no data” routine.</li>
+<li>Add (option 2), through LGAPOL01: a non-zero return code first triggers a CICS SYNCPOINT ROLLBACK and then branches to the add-error routine.</li>
+<li>Delete (option 3), through LGDPOL01: a non-zero return code first triggers a SYNCPOINT ROLLBACK and then branches to the delete-error routine.</li>
+<li>Update (option 4) works in two steps.
+<ul>
+<li>The pre-update inquiry through LGIPOL01 branches to the “no data” routine on a non-zero return code.</li>
+<li>The update itself, through LGUPOL01, branches to the update-error routine on a non-zero return code. This path has no SYNCPOINT ROLLBACK in the calling program.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Error message selection and notification to the user</strong></p>
+<ul>
+<li>Failures are shown to the user through the error field on the policy menu screen.
+<ul>
+<li>“No data was returned.” is shown for a failed inquiry, including the inquiry that precedes an update.</li>
+<li>“Error Adding Life Policy” is the default message for a failed add.</li>
+<li>“Customer does not exist” is a specific message for a failed add. It is chosen when the return code is exactly 70.</li>
+<li>“Error Updating Life Policy” is shown for a failed update.</li>
+<li>“Error Deleting Life Policy” is shown for a failed delete.</li>
+</ul>
+</li>
+<li>Only the add path distinguishes between return codes. A SELECT on the return code separates code 70 from all other codes. The inquire, update and delete paths use a single generic message each.</li>
+<li>Success is also reported through the same field, which doubles as a status line. The messages are “New Life Policy Inserted”, “Life Policy Updated” and “Life Policy Deleted”.</li>
+</ul>
+</li>
+<li>
+<p><strong>Recovery and fallback logic</strong></p>
+<ul>
+<li>Transactional recovery: on add and delete failures, SYNCPOINT ROLLBACK undoes any database changes made by the linked program before the error screen is shown. This keeps the data consistent.</li>
+<li>Common error exit: all error routines go to one shared routine. It does the following.
+<ul>
+<li>It sends the map, including the error message, to the terminal.</li>
+<li>It resets the working state by blanking the input map, the whole communication area and the request ID.</li>
+<li>It zeroes the return code and customer number, and clears the request-specific area.</li>
+<li>It returns to transaction SSP2 with the clean communication area. The user can retry from a known state.</li>
+</ul>
+</li>
+<li>First-time initialization: when the communication area length is zero (EIBCALEN = 0), the program points to a locally declared base communication area. It then initializes the following before sending the initial menu.
+<ul>
+<li>The output map is blanked.</li>
+<li>The request ID is set to blanks and the return code to zero.</li>
+<li>The customer number is set to zero.</li>
+<li>The request-specific area is blanked.</li>
+<li>The customer and policy number screen fields are set to zeros.</li>
+</ul>
+</li>
+<li>Pseudo-conversational restart: after every handled outcome, the program returns with the SSP2 transaction ID and the communication area. The menu is redisplayed and the error state does not persist to the next interaction.</li>
+</ul>
+</li>
+<li>
+<p><strong>Program termination paths</strong></p>
+<ul>
+<li>Normal end after PF3 or MAPFAIL: the “Transaction ended” message is sent and the program returns.</li>
+<li>Defensive plain return: a CICS RETURN follows the end of the SELECT block. Normal flow does not reach it, because each branch ends with a jump to the restart routine.</li>
+</ul>
+</li>
+<li>
+<p><strong>Notable gaps</strong></p>
+<ul>
+<li>There are no PL/I ON-unit conditions, such as ERROR, CONVERSION, SIZE or ENDFILE. There is no SIGNAL handling and no explicit ABEND call.</li>
+<li>Return codes are only tested for being greater than zero. Apart from code 70 on add, the program does not interpret them, and it does not log them.</li>
+<li>Because the program has no logging, error details are visible only to the terminal user.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-inquire-endowment-policy-details-option-1" tabindex="-1">9.1 Example 1: Inquire Endowment Policy Details (Option ‘1’)</h3>
+<p>Demonstrates looking up and displaying existing endowment policy details for a given customer and policy number.</p>
+<h4 id="911-sample-input-data" tabindex="-1">9.1.1 Sample Input Data</h4>
+<ul>
+<li><strong>Screen Option (<code>ENP2OPTO</code>):</strong> <code>'1'</code></li>
+<li><strong>Screen Policy Number (<code>ENP2PNOO</code>):</strong> <code>'0000000042'</code></li>
+<li><strong>Screen Customer Number (<code>ENP2CNOO</code>):</strong> <code>'0000000101'</code></li>
+</ul>
+<h4 id="912-expected-output" tabindex="-1">9.1.2 Expected Output</h4>
+<ul>
+<li><strong>Issue Date (<code>ENP2IDAI</code>):</strong> <code>'2020-01-15'</code></li>
+<li><strong>Expiry Date (<code>ENP2EDAI</code>):</strong> <code>'2040-01-15'</code></li>
+<li><strong>Fund Name (<code>ENP2FNMI</code>):</strong> <code>'GROWTHFUND'</code></li>
+<li><strong>Term (<code>ENP2TERI</code>):</strong> <code>'20'</code></li>
+<li><strong>Sum Assured (<code>ENP2SUMI</code>):</strong> <code>'100000'</code></li>
+<li><strong>Life Assured (<code>ENP2LIFI</code>):</strong> <code>'Jane Doe'</code></li>
+<li><strong>With Profits Indicator (<code>ENP2WPRI</code>):</strong> <code>'Y'</code></li>
+<li><strong>Managed Fund Indicator (<code>ENP2MANI</code>):</strong> <code>'N'</code></li>
+<li><strong>Equities Indicator (<code>ENP2EQUI</code>):</strong> <code>'Y'</code></li>
+<li><strong>Message / Error Field (<code>ERP2FLDO</code>):</strong> <code>''</code> (blank)</li>
+</ul>
+<h4 id="913-logic-flow" tabindex="-1">9.1.3 Logic Flow</h4>
+<ol>
+<li>The program receives the map <code>SSMAPP2</code> and detects option <code>'1'</code>.</li>
+<li>It sets <code>CA_REQUEST_ID</code> to <code>'01IEND'</code>, moves <code>ENP2CNOO</code> to <code>CA_CUSTOMER_NUM</code>, and moves <code>ENP2PNOO</code> to <code>CA_POLICY_NUM</code>.</li>
+<li>It issues <code>EXEC CICS LINK PROGRAM('LGIPOL01')</code> passing <code>COMM_AREA</code>.</li>
+<li>Upon successful return (<code>CA_RETURN_CODE = 0</code>), it populates the screen fields (<code>ENP2IDAI</code>, <code>ENP2EDAI</code>, <code>ENP2FNMI</code>, <code>ENP2TERI</code>, <code>ENP2SUMI</code>, <code>ENP2LIFI</code>, <code>ENP2WPRI</code>, <code>ENP2MANI</code>, <code>ENP2EQUI</code>) from the returned commarea fields and sends the populated map back to the terminal.</li>
+</ol>
+<hr>
+<h3 id="92-example-2-add-a-new-endowment-policy-option-2" tabindex="-1">9.2 Example 2: Add a New Endowment Policy (Option ‘2’)</h3>
+<p>Demonstrates inserting a new endowment policy for an existing customer.</p>
+<h4 id="921-sample-input-data" tabindex="-1">9.2.1 Sample Input Data</h4>
+<ul>
+<li><strong>Screen Option (<code>ENP2OPTI</code>):</strong> <code>'2'</code></li>
+<li><strong>Customer Number (<code>ENP2CNOI</code>):</strong> <code>'0000000101'</code></li>
+<li><strong>Issue Date (<code>ENP2IDAI</code>):</strong> <code>'2023-06-01'</code></li>
+<li><strong>Expiry Date (<code>ENP2EDAI</code>):</strong> <code>'2043-06-01'</code></li>
+<li><strong>Fund Name (<code>ENP2FNMI</code>):</strong> <code>'BALANCED01'</code></li>
+<li><strong>Term (<code>ENP2TERI</code>):</strong> <code>'20'</code></li>
+<li><strong>Sum Assured (<code>ENP2SUMI</code>):</strong> <code>'050000'</code></li>
+<li><strong>Life Assured (<code>ENP2LIFI</code>):</strong> <code>'John Smith'</code></li>
+<li><strong>With Profits Indicator (<code>ENP2WPRI</code>):</strong> <code>'Y'</code></li>
+<li><strong>Managed Fund Indicator (<code>ENP2MANI</code>):</strong> <code>'Y'</code></li>
+<li><strong>Equities Indicator (<code>ENP2EQUI</code>):</strong> <code>'N'</code></li>
+</ul>
+<h4 id="922-expected-output" tabindex="-1">9.2.2 Expected Output</h4>
+<ul>
+<li><strong>Assigned Policy Number (<code>ENP2PNOI</code>):</strong> <code>'0000000105'</code></li>
+<li><strong>Customer Number (<code>ENP2CNOI</code>):</strong> <code>'0000000101'</code></li>
+<li><strong>Fund Name (<code>ENP2FNMI</code>):</strong> <code>'BALANCED01'</code></li>
+<li><strong>Screen Option (<code>ENP2OPTI</code>):</strong> <code>' '</code> (cleared)</li>
+<li><strong>Message Field (<code>ERP2FLDO</code>):</strong> <code>'New Life Policy Inserted'</code></li>
+</ul>
+<h4 id="923-logic-flow" tabindex="-1">9.2.3 Logic Flow</h4>
+<ol>
+<li>The program evaluates option <code>'2'</code> and initializes <code>CA_REQUEST_ID</code> to <code>'01AEND'</code>, <code>CA_PAYMENT</code> to <code>0</code>, and <code>CA_BROKERID</code> to <code>0</code>.</li>
+<li>It transfers the customer number, dates, term, sum assured, life assured name, and fund indicators from the map into the commarea endowment structure.</li>
+<li>It links to <code>LGAPOL01</code>.</li>
+<li>Upon receiving <code>CA_RETURN_CODE = 0</code>, it retrieves the generated <code>CA_POLICY_NUM</code>, sets the success message <code>'New Life Policy Inserted'</code>, clears the option field, and re-displays the map.</li>
+</ol>
+<hr>
+<h3 id="93-example-3-invalid-menu-option-selection" tabindex="-1">9.3 Example 3: Invalid Menu Option Selection</h3>
+<p>Demonstrates error handling when an unsupported option code is supplied.</p>
+<h4 id="931-sample-input-data" tabindex="-1">9.3.1 Sample Input Data</h4>
+<ul>
+<li><strong>Screen Option (<code>ENP2OPTO</code>):</strong> <code>'9'</code></li>
+<li><strong>Policy Number (<code>ENP2PNOO</code>):</strong> <code>'0000000042'</code></li>
+<li><strong>Customer Number (<code>ENP2CNOO</code>):</strong> <code>'0000000101'</code></li>
+</ul>
+<h4 id="932-expected-output" tabindex="-1">9.3.2 Expected Output</h4>
+<ul>
+<li><strong>Message Field (<code>ERP2FLDO</code>):</strong> <code>'Please enter a valid option'</code></li>
+<li><strong>Cursor Position:</strong> Repositioned at the option field (<code>ENP2OPTL = -1</code>)</li>
+</ul>
+<h4 id="933-logic-flow" tabindex="-1">9.3.3 Logic Flow</h4>
+<ol>
+<li>The program tests <code>ENP2OPTO</code> against valid choices (<code>'1'</code>, <code>'2'</code>, <code>'3'</code>, <code>'4'</code>).</li>
+<li>Option <code>'9'</code> triggers the <code>OTHERWISE</code> branch.</li>
+<li>It sets the error message <code>'Please enter a valid option'</code>, flags the option field length as <code>-1</code> to reposition the screen cursor, and issues <code>EXEC CICS SEND MAP ('SSMAPP2')</code> with the <code>CURSOR</code> option.</li>
+</ol>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a></li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a>
+<ul>
+<li class="toc-level-3"><a href="#31-terminal-and-screen-display-outputs">3.1 Terminal and Screen Display Outputs</a></li>
+<li class="toc-level-3"><a href="#32-inter-program-communication-and-service-interface-outputs">3.2 Inter-Program Communication and Service Interface Outputs</a></li>
+<li class="toc-level-3"><a href="#33-transactional-and-execution-side-effects">3.3 Transactional and Execution Side Effects</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a></li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a></li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a>
+<ul>
+<li class="toc-level-3"><a href="#71-input-data-validation-constraints">7.1 Input Data Validation Constraints</a></li>
+<li class="toc-level-3"><a href="#72-processing-flow-and-operational-constraints">7.2 Processing Flow and Operational Constraints</a></li>
+<li class="toc-level-3"><a href="#73-transactional-and-error-handling-constraints">7.3 Transactional and Error Handling Constraints</a></li>
+<li class="toc-level-3"><a href="#74-sequencing-and-timing-constraints">7.4 Sequencing and Timing Constraints</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-inquire-endowment-policy-details-option-1">9.1 Example 1: Inquire Endowment Policy Details (Option ‘1’)</a>
+<ul>
+<li class="toc-level-4"><a href="#911-sample-input-data">9.1.1 Sample Input Data</a></li>
+<li class="toc-level-4"><a href="#912-expected-output">9.1.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#913-logic-flow">9.1.3 Logic Flow</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#92-example-2-add-a-new-endowment-policy-option-2">9.2 Example 2: Add a New Endowment Policy (Option ‘2’)</a>
+<ul>
+<li class="toc-level-4"><a href="#921-sample-input-data">9.2.1 Sample Input Data</a></li>
+<li class="toc-level-4"><a href="#922-expected-output">9.2.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#923-logic-flow">9.2.3 Logic Flow</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#93-example-3-invalid-menu-option-selection">9.3 Example 3: Invalid Menu Option Selection</a>
+<ul>
+<li class="toc-level-4"><a href="#931-sample-input-data">9.3.1 Sample Input Data</a></li>
+<li class="toc-level-4"><a href="#932-expected-output">9.3.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#933-logic-flow">9.3.3 Logic Flow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGTESTP2</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

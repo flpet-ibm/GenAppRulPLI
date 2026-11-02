@@ -1,0 +1,1007 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGWEBST5</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link active">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>I have read and analyzed the program. I will write the final summary of the overall purpose in a single paragraph, ensuring I do not add a section heading, self-commentary, or introductory remarks, and starting directly with the description itself.</p>
+<p>The program LGWEBST5 is a CICS-based statistics collector for the GenApp application designed to periodically query and aggregate performance metrics. It retrieves business transaction counters (covering customer, motor, endowment, house, and commercial policy operations) and their associated error counts from the named counter pool, categorizing them by operation types such as inquiries, additions, updates, and deletions. For each metric, the program maintains a historical comparison by calculating the rate of change (delta) over a elapsed time interval, writing the current, previous, and delta values to dedicated CICS Temporary Storage (TS) queues. Finally, it schedules itself to run recursively every minute under the transaction identifier SSST to continuously monitor the application’s transaction volumes and overall operational health.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<ul>
+<li>
+<p><strong>Program parameters</strong></p>
+<ul>
+<li>The program takes no explicit parameters. It is the main procedure (<code>Options(Main)</code>) and starts as a CICS transaction, with no linkage or COMMAREA data of its own.</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS task context (EIB fields)</strong></p>
+<ul>
+<li><code>EIBTRNID</code>: the transaction ID of the running task. It is copied into <code>WS_TRANSID</code>.</li>
+<li><code>EIBTRMID</code>: the terminal ID. It is copied into <code>WS_TERMID</code>.</li>
+<li><code>EIBTASKN</code>: the task number. It is copied into <code>WS_TASKNUM</code>.</li>
+<li><code>EIBCALEN</code>: the length of the communication area passed in. It is copied into <code>WS_CALEN</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>System time</strong></p>
+<ul>
+<li>The CICS clock, read with <code>ASKTIME</code> and <code>FORMATTIME</code>, supplies the current absolute time (<code>WS_ABSTIME</code>). The program formats it into the time (<code>WS_TIME</code>) and date (<code>WS_DATE</code>) fields.</li>
+<li>The <code>HHMMSS</code> part of <code>WS_TIME</code> is used to work out the elapsed seconds since the previous run (<code>ICOUNTVAL</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS named counter pool (GENA)</strong></p>
+<ul>
+<li>Each counter is read with <code>EXEC CICS QUERY COUNTER</code> from pool <code>GENAPOOL</code>. The value comes back in <code>COUNTVAL</code>.</li>
+<li><code>GENACOUNT</code> (<code>GENACUSTNUM</code>) is the customer number counter. It feeds the <code>GENAX05V</code> rate queue.</li>
+<li><code>CT_SUCCESS</code> holds 17 success counters, named <code>GENA01&lt;op&gt;&lt;entity&gt;00</code>. They cover customer, motor, endowment, house and commercial transactions.
+<ul>
+<li>Their values are summed into <code>COUNTSUCCESS</code>.</li>
+<li>Each value is also classified by <code>CT_OPS</code> into <code>COUNTINQ</code>, <code>COUNTADD</code>, <code>COUNTUPD</code> or <code>COUNTDEL</code>.</li>
+</ul>
+</li>
+<li><code>CT_ERROR</code> holds 17 error counters, named <code>GENA01&lt;op&gt;&lt;entity&gt;99</code>. Their values are summed into <code>COUNTERRORS</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Temporary storage queues (previous-run state)</strong></p>
+<ul>
+<li>These queues are read to get values saved by the previous run.</li>
+<li>Queue <code>GENA000V</code> is read at item 1. It holds the previous run time as <code>HHMMSS</code> (<code>WS_OLDV</code>).
+<ul>
+<li>If the read fails, as on the first run, the program defaults it to <code>120000</code>.</li>
+<li>It is used to compute the interval <code>ICOUNTVAL</code>.</li>
+</ul>
+</li>
+<li>The rate queues are <code>GENA&lt;code&gt;V</code>, with codes <code>100</code>–<code>H00</code> from <code>CT_CODE</code>, plus <code>GENAX00V</code>–<code>GENAX05V</code>.
+<ul>
+<li>Item 1 of each queue is read into <code>WS_TSQDATA</code> and then <code>ORATEVAL</code>, the previous counter value used for the delta (<code>DRATEVAL</code>).</li>
+<li>If the read fails, <code>ORATEVAL</code> is set to 0.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Static configuration and constants</strong></p>
+<ul>
+<li><code>TSQPRE</code> (<code>GENA</code>) is the TS queue name prefix.</li>
+<li><code>GENAPOOL</code> (<code>GENA</code>) is the named counter pool name.</li>
+<li><code>CT_CODE</code> holds the rate queue code for each success counter.</li>
+<li>The transaction ID <code>SSST</code> is used when the program restarts itself after 1 minute.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<p><strong>CICS Temporary Storage (TS) Queue Writes — Rate/Interval Queues</strong></p>
+<ul>
+<li><strong>TS Queue <code>GENA000V</code></strong> (written in <code>TRAN_RATE_INTERVAL</code>)
+<ul>
+<li>First write: current HHMMSS time-of-day string (6 bytes) — records when this execution ran</li>
+<li>Second write: elapsed seconds since the previous run (<code>WS_NEWV</code> / <code>ICOUNTVAL</code>, 6 bytes) — the computed interval delta used by downstream readers</li>
+</ul>
+</li>
+<li><strong>TS Queue <code>GENAX05V</code></strong> (written via <code>TRAN_RATE_COUNTS</code> for customer-number counter <code>GENACUSTNUM</code>)
+<ul>
+<li>Item 1: <code>NRATEVAL</code> — current cumulative value of the customer-number counter</li>
+<li>Item 2: <code>ORATEVAL</code> — previous cumulative value read from the queue before overwrite</li>
+<li>Item 3: <code>DRATEVAL</code> — absolute difference (delta) between current and previous values</li>
+</ul>
+</li>
+<li><strong>TS Queues <code>GENA100V</code> through <code>GENAH00V</code></strong> (one per success counter entry in <code>CT_SUCCESS</code>, written via <code>TRAN_RATE_COUNTS</code> for each of the 17 business-operation success counters)
+<ul>
+<li>Item 1: <code>NRATEVAL</code> — current cumulative value of the named success counter</li>
+<li>Item 2: <code>ORATEVAL</code> — previous cumulative value</li>
+<li>Item 3: <code>DRATEVAL</code> — absolute delta between current and previous</li>
+</ul>
+</li>
+<li><strong>TS Queue <code>GENAX00V</code></strong> (total successes)
+<ul>
+<li>Items 1–3: current (<code>COUNTSUCCESS</code>), previous, and delta for the aggregate success total</li>
+</ul>
+</li>
+<li><strong>TS Queue <code>GENAX01V</code></strong> (total inquiries)
+<ul>
+<li>Items 1–3: current (<code>COUNTINQ</code>), previous, and delta for aggregate inquiry count</li>
+</ul>
+</li>
+<li><strong>TS Queue <code>GENAX02V</code></strong> (total adds)
+<ul>
+<li>Items 1–3: current (<code>COUNTADD</code>), previous, and delta for aggregate add count</li>
+</ul>
+</li>
+<li><strong>TS Queue <code>GENAX03V</code></strong> (total updates)
+<ul>
+<li>Items 1–3: current (<code>COUNTUPD</code>), previous, and delta for aggregate update count</li>
+</ul>
+</li>
+<li><strong>TS Queue <code>GENAX04V</code></strong> (total deletes)
+<ul>
+<li>Items 1–3: current (<code>COUNTDEL</code>), previous, and delta for aggregate delete count</li>
+</ul>
+</li>
+</ul>
+<p><strong>CICS Transaction Scheduling</strong></p>
+<ul>
+<li><strong><code>EXEC CICS START TRANSID('SSST') AFTER MINUTES(1)</code></strong> — schedules the <code>SSST</code> transaction (this program’s own transaction) to restart itself one minute after the current run, implementing a continuous polling loop</li>
+</ul>
+<p><strong>CICS Named Counter Reads (inputs driving the outputs above)</strong></p>
+<ul>
+<li><strong><code>COUNTVAL</code></strong> — receives the raw counter value from each <code>EXEC CICS QUERY COUNTER</code> call; its value feeds directly into <code>NRATEVAL</code>, <code>COUNTSUCCESS</code>, <code>COUNTERRORS</code>, <code>COUNTINQ</code>, <code>COUNTADD</code>, <code>COUNTUPD</code>, and <code>COUNTDEL</code>, all of which are subsequently written to TS queues
+<ul>
+<li>Counter <code>GENACUSTNUM</code> (pool <code>GENA</code>) — customer-number generation counter, written to <code>GENAX05V</code></li>
+<li>Counters <code>CT_SUCCESS(1..17)</code> — per-operation success counters, written to queues <code>GENA100V</code>–<code>GENAH00V</code> and rolled into <code>COUNTSUCCESS</code> / operation subtotals</li>
+<li>Counters <code>CT_ERROR(1..17)</code> — per-operation error counters, accumulated into <code>COUNTERRORS</code> (used only in the accumulator; <code>COUNTERRORS</code> itself is not written to any TS queue in this program)</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    classDef startEnd fill:#b5ead7,stroke:#4caf8a,color:#000
+    classDef process fill:#c7e0f4,stroke:#5b9bd5,color:#000
+    classDef decision fill:#ffe8a1,stroke:#f0b429,color:#000
+    classDef subprocess fill:#e2d9f3,stroke:#9b7ec8,color:#000
+    classDef iobox fill:#ffd6cc,stroke:#e07060,color:#000
+
+    A([Start LGWEBST5]):::startEnd
+    B[Capture EIB fields<br>TRANSID TERMID TASKNUM CALEN]:::process
+    C[ASKTIME and FORMATTIME<br>get current date and time]:::process
+    D[Call TRAN_RATE_INTERVAL]:::subprocess
+    E[Initialise accumulators<br>SUCCESS ERRORS INQ ADD UPD DEL to 0]:::process
+    F[QUERY COUNTER GENACUSTNUM<br>get customer number counter]:::iobox
+    G[Write GENAX05V rate queue<br>Call TRAN_RATE_COUNTS]:::subprocess
+    H[Loop I equals 1 to 17<br>for each business counter]:::process
+    I[QUERY COUNTER CT_SUCCESS at I<br>get success count]:::iobox
+    J[Add COUNTVAL to COUNTSUCCESS]:::process
+    K{{Operation type<br>I A U or D}}:::decision
+    L[Add to COUNTINQ]:::process
+    M[Add to COUNTADD]:::process
+    N[Add to COUNTUPD]:::process
+    O[Add to COUNTDEL]:::process
+    P[Write GENA plus code plus V rate queue<br>Call TRAN_RATE_COUNTS]:::subprocess
+    Q[QUERY COUNTER CT_ERROR at I<br>get error count]:::iobox
+    R[Add COUNTVAL to COUNTERRORS]:::process
+    S{{More counters<br>I less than 17}}:::decision
+    T[Write total queues<br>X00V X01V X02V X03V X04V<br>via TRAN_RATE_COUNTS]:::subprocess
+    U[EXEC CICS RETURN]:::startEnd
+
+    TRI_A([Enter TRAN_RATE_INTERVAL]):::startEnd
+    TRI_B[READQ TS GENA000V item 1]:::iobox
+    TRI_C{{Read OK}}:::decision
+    TRI_D[Use old time from queue]:::process
+    TRI_E[Default old time to 120000]:::process
+    TRI_F[DELETEQ TS GENA000V]:::iobox
+    TRI_G[WRITEQ TS GENA000V with current HHMMSS]:::iobox
+    TRI_H[Convert current and old HHMMSS to seconds]:::process
+    TRI_I[ICOUNTVAL equals ABS new minus old seconds]:::process
+    TRI_J[WRITEQ TS GENA000V with interval seconds]:::iobox
+    TRI_K[START TRANSID SSST AFTER 1 MINUTE]:::iobox
+    TRI_L([Return from TRAN_RATE_INTERVAL]):::startEnd
+
+    TRC_A([Enter TRAN_RATE_COUNTS]):::startEnd
+    TRC_B[READQ TS WS_TSQNAME item 1]:::iobox
+    TRC_C{{Read OK}}:::decision
+    TRC_D[ORATEVAL equals previous value from queue]:::process
+    TRC_E[ORATEVAL equals 0]:::process
+    TRC_F[DELETEQ TS WS_TSQNAME]:::iobox
+    TRC_G[WRITEQ TS item 1 equals NRATEVAL new value]:::iobox
+    TRC_H[WRITEQ TS item 2 equals ORATEVAL old value]:::iobox
+    TRC_I[DRATEVAL equals ABS NRATEVAL minus ORATEVAL]:::process
+    TRC_J[WRITEQ TS item 3 equals DRATEVAL delta]:::iobox
+    TRC_K([Return from TRAN_RATE_COUNTS]):::startEnd
+
+    A --> B --> C --> D --> E --> F --> G --> H
+    H --> I --> J --> K
+    K -- "I Inquire" --> L --> P
+    K -- "A Add" --> M --> P
+    K -- "U Update" --> N --> P
+    K -- "D Delete" --> O --> P
+    P --> Q --> R --> S
+    S -- "Yes" --> H
+    S -- "No" --> T --> U
+
+    TRI_A --> TRI_B --> TRI_C
+    TRI_C -- "Yes" --> TRI_D --> TRI_F
+    TRI_C -- "No" --> TRI_E --> TRI_F
+    TRI_F --> TRI_G --> TRI_H --> TRI_I --> TRI_J --> TRI_K --> TRI_L
+
+    TRC_A --> TRC_B --> TRC_C
+    TRC_C -- "Yes" --> TRC_D --> TRC_F
+    TRC_C -- "No" --> TRC_E --> TRC_F
+    TRC_F --> TRC_G --> TRC_H --> TRC_I --> TRC_J --> TRC_K
+</div>
+<hr>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<h4 id="421-high-level-summary" tabindex="-1">4.2.1 High-level Summary</h4>
+<p><code>LGWEBST5</code> is a GenApp CICS statistics-collection program that runs as the <strong>SSST</strong> transaction. Each time it executes it reads every named counter in the GENA counter pool, aggregates the values by category, stores the current/previous/delta triplets in CICS temporary-storage (TS) queues, and then schedules itself to run again after one minute—creating a self-perpetuating monitoring loop.</p>
+<hr>
+<h4 id="422-execution-flow" tabindex="-1">4.2.2 Execution Flow</h4>
+<p><strong>Step 1 — Housekeeping initialisation</strong><br>
+The program captures CICS EIB fields (transaction ID, terminal ID, task number, COMMAREA length) into <code>WS_HEADER</code> for dump identification, then calls <code>EXEC CICS ASKTIME</code>/<code>FORMATTIME</code> to obtain the current absolute time, formatted date, and wall-clock time (<code>WS_TIME</code>, <code>WS_DATE</code>).</p>
+<p><strong>Step 2 — Interval calculation (<code>TRAN_RATE_INTERVAL</code> procedure)</strong><br>
+This internal procedure performs three jobs:</p>
+<ol>
+<li><strong>Read the previous wall-clock time</strong> from TS queue <code>GENA000V</code> (item 1, 6 bytes). If the queue does not exist (first run), a default of <code>'120000'</code> (midnight + 20 s) is used so that <code>ICOUNTVAL</code> is not zero.</li>
+<li><strong>Replace the queue</strong> by deleting <code>GENA000V</code> then writing the <em>current</em> HHMMSS back as item 1, so the next run has a valid “old” time.</li>
+<li><strong>Compute the elapsed interval</strong> in seconds: both the current and previous HHMMSS strings are decomposed into hours, minutes, and seconds and converted to total seconds; <code>ICOUNTVAL = ABS(new − old)</code>. The delta in seconds is then written as a second record into <code>GENA000V</code>.</li>
+<li><strong>Schedule the next run</strong>: <code>EXEC CICS START TRANSID('SSST') AFTER MINUTES(1)</code> ensures the monitoring loop continues autonomously.</li>
+</ol>
+<p><strong>Step 3 — Customer-number counter</strong><br>
+The CICS named counter <code>GENACUSTNUM</code> (pool <code>GENA</code>) is queried. Its value drives a call to <code>TRAN_RATE_COUNTS</code> using TS queue <code>GENAX05V</code>, capturing its rate triplet.</p>
+<p><strong>Step 4 — Transaction counter loop (17 iterations)</strong><br>
+For each of the 17 business-operation counters (indices 1–17):</p>
+<ul>
+<li><strong>Success counter</strong> (<code>CT_SUCCESS(I)</code>) is queried. The value is added to <code>COUNTSUCCESS</code>, and also added to one of <code>COUNTINQ</code>, <code>COUNTADD</code>, <code>COUNTUPD</code>, or <code>COUNTDEL</code> depending on the operation code character in <code>CT_OPS</code> at position <code>I</code> (<code>I</code>=Inquire, <code>A</code>=Add, <code>U</code>=Update, <code>D</code>=Delete).</li>
+<li><strong>Rate queue</strong> <code>GENA</code> + <code>CT_CODE(I)</code> + <code>V</code> (e.g. <code>GENA100V</code>, <code>GENA200V</code> … <code>GENAHV</code>) is updated by calling <code>TRAN_RATE_COUNTS</code>.</li>
+<li><strong>Error counter</strong> (<code>CT_ERROR(I)</code>) is queried and its value accumulated into <code>COUNTERRORS</code>.</li>
+</ul>
+<p>The 17 counters cover: Customer inquire/add; Motor inquire/add/delete/update; Endowment inquire/add/delete/update; House inquire/add/delete/update; Commercial inquire/add/delete.</p>
+<p><strong>Step 5 — Grand-total TS queues</strong><br>
+Five aggregate totals are written to dedicated TS queues via <code>TRAN_RATE_COUNTS</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Queue</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GENAX00V</code></td>
+<td>Total successful transactions</td>
+</tr>
+<tr>
+<td><code>GENAX01V</code></td>
+<td>Total inquiries</td>
+</tr>
+<tr>
+<td><code>GENAX02V</code></td>
+<td>Total adds</td>
+</tr>
+<tr>
+<td><code>GENAX03V</code></td>
+<td>Total updates</td>
+</tr>
+<tr>
+<td><code>GENAX04V</code></td>
+<td>Total deletes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 6 — Return</strong><br>
+<code>EXEC CICS RETURN</code> ends the task. The next execution is already queued (Step 2, point 4).</p>
+<hr>
+<h4 id="423-tran_rate_counts-procedure--counter-rate-recording" tabindex="-1">4.2.3 <code>TRAN_RATE_COUNTS</code> Procedure — Counter Rate Recording</h4>
+<p>This reusable procedure is called once per counter and manages the three-slot TS queue (<code>WS_TSQNAME</code>) that holds the historical triplet:</p>
+<ol>
+<li><strong>Read item 1</strong> (9 bytes) from the named queue. If successful, its value becomes <code>ORATEVAL</code> (old value); otherwise <code>ORATEVAL</code> defaults to <code>0</code> (first-run guard).</li>
+<li><strong>Delete</strong> the entire queue to clear all existing items.</li>
+<li><strong>Write item 1</strong> = <code>NRATEVAL</code> (current counter value).</li>
+<li><strong>Write item 2</strong> = <code>ORATEVAL</code> (previous counter value).</li>
+<li><strong>Compute <code>DRATEVAL</code></strong> = <code>ABS(NRATEVAL − ORATEVAL)</code> (the per-cycle increment/delta).</li>
+<li><strong>Write item 3</strong> = <code>DRATEVAL</code>.</li>
+</ol>
+<p>Any downstream display program (e.g. a BMS statistics screen) reads these three items to show current count, previous count, and throughput delta.</p>
+<hr>
+<h4 id="424-external-interactions" tabindex="-1">4.2.4 External Interactions</h4>
+<table>
+<thead>
+<tr>
+<th>Interaction</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CICS Named Counters</strong></td>
+<td><code>QUERY COUNTER … POOL(GENA)</code> is used to non-destructively read 35 counters (1 customer-number + 17 success + 17 error). No counters are modified.</td>
+</tr>
+<tr>
+<td><strong>CICS Temporary Storage</strong></td>
+<td>18 TS queues are managed (<code>GENA000V</code>, <code>GENAX00V</code>–<code>GENAX05V</code>, and <code>GENA100V</code>–<code>GENAHV</code>). Each stores a 9-byte current/old/delta triplet except <code>GENA000V</code>, which stores a 6-byte HHMMSS string plus a 6-byte interval-seconds value.</td>
+</tr>
+<tr>
+<td><strong>CICS START</strong></td>
+<td><code>START TRANSID('SSST') AFTER MINUTES(1)</code> schedules the transaction’s next invocation, implementing the self-scheduling loop.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="425-plain-language-summary" tabindex="-1">4.2.5 Plain Language Summary</h4>
+<p><code>LGWEBST5</code> acts as an automated CICS “health dashboard collector”. Every minute it wakes up, reads activity counters that track how many insurance transactions (inquiries, additions, updates, deletions) have been processed since the application started, and saves a snapshot of each counter along with the previous snapshot and the difference between them. This lets a display screen show not just total counts but also live throughput (transactions per minute). After saving all statistics, the program schedules itself to run again one minute later, so the dashboard is always up to date without any manual intervention.</p>
+<hr>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<p>No Db2 SQL statements are present in <code>LGWEBST5</code>. All persistence is through CICS Temporary Storage queues and CICS Named Counters; there are no database tables to diagram.</p>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>Main Procedure (LGWEBST5)</strong></p>
+<ul>
+<li>Serves as the program entry point and top-level orchestrator for the GenApp statistics collection cycle.</li>
+<li>Initialises the diagnostic header (<code>WS_HEADER</code>) with the eyecatcher <code>'LGWEBST5------WS'</code>, then captures the current CICS context fields: transaction ID (<code>EIBTRNID</code>), terminal ID (<code>EIBTRMID</code>), task number (<code>EIBTASKN</code>), and COMMAREA length (<code>EIBCALEN</code>).</li>
+<li>Issues <code>EXEC CICS ASKTIME</code> to obtain the absolute clock value and <code>EXEC CICS FORMATTIME</code> to format it into date (<code>WS_DATE</code>) and time (<code>WS_TIME</code>) fields.</li>
+<li>Calls the internal procedure <code>TRAN_RATE_INTERVAL</code> to compute the elapsed seconds since the last execution and schedule the next run.</li>
+<li>Zeroes all six accumulator variables (<code>COUNTSUCCESS</code>, <code>COUNTERRORS</code>, <code>COUNTINQ</code>, <code>COUNTADD</code>, <code>COUNTUPD</code>, <code>COUNTDEL</code>).</li>
+<li>Queries the customer-number named counter <code>GENACUSTNUM</code> from pool <code>GENA</code>, sets the TS queue name to <code>GENAX05V</code>, and calls <code>TRAN_RATE_COUNTS</code> to persist new/old/delta values.</li>
+<li>Iterates (<code>DO I = 1 TO 17</code>) over the 17 success/error counter pairs defined in <code>CT_SUCCESS</code> and <code>CT_ERROR</code>:
+<ul>
+<li>Queries each success counter and accumulates the value into <code>COUNTSUCCESS</code>.</li>
+<li>Uses a <code>SELECT</code> on the operation character in <code>CT_OPS</code> to route the count into the appropriate sub-accumulator (<code>COUNTINQ</code>, <code>COUNTADD</code>, <code>COUNTUPD</code>, or <code>COUNTDEL</code>).</li>
+<li>Constructs the TS queue name from <code>CT_CODE(I)</code> and calls <code>TRAN_RATE_COUNTS</code> to record the per-counter rate data.</li>
+<li>Queries the corresponding error counter and accumulates into <code>COUNTERRORS</code>.</li>
+</ul>
+</li>
+<li>After the loop, writes five aggregate totals (total successes, inquiries, adds, updates, deletes) to TS queues <code>GENAX00V</code>–<code>GENAX04V</code> by calling <code>TRAN_RATE_COUNTS</code> for each.</li>
+<li>Terminates with <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>TRAN_RATE_INTERVAL</strong></p>
+<ul>
+<li>Computes the elapsed seconds since the previous execution and schedules the next invocation of the statistics-collection transaction.</li>
+<li>Reads TS queue <code>GENA000V</code> item 1 into <code>WS_OLDV</code> (the HHMMSS string written on the prior run). If the read fails (first run or queue absent), defaults <code>WS_OLDV</code> to <code>'120000'</code> (midnight baseline).</li>
+<li>Deletes the existing <code>GENA000V</code> queue entry, then writes the current time string (<code>WS_HHMMSS</code>, extracted from the first six characters of <code>WS_TIME</code>) as the new item 1.</li>
+<li>Converts both the current and previous HHMMSS strings to total-seconds integers (<code>NCOUNTVAL</code> and <code>OCOUNTVAL</code>) by splitting hours, minutes, and seconds and computing <code>HH×3600 + MM×60 + SS</code>.</li>
+<li>Computes the absolute difference (<code>ICOUNTVAL = ABS(NCOUNTVAL - OCOUNTVAL)</code>) to obtain the interval length in seconds, stores it in <code>WS_NEWV</code>, and writes it as a second entry to <code>GENA000V</code>.</li>
+<li>Issues <code>EXEC CICS START TRANSID('SSST') AFTER MINUTES(1)</code> to reschedule the statistics collector to run again one minute later.</li>
+</ul>
+</li>
+<li>
+<p><strong>TRAN_RATE_COUNTS</strong></p>
+<ul>
+<li>Maintains a three-item TS queue for each monitored counter, holding the current value, the previous value, and their absolute difference (the transaction rate delta).</li>
+<li>Reads item 1 from the queue named by <code>WS_TSQNAME</code> into <code>WS_TSQDATA</code>. If the read succeeds, the 9-character value is assigned to <code>ORATEVAL</code> (previous count); if the queue does not yet exist, <code>ORATEVAL</code> is set to zero — ensuring a clean first-run baseline rather than inheriting stale working storage.</li>
+<li>Deletes the existing queue to clear all prior items.</li>
+<li>Writes <code>NRATEVAL</code> (the newly queried counter value) as item 1, <code>ORATEVAL</code> as item 2, and the computed delta <code>DRATEVAL = ABS(NRATEVAL - ORATEVAL)</code> as item 3 — each as a 9-byte fixed-format numeric string.</li>
+<li>Contains no looping or branching beyond the single conditional check on <code>DFHRESP(NORMAL)</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<h3 id="61-cics-runtime-services" tabindex="-1">6.1 CICS Runtime Services</h3>
+<ul>
+<li><strong>EXEC CICS ASKTIME / FORMATTIME</strong> — retrieves the current absolute time and formats it into date (<code>WS_DATE</code>) and time (<code>WS_TIME</code>) fields used to compute the interval since the last run</li>
+<li><strong>EXEC CICS QUERY COUNTER</strong> — queries named counters in the <code>GENA</code> counter pool to obtain current transaction counts; invoked for:
+<ul>
+<li><code>GENACUSTNUM</code> (customer number generation counter, pool <code>GENA</code>)</li>
+<li>17 success counters (<code>GENA01ICUS00</code> … <code>GENA01DCOM00</code>) in pool <code>GENA</code></li>
+<li>17 error counters (<code>GENA01ICUS99</code> … <code>GENA01DCOM99</code>) in pool <code>GENA</code></li>
+</ul>
+</li>
+<li><strong>EXEC CICS START TRANSID(‘SSST’)</strong> — re-schedules itself to run again after one minute, making the program a self-restarting statistics collector; the transaction identifier <code>SSST</code> must be defined in the CICS CSD</li>
+<li><strong>EXEC CICS RETURN</strong> — terminates the current CICS task cleanly after all counters have been sampled and all TS queues updated</li>
+</ul>
+<h3 id="62-cics-named-counter-pool" tabindex="-1">6.2 CICS Named Counter Pool</h3>
+<ul>
+<li><strong>Counter pool <code>GENA</code></strong> — the named counter pool that owns all counters queried by this program; must be defined and active in the CICS region before the program can run</li>
+<li><strong>Named counters</strong> (all in pool <code>GENA</code>):
+<ul>
+<li><code>GENACUSTNUM</code> — tracks the number of customer records generated</li>
+<li><code>GENA01IxxxNN</code> / <code>GENA01AxxxNN</code> / <code>GENA01DxxxNN</code> / <code>GENA01UxxxNN</code> series (success <code>..00</code> and error <code>..99</code> suffixes) covering customer, motor, endowment, house, and commercial policy operations</li>
+</ul>
+</li>
+</ul>
+<h3 id="63-cics-temporary-storage-queues" tabindex="-1">6.3 CICS Temporary Storage Queues</h3>
+<ul>
+<li><strong><code>GENA000V</code></strong> — interval timing queue; stores the previous run’s HHMMSS value (item 1) and the computed elapsed-seconds delta (item 2); read, deleted, and rewritten on every execution</li>
+<li><strong><code>GENAX05V</code></strong> — rate queue for the customer-number counter (<code>GENACUSTNUM</code>); holds three 9-byte items: new value, old value, and delta</li>
+<li><strong><code>GENA&lt;code&gt;V</code> (17 queues, codes <code>100</code>–<code>H00</code>)</strong> — one rate queue per success counter (e.g., <code>GENA100V</code>, <code>GENA200V</code>, … <code>GENAH00V</code>); each queue stores new, old, and delta values for the corresponding transaction counter</li>
+<li><strong><code>GENAX00V</code> – <code>GENAX04V</code></strong> — rate queues for the five aggregate totals: total success, inquiries, adds, updates, and deletes respectively</li>
+</ul>
+<h3 id="64-cics-eib-fields-execution-interface-block" tabindex="-1">6.4 CICS EIB Fields (Execution Interface Block)</h3>
+<ul>
+<li><strong><code>EIBTRNID</code></strong> — current transaction identifier; copied into <code>WS_TRANSID</code> for diagnostics</li>
+<li><strong><code>EIBTRMID</code></strong> — current terminal identifier; copied into <code>WS_TERMID</code> for diagnostics</li>
+<li><strong><code>EIBTASKN</code></strong> — current task number; copied into <code>WS_TASKNUM</code> for diagnostics</li>
+<li><strong><code>EIBCALEN</code></strong> — COMMAREA length; copied into <code>WS_CALEN</code> for diagnostics</li>
+<li><strong><code>DFHRESP(NORMAL)</code></strong> — CICS condition constant used to test whether each TS queue read succeeded or failed (determines whether a previous counter value exists)</li>
+</ul>
+<h3 id="65-cics-transaction-definition" tabindex="-1">6.5 CICS Transaction Definition</h3>
+<ul>
+<li><strong>Transaction <code>SSST</code></strong> — the CICS transaction ID that maps to this program (<code>LGWEBST5</code>); must be defined in the CICS CSD so that the <code>EXEC CICS START TRANSID('SSST')</code> self-restart mechanism functions correctly</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<h3 id="71-data-format-and-size-constraints" tabindex="-1">7.1 Data Format and Size Constraints</h3>
+<ul>
+<li><strong>Counter value numeric range</strong> — <code>COUNTVAL</code>, <code>COUNTSUCCESS</code>, <code>COUNTERRORS</code>, <code>COUNTINQ</code>, <code>COUNTADD</code>, <code>COUNTUPD</code>, and <code>COUNTDEL</code> are all declared <code>FIXED BIN(31)</code>, limiting each to a signed 32-bit integer (maximum ~2.1 billion). Any CICS named counter whose lifetime total exceeds this boundary would cause arithmetic overflow during accumulation.</li>
+<li><strong>Rate value display width</strong> — <code>NRATEVAL</code>, <code>ORATEVAL</code>, and <code>DRATEVAL</code> are declared <code>PIC '999999999'</code> (9 digits, maximum value 999,999,999). Assigning a counter value larger than 999,999,999 to any of these picture variables causes a loss of the high-order digits, silently truncating the stored or displayed rate.</li>
+<li><strong>Interval elapsed-seconds field</strong> — <code>ICOUNTVAL</code> is declared <code>PIC '999999'</code> (6 digits, maximum 999,999 seconds). In practice the computed interval is always less than 86,400 seconds (one day), so this limit is never reached under normal operations.</li>
+<li><strong>TS queue data record length</strong> — Rate queue records are written and read with a hard-coded length of exactly 9 bytes (matching <code>WS_TSQDATA CHAR(9)</code>). The interval queue uses a hard-coded length of 6 bytes (matching <code>WS_OLDV</code>/<code>WS_NEWV CHAR(6)</code>). Any read that returns a record shorter than the declared length will leave the remainder of the target field undefined; no length reconciliation logic exists.</li>
+<li><strong>TS queue name construction</strong> — <code>WS_TSQNAME</code> is <code>CHAR(8)</code>, assembled as the 4-byte prefix <code>'GENA'</code> concatenated with a 3- or 4-character suffix (e.g., <code>CT_CODE(I)</code> is 3 chars, plus <code>'V'</code> gives 4; <code>'X05V'</code>, <code>'X00V'</code>–<code>'X04V'</code> are each 4 chars). The total is always exactly 8 characters; names that differ in construction would silently pick up or overwrite the wrong queue.</li>
+<li><strong>Time string extraction</strong> — <code>WS_HHMMSS</code> is populated from <code>SUBSTR(WS_TIME,1,6)</code>, extracting the first 6 of the 8-character <code>WS_TIME</code> field returned by <code>FORMATTIME</code>. Hours, minutes, and seconds are then each extracted as 2-character substrings at fixed offsets (1, 3, 5). The program assumes <code>FORMATTIME TIME(...)</code> always returns <code>HHMMSSTH</code> format; any deviation would silently corrupt the interval calculation.</li>
+</ul>
+<h3 id="72-counter-table-dimension-constraints" tabindex="-1">7.2 Counter Table Dimension Constraints</h3>
+<ul>
+<li><strong>Fixed counter table size of 17</strong> — <code>CT_SUCCESS</code>, <code>CT_ERROR</code>, <code>CT_CODE</code>, and the string <code>CT_OPS</code> are all statically sized or initialised to exactly 17 entries. The processing loop <code>DO I = 1 TO 17</code> is hard-coded to this bound. Adding or removing a business operation counter requires simultaneous update of all four tables and the loop bound, or array bounds violations and mismatched classifications will occur.</li>
+<li><strong>CT_OPS character-position alignment</strong> — Each position in the 17-character string <code>CT_OPS</code> (<code>'IAIADUIADUIADUIAD'</code>) must correspond positionally to the same index in <code>CT_SUCCESS</code>. <code>SUBSTR(CT_OPS,I,1)</code> is used directly to classify the counter at position <code>I</code> as Inquire (<code>I</code>), Add (<code>A</code>), Update (<code>U</code>), or Delete (<code>D</code>). Any entry in <code>CT_OPS</code> that is not one of those four characters falls through the <code>SELECT</code> without matching any <code>WHEN</code> clause, silently dropping that counter’s value from all operation-type accumulators.</li>
+<li><strong>CT_CODE queue suffix uniqueness</strong> — The 3-character codes in <code>CT_CODE</code> (<code>'100'</code>–<code>'H00'</code>) must be unique across all 17 entries. Duplicate codes would cause <code>TRAN_RATE_COUNTS</code> to read the previous run’s new-value record as the old-value for a different counter, silently corrupting the delta calculation.</li>
+</ul>
+<h3 id="73-sequencing-and-operational-order-constraints" tabindex="-1">7.3 Sequencing and Operational Order Constraints</h3>
+<ul>
+<li><strong><code>TRAN_RATE_INTERVAL</code> must execute before counter queries</strong> — The call to <code>TRAN_RATE_INTERVAL</code> on line 94 is the first substantive action after header initialisation. It captures the current time, computes the elapsed interval, writes the interval queue, and schedules the next run via <code>EXEC CICS START TRANSID('SSST') AFTER MINUTES(1)</code>. This must precede all counter queries because the interval value is consumed by downstream display; it also ensures that the 1-minute restart timer is always set regardless of how many counters are queried.</li>
+<li><strong>Accumulator zeroing before the loop</strong> — <code>COUNTSUCCESS</code>, <code>COUNTERRORS</code>, <code>COUNTINQ</code>, <code>COUNTADD</code>, <code>COUNTUPD</code>, and <code>COUNTDEL</code> are explicitly zeroed (lines 96–101) before the <code>DO I = 1 TO 17</code> loop begins. There is no default initialisation for these variables in their declarations, so skipping this step would leave them holding unpredictable values from prior stack content.</li>
+<li><strong><code>TRAN_RATE_COUNTS</code> write sequence</strong> — Inside <code>TRAN_RATE_COUNTS</code>, records are written to the TS queue in a strict three-item order: new value (item 1), old value (item 2), delta (item 3). The caller <code>DELETEQ</code> first destroys any existing queue, so item numbers are always 1, 2, 3 in sequence. Any consumer of the queue that reads by item number depends on this exact ordering being preserved.</li>
+<li><strong>Delete-before-write pattern</strong> — Both <code>TRAN_RATE_INTERVAL</code> and <code>TRAN_RATE_COUNTS</code> issue <code>EXEC CICS DELETEQ TS</code> before rewriting the queue. This ensures the new write always creates item 1. Omitting the delete would append new items rather than replacing, breaking the fixed item-number protocol relied upon by reads.</li>
+<li><strong><code>EXEC CICS RETURN</code> terminates processing</strong> — The main-line code ends at line 157 with <code>EXEC CICS RETURN</code>. All counter queries, accumulation, and TS queue writes for totals (<code>X00V</code>–<code>X04V</code>) must complete before this point. No error condition causes an early return; the program always runs to completion regardless of individual <code>WS_RESP</code> values from counter queries or queue operations.</li>
+</ul>
+<h3 id="74-cics-named-counter-constraints" tabindex="-1">7.4 CICS Named Counter Constraints</h3>
+<ul>
+<li><strong>Counter pool fixed as <code>'GENA'</code></strong> — <code>GENAPOOL</code> is a <code>STATIC</code> variable initialised to <code>'GENA'</code>. All 35 counter queries (<code>GENACOUNT</code> plus 17 success/17 error) use this single pool. If the pool is not defined in the CICS region, every <code>QUERY COUNTER</code> will return a non-NORMAL <code>WS_RESP</code>; however, the program does not test <code>WS_RESP</code> after counter queries, so <code>COUNTVAL</code> retains its previous value (initially 0) and processing silently continues with stale or zero data.</li>
+<li><strong><code>GENACOUNT</code> counter name is fixed</strong> — The customer-number counter is identified by <code>GENACOUNT CHAR(16) STATIC INIT('GENACUSTNUM')</code>. The trailing 5 characters of the 16-byte field are spaces; the counter name must be registered in the CICS pool with the exact name <code>GENACUSTNUM</code> padded to 16 characters, or the query will fail silently.</li>
+<li><strong>Counter response not validated for transaction counters</strong> — <code>WS_RESP</code> is checked only in <code>TRAN_RATE_INTERVAL</code> (for the interval TS queue read) and in <code>TRAN_RATE_COUNTS</code> (for the rate TS queue read). <code>WS_RESP</code> after each <code>QUERY COUNTER</code> is captured but never tested. A missing counter therefore contributes a value of 0 to all accumulators without generating an error or diagnostic.</li>
+</ul>
+<h3 id="75-interval-calculation-constraints" tabindex="-1">7.5 Interval Calculation Constraints</h3>
+<ul>
+<li><strong>Absolute-value wrapping for midnight crossover</strong> — The elapsed-seconds difference is computed as <code>ABS(NCOUNTVAL - OCOUNTVAL)</code>. Using absolute value means a midnight crossover (where <code>NCOUNTVAL</code> &lt; <code>OCOUNTVAL</code>) produces a large positive number rather than the true elapsed seconds; for example, if the previous run was at 23:59:55 and the current is at 00:00:55, the result is 86,340 seconds rather than 60 seconds.</li>
+<li><strong>Default previous time on first run</strong> — If the interval queue (<code>GENA000V</code>) cannot be read (e.g., first execution), <code>WS_OLDV</code> is set to the literal <code>'120000'</code> (12:00:00 noon). This means the first computed interval will be the absolute difference between noon and the actual first-run time, which may be a large number; no provision exists to suppress or flag this anomalous first-run interval value.</li>
+<li><strong>Restart interval is fixed at 1 minute</strong> — <code>EXEC CICS START TRANSID('SSST') AFTER MINUTES(1)</code> hard-codes the reschedule delay. There is no configurable or computed delay; the interval cannot be changed without modifying the source code.</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<p>The error handling and fault tolerance mechanisms implemented within the program are organized into the following functional categories:</p>
+<h3 id="81-cics-command-exception-suppression-via-resp-option" tabindex="-1">8.1 CICS Command Exception Suppression via RESP Option</h3>
+<ul>
+<li>Direct Response Code Capture
+<ul>
+<li>All executable CICS commands (<code>QUERY COUNTER</code>, <code>READQ TS</code>, <code>DELETEQ TS</code>, <code>WRITEQ TS</code>, and <code>START TRANSID</code>) specify the <code>RESP(WS_RESP)</code> option.</li>
+<li>This prevents CICS default condition handling from automatically raising abends or terminating the task when an error condition occurs during counter queries, TS queue I/O, or asynchronous transaction initiation.</li>
+</ul>
+</li>
+</ul>
+<h3 id="82-file-and-queue-io-error-handling" tabindex="-1">8.2 File and Queue I/O Error Handling</h3>
+<ul>
+<li>Temporary Storage Queue Read Validation
+<ul>
+<li>When retrieving the timestamp from the interval TS queue (<code>GENA000V</code>), the program tests the return code condition against a normal status (<code>DFHRESP(NORMAL)</code>).</li>
+<li>When reading previous counter values in the transaction rate routine, the program performs an explicit check on the response code to distinguish between an existing queue item and a missing or unreadable queue.</li>
+</ul>
+</li>
+<li>Unchecked TS Queue Operations
+<ul>
+<li>For queue deletions (<code>DELETEQ TS</code>) and subsequent writes (<code>WRITEQ TS</code>), the response code is captured in <code>WS_RESP</code> but not explicitly evaluated. If an error occurs during queue deletion (e.g., queue not found on initial run), the failure is silently absorbed and processing continues.</li>
+</ul>
+</li>
+</ul>
+<h3 id="83-recovery-and-fallback-mechanisms" tabindex="-1">8.3 Recovery and Fallback Mechanisms</h3>
+<ul>
+<li>Fallback Timestamp Initialization
+<ul>
+<li>If reading the timestamp TS queue fails (such as on the initial startup execution when the queue has not yet been created), the program triggers a fallback branch that initializes the previous timestamp variable to a default constant value (<code>120000</code>).</li>
+</ul>
+</li>
+<li>Missing Counter Value Fallback
+<ul>
+<li>If a rate queue read fails because the queue does not exist (e.g., initial execution), the program branches to an alternate path that sets the previous rate value (<code>ORATEVAL</code>) to zero rather than leaving the field undefined or failing.</li>
+</ul>
+</li>
+<li>Absolute Value Difference Safety
+<ul>
+<li>In interval time and rate change calculations, the program utilizes the <code>ABS</code> built-in function to calculate non-negative differences between new and old values, preventing negative deltas from corrupting fixed-format numeric display variables.</li>
+</ul>
+</li>
+</ul>
+<h3 id="84-asynchronous-transaction-rescheduling-resilience" tabindex="-1">8.4 Asynchronous Transaction Rescheduling Resilience</h3>
+<ul>
+<li>Non-blocking Transaction Restart
+<ul>
+<li>The <code>START</code> command that schedules the next execution interval under transaction ID <code>SSST</code> captures the execution status in <code>WS_RESP</code> without terminating execution if the start request encounters an issue. This ensures the program completes its current aggregation cycle and terminates normally via <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-first-run-no-earlier-queues" tabindex="-1">9.1 Example 1: First run, no earlier queues</h3>
+<p><strong>Input</strong></p>
+<ul>
+<li>CICS time at the run: <code>10:15:30</code>.</li>
+<li>Queue <code>GENA000V</code> does not exist.</li>
+<li>Named counter <code>GENACUSTNUM</code> = 1500.</li>
+<li>Queue <code>GENAX05V</code> does not exist.</li>
+</ul>
+<p><strong>Output</strong></p>
+<ul>
+<li><code>GENA000V</code> is rewritten with item 1 = <code>101530</code> and item 2 = <code>006270</code>.</li>
+<li><code>GENAX05V</code> is rewritten with three items:
+<ol>
+<li><code>000001500</code></li>
+<li><code>000000000</code></li>
+<li><code>000001500</code></li>
+</ol>
+</li>
+<li>Transaction <code>SSST</code> is scheduled to start again after 1 minute.</li>
+</ul>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The <code>READQ</code> on <code>GENA000V</code> fails, so the previous time defaults to <code>120000</code>. That is 43200 seconds.</li>
+<li>The current time is 36930 seconds, so <code>ICOUNTVAL</code> = |36930 − 43200| = 6270, stored as <code>006270</code>.</li>
+<li>The <code>READQ</code> on <code>GENAX05V</code> also fails, so <code>ORATEVAL</code> = 0.</li>
+<li>The queue is then written as the new value, the old value, and the absolute difference.</li>
+</ul>
+<h3 id="92-example-2-later-run-with-counters-and-totals" tabindex="-1">9.2 Example 2: Later run with counters and totals</h3>
+<p><strong>Input</strong></p>
+<ul>
+<li>Previous <code>GENA000V</code> item 1 = <code>101530</code>.</li>
+<li>Current time: <code>10:16:30</code>.</li>
+<li>Success counters: <code>GENA01ICUS00</code> = 100, <code>GENA01ACUS00</code> = 20, <code>GENA01IMOT00</code> = 50, <code>GENA01AMOT00</code> = 10, <code>GENA01DMOT00</code> = 2, <code>GENA01UMOT00</code> = 5. All other success counters are 0.</li>
+<li>Error counters: <code>GENA01ICUS99</code> = 3, <code>GENA01AMOT99</code> = 1. All other error counters are 0.</li>
+<li>Previous <code>GENAX00V</code> item 1 = <code>000000170</code>.</li>
+</ul>
+<p><strong>Output</strong></p>
+<ul>
+<li><code>GENA000V</code> is rewritten with item 1 = <code>101630</code> and item 2 = <code>000060</code>.</li>
+<li>Accumulated totals: <code>COUNTSUCCESS</code> = 187, <code>COUNTINQ</code> = 150, <code>COUNTADD</code> = 30, <code>COUNTUPD</code> = 5, <code>COUNTDEL</code> = 2, <code>COUNTERRORS</code> = 4.</li>
+<li><code>GENAX00V</code> is rewritten with three items:
+<ol>
+<li><code>000000187</code></li>
+<li><code>000000170</code></li>
+<li><code>000000017</code></li>
+</ol>
+</li>
+<li>Queue <code>GENA100V</code> holds customer-inquiry data: new <code>000000100</code>, then the old value and the difference.</li>
+<li>Queue <code>GENAX01V</code> receives the inquiry total 150, <code>GENAX02V</code> the add total 30, <code>GENAX03V</code> the update total 5 and <code>GENAX04V</code> the delete total 2.</li>
+</ul>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The time difference is 60 seconds, so <code>ICOUNTVAL</code> = 60.</li>
+<li>For each of the 17 counters, the value is added to <code>COUNTSUCCESS</code>. It is also added to the inquiry, add, update or delete total, chosen by the matching letter in <code>CT_OPS</code> (<code>IAIADUIADUIADUIAD</code>).
+<ul>
+<li>Inquiry: 100 + 50 = 150.</li>
+<li>Add: 20 + 10 = 30.</li>
+<li>Update: 5.</li>
+<li>Delete: 2.</li>
+</ul>
+</li>
+<li>The error counters are only summed into <code>COUNTERRORS</code> (3 + 1 = 4). No rate queue is written for them.</li>
+<li>For <code>GENAX00V</code>, the new value is 187 and the old value is 170, so the difference is |187 − 170| = 17.</li>
+<li>The program ends with <code>EXEC CICS RETURN</code>, after scheduling <code>SSST</code> to run again in a minute.</li>
+</ul>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a></li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a></li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a>
+<ul>
+<li class="toc-level-4"><a href="#421-high-level-summary">4.2.1 High-level Summary</a></li>
+<li class="toc-level-4"><a href="#422-execution-flow">4.2.2 Execution Flow</a></li>
+<li class="toc-level-4"><a href="#423-tran_rate_counts-procedure--counter-rate-recording">4.2.3 TRAN_RATE_COUNTS Procedure — Counter Rate Recording</a></li>
+<li class="toc-level-4"><a href="#424-external-interactions">4.2.4 External Interactions</a></li>
+<li class="toc-level-4"><a href="#425-plain-language-summary">4.2.5 Plain Language Summary</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a>
+<ul>
+<li class="toc-level-3"><a href="#61-cics-runtime-services">6.1 CICS Runtime Services</a></li>
+<li class="toc-level-3"><a href="#62-cics-named-counter-pool">6.2 CICS Named Counter Pool</a></li>
+<li class="toc-level-3"><a href="#63-cics-temporary-storage-queues">6.3 CICS Temporary Storage Queues</a></li>
+<li class="toc-level-3"><a href="#64-cics-eib-fields-execution-interface-block">6.4 CICS EIB Fields (Execution Interface Block)</a></li>
+<li class="toc-level-3"><a href="#65-cics-transaction-definition">6.5 CICS Transaction Definition</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a>
+<ul>
+<li class="toc-level-3"><a href="#71-data-format-and-size-constraints">7.1 Data Format and Size Constraints</a></li>
+<li class="toc-level-3"><a href="#72-counter-table-dimension-constraints">7.2 Counter Table Dimension Constraints</a></li>
+<li class="toc-level-3"><a href="#73-sequencing-and-operational-order-constraints">7.3 Sequencing and Operational Order Constraints</a></li>
+<li class="toc-level-3"><a href="#74-cics-named-counter-constraints">7.4 CICS Named Counter Constraints</a></li>
+<li class="toc-level-3"><a href="#75-interval-calculation-constraints">7.5 Interval Calculation Constraints</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a>
+<ul>
+<li class="toc-level-3"><a href="#81-cics-command-exception-suppression-via-resp-option">8.1 CICS Command Exception Suppression via RESP Option</a></li>
+<li class="toc-level-3"><a href="#82-file-and-queue-io-error-handling">8.2 File and Queue I/O Error Handling</a></li>
+<li class="toc-level-3"><a href="#83-recovery-and-fallback-mechanisms">8.3 Recovery and Fallback Mechanisms</a></li>
+<li class="toc-level-3"><a href="#84-asynchronous-transaction-rescheduling-resilience">8.4 Asynchronous Transaction Rescheduling Resilience</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-first-run-no-earlier-queues">9.1 Example 1: First run, no earlier queues</a></li>
+<li class="toc-level-3"><a href="#92-example-2-later-run-with-counters-and-totals">9.2 Example 2: Later run with counters and totals</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGWEBST5</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,2060 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGIPDB01</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link active">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>LGIPDB01 is a CICS inquiry program for an insurance application. It returns the full details of an individual policy or claim from DB2. The caller passes a request code, either in a channel container or in a commarea, along with customer, policy or claim identifiers. The program reads that code and chooses which kind of record to look up. The options are endowment, house, motor and commercial policies, and individual claims. It also supports lookups that return several records: commercial policies by customer or by postal code, and claims by customer. The program reads the matching policy, commercial or claim data from the DB2 tables, using the customer, policy, claim or postcode value as the key. It then returns the data to the caller in the shared communication area. If the request code is not recognised, the program sets the return code to 99 so the caller knows the inquiry was not supported. If no commarea is supplied, it records an error message and abends the transaction.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<ul>
+<li>
+<p><strong>Program invocation parameter</strong></p>
+<ul>
+<li>COMM_AREA_PTR: pointer to the CICS communication area passed to the program. The <code>COMM_AREA</code> structure is based on it. It is the main route for caller input and for returned output.</li>
+<li>EIBCALEN: length of the commarea received.
+<ul>
+<li><code>0</code> means no commarea, and the program abends with ABCODE <code>LGCA</code>.</li>
+<li>A value smaller than the length needed for the result sets the return code to <code>98</code>.</li>
+</ul>
+</li>
+<li>EIBTRNID, EIBTRMID and EIBTASKN: CICS execution interface block values (transaction ID, terminal ID and task number). They are copied into the runtime and debug header and used for diagnostics.</li>
+</ul>
+</li>
+<li>
+<p><strong>Request selection and key inputs (commarea fields)</strong></p>
+<ul>
+<li>CA_REQUEST_ID: six-character request code, converted to upper case.
+<ul>
+<li>It selects the retrieval routine: <code>01IEND</code>, <code>01IHOU</code>, <code>01IMOT</code>, <code>01ICOM</code>, <code>02ICOM</code>, <code>03ICOM</code>, <code>05ICOM</code>, <code>01ICLM</code> or <code>02ICLM</code>.</li>
+<li>Any other value sets the return code to <code>99</code>.</li>
+</ul>
+</li>
+<li>CA_CUSTOMER_NUM: customer number. It is converted to <code>DB2_CUSTOMERNUM_INT</code> and used as a key for:
+<ul>
+<li>endowment, house, motor and commercial policy inquiry (<code>01IEND</code>, <code>01IHOU</code>, <code>01IMOT</code>, <code>01ICOM</code>)</li>
+<li>the customer commercial cursor (<code>03ICOM</code>)</li>
+<li>the customer claim cursor (<code>02ICLM</code>)</li>
+</ul>
+</li>
+<li>CA_POLICY_NUM: policy number. It is converted to <code>DB2_POLICYNUM_INT</code> and used as a key for single policy lookups, including the policy-only commercial lookup (<code>02ICOM</code>).</li>
+<li>CA_C_Num: claim number, used for the single claim lookup (<code>01ICLM</code>). It is moved to <code>DB2_CLAIMNUM_INT</code>.</li>
+<li>CA_B_POSTCODE: commercial property postcode, used as the search key for the postcode-based commercial cursor (<code>05ICOM</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS channel and container input</strong></p>
+<ul>
+<li>Container <code>ICOM-Data</code> on channel <code>ICOM</code>:
+<ul>
+<li>It is read with <code>EXEC CICS GET CONTAINER</code> and is the primary input source.</li>
+<li>If it is found, the program uses its contents as the commarea: request ID and customer number are taken from it, and the container’s storage is also used to hold the returned records.</li>
+<li>If it is not found, the program falls back to the standard commarea.</li>
+</ul>
+</li>
+<li>Container length (<code>ICOM_Data_Length</code>): returned by the <code>GET CONTAINER</code> call.</li>
+</ul>
+</li>
+<li>
+<p><strong>External data sources (Db2 tables)</strong></p>
+<ul>
+<li>POLICY table: common policy details, read through joins by customer number, policy number or claim.
+<ul>
+<li>Fields: issue date, expiry date, last changed, broker ID, broker reference and payment.</li>
+<li>Broker ID, broker reference and payment can be null, signalled by indicator variables.</li>
+</ul>
+</li>
+<li>ENDOWMENT table: endowment-specific details such as profits, equities, managed fund, fund name, term, sum assured, life assured and variable-length padding data. Read for <code>01IEND</code>.</li>
+<li>HOUSE table: property type, bedrooms, value, house name and number, and postcode. Read for <code>01IHOU</code>.</li>
+<li>MOTOR table: make, model, value, registration number, colour, engine capacity, year of manufacture, premium and accidents. Read for <code>01IMOT</code>.</li>
+<li>COMMERCIAL table: address, postcode, latitude and longitude, customer, property type, fire, crime, flood and weather perils and premiums, status and rejection reason. Read for <code>01ICOM</code>, <code>02ICOM</code>, <code>03ICOM</code> and <code>05ICOM</code>.</li>
+<li>CLAIM table: claim number, policy number, claim date, paid amount, value, cause and observations. Read for <code>01ICLM</code> and <code>02ICLM</code>.</li>
+<li>SQLCA: the SQL communications area, whose SQLCODE drives the result handling and return codes <code>01</code>, <code>90</code>, <code>89</code> and <code>88</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Derived Db2 host variables used as search criteria</strong></p>
+<ul>
+<li>DB2_CUSTOMERNUM_INT: customer number key, derived from <code>CA_CUSTOMER_NUM</code>.</li>
+<li>DB2_POLICYNUM_INT: policy number key, derived from <code>CA_POLICY_NUM</code>.</li>
+<li>DB2_CLAIMNUM_INT: claim number key, derived from <code>CA_C_Num</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS runtime services</strong></p>
+<ul>
+<li>EXEC CICS ASKTIME and FORMATTIME: current system date and time, used to timestamp error messages.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<ul>
+<li>
+<p><strong>Commarea return code (CA_RETURN_CODE)</strong></p>
+<ul>
+<li>Reports the outcome of the inquiry to the caller.</li>
+<li>‘00’ means success. It is set at the start when the program is invoked with a commarea.</li>
+<li>‘01’ means no row was found (SQLCODE 100). The customer, policy or claim number is invalid. It applies to the single-row endowment, house, motor, commercial and claim inquiries.</li>
+<li>‘88’ means a cursor CLOSE failed. It applies to the customer commercial, postcode commercial and customer claim cursors.</li>
+<li>‘89’ means a cursor OPEN failed. It applies to the same three cursors.</li>
+<li>‘90’ means a SELECT returned an unexpected SQLCODE. An error message is also logged.</li>
+<li>‘98’ means the commarea is too small for the data. The program returns to the caller immediately.</li>
+<li>‘99’ means CA_REQUEST_ID was not recognised.</li>
+</ul>
+</li>
+<li>
+<p><strong>Policy data returned in the commarea (single-policy inquiries)</strong></p>
+<ul>
+<li>Common policy details come from the policy table.
+<ul>
+<li>Issue date, expiry date (DB2_EXPIRYDATE), last-changed timestamp, broker reference, broker ID (DB2_BROKERID) and payment (DB2_PAYMENT).</li>
+<li>Broker ID and payment are copied only when their null indicators show a value. Otherwise the previous value is kept.</li>
+<li>For ‘01ICOM’ and ‘02ICOM’ the source columns are the commercial request, start and renewal dates. They are assigned into the last-changed, issue and expiry fields in that order.</li>
+</ul>
+</li>
+<li>Endowment (request ‘01IEND’)
+<ul>
+<li>With-profits, equities and managed-fund flags, fund name, term, sum assured (DB2_E_SUMASSURED) and life assured.</li>
+<li>Variable-length padding data is copied when it is non-null. The ‘FINAL’ end-of-data marker is placed after the padding.</li>
+</ul>
+</li>
+<li>House (request ‘01IHOU’)
+<ul>
+<li>Property type, bedrooms, house value (DB2_H_VALUE), house name, house number and postcode.</li>
+<li>The ‘FINAL’ marker is placed in the house filler.</li>
+</ul>
+</li>
+<li>Motor (request ‘01IMOT’)
+<ul>
+<li>Make, model, vehicle value, registration number, colour, engine capacity and year of manufacture.</li>
+<li>Premium (DB2_M_PREMIUM) and accident count are also set directly in the commarea.</li>
+<li>The ‘FINAL’ marker is placed in the motor filler.</li>
+</ul>
+</li>
+<li>Commercial single policy (requests ‘01ICOM’ and ‘02ICOM’)
+<ul>
+<li>Address, postcode (DB2_B_POSTCODE), latitude, longitude, customer, property type and rejection reason.</li>
+<li>Fire (DB2_B_FIREPREMIUM), crime, flood and weather peril values and premiums.</li>
+<li>Underwriting status (DB2_B_STATUS).</li>
+<li>The ‘FINAL’ marker is placed in the commercial filler.</li>
+<li>‘02ICOM’ selects by policy number only and also returns the owning customer number in CA_CUSTOMER_NUM.</li>
+</ul>
+</li>
+<li>Claim (request ‘01ICLM’)
+<ul>
+<li>Customer number, policy number, claim number, claim date, amount paid (DB2_C_PAID), claim value (DB2_C_VALUE), cause and observations.</li>
+<li>The ‘FINAL’ marker is placed in the claim filler.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Multi-row results</strong></p>
+<ul>
+<li>Customer commercial policies (‘03ICOM’)
+<ul>
+<li>The customer cursor is read and each row is built in the channel container storage.</li>
+<li>A row count is kept and the loop stops after more than 20 records.</li>
+<li>Customer number and policy number are set on each row, plus the common policy fields and the commercial details.</li>
+<li>Container ‘ICOM-Data’ on channel ‘ICOM’ receives the accumulated records (record count × 1202 bytes).</li>
+<li>Container ‘ICOM-Count’ on channel ‘ICOM’ receives the 2-byte record count.</li>
+</ul>
+</li>
+<li>Postcode commercial policies (‘05ICOM’)
+<ul>
+<li>Rows from the postcode cursor are fetched into the commarea. The postcode is the search key.</li>
+<li>Each row overwrites the same commarea area. No count or container is written.</li>
+</ul>
+</li>
+<li>Customer claims (‘02ICLM’)
+<ul>
+<li>Rows from the customer claim cursor are fetched into the commarea. Each row overwrites the previous one. No count or container is written.</li>
+<li>The ‘FINAL’ marker is placed after each row.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Error logging (WRITE_ERROR_MESSAGE)</strong></p>
+<ul>
+<li>Called when a SELECT fails with an unexpected SQLCODE (‘90’), a cursor OPEN fails (‘89’), a cursor CLOSE fails (‘88’), or no commarea is received.</li>
+<li>Builds a formatted message containing:
+<ul>
+<li>Current date and time.</li>
+<li>Program tag ’ LGIPOL01’.</li>
+<li>Customer number and policy number.</li>
+<li>SQL request description such as ’ SELECT ENDOW ’ or ’ SELECT Claim '.</li>
+<li>SQLCODE.</li>
+</ul>
+</li>
+<li>Sends the message to the CICS program LGSTSQ, which writes it to the TD/TS queue.</li>
+<li>Sends a second message with the first 90 bytes of the commarea, or less if the commarea is shorter. It is prefixed ‘COMMAREA=’.</li>
+<li>When no commarea is received the message text is ’ NO COMMAREA RECEIVED’.</li>
+</ul>
+</li>
+<li>
+<p><strong>Program termination effects</strong></p>
+<ul>
+<li>If no commarea is received, the program abends with code ‘LGCA’ and no dump.</li>
+<li>The program ends with EXEC CICS RETURN after processing. The updated commarea or channel containers are the observable output.</li>
+<li>If the commarea is too small, a CICS RETURN is issued immediately after ‘98’ is set.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    A([Start LGIPDB01]) --> B[Set transaction, terminal and task identifiers]
+    B --> C[Get container ICOM-Data from channel ICOM]
+    C --> D{Container retrieved normally}
+    D -- Yes --> E[Use container data as commarea<br>Take request ID and customer number]
+    D -- No --> F{Commarea length is zero}
+    F -- Yes --> G[Write error message NO COMMAREA RECEIVED]
+    G --> H([Abend LGCA])
+    F -- No --> I[Set return code 00<br>Convert customer and policy numbers to integers<br>Upper case request ID]
+    E --> J{Request ID}
+    I --> J
+    J -- 01IEND --> K[Select endowment policy]
+    J -- 01IHOU --> L[Select house policy]
+    J -- 01IMOT --> M[Select motor policy]
+    J -- 01ICOM --> N[Select commercial policy by customer and policy]
+    J -- 02ICOM --> O[Select commercial policy by policy number]
+    J -- 03ICOM --> P[Read commercial policies by customer using cursor]
+    J -- 05ICOM --> Q[Read commercial policies by postcode using cursor]
+    J -- 01ICLM --> R[Select single claim by claim number]
+    J -- 02ICLM --> S[Read claims by customer using cursor]
+    J -- Other --> T[Set return code 99]
+    K --> U{SQL result}
+    L --> U
+    M --> U
+    N --> U
+    O --> U
+    R --> U
+    U -- Success --> V{Commarea large enough}
+    U -- No row found --> W[Set return code 01]
+    U -- Other error --> X[Set return code 90<br>Write error message]
+    V -- No --> Y[Set return code 98<br>Return to caller]
+    V -- Yes --> Z[Convert fields and copy policy data to commarea<br>Mark end of data with FINAL]
+    P --> P1[Open customer cursor]
+    P1 --> P2{Open successful}
+    P2 -- No --> P3[Set return code 89<br>Write error message]
+    P2 -- Yes --> P4[Fetch next row and append to container area]
+    P3 --> P4
+    P4 --> P5{More rows and fewer than 21 fetched}
+    P5 -- Yes --> P4
+    P5 -- No --> P6[Close cursor]
+    P6 --> P7{Close successful}
+    P7 -- No --> P8[Set return code 88<br>Write error message]
+    P7 -- Yes --> P9[Put record data and record count into containers]
+    P8 --> P9
+    Q --> Q1[Open postcode cursor]
+    Q1 --> Q2{Open successful}
+    Q2 -- No --> Q3[Set return code 89<br>Write error message]
+    Q2 -- Yes --> Q4[Fetch next row into commarea]
+    Q3 --> Q4
+    Q4 --> Q5{More rows}
+    Q5 -- Yes --> Q4
+    Q5 -- No --> Q6[Close cursor]
+    Q6 --> Q7{Close successful}
+    Q7 -- No --> Q8[Set return code 88<br>Write error message]
+    S --> S1[Open customer claim cursor]
+    S1 --> S2{Open successful}
+    S2 -- No --> S3[Set return code 89<br>Write error message]
+    S2 -- Yes --> S4[Fetch next claim into commarea]
+    S3 --> S4
+    S4 --> S5{More rows}
+    S5 -- Yes --> S4
+    S5 -- No --> S6[Close cursor]
+    S6 --> S7{Close successful}
+    S7 -- No --> S8[Set return code 88<br>Write error message]
+    W --> END1[Return to CICS]
+    X --> END1
+    Z --> END1
+    T --> END1
+    P9 --> END1
+    Q7 -- Yes --> END1
+    Q8 --> END1
+    S7 -- Yes --> END1
+    S8 --> END1
+    END1 --> END2([End])
+    Y --> END2
+
+    classDef start fill:#d5f5e3,stroke:#7dcea0,color:#000
+    classDef process fill:#d6eaf8,stroke:#85c1e9,color:#000
+    classDef decision fill:#fdebd0,stroke:#f5b041,color:#000
+    classDef error fill:#fadbd8,stroke:#e6b0aa,color:#000
+    classDef data fill:#e8daef,stroke:#c39bd3,color:#000
+
+    class A,END2,H start
+    class B,C,E,I,K,L,M,N,O,P,Q,R,S,END1 process
+    class D,F,J,U,V,P2,P5,P7,Q2,Q5,Q7,S2,S5,S7 decision
+    class G,T,W,X,Y,P3,P8,Q3,Q8,S3,S8 error
+    class Z,P1,P4,P6,P9,Q1,Q4,Q6,S1,S4,S6 data
+</div>
+<hr>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<h4 id="421-high-level-summary" tabindex="-1">4.2.1 High-level Summary</h4>
+<p>LGIPDB01 is a CICS and Db2 PL/I back-end program of the GenApp insurance application. It handles policy and claim inquiries. A calling program (an LGIPOL01-style orchestrator) passes in a request code, a customer number and a policy number. LGIPDB01 reads the matching data from Db2 and puts it into the shared communication area (commarea). It returns a two-digit return code that tells the caller whether the inquiry worked.</p>
+<p>It can retrieve:</p>
+<ul>
+<li>a single endowment, house, motor or commercial policy;</li>
+<li>several commercial policies, by customer or by postcode;</li>
+<li>a single claim, or all claims for a customer.</li>
+</ul>
+<h4 id="422-execution-flow" tabindex="-1">4.2.2 Execution Flow</h4>
+<ol>
+<li><strong>Initialisation.</strong> The program copies the CICS transaction ID, terminal ID and task number into the working-storage header. The header’s eye-catcher <code>LGIPDB01-----WS</code> is used to identify the program in dumps.</li>
+<li><strong>Getting the input.</strong> The program issues a CICS GET CONTAINER for container <code>ICOM-Data</code> on channel <code>ICOM</code>.
+<ul>
+<li>If the container is found, its address becomes the commarea. The request ID and customer number are taken from it. The container-based path does not reset the return code. It does not convert the policy number either.</li>
+<li>If the container is not found, the program falls back to the classic commarea.
+<ul>
+<li>If the commarea length is zero, it sets the message “NO COMMAREA RECEIVED”, writes the error message and abends with code <code>LGCA</code> (NODUMP).</li>
+<li>Otherwise it sets the return code to <code>00</code> and records the commarea length and address. It converts the customer and policy numbers to Db2 integers (<code>DB2_CUSTOMERNUM_INT</code>, <code>DB2_POLICYNUM_INT</code>). It saves both numbers in the error message area. It upper-cases the request ID.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Routing on the request ID.</strong> The program dispatches on <code>WS_REQUEST_ID</code>:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Request ID</th>
+<th>Routine</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01IEND</code></td>
+<td>GET_ENDOW_DB2_INFO</td>
+<td>Single endowment policy</td>
+</tr>
+<tr>
+<td><code>01IHOU</code></td>
+<td>GET_HOUSE_DB2_INFO</td>
+<td>Single house policy</td>
+</tr>
+<tr>
+<td><code>01IMOT</code></td>
+<td>GET_MOTOR_DB2_INFO</td>
+<td>Single motor policy</td>
+</tr>
+<tr>
+<td><code>01ICOM</code></td>
+<td>GET_COMMERCIAL_DB2_INFO_1</td>
+<td>Commercial policy by customer and policy</td>
+</tr>
+<tr>
+<td><code>02ICOM</code></td>
+<td>GET_COMMERCIAL_DB2_INFO_2</td>
+<td>Commercial policy by policy number only (also returns the customer number)</td>
+</tr>
+<tr>
+<td><code>03ICOM</code></td>
+<td>GET_COMMERCIAL_DB2_INFO_3</td>
+<td>All commercial policies of a customer, through a cursor</td>
+</tr>
+<tr>
+<td><code>05ICOM</code></td>
+<td>GET_COMMERCIAL_DB2_INFO_5</td>
+<td>Commercial policies for a postcode, through a cursor</td>
+</tr>
+<tr>
+<td><code>01ICLM</code></td>
+<td>GET_CLAIM_DB2_INFO_1</td>
+<td>Single claim by claim number (taken from the commarea claim number field)</td>
+</tr>
+<tr>
+<td><code>02ICLM</code></td>
+<td>GET_CLAIM_DB2_INFO_2</td>
+<td>All claims for a customer, through a cursor</td>
+</tr>
+<tr>
+<td>anything else</td>
+<td>–</td>
+<td>Return code <code>99</code></td>
+</tr>
+</tbody>
+</table>
+<p>After the routine finishes, the program issues <code>EXEC CICS RETURN</code>.</p>
+<ol start="4">
+<li><strong>Single-row inquiries (endowment, house, motor, commercial 1 and 2, claim 1).</strong> Each routine does a single-row SELECT from the policy table joined to the type-specific table.
+<ul>
+<li>SQLCODE 0 (success):
+<ul>
+<li>The program works out the commarea size needed: header/trailer length 33 plus the full length of the policy type.
+<ul>
+<li>Endowment is 124, house 130, motor 137, commercial 1174 and claim 618.</li>
+<li>For endowment, the length of the variable padding data is added when that column is not null.</li>
+</ul>
+</li>
+<li>If the length received (<code>EIBCALEN</code>) is less than the length required, it sets return code <code>98</code> and returns at once.</li>
+<li>Otherwise it converts the integer host variables to display numerics. Broker ID and payment are moved only when their null indicators are not -1.</li>
+<li>It copies the common policy fields (issue date, expiry date, last changed, broker ID, broker reference, payment) into the commarea.</li>
+<li>It copies the type-specific block into the policy area with SUBSTR. For motor, premium and accidents are also moved separately, because the motor length constant is shorter than the full structure.</li>
+<li>It writes the end-of-data marker <code>FINAL</code> after the data. For endowment, it writes the marker after the padding data.</li>
+</ul>
+</li>
+<li>SQLCODE 100 (no row found): return code <code>01</code>, meaning the customer or policy number is invalid.</li>
+<li>Any other SQLCODE: return code <code>90</code>, then WRITE_ERROR_MESSAGE.</li>
+</ul>
+</li>
+<li><strong>Commercial by customer (<code>03ICOM</code>).</strong>
+<ul>
+<li>The program resets the record count and opens <code>Cust_Cursor</code>. If the open fails, it sets return code <code>89</code> and logs the error.</li>
+<li>It then loops until SQLCODE is greater than 0. Each fetch fills the commarea at the current container position, converts the integer fields and copies the common fields and the commercial block. It then increments the record count and moves the pointer to the end of the record (<code>CA_B_FILLER</code>).</li>
+<li>After 20 records it forces SQLCODE to 17. This stops the loop and caps the result at 21 rows.</li>
+<li>It closes the cursor. If the close fails, it sets return code <code>88</code> and logs the error.</li>
+<li>It puts the record data (record count × 1202 bytes) into container <code>ICOM-Data</code>. It puts the 2-byte record count into container <code>ICOM-Count</code> on channel <code>ICOM</code>.</li>
+</ul>
+</li>
+<li><strong>Commercial by postcode (<code>05ICOM</code>).</strong>
+<ul>
+<li>It opens <code>Zip_Cursor</code>, using the commarea postcode as the key. Open failure gives return code <code>89</code>.</li>
+<li>It fetches rows until SQLCODE is greater than 0. Each fetched row is written to the same commarea position, so each fetch overwrites the previous one. The pointer is not advanced and no containers are written.</li>
+<li>It closes the cursor. Close failure gives return code <code>88</code>.</li>
+</ul>
+</li>
+<li><strong>Claims by customer (<code>02ICLM</code>).</strong>
+<ul>
+<li>It opens <code>CusClaim_Cursor</code>. Open failure gives return code <code>89</code>.</li>
+<li>It fetches rows until SQLCODE is greater than 0. Each row is written to the same commarea position, so each fetch overwrites the previous one. It writes <code>FINAL</code> after each row.</li>
+<li>It closes the cursor. Close failure gives return code <code>88</code>.</li>
+</ul>
+</li>
+<li><strong>Error logging (WRITE_ERROR_MESSAGE).</strong>
+<ul>
+<li>It stores the SQLCODE in the message. It gets the time with ASKTIME and FORMATTIME, then formats the date (MMDDYYYY) and time.</li>
+<li>It links to program <code>LGSTSQ</code> with the error message, which includes the program tag, customer number, policy number, SQL request text and SQLCODE.</li>
+<li>If a commarea exists, it links to <code>LGSTSQ</code> again with up to the first 90 bytes of the commarea as <code>COMMAREA=...</code>.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Return codes used:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>00</code></td>
+<td>OK</td>
+</tr>
+<tr>
+<td><code>01</code></td>
+<td>No row found for the customer or policy</td>
+</tr>
+<tr>
+<td><code>88</code></td>
+<td>Cursor close failed</td>
+</tr>
+<tr>
+<td><code>89</code></td>
+<td>Cursor open failed</td>
+</tr>
+<tr>
+<td><code>90</code></td>
+<td>Other Db2 error</td>
+</tr>
+<tr>
+<td><code>98</code></td>
+<td>Commarea too small</td>
+</tr>
+<tr>
+<td><code>99</code></td>
+<td>Unrecognised request ID</td>
+</tr>
+</tbody>
+</table>
+<h4 id="423-external-interactions" tabindex="-1">4.2.3 External Interactions</h4>
+<ul>
+<li><strong>Db2</strong>
+<ul>
+<li>Single-row SELECTs are used against POLICY joined with ENDOWMENT, HOUSE, MOTOR, COMMERCIAL and CLAIM.</li>
+<li>Three scrollable cursors are used: <code>Cust_Cursor</code> (commercial policies by customer), <code>Zip_Cursor</code> (commercial policies by postcode) and <code>CusClaim_Cursor</code> (claims by customer).</li>
+<li>All access is read-only.</li>
+<li>Null indicators are used for broker ID, broker reference, payment and the endowment padding data.</li>
+</ul>
+</li>
+<li><strong>CICS containers.</strong> <code>ICOM-Data</code> and <code>ICOM-Count</code> on channel <code>ICOM</code> carry the request in and the multi-record results out.</li>
+<li><strong>CICS services.</strong> ASKTIME, FORMATTIME, ABEND (<code>LGCA</code>) and RETURN.</li>
+<li><strong>Program LGSTSQ.</strong> It is called by CICS LINK to write error messages and a commarea extract to the CICS error queues.</li>
+</ul>
+<h4 id="424-plain-language-summary" tabindex="-1">4.2.4 Plain Language Summary</h4>
+<p>Another program asks this one for insurance information. The request says what is wanted (an endowment, house, motor or commercial policy, or a claim), who the customer is and which policy applies. The program looks the information up in the database and fills it into the shared message area. It adds the word <code>FINAL</code> to show where the data stops.</p>
+<p>It first checks that the message area is large enough for the answer. If it is too small, it sends back code 98. If nothing is found, it sends back 01. If the database has a problem, it sends back 90 and records the details in an error log. If the request type is not recognised, it sends back 99.</p>
+<p>For some requests the answer can contain many policies or claims. The program reads them one at a time. For the commercial-by-customer request it stops after about 20 policies and returns them in a separate container, with a count.</p>
+<hr>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+    POLICY {
+        int POLICYNUMBER
+        int CUSTOMERNUMBER
+        date ISSUEDATE
+        date EXPIRYDATE
+        string LASTCHANGED "length 26"
+        int BROKERID
+        string BROKERSREFERENCE "length 10"
+        int PAYMENT
+    }
+    ENDOWMENT {
+        int POLICYNUMBER
+        string WITHPROFITS "length 1"
+        string EQUITIES "length 1"
+        string MANAGEDFUND "length 1"
+        string FUNDNAME "length 10"
+        int TERM
+        int SUMASSURED
+        string LIFEASSURED "length 31"
+        string PADDINGDATA "varchar"
+    }
+    HOUSE {
+        int POLICYNUMBER
+        string PROPERTYTYPE "length 15"
+        int BEDROOMS
+        int VALUE
+        string HOUSENAME "length 20"
+        string HOUSENUMBER "length 4"
+        string POSTCODE "length 8"
+    }
+    MOTOR {
+        int POLICYNUMBER
+        string MAKE "length 15"
+        string MODEL "length 15"
+        int VALUE
+        string REGNUMBER "length 7"
+        string COLOUR "length 8"
+        int CC
+        string YEAROFMANUFACTURE "length 10"
+        int PREMIUM
+        int ACCIDENTS
+    }
+    COMMERCIAL {
+        int POLICYNUMBER
+        date REQUESTDATE
+        date STARTDATE
+        date RENEWALDATE
+        string ADDRESS "length 255"
+        string ZIPCODE "length 8"
+        string LATITUDEN "length 11"
+        string LONGITUDEW "length 11"
+        string CUSTOMER "length 255"
+        string PROPERTYTYPE "length 255"
+        int FIREPERIL
+        int FIREPREMIUM
+        int CRIMEPERIL
+        int CRIMEPREMIUM
+        int FLOODPERIL
+        int FLOODPREMIUM
+        int WEATHERPERIL
+        int WEATHERPREMIUM
+        int STATUS
+        string REJECTIONREASON "length 255"
+    }
+    CLAIM {
+        int CLAIMNUMBER
+        int POLICYNUMBER
+        date CLAIMDATE
+        int PAID
+        int VALUE
+        string CAUSE "length 255"
+        string OBSERVATIONS "length 255"
+    }
+    POLICY ||--o| ENDOWMENT : has
+    POLICY ||--o| HOUSE : has
+    POLICY ||--o| MOTOR : has
+    POLICY ||--o| COMMERCIAL : has
+    POLICY ||--o{ CLAIM : has
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGIPDB01 (main procedure / mainline)</strong></p>
+<ul>
+<li>Purpose: Entry point of the “Inquire Policy” program. It takes a request ID, fetches policy or claim details from Db2, and returns them in the commarea or a CICS container.</li>
+<li>Operations:
+<ul>
+<li>Copies <code>EIBTRNID</code>, <code>EIBTRMID</code> and <code>EIBTASKN</code> into <code>WS_HEADER</code> for diagnostics.</li>
+<li>Issues <code>EXEC CICS GET CONTAINER('ICOM-Data')</code> on channel <code>ICOM</code>.</li>
+<li>If the container is found (<code>WS_RESP = DFHRESP(NORMAL)</code>):
+<ul>
+<li>Saves the container pointer in <code>ICOM_Pointer_Start</code> and <code>COMM_AREA_PTR</code>.</li>
+<li>Copies <code>CA_REQUEST_ID</code> to <code>WS_Request_ID</code>.</li>
+<li>Copies <code>CA_CUSTOMER_NUM</code> to <code>DB2_CUSTOMERNUM_INT</code>.</li>
+</ul>
+</li>
+<li>Otherwise it uses the normal commarea:
+<ul>
+<li>Sets <code>CA_RETURN_CODE</code> to ‘00’.</li>
+<li>Saves <code>EIBCALEN</code> and the commarea address.</li>
+<li>Converts <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code> to the Db2 integer host variables <code>DB2_CUSTOMERNUM_INT</code> and <code>DB2_POLICYNUM_INT</code>.</li>
+<li>Copies the customer and policy numbers into the error message fields <code>EM_CUSNUM</code> and <code>EM_POLNUM</code>.</li>
+<li>Upper-cases <code>CA_REQUEST_ID</code> into <code>WS_REQUEST_ID</code>.</li>
+</ul>
+</li>
+<li>Dispatches on <code>WS_REQUEST_ID</code> and then issues <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>If the container is missing and <code>EIBCALEN = 0</code>, it sets <code>EM_MSG_TEXT</code> to ’ NO COMMAREA RECEIVED’, calls <strong>WRITE_ERROR_MESSAGE</strong>, and abends with code <code>LGCA</code> (NODUMP).</li>
+<li>A <code>SELECT (WS_REQUEST_ID)</code> routes the request:
+<ul>
+<li>‘01IEND’ calls <strong>GET_ENDOW_DB2_INFO</strong>.</li>
+<li>‘01IHOU’ calls <strong>GET_HOUSE_DB2_INFO</strong>.</li>
+<li>‘01IMOT’ calls <strong>GET_MOTOR_DB2_INFO</strong>.</li>
+<li>‘01ICOM’ calls <strong>GET_Commercial_DB2_INFO_1</strong>.</li>
+<li>‘02ICOM’ calls <strong>GET_Commercial_DB2_INFO_2</strong>.</li>
+<li>‘03ICOM’ calls <strong>GET_Commercial_DB2_INFO_3</strong>.</li>
+<li>‘05ICOM’ calls <strong>GET_Commercial_DB2_INFO_5</strong>.</li>
+<li>‘01ICLM’ first sets <code>DB2_CLAIMNUM_INT</code> from <code>CA_C_Num</code>, then calls <strong>GET_Claim_DB2_INFO_1</strong>.</li>
+<li>‘02ICLM’ calls <strong>GET_Claim_DB2_INFO_2</strong>.</li>
+<li>Any other value sets <code>CA_RETURN_CODE</code> to ‘99’.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>External interactions: CICS GET CONTAINER, ABEND and RETURN. The cursors and the SQLCA are declared here and used by the sub-procedures.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_ENDOW_DB2_INFO</strong></p>
+<ul>
+<li>Purpose: Retrieves one endowment policy for the requested customer and policy number.</li>
+<li>Operations:
+<ul>
+<li>Sets <code>EM_SQLREQ</code> to ’ SELECT ENDOW '.</li>
+<li>Runs a singleton SELECT on the join of POLICY and ENDOWMENT. It matches <code>POLICY.POLICYNUMBER = ENDOWMENT.POLICYNUMBER</code>, <code>DB2_CUSTOMERNUM_INT</code> and <code>DB2_POLICYNUM_INT</code>.</li>
+<li>Selects the common policy columns and the endowment columns, including <code>PADDINGDATA</code> and <code>LENGTH(PADDINGDATA)</code>.</li>
+<li>Reads the nullable columns BROKERID, BROKERSREF, PAYMENT, PADDINGDATA and the padding length with indicator variables. Output goes to working storage rather than directly into the commarea, because the VARCHAR length is not known in advance.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li><code>SELECT (SQLCODE)</code>.</li>
+<li>Code 0 calls <strong>GET_ENDOW_DB2_INFO_A</strong>.</li>
+<li>Code 100 sets <code>CA_RETURN_CODE</code> to ‘01’ (no matching customer/policy).</li>
+<li>Any other code sets ‘90’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+</ul>
+</li>
+<li>External interactions: Db2 tables POLICY and ENDOWMENT.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_ENDOW_DB2_INFO_A</strong></p>
+<ul>
+<li>Purpose: Checks that the commarea is big enough and moves the endowment data into it.</li>
+<li>Operations:
+<ul>
+<li>Computes <code>WS_REQUIRED_CA_LEN</code> as header/trailer length plus <code>WS_FULL_ENDOW_LEN</code>. If the padding length is not null, it adds <code>DB2_E_PADDING_LEN</code> to the required length and to <code>END_POLICY_POS</code>.</li>
+<li>Converts the integer host variables (term, sum assured, and broker ID and payment when not null) to numeric picture fields.</li>
+<li>Copies the common policy fields (issue date, expiry date, last changed, broker ID, broker reference, payment) to the <code>CA_</code> fields.</li>
+<li>Moves the endowment text into <code>CA_POLICY_RAW</code> using <code>SUBSTR</code> with <code>WS_ENDOW_LEN</code>.</li>
+<li>Copies the padding data into <code>CA_E_PADDING_DATA</code> when it is not null.</li>
+<li>Writes the marker ‘FINAL’ at <code>END_POLICY_POS</code> in <code>CA_E_PADDING_DATA</code>.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>If <code>EIBCALEN</code> is less than the required length, it sets <code>CA_RETURN_CODE</code> to ‘98’ and issues <code>EXEC CICS RETURN</code> immediately.</li>
+<li>Null indicators (<code>&lt;&gt; MINUS_ONE</code>) decide which fields are moved.</li>
+</ul>
+</li>
+<li>External interactions: CICS RETURN on a short commarea. It does no I/O of its own.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_HOUSE_DB2_INFO</strong></p>
+<ul>
+<li>Purpose: Retrieves one house policy for the requested customer and policy number.</li>
+<li>Operations:
+<ul>
+<li>Sets <code>EM_SQLREQ</code> to ’ SELECT HOUSE '.</li>
+<li>Runs a singleton SELECT on the join of POLICY and HOUSE for the common policy columns and the house columns (property type, bedrooms, value, house name, house number, postcode).</li>
+<li>On success, adds the header/trailer length and <code>WS_FULL_HOUSE_LEN</code> to <code>WS_REQUIRED_CA_LEN</code>.</li>
+<li>Converts the integer fields, skipping null broker ID and payment.</li>
+<li>Moves the common fields to the <code>CA_</code> fields.</li>
+<li>Moves <code>DB2_HOUSE_TEXT</code> (<code>WS_HOUSE_LEN</code> bytes) to <code>CA_POLICY_RAW</code>.</li>
+<li>Writes ‘FINAL’ to <code>CA_H_FILLER</code>.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>If <code>SQLCODE = 0</code> it checks the commarea length. A short commarea sets ‘98’ and issues CICS RETURN.</li>
+<li>If <code>SQLCODE = 100</code>, <code>CA_RETURN_CODE</code> is ‘01’.</li>
+<li>Any other <code>SQLCODE</code> sets ‘90’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+</ul>
+</li>
+<li>External interactions: Db2 tables POLICY and HOUSE.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_MOTOR_DB2_INFO</strong></p>
+<ul>
+<li>Purpose: Retrieves one motor policy for the requested customer and policy number.</li>
+<li>Operations:
+<ul>
+<li>Sets <code>EM_SQLREQ</code> to ’ SELECT MOTOR '.</li>
+<li>Runs a singleton SELECT on the join of POLICY and MOTOR for the common columns and the motor columns (make, model, value, registration number, colour, CC, year of manufacture, premium, accidents).</li>
+<li>On success, computes the required commarea length from <code>WS_FULL_MOTOR_LEN</code>.</li>
+<li>Converts the integer fields to numerics and assigns <code>CA_M_PREMIUM</code> and <code>CA_M_ACCIDENTS</code> directly, because the shorter <code>WS_MOTOR_LEN</code> does not cover them.</li>
+<li>Moves the common fields, then moves <code>DB2_MOTOR_TEXT</code> (<code>WS_MOTOR_LEN</code> bytes) to <code>CA_POLICY_RAW</code>.</li>
+<li>Writes ‘FINAL’ to <code>CA_M_FILLER</code>.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li><code>SQLCODE = 0</code> leads to the length check, with ‘98’ and CICS RETURN if the commarea is too short.</li>
+<li><code>SQLCODE = 100</code> sets ‘01’.</li>
+<li>Any other code sets ‘90’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+</ul>
+</li>
+<li>External interactions: Db2 tables POLICY and MOTOR.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_Commercial_DB2_INFO_1</strong></p>
+<ul>
+<li>Purpose: Retrieves one commercial policy by customer number and policy number.</li>
+<li>Operations:
+<ul>
+<li>Sets <code>EM_SQLREQ</code> to ’ SELECT Commrcl '.</li>
+<li>Runs a singleton SELECT on the join of POLICY and COMMERCIAL. It reads dates, address, postcode, latitude, longitude, customer, property type, the four peril and premium pairs, status and rejection reason.</li>
+<li>On success, computes the required length from <code>WS_FULL_COMM_LEN</code>.</li>
+<li>Converts the peril, premium and status integers to numeric fields.</li>
+<li>Moves the common fields and <code>DB2_COMM_TEXT</code> (<code>WS_COMM_LEN</code> bytes) to <code>CA_POLICY_RAW</code>.</li>
+<li>Writes ‘FINAL’ to <code>CA_B_FILLER</code>.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li><code>SQLCODE = 0</code> leads to the length check, with ‘98’ and CICS RETURN if the commarea is too short.</li>
+<li><code>SQLCODE = 100</code> sets ‘01’.</li>
+<li>Any other code sets ‘90’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+</ul>
+</li>
+<li>External interactions: Db2 tables POLICY and COMMERCIAL.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_Commercial_DB2_INFO_2</strong></p>
+<ul>
+<li>Purpose: Retrieves one commercial policy by policy number only. It also returns the owning customer number.</li>
+<li>Operations:
+<ul>
+<li>Sets <code>EM_SQLREQ</code> to ’ SELECT Commrcl '.</li>
+<li>Runs a singleton SELECT on the POLICY and COMMERCIAL join, filtered on <code>DB2_POLICYNUM_INT</code>. It also reads <code>CustomerNumber</code> into <code>DB2_CUSTOMERNUM_INT</code>.</li>
+<li>On success, applies the same length check and conversions as the previous procedure.</li>
+<li>Sets <code>CA_Customer_NUM</code> from the retrieved customer number.</li>
+<li>Moves the common fields and the commercial text to the commarea.</li>
+<li>Writes ‘FINAL’ to <code>CA_B_FILLER</code>.</li>
+</ul>
+</li>
+<li>Control flow: The return-code logic is the same as in <strong>GET_Commercial_DB2_INFO_1</strong>: ‘98’ with CICS RETURN, ‘01’ for no row, ‘90’ with an error message otherwise.</li>
+<li>External interactions: Db2 tables POLICY and COMMERCIAL.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_Commercial_DB2_INFO_3</strong></p>
+<ul>
+<li>Purpose: Returns all commercial policies of a customer, using cursor <code>Cust_Cursor</code>.</li>
+<li>Operations:
+<ul>
+<li>Sets <code>EM_SQLREQ</code> and resets <code>ICOM_Record_Count</code> to 0.</li>
+<li>Opens <code>Cust_Cursor</code>, which joins POLICY and COMMERCIAL on <code>DB2_CUSTOMERNUM_INT</code>.</li>
+<li>Calls <strong>GET_Commercial_DB2_INFO_3_Cur</strong> repeatedly, then closes the cursor.</li>
+<li>Sets <code>ICOM_Data_Length</code> to the record count multiplied by 1202.</li>
+<li>Puts container ‘ICOM-Data’ (the <code>ICOM_Record</code> buffer) and container ‘ICOM-Count’ (2 bytes) on channel ‘ICOM’.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>If OPEN fails (<code>SQLCODE &lt;&gt; 0</code>), it sets ‘89’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+<li><code>DO UNTIL (SQLCODE &gt; 0)</code> is the fetch loop.</li>
+<li>If CLOSE fails, it sets ‘88’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+</ul>
+</li>
+<li>External interactions: Db2 cursor operations on POLICY and COMMERCIAL, and CICS PUT CONTAINER.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_Commercial_DB2_INFO_3_Cur</strong></p>
+<ul>
+<li>Purpose: Fetches one row from <code>Cust_Cursor</code> and appends it to the container buffer.</li>
+<li>Operations:
+<ul>
+<li>Points <code>COMM_AREA_PTR</code> at the current <code>ICOM_Pointer</code> position.</li>
+<li>Fetches the customer number, policy number, dates and commercial columns into host variables.</li>
+<li>On success, converts the integers to numerics and fills the common <code>CA_</code> fields and the customer and policy numbers.</li>
+<li>Moves the commercial text to <code>CA_POLICY_RAW</code>.</li>
+<li>Increments <code>ICOM_Record_Count</code> and advances <code>ICOM_Pointer</code> to <code>ADDR(CA_B_FILLER)</code>, ready for the next record.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>Processing happens only when <code>SQLCODE = 0</code>.</li>
+<li>If the record count exceeds 20, it forces <code>SQLCODE = 17</code> to end the loop in the caller.</li>
+</ul>
+</li>
+<li>External interactions: Db2 FETCH from <code>Cust_Cursor</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_Commercial_DB2_INFO_5</strong></p>
+<ul>
+<li>Purpose: Retrieves commercial policies by postcode, using cursor <code>Zip_Cursor</code>.</li>
+<li>Operations:
+<ul>
+<li>Sets <code>EM_SQLREQ</code>.</li>
+<li>Opens <code>Zip_Cursor</code>, which joins POLICY and COMMERCIAL where <code>Commercial.Zipcode = CA_B_POSTCODE</code>.</li>
+<li>Calls <strong>GET_Commercial_DB2_INFO_5_Cur</strong> in a loop, then closes the cursor.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>OPEN failure sets ‘89’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+<li><code>DO UNTIL (SQLCODE &gt; 0)</code> is the fetch loop.</li>
+<li>CLOSE failure sets ‘88’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+</ul>
+</li>
+<li>External interactions: Db2 cursor operations on POLICY and COMMERCIAL.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_Commercial_DB2_INFO_5_Cur</strong></p>
+<ul>
+<li>Purpose: Fetches one row from <code>Zip_Cursor</code>.</li>
+<li>Operations:
+<ul>
+<li>Fetches customer number, policy number and the commercial columns.</li>
+<li>When <code>SQLCODE = 0</code>, converts the integers to numerics and moves the customer and policy numbers, the common fields and the commercial text into the same commarea area.</li>
+<li>Each fetched row overwrites the previous one, so only the last row remains. There is no record counter, no pointer advance and no container output.</li>
+</ul>
+</li>
+<li>Control flow: Processing happens only when <code>SQLCODE = 0</code>.</li>
+<li>External interactions: Db2 FETCH from <code>Zip_Cursor</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_Claim_DB2_INFO_1</strong></p>
+<ul>
+<li>Purpose: Retrieves a single claim by claim number.</li>
+<li>Operations:
+<ul>
+<li>Sets <code>EM_SQLREQ</code> to ’ SELECT Claim '.</li>
+<li>Runs a singleton SELECT on the join of POLICY and CLAIM where <code>CLAIM.ClaimNumber = DB2_CLAIMNUM_INT</code>.</li>
+<li>Reads customer number, claim number, policy number, claim date, paid, value, cause and observations.</li>
+<li>On success, computes the required length from <code>WS_FULL_CLAIM_LEN</code>.</li>
+<li>Sets <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code>, converts claim number, paid and value to numerics, and moves the common fields.</li>
+<li>Moves <code>DB2_CLAIM_TEXT</code> to <code>CA_POLICY_RAW</code> and writes ‘FINAL’ to <code>CA_C_FILLER</code>.</li>
+</ul>
+</li>
+<li>Control flow: <code>SQLCODE = 0</code> leads to the length check, with ‘98’ and CICS RETURN if the commarea is too short. <code>SQLCODE = 100</code> sets ‘01’. Any other code sets ‘90’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+<li>External interactions: Db2 tables POLICY and CLAIM.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_Claim_DB2_INFO_2</strong></p>
+<ul>
+<li>Purpose: Retrieves the claims of a customer, using cursor <code>CusClaim_Cursor</code>.</li>
+<li>Operations:
+<ul>
+<li>Sets <code>EM_SQLREQ</code>.</li>
+<li>Opens <code>CusClaim_Cursor</code>, which joins POLICY and CLAIM on <code>DB2_CUSTOMERNUM_INT</code>.</li>
+<li>Calls <strong>GET_ClaiM_DB2_INFO_2_Cur</strong> in a loop, then closes the cursor.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>OPEN failure sets ‘89’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+<li><code>DO UNTIL (SQLCODE &gt; 0)</code> is the fetch loop.</li>
+<li>CLOSE failure sets ‘88’ and calls <strong>WRITE_ERROR_MESSAGE</strong>.</li>
+</ul>
+</li>
+<li>External interactions: Db2 cursor operations on POLICY and CLAIM.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET_ClaiM_DB2_INFO_2_Cur</strong></p>
+<ul>
+<li>Purpose: Fetches one claim row from <code>CusClaim_Cursor</code>.</li>
+<li>Operations:
+<ul>
+<li>Fetches customer number, claim number, policy number, date, paid, value, cause and observations.</li>
+<li>When <code>SQLCODE = 0</code>, sets <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code>, converts claim number, paid and value to numerics, and moves the common fields.</li>
+<li>Moves <code>DB2_CLAIM_TEXT</code> to <code>CA_POLICY_RAW</code> and writes ‘FINAL’ to <code>CA_C_FILLER</code>.</li>
+<li>Each fetched row overwrites the previous one, so only the last claim remains in the commarea.</li>
+</ul>
+</li>
+<li>Control flow: Processing happens only when <code>SQLCODE = 0</code>.</li>
+<li>External interactions: Db2 FETCH from <code>CusClaim_Cursor</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>WRITE_ERROR_MESSAGE</strong></p>
+<ul>
+<li>Purpose: Common error logging routine, called whenever a Db2 failure or a missing commarea is detected.</li>
+<li>Operations:
+<ul>
+<li>Copies <code>SQLCODE</code> into <code>EM_SQLRC</code>.</li>
+<li>Issues <code>EXEC CICS ASKTIME</code> and <code>FORMATTIME</code> (MMDDYYYY and TIME) to set <code>EM_DATE</code> and <code>EM_TIME</code>.</li>
+<li>Links to program <code>LGSTSQ</code> with the <code>ERROR_MSG</code> structure, which writes the message to the queue.</li>
+<li>If a commarea exists, links to <code>LGSTSQ</code> again with <code>CA_ERROR_MSG</code>, which carries the first 90 bytes of the commarea, or all of it if <code>EIBCALEN</code> is less than 91.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>It does nothing further when <code>EIBCALEN = 0</code>.</li>
+<li>It chooses between the short and the 90-byte commarea copy based on <code>EIBCALEN</code>.</li>
+</ul>
+</li>
+<li>External interactions: CICS ASKTIME, FORMATTIME and LINK to <code>LGSTSQ</code>, for TD/TS queue logging.</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<h3 id="61-calling-environment-and-input-data" tabindex="-1">6.1 Calling Environment and Input Data</h3>
+<ul>
+<li>CICS transaction environment
+<ul>
+<li>LGIPDB01 runs as a CICS main program (<code>Options(Main)</code>). It depends on the CICS-supplied EXEC Interface Block fields <code>EIBTRNID</code>, <code>EIBTRMID</code>, <code>EIBTASKN</code> and <code>EIBCALEN</code>. It uses them to fill the run-time header and to check the size of the commarea it received.</li>
+<li>The CICS response code <code>DFHRESP(NORMAL)</code> is tested after the container read.</li>
+</ul>
+</li>
+<li>Commarea passed by the caller (<code>COMM_AREA</code>, based on <code>COMM_AREA_PTR</code>)
+<ul>
+<li>The caller provides this area when no channel is present.</li>
+<li>It is also the area the program fills with the results.</li>
+<li>Input fields:
+<ul>
+<li><code>CA_REQUEST_ID</code>: the six-character request code, converted to upper case. Accepted values are <code>01IEND</code>, <code>01IHOU</code>, <code>01IMOT</code>, <code>01ICOM</code>, <code>02ICOM</code>, <code>03ICOM</code>, <code>05ICOM</code>, <code>01ICLM</code> and <code>02ICLM</code>. Any other value sets <code>CA_RETURN_CODE</code> to <code>99</code>.</li>
+<li><code>CA_CUSTOMER_NUM</code>: copied into <code>DB2_CUSTOMERNUM_INT</code>. It is the key for the single-policy lookups and for the customer-based commercial and claim cursors.</li>
+<li><code>CA_POLICY_NUM</code>: copied into <code>DB2_POLICYNUM_INT</code>. It selects the policy row.</li>
+<li><code>CA_C_Num</code>: copied into <code>DB2_CLAIMNUM_INT</code> for the single-claim inquiry (<code>01ICLM</code>).</li>
+<li><code>CA_B_POSTCODE</code>: the search key for the postcode-based commercial cursor (<code>Zip_Cursor</code>, request <code>05ICOM</code>).</li>
+</ul>
+</li>
+<li>Output fields:
+<ul>
+<li><code>CA_RETURN_CODE</code>:
+<ul>
+<li><code>00</code>: success.</li>
+<li><code>01</code>: no row found.</li>
+<li><code>88</code>: cursor close failed.</li>
+<li><code>89</code>: cursor open failed.</li>
+<li><code>90</code>: SQL error.</li>
+<li><code>98</code>: commarea too small.</li>
+<li><code>99</code>: unrecognised request.</li>
+</ul>
+</li>
+<li>Common policy fields: <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_LASTCHANGED</code>, <code>CA_BROKERID</code>, <code>CA_BROKERSREF</code> and <code>CA_PAYMENT</code>.</li>
+<li><code>CA_POLICY_RAW</code>: holds the policy-specific data for the endowment, house, motor, commercial or claim layout.</li>
+<li>End marker: the literal <code>FINAL</code> is written after the data.</li>
+</ul>
+</li>
+<li>The caller must supply a commarea at least as long as the required length. That length is <code>WS_CA_HEADERTRAILER_LEN</code> plus the <code>WS_FULL_*_LEN</code> value for the policy type. If it is shorter, the program sets return code <code>98</code> and returns.</li>
+<li>If <code>EIBCALEN</code> is 0 and no container is found, the program writes an error message and abends with code <code>LGCA</code>.</li>
+</ul>
+</li>
+<li>CICS channel and containers
+<ul>
+<li>Channel <code>ICOM</code> (<code>ICOM_Channel</code>) is used as an alternative input path.</li>
+<li>Container <code>ICOM-Data</code> (<code>ICOM_Container</code>) is read with <code>GET CONTAINER ... SET(ICOM_Pointer)</code>. If the read succeeds, it replaces the commarea as the source of the request ID and customer number.</li>
+<li>Output containers on the <code>ICOM</code> channel, written by the customer-based commercial multi-row inquiry (<code>03ICOM</code>):
+<ul>
+<li><code>ICOM-Data</code> is written with <code>PUT CONTAINER</code>. It holds up to 20 records of 1202 bytes each.</li>
+<li><code>ICOM-Count</code> is written with <code>PUT CONTAINER</code>. It holds a 2-byte record count.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="62-database-db2-for-zos" tabindex="-1">6.2 Database (Db2 for z/OS)</h3>
+<ul>
+<li>Db2 runtime and precompiler services
+<ul>
+<li><code>EXEC SQL INCLUDE SQLCA</code> provides <code>SQLCODE</code>. The program tests <code>SQLCODE</code> for 0, 100 and other values after each SQL statement.</li>
+<li>Indicator variables handle nullable columns. The program tests them against <code>MINUS_ONE</code>.
+<ul>
+<li><code>IND_BROKERID</code></li>
+<li><code>IND_BROKERSREF</code></li>
+<li><code>IND_PAYMENT</code></li>
+<li><code>IND_E_PADDINGDATA</code></li>
+<li><code>IND_E_PADDINGDATAL</code></li>
+</ul>
+</li>
+<li>Host variables are declared in <code>DB2_IN_INTEGERS</code>, <code>DB2_OUT_INTEGERS</code>, <code>DB2_CUSTOMER</code>, <code>DB2_POLICY</code>, <code>DB2_ENDOWMENT</code>, <code>DB2_HOUSE</code>, <code>DB2_MOTOR</code>, <code>DB2_COMMERCIAL</code> and <code>DB2_CLAIM</code>.</li>
+</ul>
+</li>
+<li>Tables accessed (read-only)
+<ul>
+<li><code>POLICY</code>
+<ul>
+<li>Joined with every other table on <code>POLICYNUMBER</code> and <code>CUSTOMERNUMBER</code>.</li>
+<li>Supplies the common policy columns <code>ISSUEDATE</code>, <code>EXPIRYDATE</code>, <code>LASTCHANGED</code>, <code>BROKERID</code>, <code>BROKERSREFERENCE</code> and <code>PAYMENT</code>.</li>
+</ul>
+</li>
+<li><code>ENDOWMENT</code>
+<ul>
+<li>Columns: <code>WITHPROFITS</code>, <code>EQUITIES</code>, <code>MANAGEDFUND</code>, <code>FUNDNAME</code>, <code>TERM</code>, <code>SUMASSURED</code>, <code>LIFEASSURED</code> and the variable-length <code>PADDINGDATA</code>, plus <code>LENGTH(PADDINGDATA)</code>.</li>
+</ul>
+</li>
+<li><code>HOUSE</code>
+<ul>
+<li>Columns: <code>PROPERTYTYPE</code>, <code>BEDROOMS</code>, <code>VALUE</code>, <code>HOUSENAME</code>, <code>HOUSENUMBER</code> and <code>POSTCODE</code>.</li>
+</ul>
+</li>
+<li><code>MOTOR</code>
+<ul>
+<li>Columns: <code>MAKE</code>, <code>MODEL</code>, <code>VALUE</code>, <code>REGNUMBER</code>, <code>COLOUR</code>, <code>CC</code>, <code>YEAROFMANUFACTURE</code>, <code>PREMIUM</code> and <code>ACCIDENTS</code>.</li>
+</ul>
+</li>
+<li><code>COMMERCIAL</code>
+<ul>
+<li>Columns:
+<ul>
+<li>Dates and location: <code>RequestDate</code>, <code>StartDate</code>, <code>RenewalDate</code>, <code>Address</code>, <code>Zipcode</code>, <code>LatitudeN</code> and <code>LongitudeW</code>.</li>
+<li>Customer and property: <code>Customer</code> and <code>PropertyType</code>.</li>
+<li>Perils and premiums: Fire, Crime, Flood and Weather, each with a peril code and a premium.</li>
+<li>Underwriting: <code>Status</code> and <code>RejectionReason</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>CLAIM</code>
+<ul>
+<li>Columns: <code>ClaimNumber</code>, <code>PolicyNumber</code>, <code>ClaimDate</code>, <code>Paid</code>, <code>Value</code>, <code>Cause</code> and <code>Observations</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cursors declared (insensitive scroll)
+<ul>
+<li><code>Cust_Cursor</code>: commercial policies for a customer, joining <code>POLICY</code> and <code>COMMERCIAL</code> by <code>DB2_CUSTOMERNUM_INT</code>.</li>
+<li><code>Zip_Cursor</code>: commercial policies for a postcode, joining <code>POLICY</code> and <code>COMMERCIAL</code> by <code>CA_B_POSTCODE</code>.</li>
+<li><code>CusClaim_Cursor</code>: claims for a customer, joining <code>POLICY</code> and <code>CLAIM</code> by <code>DB2_CUSTOMERNUM_INT</code>.</li>
+</ul>
+</li>
+<li>Singleton SELECT statements
+<ul>
+<li>Endowment: <code>POLICY</code> joined with <code>ENDOWMENT</code>, by customer and policy number.</li>
+<li>House: <code>POLICY</code> joined with <code>HOUSE</code>, by customer and policy number.</li>
+<li>Motor: <code>POLICY</code> joined with <code>MOTOR</code>, by customer and policy number.</li>
+<li>Commercial, request <code>01ICOM</code>: <code>POLICY</code> joined with <code>COMMERCIAL</code>, by customer and policy number.</li>
+<li>Commercial, request <code>02ICOM</code>: <code>POLICY</code> joined with <code>COMMERCIAL</code>, by policy number only.</li>
+<li>Claim, request <code>01ICLM</code>: <code>POLICY</code> joined with <code>CLAIM</code>, by claim number.</li>
+</ul>
+</li>
+<li>Host variable roles from the supplied context
+<ul>
+<li><code>DB2_CUSTOMERNUM_INT</code>, <code>DB2_POLICYNUM_INT</code> and <code>DB2_CLAIMNUM_INT</code> are the search keys.</li>
+<li>Payment and broker: <code>DB2_PAYMENT</code>, <code>DB2_BROKERID</code> and <code>DB2_EXPIRYDATE</code>.</li>
+<li>Product-specific values: <code>DB2_E_SUMASSURED</code>, <code>DB2_H_VALUE</code>, <code>DB2_M_PREMIUM</code>, <code>DB2_B_STATUS</code>, <code>DB2_B_FIREPREMIUM</code>, <code>DB2_B_POSTCODE</code>, <code>DB2_C_PAID</code> and <code>DB2_C_VALUE</code>.</li>
+<li>The program converts the binary-integer host variables, such as <code>DB2_PAYMENT_INT</code> and <code>DB2_BROKERID_INT</code>, to the picture-format fields before moving them to the commarea.</li>
+</ul>
+</li>
+</ul>
+<h3 id="63-copybooks-and-included-structures" tabindex="-1">6.3 Copybooks and Included Structures</h3>
+<ul>
+<li><code>LGPOLICY</code> (<code>plinc\LGPOLICY.inc</code>)
+<ul>
+<li>Defines the policy field lengths (<code>WS_POLICY_LENGTHS</code>) and the Db2 output structures for customer, policy, endowment, house, motor, commercial and claim data.</li>
+<li>It is expanded inline in the source.</li>
+</ul>
+</li>
+<li><code>LGCMAREA</code> (<code>plinc\LGCMAREA.inc</code>)
+<ul>
+<li>Defines the commarea layout (<code>COMM_AREA</code> and its redefinitions).</li>
+<li>It is expanded inline in the source.</li>
+</ul>
+</li>
+<li><code>SQLCA</code>
+<ul>
+<li>The Db2 communications area, included through <code>EXEC SQL INCLUDE</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="64-external-programs-and-subroutines" tabindex="-1">6.4 External Programs and Subroutines</h3>
+<ul>
+<li><code>LGSTSQ</code>
+<ul>
+<li>Called with <code>EXEC CICS LINK PROGRAM('LGSTSQ')</code> from <code>WRITE_ERROR_MESSAGE</code>. It writes error messages to the CICS queues (the CSMT transient data queue).</li>
+<li>First call: passes <code>ERROR_MSG</code>, which holds the date, time, program name, customer number, policy number, SQL request text and SQLCODE.</li>
+<li>Second call: passes <code>CA_ERROR_MSG</code>, which holds up to 90 bytes of the commarea. It runs only when <code>EIBCALEN</code> is greater than 0.</li>
+</ul>
+</li>
+</ul>
+<h3 id="65-cics-services-used" tabindex="-1">6.5 CICS Services Used</h3>
+<ul>
+<li><code>EXEC CICS GET CONTAINER</code> reads the request from the channel.</li>
+<li><code>EXEC CICS PUT CONTAINER</code> returns the multi-record result and the record count.</li>
+<li><code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code> obtain and format the current date and time (<code>MMDDYYYY</code> and time) for the error message.</li>
+<li><code>EXEC CICS LINK</code> calls <code>LGSTSQ</code>.</li>
+<li><code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code> handles the missing commarea case.</li>
+<li><code>EXEC CICS RETURN</code> ends the transaction normally. It also ends it early when the commarea is too small.</li>
+</ul>
+<h3 id="66-configuration-values-and-constants" tabindex="-1">6.6 Configuration Values and Constants</h3>
+<ul>
+<li>Hard-coded names:
+<ul>
+<li>Channel <code>ICOM</code>.</li>
+<li>Containers <code>ICOM-Data</code> and <code>ICOM-Count</code>.</li>
+<li>Program <code>LGSTSQ</code>.</li>
+<li>Abend code <code>LGCA</code>.</li>
+<li>Eyecatcher <code>LGIPDB01-----WS</code>.</li>
+<li>Program name <code>LGIPOL01</code>, embedded in the error message.</li>
+</ul>
+</li>
+<li>Length constants in <code>WS_POLICY_LENGTHS</code> and <code>WS_COMMAREA_LENGTHS</code>. They are used to check commarea capacity and to size the data moved:
+<ul>
+<li><code>WS_ENDOW_LEN</code> 52, <code>WS_HOUSE_LEN</code> 58, <code>WS_MOTOR_LEN</code> 65, <code>WS_COMM_LEN</code> 1102 and <code>WS_CLAIM_LEN</code> 546.</li>
+<li><code>WS_FULL_ENDOW_LEN</code> 124, <code>WS_FULL_HOUSE_LEN</code> 130, <code>WS_FULL_MOTOR_LEN</code> 137, <code>WS_FULL_COMM_LEN</code> 1174 and <code>WS_FULL_CLAIM_LEN</code> 618.</li>
+<li><code>WS_CA_HEADERTRAILER_LEN</code> 33.</li>
+</ul>
+</li>
+<li>Multi-row result limits:
+<ul>
+<li>Each ICOM record is 1202 bytes.</li>
+<li>The maximum is 20 records, enforced by forcing <code>SQLCODE</code> to 17 when the count exceeds 20.</li>
+<li>The ICOM work buffer length is 32767 bytes (<code>ICOM_Length</code>).</li>
+</ul>
+</li>
+<li>No external environment variables or configuration files are read.</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<ul>
+<li>
+<p><strong>Input and request validation</strong></p>
+<ul>
+<li>The request ID must be one of nine recognised codes.
+<ul>
+<li>The accepted codes are <code>01IEND</code>, <code>01IHOU</code>, <code>01IMOT</code>, <code>01ICOM</code>, <code>02ICOM</code>, <code>03ICOM</code>, <code>05ICOM</code>, <code>01ICLM</code> and <code>02ICLM</code>.</li>
+<li><code>CA_REQUEST_ID</code> is converted with <code>UPPERCASE</code> into <code>WS_REQUEST_ID</code>, so matching is case-insensitive.</li>
+<li>A <code>SELECT (WS_REQUEST_ID)</code> dispatches to the matching retrieval routine.</li>
+<li>The <code>OTHERWISE</code> branch sets <code>CA_RETURN_CODE</code> to <code>'99'</code> for any other value.</li>
+</ul>
+</li>
+<li>A communication area must be present when no <code>ICOM-Data</code> container is found.
+<ul>
+<li>If the <code>EXEC CICS GET CONTAINER</code> response is not <code>DFHRESP(NORMAL)</code> and <code>EIBCALEN = 0</code>, the program sets <code>EM_MSG_TEXT</code> to ’ NO COMMAREA RECEIVED’.</li>
+<li>It then calls <code>WRITE_ERROR_MESSAGE</code> and issues <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>.</li>
+</ul>
+</li>
+<li>The input source is chosen by whether the container read succeeds.
+<ul>
+<li>If the <code>ICOM-Data</code> container on channel <code>ICOM</code> is read successfully, the request ID and customer number come from that container.</li>
+<li>Otherwise they come from the commarea.</li>
+<li>Only the commarea path converts <code>CA_POLICY_NUM</code> to <code>DB2_POLICYNUM_INT</code>.</li>
+<li>Only the commarea path resets <code>CA_RETURN_CODE</code> to <code>'00'</code> at the start.</li>
+</ul>
+</li>
+<li>Customer and policy numbers are carried as numeric values.
+<ul>
+<li><code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code> are 10-digit numeric pictures.</li>
+<li>They are converted to <code>FIXED BIN(31)</code> host variables (<code>DB2_CUSTOMERNUM_INT</code> and <code>DB2_POLICYNUM_INT</code>) before they are used as keys.</li>
+</ul>
+</li>
+<li>The claim number comes from the commarea only for request <code>01ICLM</code>.
+<ul>
+<li><code>DB2_CLAIMNUM_INT</code> is set from <code>CA_C_Num</code> only in that branch.</li>
+<li>It is then used as the search key for the single-claim lookup.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Data selection and key rules</strong></p>
+<ul>
+<li>Single-policy inquiries must match both customer and policy.
+<ul>
+<li>Endowment, house, motor and <code>01ICOM</code> commercial lookups join <code>POLICY</code> to the type-specific table on <code>POLICYNUMBER</code>.</li>
+<li>They also require <code>POLICY.CUSTOMERNUMBER = :DB2_CUSTOMERNUM_INT</code> and <code>POLICY.POLICYNUMBER = :DB2_POLICYNUM_INT</code>.</li>
+<li>The selection uses a singleton <code>SELECT INTO</code>, so it expects at most one row.</li>
+</ul>
+</li>
+<li>Commercial request <code>02ICOM</code> selects by policy number only.
+<ul>
+<li>The customer number is not a filter.</li>
+<li>The customer number is read back from the row into <code>DB2_CUSTOMERNUM_INT</code> and moved to <code>CA_CUSTOMER_NUM</code>.</li>
+</ul>
+</li>
+<li>Commercial request <code>03ICOM</code> returns all commercial policies for one customer.
+<ul>
+<li>It uses <code>Cust_Cursor</code> with <code>Policy.CustomerNumber = :DB2_CUSTOMERNUM_INT</code>.</li>
+</ul>
+</li>
+<li>Commercial request <code>05ICOM</code> returns all commercial policies in one postal area.
+<ul>
+<li>It uses <code>Zip_Cursor</code> with <code>Commercial.Zipcode = :CA_B_POSTCODE</code>.</li>
+</ul>
+</li>
+<li>Claim request <code>01ICLM</code> selects one claim by claim number only.
+<ul>
+<li><code>CLAIM.ClaimNumber = :DB2_ClaimNum_INT</code> joined to <code>POLICY</code> is the only filter.</li>
+</ul>
+</li>
+<li>Claim request <code>02ICLM</code> returns all claims for a customer.
+<ul>
+<li>It uses <code>CusClaim_Cursor</code> with <code>POLICY.CustomerNumber = :DB2_CUSTOMERNUM_INT</code>.</li>
+</ul>
+</li>
+<li>Cursors are declared as <code>Insensitive Scroll</code>.
+<ul>
+<li>Results are a static snapshot taken when the cursor is opened.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Database result and error handling</strong></p>
+<ul>
+<li>SQLCODE decides the outcome of every singleton select.
+<ul>
+<li>SQLCODE 0 means success and the data is processed.</li>
+<li>SQLCODE 100 sets <code>CA_RETURN_CODE</code> to <code>'01'</code> (no matching customer or policy).</li>
+<li>Any other SQLCODE sets <code>CA_RETURN_CODE</code> to <code>'90'</code> and calls <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>The endowment routine tests this with <code>SELECT (SQLCODE)</code>. The other routines use <code>IF</code>/<code>ELSE</code>.</li>
+</ul>
+</li>
+<li>Cursor open and close failures have their own return codes.
+<ul>
+<li>A non-zero SQLCODE after <code>OPEN</code> sets <code>CA_RETURN_CODE</code> to <code>'89'</code>.</li>
+<li>A non-zero SQLCODE after <code>CLOSE</code> sets <code>CA_RETURN_CODE</code> to <code>'88'</code>.</li>
+<li>Both call <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>After an open failure the fetch loop still runs, because there is no early exit.</li>
+</ul>
+</li>
+<li>Fetch loops run until SQLCODE becomes positive.
+<ul>
+<li><code>DO UNTIL (SQLCODE &gt; 0)</code> stops on SQLCODE 100 (end of data).</li>
+<li>It also stops on the artificial SQLCODE 17 set by the record-limit logic.</li>
+<li>A negative SQLCODE on fetch does not end the loop.</li>
+</ul>
+</li>
+<li>Nullable columns use indicator variables.
+<ul>
+<li><code>BROKERID</code>, <code>BROKERSREF</code>, <code>PAYMENT</code>, <code>PADDINGDATA</code> and the padding length have indicator variables.</li>
+<li>Without them, a null value would fail the fetch with SQLCODE -305.</li>
+<li>Null <code>BROKERID</code> and <code>PAYMENT</code> values are not moved into <code>DB2_BROKERID</code> or <code>DB2_PAYMENT</code> (indicator equal to -1, <code>MINUS_ONE</code>).</li>
+</ul>
+</li>
+<li>Error logging captures context for diagnosis.
+<ul>
+<li><code>WRITE_ERROR_MESSAGE</code> records the date, time, customer number, policy number, SQL request label and SQLCODE.</li>
+<li>It writes them by linking to <code>LGSTSQ</code>.</li>
+<li>It also writes up to 90 bytes of the commarea.</li>
+<li>If <code>EIBCALEN</code> is under 91, it writes only <code>EIBCALEN</code> bytes.</li>
+<li>It writes the commarea data only when <code>EIBCALEN &gt; 0</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Resource and size limits</strong></p>
+<ul>
+<li>The commarea must be large enough for the returned data.
+<ul>
+<li>After a successful select, the required length is the header/trailer length (33) plus the full length of the policy type.</li>
+<li>The full lengths are 124 for endowment, 130 for house, 137 for motor, 1174 for commercial and 618 for claim.</li>
+<li>If <code>EIBCALEN &lt; WS_REQUIRED_CA_LEN</code>, the program sets <code>CA_RETURN_CODE</code> to <code>'98'</code> and issues <code>EXEC CICS RETURN</code> without moving data.</li>
+</ul>
+</li>
+<li>Endowment length includes variable padding.
+<ul>
+<li>If the padding length indicator (<code>IND_E_PADDINGDATAL</code>) is not -1, <code>DB2_E_PADDING_LEN</code> is added to the required length.</li>
+<li>It is also added to the end-of-data position (<code>END_POLICY_POS</code>).</li>
+</ul>
+</li>
+<li>Database output goes into working storage first.
+<ul>
+<li>The code uses working-storage host variables because the varchar length is not known in advance.</li>
+<li>This avoids overwriting CICS storage beyond the commarea.</li>
+</ul>
+</li>
+<li>Multi-record results are capped at about 20 rows.
+<ul>
+<li>The commarea length check does not cover the <code>03ICOM</code> cursor fetch. A record counter limits the rows instead.</li>
+<li>After <code>ICOM_Record_Count</code> is incremented, a count above 20 sets SQLCODE to 17 to end the loop.</li>
+<li>Each record is 1202 bytes, as set by <code>ICOM_Data_Length = ICOM_Record_Count * 1202</code> and the <code>CHAR(1202)</code> <code>ICOM_Record</code>.</li>
+<li><code>ICOM_Length</code> is initialised to 32767.</li>
+<li>The limit is only checked after the 21st row has been fetched and stored, so a 21st record is stored but the loop stops.</li>
+</ul>
+</li>
+<li>Fixed-length structure limits apply.
+<ul>
+<li>The commarea raw area is 32500 bytes.</li>
+<li>Free-text fields have fixed sizes, such as address 255, email 100 and padding data up to 32611.</li>
+<li>The error message commarea copy is limited to 90 bytes.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sequencing and processing order</strong></p>
+<ul>
+<li>Initialisation happens before dispatch.
+<ul>
+<li>Transaction ID, terminal ID and task number are captured first.</li>
+<li>The container read and the commarea or container checks follow.</li>
+<li>The request ID is dispatched only after those steps.</li>
+</ul>
+</li>
+<li>Singleton retrieval follows a strict order.
+<ul>
+<li>The select runs first.</li>
+<li>The SQLCODE is checked next.</li>
+<li>The commarea length is checked after that.</li>
+<li>Data is moved to the commarea only after the length check passes.</li>
+</ul>
+</li>
+<li>Each response is terminated with an end-of-data marker.
+<ul>
+<li>The literal <code>'FINAL'</code> (5 characters) is written after the policy data.</li>
+<li>For endowment it is at <code>END_POLICY_POS</code> in <code>CA_E_PADDING_DATA</code>.</li>
+<li>For the other types it is in the type-specific filler field, such as <code>CA_H_FILLER</code>, <code>CA_M_FILLER</code>, <code>CA_B_FILLER</code> or <code>CA_C_FILLER</code>.</li>
+</ul>
+</li>
+<li>Cursors are processed in open, fetch-loop, close order.
+<ul>
+<li>Each cursor is opened before its first fetch.</li>
+<li>Fetching continues until the loop ends.</li>
+<li>The cursor is closed afterwards.</li>
+</ul>
+</li>
+<li>Multi-row commercial output for <code>03ICOM</code> is returned through containers.
+<ul>
+<li>After the loop, <code>ICOM-Data</code> is put on channel <code>ICOM</code> with length <code>ICOM_Record_Count * 1202</code>.</li>
+<li>The <code>ICOM-Count</code> container then holds the 2-byte record count.</li>
+<li>After each fetched row, <code>ICOM_Pointer</code> advances to <code>ADDR(CA_B_FILLER)</code> so the next record is written after the previous one.</li>
+<li>Each fetch re-sets <code>COMM_AREA_PTR</code> from <code>ICOM_Pointer</code>.</li>
+</ul>
+</li>
+<li>The program always ends with <code>EXEC CICS RETURN</code>.
+<ul>
+<li>The return happens after the dispatch completes.</li>
+<li>It also happens early on a length shortfall.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Output and data-format constraints</strong></p>
+<ul>
+<li>Numeric DB2 integers are converted to fixed-width numeric pictures before they reach the commarea.
+<ul>
+<li>Examples are payment (6 digits), broker ID (10 digits), house value (8 digits), motor premium (6 digits), commercial peril premiums (8 digits), claim paid and value (8 digits) and status (4 digits).</li>
+<li>Each value is limited to its picture size.</li>
+</ul>
+</li>
+<li>Return code values are two-digit codes in <code>CA_RETURN_CODE</code> (<code>PIC '99'</code>).
+<ul>
+<li><code>00</code> means success.</li>
+<li><code>01</code> means no matching row.</li>
+<li><code>88</code> means cursor close failure.</li>
+<li><code>89</code> means cursor open failure.</li>
+<li><code>90</code> means a general DB2 error.</li>
+<li><code>98</code> means the commarea is too small.</li>
+<li><code>99</code> means an unrecognised request.</li>
+</ul>
+</li>
+<li>Dates are 10-character values and the last-changed timestamp is 26 characters.
+<ul>
+<li>They are copied as character fields without validation.</li>
+</ul>
+</li>
+<li>Only the policy-type-specific length is copied into the shared raw policy area.
+<ul>
+<li>The copy length is <code>WS_ENDOW_LEN</code> (52), <code>WS_HOUSE_LEN</code> (58), <code>WS_MOTOR_LEN</code> (65) or <code>WS_COMM_LEN</code> (1102).</li>
+<li>The <code>SUBSTR</code> length is fixed for each policy type.</li>
+</ul>
+</li>
+<li>Several choices in the commercial and claim paths conflict with the defined lengths.
+<ul>
+<li>The single-claim and per-customer claim routines copy <code>DB2_CLAIM_TEXT</code> using <code>WS_COMM_LEN</code> (1102) rather than <code>WS_CLAIM_LEN</code> (546).</li>
+<li>The <code>01ICOM</code>, <code>02ICOM</code> and <code>01ICLM</code> paths read the common-policy host variables such as <code>DB2_BROKERID</code> and <code>DB2_PAYMENT</code>, but their selects do not populate them. They hold their initial values.</li>
+<li>The <code>05ICOM</code> loop has no record cap or container output, and it overwrites the same commarea area on each fetch.</li>
+</ul>
+</li>
+<li>Some processing constraints are not enforced.
+<ul>
+<li><code>GET_Commercial_DB2_INFO_5</code> has no <code>ICOM_Record_Count</code> limit.</li>
+<li>The <code>01ICOM</code>/<code>02ICOM</code> selects map <code>RequestDate</code>, <code>StartDate</code> and <code>RenewalDate</code> into host variables in a different order from the declared names. <code>DB2_LASTCHANGED</code> receives <code>RequestDate</code>, <code>DB2_ISSUEDATE</code> receives <code>StartDate</code> and <code>DB2_EXPIRYDATE</code> receives <code>RenewalDate</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<h3 id="81-request-and-environment-validation" tabindex="-1">8.1 Request and Environment Validation</h3>
+<ul>
+<li><strong>Container retrieval check</strong>
+<ul>
+<li>The program first tries to get the “ICOM-Data” container from the “ICOM” channel and captures the CICS response in a response variable.</li>
+<li>A normal response means the container data is used as the commarea and the request ID and customer number are taken from it.</li>
+<li>Any other response is not treated as an error. It is a fallback that makes the program use the traditional commarea path.</li>
+</ul>
+</li>
+<li><strong>Missing commarea check (fatal)</strong>
+<ul>
+<li>On the fallback path, the program tests whether the commarea length is zero.</li>
+<li>If it is, it sets the message text “NO COMMAREA RECEIVED” and calls the common error-message routine.</li>
+<li>It then abends the task with abend code LGCA and suppresses the dump. This is the only abend in the program.</li>
+</ul>
+</li>
+<li><strong>Return code initialisation</strong>
+<ul>
+<li>On the commarea path, the return code is set to “00” before processing starts, so the caller sees a clean state unless an error is flagged later.</li>
+<li>The container path does not initialise the return code.</li>
+</ul>
+</li>
+<li><strong>Context capture for diagnostics</strong>
+<ul>
+<li>The customer number and policy number are saved into the error message structure up front, so any later error message identifies the failing request.</li>
+<li>The request ID is converted to upper case before it is evaluated. This tolerates mixed-case input from callers.</li>
+</ul>
+</li>
+</ul>
+<h3 id="82-request-routing-errors" tabindex="-1">8.2 Request Routing Errors</h3>
+<ul>
+<li><strong>Unrecognised request ID</strong>
+<ul>
+<li>The dispatch logic selects a routine for the nine valid request codes: 01IEND, 01IHOU, 01IMOT, 01ICOM, 02ICOM, 03ICOM, 05ICOM, 01ICLM and 02ICLM.</li>
+<li>Any other value goes to the default branch, which sets the return code to “99”.</li>
+<li>No message is written to the queue and no abend is issued. The caller finds out only through the return code.</li>
+</ul>
+</li>
+</ul>
+<h3 id="83-database-db2-error-handling" tabindex="-1">8.3 Database (Db2) Error Handling</h3>
+<ul>
+<li><strong>SQLCODE evaluation after singleton SELECTs</strong>
+<ul>
+<li>This applies to the endowment, house, motor, commercial (by customer and policy), commercial (by policy only) and single claim lookups.</li>
+<li>SQLCODE 0 means success, and processing continues to the commarea length check and data move.</li>
+<li>SQLCODE +100 (no row found) is treated as a business-level “not found”, meaning an invalid customer, policy or claim number. The return code is set to “01”, and no message is logged.</li>
+<li>Any other SQLCODE is treated as an unexpected database failure. The return code is set to “90” and the common error-message routine is called to log it.</li>
+<li>The endowment routine uses a multi-way evaluation on SQLCODE. The other routines use nested IF logic. The outcomes are the same.</li>
+</ul>
+</li>
+<li><strong>Cursor open failure</strong>
+<ul>
+<li>This applies to the customer commercial cursor, the postcode commercial cursor and the customer claim cursor.</li>
+<li>A non-zero SQLCODE after the OPEN sets the return code to “89” and logs the error.</li>
+</ul>
+</li>
+<li><strong>Cursor close failure</strong>
+<ul>
+<li>A non-zero SQLCODE after the CLOSE sets the return code to “88” and logs the error.</li>
+</ul>
+</li>
+<li><strong>Cursor fetch loop control</strong>
+<ul>
+<li>The fetch loops repeat until SQLCODE is greater than zero. This normally means end of data (+100).</li>
+<li>Each fetch routine moves data to the commarea only when SQLCODE is 0.</li>
+<li>The fetch routines have no explicit handling for negative SQLCODEs, so a fetch failure is not reported with its own return code.</li>
+<li>An open failure does not stop the fetch loop from running.</li>
+</ul>
+</li>
+<li><strong>Result-set size cap</strong>
+<ul>
+<li>In the customer-based commercial cursor routine, the record count is incremented for each fetched row.</li>
+<li>When it exceeds 20, the program sets SQLCODE to 17 to force the loop to end. This stops the fetch loop and limits the volume returned.</li>
+<li>The postcode cursor and claim cursor have no equivalent limit.</li>
+</ul>
+</li>
+<li><strong>Empty result sets from cursors</strong>
+<ul>
+<li>Cursor-based routines do not set the “not found” return code “01” when no rows are returned.</li>
+</ul>
+</li>
+<li><strong>Null value handling with indicator variables</strong>
+<ul>
+<li>Broker ID, broker reference, payment and the endowment padding data and its length are fetched with indicator variables. This avoids a SQLCODE -305 failure when a column is null.</li>
+<li>Before moving broker ID and payment to the output fields, the program checks that the indicator is not -1, so null values are not moved.</li>
+<li>For endowments, padding length and padding data are added to the required commarea length and copied only if their indicators show they are not null.</li>
+</ul>
+</li>
+</ul>
+<h3 id="84-commarea-size-and-buffer-protection" tabindex="-1">8.4 Commarea Size and Buffer Protection</h3>
+<ul>
+<li><strong>Insufficient commarea length</strong>
+<ul>
+<li>After a successful SELECT in the endowment, house, motor, both single-row commercial and single claim routines, the program works out the required commarea length. This is the header and trailer length plus the full length of the specific policy type. For endowments, the variable-length padding is added too.</li>
+<li>If the received length is smaller than the required length, the return code is set to “98” and the program returns to CICS immediately.</li>
+<li>No data is moved and no message is logged in this case.</li>
+<li>This protects against overwriting storage beyond the caller’s commarea.</li>
+</ul>
+</li>
+<li><strong>Working-storage staging</strong>
+<ul>
+<li>Db2 output is selected into working-storage host variables first, then moved to the commarea only after the length check passes. This avoids storage overlays.</li>
+</ul>
+</li>
+<li><strong>End-of-data marker</strong>
+<ul>
+<li>After the data is moved, the string “FINAL” is placed after the policy data so the caller can detect the end of the returned data. This is part of the output protocol rather than an error check.</li>
+</ul>
+</li>
+</ul>
+<h3 id="85-error-logging-and-notification" tabindex="-1">8.5 Error Logging and Notification</h3>
+<ul>
+<li><strong>Common error-message routine</strong>
+<ul>
+<li>It is called for the missing commarea case and for the “90”, “89” and “88” database errors.</li>
+<li>It saves the SQLCODE in the message.</li>
+<li>It gets the current time with ASKTIME and formats the date and time with FORMATTIME.</li>
+<li>The message structure carries the date, time, program tag, customer number, policy number, the SQL request description and the SQLCODE.</li>
+</ul>
+</li>
+<li><strong>SQL request description</strong>
+<ul>
+<li>Before each database operation, the program records a short description of the request, such as SELECT ENDOW, SELECT HOUSE, SELECT MOTOR, SELECT Commrcl or SELECT Claim. This lets the log show which operation failed.</li>
+</ul>
+</li>
+<li><strong>Logging by LINK to LGSTSQ</strong>
+<ul>
+<li>The formatted error message is sent by CICS LINK to the program LGSTSQ, which writes it to the CSMT transient data queue (the comments say CSMT) and to a temporary storage queue.</li>
+<li>If the commarea length is greater than zero, a second LINK sends up to the first 90 bytes of the commarea.</li>
+<li>When the commarea is shorter than 91 bytes, only the available bytes are sent.</li>
+<li>This gives support staff the request data that was received.</li>
+</ul>
+</li>
+<li><strong>No response checking on logging calls</strong>
+<ul>
+<li>The calls to LGSTSQ, ASKTIME and FORMATTIME have no response checking, so a failure in the logging path would not be detected.</li>
+<li>The same applies to the PUT CONTAINER commands that return cursor results.</li>
+</ul>
+</li>
+</ul>
+<h3 id="86-return-code-summary" tabindex="-1">8.6 Return Code Summary</h3>
+<ul>
+<li>“00” means success and is the initial value.</li>
+<li>“01” means no matching row was found.</li>
+<li>“88” means a cursor close failed.</li>
+<li>“89” means a cursor open failed.</li>
+<li>“90” means an unexpected Db2 error on a singleton SELECT.</li>
+<li>“98” means the commarea was too small.</li>
+<li>“99” means the request ID was not recognised.</li>
+<li>No commarea at all causes an abend with code LGCA.</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-motor-policy-inquiry-that-succeeds" tabindex="-1">9.1 Example 1: Motor policy inquiry that succeeds</h3>
+<p><strong>Input (commarea)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_REQUEST_ID</code></td>
+<td><code>01imot</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>0000000042</code></td>
+</tr>
+<tr>
+<td><code>CA_POLICY_NUM</code></td>
+<td><code>0000000517</code></td>
+</tr>
+<tr>
+<td><code>EIBCALEN</code></td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Database row:</strong> a POLICY and MOTOR join row exists for customer 42 and policy 517. Its expiry date is <code>2026-03-31</code>, its broker ID is 1001, its payment is 350, and its motor premium is 640.</p>
+<p><strong>Output</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code> = <code>00</code></li>
+<li><code>CA_EXPIRY_DATE</code> = <code>2026-03-31</code>, <code>CA_BROKERID</code> = <code>0000001001</code> and <code>CA_PAYMENT</code> = <code>000350</code></li>
+<li><code>CA_M_PREMIUM</code> = <code>000640</code>, plus the other motor fields (make, model, registration, and so on)</li>
+<li>The text <code>FINAL</code> is written at the start of <code>CA_M_FILLER</code> to mark the end of the data.</li>
+</ul>
+<p><strong>Explanation:</strong> The request ID is converted to upper case, giving <code>01IMOT</code>, so <code>GET_MOTOR_DB2_INFO</code> runs. It selects the row using the customer and policy numbers as keys. The SQLCODE is 0, and the required length is 33 + 137 = 170. That is less than <code>EIBCALEN</code> (200), so the data is moved into the commarea. If the broker ID or payment were null, those two fields would not be moved.</p>
+<h3 id="92-example-2-policy-not-found-or-commarea-too-small" tabindex="-1">9.2 Example 2: Policy not found, or commarea too small</h3>
+<p><strong>Input A:</strong> <code>CA_REQUEST_ID</code> = <code>01IHOU</code>, customer 42, policy 9999 (no matching HOUSE row), <code>EIBCALEN</code> = 200.</p>
+<ul>
+<li><strong>Output:</strong> <code>CA_RETURN_CODE</code> = <code>01</code>. No policy data is returned.</li>
+<li><strong>Explanation:</strong> The select returns SQLCODE 100, which means no row was found, so the return code is set to <code>01</code>.</li>
+</ul>
+<p><strong>Input B:</strong> <code>CA_REQUEST_ID</code> = <code>01IEND</code>, a valid customer and policy, <code>EIBCALEN</code> = 100.</p>
+<ul>
+<li><strong>Output:</strong> <code>CA_RETURN_CODE</code> = <code>98</code>, and the program returns to the caller immediately.</li>
+<li><strong>Explanation:</strong> The select succeeds. The required length is 33 + 124 = 157, plus the length of any non-null padding data. That is more than 100, so the commarea is too small. The program sets <code>98</code> and issues <code>EXEC CICS RETURN</code>.</li>
+</ul>
+<h3 id="93-example-3-commercial-policies-by-customer-03icom" tabindex="-1">9.3 Example 3: Commercial policies by customer (<code>03ICOM</code>)</h3>
+<p><strong>Input:</strong> <code>CA_REQUEST_ID</code> = <code>03ICOM</code>, <code>CA_CUSTOMER_NUM</code> = <code>0000000042</code>. The ICOM container on the ICOM channel holds the work area. Customer 42 has 3 commercial policies.</p>
+<p><strong>Output</strong></p>
+<ul>
+<li>Three 1202-byte records are written one after another into the container. Each record holds the customer number, policy number, dates, postcode, peril and premium values, status and rejection reason.</li>
+<li><code>ICOM-Data</code> is returned with a length of 3 × 1202 = 3606 bytes.</li>
+<li><code>ICOM-Count</code> is returned as 3.</li>
+<li>The return code stays <code>00</code>.</li>
+</ul>
+<p><strong>Explanation:</strong> <code>GET_Commercial_DB2_INFO_3</code> opens <code>Cust_Cursor</code> and fetches rows until SQLCODE becomes positive. The positive code is 100 when the rows run out. Each successful fetch fills one record and increments <code>ICOM_Record_Count</code>. If the count goes above 20, the program forces SQLCODE to 17 to stop the loop. It then closes the cursor and puts the data and the count into the containers.</p>
+<h3 id="94-example-4-claim-inquiry-and-an-unrecognised-request" tabindex="-1">9.4 Example 4: Claim inquiry and an unrecognised request</h3>
+<p><strong>Input A:</strong> <code>CA_REQUEST_ID</code> = <code>01ICLM</code>, <code>CA_C_Num</code> = <code>0000000088</code>, <code>EIBCALEN</code> is large enough.</p>
+<ul>
+<li><strong>Output:</strong> <code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code> and the claim fields (<code>CA_C_Num</code>, date, paid, value, cause, observations) are filled in from the matching claim row. The return code is <code>00</code>.</li>
+<li><strong>Explanation:</strong> The claim number is copied to <code>DB2_CLAIMNUM_INT</code>, and <code>GET_CLAIM_DB2_INFO_1</code> selects the single claim row by that number.</li>
+</ul>
+<p><strong>Input B:</strong> <code>CA_REQUEST_ID</code> = <code>01XXXX</code>.</p>
+<ul>
+<li><strong>Output:</strong> <code>CA_RETURN_CODE</code> = <code>99</code>.</li>
+<li><strong>Explanation:</strong> The ID matches none of the <code>WHEN</code> values, so the <code>OTHERWISE</code> branch sets return code <code>99</code>.</li>
+</ul>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a></li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a></li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a>
+<ul>
+<li class="toc-level-4"><a href="#421-high-level-summary">4.2.1 High-level Summary</a></li>
+<li class="toc-level-4"><a href="#422-execution-flow">4.2.2 Execution Flow</a></li>
+<li class="toc-level-4"><a href="#423-external-interactions">4.2.3 External Interactions</a></li>
+<li class="toc-level-4"><a href="#424-plain-language-summary">4.2.4 Plain Language Summary</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a>
+<ul>
+<li class="toc-level-3"><a href="#61-calling-environment-and-input-data">6.1 Calling Environment and Input Data</a></li>
+<li class="toc-level-3"><a href="#62-database-db2-for-zos">6.2 Database (Db2 for z/OS)</a></li>
+<li class="toc-level-3"><a href="#63-copybooks-and-included-structures">6.3 Copybooks and Included Structures</a></li>
+<li class="toc-level-3"><a href="#64-external-programs-and-subroutines">6.4 External Programs and Subroutines</a></li>
+<li class="toc-level-3"><a href="#65-cics-services-used">6.5 CICS Services Used</a></li>
+<li class="toc-level-3"><a href="#66-configuration-values-and-constants">6.6 Configuration Values and Constants</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a></li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a>
+<ul>
+<li class="toc-level-3"><a href="#81-request-and-environment-validation">8.1 Request and Environment Validation</a></li>
+<li class="toc-level-3"><a href="#82-request-routing-errors">8.2 Request Routing Errors</a></li>
+<li class="toc-level-3"><a href="#83-database-db2-error-handling">8.3 Database (Db2) Error Handling</a></li>
+<li class="toc-level-3"><a href="#84-commarea-size-and-buffer-protection">8.4 Commarea Size and Buffer Protection</a></li>
+<li class="toc-level-3"><a href="#85-error-logging-and-notification">8.5 Error Logging and Notification</a></li>
+<li class="toc-level-3"><a href="#86-return-code-summary">8.6 Return Code Summary</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-motor-policy-inquiry-that-succeeds">9.1 Example 1: Motor policy inquiry that succeeds</a></li>
+<li class="toc-level-3"><a href="#92-example-2-policy-not-found-or-commarea-too-small">9.2 Example 2: Policy not found, or commarea too small</a></li>
+<li class="toc-level-3"><a href="#93-example-3-commercial-policies-by-customer-03icom">9.3 Example 3: Commercial policies by customer (03ICOM)</a></li>
+<li class="toc-level-3"><a href="#94-example-4-claim-inquiry-and-an-unrecognised-request">9.4 Example 4: Claim inquiry and an unrecognised request</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGIPDB01</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1686 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGTESTC1</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link active">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>Este programa CICS en PL/I (transacción SSC1) implementa el menú interactivo de clientes de la aplicación GenApp. Presenta una pantalla 3270 en la que el usuario elige consultar (opción 1), añadir (opción 2) o actualizar (opción 4) un cliente. Para cada opción delega el trabajo en los servicios de negocio LGICUS01, LGACUS01 y LGUCUS01, a través de un área de comunicación compartida. Muestra en pantalla los datos del cliente devueltos o un mensaje de confirmación o error. Rechaza cualquier otra opción con un aviso y reinicia la pantalla tras un fallo. Tras añadir un cliente con éxito, mantiene en la cola de almacenamiento temporal de control GENACNTL el rango de números de cliente emitidos, es decir, el número más bajo y el más alto. Para ello serializa el acceso a la cola. El programa conserva el contexto entre interacciones y finaliza con un mensaje de fin de transacción cuando el usuario sale.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<h3 id="21-function-parameters-and-system-interface" tabindex="-1">2.1 Function Parameters and System Interface</h3>
+<ul>
+<li><code>DFHEIPTR</code>
+<ul>
+<li>A CICS Execute Interface Block pointer implicitly passed to CICS application programs, providing execution context and communication details (such as <code>EIBCALEN</code>).</li>
+</ul>
+</li>
+<li><code>COMM_AREA_PTR</code>
+<ul>
+<li>A pointer to the CICS communication area (<code>COMM_AREA</code> / <code>LGCMAREA</code>), used to pass data across pseudo-conversational transactions (<code>SSC1</code>) and when linking to backend service programs.</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-user-inputs-bms-map-ssmapc1--terminal-input" tabindex="-1">2.2 User Inputs (BMS Map <code>SSMAPC1</code> / Terminal Input)</h3>
+<ul>
+<li><code>ENT1OPTI</code> / <code>ENT1OPTO</code>
+<ul>
+<li>Option selection input from the screen specifying the customer transaction to execute (‘1’ for Inquire, ‘2’ for Add, ‘4’ for Update).</li>
+</ul>
+</li>
+<li><code>ENT1CNOI</code> / <code>ENT1CNOO</code>
+<ul>
+<li>Customer number entered by the user on the screen to identify an existing customer for inquiry (‘1’) or update (‘4’) operations.</li>
+</ul>
+</li>
+<li><code>ENT1FNAI</code>
+<ul>
+<li>Customer’s first name entered or modified by the user for Add (‘2’) and Update (‘4’) operations.</li>
+</ul>
+</li>
+<li><code>ENT1LNAI</code>
+<ul>
+<li>Customer’s last name entered or modified by the user for Add (‘2’) and Update (‘4’) operations.</li>
+</ul>
+</li>
+<li><code>ENT1DOBI</code>
+<ul>
+<li>Customer’s date of birth entered or modified by the user for Add (‘2’) and Update (‘4’) operations.</li>
+</ul>
+</li>
+<li><code>ENT1HNMI</code>
+<ul>
+<li>House name entered or modified by the user for Add (‘2’) and Update (‘4’) operations.</li>
+</ul>
+</li>
+<li><code>ENT1HNOI</code>
+<ul>
+<li>House number entered or modified by the user for Add (‘2’) and Update (‘4’) operations.</li>
+</ul>
+</li>
+<li><code>ENT1HPCI</code>
+<ul>
+<li>Postcode entered or modified by the user for Add (‘2’) and Update (‘4’) operations.</li>
+</ul>
+</li>
+<li><code>ENT1HP1I</code>
+<ul>
+<li>Primary (home) telephone number entered or modified by the user for Add (‘2’) and Update (‘4’) operations.</li>
+</ul>
+</li>
+<li><code>ENT1HP2I</code>
+<ul>
+<li>Secondary (mobile) telephone number entered or modified by the user for Add (‘2’) and Update (‘4’) operations.</li>
+</ul>
+</li>
+<li><code>ENT1HMOI</code>
+<ul>
+<li>Email address entered or modified by the user for Add (‘2’) and Update (‘4’) operations.</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-backend-program-interface-inputs-lgcmarea" tabindex="-1">2.3 Backend Program Interface Inputs (<code>LGCMAREA</code>)</h3>
+<ul>
+<li><code>CA_RETURN_CODE</code>
+<ul>
+<li>Return code returned from invoked backend services (<code>LGICUS01</code>, <code>LGACUS01</code>, <code>LGUCUS01</code>) indicating success (<code>00</code>) or failure conditions.</li>
+</ul>
+</li>
+<li><code>CA_CUSTOMER_NUM</code>
+<ul>
+<li>Unique customer identifier generated and returned by the customer addition service (<code>LGACUS01</code>), subsequently used to update terminal output and control queues.</li>
+</ul>
+</li>
+<li><code>CA_FIRST_NAME</code>
+<ul>
+<li>Customer first name returned by the inquiry service (<code>LGICUS01</code>) to populate screen fields.</li>
+</ul>
+</li>
+<li><code>CA_LAST_NAME</code>
+<ul>
+<li>Customer last name returned by the inquiry service (<code>LGICUS01</code>) to populate screen fields.</li>
+</ul>
+</li>
+<li><code>CA_DOB</code>
+<ul>
+<li>Customer date of birth returned by the inquiry service (<code>LGICUS01</code>) to populate screen fields.</li>
+</ul>
+</li>
+<li><code>CA_HOUSE_NAME</code>
+<ul>
+<li>Customer house name returned by the inquiry service (<code>LGICUS01</code>) to populate screen fields.</li>
+</ul>
+</li>
+<li><code>CA_HOUSE_NUM</code>
+<ul>
+<li>Customer house number returned by the inquiry service (<code>LGICUS01</code>) to populate screen fields.</li>
+</ul>
+</li>
+<li><code>CA_POSTCODE</code>
+<ul>
+<li>Customer postcode returned by the inquiry service (<code>LGICUS01</code>) to populate screen fields.</li>
+</ul>
+</li>
+<li><code>CA_PHONE_HOME</code>
+<ul>
+<li>Customer home telephone number returned by the inquiry service (<code>LGICUS01</code>) to populate screen fields.</li>
+</ul>
+</li>
+<li><code>CA_PHONE_MOBILE</code>
+<ul>
+<li>Customer mobile telephone number returned by the inquiry service (<code>LGICUS01</code>) to populate screen fields.</li>
+</ul>
+</li>
+<li><code>CA_EMAIL_ADDRESS</code>
+<ul>
+<li>Customer email address returned by the inquiry service (<code>LGICUS01</code>) to populate screen fields.</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-external-data-sources-cics-temporary-storage-queue" tabindex="-1">2.4 External Data Sources (CICS Temporary Storage Queue)</h3>
+<ul>
+<li><code>READ_MSG</code> (<code>READ_MSG_MSG</code> / <code>READ_CUST_HIGH</code>)
+<ul>
+<li>Records read from the CICS Temporary Storage Queue <code>GENACNTL</code> (<code>STSQ_NAME</code>) to inspect and track high customer number control entries.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<h3 id="31-screen-outputs-bms-map-ssmapc1" tabindex="-1">3.1 Screen Outputs (BMS Map <code>SSMAPC1</code>)</h3>
+<ul>
+<li><code>SSMAPC1O</code> (BMS Output Map Structure): Delivers formatted customer data, system messages, and screen attributes back to the 3270 user terminal.
+<ul>
+<li><code>ENT1CNOO</code> / <code>ENT1CNOI</code>: Displays the 10-digit customer number on the screen (initialised to <code>'0000000000'</code> on first entry, or updated with <code>CA_CUSTOMER_NUM</code> following an inquiry, add, or update operation).</li>
+<li><code>ENT1FNAI</code> / <code>ENT1FNAO</code>: Displays the customer’s given name returned from the customer service.</li>
+<li><code>ENT1LNAI</code> / <code>ENT1LNAO</code>: Displays the customer’s surname returned from the customer service.</li>
+<li><code>ENT1DOBI</code> / <code>ENT1DOBO</code>: Displays the customer’s date of birth returned from the customer service.</li>
+<li><code>ENT1HNMI</code> / <code>ENT1HNMO</code>: Displays the house or building name returned from the customer service.</li>
+<li><code>ENT1HNOI</code> / <code>ENT1HNOO</code>: Displays the house number returned from the customer service.</li>
+<li><code>ENT1HPCI</code> / <code>ENT1HPCO</code>: Displays the postal code returned from the customer service.</li>
+<li><code>ENT1HP1I</code> / <code>ENT1HP1O</code>: Displays the primary/home telephone number returned from the customer service.</li>
+<li><code>ENT1HP2I</code> / <code>ENT1HP2O</code>: Displays the mobile telephone number returned from the customer service.</li>
+<li><code>ENT1HMOI</code> / <code>ENT1HMOO</code>: Displays the customer’s email address returned from the customer service.</li>
+<li><code>ENT1OPTI</code> / <code>ENT1OPTO</code>: Cleared to blank after successful add or update transactions, or flagged for cursor repositioning when an invalid menu option is entered.</li>
+<li><code>ERRFLDO</code>: Displays user notification and error status messages on the terminal screen, including:
+<ul>
+<li><code>'New Customer Inserted'</code></li>
+<li><code>'Customer details updated'</code></li>
+<li><code>'Please enter a valid option'</code></li>
+<li><code>'No data was returned.'</code></li>
+<li><code>'Error Adding Customer'</code></li>
+<li><code>'Error Updating Customer'</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-terminal-messages" tabindex="-1">3.2 Terminal Messages</h3>
+<ul>
+<li><code>MSGEND</code>: Transmits the literal text <code>'Transaction ended'</code> to the terminal when the user presses PF3 or when a map failure occurs, terminating the session.</li>
+</ul>
+<h3 id="33-program-to-program-communication-area-comm_area" tabindex="-1">3.3 Program-to-Program Communication Area (<code>COMM_AREA</code>)</h3>
+<ul>
+<li><code>COMM_AREA</code>: Serves as the outgoing data contract passed via <code>EXEC CICS LINK</code> to orchestrator programs (<code>LGICUS01</code>, <code>LGACUS01</code>, <code>LGUCUS01</code>) and preserved across pseudo-conversational transactions (<code>TRANSID('SSC1')</code>).
+<ul>
+<li><code>CA_REQUEST_ID</code>: Sets the target business function code (<code>'01ICUS'</code> for inquiry, <code>'01ACUS'</code> for add, <code>'01UCUS'</code> for update).</li>
+<li><code>CA_RETURN_CODE</code>: Initialised to <code>0</code> and evaluated to detect service failures or data-not-found conditions.</li>
+<li><code>CA_CUSTOMER_NUM</code>: Passes the target customer number for inquiry and update requests, or receives the newly generated customer number from <code>LGACUS01</code> after an add operation.</li>
+<li><code>CA_FIRST_NAME</code>: Passes the entered first name for customer creation or update.</li>
+<li><code>CA_LAST_NAME</code>: Passes the entered surname for customer creation or update.</li>
+<li><code>CA_DOB</code>: Passes the customer date of birth for creation or update.</li>
+<li><code>CA_HOUSE_NAME</code>: Passes the residence/house name for creation or update.</li>
+<li><code>CA_HOUSE_NUM</code>: Passes the residence/house number for creation or update.</li>
+<li><code>CA_POSTCODE</code>: Passes the uppercase postal code for creation or update.</li>
+<li><code>CA_PHONE_HOME</code>: Passes the home phone number for creation or update.</li>
+<li><code>CA_PHONE_MOBILE</code>: Passes the mobile phone number for creation or update.</li>
+<li><code>CA_EMAIL_ADDRESS</code>: Passes the email address for creation or update.</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-temporary-storage-queue-genacntl" tabindex="-1">3.4 Temporary Storage Queue (<code>GENACNTL</code>)</h3>
+<ul>
+<li><code>STSQ_NAME</code>: Identifies the CICS Temporary Storage Queue (<code>'GENACNTL'</code>) used to maintain customer number tracking records across transactions.
+<ul>
+<li><code>WRITE_MSG_E</code>: Writes the queue header record (<code>'**** GENAPP CNTL    '</code>) when initialising the control queue.</li>
+<li><code>WRITE_MSG_L</code> (<code>WRITE_MSG_LOW</code>): Writes the initial low customer boundary record (<code>'LOW CUSTOMER='</code> followed by <code>CA_CUSTOMER_NUM</code>) during queue initialisation.</li>
+<li><code>WRITE_MSG_H</code> (<code>WRITE_MSG_HIGH</code>): Updates or writes the high customer boundary record (<code>'HIGH CUSTOMER='</code> followed by <code>CA_CUSTOMER_NUM</code>) with the newly assigned customer identifier upon a successful customer addition.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-initialisation-and-first-invocation-detection" tabindex="-1">4.1 Initialisation and First-Invocation Detection</h3>
+<ul>
+<li>On the very first invocation the CICS EIB field <code>EIBCALEN</code> is zero, signalling that no COMMAREA was passed
+<ul>
+<li>A local base COMMAREA is established by pointing <code>COMM_AREA_PTR</code> at <code>BASE_COMM_AREA</code></li>
+<li>Both the input (<code>SSMAPC1I</code>) and output (<code>SSMAPC1O</code>) BMS map structures are cleared to spaces</li>
+<li><code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code>, and <code>CA_REQUEST_INITIALISER</code> are reset to their null/zero values</li>
+<li><code>ENT1CNOO</code> (the customer number output field) is pre-filled with <code>'0000000000'</code></li>
+<li>The customer BMS map <code>SSMAPC1</code> (mapset <code>SSMAP</code>) is sent to the terminal with <code>ERASE</code> to present a clean screen before the program suspends</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-main-receive-and-dispatch-loop" tabindex="-1">4.2 Main Receive-and-Dispatch Loop</h3>
+<ul>
+<li>After the first-time send, or on every subsequent pseudo-conversational re-entry, execution falls through to label <code>A_GAIN</code></li>
+<li><code>EXEC CICS HANDLE AID CLEAR(CLEARIT) PF3(ENDIT)</code> registers attention-key handlers:
+<ul>
+<li>Pressing <strong>CLEAR</strong> routes control to <code>CLEARIT</code></li>
+<li>Pressing <strong>PF3</strong> routes control to <code>ENDIT</code></li>
+</ul>
+</li>
+<li><code>EXEC CICS HANDLE CONDITION MAPFAIL(ENDIT)</code> routes a MAPFAIL condition (e.g., no data entered) to <code>ENDIT</code></li>
+<li><code>EXEC CICS RECEIVE MAP</code> reads the terminal input back into <code>SSMAPC1I</code> from mapset <code>SSMAP</code></li>
+</ul>
+<h3 id="43-option-selection-and-transaction-routing-select-on-ent1opto" tabindex="-1">4.3 Option Selection and Transaction Routing (<code>SELECT</code> on <code>ENT1OPTO</code>)</h3>
+<p>The single-character option field <code>ENT1OPTO</code> drives a <code>SELECT</code> statement that dispatches to one of three customer operations or an error path:</p>
+<ul>
+<li>
+<p><strong>Option <code>'1'</code> – Inquire Customer</strong></p>
+<ul>
+<li>Sets <code>CA_REQUEST_ID = '01ICUS'</code> and loads <code>CA_CUSTOMER_NUM</code> from the screen field <code>ENT1CNOO</code></li>
+<li>Issues <code>EXEC CICS LINK PROGRAM('LGICUS01')</code> passing the 32 500-byte COMMAREA</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, branches to <code>NO_DATA</code> (error path)</li>
+<li>On success, maps returned COMMAREA fields back to the screen output map:
+<ul>
+<li><code>CA_FIRST_NAME</code> → <code>ENT1FNAI</code>, <code>CA_LAST_NAME</code> → <code>ENT1LNAI</code>, <code>CA_DOB</code> → <code>ENT1DOBI</code></li>
+<li><code>CA_HOUSE_NAME</code> → <code>ENT1HNMI</code>, <code>CA_HOUSE_NUM</code> → <code>ENT1HNOI</code>, <code>CA_POSTCODE</code> → <code>ENT1HPCI</code></li>
+<li><code>CA_PHONE_HOME</code> → <code>ENT1HP1I</code>, <code>CA_PHONE_MOBILE</code> → <code>ENT1HP2I</code>, <code>CA_EMAIL_ADDRESS</code> → <code>ENT1HMOI</code></li>
+</ul>
+</li>
+<li>Sends the populated map back to the terminal and branches to <code>ENDIT_STARTIT</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Option <code>'2'</code> – Add Customer</strong></p>
+<ul>
+<li>Sets <code>CA_REQUEST_ID = '01ACUS'</code> and zeros <code>CA_CUSTOMER_NUM</code> (new customer)</li>
+<li>Loads all customer detail fields from screen input fields into the corresponding COMMAREA fields (<code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_DOB</code>, <code>CA_HOUSE_NAME</code>, <code>CA_HOUSE_NUM</code>, <code>CA_POSTCODE</code>, <code>CA_PHONE_HOME</code>, <code>CA_PHONE_MOBILE</code>, <code>CA_EMAIL_ADDRESS</code>)</li>
+<li>Performs two data-cleansing operations on the raw COMMAREA before linking:
+<ul>
+<li>Translates all null bytes (<code>'00'X</code>) to spaces via <code>TRANSLATE(COMM_AREA_RAW,' ','00'X)</code></li>
+<li>Converts <code>CA_POSTCODE</code> to uppercase with <code>UPPERCASE(CA_POSTCODE)</code></li>
+</ul>
+</li>
+<li>Issues <code>EXEC CICS LINK PROGRAM('LGACUS01')</code> passing the COMMAREA</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, issues <code>EXEC CICS SYNCPOINT ROLLBACK</code> to undo any partial work, then branches to <code>NO_ADD</code></li>
+<li>On success:
+<ul>
+<li>Calls the internal procedure <code>WRITE_GENACNTL</code> to record the new customer number in the control TS queue</li>
+<li>Reflects the assigned customer number back to the screen (<code>ENT1CNOI = CA_CUSTOMER_NUM</code>)</li>
+<li>Clears the option field (<code>ENT1OPTI = ' '</code>) and sets the error field to <code>'New Customer Inserted'</code></li>
+<li>Sends the updated map and branches to <code>ENDIT_STARTIT</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Option <code>'4'</code> – Update Customer</strong></p>
+<ul>
+<li>First performs a read (inquire) by setting <code>CA_REQUEST_ID = '01ICUS'</code>, loading <code>CA_CUSTOMER_NUM</code>, and linking to <code>LGICUS01</code></li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, branches to <code>NO_DATA</code></li>
+<li>On successful inquiry, populates all screen fields with the current customer data and sends the map, allowing the user to review and edit</li>
+<li>Issues a second <code>EXEC CICS RECEIVE MAP</code> to collect the user’s modifications</li>
+<li>Sets <code>CA_REQUEST_ID = '01UCUS'</code> and repopulates all COMMAREA fields from the (now-modified) screen fields</li>
+<li>Again applies null-to-space translation and postcode uppercasing before linking</li>
+<li>Issues <code>EXEC CICS LINK PROGRAM('LGUCUS01')</code> for the update</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, branches to <code>NO_UPD</code></li>
+<li>On success, refreshes <code>ENT1CNOI</code>, clears the option field, sets <code>ERRFLDO = 'Customer details updated'</code>, sends the map, and branches to <code>ENDIT_STARTIT</code></li>
+</ul>
+</li>
+<li>
+<p><strong>OTHERWISE</strong> – Invalid Option</p>
+<ul>
+<li>Sets <code>ERRFLDO = 'Please enter a valid option'</code> and <code>ENT1OPTL = -1</code> (cursor positioning attribute)</li>
+<li>Sends the map with <code>CURSOR</code> to position the cursor at the option field and branches to <code>ENDIT_STARTIT</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="44-error-handling-paths" tabindex="-1">4.4 Error Handling Paths</h3>
+<ul>
+<li><strong><code>NO_UPD</code></strong>: sets <code>ERRFLDO = 'Error Updating Customer'</code>, falls through to <code>ERROR_OUT</code></li>
+<li><strong><code>NO_ADD</code></strong>: sets <code>ERRFLDO = 'Error Adding Customer'</code>, falls through to <code>ERROR_OUT</code></li>
+<li><strong><code>NO_DATA</code></strong>: sets <code>ERRFLDO = 'No data was returned.'</code>, falls through to <code>ERROR_OUT</code></li>
+<li><strong><code>ERROR_OUT</code></strong>:
+<ul>
+<li>Sends the current map (showing the error message) to the terminal</li>
+<li>Clears both map structures, resets the full COMMAREA raw area and key COMMAREA fields (<code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code>, <code>CA_REQUEST_INITIALISER</code>) to null/zero values</li>
+<li>Branches to <code>ENDIT_STARTIT</code> to restart the pseudo-conversational cycle</li>
+</ul>
+</li>
+</ul>
+<h3 id="45-terminal-navigation-and-session-control" tabindex="-1">4.5 Terminal Navigation and Session Control</h3>
+<ul>
+<li><strong><code>ENDIT_STARTIT</code></strong>: issues <code>EXEC CICS RETURN TRANSID('SSC1') COMMAREA(COMM_AREA)</code> — suspends and schedules a re-entry under the same transaction ID, preserving the COMMAREA state across pseudo-conversational interactions</li>
+<li><strong><code>ENDIT</code></strong>: sends the literal text <code>'Transaction ended'</code> via <code>EXEC CICS SEND TEXT … ERASE FREEKB</code>, then issues <code>EXEC CICS RETURN</code> with no TRANSID, ending the transaction cleanly</li>
+<li><strong><code>CLEARIT</code></strong>: blanks <code>SSMAPC1I</code>, redisplays the empty map using <code>MAPONLY</code> (no data overlay), then returns with <code>TRANSID('SSC1')</code> and the COMMAREA to remain in the same transaction</li>
+</ul>
+<h3 id="46-write_genacntl-internal-procedure--ts-queue-control-record-maintenance" tabindex="-1">4.6 <code>WRITE_GENACNTL</code> Internal Procedure — TS Queue Control Record Maintenance</h3>
+<p>This procedure serialises access to the <code>GENACNTL</code> temporary storage queue and maintains the high-customer-number record:</p>
+<ul>
+<li><strong>Serialisation</strong>: acquires an exclusive CICS enqueue on <code>STSQ_NAME</code> (<code>'GENACNTL'</code>) before touching the queue</li>
+<li><strong>Read and scan loop</strong>:
+<ul>
+<li>Reads item 1 of the queue to check whether it exists (<code>DFHRESP(NORMAL)</code>)</li>
+<li>If the queue exists, iterates forward using <code>READQ TS … NEXT</code> in a <code>DO WHILE (WS_RESP = 0)</code> loop</li>
+<li>For each item read, increments <code>WS_ITEM_COUNT</code></li>
+<li>If the item’s first 13 characters equal <code>'HIGH CUSTOMER'</code>, the program has found the high-customer record:
+<ul>
+<li>Sets <code>WRITE_MSG_HIGH = CA_CUSTOMER_NUM</code> (the newly assigned customer number)</li>
+<li>Clears <code>WS_FLAG_TSQH</code> to <code>' '</code> to record that the record was found and updated</li>
+<li>Rewrites that specific item in place with <code>WRITEQ TS … REWRITE ITEM(WS_ITEM_COUNT)</code></li>
+<li>Forces <code>WS_RESP = 99</code> to exit the loop immediately</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Queue creation path</strong> (queue not found or high-customer record not located, <code>WS_FLAG_TSQH</code> still <code>'Y'</code>):
+<ul>
+<li>Writes a header record (<code>WRITE_MSG_E</code> — <code>'**** GENAPP CNTL    '</code>) as a new item (<code>NOSUSPEND</code>)</li>
+<li>Sets both <code>WRITE_MSG_LOW</code> and <code>WRITE_MSG_HIGH</code> to <code>CA_CUSTOMER_NUM</code>, initialising both bounds to the first customer number</li>
+<li>Writes the low-customer record (<code>WRITE_MSG_L</code>) and the high-customer record (<code>WRITE_MSG_H</code>) as additional new items</li>
+</ul>
+</li>
+<li><strong>Release</strong>: issues <code>EXEC CICS DEQ</code> on <code>STSQ_NAME</code> to release the enqueue lock</li>
+</ul>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<p><strong>LGTESTC1 (main procedure, entry and initial display)</strong></p>
+<ul>
+<li>Purpose: Main routine of the CICS customer menu transaction SSC1. It is the pseudo-conversational driver for customer inquiry, add and update. It is declared <code>Options(Main,Reentrant)</code> and receives <code>DFHEIPTR</code> and <code>COMM_AREA_PTR</code>.</li>
+<li>Operations:
+<ul>
+<li>Declares the working storage. This includes the message-end text, the TS queue control records <code>READ_MSG</code> and <code>WRITE_MSG</code>, the queue name <code>STSQ_NAME</code> (‘GENACNTL’), and the BMS map structures from the SSMAP include.</li>
+<li>Declares the commarea layout from the LGCMAREA include and a <code>BASE_COMM_AREA</code> buffer sized to it.</li>
+<li>If <code>EIBCALEN = 0</code> (first entry), it points <code>COMM_AREA_PTR</code> at <code>BASE_COMM_AREA</code>.</li>
+<li>It then blanks the map areas <code>SSMAPC1I</code> and <code>SSMAPC1O</code>. It clears <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code> and the request initialiser area. It sets <code>ENT1CNOO</code> to ‘0000000000’.</li>
+</ul>
+</li>
+<li>Control flow: A single IF decides whether this is the first invocation. The commented-out LINK to ADDIPGM1 is not executed. After the IF block, execution falls through to <code>A_GAIN</code>.</li>
+<li>External interaction: <code>EXEC CICS SEND MAP('SSMAPC1') MAPSET('SSMAP') ERASE</code> shows the main menu on the first call.</li>
+</ul>
+<p><strong>A_GAIN (receive and dispatch)</strong></p>
+<ul>
+<li>Purpose: Receives the user’s input and dispatches the requested customer transaction.</li>
+<li>Operations:
+<ul>
+<li>Registers <code>HANDLE AID</code> so CLEAR goes to <code>CLEARIT</code> and PF3 goes to <code>ENDIT</code>.</li>
+<li>Registers <code>HANDLE CONDITION MAPFAIL(ENDIT)</code>.</li>
+<li>Receives the map <code>SSMAPC1</code> into <code>SSMAPC1I</code>.</li>
+<li>Evaluates <code>ENT1OPTO</code> in a SELECT statement.</li>
+</ul>
+</li>
+<li>Control flow: SELECT with the branches below. After the SELECT, the code executes <code>EXEC CICS RETURN</code> as a fall-through. In practice every branch ends in a GO TO, so this RETURN is a safeguard.
+<ul>
+<li><strong>WHEN ‘1’ (inquire customer)</strong>
+<ul>
+<li>Sets <code>CA_REQUEST_ID</code> to ‘01ICUS’ and <code>CA_CUSTOMER_NUM</code> to <code>ENT1CNOO</code>.</li>
+<li>Links to LGICUS01 with the commarea (length 32500).</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, it goes to <code>NO_DATA</code>.</li>
+<li>Otherwise it copies first name, last name, DOB, house name, house number, postcode, home phone, mobile phone and email from the commarea to the map input fields.</li>
+<li>Sends the map and goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li><strong>WHEN ‘2’ (add customer)</strong>
+<ul>
+<li>Sets <code>CA_REQUEST_ID</code> to ‘01ACUS’ and <code>CA_CUSTOMER_NUM</code> to 0.</li>
+<li>Moves the screen fields into the commarea.</li>
+<li>Translates nulls (X’00’) to blanks in <code>COMM_AREA_RAW</code> and uppercases <code>CA_POSTCODE</code>.</li>
+<li>Links to LGACUS01.</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, it issues <code>SYNCPOINT ROLLBACK</code> and goes to <code>NO_ADD</code>.</li>
+<li>On success it calls <code>WRITE_GENACNTL</code> to update the control queue.</li>
+<li>It then sets <code>ENT1CNOI</code> to the new customer number, clears <code>ENT1OPTI</code>, and sets <code>ERRFLDO</code> to ‘New Customer Inserted’.</li>
+<li>Sends the map and goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li><strong>WHEN ‘4’ (update customer)</strong>
+<ul>
+<li>First performs the same inquiry as option 1 (LGICUS01 link, error check to <code>NO_DATA</code>, fields moved to the screen).</li>
+<li>Sends the map with the current data and issues a second <code>RECEIVE MAP</code> to get the user’s edits.</li>
+<li>Sets <code>CA_REQUEST_ID</code> to ‘01UCUS’ and moves the edited fields into the commarea.</li>
+<li>Translates nulls to blanks and uppercases the postcode.</li>
+<li>Links to LGUCUS01.</li>
+<li>If <code>CA_RETURN_CODE &gt; 0</code>, it goes to <code>NO_UPD</code>.</li>
+<li>Otherwise it sets <code>ENT1CNOI</code>, clears <code>ENT1OPTI</code>, and sets <code>ERRFLDO</code> to ‘Customer details updated’.</li>
+<li>Sends the map and goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li><strong>OTHERWISE (invalid option)</strong>
+<ul>
+<li>Sets <code>ERRFLDO</code> to ‘Please enter a valid option’ and <code>ENT1OPTL</code> to -1 to position the cursor.</li>
+<li>Sends the map with CURSOR and goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>External interaction: CICS terminal I/O (RECEIVE MAP, SEND MAP) and LINKs to the LGICUS01, LGACUS01 and LGUCUS01 services, which perform the customer data access.</li>
+</ul>
+<p><strong>ENDIT_STARTIT</strong></p>
+<ul>
+<li>Purpose: Normal pseudo-conversational exit that restarts the transaction on the next user input.</li>
+<li>Operations: <code>EXEC CICS RETURN TRANSID('SSC1') COMMAREA(COMM_AREA)</code>. This passes the commarea to the next invocation.</li>
+<li>Control flow: Reached only through GO TO from the dispatch branches and from <code>ERROR_OUT</code>. There is no fall-through into it.</li>
+<li>External interaction: CICS task return and transaction scheduling.</li>
+</ul>
+<p><strong>ENDIT</strong></p>
+<ul>
+<li>Purpose: Terminates the transaction when the user presses PF3 or a MAPFAIL occurs.</li>
+<li>Operations: Sends the text ‘Transaction ended’ (<code>MSGEND</code>) with ERASE and FREEKB, then issues <code>EXEC CICS RETURN</code>.</li>
+<li>Control flow: Reached through the HANDLE AID PF3 and HANDLE CONDITION MAPFAIL branches.</li>
+<li>External interaction: Terminal output through SEND TEXT.</li>
+</ul>
+<p><strong>CLEARIT</strong></p>
+<ul>
+<li>Purpose: Handles the CLEAR key by resetting the screen.</li>
+<li>Operations: Blanks <code>SSMAPC1I</code>, sends the map with MAPONLY to show an empty menu, then returns with TRANSID(‘SSC1’) and the commarea.</li>
+<li>Control flow: Reached through the HANDLE AID CLEAR branch.</li>
+<li>External interaction: Terminal output (SEND MAP) and CICS RETURN.</li>
+</ul>
+<p><strong>NO_UPD</strong></p>
+<ul>
+<li>Purpose: Error label for a failed customer update.</li>
+<li>Operations: Sets <code>ERRFLDO</code> to ‘Error Updating Customer’ and goes to <code>ERROR_OUT</code>.</li>
+<li>Control flow: Reached through GO TO when the update returns <code>CA_RETURN_CODE &gt; 0</code>.</li>
+</ul>
+<p><strong>NO_ADD</strong></p>
+<ul>
+<li>Purpose: Error label for a failed customer add.</li>
+<li>Operations: Sets <code>ERRFLDO</code> to ‘Error Adding Customer’ and goes to <code>ERROR_OUT</code>.</li>
+<li>Control flow: Reached through GO TO after the rollback.</li>
+</ul>
+<p><strong>NO_DATA</strong></p>
+<ul>
+<li>Purpose: Error label for an inquiry that returned no data. It is used by both option 1 and option 4.</li>
+<li>Operations: Sets <code>ERRFLDO</code> to ‘No data was returned.’ and goes to <code>ERROR_OUT</code>.</li>
+<li>Control flow: Reached through GO TO when the inquiry returns <code>CA_RETURN_CODE &gt; 0</code>.</li>
+</ul>
+<p><strong>ERROR_OUT</strong></p>
+<ul>
+<li>Purpose: Common error display and reset routine.</li>
+<li>Operations:
+<ul>
+<li>Sends the map with the error message.</li>
+<li>Blanks the map areas and <code>COMM_AREA_RAW</code>.</li>
+<li>Resets <code>CA_REQUEST_ID</code> to blank and <code>CA_RETURN_CODE</code> and <code>CA_CUSTOMER_NUM</code> to 0.</li>
+<li>Clears the request initialiser.</li>
+<li>Goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+<li>Control flow: Unconditional GO TO at the end, so the transaction restarts with a clean commarea.</li>
+<li>External interaction: Terminal output through SEND MAP.</li>
+</ul>
+<p><strong>WRITE_GENACNTL (internal procedure)</strong></p>
+<ul>
+<li>Purpose: Updates the GENACNTL temporary storage queue after a successful customer add. The queue holds the customer number range (low and high).</li>
+<li>Operations:
+<ul>
+<li>Takes an exclusive lock on the queue name with <code>EXEC CICS ENQ RESOURCE(STSQ_NAME)</code>.</li>
+<li>Initialises <code>WS_FLAG_TSQH</code> to ‘Y’ and <code>WS_ITEM_COUNT</code> to 1.</li>
+<li>Reads item 1 of the queue into <code>READ_MSG</code> with RESP(<code>WS_RESP</code>).</li>
+<li>If the read is NORMAL, it loops while <code>WS_RESP = 0</code>:
+<ul>
+<li>Reads the next item and increments <code>WS_ITEM_COUNT</code>.</li>
+<li>If the read is NORMAL and the first 13 characters of the item are ‘HIGH CUSTOMER’, it sets <code>WRITE_MSG_HIGH</code> to <code>CA_CUSTOMER_NUM</code> and clears <code>WS_FLAG_TSQH</code>.</li>
+<li>It then rewrites that item with <code>WRITEQ TS ... REWRITE ITEM(WS_ITEM_COUNT)</code> from <code>WRITE_MSG_H</code> (length 24).</li>
+<li>It sets <code>WS_RESP</code> to 99 to exit the loop.</li>
+</ul>
+</li>
+<li>If <code>WS_FLAG_TSQH</code> is still ‘Y’, no high-customer record was found, so the queue is initialised. It writes three items with NOSUSPEND:
+<ul>
+<li>The header <code>WRITE_MSG_E</code> (length 20).</li>
+<li>The low-customer record <code>WRITE_MSG_L</code> (length 23), after setting <code>WRITE_MSG_LOW</code> and <code>WRITE_MSG_HIGH</code> to <code>CA_CUSTOMER_NUM</code>.</li>
+<li>The high-customer record <code>WRITE_MSG_H</code> (length 24).</li>
+</ul>
+</li>
+<li>Releases the lock with <code>EXEC CICS DEQ RESOURCE(STSQ_NAME)</code>.</li>
+</ul>
+</li>
+<li>Control flow: Nested IFs, a DO WHILE loop over the queue items, and a flag-driven branch that creates the queue contents if the high record is missing.</li>
+<li>External interaction: CICS enqueue/dequeue for serialisation, and temporary storage queue reads (READQ TS) and writes (WRITEQ TS, including REWRITE).</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<ul>
+<li>
+<p><strong>Called programs (CICS LINK)</strong></p>
+<ul>
+<li><code>LGICUS01</code>
+<ul>
+<li>Customer inquiry service.</li>
+<li>Linked with <code>CA_REQUEST_ID</code> = ‘01ICUS’ for option 1 (inquire) and for option 4 (update), which fetches the current details first.</li>
+<li>Reads the customer number from <code>CA_CUSTOMER_NUM</code>.</li>
+<li>Returns the customer’s name, date of birth, address, phone and email fields and a return code.</li>
+</ul>
+</li>
+<li><code>LGACUS01</code>
+<ul>
+<li>Customer add service.</li>
+<li>Linked with <code>CA_REQUEST_ID</code> = ‘01ACUS’ and <code>CA_CUSTOMER_NUM</code> = 0.</li>
+<li>Receives the customer details from the screen.</li>
+<li>Returns the newly assigned customer number in <code>CA_CUSTOMER_NUM</code>.</li>
+</ul>
+</li>
+<li><code>LGUCUS01</code>
+<ul>
+<li>Customer update service.</li>
+<li>Linked with <code>CA_REQUEST_ID</code> = ‘01UCUS’ and the edited customer details.</li>
+<li>Reports success or failure in <code>CA_RETURN_CODE</code>.</li>
+</ul>
+</li>
+<li><code>ADDIPGM1</code>
+<ul>
+<li>Counter-initialisation program that would be linked on first entry.</li>
+<li>The <code>EXEC CICS LINK</code> is commented out, so it is not currently a runtime dependency.</li>
+</ul>
+</li>
+<li>All LINK calls use <code>COMM_AREA</code> as the COMMAREA, with a length of 32500.</li>
+<li>Every service reports its outcome in <code>CA_RETURN_CODE</code>. A value greater than 0 sends the menu to the error paths (<code>NO_DATA</code>, <code>NO_ADD</code>, <code>NO_UPD</code>). After a failed add, the menu also issues <code>SYNCPOINT ROLLBACK</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Internal procedure</strong></p>
+<ul>
+<li><code>WRITE_GENACNTL</code>
+<ul>
+<li>Internal procedure called after a successful add.</li>
+<li>It maintains the customer number range control information in the <code>GENACNTL</code> temporary storage queue.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Include files and data contracts</strong></p>
+<ul>
+<li><code>SSMAP</code> (<code>plinc/SSMAP.inc</code>)
+<ul>
+<li>PL/I symbolic map for mapset <code>SSMAP</code>.</li>
+<li>Declares the input and output structures for <code>SSMAPC1</code> (customer menu) and <code>SSMAPP1</code> to <code>SSMAPP5</code>.</li>
+<li>Supplies the screen fields used by this program: <code>ENT1OPTI</code>, <code>ENT1OPTO</code>, <code>ENT1CNOI</code>, <code>ENT1CNOO</code>, <code>ENT1FNAI</code>, <code>ERRFLDO</code> and others.</li>
+</ul>
+</li>
+<li><code>LGCMAREA</code> (<code>plinc/LGCMAREA.inc</code>)
+<ul>
+<li>COMMAREA layout, 32500 bytes in total, shared with the called services.</li>
+<li>Defines <code>COMM_AREA_PTR</code>, <code>COMM_AREA</code>, <code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code> and the customer fields.</li>
+<li>The customer fields are <code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_DOB</code>, <code>CA_HOUSE_NAME</code>, <code>CA_HOUSE_NUM</code>, <code>CA_POSTCODE</code>, <code>CA_PHONE_HOME</code>, <code>CA_PHONE_MOBILE</code> and <code>CA_EMAIL_ADDRESS</code>.</li>
+<li>It is the only data contract between this menu and the services it links to.</li>
+</ul>
+</li>
+<li>Include resolution
+<ul>
+<li>The compile parameters resolve <code>%INCLUDE</code> names against the <code>plinc/*.inc</code> search path.</li>
+<li>A change to either include requires an impact build or full build.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Input parameters and runtime context</strong></p>
+<ul>
+<li><code>DFHEIPTR</code>
+<ul>
+<li>Pointer to the CICS EXEC interface block.</li>
+<li>Supplies <code>EIBCALEN</code>, used to detect the first invocation (<code>EIBCALEN</code> = 0).</li>
+</ul>
+</li>
+<li><code>COMM_AREA_PTR</code>
+<ul>
+<li>COMMAREA pointer passed in by CICS and carried between pseudo-conversational invocations.</li>
+<li>On first entry, it is set to the local <code>BASE_COMM_AREA</code> storage.</li>
+</ul>
+</li>
+<li>Terminal input from mapset <code>SSMAP</code>
+<ul>
+<li>Map <code>SSMAPC1</code> is received from the terminal.</li>
+<li>Menu option <code>ENT1OPTO</code> selects the function: ‘1’ inquire, ‘2’ add, ‘4’ update. Any other value is rejected.</li>
+<li>Customer details are keyed into the screen fields.</li>
+</ul>
+</li>
+<li>Terminal attention keys and conditions
+<ul>
+<li><code>CLEAR</code> branches to the <code>CLEARIT</code> routine.</li>
+<li><code>PF3</code> branches to <code>ENDIT</code>.</li>
+<li>The <code>MAPFAIL</code> condition branches to <code>ENDIT</code>.</li>
+</ul>
+</li>
+<li><code>DFHRESP(NORMAL)</code>
+<ul>
+<li>CICS response constant, used to test queue read results.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS terminal and BMS resources</strong></p>
+<ul>
+<li>Mapset <code>SSMAP</code>, map <code>SSMAPC1</code>
+<ul>
+<li>BMS source is not in this repository.</li>
+<li>Used with <code>SEND MAP</code>, <code>RECEIVE MAP</code> (ASIS TERMINAL) and <code>SEND MAP ... MAPONLY</code>.</li>
+<li>Menu, result and error messages are sent through it.</li>
+</ul>
+</li>
+<li>Transaction <code>SSC1</code>
+<ul>
+<li>Re-invoked by <code>EXEC CICS RETURN TRANSID('SSC1') COMMAREA(COMM_AREA)</code> to continue the pseudo-conversation.</li>
+<li>Needs a CSD definition that points to this program.</li>
+</ul>
+</li>
+<li><code>SEND TEXT</code>
+<ul>
+<li>Sends the end-of-transaction message held in <code>MSGEND</code> (‘Transaction ended’) on PF3 or MAPFAIL.</li>
+</ul>
+</li>
+<li>CICS syncpoint services
+<ul>
+<li><code>SYNCPOINT ROLLBACK</code> is issued when the add service returns a failure code.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Temporary storage queue and serialisation</strong></p>
+<ul>
+<li>TS queue <code>GENACNTL</code> (held in <code>STSQ_NAME</code>)
+<ul>
+<li>Holds the customer number range control records.</li>
+<li>Records: the 20-byte header ‘**** GENAPP CNTL’, ‘LOW CUSTOMER=nnnnnnnnnn’ and ‘HIGH CUSTOMER=nnnnnnnnnn’.</li>
+<li>Operations:
+<ul>
+<li><code>READQ TS</code> by item and with NEXT, into <code>READ_MSG</code>, to find the ‘HIGH CUSTOMER’ record.</li>
+<li><code>WRITEQ TS ... REWRITE</code> of <code>WRITE_MSG_H</code>, to update the high customer number.</li>
+<li><code>WRITEQ TS ... NOSUSPEND</code> of <code>WRITE_MSG_E</code>, <code>WRITE_MSG_L</code> and <code>WRITE_MSG_H</code>, to create the queue when it does not exist.</li>
+</ul>
+</li>
+<li>Outcomes are captured in <code>WS_RESP</code>.</li>
+</ul>
+</li>
+<li><code>ENQ</code> / <code>DEQ</code> on resource <code>GENACNTL</code>
+<ul>
+<li>Serialises updates to the queue so concurrent adds do not corrupt the high customer number.</li>
+<li>Uses the <code>STSQ_NAME</code> value and its length.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Data dependencies on other programs’ results</strong></p>
+<ul>
+<li><code>CA_CUSTOMER_NUM</code> returned by <code>LGACUS01</code> after an add
+<ul>
+<li>Used to set <code>WRITE_MSG_LOW</code> and <code>WRITE_MSG_HIGH</code>, and displayed on the menu.</li>
+</ul>
+</li>
+<li>Customer details returned by <code>LGICUS01</code>
+<ul>
+<li>Populate the update screen and the inquiry display.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Downstream resources reached indirectly</strong></p>
+<ul>
+<li>Db2 tables <code>CUSTOMER</code> and <code>POLICY</code>, and the VSAM and security components, are reached through the linked services.</li>
+<li>The menu has no SQL or file I/O of its own.</li>
+<li><code>LGACUS01</code> writes <code>CUSTOMER</code> and <code>POLICY</code>. <code>LGICUS01</code> reads <code>CUSTOMER</code>. <code>LGUCUS01</code> updates <code>CUSTOMER</code>.</li>
+<li>The customer number counter (<code>GENACUSTNUM</code>, pool <code>GENA</code>) is used on the add path by the services further down the chain.</li>
+</ul>
+</li>
+<li>
+<p><strong>Built-in functions and runtime environment</strong></p>
+<ul>
+<li><code>TRANSLATE</code>
+<ul>
+<li>Replaces X’00’ nulls with blanks in <code>COMM_AREA_RAW</code> before the add and update links.</li>
+</ul>
+</li>
+<li><code>UPPERCASE</code>
+<ul>
+<li>Converts <code>CA_POSTCODE</code> to uppercase before the add and update links.</li>
+</ul>
+</li>
+<li><code>STG</code>, <code>ADDR</code> and <code>SUBSTR</code>
+<ul>
+<li>Used for lengths, pointers and queue-record matching.</li>
+</ul>
+</li>
+<li>Compile and runtime settings
+<ul>
+<li>Compiled with <code>SYSTEM(CICS)</code> and the CICS and macro preprocessors.</li>
+<li>Declared <code>Options(Main,Reentrant)</code>, so it must run as a reentrant CICS program.</li>
+<li>Deployed as a <code>CICSLOAD</code> module.</li>
+</ul>
+</li>
+<li>Configuration values
+<ul>
+<li>No environment variables are used.</li>
+<li>The hard-coded literals are mapset <code>SSMAP</code>, map <code>SSMAPC1</code>, transaction <code>SSC1</code>, queue <code>GENACNTL</code>, the program names above and the COMMAREA length of 32500.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<ul>
+<li>
+<p><strong>Menu option validation</strong></p>
+<ul>
+<li>Only three transaction options are accepted. The program evaluates <code>ENT1OPTO</code> in a <code>SELECT</code> statement:
+<ul>
+<li>‘1’ inquires on a customer.</li>
+<li>‘2’ adds a customer.</li>
+<li>‘4’ updates a customer.</li>
+</ul>
+</li>
+<li>Any other value, including ‘3’, blank and non-digits, goes to the <code>OTHERWISE</code> branch:
+<ul>
+<li>The program sets <code>ERRFLDO</code> to “Please enter a valid option”.</li>
+<li>It sets <code>ENT1OPTL = -1</code> to place the cursor on the option field.</li>
+<li>It redisplays the map with the <code>CURSOR</code> option.</li>
+<li>It returns to the <code>SSC1</code> transaction without calling any service.</li>
+</ul>
+</li>
+<li>Inquiry and update both use the customer number from the screen (<code>ENT1CNOO</code>). The program does not check that the number is present, numeric or in range. Those checks are left to the called services.</li>
+</ul>
+</li>
+<li>
+<p><strong>Input data handling and formatting</strong></p>
+<ul>
+<li><strong>Null-to-blank translation</strong>
+<ul>
+<li>For add and update, the program runs <code>TRANSLATE(COMM_AREA_RAW,' ','00'X)</code> over the whole commarea before the link.</li>
+<li>This replaces every null byte (X’00’) with a blank, so unmodified screen fields do not pass nulls to the services.</li>
+</ul>
+</li>
+<li><strong>Postcode uppercasing</strong>
+<ul>
+<li>For add and update, <code>CA_POSTCODE = UPPERCASE(CA_POSTCODE)</code> runs before the link.</li>
+<li>The postcode is therefore always uppercase when the service receives it.</li>
+</ul>
+</li>
+<li><strong>Customer number on add</strong>
+<ul>
+<li><code>CA_CUSTOMER_NUM</code> is forced to 0 for an add. The user cannot choose the number, and the called service assigns it.</li>
+</ul>
+</li>
+<li><strong>Field size limits</strong>
+<ul>
+<li>The screen and commarea fields have fixed lengths:
+<ul>
+<li>first name: 10</li>
+<li>last name: 20</li>
+<li>date of birth: 10</li>
+<li>house name: 20</li>
+<li>house number: 4</li>
+<li>postcode: 8</li>
+<li>phone numbers: 20 each</li>
+<li>email: 100</li>
+<li>customer number: 10 digits (<code>PIC '9999999999'</code>)</li>
+</ul>
+</li>
+<li>Values are copied into these fixed fields by assignment, so any other length is truncated or padded. The program does not report this.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Request identification and commarea contract</strong></p>
+<ul>
+<li><strong>Request codes</strong>
+<ul>
+<li>The program sets <code>CA_REQUEST_ID</code> to a fixed 6-character code before every link:
+<ul>
+<li>‘01ICUS’ for inquiry. Option 4 sends it first, to fetch the current data.</li>
+<li>‘01ACUS’ for add.</li>
+<li>‘01UCUS’ for update.</li>
+</ul>
+</li>
+<li>Each code is paired with its target program:
+<ul>
+<li><code>LGICUS01</code> for inquiry</li>
+<li><code>LGACUS01</code> for add</li>
+<li><code>LGUCUS01</code> for update</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Commarea size</strong>
+<ul>
+<li>Every link passes <code>COMMAREA(COMM_AREA)</code> with <code>LENGTH(32500)</code>.</li>
+<li>The commarea is 32500 bytes (<code>COMM_AREA_RAW CHAR(32500)</code>). It is a union, so every branch must stay within that size.</li>
+<li>Reserved space is held in the request-specific filler, and its length must be kept in step with any field added.</li>
+</ul>
+</li>
+<li><strong>Return code convention</strong>
+<ul>
+<li><code>CA_RETURN_CODE</code> is <code>PIC '99'</code>. A value greater than 0 means the service failed.</li>
+<li>The program does not tell individual failure codes apart.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Conditional processing rules</strong></p>
+<ul>
+<li><strong>Inquiry (option 1)</strong>
+<ul>
+<li>If the return code is above 0, the program shows “No data was returned.” through <code>NO_DATA</code>.</li>
+<li>Otherwise it copies the returned fields to the map and sends it.</li>
+<li>The map is sent without <code>ERASE</code>.</li>
+</ul>
+</li>
+<li><strong>Update (option 4)</strong>
+<ul>
+<li>Inquiry must succeed first. The program links to <code>LGICUS01</code>, and a return code above 0 goes to <code>NO_DATA</code>.</li>
+<li>The user then edits the displayed data. Only after the second <code>RECEIVE MAP</code> does the program link to <code>LGUCUS01</code>.</li>
+<li>If the update returns a code above 0, the program shows “Error Updating Customer” through <code>NO_UPD</code>.</li>
+<li>On success it shows “Customer details updated”. It also copies <code>CA_CUSTOMER_NUM</code> to <code>ENT1CNOI</code> and clears <code>ENT1OPTI</code> to blank.</li>
+<li>The update takes the customer number from <code>ENT1CNOI</code>, the second receive. The earlier inquiry used <code>ENT1CNOO</code>.</li>
+</ul>
+</li>
+<li><strong>Add (option 2)</strong>
+<ul>
+<li>If the return code is above 0, the program issues <code>EXEC CICS SYNCPOINT ROLLBACK</code>. It then shows “Error Adding Customer” through <code>NO_ADD</code>.</li>
+<li>On success it calls <code>WRITE_GENACNTL</code> before building the response. The sequence is:
+<ul>
+<li>It shows the new customer number.</li>
+<li>It clears the option field.</li>
+<li>It shows “New Customer Inserted”.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Error exit</strong>
+<ul>
+<li><code>ERROR_OUT</code> sends the error map, then resets all of these:
+<ul>
+<li>the input and output maps</li>
+<li>the whole commarea</li>
+<li>the request ID</li>
+<li>the return code</li>
+<li>the customer number</li>
+<li>the request-specific initialiser</li>
+</ul>
+</li>
+<li>It then returns to <code>SSC1</code> with a clean commarea, so failed state does not carry into the next interaction.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Sequencing and transaction flow</strong></p>
+<ul>
+<li><strong>First invocation</strong>
+<ul>
+<li>If <code>EIBCALEN = 0</code>, the program points <code>COMM_AREA_PTR</code> at the local <code>BASE_COMM_AREA</code> storage. It then initialises the maps and the commarea fields and sends the menu with <code>ERASE</code>.</li>
+<li>The customer number field is pre-set to ‘0000000000’.</li>
+</ul>
+</li>
+<li><strong>Receive before processing</strong>
+<ul>
+<li><code>HANDLE AID</code> and <code>HANDLE CONDITION</code> are established before the <code>RECEIVE MAP</code>. The map is received with <code>ASIS</code> and <code>TERMINAL</code>, so the text is not folded to uppercase.</li>
+</ul>
+</li>
+<li><strong>Pseudo-conversational design</strong>
+<ul>
+<li>After each processed request, the program ends with <code>RETURN TRANSID('SSC1') COMMAREA(COMM_AREA)</code>.</li>
+<li>The terminal state therefore passes to the next iteration through the commarea.</li>
+</ul>
+</li>
+<li><strong>Update uses two receives</strong>
+<ul>
+<li>Option 4 does <code>SEND MAP</code>, then <code>RECEIVE MAP</code>, within one task. It waits for the user’s edits before it sends the update.</li>
+</ul>
+</li>
+<li><strong>Rollback before error display</strong>
+<ul>
+<li>On an add failure, the rollback happens before the error message is shown.</li>
+</ul>
+</li>
+<li><strong>Control-queue update after add</strong>
+<ul>
+<li><code>WRITE_GENACNTL</code> runs only after a successful add, and before the confirmation map is sent.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Terminal key and exception handling</strong></p>
+<ul>
+<li><strong>PF3</strong>
+<ul>
+<li>PF3 branches to <code>ENDIT</code>. The program sends the text “Transaction ended” with <code>ERASE</code> and <code>FREEKB</code>, then returns without a transaction ID. The transaction ends.</li>
+</ul>
+</li>
+<li><strong>CLEAR</strong>
+<ul>
+<li>CLEAR branches to <code>CLEARIT</code>. The program blanks the input map, sends the map with <code>MAPONLY</code> and returns to <code>SSC1</code>.</li>
+</ul>
+</li>
+<li><strong>MAPFAIL</strong>
+<ul>
+<li><code>MAPFAIL</code> branches to <code>ENDIT</code>. If the user presses Enter without entering data, the transaction ends.</li>
+</ul>
+</li>
+<li><strong>Other conditions</strong>
+<ul>
+<li>Other CICS conditions are not handled. Examples are the <code>LINK</code> conditions (PGMIDERR and the like), <code>SEND MAP</code> errors and the <code>ENQ</code>/<code>DEQ</code> calls.</li>
+<li>The program has no <code>RESP</code> checks on them, so the default CICS action (abend) applies.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Control queue (GENACNTL) consistency and serialisation</strong></p>
+<ul>
+<li><strong>Serialised access</strong>
+<ul>
+<li><code>WRITE_GENACNTL</code> takes <code>EXEC CICS ENQ RESOURCE(STSQ_NAME)</code> (resource ‘GENACNTL’, length from <code>STG</code>) before reading or writing the queue. It releases it with <code>DEQ</code> at the end.</li>
+<li>Only one task at a time can update the customer number range.</li>
+</ul>
+</li>
+<li><strong>Queue layout</strong>
+<ul>
+<li>The queue holds three items:
+<ul>
+<li>a header, <code>**** GENAPP CNTL</code>, 20 bytes</li>
+<li>the low customer number, ‘LOW CUSTOMER=’ plus 10 digits, 23 bytes</li>
+<li>the high customer number, ‘HIGH CUSTOMER=’ plus 10 digits, 24 bytes</li>
+</ul>
+</li>
+<li>The read area <code>READ_MSG_MSG</code> is 80 bytes.</li>
+</ul>
+</li>
+<li><strong>Locating the high-customer item</strong>
+<ul>
+<li>The program reads item 1, then reads sequentially with <code>NEXT</code>. It tracks the item number in <code>WS_ITEM_COUNT</code>.</li>
+<li>It matches an item by the first 13 characters of the message, <code>SUBSTR(READ_MSG_MSG,1,13) = 'HIGH CUSTOMER'</code>, and only when <code>WS_RESP</code> is normal.</li>
+<li>On a match it rewrites that item in place:
+<ul>
+<li><code>WRITE_MSG_HIGH</code> is set to <code>CA_CUSTOMER_NUM</code>.</li>
+<li>The <code>WRITEQ TS REWRITE</code> uses <code>ITEM(WS_ITEM_COUNT)</code> and length 24.</li>
+<li>It sets <code>WS_RESP = 99</code> to end the loop.</li>
+</ul>
+</li>
+<li>A read-ahead test can reach the end of the queue. The loop ends when <code>WS_RESP</code> is not 0.</li>
+</ul>
+</li>
+<li><strong>Queue initialisation</strong>
+<ul>
+<li>If the first read fails, or no HIGH item is found, <code>WS_FLAG_TSQH</code> stays ‘Y’. The program then creates the queue contents with three <code>WRITEQ TS ... NOSUSPEND</code> calls:
+<ul>
+<li>the header (20 bytes)</li>
+<li>the low entry (23 bytes)</li>
+<li>the high entry (24 bytes)</li>
+</ul>
+</li>
+<li>It sets both <code>WRITE_MSG_LOW</code> and <code>WRITE_MSG_HIGH</code> to the new customer number. The first customer becomes both the low and the high value.</li>
+</ul>
+</li>
+<li><strong>High-water mark rule</strong>
+<ul>
+<li>The high customer number is overwritten with the number from the latest add.</li>
+<li>The program does not compare it with the current high value. It assumes that numbers only increase.</li>
+<li>The low value is never changed after the queue is created.</li>
+</ul>
+</li>
+<li><strong>Unchecked responses</strong>
+<ul>
+<li><code>RESP</code> is captured on the queue writes but not tested after them. A failed queue update does not stop the add or change the reply to the user.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Resource and capacity limits</strong></p>
+<ul>
+<li><strong>Commarea</strong>
+<ul>
+<li>The commarea is limited to 32500 bytes. The inquiry, add and update services all use this one size.</li>
+</ul>
+</li>
+<li><strong>Customer number</strong>
+<ul>
+<li>It is limited to 10 digits (<code>PIC '9999999999'</code>).</li>
+</ul>
+</li>
+<li><strong>Queue read buffer</strong>
+<ul>
+<li><code>READ_MSG</code> is limited to 80 bytes.</li>
+</ul>
+</li>
+<li><strong>Queue item count</strong>
+<ul>
+<li><code>WS_ITEM_COUNT</code> is <code>FIXED BIN(15)</code>, so it is limited to 32767 items.</li>
+</ul>
+</li>
+<li><strong>Error message</strong>
+<ul>
+<li>The error and info message field <code>ERRFLDO</code> is limited to 40 characters.</li>
+</ul>
+</li>
+<li><strong>Fixed names</strong>
+<ul>
+<li>The map is <code>SSMAPC1</code> in mapset <code>SSMAP</code>. The queue is <code>GENACNTL</code>. The re-entry transaction is <code>SSC1</code>.</li>
+</ul>
+</li>
+<li><strong>Reentrancy</strong>
+<ul>
+<li>The program is <code>Options(Main,Reentrant)</code>.</li>
+<li>The queue name and the exit message are <code>STATIC</code> constants, and no other static state is changed.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<ul>
+<li>
+<p><strong>Input validation and menu option checking</strong></p>
+</li>
+<li>
+<p>The option selector is evaluated in a multi-way selection. Only ‘1’ (inquire), ‘2’ (add) and ‘4’ (update) are accepted.</p>
+</li>
+<li>
+<p>Any other value goes to the default branch. That branch sets the error field to “Please enter a valid option” and positions the cursor on the option field by setting its length indicator to -1.</p>
+</li>
+<li>
+<p>The menu is redisplayed with the cursor on the option field, and the transaction restarts through the pseudo-conversational return.</p>
+</li>
+<li>
+<p>On the first invocation (empty communication area length), the screen maps and communication area are cleared. The customer number is set to zeros, and a clean menu is sent. This is a defensive initialisation that prevents stale or garbage data from being processed.</p>
+</li>
+<li>
+<p><strong>Terminal and screen-level exception handling (CICS condition and AID handling)</strong></p>
+</li>
+<li>
+<p>A handler for the CLEAR key routes control to the CLEARIT routine. That routine blanks the input map, resends the map with the map-only option, and returns to the same transaction with the communication area retained.</p>
+</li>
+<li>
+<p>A handler for PF3 routes control to the ENDIT routine. That routine sends the “Transaction ended” text, erases the screen, frees the keyboard and returns without a transaction id, which ends the conversation.</p>
+</li>
+<li>
+<p>A handler for the MAPFAIL condition also routes control to ENDIT. When the terminal returns no map data, the transaction is terminated cleanly instead of abending.</p>
+</li>
+<li>
+<p>These handlers are established at the A_GAIN label, before each receive of the map.</p>
+</li>
+<li>
+<p><strong>Business service return code checks</strong></p>
+</li>
+<li>
+<p>After every link to a called service, the return code in the communication area is tested. A value above zero means the service failed.</p>
+<ul>
+<li>Inquire (option 1): a non-zero return code branches to the NO_DATA path. No screen fields are populated from the failed response.</li>
+<li>Add (option 2): a non-zero return code triggers a syncpoint rollback and then branches to the NO_ADD path.</li>
+<li>Update (option 4): the initial inquiry (used to pre-populate the screen) is checked and branches to NO_DATA on failure. The subsequent update link is checked and branches to NO_UPD on failure.</li>
+</ul>
+</li>
+<li>
+<p>The add path is the only one that explicitly rolls back the unit of work. The rollback undoes any partial database changes made by the called add service before the user is told of the failure.</p>
+</li>
+<li>
+<p>The control queue update (WRITE_GENACNTL) runs only after a successful add, so the high customer number is never advanced for a failed add.</p>
+</li>
+<li>
+<p><strong>User notification and error messages</strong></p>
+</li>
+<li>
+<p>Dedicated error labels set a message in the error field of the output map:</p>
+<ul>
+<li>“No data was returned.” for a failed inquiry, or a failed pre-update retrieval.</li>
+<li>“Error Adding Customer” for a failed add.</li>
+<li>“Error Updating Customer” for a failed update.</li>
+<li>“Please enter a valid option” for an invalid menu selection.</li>
+</ul>
+</li>
+<li>
+<p>All error labels fall through to a common ERROR_OUT routine that sends the menu with the message displayed.</p>
+</li>
+<li>
+<p>Success messages follow the same mechanism: “New Customer Inserted” and “Customer details updated”. These are also placed in the error field. After a successful add or update, the option field is cleared and the customer number field is refreshed from the communication area.</p>
+</li>
+<li>
+<p><strong>Recovery, reset and fallback logic</strong></p>
+</li>
+<li>
+<p>The ERROR_OUT routine, after showing the message, clears the input and output maps, the entire communication area, the request id, the return code, the customer number and the request-specific area. This avoids carrying failed or partial data into the next interaction.</p>
+</li>
+<li>
+<p>The program then returns to the same transaction (SSC1) with the communication area, so the user can retry from a clean menu.</p>
+</li>
+<li>
+<p>Before linking for add and update, null bytes in the communication area are translated to blanks, and the postcode is converted to uppercase. These normalisations prevent downstream rejection caused by low-values or inconsistent case.</p>
+</li>
+<li>
+<p>The program always ends its processing path with an explicit return, either to the same transaction or with a plain return, so control never falls off the end of the main logic.</p>
+</li>
+<li>
+<p><strong>Temporary storage queue error handling (WRITE_GENACNTL)</strong></p>
+</li>
+<li>
+<p>Serialisation: the queue name is enqueued before reading or updating the queue and dequeued afterwards. This guards against concurrent updates corrupting the customer number range.</p>
+</li>
+<li>
+<p>Response code checking: the first read of item 1 uses a response variable, and its value is compared with the normal response. If the queue or item does not exist, or the read fails, the scanning loop is bypassed and nothing is raised as an abend.</p>
+</li>
+<li>
+<p>The loop reads successive items until a non-normal response is returned. This is how the end of the queue (item not found) is detected. A non-normal response is therefore used as a loop-termination signal, not as an error.</p>
+</li>
+<li>
+<p>When the “HIGH CUSTOMER” record is found, the program rewrites that item with the new high customer number. It then forces the response variable to 99 to leave the loop.</p>
+</li>
+<li>
+<p>A flag, initialised to ‘Y’, indicates that the high-customer record has not been found. If it is still ‘Y’ after the scan, the queue is treated as missing or uninitialised. Fallback logic then writes the header, low-customer and high-customer records, using the new customer number for both low and high values. This is self-healing initialisation of the control queue.</p>
+</li>
+<li>
+<p>The fallback writes use the NOSUSPEND option so that the program does not wait if the queue cannot be written immediately.</p>
+</li>
+<li>
+<p>The response values from the fallback writes and the rewrite are captured but not tested afterwards. Failures of those operations are silently ignored and do not affect the user message.</p>
+</li>
+<li>
+<p><strong>Limitations and gaps in error handling</strong></p>
+</li>
+<li>
+<p>There is no general ON-unit or ERROR condition handling. Unexpected runtime exceptions and unhandled CICS conditions (other than MAPFAIL) rely on default CICS abend handling.</p>
+</li>
+<li>
+<p>The called services are not protected by response options on the link commands. A failure of the link itself, such as the program not being found, is not trapped locally.</p>
+</li>
+<li>
+<p>The second map receive in the update path is covered by the earlier MAPFAIL and AID handlers. It has no separate failure branch.</p>
+</li>
+<li>
+<p>The dequeue is not conditioned on the outcome of the queue operations, so the resource is always released at the end of the procedure.</p>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-inquire-customer-details-option-1" tabindex="-1">9.1 Example 1: Inquire Customer Details (Option 1)</h3>
+<h4 id="911-input-data" tabindex="-1">9.1.1 Input Data</h4>
+<ul>
+<li><strong>Map Option (<code>ENT1OPTO</code>):</strong> <code>'1'</code></li>
+<li><strong>Customer Number (<code>ENT1CNOO</code>):</strong> <code>'0000000001'</code></li>
+</ul>
+<h4 id="912-expected-output" tabindex="-1">9.1.2 Expected Output</h4>
+<ul>
+<li><strong>First Name (<code>ENT1FNAI</code>):</strong> <code>'JOHN      '</code></li>
+<li><strong>Last Name (<code>ENT1LNAI</code>):</strong> <code>'DOE                 '</code></li>
+<li><strong>Date of Birth (<code>ENT1DOBI</code>):</strong> <code>'1985-05-12'</code></li>
+<li><strong>House Name (<code>ENT1HNMI</code>):</strong> <code>'THE COTTAGE         '</code></li>
+<li><strong>House Number (<code>ENT1HNOI</code>):</strong> <code>'12        '</code></li>
+<li><strong>Postcode (<code>ENT1HPCI</code>):</strong> <code>'SW1A 1AA'</code></li>
+<li><strong>Home Phone (<code>ENT1HP1I</code>):</strong> <code>'02079460000         '</code></li>
+<li><strong>Mobile Phone (<code>ENT1HP2I</code>):</strong> <code>'07700900000         '</code></li>
+<li><strong>Email Address (<code>ENT1HMOI</code>):</strong> <code>'john.doe@example.com                                                                               '</code></li>
+<li><strong>CICS Return State:</strong> Returns to CICS with <code>TRANSID('SSC1')</code> and COMMAREA preserved.</li>
+</ul>
+<h4 id="913-logic-flow" tabindex="-1">9.1.3 Logic Flow</h4>
+<ol>
+<li>The program receives the screen map input and enters the <code>SELECT (ENT1OPTO)</code> block on case <code>'1'</code>.</li>
+<li>It sets <code>CA_REQUEST_ID = '01ICUS'</code> and assigns <code>CA_CUSTOMER_NUM</code> from <code>ENT1CNOO</code> (<code>'0000000001'</code>).</li>
+<li>It links to <code>LGICUS01</code> with the 32,500-byte COMMAREA.</li>
+<li>Upon return with <code>CA_RETURN_CODE = 0</code>, the returned customer details from <code>COMM_AREA</code> are populated into the output map fields (<code>ENT1FNAI</code>, <code>ENT1LNAI</code>, etc.).</li>
+<li>The map <code>SSMAPC1</code> is sent back to the terminal, and control returns to CICS setting pseudo-conversational re-entry under <code>TRANSID('SSC1')</code>.</li>
+</ol>
+<hr>
+<h3 id="92-example-2-add-new-customer-option-2" tabindex="-1">9.2 Example 2: Add New Customer (Option 2)</h3>
+<h4 id="921-input-data" tabindex="-1">9.2.1 Input Data</h4>
+<ul>
+<li><strong>Map Option (<code>ENT1OPTO</code>):</strong> <code>'2'</code></li>
+<li><strong>First Name (<code>ENT1FNAI</code>):</strong> <code>'ALICE     '</code></li>
+<li><strong>Last Name (<code>ENT1LNAI</code>):</strong> <code>'SMITH               '</code></li>
+<li><strong>Date of Birth (<code>ENT1DOBI</code>):</strong> <code>'1990-10-25'</code></li>
+<li><strong>House Name (<code>ENT1HNMI</code>):</strong> <code>'HILLSIDE HOUSE     '</code></li>
+<li><strong>House Number (<code>ENT1HNOI</code>):</strong> <code>'45        '</code></li>
+<li><strong>Postcode (<code>ENT1HPCI</code>):</strong> <code>'e1 6an  '</code></li>
+<li><strong>Home Phone (<code>ENT1HP1I</code>):</strong> <code>'02079460111         '</code></li>
+<li><strong>Mobile Phone (<code>ENT1HP2I</code>):</strong> <code>'07700900111         '</code></li>
+<li><strong>Email Address (<code>ENT1HMOI</code>):</strong> <code>'alice.smith@example.com                                                                            '</code></li>
+</ul>
+<h4 id="922-expected-output" tabindex="-1">9.2.2 Expected Output</h4>
+<ul>
+<li><strong>Customer Number Field (<code>ENT1CNOI</code>):</strong> Generated customer number (e.g., <code>'0000000042'</code>)</li>
+<li><strong>Option Field (<code>ENT1OPTI</code>):</strong> <code>' '</code> (cleared)</li>
+<li><strong>Message Field (<code>ERRFLDO</code>):</strong> <code>'New Customer Inserted'</code></li>
+<li><strong>Control Queue (<code>GENACNTL</code>):</strong> Updated with high customer number <code>'0000000042'</code>.</li>
+<li><strong>CICS Return State:</strong> Returns to CICS with <code>TRANSID('SSC1')</code> and COMMAREA preserved.</li>
+</ul>
+<h4 id="923-logic-flow" tabindex="-1">9.2.3 Logic Flow</h4>
+<ol>
+<li>The user selects option <code>'2'</code>. The program initializes <code>CA_REQUEST_ID = '01ACUS'</code> and <code>CA_CUSTOMER_NUM = 0</code>.</li>
+<li>Screen input values are mapped into COMMAREA fields, null bytes (<code>00'X</code>) are translated to spaces, and <code>CA_POSTCODE</code> is converted to uppercase (<code>'E1 6AN  '</code>).</li>
+<li>The program links to <code>LGACUS01</code> to persist the new record.</li>
+<li>Upon successful return (<code>CA_RETURN_CODE = 0</code>), the generated <code>CA_CUSTOMER_NUM</code> is updated in the temporary storage queue <code>GENACNTL</code> via <code>WRITE_GENACNTL</code>.</li>
+<li>The map updates <code>ENT1CNOI</code> with the newly assigned number, clears the option field, displays <code>'New Customer Inserted'</code>, and re-issues <code>EXEC CICS RETURN TRANSID('SSC1')</code>.</li>
+</ol>
+<hr>
+<h3 id="93-example-3-invalid-option-selection" tabindex="-1">9.3 Example 3: Invalid Option Selection</h3>
+<h4 id="931-input-data" tabindex="-1">9.3.1 Input Data</h4>
+<ul>
+<li><strong>Map Option (<code>ENT1OPTO</code>):</strong> <code>'9'</code></li>
+</ul>
+<h4 id="932-expected-output" tabindex="-1">9.3.2 Expected Output</h4>
+<ul>
+<li><strong>Message Field (<code>ERRFLDO</code>):</strong> <code>'Please enter a valid option'</code></li>
+<li><strong>Cursor Position:</strong> Repositioned at the option input field (<code>ENT1OPTL = -1</code>).</li>
+<li><strong>CICS Return State:</strong> Returns to CICS with <code>TRANSID('SSC1')</code>.</li>
+</ul>
+<h4 id="933-logic-flow" tabindex="-1">9.3.3 Logic Flow</h4>
+<ol>
+<li>The map input is evaluated in <code>SELECT (ENT1OPTO)</code>.</li>
+<li>Because <code>'9'</code> does not match <code>'1'</code>, <code>'2'</code>, or <code>'4'</code>, the <code>OTHERWISE</code> block is executed.</li>
+<li>The program sets <code>ERRFLDO = 'Please enter a valid option'</code>, places the cursor on the option field (<code>ENT1OPTL = -1</code>), sends <code>SSMAPC1</code> with the <code>CURSOR</code> option, and returns to CICS with <code>TRANSID('SSC1')</code>.</li>
+</ol>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a>
+<ul>
+<li class="toc-level-3"><a href="#21-function-parameters-and-system-interface">2.1 Function Parameters and System Interface</a></li>
+<li class="toc-level-3"><a href="#22-user-inputs-bms-map-ssmapc1--terminal-input">2.2 User Inputs (BMS Map SSMAPC1 / Terminal Input)</a></li>
+<li class="toc-level-3"><a href="#23-backend-program-interface-inputs-lgcmarea">2.3 Backend Program Interface Inputs (LGCMAREA)</a></li>
+<li class="toc-level-3"><a href="#24-external-data-sources-cics-temporary-storage-queue">2.4 External Data Sources (CICS Temporary Storage Queue)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a>
+<ul>
+<li class="toc-level-3"><a href="#31-screen-outputs-bms-map-ssmapc1">3.1 Screen Outputs (BMS Map SSMAPC1)</a></li>
+<li class="toc-level-3"><a href="#32-terminal-messages">3.2 Terminal Messages</a></li>
+<li class="toc-level-3"><a href="#33-program-to-program-communication-area-comm_area">3.3 Program-to-Program Communication Area (COMM_AREA)</a></li>
+<li class="toc-level-3"><a href="#34-temporary-storage-queue-genacntl">3.4 Temporary Storage Queue (GENACNTL)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-initialisation-and-first-invocation-detection">4.1 Initialisation and First-Invocation Detection</a></li>
+<li class="toc-level-3"><a href="#42-main-receive-and-dispatch-loop">4.2 Main Receive-and-Dispatch Loop</a></li>
+<li class="toc-level-3"><a href="#43-option-selection-and-transaction-routing-select-on-ent1opto">4.3 Option Selection and Transaction Routing (SELECT on ENT1OPTO)</a></li>
+<li class="toc-level-3"><a href="#44-error-handling-paths">4.4 Error Handling Paths</a></li>
+<li class="toc-level-3"><a href="#45-terminal-navigation-and-session-control">4.5 Terminal Navigation and Session Control</a></li>
+<li class="toc-level-3"><a href="#46-write_genacntl-internal-procedure--ts-queue-control-record-maintenance">4.6 WRITE_GENACNTL Internal Procedure — TS Queue Control Record Maintenance</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a></li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a></li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-inquire-customer-details-option-1">9.1 Example 1: Inquire Customer Details (Option 1)</a>
+<ul>
+<li class="toc-level-4"><a href="#911-input-data">9.1.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#912-expected-output">9.1.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#913-logic-flow">9.1.3 Logic Flow</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#92-example-2-add-new-customer-option-2">9.2 Example 2: Add New Customer (Option 2)</a>
+<ul>
+<li class="toc-level-4"><a href="#921-input-data">9.2.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#922-expected-output">9.2.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#923-logic-flow">9.2.3 Logic Flow</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#93-example-3-invalid-option-selection">9.3 Example 3: Invalid Option Selection</a>
+<ul>
+<li class="toc-level-4"><a href="#931-input-data">9.3.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#932-expected-output">9.3.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#933-logic-flow">9.3.3 Logic Flow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGTESTC1</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

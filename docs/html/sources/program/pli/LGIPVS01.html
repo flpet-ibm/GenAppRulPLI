@@ -1,0 +1,1207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGIPVS01</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link active">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>Este programa CICS en PL/I consulta el archivo VSAM de pólizas KSDSPOLY mediante una lectura genérica de clave parcial (GTEQ). Con ella localiza la primera póliza cuyo tipo y número de cliente coinciden con los de la clave solicitada. La clave parcial, formada por el tipo de póliza y un número de cliente, la recibe de un programa invocador a través de la COMMAREA, o bien de la entrada que el usuario escribe en el terminal. Si encuentra una póliza del tipo solicitado, devuelve el tipo de póliza y el número de cliente con el mensaje “Policy Key=”. Si no la encuentra o la lectura falla, devuelve el mensaje “Policy Bad=” con valores de relleno. El resultado se envía a la pantalla cuando la entrada vino del terminal. Cuando el programa fue invocado por otro programa, el resultado vuelve en la COMMAREA.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<ul>
+<li>
+<p><strong>Program parameter (CICS commarea)</strong></p>
+<ul>
+<li>COMMA_PTR (pointer to DFHCOMMAREA): the main procedure parameter, which addresses the commarea passed by a calling program on LINK or a started transaction.</li>
+<li>COMMA_DATA_TEXT: an 11-character text field in the commarea. It is combined with the key to build the working input string.</li>
+<li>COMMA_DATA_KEY: a 21-character field in the commarea that carries the partial policy key to search for. It holds the policy type and the numeric part, normally the customer number.</li>
+</ul>
+</li>
+<li>
+<p><strong>Terminal input (CICS RECEIVE)</strong></p>
+<ul>
+<li>WS_RECV_DATA: a 74-character field that holds the text a user types after the transaction identifier. It is used when no calling program or distributed start is detected. It supplies the policy type and partial key.</li>
+<li>WS_COMMAREA: an 80-character working area filled from either the commarea or the terminal data. It is the source of the search key values.</li>
+<li>PART_KEY_TYPE: the first character of the input. It is the requested policy type and the first byte of the generic GTEQ key. The record found is checked against it.</li>
+<li>PART_KEY_NUM: a ten-digit numeric field taken from the input after the policy type. It is the customer number part of the generic GTEQ key.</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS execution environment (EXEC CICS ASSIGN)</strong></p>
+<ul>
+<li>WS_STARTCODE: the CICS start code. A first character of ‘D’ means the program was started by a distributed program link. It decides whether input comes from the commarea or the terminal.</li>
+<li>WS_INVOKEPROG: the name of the invoking program. A non-blank value means the program was called by another program, so input and output use the commarea.</li>
+<li>WS_FLAG: a flag set from the two values above. ‘C’ means commarea input and ‘R’ means terminal input. It decides whether the result is returned in the commarea or sent to the terminal.</li>
+</ul>
+</li>
+<li>
+<p><strong>External data source (VSAM file KSDSPOLY)</strong></p>
+<ul>
+<li>CA_POLICY_TYPE: the policy type read from the matching record, using a generic GTEQ read with an 11-byte key length. It is compared with the requested type.</li>
+<li>CA_CUSTOMER_NUM: the customer number from the record found. It is used to build the returned key.</li>
+<li>CA_POLICY_NUM: the policy number from the record found. It identifies the individual policy.</li>
+</ul>
+</li>
+<li>
+<p><strong>Output message fields built from the inputs</strong></p>
+<ul>
+<li>WRITE_MSG_TEXT: the message label, ‘Policy Key=’ or ‘Policy Bad=’. It is set to ‘Policy Bad=’ when the read fails or the policy type does not match.</li>
+<li>WRITE_MSG_KEY_CH: the 21-character policy key built from the record found. It is sent to the terminal or copied into the commarea.</li>
+<li>WRITE_MSG_CUSTNUM: the customer number in the message. It is set to 13 when the lookup fails.</li>
+<li>WRITE_MSG_POLNUM: the policy number in the message. It is set to 13 when the lookup fails.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<h3 id="31-commarea-response-program-invocation-via-linkstart" tabindex="-1">3.1 Commarea Response (Program Invocation via LINK/START)</h3>
+<ul>
+<li><code>COMMA_DATA</code>: The primary communication data structure updated and returned to the calling program when invoked programmatically (<code>WS_FLAG = 'C'</code>).
+<ul>
+<li><code>COMMA_DATA_TEXT</code>: Returns the status indicator string representing the outcome of the policy lookup (<code>'Policy Key='</code> on successful record retrieval or <code>'Policy Bad='</code> upon failure or mismatch).</li>
+<li><code>COMMA_DATA_KEY</code>: Returns the composite policy key string (policy type concatenated with customer number) on success, or a default/fallback value on failure.</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-terminal-display-output-direct-terminal-invocation" tabindex="-1">3.2 Terminal Display Output (Direct Terminal Invocation)</h3>
+<ul>
+<li><code>WRITE_MSG</code>: The formatted message structure transmitted to the 3270 terminal using <code>EXEC CICS SEND TEXT</code> when the transaction is run interactively (<code>WS_FLAG = 'R'</code>).
+<ul>
+<li><code>WRITE_MSG_TEXT</code>: Displays the status prefix (<code>'Policy Key='</code> on success or <code>'Policy Bad='</code> on failure).</li>
+<li><code>WRITE_MSG_KEY</code>: The union subfield containing the result details displayed after the status text:
+<ul>
+<li><code>WRITE_MSG_KEY_CH</code>: Transmits the combined policy type and customer number string when the lookup succeeds.</li>
+<li><code>WRITE_MSG_CUSTNUM</code>: Numeric formatted customer number field set to the error placeholder value (<code>13</code>) when the policy lookup fails.</li>
+<li><code>WRITE_MSG_POLNUM</code>: Numeric formatted policy number field set to the error placeholder value (<code>13</code>) when the policy lookup fails.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    A([Start LGIPVS01]) --> B[Clear receive area<br>Assign SYSID, STARTCODE and INVOKINGPROG]
+    B --> C{Started by distributed link<br>or invoked by another program}
+    C -- Yes --> D[Set flag to C<br>Build input from commarea text and key<br>Set input length to 10]
+    C -- No --> E[Receive terminal input]
+    E --> F[Set flag to R<br>Take input from received data<br>Reduce length by 6]
+    D --> G[Clear policy record area<br>Split input into policy type and numeric key]
+    F --> G
+    G --> H[Generic GTEQ read of KSDSPOLY<br>using 11 byte partial key]
+    H --> I{Read not normal<br>or policy type differs}
+    I -- Yes --> J[Set message text to Policy Bad<br>Set customer and policy numbers to 13]
+    I -- No --> K[Build message key from<br>policy type and customer number]
+    J --> L{Flag is R}
+    K --> L
+    L -- Yes --> M[Send message text to terminal<br>erase and free keyboard]
+    L -- No --> N[Clear commarea data<br>Return message text and key in commarea]
+    M --> O[CICS RETURN]
+    N --> O
+    O --> P([End])
+
+    classDef start fill:#d4f1d4,stroke:#6aa86a,color:#000;
+    classDef proc fill:#d6e6f5,stroke:#6f93bd,color:#000;
+    classDef decision fill:#fdf1c7,stroke:#c9b458,color:#000;
+    classDef fail fill:#f9d6d5,stroke:#c98583,color:#000;
+    classDef io fill:#e6d9f2,stroke:#9a82b8,color:#000;
+
+    class A,P start;
+    class B,D,F,G,K,N proc;
+    class C,I,L decision;
+    class J fail;
+    class E,H,M,O io;
+</div>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<p><strong>High-level Summary</strong></p>
+<p>LGIPVS01 is a CICS PL/I main program. It does a generic browse (GTEQ) of the policy VSAM file KSDSPOLY. The partial key is a one-character policy type followed by a numeric part, normally a customer number. The partial key comes from a commarea, when the program is linked or started by another program, or from terminal input. The program checks that the record found has the requested policy type. It then returns “Policy Key=” with the key found, or “Policy Bad=” with placeholder values, either in the commarea or on the terminal.</p>
+<p><strong>Execution Flow</strong></p>
+<ol>
+<li>
+<p><strong>Initialization</strong></p>
+<ul>
+<li><code>WS_RECV</code> is set to blanks.</li>
+<li>Three <code>EXEC CICS ASSIGN</code> commands fetch <code>SYSID</code>, <code>STARTCODE</code> into <code>WS_STARTCODE</code>, and <code>INVOKINGPROG</code> into <code>WS_INVOKEPROG</code>. The RESP values of these commands are not checked.</li>
+</ul>
+</li>
+<li>
+<p><strong>Determine invocation mode</strong></p>
+<ul>
+<li>If the first character of <code>WS_STARTCODE</code> is ‘D’ (distributed program link), or <code>WS_INVOKEPROG</code> is not blank, the program was called by another program.
+<ul>
+<li><code>WS_FLAG</code> is set to ‘C’.</li>
+<li><code>WS_COMMAREA</code> is built from <code>COMMA_DATA_TEXT</code> concatenated with <code>COMMA_DATA_KEY</code>.</li>
+<li><code>WS_RECV_LEN</code> is set to 10.</li>
+</ul>
+</li>
+<li>Otherwise the program was started from a terminal.
+<ul>
+<li><code>EXEC CICS RECEIVE</code> reads the input into <code>WS_RECV</code>, and the received length is placed in <code>WS_RECV_LEN</code>.</li>
+<li><code>WS_FLAG</code> is set to ‘R’.</li>
+<li><code>WS_COMMAREA</code> is taken from <code>WS_RECV_DATA</code>, which is the data after the 5-character transaction ID.</li>
+<li><code>WS_RECV_LEN</code> is reduced by 6. This removes the transaction ID and the separator, leaving the length of the numeric portion.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Build the partial key</strong></p>
+<ul>
+<li><code>CA_AREA</code> is cleared.</li>
+<li><code>PART_KEY_TYPE</code> is the first character of <code>WS_COMMAREA</code>.</li>
+<li><code>PART_KEY_NUM</code> is taken from <code>WS_COMMAREA</code> starting at position 2 for <code>WS_RECV_LEN</code> characters.</li>
+<li>The key is 11 bytes: 1 byte of type plus 10 digits.</li>
+</ul>
+</li>
+<li>
+<p><strong>Read the policy file</strong></p>
+<ul>
+<li><code>EXEC CICS READ FILE('KSDSPOLY')</code> uses GENERIC and GTEQ with <code>KEYLENGTH</code> 11 and <code>RIDFLD(PART_KEY)</code>.</li>
+<li>The record goes into <code>CA_AREA</code>, with a length of 64.</li>
+<li>This returns the first record whose key is greater than or equal to the partial key.</li>
+</ul>
+</li>
+<li>
+<p><strong>Validate the result</strong></p>
+<ul>
+<li>If <code>CA_POLICY_TYPE</code> differs from <code>PART_KEY_TYPE</code>, or the response is not NORMAL, the lookup has failed.
+<ul>
+<li><code>WRITE_MSG_TEXT</code> becomes ‘Policy Bad=’.</li>
+<li><code>WRITE_MSG_CUSTNUM</code> and <code>WRITE_MSG_POLNUM</code> are both set to 13.</li>
+</ul>
+</li>
+<li>Otherwise <code>WRITE_MSG_KEY_CH</code> is set to <code>CA_POLICY_TYPE</code> concatenated with <code>CA_CUSTOMER_NUM</code>. The message text stays ‘Policy Key=’.</li>
+<li>Business rule: a record of a different policy type is treated as not found, even if the GTEQ read succeeded.</li>
+</ul>
+</li>
+<li>
+<p><strong>Return the result</strong></p>
+<ul>
+<li>If <code>WS_FLAG</code> is ‘R’, <code>EXEC CICS SEND TEXT</code> sends the 80-byte <code>WRITE_MSG</code> to the terminal with WAIT, ERASE and FREEKB.</li>
+<li>Otherwise <code>COMMA_DATA</code> is cleared, then <code>COMMA_DATA_TEXT</code> is set to <code>WRITE_MSG_TEXT</code> and <code>COMMA_DATA_KEY</code> to <code>WRITE_MSG_KEY_CH</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Finish</strong></p>
+<ul>
+<li><code>EXEC CICS RETURN</code> ends the program.</li>
+</ul>
+</li>
+</ol>
+<p><strong>External Interactions</strong></p>
+<ul>
+<li><strong>KSDSPOLY (VSAM KSDS, read through CICS file control)</strong>
+<ul>
+<li>Generic GTEQ read to find the first policy record matching the requested policy type and customer key.</li>
+<li>The record layout is policy type (1), customer number (10), policy number (10), and 43 bytes of filler.</li>
+</ul>
+</li>
+<li><strong>CICS ASSIGN</strong>
+<ul>
+<li>Gets the system ID, start code and invoking program name, which decide how the program was invoked.</li>
+</ul>
+</li>
+<li><strong>CICS RECEIVE / SEND TEXT</strong>
+<ul>
+<li>Terminal input and output when the program is started from a terminal.</li>
+</ul>
+</li>
+<li><strong>COMMAREA (DFHCOMMAREA)</strong>
+<ul>
+<li>Input and output channel with a calling program. It is 90 bytes long: an 11-byte text, a 21-byte key and 58 bytes of filler.</li>
+</ul>
+</li>
+<li><strong>CICS RETURN</strong>
+<ul>
+<li>Returns control to CICS or to the caller.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Plain Language Summary</strong></p>
+<p>The program looks up a policy. It is given a policy type letter and a customer number, or the first part of one. It finds the first policy on file that comes at or after that number. If the policy found is of the requested type, it answers “Policy Key=” followed by the type and customer number. If nothing suitable is found, or the file read fails, it answers “Policy Bad=” with placeholder numbers (13). A person at a terminal sees the answer on screen. Another program that called this one gets the answer back in its shared data area.</p>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+    KSDSPOLY {
+        string POLICY_TYPE "length 1, part of key"
+        string CUSTOMER_NUM "length 10, part of key"
+        string POLICY_NUM "length 10"
+        string FILLER "length 43"
+    }
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<p><strong>LGIPVS01 (main procedure)</strong></p>
+<ul>
+<li>Purpose: CICS entry point. It does a generic GTEQ browse of the policy VSAM file KSDSPOLY for a partial key. The key comes either from a commarea (when the program is linked or started) or from terminal input. It returns the result in the commarea or sends it to the terminal.</li>
+<li>There are no internal sub-paragraphs or called procedures. All logic runs in one straight-line procedure, in the logical sections below.</li>
+</ul>
+<p><strong>Initialization and invocation detection</strong></p>
+<ul>
+<li>Purpose: Clear the work areas and find out how the program was invoked.</li>
+<li>Operations:
+<ul>
+<li>Blanks the <code>WS_RECV</code> structure.</li>
+<li>Issues <code>EXEC CICS ASSIGN</code> for SYSID, STARTCODE (into <code>WS_STARTCODE</code>) and INVOKINGPROG (into <code>WS_INVOKEPROG</code>). All three use <code>RESP(WS_RESP)</code>, and the response is not checked.</li>
+</ul>
+</li>
+<li>External interaction: CICS ASSIGN commands.</li>
+</ul>
+<p><strong>Input acquisition (commarea vs terminal)</strong></p>
+<ul>
+<li>Purpose: Fill <code>WS_COMMAREA</code> with the request data (policy type plus partial key) and set <code>WS_FLAG</code> to show the invocation mode.</li>
+<li>Control flow: An IF/ELSE tests whether the first character of <code>WS_STARTCODE</code> is ‘D’ or <code>WS_INVOKEPROG</code> is non-blank.
+<ul>
+<li>Commarea branch (true):
+<ul>
+<li>Sets <code>WS_FLAG</code> to ‘C’.</li>
+<li>Builds <code>WS_COMMAREA</code> by concatenating <code>COMMA_DATA_TEXT</code> and <code>COMMA_DATA_KEY</code>.</li>
+<li>Sets <code>WS_RECV_LEN</code> to 10.</li>
+</ul>
+</li>
+<li>Terminal branch (false):
+<ul>
+<li>Issues <code>EXEC CICS RECEIVE INTO(WS_RECV)</code> with <code>LENGTH(WS_RECV_LEN)</code>.</li>
+<li>Sets <code>WS_FLAG</code> to ‘R’.</li>
+<li>Copies <code>WS_RECV_DATA</code> into <code>WS_COMMAREA</code>.</li>
+<li>Subtracts 6 from <code>WS_RECV_LEN</code>, which accounts for the transaction ID and separator.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>External interaction: CICS RECEIVE from the terminal, in the terminal branch only.</li>
+</ul>
+<p><strong>Partial key construction</strong></p>
+<ul>
+<li>Purpose: Build the generic search key.</li>
+<li>Operations:
+<ul>
+<li>Blanks <code>CA_AREA</code>.</li>
+<li>Takes <code>PART_KEY_TYPE</code> from the first character of <code>WS_COMMAREA</code>.</li>
+<li>Takes <code>PART_KEY_NUM</code> from <code>WS_COMMAREA</code> starting at position 2, using <code>WS_RECV_LEN</code> as the length. The result is converted to the 10-digit numeric picture.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Policy file read (GTEQ browse)</strong></p>
+<ul>
+<li>Purpose: Locate the first policy record at or after the partial key.</li>
+<li>Operations: Issues <code>EXEC CICS READ FILE('KSDSPOLY')</code> with these options:
+<ul>
+<li><code>INTO(CA_AREA)</code></li>
+<li><code>LENGTH(F64)</code></li>
+<li><code>RIDFLD(PART_KEY)</code></li>
+<li><code>KEYLENGTH(F11)</code></li>
+<li><code>GENERIC</code></li>
+<li><code>GTEQ</code></li>
+<li><code>RESP(WS_RESP)</code></li>
+</ul>
+</li>
+<li>On a successful read, <code>CA_AREA</code> receives <code>CA_POLICY_TYPE</code>, <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code>.</li>
+<li>External interaction: VSAM KSDS file KSDSPOLY, read through CICS file control.</li>
+</ul>
+<p><strong>Result evaluation and message building</strong></p>
+<ul>
+<li>Purpose: Check that the record found has the requested policy type and prepare the response message.</li>
+<li>Control flow: An IF/ELSE tests whether <code>CA_POLICY_TYPE</code> differs from <code>PART_KEY_TYPE</code>, or <code>WS_RESP</code> is not <code>DFHRESP(NORMAL)</code>.
+<ul>
+<li>Failure branch (true):
+<ul>
+<li>Sets <code>WRITE_MSG_TEXT</code> to ‘Policy Bad=’.</li>
+<li>Sets <code>WRITE_MSG_CUSTNUM</code> to 13.</li>
+<li>Sets <code>WRITE_MSG_POLNUM</code> to 13.</li>
+</ul>
+</li>
+<li>Success branch (false): sets <code>WRITE_MSG_KEY_CH</code> to <code>CA_POLICY_TYPE</code> concatenated with <code>CA_CUSTOMER_NUM</code>. <code>WRITE_MSG_TEXT</code> keeps its initial value ‘Policy Key=’.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Response delivery</strong></p>
+<ul>
+<li>Purpose: Return the result to the caller or the terminal, depending on <code>WS_FLAG</code>.</li>
+<li>Control flow: An IF/ELSE tests <code>WS_FLAG</code>.
+<ul>
+<li>Terminal mode (‘R’): issues <code>EXEC CICS SEND TEXT FROM(WRITE_MSG)</code> with TERMINAL, WAIT, ERASE, LENGTH(80) and FREEKB.</li>
+<li>Commarea mode (‘C’):
+<ul>
+<li>Blanks <code>COMMA_DATA</code>.</li>
+<li>Copies <code>WRITE_MSG_TEXT</code> into <code>COMMA_DATA_TEXT</code>.</li>
+<li>Copies <code>WRITE_MSG_KEY_CH</code> into <code>COMMA_DATA_KEY</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>External interaction: CICS SEND TEXT to the terminal, in terminal mode only. In commarea mode the result is returned through the commarea storage.</li>
+</ul>
+<p><strong>Termination</strong></p>
+<ul>
+<li>Purpose: End the transaction or program.</li>
+<li>Operations: Issues <code>EXEC CICS RETURN</code>, followed by <code>END LGIPVS01</code>.</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<ul>
+<li>
+<p><strong>Data stores and files</strong></p>
+<ul>
+<li>CICS file <code>KSDSPOLY</code>, a VSAM KSDS policy file
+<ul>
+<li>It is read with <code>EXEC CICS READ</code> using <code>GENERIC</code> and <code>GTEQ</code>.</li>
+<li>The record is read into <code>CA_AREA</code> with a length of 64 (<code>F64</code>).</li>
+<li>The key is <code>PART_KEY</code> (<code>PART_KEY_TYPE</code> plus <code>PART_KEY_NUM</code>) with a key length of 11 (<code>F11</code>).</li>
+<li>The file must be defined to CICS (FCT/CSD), must be open and enabled, and must have a key that starts with the policy type and customer number.</li>
+<li>The record layout must match <code>CA_POLICY_TYPE</code>, <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code>.</li>
+<li>The <code>RESP</code> value (<code>WS_RESP</code>) is checked against <code>DFHRESP(NORMAL)</code> to decide between “Policy Key=” and “Policy Bad=”.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Runtime environment and transaction services</strong></p>
+<ul>
+<li>CICS Transaction Server runtime
+<ul>
+<li>The program is a CICS PL/I main procedure (<code>Options(Main)</code>) and needs the CICS PL/I translator and command-level interface.</li>
+<li><code>DFHRESP(NORMAL)</code> is resolved by the CICS translator.</li>
+</ul>
+</li>
+<li>CICS <code>ASSIGN SYSID</code>
+<ul>
+<li>It fills <code>WS_SYSID</code> with the local system ID.</li>
+<li>The value is retrieved but not used afterwards.</li>
+</ul>
+</li>
+<li>CICS <code>ASSIGN STARTCODE</code>
+<ul>
+<li>It fills <code>WS_STARTCODE</code> and shows how the task was started.</li>
+<li>A first character of ‘D’ means a distributed program link.</li>
+<li>This decides whether input comes from the commarea or the terminal.</li>
+</ul>
+</li>
+<li>CICS <code>ASSIGN INVOKINGPROG</code>
+<ul>
+<li>It fills <code>WS_INVOKEPROG</code>.</li>
+<li>A non-blank value means another program invoked this one, so the commarea path is used.</li>
+</ul>
+</li>
+<li>CICS <code>RETURN</code>
+<ul>
+<li>It ends the task and returns control to CICS or to the calling program.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Input sources and parameters</strong></p>
+<ul>
+<li><code>DFHCOMMAREA</code>, addressed through the <code>COMMA_PTR</code> parameter
+<ul>
+<li>It is supplied by a linking or starting program.</li>
+<li><code>COMMA_DATA_TEXT</code> (11 characters) and <code>COMMA_DATA_KEY</code> (21 characters) supply the partial key.</li>
+<li>The commarea must be at least 90 bytes to match the declared layout.</li>
+<li>On return it carries the result: the message label in <code>COMMA_DATA_TEXT</code> and the key in <code>COMMA_DATA_KEY</code>.</li>
+</ul>
+</li>
+<li>Terminal input through <code>EXEC CICS RECEIVE INTO(WS_RECV)</code>
+<ul>
+<li>It is used when the program is not linked or started by another program.</li>
+<li>The terminal data is laid out as the transaction ID (<code>WS_RECV_TRANID</code>, 5 characters) followed by the data (<code>WS_RECV_DATA</code>, 74 characters).</li>
+<li>The data holds the policy type and numeric partial key.</li>
+<li>The length (<code>WS_RECV_LEN</code>) is adjusted by subtracting 6 to get the key number length.</li>
+<li>The terminal user or calling transaction must supply a policy type character followed by a numeric customer number.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Output targets</strong></p>
+<ul>
+<li>Terminal output through <code>EXEC CICS SEND TEXT FROM(WRITE_MSG)</code>
+<ul>
+<li>It is used only when the input came from the terminal (<code>WS_FLAG = 'R'</code>).</li>
+<li>It sends an 80-byte message with the <code>ERASE</code>, <code>WAIT</code> and <code>FREEKB</code> options.</li>
+<li>It needs a terminal attached to the task.</li>
+</ul>
+</li>
+<li>Commarea return
+<ul>
+<li>It is used when the program was invoked by another program.</li>
+<li>The result is written back into <code>COMMA_DATA_TEXT</code> and <code>COMMA_DATA_KEY</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>External programs and modules</strong></p>
+<ul>
+<li>No <code>CALL</code>, <code>LINK</code> or <code>XCTL</code> statements to other programs.</li>
+<li>Calling programs or transactions
+<ul>
+<li>They are runtime callers that pass the commarea (by link, start or distributed program link) or start the transaction from a terminal.</li>
+</ul>
+</li>
+<li>No <code>%INCLUDE</code> members or copybooks.
+<ul>
+<li>All data structures are declared inline.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Configuration and environment values</strong></p>
+<ul>
+<li>Hard-coded constants
+<ul>
+<li>File name <code>KSDSPOLY</code>.</li>
+<li>Record length 64 and key length 11.</li>
+<li>Message labels ‘Policy Key=’ and ‘Policy Bad=’.</li>
+<li>Placeholder value 13 for the customer and policy numbers on failure.</li>
+</ul>
+</li>
+<li>No environment variables, parameter files or external configuration are read.</li>
+</ul>
+</li>
+<li>
+<p><strong>Compilation and deployment dependencies</strong></p>
+<ul>
+<li>PL/I compiler with the CICS translator or integrated CICS preprocessor</li>
+<li>CICS program definition for <code>LGIPVS01</code></li>
+<li>CICS transaction definition, if it is run from a terminal</li>
+<li>CICS file definition for <code>KSDSPOLY</code>, which points to the VSAM KSDS dataset</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<ul>
+<li>
+<p>Invocation mode and input source constraints</p>
+<ul>
+<li>The program reads its input from only one of two sources, chosen by how it was started.
+<ul>
+<li>Commarea mode applies when the first character of <code>WS_STARTCODE</code> is ‘D’ (distributed program link) or <code>WS_INVOKEPROG</code> is not blank. The program sets <code>WS_FLAG</code> to ‘C’, builds <code>WS_COMMAREA</code> from <code>COMMA_DATA_TEXT || COMMA_DATA_KEY</code>, and sets <code>WS_RECV_LEN</code> to 10.</li>
+<li>Terminal mode applies in every other case. The program issues <code>EXEC CICS RECEIVE INTO(WS_RECV)</code>, sets <code>WS_FLAG</code> to ‘R’, copies <code>WS_RECV_DATA</code> to <code>WS_COMMAREA</code>, and reduces <code>WS_RECV_LEN</code> by 6.</li>
+</ul>
+</li>
+<li>In commarea mode the caller must supply a commarea, because <code>DFHCOMMAREA</code> is accessed through <code>COMMA_PTR</code> with no check that the pointer is valid or that a commarea was passed.</li>
+<li>The commarea layout is fixed:
+<ul>
+<li>11 bytes of text (<code>COMMA_DATA_TEXT</code>).</li>
+<li>21 bytes of key (<code>COMMA_DATA_KEY</code>).</li>
+<li>58 bytes of filler.</li>
+<li>The commarea is therefore 90 bytes.</li>
+</ul>
+</li>
+<li>The <code>WS_COMMAREA</code> working area is 80 characters. It holds the 32 bytes of text and key in commarea mode, or the 74 bytes of <code>WS_RECV_DATA</code> in terminal mode.</li>
+<li>The terminal input must have the layout <code>WS_RECV</code>: a 5-character transaction ID followed by up to 74 characters of data.
+<ul>
+<li><code>WS_RECV_LEN</code> starts at 80 and is the maximum receive length.</li>
+<li>The <code>RECEIVE</code> is limited to the 80-byte <code>WS_RECV</code> area.</li>
+<li>The <code>- 6</code> adjustment is a fixed offset, with no explicit allowance for the separator between transaction ID and data.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Input data format and validation constraints</p>
+<ul>
+<li>The first character of the input must be the policy type, and it goes into <code>PART_KEY_TYPE</code>.</li>
+<li>The numeric part of the key is taken from position 2 of <code>WS_COMMAREA</code> for <code>WS_RECV_LEN</code> characters and assigned to <code>PART_KEY_NUM</code>, which is <code>PIC '9999999999'</code>.
+<ul>
+<li>The input must be numeric, up to 10 digits.</li>
+<li>The program does not explicitly check that the value is numeric. A non-numeric value would raise a PL/I conversion condition.</li>
+</ul>
+</li>
+<li>In commarea mode the length is fixed at 10, so the numeric part is the 10 characters after the policy type.</li>
+<li>In terminal mode the length depends on the received length minus 6.
+<ul>
+<li>A length that is zero, negative or too long is not validated. It could cause a substring range problem.</li>
+</ul>
+</li>
+<li>The key length is fixed. The <code>GENERIC</code> read uses <code>KEYLENGTH(F11)</code>, which is 11 bytes: 1 for the policy type and 10 for the customer number. <code>PART_KEY</code> has the same 11-byte length.</li>
+<li>The <code>RESP</code> values of the <code>ASSIGN</code> and <code>RECEIVE</code> commands are stored in <code>WS_RESP</code> but never checked. <code>WS_RESP</code> is overwritten by the later commands, so failures there are ignored.</li>
+</ul>
+</li>
+<li>
+<p>File access and record lookup constraints</p>
+<ul>
+<li>Lookups are done only against the VSAM KSDS file <code>KSDSPOLY</code>, using a generic, greater-than-or-equal (<code>GTEQ</code>) read.
+<ul>
+<li><code>RIDFLD(PART_KEY)</code> supplies the search key.</li>
+<li><code>KEYLENGTH(F11)</code> fixes the generic key length at 11 bytes.</li>
+</ul>
+</li>
+<li>The record is read into <code>CA_AREA</code>, which is 64 bytes:
+<ul>
+<li>1 byte policy type.</li>
+<li>10 bytes customer number.</li>
+<li>10 bytes policy number.</li>
+<li>43 bytes filler.</li>
+</ul>
+</li>
+<li><code>LENGTH(F64)</code> limits the record read to 64 bytes.</li>
+<li>A <code>GTEQ</code> read can return a record whose key is higher than the one requested. The program therefore has to compare record and request to confirm a match.</li>
+<li>Only the first matching record is returned. There is no browse loop, so the program does not process more than one record per request.</li>
+<li>Only the policy type and customer number are returned in the output key. The policy number is read but not returned in <code>WRITE_MSG_KEY_CH</code>.</li>
+<li><code>CA_AREA</code> is cleared to blanks before the read, so no stale data is left if the read fails.</li>
+</ul>
+</li>
+<li>
+<p>Match and result determination constraints</p>
+<ul>
+<li>A lookup counts as successful only if both conditions hold:
+<ul>
+<li><code>CA_POLICY_TYPE</code> equals <code>PART_KEY_TYPE</code>.</li>
+<li><code>WS_RESP</code> equals <code>DFHRESP(NORMAL)</code>.</li>
+</ul>
+</li>
+<li>A record of a different policy type is treated as a failure, even if the read itself succeeded.</li>
+<li>Any non-normal response from the read (for example NOTFND, ENDFILE or IOERR) is treated as a failure. No distinction is made between the causes.</li>
+<li>Only the policy type is compared. The customer number in the record is not required to equal the requested one, because of the <code>GTEQ</code> generic read.</li>
+<li>On failure:
+<ul>
+<li><code>WRITE_MSG_TEXT</code> is changed from ‘Policy Key=’ to ‘Policy Bad=’.</li>
+<li><code>WRITE_MSG_CUSTNUM</code> and <code>WRITE_MSG_POLNUM</code> are both set to the placeholder value 13.</li>
+</ul>
+</li>
+<li>On success, <code>WRITE_MSG_KEY_CH</code> is set to <code>CA_POLICY_TYPE || CA_CUSTOMER_NUM</code>, 11 characters padded to the 21-character field.</li>
+</ul>
+</li>
+<li>
+<p>Output and response constraints</p>
+<ul>
+<li>The output goes to only one destination, chosen by <code>WS_FLAG</code>.
+<ul>
+<li>Terminal mode (‘R’): <code>EXEC CICS SEND TEXT FROM(WRITE_MSG)</code> with <code>TERMINAL</code>, <code>WAIT</code>, <code>ERASE</code> and <code>FREEKB</code>.
+<ul>
+<li>The message is fixed at 80 bytes, matching the <code>WRITE_MSG</code> size (11 + 21 + 48).</li>
+<li>The screen is erased and the keyboard is freed.</li>
+<li>The send waits until it completes.</li>
+</ul>
+</li>
+<li>Commarea mode (‘C’): the program blanks <code>COMMA_DATA</code> and sets <code>COMMA_DATA_TEXT</code> to <code>WRITE_MSG_TEXT</code> and <code>COMMA_DATA_KEY</code> to <code>WRITE_MSG_KEY_CH</code>.
+<ul>
+<li>The result is limited to the 11-byte text and the 21-byte key.</li>
+<li>The caller must check the text to see whether the lookup worked.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The <code>SEND</code> command’s response is not checked.</li>
+<li>The output message layout is fixed.
+<ul>
+<li>The <code>WRITE_MSG_KEY</code> union overlays the 21-character <code>WRITE_MSG_KEY_CH</code> with the type (1), customer number (10) and policy number (10) fields.</li>
+<li>The trailing 48 characters are blank filler.</li>
+</ul>
+</li>
+<li>On a failed lookup in terminal mode, the placeholder 13 values are written to numeric picture fields. They appear as ‘0000000013’ in both the customer and policy number positions of the message.</li>
+</ul>
+</li>
+<li>
+<p>Sequencing and lifecycle constraints</p>
+<ul>
+<li>The program follows a fixed order:
+<ul>
+<li>Clear the work areas.</li>
+<li>Retrieve the <code>SYSID</code>, start code and invoking program.</li>
+<li>Determine the invocation mode and get the input.</li>
+<li>Clear <code>CA_AREA</code>.</li>
+<li>Build the partial key.</li>
+<li>Read the file.</li>
+<li>Evaluate the result.</li>
+<li>Return the output.</li>
+<li>Issue <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li>The input source must be identified before the partial key can be built.</li>
+<li>The key must be built before the file read.</li>
+<li>The read result must be evaluated before the message is formed.</li>
+<li>The output step depends on <code>WS_FLAG</code> set in the earlier step.</li>
+<li>The program always ends with <code>EXEC CICS RETURN</code>. It runs once per invocation, with no looping or pseudo-conversational state.</li>
+<li><code>WS_SYSID</code> is retrieved but not used in any later decision.</li>
+</ul>
+</li>
+<li>
+<p>Resource and size limits</p>
+<ul>
+<li>The processing limits are fixed by the declarations.
+<ul>
+<li>Input data: up to 74 characters from the terminal, or 32 characters from the commarea.</li>
+<li>Working commarea: 80 characters.</li>
+<li>Policy record area: 64 bytes.</li>
+<li>Key: 11 bytes.</li>
+<li>Returned message: 80 bytes on the terminal, or 32 bytes (text plus key) in the commarea.</li>
+</ul>
+</li>
+<li>The numeric key part is limited to 10 digits by the picture definition.</li>
+<li>Each invocation reads at most one record and returns one result.</li>
+<li>There are no loops or counters, so processing time and storage are bounded by the constant sizes.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<ul>
+<li>
+<p><strong>Explicit validation of the lookup result</strong></p>
+<ul>
+<li>After the generic GTEQ read of the KSDSPOLY file, one combined condition decides whether the lookup succeeded.
+<ul>
+<li>The first test is whether the policy type in the record that was read (CA_POLICY_TYPE) differs from the requested type (PART_KEY_TYPE). A GTEQ read returns the next record at or above the key, so this catches a record of a different policy type.</li>
+<li>The second test is whether the CICS response code (WS_RESP) differs from the normal response. This catches any failed read, such as a not-found, end-of-file or I/O condition.</li>
+</ul>
+</li>
+<li>Either test marks the lookup as failed. No other validation is done on the input. The policy type and numeric key are taken from the input without checking that they are numeric or the right length.</li>
+</ul>
+</li>
+<li>
+<p><strong>Failure signalling and default values</strong></p>
+<ul>
+<li>On failure, the response message label (WRITE_MSG_TEXT) changes from ‘Policy Key=’ to ‘Policy Bad=’.</li>
+<li>The customer number and policy number in the message (WRITE_MSG_CUSTNUM, WRITE_MSG_POLNUM) are both set to the placeholder value 13. This lets the caller or user spot a failure and stops stale or empty key data from being returned.</li>
+<li>On success, the message key (WRITE_MSG_KEY_CH) is built from the policy type and customer number found by the browse. The default label ‘Policy Key=’ stays unchanged.</li>
+<li>The message area and the output commarea are blank-filled before they are populated. The working input area, the receive area and the policy area (CA_AREA) are also cleared first. This keeps leftover data from affecting the result.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error reporting to the caller or user</strong></p>
+<ul>
+<li>The program has no abend, no separate error log and no error-specific termination. Failure is reported only through the message text and placeholder values.</li>
+<li>The report goes out by one of two paths, chosen by the invocation flag (WS_FLAG).
+<ul>
+<li>For terminal invocation (flag ‘R’), the message is sent to the terminal with SEND TEXT. The options WAIT, ERASE and FREEKB make sure the user sees the message and the keyboard is released.</li>
+<li>For a commarea call (flag ‘C’), the label and key are copied into the commarea fields (COMMA_DATA_TEXT, COMMA_DATA_KEY). The calling program then checks the ‘Policy Key=’ or ‘Policy Bad=’ label to see the outcome.</li>
+</ul>
+</li>
+<li>After the result is delivered, the program ends normally with a CICS RETURN on both success and failure paths.</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS response code handling</strong></p>
+<ul>
+<li>Every CICS command uses the RESP option. This suppresses the default abend for unexpected conditions and puts the outcome in WS_RESP. The commands are the ASSIGN commands for SYSID, STARTCODE and INVOKINGPROG, plus RECEIVE and READ.</li>
+<li>Only the response from the READ is tested.
+<ul>
+<li>The responses from the three ASSIGN commands and the RECEIVE are overwritten and never checked. A failure there is silent. Execution continues with initial or blank values, which can later show up as a failed lookup.</li>
+<li>The SEND TEXT command has no RESP option, so it relies on default CICS handling.</li>
+</ul>
+</li>
+<li>There are no HANDLE CONDITION or HANDLE ABEND routines. There are also no PL/I ON-unit conditions such as ERROR, CONVERSION or SIZE.</li>
+</ul>
+</li>
+<li>
+<p><strong>Invocation-mode detection and fallback paths</strong></p>
+<ul>
+<li>A branching check on the start code (WS_STARTCODE) and the invoking program name (WS_INVOKEPROG) chooses how to get input and return output.
+<ul>
+<li>A start code beginning with ‘D’ (distributed program link), or a non-blank invoking program, selects the commarea path.</li>
+<li>Any other case falls back to receiving input from the terminal. This is the default alternate path.</li>
+</ul>
+</li>
+<li>In the terminal path, the length of the received data is reduced by 6 to remove the transaction identifier portion, which gives the length of the key portion. In the commarea path, the length is set to a fixed value of 10.</li>
+<li>The commarea path assumes a commarea was passed. There is no check on the commarea length or presence (such as a test of EIBCALEN), so a missing commarea is not handled.</li>
+</ul>
+</li>
+<li>
+<p><strong>Implicit limitations in the error handling</strong></p>
+<ul>
+<li>Input is not validated before the numeric key is built. Non-numeric or short input could raise a PL/I conversion or size condition, and no ON-unit handles it.</li>
+<li>The program cannot tell why a lookup failed. Not found, wrong type and I/O error all give the same ‘Policy Bad=’ result with the same placeholder values.</li>
+<li>The program has no retry logic.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-terminal-input-matching-policy-found" tabindex="-1">9.1 Example 1: Terminal input, matching policy found</h3>
+<p><strong>Input</strong> (typed at the terminal, no invoking program, start code not <code>D</code>)</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>LGPV E0000000001</code></pre>
+</div>
+<ul>
+<li><code>WS_RECV_TRANID</code> = <code>LGPV </code>, <code>WS_RECV_DATA</code> = <code>E0000000001</code>.</li>
+<li>The <code>KSDSPOLY</code> file has a record with type <code>E</code> and customer <code>0000000001</code>.</li>
+</ul>
+<p><strong>Output</strong> (<code>SEND TEXT</code> to the terminal, 80 bytes)</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>Policy Key=E0000000001</code></pre>
+</div>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The program sets <code>WS_FLAG</code> = <code>R</code> and receives the input. It sets <code>WS_RECV_LEN</code> to 16 − 6 = 10.</li>
+<li>It sets <code>PART_KEY_TYPE</code> = <code>E</code> and <code>PART_KEY_NUM</code> = <code>0000000001</code>.</li>
+<li>The generic GTEQ read returns a normal response, and <code>CA_POLICY_TYPE</code> = <code>E</code> equals <code>PART_KEY_TYPE</code>.</li>
+<li><code>WRITE_MSG_KEY_CH</code> is built as <code>CA_POLICY_TYPE || CA_CUSTOMER_NUM</code>. <code>WRITE_MSG_TEXT</code> keeps its initial value <code>Policy Key=</code>.</li>
+<li>Because <code>WS_FLAG</code> = <code>R</code>, the message goes to the terminal.</li>
+</ul>
+<h3 id="92-example-2-called-by-another-program-matching-policy-found" tabindex="-1">9.2 Example 2: Called by another program, matching policy found</h3>
+<p><strong>Input</strong> (the commarea passed by the caller; <code>WS_INVOKEPROG</code> is not blank)</p>
+<ul>
+<li><code>COMMA_DATA_TEXT</code> = <code>C0000000001</code>. The first byte is the requested policy type, followed by the 10-digit customer number.</li>
+<li><code>COMMA_DATA_KEY</code> = blank.</li>
+<li><code>KSDSPOLY</code> contains a <code>C</code> record for customer <code>0000000001</code>.</li>
+</ul>
+<p><strong>Output</strong> (returned in the commarea)</p>
+<ul>
+<li><code>COMMA_DATA_TEXT</code> = <code>Policy Key=</code></li>
+<li><code>COMMA_DATA_KEY</code> = <code>C0000000001</code> followed by the rest of the 21-byte field.</li>
+</ul>
+<p><strong>Explanation</strong></p>
+<ul>
+<li><code>WS_FLAG</code> = <code>C</code>, and <code>WS_COMMAREA</code> = <code>COMMA_DATA_TEXT || COMMA_DATA_KEY</code>. <code>WS_RECV_LEN</code> is fixed at 10.</li>
+<li>The type <code>C</code> and number <code>0000000001</code> are taken from <code>WS_COMMAREA</code>, and the read succeeds with a matching type.</li>
+<li>The program clears <code>COMMA_DATA</code>, then copies <code>WRITE_MSG_TEXT</code> and <code>WRITE_MSG_KEY_CH</code> into it.</li>
+<li>Nothing is sent to the terminal. The program ends with <code>EXEC CICS RETURN</code>.</li>
+</ul>
+<h3 id="93-example-3-no-matching-policy" tabindex="-1">9.3 Example 3: No matching policy</h3>
+<p><strong>Input</strong> (terminal)</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>LGPV H0000000099</code></pre>
+</div>
+<ul>
+<li>The GTEQ read finds no record, or finds a record whose type is not <code>H</code>. For example, it might return a type <code>M</code> record, or <code>NOTFND</code>.</li>
+</ul>
+<p><strong>Output</strong> (terminal)</p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>Policy Bad=</code></pre>
+</div>
+<p>The message key part is <code>0000000013</code> in the customer field and <code>0000000013</code> in the policy field.</p>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>Either <code>CA_POLICY_TYPE ^= PART_KEY_TYPE</code> or <code>WS_RESP ^= DFHRESP(NORMAL)</code> is true.</li>
+<li>The program sets <code>WRITE_MSG_TEXT</code> to <code>Policy Bad=</code> and sets both <code>WRITE_MSG_CUSTNUM</code> and <code>WRITE_MSG_POLNUM</code> to the placeholder value 13.</li>
+<li>When the caller is another program, the same <code>Policy Bad=</code> text and the placeholder key are returned in <code>COMMA_DATA_TEXT</code> and <code>COMMA_DATA_KEY</code>.</li>
+</ul>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a></li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a>
+<ul>
+<li class="toc-level-3"><a href="#31-commarea-response-program-invocation-via-linkstart">3.1 Commarea Response (Program Invocation via LINK/START)</a></li>
+<li class="toc-level-3"><a href="#32-terminal-display-output-direct-terminal-invocation">3.2 Terminal Display Output (Direct Terminal Invocation)</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a></li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a></li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a></li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-terminal-input-matching-policy-found">9.1 Example 1: Terminal input, matching policy found</a></li>
+<li class="toc-level-3"><a href="#92-example-2-called-by-another-program-matching-policy-found">9.2 Example 2: Called by another program, matching policy found</a></li>
+<li class="toc-level-3"><a href="#93-example-3-no-matching-policy">9.3 Example 3: No matching policy</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGIPVS01</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

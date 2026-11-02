@@ -1,0 +1,2117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGUPDB01</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link active">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p><code>LGUPDB01</code> is the Db2 back-end program responsible for updating existing insurance policy records in the GenApp general insurance application. Invoked via a CICS LINK from the orchestrator <code>LGUPOL01</code>, it receives a 32,500-byte COMMAREA carrying a customer number, a policy number, a <code>CA_REQUEST_ID</code> that identifies the policy type (<code>01UEND</code> = Endowment, <code>01UHOU</code> = House, <code>01UMOT</code> = Motor), and the new field values to be written. The program opens a <code>SELECT FOR UPDATE</code> cursor on the Db2 POLICY table to obtain a row lock, fetches the matching row, and performs an optimistic-concurrency check by comparing the <code>LASTCHANGED</code> timestamp held in Db2 against the one passed in the COMMAREA; if they differ the update is abandoned with return code <code>02</code>. When the timestamps match it delegates to one of three internal sub-procedures (<code>UPDATE_ENDOW_DB2_INFO</code>, <code>UPDATE_HOUSE_DB2_INFO</code>, or <code>UPDATE_MOTOR_DB2_INFO</code>) to update the policy-type-specific Db2 table (ENDOWMENT, HOUSE, or MOTOR), then issues a positioned <code>UPDATE … WHERE CURRENT OF POLICY_CURSOR</code> against the POLICY table to write the new dates, broker details, and a fresh <code>CURRENT TIMESTAMP</code>. After closing the cursor, the program issues a CICS LINK to <code>LGUPVS01</code> to keep the corresponding VSAM store in sync, and then returns to its caller.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<h3 id="21-cics-interface-inputs" tabindex="-1">2.1 CICS Interface Inputs</h3>
+<ul>
+<li><code>COMM_AREA_PTR</code>
+<ul>
+<li>Pointer passed into the program entry point (<code>LGUPDB01: Proc(COMM_AREA_PTR)</code>) providing addressability to the <code>COMM_AREA</code> data structure.</li>
+</ul>
+</li>
+<li><code>EIBCALEN</code>
+<ul>
+<li>CICS Exec Interface Block field containing the length of the commarea passed by the calling program. Used to validate commarea presence and calculate variable-length payload sizes.</li>
+</ul>
+</li>
+<li><code>EIBTRNID</code>
+<ul>
+<li>CICS Exec Interface Block transaction identifier, captured into working storage for diagnostic and execution context.</li>
+</ul>
+</li>
+<li><code>EIBTRMID</code>
+<ul>
+<li>CICS Exec Interface Block terminal identifier, captured for runtime context.</li>
+</ul>
+</li>
+<li><code>EIBTASKN</code>
+<ul>
+<li>CICS Exec Interface Block task number, captured for runtime context.</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-cics-commarea-input-fields-comm_area" tabindex="-1">2.2 CICS COMMAREA Input Fields (<code>COMM_AREA</code>)</h3>
+<ul>
+<li>
+<p><strong>Control &amp; Routing Fields</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code>
+<ul>
+<li>Identifies the specific update operation and policy type to execute (<code>01UEND</code> for Endowment, <code>01UHOU</code> for House, <code>01UMOT</code> for Motor).</li>
+</ul>
+</li>
+<li><code>CA_CUSTOMER_NUM</code>
+<ul>
+<li>Customer number associated with the policy to update. Used in the <code>POLICY</code> table cursor query.</li>
+</ul>
+</li>
+<li><code>CA_POLICY_NUM</code>
+<ul>
+<li>Policy number identifying the target policy record in the Db2 tables.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Common Policy Fields (<code>CA_POLICY_COMMON</code>)</strong></p>
+<ul>
+<li><code>CA_LASTCHANGED</code>
+<ul>
+<li>Timestamp of the record at last read; compared against the database <code>LASTCHANGED</code> value to verify optimistic concurrency control before performing the update.</li>
+</ul>
+</li>
+<li><code>CA_ISSUE_DATE</code>
+<ul>
+<li>Policy start or issuance date updated in the <code>POLICY</code> table.</li>
+</ul>
+</li>
+<li><code>CA_EXPIRY_DATE</code>
+<ul>
+<li>Policy expiration date updated in the <code>POLICY</code> table.</li>
+</ul>
+</li>
+<li><code>CA_BROKERID</code>
+<ul>
+<li>Broker identifier associated with the policy, updated in the <code>POLICY</code> table.</li>
+</ul>
+</li>
+<li><code>CA_BROKERSREF</code>
+<ul>
+<li>Broker reference string updated in the <code>POLICY</code> table.</li>
+</ul>
+</li>
+<li><code>CA_PAYMENT</code>
+<ul>
+<li>Payment amount associated with the policy (converted to integer for internal handling).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Endowment Policy Fields (<code>CA_ENDOWMENT</code> - used when <code>CA_REQUEST_ID = '01UEND'</code>)</strong></p>
+<ul>
+<li><code>CA_E_WITH_PROFITS</code>
+<ul>
+<li>Flag indicating if the endowment policy includes profits (<code>Y</code>/<code>N</code>).</li>
+</ul>
+</li>
+<li><code>CA_E_EQUITIES</code>
+<ul>
+<li>Flag indicating equity investment participation.</li>
+</ul>
+</li>
+<li><code>CA_E_MANAGED_FUND</code>
+<ul>
+<li>Flag indicating managed fund status.</li>
+</ul>
+</li>
+<li><code>CA_E_FUND_NAME</code>
+<ul>
+<li>Name of the investment fund.</li>
+</ul>
+</li>
+<li><code>CA_E_TERM</code>
+<ul>
+<li>Duration/term of the endowment policy in years.</li>
+</ul>
+</li>
+<li><code>CA_E_SUM_ASSURED</code>
+<ul>
+<li>Total sum assured upon maturity.</li>
+</ul>
+</li>
+<li><code>CA_E_LIFE_ASSURED</code>
+<ul>
+<li>Name of the individual whose life is assured.</li>
+</ul>
+</li>
+<li><code>CA_E_PADDING_DATA</code>
+<ul>
+<li>Additional variable-length payload data for the endowment policy (when commarea length exceeds required minimum).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>House Policy Fields (<code>CA_HOUSE</code> - used when <code>CA_REQUEST_ID = '01UHOU'</code>)</strong></p>
+<ul>
+<li><code>CA_H_PROPERTY_TYPE</code>
+<ul>
+<li>Type of property insured (e.g., Detached, Semi-detached).</li>
+</ul>
+</li>
+<li><code>CA_H_BEDROOMS</code>
+<ul>
+<li>Number of bedrooms in the insured property.</li>
+</ul>
+</li>
+<li><code>CA_H_VALUE</code>
+<ul>
+<li>Insured value of the property.</li>
+</ul>
+</li>
+<li><code>CA_H_HOUSE_NAME</code>
+<ul>
+<li>Name of the insured property/building.</li>
+</ul>
+</li>
+<li><code>CA_H_HOUSE_NUMBER</code>
+<ul>
+<li>Street number of the insured property.</li>
+</ul>
+</li>
+<li><code>CA_H_POSTCODE</code>
+<ul>
+<li>Postal code where the insured property is located.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Motor Policy Fields (<code>CA_MOTOR</code> - used when <code>CA_REQUEST_ID = '01UMOT'</code>)</strong></p>
+<ul>
+<li><code>CA_M_MAKE</code>
+<ul>
+<li>Manufacturer make of the insured vehicle.</li>
+</ul>
+</li>
+<li><code>CA_M_MODEL</code>
+<ul>
+<li>Vehicle model description.</li>
+</ul>
+</li>
+<li><code>CA_M_VALUE</code>
+<ul>
+<li>Valuation amount of the motor vehicle.</li>
+</ul>
+</li>
+<li><code>CA_M_REGNUMBER</code>
+<ul>
+<li>Vehicle registration or license plate number.</li>
+</ul>
+</li>
+<li><code>CA_M_COLOUR</code>
+<ul>
+<li>Color of the vehicle.</li>
+</ul>
+</li>
+<li><code>CA_M_CC</code>
+<ul>
+<li>Engine capacity in cubic centimeters (cc).</li>
+</ul>
+</li>
+<li><code>CA_M_MANUFACTURED</code>
+<ul>
+<li>Vehicle year/date of manufacture.</li>
+</ul>
+</li>
+<li><code>CA_M_PREMIUM</code>
+<ul>
+<li>Calculated policy premium amount.</li>
+</ul>
+</li>
+<li><code>CA_M_ACCIDENTS</code>
+<ul>
+<li>Number or value of recorded accidents.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-external-db2-data-source-inputs" tabindex="-1">2.3 External Db2 Data Source Inputs</h3>
+<ul>
+<li><strong><code>POLICY</code> Table</strong>
+<ul>
+<li><code>ISSUEDATE</code>
+<ul>
+<li>Issue date retrieved via cursor <code>POLICY_CURSOR</code> for record locking and fetch verification.</li>
+</ul>
+</li>
+<li><code>EXPIRYDATE</code>
+<ul>
+<li>Expiration date retrieved via cursor <code>POLICY_CURSOR</code>.</li>
+</ul>
+</li>
+<li><code>LASTCHANGED</code>
+<ul>
+<li>Timestamp retrieved to validate against <code>CA_LASTCHANGED</code> to prevent concurrent overwrite collisions, and queried again post-update to retrieve the new generated timestamp.</li>
+</ul>
+</li>
+<li><code>BROKERID</code>
+<ul>
+<li>Broker ID retrieved via cursor into host variable <code>DB2_BROKERID_INT</code> with indicator <code>IND_BROKERID</code>.</li>
+</ul>
+</li>
+<li><code>BROKERSREFERENCE</code>
+<ul>
+<li>Broker reference retrieved via cursor into host variable <code>DB2_BROKERSREF</code> with indicator <code>IND_BROKERSREF</code>.</li>
+</ul>
+</li>
+<li><code>PAYMENT</code>
+<ul>
+<li>Payment value retrieved via cursor into host variable <code>DB2_PAYMENT_INT</code> with indicator <code>IND_PAYMENT</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Db2 System Timestamp (<code>CURRENT TIMESTAMP</code>)</strong>
+<ul>
+<li>Special register providing the current timestamp applied to the <code>POLICY.LASTCHANGED</code> column during update.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<h3 id="31-returned-commarea-primary-output-to-caller" tabindex="-1">3.1 Returned COMMAREA (primary output to caller)</h3>
+<ul>
+<li><code>CA_RETURN_CODE</code>: status code returned to the calling program (LGUPOL01).
+<ul>
+<li><code>'00'</code>: the policy update succeeded. The cursor open and close also set this value.</li>
+<li><code>'01'</code>: the policy row was not found (SQLCODE 100 on the fetch), or the type-specific UPDATE found no row. The House update also sets <code>'01'</code> for any non-zero SQLCODE.</li>
+<li><code>'02'</code>: the timestamp in the COMMAREA does not match the stored <code>LASTCHANGED</code>. This is an optimistic-lock conflict, and nothing is updated.</li>
+<li><code>'90'</code>: a Db2 error occurred. It covers cursor OPEN or CLOSE failures, a fetch error, a policy-table UPDATE or SELECT failure, and Endowment or Motor update errors.</li>
+</ul>
+</li>
+<li><code>CA_LASTCHANGED</code>: the new <code>LASTCHANGED</code> timestamp, read back from the POLICY table after a successful update so the caller can use it on later updates.</li>
+<li><code>COMM_AREA</code> (the full structure, passed on the LINK to LGUPVS01 and returned to the caller): it carries the return code and refreshed timestamp, plus the policy and type-specific data supplied by the caller.</li>
+</ul>
+<h3 id="32-db2-data-updates" tabindex="-1">3.2 Db2 data updates</h3>
+<ul>
+<li>POLICY table
+<ul>
+<li><code>ISSUEDATE</code>, <code>EXPIRYDATE</code> and <code>BROKERSREFERENCE</code> are set from <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code> and <code>CA_BROKERSREF</code>.</li>
+<li><code>BROKERID</code> is set from <code>CA_BROKERID</code>, converted to <code>DB2_BROKERID_INT</code>.</li>
+<li><code>LASTCHANGED</code> is set to <code>CURRENT TIMESTAMP</code>.</li>
+<li>The update uses <code>WHERE CURRENT OF POLICY_CURSOR</code>, which holds a row lock until the update finishes.</li>
+</ul>
+</li>
+<li>ENDOWMENT table, when <code>CA_REQUEST_ID</code> = <code>'01UEND'</code>
+<ul>
+<li>Updated columns: <code>WITHPROFITS</code>, <code>EQUITIES</code>, <code>MANAGEDFUND</code>, <code>FUNDNAME</code>, <code>TERM</code>, <code>SUMASSURED</code> and <code>LIFEASSURED</code>.</li>
+<li>The columns come from the <code>CA_E_*</code> fields.</li>
+<li>The update is keyed on <code>POLICYNUMBER</code>.</li>
+</ul>
+</li>
+<li>HOUSE table, when <code>CA_REQUEST_ID</code> = <code>'01UHOU'</code>
+<ul>
+<li>Updated columns: <code>PROPERTYTYPE</code>, <code>BEDROOMS</code>, <code>VALUE</code>, <code>HOUSENAME</code>, <code>HOUSENUMBER</code> and <code>POSTCODE</code>.</li>
+<li>The columns come from the <code>CA_H_*</code> fields.</li>
+</ul>
+</li>
+<li>MOTOR table, when <code>CA_REQUEST_ID</code> = <code>'01UMOT'</code>
+<ul>
+<li>Updated columns: <code>MAKE</code>, <code>MODEL</code>, <code>VALUE</code>, <code>REGNUMBER</code>, <code>COLOUR</code>, <code>CC</code>, <code>YEAROFMANUFACTURE</code>, <code>PREMIUM</code> and <code>ACCIDENTS</code>.</li>
+<li>The columns come from the <code>CA_M_*</code> fields.</li>
+</ul>
+</li>
+<li>Transaction control
+<ul>
+<li>A failure when reading back the timestamp after the policy update triggers <code>EXEC CICS SYNCPOINT ROLLBACK</code>.</li>
+<li>The rollback undoes the updates and sets <code>CA_RETURN_CODE</code> to <code>'90'</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-error-and-diagnostic-messages-cics-queue-output-via-lgstsq" tabindex="-1">3.3 Error and diagnostic messages (CICS queue output via LGSTSQ)</h3>
+<ul>
+<li><code>ERROR_MSG</code> is written through <code>EXEC CICS LINK PROGRAM('LGSTSQ')</code>, which writes it to the CSMT queue. Its fields are:
+<ul>
+<li><code>EM_DATE</code> and <code>EM_TIME</code>: timestamp taken with ASKTIME and FORMATTIME.</li>
+<li><code>EM_CUSNUM</code> and <code>EM_POLNUM</code>: the customer and policy numbers.</li>
+<li><code>EM_SQLREQ</code>: the failing SQL operation, for example OPEN PCURSOR, FETCH ROW, UPDATE POLICY, UPDATE ENDOW, UPDATE HOUSE, UPDATE MOTOR or CLOSE PCURSOR.</li>
+<li><code>EM_SQLRC</code>: the SQLCODE.</li>
+<li><code>EM_MSG_TEXT</code>: the free-text message, for example <code>' NO COMMAREA RECEIVED'</code>.</li>
+</ul>
+</li>
+<li><code>CA_ERROR_MSG</code> is a second message record sent to LGSTSQ. Its <code>CA_DATA</code> holds the first 90 bytes of the COMMAREA, or as much as was received, to help diagnose the failure.</li>
+<li>The message is written on these conditions:
+<ul>
+<li>no COMMAREA was received</li>
+<li>the cursor OPEN or CLOSE failed</li>
+<li>the fetch returned an error other than SQLCODE 100</li>
+<li>the policy-table update failed</li>
+<li>an Endowment or Motor update failed</li>
+<li>the House update failed with an SQLCODE other than 100</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-program-control-and-abnormal-termination" tabindex="-1">3.4 Program control and abnormal termination</h3>
+<ul>
+<li>The program issues <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code> when <code>EIBCALEN = 0</code>, after it writes the error message.</li>
+<li><code>EXEC CICS RETURN</code> ends the transaction and returns control to the caller. It is issued:
+<ul>
+<li>on a normal completion</li>
+<li>immediately after a failed cursor OPEN or CLOSE</li>
+<li>after a failed type-specific update</li>
+</ul>
+</li>
+</ul>
+<h3 id="35-downstream-program-invocation" tabindex="-1">3.5 Downstream program invocation</h3>
+<ul>
+<li><code>EXEC CICS LINK Program('LGUPVS01') Commarea(COMM_AREA) LENGTH(225)</code> runs after the Db2 update logic (<code>UPDATE_POLICY_DB2_INFO</code>). It passes the updated COMMAREA to LGUPVS01, which does the VSAM-side policy update.</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<p>I have analyzed the entire LGUPDB01.pli program. Let me double check its details.
+The program is <code>LGUPDB01</code>, which updates policy details in a Db2 database.</p>
+<p>Let’s break down the logic:</p>
+<ul>
+<li>
+<p>Main program entry:</p>
+<ul>
+<li>Procedure definition: <code>LGUPDB01: Proc(COMM_AREA_PTR) Options(Main);</code></li>
+<li>Initializes runtime (debug) info (eye-catcher is <code>'LGUPDB01------WS'</code>, trans ID, term ID, task num, retry indicator). Note: The error message declaration shows a literal <code>' LGIPOL01'</code> in line 31, but the main eye-catcher has <code>LGUPDB01------WS</code>.</li>
+<li>Initializes DB2 host variables: <code>DB2_POLICY = ' ';</code> and <code>DB2_IN_INTEGERS = 0;</code></li>
+<li>Checks if a commarea was received (<code>EIBCALEN = 0</code>). If not, it sets an error message, calls <code>WRITE_ERROR_MESSAGE</code>, and abends with code <code>'LGCA'</code>.</li>
+<li>Initializes <code>CA_RETURN_CODE = '00'</code>.</li>
+<li>Copies customer and policy numbers from COMMAREA to DB2 integer variables:
+<ul>
+<li><code>DB2_CUSTOMERNUM_INT = CA_CUSTOMER_NUM;</code></li>
+<li><code>DB2_POLICYNUM_INT = CA_POLICY_NUM;</code></li>
+<li>Also saves them in error message fields <code>EM_CUSNUM</code> and <code>EM_POLNUM</code>.</li>
+</ul>
+</li>
+<li>Calls internal procedure <code>UPDATE_POLICY_DB2_INFO</code>.</li>
+<li>Links to VSAM update program <code>LGUPVS01</code> passing the <code>COMM_AREA</code> and a length of 225.</li>
+<li>Returns to CICS using <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li>
+<p>Internal procedure <code>UPDATE_POLICY_DB2_INFO</code>:</p>
+<ul>
+<li>Opens <code>POLICY_CURSOR</code> (with hold, for update of <code>ISSUEDATE</code>, <code>EXPIRYDATE</code>, <code>LASTCHANGED</code>, <code>BROKERID</code>, <code>BROKERSREFERENCE</code>).</li>
+<li>Evaluates <code>SQLCODE</code> from OPEN:
+<ul>
+<li>If <code>0</code>: Sets <code>CA_RETURN_CODE = '00'</code>.</li>
+<li>If <code>-913</code> (deadlock/timeout): Sets <code>CA_RETURN_CODE = '90'</code>, logs error, and terminates processing (<code>EXEC CICS RETURN</code>).</li>
+<li>Otherwise: Sets <code>CA_RETURN_CODE = '90'</code>, logs error, and terminates processing (<code>EXEC CICS RETURN</code>).</li>
+</ul>
+</li>
+<li>Calls <code>FETCH_DB2_POLICY_ROW</code> to fetch the record into host variables (<code>DB2_ISSUEDATE</code>, <code>DB2_EXPIRYDATE</code>, <code>DB2_LASTCHANGED</code>, and nullable indicators for <code>BROKERID</code>, <code>BROKERSREFERENCE</code>, <code>PAYMENT</code>).</li>
+<li>If FETCH is successful (<code>SQLCODE = 0</code>):
+<ul>
+<li>Performs concurrency check (optimistic locking): Compares the <code>LASTCHANGED</code> timestamp in the database (<code>DB2_LASTCHANGED</code>) with the one provided in the COMMAREA (<code>CA_LASTCHANGED</code>).</li>
+<li>If they match:
+<ul>
+<li>Directs the update based on <code>CA_REQUEST_ID</code>:
+<ul>
+<li><code>'01UEND'</code> (Endowment policy): Calls <code>UPDATE_ENDOW_DB2_INFO</code>.</li>
+<li><code>'01UHOU'</code> (House policy): Calls <code>UPDATE_HOUSE_DB2_INFO</code>.</li>
+<li><code>'01UMOT'</code> (Motor policy): Calls <code>UPDATE_MOTOR_DB2_INFO</code>.</li>
+</ul>
+</li>
+<li>If the policy-specific update fails (i.e. <code>CA_RETURN_CODE &lt;&gt; '00'</code>), it closes the cursor and returns (<code>EXEC CICS RETURN</code>).</li>
+<li>Otherwise, proceeds to update the core <code>POLICY</code> table row:
+<ul>
+<li>Transfers updated <code>CA_BROKERID</code> and <code>CA_PAYMENT</code> to DB2 integers.</li>
+<li>Executes SQL <code>UPDATE POLICY</code> setting <code>ISSUEDATE = :CA_ISSUE_DATE</code>, <code>EXPIRYDATE = :CA_EXPIRY_DATE</code>, <code>LASTCHANGED = CURRENT TIMESTAMP</code>, <code>BROKERID = :DB2_BROKERID_INT</code>, and <code>BROKERSREFERENCE = :CA_BROKERSREF</code> where <code>CURRENT OF POLICY_CURSOR</code>.</li>
+<li>Retrieves the newly assigned timestamp via a subsequent <code>SELECT LASTCHANGED</code> into <code>:CA_LASTCHANGED</code>.</li>
+<li>If the update/select fails (<code>SQLCODE &lt;&gt; 0</code>), performs a CICS transaction rollback (<code>EXEC CICS SYNCPOINT ROLLBACK</code>), sets <code>CA_RETURN_CODE = '90'</code>, and logs the error.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If they do NOT match (indicating someone else updated the record in the meantime):
+<ul>
+<li>Sets <code>CA_RETURN_CODE = '02'</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If FETCH fails:
+<ul>
+<li>If <code>SQLCODE = 100</code> (not found): Sets <code>CA_RETURN_CODE = '01'</code>.</li>
+<li>Otherwise: Sets <code>CA_RETURN_CODE = '90'</code> and writes an error message.</li>
+</ul>
+</li>
+<li>Closes the cursor (<code>CALL CLOSE_PCURSOR</code>).</li>
+</ul>
+</li>
+<li>
+<p>Internal procedure <code>FETCH_DB2_POLICY_ROW</code>:</p>
+<ul>
+<li>Executes DB2 SQL <code>FETCH POLICY_CURSOR</code> into the respective host variables and indicators.</li>
+</ul>
+</li>
+<li>
+<p>Internal procedure <code>CLOSE_PCURSOR</code>:</p>
+<ul>
+<li>Executes DB2 SQL <code>CLOSE POLICY_CURSOR</code>.</li>
+<li>Checks <code>SQLCODE</code>:
+<ul>
+<li>If <code>0</code> or <code>-501</code> (cursor not open): Sets <code>CA_RETURN_CODE = '00'</code>.</li>
+<li>Otherwise: Sets <code>CA_RETURN_CODE = '90'</code>, writes error, and returns.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Internal procedure <code>UPDATE_ENDOW_DB2_INFO</code>:</p>
+<ul>
+<li>Moves <code>CA_E_TERM</code> and <code>CA_E_SUM_ASSURED</code> to DB2 integer variables.</li>
+<li>Computes <code>WS_VARY_LEN = EIBCALEN - WS_REQUIRED_CA_LEN</code>.</li>
+<li>If <code>WS_VARY_LEN &gt; 0</code>:
+<ul>
+<li>Updates <code>ENDOWMENT</code> table using host variables including the varchar padding data. (Wait, the SQL statement inside <code>WS_VARY_LEN &gt; 0</code> doesn’t actually show a varchar update in this code because it has the same columns, but let’s check:
+Wait! Let’s look at lines 569-580:<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>EXEC SQL
+        UPDATE ENDOWMENT
+          SET
+            WITHPROFITS   = :CA_E_WITH_PROFITS,
+              EQUITIES    = :CA_E_EQUITIES,
+              MANAGEDFUND = :CA_E_MANAGED_FUND,
+              FUNDNAME    = :CA_E_FUND_NAME,
+              TERM        = :DB2_E_TERM_SINT,
+              SUMASSURED  = :DB2_E_SUMASSURED_INT,
+              LIFEASSURED = :CA_E_LIFE_ASSURED
+          WHERE
+              POLICYNUMBER = :DB2_POLICYNUM_INT;</code></pre>
+</div>
+Ah, wait, does it update a varchar field? It actually doesn’t seem to reference <code>WS_VARY_CHAR</code> in the SQL, but it copies <code>CA_E_PADDING_DATA</code> to <code>WS_VARY_CHAR</code>. This might be a placeholder or incomplete implementation in the template, but we will describe exactly what it does.
+Ah, actually, wait, the <code>IF ( WS_VARY_LEN &gt; 0 ) THEN DO;</code> block executes an UPDATE statement but doesn’t actually have a different column list in this template. Oh, wait, in either case (whether <code>WS_VARY_LEN &gt; 0</code> or else), it executes the update of the ENDOWMENT table with the same fields: <code>WITHPROFITS</code>, <code>EQUITIES</code>, <code>MANAGEDFUND</code>, <code>FUNDNAME</code>, <code>TERM</code>, <code>SUMASSURED</code>, <code>LIFEASSURED</code> where <code>POLICYNUMBER = :DB2_POLICYNUM_INT</code>.
+Wait, let’s look closely at line 595: <code>IF ( SQLCODE &lt;&gt; 0 ) THEN DO;</code> - oh, that’s inside the <code>ELSE</code> block of the <code>IF ( WS_VARY_LEN &gt; 0 )</code>. Let’s verify if there is SQLCODE check in the <code>IF</code> block.
+Ah, line 581 is <code>END;</code>, then <code>ELSE DO;</code> … <code>END; /*WS_VARY_LEN &gt; */</code>. No SQLCODE check inside the <code>IF</code> block? Or does the <code>ELSE</code> check handle it? Let’s verify line 581-607.
+Wait, in the <code>IF ( WS_VARY_LEN &gt; 0 )</code> block, it does:<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>SUBSTR(WS_VARY_CHAR,1,WS_VARY_LEN) = CA_E_PADDING_DATA;
+      EXEC SQL UPDATE ENDOWMENT SET ... WHERE POLICYNUMBER = :DB2_POLICYNUM_INT;
+      END;</code></pre>
+</div>
+So there is indeed no <code>SQLCODE</code> check in that specific branch, whereas in the <code>ELSE</code> branch there is an <code>SQLCODE</code> check. Let’s document this exact flow.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Internal procedure <code>UPDATE_HOUSE_DB2_INFO</code>:</p>
+<ul>
+<li>Moves <code>CA_H_BEDROOMS</code> and <code>CA_H_VALUE</code> to DB2 integer variables.</li>
+<li>Executes DB2 SQL <code>UPDATE HOUSE</code> setting <code>PROPERTYTYPE = :CA_H_PROPERTY_TYPE</code>, <code>BEDROOMS = :DB2_H_BEDROOMS_SINT</code>, <code>VALUE = :DB2_H_VALUE_INT</code>, <code>HOUSENAME = :CA_H_HOUSE_NAME</code>, <code>HOUSENUMBER = :CA_H_HOUSE_NUMBER</code>, and <code>POSTCODE = :CA_H_POSTCODE</code> where <code>POLICYNUMBER = :DB2_POLICYNUM_INT</code>.</li>
+<li>Checks <code>SQLCODE</code>:
+<ul>
+<li>If not <code>0</code>, sets <code>CA_RETURN_CODE = '01'</code> (or logs error via <code>WRITE_ERROR_MESSAGE</code>). Wait, line 630 sets <code>'01'</code>, and line 634 sets <code>'01'</code>. Yes, both branches of non-zero SQLCODE set <code>CA_RETURN_CODE = '01'</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Internal procedure <code>UPDATE_MOTOR_DB2_INFO</code>:</p>
+<ul>
+<li>Moves <code>CA_M_CC</code>, <code>CA_M_VALUE</code>, <code>CA_M_PREMIUM</code>, and <code>CA_M_ACCIDENTS</code> to DB2 integer variables.</li>
+<li>Executes DB2 SQL <code>UPDATE MOTOR</code> setting <code>MAKE = :CA_M_MAKE</code>, <code>MODEL = :CA_M_MODEL</code>, <code>VALUE = :DB2_M_VALUE_INT</code>, <code>REGNUMBER = :CA_M_REGNUMBER</code>, <code>COLOUR = :CA_M_COLOUR</code>, <code>CC = :DB2_M_CC_SINT</code>, <code>YEAROFMANUFACTURE = :CA_M_MANUFACTURED</code>, <code>PREMIUM = :DB2_M_PREMIUM_INT</code>, and <code>ACCIDENTS = :DB2_M_ACCIDENTS_INT</code> where <code>POLICYNUMBER = :DB2_POLICYNUM_INT</code>.</li>
+<li>Checks <code>SQLCODE</code>:
+<ul>
+<li>If <code>100</code> (not found): Sets <code>CA_RETURN_CODE = '01'</code>.</li>
+<li>Otherwise: Sets <code>CA_RETURN_CODE = '90'</code> and writes an error message.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Internal procedure <code>WRITE_ERROR_MESSAGE</code>:</p>
+<ul>
+<li>Captures current time and date via <code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code>.</li>
+<li>Formats error message details (<code>ERROR_MSG</code>).</li>
+<li>Calls <code>LGSTSQ</code> (CICS TS queue logger program) with the structured error details.</li>
+<li>Extracts and logs up to 90 bytes of raw COMMAREA data using <code>LEFT(COMM_AREA_RAW, ...)</code> and sends it to <code>LGSTSQ</code> as well.</li>
+</ul>
+</li>
+</ul>
+<p>Let’s group the identified processing logic into logical categories as required:</p>
+<ol>
+<li>Program Initialization and Validation</li>
+<li>Concurrency Check (Optimistic Locking) and Cursor Processing</li>
+<li>Core Policy Table Update and Timestamping</li>
+<li>Policy-Specific Tables Update (Endowment, House, Motor)</li>
+<li>VSAM Syncing and Program Termination</li>
+<li>Error Handling and Logging</li>
+</ol>
+<p>Let’s organize the response clearly, using sub-headings where appropriate, starting directly with the section body content. Bullet points will start with “-” and use proper indentations.</p>
+<p>Let’s double-check all requirements:</p>
+<ul>
+<li>Do NOT use numbered bullet points. Bullet points should start with “-” and use proper indentations to reflect hierarchy.</li>
+<li>Do NOT add the section heading (meaning no “## Processing Logic” or “## Section …”).</li>
+<li>Sub-headings (“###” and deeper) are allowed and encouraged.</li>
+<li>Do NOT include any introductory text, preamble, reasoning, or meta commentary.</li>
+<li>The very first character must be part of the section content.</li>
+<li>Do NOT ask ANY questions.</li>
+<li>Write naturally and authoritatively.</li>
+</ul>
+<p>Let’s draft the sub-headings:</p>
+<h3 id="41-initialization-and-input-validation" tabindex="-1">4.1 Initialization and Input Validation</h3>
+<ul>
+<li>Description of main entry, EIBCALEN validation, variable initialization.</li>
+</ul>
+<h3 id="42-concurrency-and-locking-management-optimistic-locking" tabindex="-1">4.2 Concurrency and Locking Management (Optimistic Locking)</h3>
+<ul>
+<li>Description of the Cursor declaration, OPEN cursor logic, and SQLCODE checking.</li>
+<li>Description of the FETCH and timestamp validation (<code>CA_LASTCHANGED</code> vs <code>DB2_LASTCHANGED</code>).</li>
+</ul>
+<h3 id="43-policy-specific-update-operations" tabindex="-1">4.3 Policy-Specific Update Operations</h3>
+<ul>
+<li>Detailed description of <code>UPDATE_ENDOW_DB2_INFO</code> (handling of variable length data if any, updates of Endowment-specific fields).</li>
+<li>Detailed description of <code>UPDATE_HOUSE_DB2_INFO</code> (type conversion, updates of House-specific fields).</li>
+<li>Detailed description of <code>UPDATE_MOTOR_DB2_INFO</code> (type conversion, updates of Motor-specific fields).</li>
+</ul>
+<h3 id="44-core-policy-database-synchronization" tabindex="-1">4.4 Core Policy Database Synchronization</h3>
+<ul>
+<li>Details of updating the core <code>POLICY</code> table through the cursor.</li>
+<li>Fetching of the newly generated DB2 <code>CURRENT TIMESTAMP</code> back into the COMMAREA.</li>
+<li>Rollback mechanisms on failure.</li>
+</ul>
+<h3 id="45-downstream-vsam-synchronization-and-termination" tabindex="-1">4.5 Downstream VSAM Synchronization and Termination</h3>
+<ul>
+<li>Calling of the VSAM sync program <code>LGUPVS01</code> via CICS LINK.</li>
+<li>CICS RETURN execution.</li>
+</ul>
+<h3 id="46-error-handling-and-logging" tabindex="-1">4.6 Error Handling and Logging</h3>
+<ul>
+<li>ASKTIME, FORMATTIME.</li>
+<li>Writing error queue messages to the <code>LGSTSQ</code> program.</li>
+<li>Capturing and writing partial COMMAREA dumps.</li>
+</ul>
+<p>Let’s review the precise data transformations and assignments:</p>
+<ul>
+<li><code>DB2_CUSTOMERNUM_INT</code> from <code>CA_CUSTOMER_NUM</code></li>
+<li><code>DB2_POLICYNUM_INT</code> from <code>CA_POLICY_NUM</code></li>
+<li>Numeric variables mapped to internal <code>FIXED BIN</code> database types:
+<ul>
+<li><code>DB2_BROKERID_INT</code> = <code>CA_BROKERID</code></li>
+<li><code>DB2_PAYMENT_INT</code>  = <code>CA_PAYMENT</code></li>
+<li><code>DB2_E_TERM_SINT</code> = <code>CA_E_TERM</code></li>
+<li><code>DB2_E_SUMASSURED_INT</code> = <code>CA_E_SUM_ASSURED</code></li>
+<li><code>DB2_H_BEDROOMS_SINT</code> = <code>CA_H_BEDROOMS</code></li>
+<li><code>DB2_H_VALUE_INT</code> = <code>CA_H_VALUE</code></li>
+<li><code>DB2_M_CC_SINT</code> = <code>CA_M_CC</code></li>
+<li><code>DB2_M_VALUE_INT</code> = <code>CA_M_VALUE</code></li>
+<li><code>DB2_M_PREMIUM_INT</code> = <code>CA_M_PREMIUM</code></li>
+<li><code>DB2_M_ACCIDENTS_INT</code> = <code>CA_M_ACCIDENTS</code></li>
+</ul>
+</li>
+</ul>
+<p>Let’s review conditional branches:</p>
+<ul>
+<li>If <code>EIBCALEN = 0</code>, calls <code>WRITE_ERROR_MESSAGE</code> and issues an abend <code>LGCA</code>.</li>
+<li>If <code>SQLCODE</code> on Cursor OPEN is <code>-913</code> (deadlock), sets <code>CA_RETURN_CODE = '90'</code> and aborts.</li>
+<li>If timestamp match fails (<code>CA_LASTCHANGED &lt;&gt; DB2_LASTCHANGED</code>), sets <code>CA_RETURN_CODE = '02'</code>.</li>
+<li>If timestamp matches, branches on <code>CA_REQUEST_ID</code> (<code>01UEND</code>, <code>01UHOU</code>, <code>01UMOT</code>).</li>
+<li>In <code>UPDATE_ENDOW_DB2_INFO</code>, branches on <code>WS_VARY_LEN &gt; 0</code>.</li>
+<li>SQLCODE error checks mapping to <code>CA_RETURN_CODE</code> codes <code>'01'</code> (Not Found) or <code>'90'</code> (System/DB2 error).</li>
+</ul>
+<p>This structure matches all requested rules and is highly detailed. I am ready to output the response directly.### Initialization and Input Validation</p>
+<ul>
+<li>
+<p><strong>Main Entry and Environment Mapping</strong></p>
+<ul>
+<li>The program is initiated via CICS with a pointer to the standard communications area (<code>COMM_AREA_PTR</code>).</li>
+<li>System fields such as the transaction ID (<code>EIBTRNID</code>), terminal ID (<code>EIBTRMID</code>), and task number (<code>EIBTASKN</code>) are copied to local tracker variables (<code>WS_TRANSID</code>, <code>WS_TERMID</code>, and <code>WS_TASKNUM</code>) for context propagation.</li>
+<li>Core Db2 structures and internal variables are initialized to empty or default numeric states.</li>
+</ul>
+</li>
+<li>
+<p><strong>COMMAREA Length Verification</strong></p>
+<ul>
+<li>The program validates the CICS communication area length (<code>EIBCALEN</code>).</li>
+<li>If <code>EIBCALEN</code> is equal to zero, indicating that no data was received, the program logs an error message by calling <code>WRITE_ERROR_MESSAGE</code> and issues a CICS <code>ABEND</code> with code <code>'LGCA'</code> to abnormally terminate execution.</li>
+<li>If the validation passes, the transaction return code is initialized to <code>'00'</code> (success), and the customer and policy numbers from the COMMAREA are copied into Db2-compatible binary integer variables (<code>DB2_CUSTOMERNUM_INT</code> and <code>DB2_POLICYNUM_INT</code>).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="47-concurrency-and-locking-management-optimistic-locking" tabindex="-1">4.7 Concurrency and Locking Management (Optimistic Locking)</h3>
+<ul>
+<li>
+<p><strong>Cursor Opening and Deadlock Detection</strong></p>
+<ul>
+<li>The program declares a cursor (<code>POLICY_CURSOR</code>) configured <code>WITH HOLD</code> and <code>FOR UPDATE</code> on specific columns (<code>ISSUEDATE</code>, <code>EXPIRYDATE</code>, <code>LASTCHANGED</code>, <code>BROKERID</code>, <code>BROKERSREFERENCE</code>) to select a policy record based on the customer and policy numbers.</li>
+<li>It attempts to open <code>POLICY_CURSOR</code> and performs status evaluations on the resulting <code>SQLCODE</code>:
+<ul>
+<li>An <code>SQLCODE</code> of <code>0</code> indicates success, and the transaction return code remains <code>'00'</code>.</li>
+<li>An <code>SQLCODE</code> of <code>-913</code> (indicating a deadlock or timeout) sets the return code to <code>'90'</code>, writes an error message, and immediately returns execution to the CICS environment.</li>
+<li>Any other non-zero <code>SQLCODE</code> is treated as a major failure, setting the return code to <code>'90'</code> and triggering an immediate error exit.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Record Fetching and Timestamp Verification</strong></p>
+<ul>
+<li>If the cursor opens successfully, the program executes a fetch operation (<code>FETCH_DB2_POLICY_ROW</code>) to retrieve the row data into host variables along with indicator variables (<code>IND_BROKERID</code>, <code>IND_BROKERSREF</code>, <code>IND_PAYMENT</code>) to safely handle potential database null values.</li>
+<li>Once the record is retrieved, the program performs a concurrency check by comparing the timestamp in the database (<code>DB2_LASTCHANGED</code>) with the timestamp provided in the incoming COMMAREA (<code>CA_LASTCHANGED</code>).
+<ul>
+<li>If the timestamps do not match (indicating the record was modified by another task since it was last read), the program bypasses the update, sets <code>CA_RETURN_CODE</code> to <code>'02'</code>, and proceeds to close the cursor.</li>
+<li>If the timestamps match, the program continues with the policy-specific update steps.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="48-policy-specific-update-operations" tabindex="-1">4.8 Policy-Specific Update Operations</h3>
+<p>Depending on the <code>CA_REQUEST_ID</code> field in the COMMAREA, the program directs the update process to one of three specialized internal procedures:</p>
+<ul>
+<li>
+<p><strong>Endowment Policy Update (<code>UPDATE_ENDOW_DB2_INFO</code>)</strong></p>
+<ul>
+<li>Converts incoming numeric fields (<code>CA_E_TERM</code>, <code>CA_E_SUM_ASSURED</code>) to Db2-compliant binary integer types.</li>
+<li>Computes the length of any variable-length trailing data by subtracting the expected structured COMMAREA header length from the actual received length (<code>EIBCALEN</code>).</li>
+<li>If variable-length data is present (<code>WS_VARY_LEN &gt; 0</code>), it extracts the padding data (<code>CA_E_PADDING_DATA</code>) into a character buffer.</li>
+<li>Performs an SQL <code>UPDATE ENDOWMENT</code> statement setting the policy columns (<code>WITHPROFITS</code>, <code>EQUITIES</code>, <code>MANAGEDFUND</code>, <code>FUNDNAME</code>, <code>TERM</code>, <code>SUMASSURED</code>, <code>LIFEASSURED</code>) based on the matching policy number.</li>
+<li>Checks the resulting <code>SQLCODE</code> and updates the return code to <code>'01'</code> if the row was not found, or <code>'90'</code> in case of other database errors.</li>
+</ul>
+</li>
+<li>
+<p><strong>House Policy Update (<code>UPDATE_HOUSE_DB2_INFO</code>)</strong></p>
+<ul>
+<li>Converts the text fields for bedrooms and property value (<code>CA_H_BEDROOMS</code> and <code>CA_H_VALUE</code>) to short binary integer and standard binary integer types.</li>
+<li>Executes an SQL <code>UPDATE HOUSE</code> statement, modifying <code>PROPERTYTYPE</code>, <code>BEDROOMS</code>, <code>VALUE</code>, <code>HOUSENAME</code>, <code>HOUSENUMBER</code>, and <code>POSTCODE</code> columns for the target policy.</li>
+<li>Handles Db2 response codes, assigning a <code>'01'</code> return code if the update fails.</li>
+</ul>
+</li>
+<li>
+<p><strong>Motor Policy Update (<code>UPDATE_MOTOR_DB2_INFO</code>)</strong></p>
+<ul>
+<li>Maps incoming vehicle specifications (engine CC, value, premium, and accident count) from the COMMAREA into binary integers.</li>
+<li>Executes an SQL <code>UPDATE MOTOR</code> statement to update the core automobile details: <code>MAKE</code>, <code>MODEL</code>, <code>VALUE</code>, <code>REGNUMBER</code>, <code>COLOUR</code>, <code>CC</code>, <code>YEAROFMANUFACTURE</code> (mapped to <code>YEAROFMANUFACTURE</code>), <code>PREMIUM</code>, and <code>ACCIDENTS</code> where the policy number matches.</li>
+<li>Evaluates the outcome; an <code>SQLCODE</code> of <code>100</code> yields a return code of <code>'01'</code>, while any other error sets it to <code>'90'</code>.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="49-core-policy-database-synchronization" tabindex="-1">4.9 Core Policy Database Synchronization</h3>
+<ul>
+<li>
+<p><strong>Database Update via Positioned Cursor</strong></p>
+<ul>
+<li>After completing the policy-specific table modifications, the program transfers <code>CA_BROKERID</code> and <code>CA_PAYMENT</code> to internal host variables and updates the primary <code>POLICY</code> table.</li>
+<li>It executes a positioned update (<code>UPDATE POLICY ... WHERE CURRENT OF POLICY_CURSOR</code>) to overwrite <code>ISSUEDATE</code>, <code>EXPIRYDATE</code>, <code>BROKERID</code>, and <code>BROKERSREFERENCE</code> while updating <code>LASTCHANGED</code> with the database’s <code>CURRENT TIMESTAMP</code>.</li>
+<li>To keep the client synchronized, a subsequent SQL <code>SELECT</code> is executed to retrieve the newly assigned <code>LASTCHANGED</code> timestamp from the database and write it directly back into <code>CA_LASTCHANGED</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Transactional Rollback</strong></p>
+<ul>
+<li>If the core policy update fails (resulting in a non-zero <code>SQLCODE</code>), the program triggers an explicit transaction rollback using <code>EXEC CICS SYNCPOINT ROLLBACK</code> to reverse all updates made during this execution unit.</li>
+<li>It assigns a <code>'90'</code> return code and logs the occurrence.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cursor Termination</strong></p>
+<ul>
+<li>Upon completing or bypassing the update logic, the program calls the <code>CLOSE_PCURSOR</code> procedure to close the active database cursor, ensuring database locks are released.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="410-downstream-vsam-synchronization-and-termination" tabindex="-1">4.10 Downstream VSAM Synchronization and Termination</h3>
+<ul>
+<li>
+<p><strong>VSAM Backend Linkage</strong></p>
+<ul>
+<li>To maintain consistency between the relational database and the indexed file-system layer, the program issues a synchronous CICS <code>LINK</code> to the program <code>'LGUPVS01'</code>.</li>
+<li>It passes the updated <code>COMM_AREA</code> with a predefined length of 225 bytes to allow the VSAM module to replicate the changes.</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS Return</strong></p>
+<ul>
+<li>After the VSAM update program completes control is returned to the initiator by executing an <code>EXEC CICS RETURN</code> statement, successfully concluding the program flow.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="411-error-handling-and-logging" tabindex="-1">4.11 Error Handling and Logging</h3>
+<ul>
+<li>
+<p><strong>Logging and Diagnostic Capture</strong></p>
+<ul>
+<li>Major failures and database exceptions call the <code>WRITE_ERROR_MESSAGE</code> internal routine.</li>
+<li>The routine uses <code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code> to capture and format the exact system time and date into local variables (<code>WS_TIME</code> and <code>WS_DATE</code>).</li>
+<li>It populates an error structure (<code>ERROR_MSG</code>) with diagnostic context including the system time, date, customer number, policy number, current operation name, and the offending <code>SQLCODE</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Queue Storage Integration</strong></p>
+<ul>
+<li>The structured message is dispatched to the centralized CICS logging program <code>'LGSTSQ'</code> using a CICS <code>LINK</code> command.</li>
+<li>To assist in post-mortem debugging, the program also captures up to 90 bytes of the raw, incoming COMMAREA payload (<code>COMM_AREA_RAW</code>) and writes it as an auxiliary diagnostic trace entry to the same queue.</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGUPDB01 (Main Procedure)</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Serves as the primary entry point for the policy update backend transaction, coordinating validation, database updates, and external program linkage.</li>
+<li><strong>Operations Performed:</strong>
+<ul>
+<li>Initializes execution variables from CICS EXEC Interface Block (EIB) fields (<code>EIBTRNID</code>, <code>EIBTRMID</code>, <code>EIBTASKN</code>).</li>
+<li>Validates that a non-zero length COMMAREA is passed; if missing, writes an error message and terminates via CICS ABEND <code>LGCA</code>.</li>
+<li>Initializes the return code to <code>'00'</code> and converts COMMAREA customer and policy numbers into Db2 host integer variables (<code>DB2_CUSTOMERNUM_INT</code>, <code>DB2_POLICYNUM_INT</code>).</li>
+<li>Invokes <code>UPDATE_POLICY_DB2_INFO</code> to process Db2 updates.</li>
+<li>Synchronously links to the VSAM update program <code>LGUPVS01</code> via <code>EXEC CICS LINK</code> passing the COMMAREA.</li>
+<li>Terminates execution and returns control to the CICS caller via <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li><strong>Control Flow:</strong>
+<ul>
+<li>Conditional check on <code>EIBCALEN = 0</code> to trigger error handling and program abend.</li>
+<li>Sequential call to internal procedure <code>UPDATE_POLICY_DB2_INFO</code> and CICS program <code>LGUPVS01</code>.</li>
+</ul>
+</li>
+<li><strong>External System Interactions:</strong>
+<ul>
+<li>CICS runtime communication via <code>EXEC CICS ABEND</code>, <code>EXEC CICS LINK</code>, and <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>FETCH_DB2_POLICY_ROW</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Retrieves a single policy record from Db2 using the open cursor to inspect current values and handle potential null indicators.</li>
+<li><strong>Operations Performed:</strong>
+<ul>
+<li>Sets the error tracking SQL request text to <code>' FETCH  ROW   '</code>.</li>
+<li>Executes an embedded Db2 <code>FETCH</code> on <code>POLICY_CURSOR</code> into host variables <code>DB2_ISSUEDATE</code>, <code>DB2_EXPIRYDATE</code>, <code>DB2_LASTCHANGED</code>, and indicator-backed fields <code>DB2_BROKERID_INT</code>, <code>DB2_BROKERSREF</code>, and <code>DB2_PAYMENT_INT</code>.</li>
+</ul>
+</li>
+<li><strong>Control Flow:</strong>
+<ul>
+<li>Direct sequential execution of the Db2 <code>FETCH</code> statement.</li>
+</ul>
+</li>
+<li><strong>External System Interactions:</strong>
+<ul>
+<li>Db2 database interaction via <code>EXEC SQL FETCH</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>UPDATE_POLICY_DB2_INFO</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Coordinates optimistic concurrency verification, routes updates to policy-type specific tables, and updates the core <code>POLICY</code> table record with a refreshed timestamp.</li>
+<li><strong>Operations Performed:</strong>
+<ul>
+<li>Sets SQL request indicator to <code>' OPEN   PCURSOR '</code> and opens <code>POLICY_CURSOR</code>.</li>
+<li>Evaluates <code>SQLCODE</code> from cursor open; if locked/unavailable (e.g., <code>-913</code>) or error, sets return code <code>'90'</code>, logs error, and returns.</li>
+<li>Calls <code>FETCH_DB2_POLICY_ROW</code> to obtain the current Db2 row.</li>
+<li>Compares <code>CA_LASTCHANGED</code> from the incoming COMMAREA against <code>DB2_LASTCHANGED</code> from Db2 to prevent lost updates:
+<ul>
+<li>If timestamps match, routes to the appropriate policy update routine (<code>UPDATE_ENDOW_DB2_INFO</code>, <code>UPDATE_HOUSE_DB2_INFO</code>, or <code>UPDATE_MOTOR_DB2_INFO</code>) based on <code>CA_REQUEST_ID</code>.</li>
+<li>If policy-specific update fails (non-<code>'00'</code> return code), invokes <code>CLOSE_PCURSOR</code> and returns.</li>
+<li>Updates the <code>POLICY</code> table with new dates, broker details, and sets <code>LASTCHANGED = CURRENT TIMESTAMP</code> using <code>WHERE CURRENT OF POLICY_CURSOR</code>.</li>
+<li>Re-selects the newly generated <code>LASTCHANGED</code> timestamp into <code>CA_LASTCHANGED</code> for return to the caller.</li>
+<li>If <code>UPDATE POLICY</code> encounters an SQL error, issues <code>EXEC CICS SYNCPOINT ROLLBACK</code>, sets return code <code>'90'</code>, and logs an error.</li>
+<li>If timestamps do not match, sets return code <code>'02'</code>.</li>
+</ul>
+</li>
+<li>If the fetch returns <code>SQLCODE = 100</code> (not found), sets return code <code>'01'</code>; otherwise for other fetch errors, sets return code <code>'90'</code> and writes an error message.</li>
+<li>Closes <code>POLICY_CURSOR</code> by invoking <code>CLOSE_PCURSOR</code>.</li>
+</ul>
+</li>
+<li><strong>Control Flow:</strong>
+<ul>
+<li><code>SELECT (SQLCODE)</code> condition evaluating cursor open results.</li>
+<li><code>IF-THEN-ELSE</code> testing fetch <code>SQLCODE</code> and timestamp matching (<code>CA_LASTCHANGED = DB2_LASTCHANGED</code>).</li>
+<li><code>SELECT (CA_REQUEST_ID)</code> evaluating <code>'01UEND'</code>, <code>'01UHOU'</code>, and <code>'01UMOT'</code>.</li>
+<li>Error checking branches triggering rollback, error logging, or immediate returns.</li>
+</ul>
+</li>
+<li><strong>External System Interactions:</strong>
+<ul>
+<li>Db2 operations via <code>EXEC SQL OPEN</code>, <code>EXEC SQL UPDATE ... WHERE CURRENT OF</code>, and <code>EXEC SQL SELECT</code>.</li>
+<li>CICS transaction control via <code>EXEC CICS SYNCPOINT ROLLBACK</code> and <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CLOSE_PCURSOR</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Closes <code>POLICY_CURSOR</code> and manages cursor close status codes.</li>
+<li><strong>Operations Performed:</strong>
+<ul>
+<li>Sets SQL request indicator to <code>' CLOSE  PCURSOR'</code>.</li>
+<li>Executes embedded Db2 <code>CLOSE</code> on <code>POLICY_CURSOR</code>.</li>
+<li>Evaluates <code>SQLCODE</code>; treats <code>0</code> and <code>-501</code> (cursor not open) as successful closure (<code>'00'</code>), and logs errors for any other negative status codes.</li>
+</ul>
+</li>
+<li><strong>Control Flow:</strong>
+<ul>
+<li><code>SELECT (SQLCODE)</code> construct branching on <code>0</code>, <code>-501</code>, and <code>OTHERWISE</code>.</li>
+</ul>
+</li>
+<li><strong>External System Interactions:</strong>
+<ul>
+<li>Db2 database interaction via <code>EXEC SQL CLOSE</code>.</li>
+<li>CICS return via <code>EXEC CICS RETURN</code> on error or <code>-501</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>UPDATE_ENDOW_DB2_INFO</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Updates endowment policy details in the <code>ENDOWMENT</code> Db2 table, handling variable-length text data if supplied.</li>
+<li><strong>Operations Performed:</strong>
+<ul>
+<li>Formats numeric COMMAREA fields (<code>CA_E_TERM</code>, <code>CA_E_SUM_ASSURED</code>) into Db2 host integer variables.</li>
+<li>Calculates variable text length (<code>WS_VARY_LEN</code>) from <code>EIBCALEN</code> minus <code>WS_REQUIRED_CA_LEN</code>.</li>
+<li>Executes <code>EXEC SQL UPDATE ENDOWMENT</code> with or without variable-length padding depending on length calculation.</li>
+<li>Checks <code>SQLCODE</code>; sets return code <code>'01'</code> for <code>SQLCODE = 100</code> (record not found) or <code>'90'</code> for other database errors and logs the message.</li>
+</ul>
+</li>
+<li><strong>Control Flow:</strong>
+<ul>
+<li><code>IF-THEN-ELSE</code> checking <code>WS_VARY_LEN &gt; 0</code> to decide SQL update variation.</li>
+<li><code>IF-THEN-ELSE</code> checking <code>SQLCODE</code> after update execution.</li>
+</ul>
+</li>
+<li><strong>External System Interactions:</strong>
+<ul>
+<li>Db2 database interaction via <code>EXEC SQL UPDATE ENDOWMENT</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>UPDATE_HOUSE_DB2_INFO</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Updates house policy details in the <code>HOUSE</code> Db2 table.</li>
+<li><strong>Operations Performed:</strong>
+<ul>
+<li>Formats numeric COMMAREA fields (<code>CA_H_BEDROOMS</code>, <code>CA_H_VALUE</code>) into Db2 host integer variables.</li>
+<li>Sets SQL request indicator to <code>' UPDATE HOUSE '</code>.</li>
+<li>Executes <code>EXEC SQL UPDATE HOUSE</code> updating property type, bedrooms, value, house name/number, and postcode where <code>POLICYNUMBER</code> matches.</li>
+<li>Evaluates <code>SQLCODE</code> for errors; sets return code <code>'01'</code> if record is not found or if an error occurs, and invokes <code>WRITE_ERROR_MESSAGE</code>.</li>
+</ul>
+</li>
+<li><strong>Control Flow:</strong>
+<ul>
+<li><code>IF (SQLCODE &lt;&gt; 0)</code> with nested <code>IF (SQLCODE = 100)</code> condition handling.</li>
+</ul>
+</li>
+<li><strong>External System Interactions:</strong>
+<ul>
+<li>Db2 database interaction via <code>EXEC SQL UPDATE HOUSE</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>UPDATE_MOTOR_DB2_INFO</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Updates motor policy details in the <code>MOTOR</code> Db2 table.</li>
+<li><strong>Operations Performed:</strong>
+<ul>
+<li>Formats numeric COMMAREA fields (<code>CA_M_CC</code>, <code>CA_M_VALUE</code>, <code>CA_M_PREMIUM</code>, <code>CA_M_ACCIDENTS</code>) into Db2 host integer variables.</li>
+<li>Sets SQL request indicator to <code>' UPDATE MOTOR '</code>.</li>
+<li>Executes <code>EXEC SQL UPDATE MOTOR</code> matching on <code>POLICYNUMBER</code>.</li>
+<li>Evaluates <code>SQLCODE</code>; sets return code <code>'01'</code> if not found (<code>100</code>) or <code>'90'</code> on error, writing an error message on unexpected errors.</li>
+</ul>
+</li>
+<li><strong>Control Flow:</strong>
+<ul>
+<li><code>IF (SQLCODE &lt;&gt; 0)</code> branching to check for not found versus system/Db2 errors.</li>
+</ul>
+</li>
+<li><strong>External System Interactions:</strong>
+<ul>
+<li>Db2 database interaction via <code>EXEC SQL UPDATE MOTOR</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>WRITE_ERROR_MESSAGE</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Formats and writes diagnostic error messages and incoming COMMAREA data to a CICS Transient Data / Temporary Storage queue via error-logging utility program <code>LGSTSQ</code>.</li>
+<li><strong>Operations Performed:</strong>
+<ul>
+<li>Obtains system timestamp and formats it into date (<code>MMDDYYYY</code>) and time strings using <code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code>.</li>
+<li>Populates <code>ERROR_MSG</code> with timestamp, SQL code, request text, customer number, and policy number.</li>
+<li>Links to error handler <code>LGSTSQ</code> passing <code>ERROR_MSG</code>.</li>
+<li>Copies up to 90 bytes of <code>COMM_AREA_RAW</code> into <code>CA_ERROR_MSG</code> and links to <code>LGSTSQ</code> to record the input payload.</li>
+</ul>
+</li>
+<li><strong>Control Flow:</strong>
+<ul>
+<li>Nested <code>IF</code> conditions checking <code>EIBCALEN &gt; 0</code> and whether <code>EIBCALEN &lt; 91</code> to safely truncate data length for COMMAREA dump logging.</li>
+</ul>
+</li>
+<li><strong>External System Interactions:</strong>
+<ul>
+<li>CICS system services via <code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code>.</li>
+<li>CICS program link via <code>EXEC CICS LINK PROGRAM('LGSTSQ')</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<h3 id="61-calling-environment-and-input-parameters" tabindex="-1">6.1 Calling Environment and Input Parameters</h3>
+<ul>
+<li>CICS transaction environment
+<ul>
+<li>The program runs as a CICS main program (<code>Proc(COMM_AREA_PTR) Options(Main)</code>). It needs an active CICS task and region.</li>
+<li>It is normally linked to by the orchestrator <code>LGUPOL01</code>.</li>
+</ul>
+</li>
+<li>COMMAREA passed by the caller (<code>COMM_AREA_PTR</code>, layout <code>LGCMAREA</code>)
+<ul>
+<li><code>CA_REQUEST_ID</code> selects the operation: <code>01UEND</code> (endowment), <code>01UHOU</code> (house) or <code>01UMOT</code> (motor).</li>
+<li><code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code> identify the policy to update.</li>
+<li><code>CA_LASTCHANGED</code> is the timestamp used for optimistic concurrency checking.</li>
+<li>Common policy fields: <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_BROKERID</code>, <code>CA_BROKERSREF</code> and <code>CA_PAYMENT</code>.</li>
+<li>Policy-type-specific fields are read from <code>CA_ENDOWMENT</code>, <code>CA_HOUSE</code> or <code>CA_MOTOR</code>.</li>
+<li><code>CA_RETURN_CODE</code> is set on output: <code>00</code> OK, <code>01</code> not found, <code>02</code> timestamp mismatch, <code>90</code> error.</li>
+<li>The program abends with <code>LGCA</code> if <code>EIBCALEN = 0</code>, so a COMMAREA is mandatory.</li>
+</ul>
+</li>
+<li>CICS Execute Interface Block (EIB) fields
+<ul>
+<li><code>EIBTRNID</code>, <code>EIBTRMID</code> and <code>EIBTASKN</code> populate the diagnostic header.</li>
+<li><code>EIBCALEN</code> is used for the COMMAREA length check, the varchar length calculation and the error-message COMMAREA dump.</li>
+</ul>
+</li>
+</ul>
+<h3 id="62-included-source-members-copybooks" tabindex="-1">6.2 Included Source Members (Copybooks)</h3>
+<ul>
+<li><code>LGPOLICY</code> (<code>plinc/LGPOLICY.inc</code>)
+<ul>
+<li>Db2 host-variable structures: <code>DB2_CUSTOMER</code>, <code>DB2_POLICY</code>, <code>DB2_ENDOWMENT</code>, <code>DB2_HOUSE</code>, <code>DB2_MOTOR</code>, <code>DB2_COMMERCIAL</code> and <code>DB2_CLAIM</code>.</li>
+<li>Policy length constants (<code>WS_POLICY_LENGTHS</code>).</li>
+</ul>
+</li>
+<li><code>LGCMAREA</code> (<code>plinc/LGCMAREA.inc</code>)
+<ul>
+<li>The <code>COMM_AREA</code> structure, based on <code>COMM_AREA_PTR</code>. It is the data contract with the calling program.</li>
+</ul>
+</li>
+<li><code>SQLCA</code>
+<ul>
+<li>The Db2 communications area. It supplies <code>SQLCODE</code>, which is checked after SQL operations.</li>
+</ul>
+</li>
+<li>Include search path
+<ul>
+<li>Members are resolved from <code>plinc/*.inc</code> through the <code>%INCLUDE</code> preprocessor and zAppBuild’s <code>pliincludeSearch</code> setting.</li>
+</ul>
+</li>
+</ul>
+<h3 id="63-database-dependencies-db2-for-zos" tabindex="-1">6.3 Database Dependencies (Db2 for z/OS)</h3>
+<ul>
+<li>Db2 subsystem and plan/package
+<ul>
+<li>A Db2 connection is required through the CICS-Db2 attachment. The program needs a bound plan or package with authority to update these tables.</li>
+<li><code>POLICY_CURSOR</code> is declared <code>WITH HOLD ... FOR UPDATE</code>.</li>
+<li>Handled SQLCODEs: <code>0</code>, <code>100</code>, <code>-913</code> (deadlock/timeout) and <code>-501</code> (cursor not open).</li>
+</ul>
+</li>
+<li>Table <code>POLICY</code>
+<ul>
+<li>Selected through <code>POLICY_CURSOR</code> (<code>ISSUEDATE</code>, <code>EXPIRYDATE</code>, <code>LASTCHANGED</code>, <code>BROKERID</code>, <code>BROKERSREFERENCE</code>), with the row locked by <code>FOR UPDATE</code>.</li>
+<li>Updated with <code>UPDATE ... WHERE CURRENT OF POLICY_CURSOR</code>, setting <code>LASTCHANGED = CURRENT TIMESTAMP</code>.</li>
+<li>Re-read with <code>SELECT LASTCHANGED</code> to return the new timestamp to the caller.</li>
+</ul>
+</li>
+<li>Table <code>ENDOWMENT</code>
+<ul>
+<li>Updated for <code>01UEND</code> requests: <code>WITHPROFITS</code>, <code>EQUITIES</code>, <code>MANAGEDFUND</code>, <code>FUNDNAME</code>, <code>TERM</code>, <code>SUMASSURED</code> and <code>LIFEASSURED</code>, keyed by <code>POLICYNUMBER</code>.</li>
+<li>There are two UPDATE variants, depending on whether the COMMAREA carries varchar data.</li>
+</ul>
+</li>
+<li>Table <code>HOUSE</code>
+<ul>
+<li>Updated for <code>01UHOU</code> requests: <code>PROPERTYTYPE</code>, <code>BEDROOMS</code>, <code>VALUE</code>, <code>HOUSENAME</code>, <code>HOUSENUMBER</code> and <code>POSTCODE</code>, keyed by <code>POLICYNUMBER</code>.</li>
+</ul>
+</li>
+<li>Table <code>MOTOR</code>
+<ul>
+<li>Updated for <code>01UMOT</code> requests: <code>MAKE</code>, <code>MODEL</code>, <code>VALUE</code>, <code>REGNUMBER</code>, <code>COLOUR</code>, <code>CC</code>, <code>YEAROFMANUFACTURE</code>, <code>PREMIUM</code> and <code>ACCIDENTS</code>, keyed by <code>POLICYNUMBER</code>.</li>
+</ul>
+</li>
+<li>Db2 host variables and indicator variables
+<ul>
+<li>Integer host variables (<code>DB2_*_INT</code>, <code>DB2_*_SINT</code>) convert the COMMAREA’s numeric picture fields to Db2 integer types.</li>
+<li>Indicators <code>IND_BROKERID</code>, <code>IND_BROKERSREF</code> and <code>IND_PAYMENT</code> handle nullable columns on FETCH.</li>
+</ul>
+</li>
+</ul>
+<h3 id="64-external-programs-and-modules" tabindex="-1">6.4 External Programs and Modules</h3>
+<ul>
+<li><code>LGUPVS01</code>
+<ul>
+<li>Linked with <code>EXEC CICS LINK</code> after the Db2 update, passing <code>COMM_AREA</code> with <code>LENGTH(225)</code>. It handles the VSAM-side policy update.</li>
+<li>Its name is held in the variable <code>LGUPVS1</code>.</li>
+</ul>
+</li>
+<li><code>LGSTSQ</code>
+<ul>
+<li>Linked from <code>WRITE_ERROR_MESSAGE</code> to write error messages. It writes to the CICS TD/TS queues (the code comments mention <code>CSMT</code>).</li>
+<li>It receives two COMMAREAs: the formatted <code>ERROR_MSG</code>, and <code>CA_ERROR_MSG</code> with up to 90 bytes of the original COMMAREA.</li>
+</ul>
+</li>
+</ul>
+<h3 id="65-cics-services-and-resources" tabindex="-1">6.5 CICS Services and Resources</h3>
+<ul>
+<li>Program control
+<ul>
+<li><code>EXEC CICS LINK</code> to <code>LGUPVS01</code> and <code>LGSTSQ</code>.</li>
+<li><code>EXEC CICS RETURN</code> is used throughout for normal and error exits.</li>
+<li><code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code> is used when there is no COMMAREA.</li>
+</ul>
+</li>
+<li>Unit-of-work control
+<ul>
+<li><code>EXEC CICS SYNCPOINT ROLLBACK</code> backs out changes if the post-update <code>SELECT</code> fails.</li>
+</ul>
+</li>
+<li>Time services
+<ul>
+<li><code>EXEC CICS ASKTIME</code> and <code>EXEC CICS FORMATTIME</code> (MMDDYYYY, TIME) timestamp the error messages.</li>
+</ul>
+</li>
+<li>Transient data queue <code>CSMT</code>
+<ul>
+<li>Referenced in the comments as the error message destination. It is accessed indirectly through <code>LGSTSQ</code>.</li>
+</ul>
+</li>
+<li>CICS and Db2 definitions
+<ul>
+<li>CSD definitions in <code>Resources/</code> for the program, the transaction and the linked programs.</li>
+<li>Db2 DDL, bind and CSD jobs in <code>jcl/</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="66-build-and-configuration-dependencies" tabindex="-1">6.6 Build and Configuration Dependencies</h3>
+<ul>
+<li>Compiler and preprocessor
+<ul>
+<li>Enterprise PL/I for z/OS V52.</li>
+<li>The CICS translator (<code>SYSTEM(CICS)</code>, <code>PP(MACRO,CICS)</code>) and the Db2 SQL precompiler or coprocessor.</li>
+<li>Include preprocessing uses <code>PP(INCLUDE('ID(++INCLUDE)'))</code>.</li>
+</ul>
+</li>
+<li>Build framework
+<ul>
+<li>zAppBuild properties in <code>application-conf/</code> (<code>PLI.properties</code>, <code>application.properties</code> and <code>file.properties</code>).</li>
+<li>Link edit parms <code>MAP,RENT,COMPAT(PM5)</code>. The load module is deployed as <code>CICSLOAD</code>.</li>
+</ul>
+</li>
+<li>Hardcoded configuration values
+<ul>
+<li>COMMAREA header length of 28 bytes (<code>WS_CA_HEADER_LEN</code>).</li>
+<li>Fixed link length of 225 bytes for <code>LGUPVS01</code>.</li>
+<li>Eyecatcher <code>LGUPDB01------WS</code>.</li>
+<li>Error-message program tag <code>LGIPOL01</code>, carried over from another program.</li>
+<li>Return-code literals <code>00</code>, <code>01</code>, <code>02</code> and <code>90</code>.</li>
+</ul>
+</li>
+<li>Environment variables
+<ul>
+<li>The program reads none.</li>
+</ul>
+</li>
+</ul>
+<h3 id="67-runtime-and-language-dependencies" tabindex="-1">6.7 Runtime and Language Dependencies</h3>
+<ul>
+<li>PL/I built-in functions
+<ul>
+<li><code>SYSNULL</code>, <code>SUBSTR</code>, <code>LEFT</code> and <code>STG</code>.</li>
+</ul>
+</li>
+<li>Working storage structures
+<ul>
+<li><code>WS_HEADER</code>, <code>ERROR_MSG</code>, <code>CA_ERROR_MSG</code>, <code>WS_VARY_FIELD</code> (3900-byte varchar buffer) and <code>WS_COMMAREA_LENGTHS</code>.</li>
+<li>These carry the diagnostics, the error message layout and the endowment varchar length calculation.</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<p>-### Input and Commarea Constraints</p>
+<ul>
+<li>A commarea is required.
+<ul>
+<li>If <code>EIBCALEN = 0</code>, the program writes the error text “NO COMMAREA RECEIVED” through <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>It then abends with <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>.</li>
+</ul>
+</li>
+<li>The commarea has a fixed layout (<code>COMM_AREA</code>, based on <code>COMM_AREA_PTR</code>).
+<ul>
+<li><code>CA_REQUEST_ID</code> is 6 characters.</li>
+<li><code>CA_RETURN_CODE</code> is <code>PIC '99'</code>.</li>
+<li><code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code> are 10-digit numeric pictures.</li>
+<li>The commarea raw area is capped at 32500 bytes.</li>
+</ul>
+</li>
+<li>Numeric commarea fields are copied into fixed-size DB2 integer host variables.
+<ul>
+<li>Customer and policy numbers go into <code>FIXED BIN(31)</code>.</li>
+<li>Term, bedrooms and cc go into <code>FIXED BIN(15)</code>.</li>
+<li>Value, premium, accidents, sum assured, broker id and payment go into <code>FIXED BIN(31)</code>.</li>
+<li>The program does not range-check these conversions. Values must fit the target binary sizes.</li>
+</ul>
+</li>
+<li>Field lengths are fixed by the declarations.
+<ul>
+<li>Examples are <code>CA_ISSUE_DATE</code> and <code>CA_EXPIRY_DATE</code> at 10 characters, <code>CA_LASTCHANGED</code> at 26, and <code>CA_BROKERSREF</code> at 10.</li>
+<li>Endowment life assured is 31 characters, house postcode is 8, and motor registration is 7.</li>
+<li>Values longer than these are truncated or rejected by PL/I assignment and DB2 rules.</li>
+</ul>
+</li>
+<li>The program does not validate field content (formats, date validity, required fields, value ranges). It relies on the PL/I picture and character declarations and on DB2 column constraints.</li>
+</ul>
+<h3 id="71-request-type-constraints" tabindex="-1">7.1 Request Type Constraints</h3>
+<ul>
+<li>The update path depends on <code>CA_REQUEST_ID</code> in a <code>SELECT</code> statement.
+<ul>
+<li><code>'01UEND'</code> updates the Endowment table.</li>
+<li><code>'01UHOU'</code> updates the House table.</li>
+<li><code>'01UMOT'</code> updates the Motor table.</li>
+</ul>
+</li>
+<li>Any other request ID, including commercial or claim updates, has no <code>WHEN</code> branch and no <code>OTHERWISE</code>.
+<ul>
+<li>No policy-type-specific update is performed.</li>
+<li>The return code stays ‘00’.</li>
+<li>The common POLICY table update still runs.</li>
+</ul>
+</li>
+<li>Only one policy-type table is updated per invocation.</li>
+</ul>
+<h3 id="72-concurrency-and-data-integrity-constraints" tabindex="-1">7.2 Concurrency and Data Integrity Constraints</h3>
+<ul>
+<li>Optimistic locking uses the last-changed timestamp.
+<ul>
+<li>The update proceeds only if <code>CA_LASTCHANGED = DB2_LASTCHANGED</code>.</li>
+<li>On a mismatch the program sets the return code to ‘02’ and performs no updates.</li>
+</ul>
+</li>
+<li>Pessimistic row locking is used on the POLICY table.
+<ul>
+<li><code>POLICY_CURSOR</code> is declared <code>FOR UPDATE OF</code> the issue date, expiry date, last changed, broker id and broker reference.</li>
+<li>The cursor is <code>WITH HOLD</code>.</li>
+<li>The row stays locked from the open and fetch until the policy update and the cursor close.</li>
+</ul>
+</li>
+<li>The cursor is keyed on both customer number and policy number. Only the row for that customer and policy pair can be fetched.</li>
+<li>Only one matching row is expected, so a single <code>FETCH</code> is issued.</li>
+<li>The payment and commission fields are not updatable through the cursor. <code>PAYMENT</code> is excluded from <code>FOR UPDATE OF</code> and from the <code>UPDATE POLICY</code> statement.</li>
+<li>A new timestamp is always assigned by DB2 on update (<code>LASTCHANGED = CURRENT TIMESTAMP</code>).
+<ul>
+<li>The client cannot set it.</li>
+<li>The new value is read back into <code>CA_LASTCHANGED</code> for the caller.</li>
+</ul>
+</li>
+<li>The read-back <code>SELECT LASTCHANGED</code> filters only on <code>POLICYNUMBER</code>.</li>
+<li>Policy table updates use <code>WHERE CURRENT OF POLICY_CURSOR</code>. They only affect the locked, fetched row.</li>
+<li>The specific-table updates (Endowment, House, Motor) are keyed on <code>POLICYNUMBER</code>.</li>
+</ul>
+<h3 id="73-sequencing-constraints" tabindex="-1">7.3 Sequencing Constraints</h3>
+<ul>
+<li>The processing order is fixed.
+<ul>
+<li>The program first checks the commarea length and initializes variables.</li>
+<li>It then opens the cursor and fetches the row.</li>
+<li>Next it compares timestamps and updates the policy-type table.</li>
+<li>Then it updates the POLICY table and reads back the new timestamp.</li>
+<li>Finally it closes the cursor and links to <code>LGUPVS01</code>.</li>
+<li>It issues <code>CICS RETURN</code> last.</li>
+</ul>
+</li>
+<li>The policy-type-specific table is updated before the common POLICY table.</li>
+<li>If the type-specific update leaves the return code not equal to ‘00’, the program closes the cursor and returns. The POLICY table is not updated.</li>
+<li>The <code>LGUPVS01</code> link runs only if <code>UPDATE_POLICY_DB2_INFO</code> returns normally.
+<ul>
+<li>The link passes a commarea length of 225.</li>
+<li>Several error paths issue <code>CICS RETURN</code> directly and bypass it.</li>
+</ul>
+</li>
+<li>The error log message is written in two parts.
+<ul>
+<li>The formatted error message record goes first.</li>
+<li>The commarea excerpt record goes second.</li>
+</ul>
+</li>
+</ul>
+<h3 id="74-resource-and-size-limits" tabindex="-1">7.4 Resource and Size Limits</h3>
+<ul>
+<li>The error-log commarea excerpt is limited to 90 bytes.
+<ul>
+<li>If <code>EIBCALEN</code> is under 91, only <code>EIBCALEN</code> bytes are logged.</li>
+<li>If <code>EIBCALEN</code> is 91 or more, the first 90 bytes are logged.</li>
+<li>If <code>EIBCALEN</code> is 0, no excerpt is written.</li>
+</ul>
+</li>
+<li>The error message text field is 63 characters.</li>
+<li>The varchar work area <code>WS_VARY_CHAR</code> is limited to 3900 characters.</li>
+<li>The endowment update uses <code>WS_VARY_LEN = EIBCALEN - WS_REQUIRED_CA_LEN</code>.
+<ul>
+<li><code>WS_REQUIRED_CA_LEN</code> is initialized to 0.</li>
+<li>No length check is made against the 3900-character maximum.</li>
+</ul>
+</li>
+<li>The <code>WS_VARY_FIELD</code> area is populated only when <code>WS_VARY_LEN &gt; 0</code>. It is not used in the <code>UPDATE ENDOWMENT</code> statement.</li>
+<li>The <code>LGUPVS01</code> link uses a fixed length of 225 bytes, regardless of the received commarea length.</li>
+<li>Standard length constants are defined in <code>WS_POLICY_LENGTHS</code>.
+<ul>
+<li>They include 72, 52, 58 and 65 for the basic, endowment, house and motor records.</li>
+<li><code>WS_CA_HEADER_LEN</code> is 28.</li>
+<li>The program does not use them to enforce a minimum commarea length check, although the comments describe one.</li>
+</ul>
+</li>
+</ul>
+<h3 id="75-error-handling-and-return-code-constraints" tabindex="-1">7.5 Error Handling and Return Code Constraints</h3>
+<ul>
+<li>Return codes are placed in <code>CA_RETURN_CODE</code>.
+<ul>
+<li>‘00’ means success. It is set at start-up and after a successful open or close.</li>
+<li>‘01’ means the row was not found. It is set when <code>FETCH</code> or <code>UPDATE</code> returns SQLCODE 100.</li>
+<li>‘02’ means a timestamp mismatch, so the data is stale.</li>
+<li>‘90’ means an unexpected DB2 error.</li>
+</ul>
+</li>
+<li>Cursor <code>OPEN</code> outcomes:
+<ul>
+<li>SQLCODE 0 continues processing.</li>
+<li>SQLCODE -913 (deadlock or timeout) sets ‘90’, logs an error and returns immediately.</li>
+<li>Any other SQLCODE sets ‘90’, logs an error and returns immediately.</li>
+</ul>
+</li>
+<li><code>FETCH</code> outcomes:
+<ul>
+<li>SQLCODE 0 continues processing.</li>
+<li>SQLCODE 100 sets ‘01’ without logging.</li>
+<li>Any other SQLCODE sets ‘90’ and logs an error.</li>
+</ul>
+</li>
+<li>Policy-type update outcomes:
+<ul>
+<li>Endowment, SQLCODE 100: ‘01’ is set without logging.</li>
+<li>Endowment, other non-zero SQLCODE: ‘90’ is set and an error is logged.</li>
+<li>Motor, SQLCODE 100: ‘01’ is set without logging.</li>
+<li>Motor, other non-zero SQLCODE: ‘90’ is set and an error is logged.</li>
+<li>House, any non-zero SQLCODE: ‘01’ is set, and non-100 codes are also logged. A real DB2 error is therefore reported as “not found” rather than ‘90’.</li>
+</ul>
+</li>
+<li>A failure in the POLICY update or timestamp read-back (non-zero SQLCODE after the <code>SELECT</code>) triggers <code>EXEC CICS SYNCPOINT ROLLBACK</code>.
+<ul>
+<li>The return code is set to ‘90’ and the error is logged.</li>
+<li>The rollback undoes the type-specific table update as well.</li>
+<li>Failures from the type-specific updates do not roll back explicitly.</li>
+</ul>
+</li>
+<li>Only the SQLCODE of the read-back <code>SELECT</code> is checked. The <code>UPDATE POLICY</code> statement’s SQLCODE is not tested separately, because the <code>SELECT</code> overwrites it.</li>
+<li><code>CLOSE</code> outcomes:
+<ul>
+<li>SQLCODE 0 sets ‘00’.</li>
+<li>SQLCODE -501 (cursor already closed) sets ‘00’ and returns without logging.</li>
+<li>Any other SQLCODE sets ‘90’, logs an error and returns.</li>
+</ul>
+</li>
+<li>The close step overwrites the return code with ‘00’ on success. A ‘01’, ‘02’ or ‘90’ set earlier in <code>UPDATE_POLICY_DB2_INFO</code> is therefore reset to ‘00’ unless the close fails.</li>
+<li>Every logged error carries diagnostic context.
+<ul>
+<li>It includes the date and time, the program tag <code>LGIPOL01</code>, and the customer and policy numbers.</li>
+<li>It also includes the SQL request description and the SQLCODE.</li>
+<li>The record is sent by <code>LINK</code> to <code>LGSTSQ</code>, which writes it to the queue.</li>
+</ul>
+</li>
+</ul>
+<h3 id="76-environment-and-dependency-constraints" tabindex="-1">7.6 Environment and Dependency Constraints</h3>
+<ul>
+<li>The program runs only under CICS (<code>EIBCALEN</code>, <code>EIBTRNID</code>, <code>EIBTRMID</code>, <code>EIBTASKN</code>, <code>LINK</code>, <code>RETURN</code>, <code>ABEND</code>, <code>SYNCPOINT</code>).</li>
+<li>It needs the DB2 tables POLICY, ENDOWMENT, HOUSE and MOTOR, plus a SQLCA.</li>
+<li>It depends on the CICS programs <code>LGUPVS01</code> (called after the update) and <code>LGSTSQ</code> (the error logger).</li>
+<li>Date and time for log messages come from <code>ASKTIME</code> and <code>FORMATTIME</code> in MMDDYYYY format.</li>
+<li>Host variables must be declared in the program or in included copybooks (such as <code>LGPOLICY</code> and <code>LGCMAREA</code>) so the SQL precompiler can resolve them.</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<h3 id="81-input-and-environment-validation" tabindex="-1">8.1 Input and Environment Validation</h3>
+<ul>
+<li><strong>Missing COMMAREA check</strong>
+<ul>
+<li>The program tests the CICS commarea length (EIBCALEN) at the start of processing.</li>
+<li>If it is zero, the program sets the message text to “NO COMMAREA RECEIVED”. It then calls the shared error-writing procedure and abends the task with code LGCA, with no dump.</li>
+<li>This is the only place the program abends. All other errors are reported through return codes and logging.</li>
+</ul>
+</li>
+<li><strong>Initialisation of error context</strong>
+<ul>
+<li>The commarea return code is set to ‘00’ once the commarea is confirmed present.</li>
+<li>The customer and policy numbers are copied into the error message structure before any database work. Any later error message therefore identifies the affected customer and policy.</li>
+<li>Host variables are cleared at startup so stale values are not used.</li>
+</ul>
+</li>
+<li><strong>Request type dispatch</strong>
+<ul>
+<li>A SELECT on the request ID routes to the endowment (‘01UEND’), house (‘01UHOU’) or motor (‘01UMOT’) update routine.</li>
+<li>There is no OTHERWISE branch for an unrecognised request ID.</li>
+<li>The program has no explicit handling for that case, and it declares no ON-unit anywhere.</li>
+</ul>
+</li>
+</ul>
+<h3 id="82-return-code-signalling-to-the-caller" tabindex="-1">8.2 Return Code Signalling to the Caller</h3>
+<ul>
+<li><strong>Return code values in the commarea</strong>
+<ul>
+<li>‘00’ means success.</li>
+<li>‘01’ means the row was not found (SQLCODE 100) in the fetch or in a policy-type update.</li>
+<li>‘02’ means a timestamp mismatch: the data was changed by someone else.</li>
+<li>‘90’ means a DB2 or system error.</li>
+<li>The house update sets ‘01’ for every non-zero SQLCODE, including real errors. The endowment and motor routines use ‘90’ for those.</li>
+<li>The program header comments and project conventions describe ‘98’ and ‘99’ codes, but this program does not use them.</li>
+</ul>
+</li>
+<li><strong>Propagation after sub-updates</strong>
+<ul>
+<li>After a policy-type update routine returns, the main flow checks whether the return code is still ‘00’.</li>
+<li>If not, it closes the cursor and returns to the caller without updating the policy table.</li>
+</ul>
+</li>
+</ul>
+<h3 id="83-db2-sqlcode-checking" tabindex="-1">8.3 DB2 SQLCODE Checking</h3>
+<ul>
+<li><strong>Cursor open</strong>
+<ul>
+<li>An evaluation of SQLCODE follows the OPEN of the policy cursor.</li>
+<li>SQLCODE 0 sets return code ‘00’ and processing continues.</li>
+<li>SQLCODE -913 (deadlock or timeout) sets ‘90’, writes an error message and returns immediately to CICS.</li>
+<li>Any other SQLCODE gets the same handling as -913, so the specific -913 branch is redundant.</li>
+</ul>
+</li>
+<li><strong>Fetch of the policy row</strong>
+<ul>
+<li>A non-zero SQLCODE sends the program to the failure branch.</li>
+<li>SQLCODE 100 (no matching row) sets return code ‘01’ with no error message.</li>
+<li>Any other non-zero SQLCODE sets ‘90’ and writes an error message.</li>
+</ul>
+</li>
+<li><strong>Cursor close</strong>
+<ul>
+<li>SQLCODE 0 sets return code ‘00’.</li>
+<li>SQLCODE -501 (cursor not open) is treated as benign. The return code is set to ‘00’, the request label is overwritten with a “-501 detected” note, and the program returns to CICS. No error is logged.</li>
+<li>Any other SQLCODE sets ‘90’, writes an error message and returns.</li>
+<li>A successful close sets the return code to ‘00’. This overwrites a ‘01’ or ‘02’ set earlier in the same run, so those outcomes can be lost before the caller sees them.</li>
+</ul>
+</li>
+<li><strong>Policy-type table updates (endowment, house, motor)</strong>
+<ul>
+<li>Each routine checks SQLCODE after its UPDATE.</li>
+<li>SQLCODE 100 sets return code ‘01’ with no logging.</li>
+<li>Any other non-zero SQLCODE sets a failure code and logs an error message.</li>
+<li>In the endowment routine, the SQLCODE check is attached only to the branch with no variable-length data. The branch that updates with the varchar data has no check after its UPDATE.</li>
+</ul>
+</li>
+<li><strong>Policy table update</strong>
+<ul>
+<li>The program updates the policy table through the cursor and then selects the new timestamp.</li>
+<li>A single SQLCODE check follows the select, and so reflects only the select. A failed update that leaves SQLCODE at 0 would not be caught.</li>
+<li>If the check fails, a CICS syncpoint rollback is issued, the return code is set to ‘90’ and an error message is logged.</li>
+</ul>
+</li>
+</ul>
+<h3 id="84-business-and-data-integrity-checks" tabindex="-1">8.4 Business and Data Integrity Checks</h3>
+<ul>
+<li><strong>Optimistic concurrency control</strong>
+<ul>
+<li>The timestamp in the commarea is compared with the LASTCHANGED value fetched from the database under cursor lock.</li>
+<li>If they differ, no update is performed and return code ‘02’ is passed back.</li>
+</ul>
+</li>
+<li><strong>Row locking</strong>
+<ul>
+<li>The policy row is read through a FOR UPDATE cursor declared WITH HOLD. This locks the row against concurrent modification during the check and update.</li>
+<li>The cursor is always closed before the program finishes, on the normal path and on the policy-type update failure path.</li>
+</ul>
+</li>
+<li><strong>Null handling</strong>
+<ul>
+<li>Indicator variables are fetched alongside broker ID, broker reference and payment. This prevents a SQLCODE -305 failure when those columns are null.</li>
+<li>The program does not inspect the indicator values after the fetch.</li>
+</ul>
+</li>
+<li><strong>Variable-length data check</strong>
+<ul>
+<li>The endowment routine computes the length of the extra varchar data as the commarea length minus a required header length.</li>
+<li>A positive value selects one of two update paths. The programmer’s intent is a length-based path choice, but the required-length field is never set from its initial value.</li>
+</ul>
+</li>
+</ul>
+<h3 id="85-transactional-recovery" tabindex="-1">8.5 Transactional Recovery</h3>
+<ul>
+<li><strong>Rollback</strong>
+<ul>
+<li>A CICS SYNCPOINT ROLLBACK is issued only when the final policy-table update and timestamp retrieval fail. This undoes any earlier policy-type table update in the same unit of work.</li>
+<li>If a policy-type table update fails, the program does not roll back. It closes the cursor and returns, leaving recovery to the CICS task end.</li>
+</ul>
+</li>
+<li><strong>Early exit</strong>
+<ul>
+<li>When an error leaves the program in an unsafe state, it issues a CICS RETURN immediately.</li>
+<li>This happens on a cursor open failure, a cursor close failure, a policy-type update failure and a missing commarea (by abend).</li>
+</ul>
+</li>
+<li><strong>Fallbacks</strong>
+<ul>
+<li>The program has no retry logic. The retry flag is initialised and never used.</li>
+<li>Warning-level outcomes (‘01’, ‘02’) are returned to the caller as informational codes with no further attempt.</li>
+</ul>
+</li>
+</ul>
+<h3 id="86-logging-and-notification" tabindex="-1">8.6 Logging and Notification</h3>
+<ul>
+<li><strong>Central error-writing procedure</strong>
+<ul>
+<li>It gets the current time with ASKTIME and formats the date and time with FORMATTIME. It then writes a standard error record containing:
+<ul>
+<li>date and time</li>
+<li>a program-name tag, which reads LGIPOL01 even though this program is LGUPDB01</li>
+<li>customer number and policy number</li>
+<li>the last SQL request label</li>
+<li>the SQLCODE</li>
+</ul>
+</li>
+<li>The record is sent by a CICS LINK to the logging program LGSTSQ, which writes it to the message queues.</li>
+</ul>
+</li>
+<li><strong>Context labelling</strong>
+<ul>
+<li>Before each SQL statement, a request label is placed in the error message (fetch, open, close, update policy, update endowment, update house, update motor). The log therefore shows which statement failed.</li>
+</ul>
+</li>
+<li><strong>Commarea snapshot</strong>
+<ul>
+<li>After the main error record, the procedure writes a second record holding up to 90 bytes of the commarea.</li>
+<li>If the commarea is shorter than 91 bytes, it writes only what exists. If it is longer, it truncates to 90 bytes.</li>
+<li>Both records are sent with the length of the error message structure. The second record is therefore sent with a length that does not match its own structure.</li>
+</ul>
+</li>
+<li><strong>No-logging cases</strong>
+<ul>
+<li>SQLCODE 100, the timestamp mismatch (‘02’) and the -501 close case return a code to the caller but write no error message.</li>
+</ul>
+</li>
+</ul>
+<h3 id="87-downstream-call-handling" tabindex="-1">8.7 Downstream Call Handling</h3>
+<ul>
+<li><strong>Link to LGUPVS01</strong>
+<ul>
+<li>After the database update routine finishes, the program links to the VSAM update program with a fixed commarea length of 225.</li>
+<li>It does not check the return code first. The link is made even if the DB2 update failed and returned ‘01’ or ‘02’.</li>
+<li>It has no check of the outcome after the link, and no handling for a link failure.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-motor-policy-updated-successfully" tabindex="-1">9.1 Example 1: Motor policy updated successfully</h3>
+<p><strong>Input (COMMAREA, EIBCALEN &gt; 0)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA_REQUEST_ID</td>
+<td><code>01UMOT</code></td>
+</tr>
+<tr>
+<td>CA_CUSTOMER_NUM</td>
+<td><code>0000000001</code></td>
+</tr>
+<tr>
+<td>CA_POLICY_NUM</td>
+<td><code>0000000123</code></td>
+</tr>
+<tr>
+<td>CA_ISSUE_DATE / CA_EXPIRY_DATE</td>
+<td><code>2024-01-01</code> / <code>2025-01-01</code></td>
+</tr>
+<tr>
+<td>CA_LASTCHANGED</td>
+<td><code>2024-03-10-10.15.00.123456</code> (same as the value in the POLICY row)</td>
+</tr>
+<tr>
+<td>CA_BROKERID / CA_BROKERSREF</td>
+<td><code>0000000005</code> / <code>BREF000123</code></td>
+</tr>
+<tr>
+<td>CA_M_MAKE / CA_M_MODEL</td>
+<td><code>Toyota</code> / <code>Corolla</code></td>
+</tr>
+<tr>
+<td>CA_M_VALUE / CA_M_CC</td>
+<td><code>015000</code> / <code>1600</code></td>
+</tr>
+<tr>
+<td>CA_M_PREMIUM / CA_M_ACCIDENTS</td>
+<td><code>000450</code> / <code>000001</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output</strong></p>
+<ul>
+<li>The MOTOR row for policy 123 holds the new make, model, value, cc, premium and accidents.</li>
+<li>The POLICY row holds the new dates and broker data, and its <code>LASTCHANGED</code> is set to <code>CURRENT TIMESTAMP</code>.</li>
+<li>The COMMAREA comes back with <code>CA_RETURN_CODE = '00'</code> and <code>CA_LASTCHANGED</code> set to the new timestamp.</li>
+<li>The program links to <code>LGUPVS01</code> with a 225-byte COMMAREA, then returns.</li>
+</ul>
+<p><strong>Explanation</strong></p>
+<ol>
+<li><code>POLICY_CURSOR</code> opens with SQLCODE 0 and fetches the one matching row (SQLCODE 0).</li>
+<li><code>CA_LASTCHANGED</code> equals <code>DB2_LASTCHANGED</code>, so the update is allowed to continue.</li>
+<li><code>SELECT(CA_REQUEST_ID)</code> matches <code>'01UMOT'</code> and calls <code>UPDATE_MOTOR_DB2_INFO</code>. That procedure moves the numeric fields into integer host variables and runs <code>UPDATE MOTOR</code>. The SQLCODE is 0, so the return code stays <code>'00'</code>.</li>
+<li><code>UPDATE POLICY ... WHERE CURRENT OF POLICY_CURSOR</code> runs, and a <code>SELECT LASTCHANGED</code> copies the new timestamp into the COMMAREA.</li>
+<li><code>CLOSE_PCURSOR</code> closes the cursor with SQLCODE 0, and the return code stays <code>'00'</code>.</li>
+</ol>
+<h3 id="92-example-2-stale-timestamp-optimistic-lock-failure" tabindex="-1">9.2 Example 2: Stale timestamp (optimistic lock failure)</h3>
+<p><strong>Input</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID = '01UHOU'</code>, customer <code>0000000001</code>, policy <code>0000000123</code>.</li>
+<li><code>CA_LASTCHANGED = '2024-03-01-09.00.00.000000'</code>. Another user has since changed the row, so DB2 holds <code>2024-03-10-10.15.00.123456</code>.</li>
+</ul>
+<p><strong>Expected output</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE = '02'</code>.</li>
+<li>Neither the HOUSE row nor the POLICY row is changed.</li>
+<li>No error message is written to the queue.</li>
+</ul>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The fetch succeeds, but <code>CA_LASTCHANGED &lt;&gt; DB2_LASTCHANGED</code>.</li>
+<li>The program takes the <code>ELSE</code> branch and sets the return code to <code>'02'</code>. It skips the policy-type update and the policy update.</li>
+<li>It then closes the cursor, which releases the lock, and returns.</li>
+</ul>
+<h3 id="93-example-3-policy-not-found" tabindex="-1">9.3 Example 3: Policy not found</h3>
+<p><strong>Input</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID = '01UEND'</code>, customer <code>0000000001</code>, policy <code>0000009999</code>. No POLICY row matches this pair.</li>
+</ul>
+<p><strong>Expected output</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE = '01'</code>.</li>
+<li>No tables are modified.</li>
+</ul>
+<p><strong>Explanation</strong></p>
+<ul>
+<li><code>OPEN</code> succeeds, but the first <code>FETCH</code> returns SQLCODE 100 (no row).</li>
+<li>Because the SQLCODE is 100, the return code is set to <code>'01'</code>. <code>WRITE_ERROR_MESSAGE</code> is not called.</li>
+<li>The cursor is closed and the program returns.</li>
+</ul>
+<h3 id="94-example-4-missing-commarea" tabindex="-1">9.4 Example 4: Missing COMMAREA</h3>
+<p><strong>Input</strong></p>
+<ul>
+<li>The program is invoked with <code>EIBCALEN = 0</code>.</li>
+</ul>
+<p><strong>Expected output</strong></p>
+<ul>
+<li>The message <code> NO COMMAREA RECEIVED</code> is written to the error queue through <code>LGSTSQ</code>. This message carries the date and time, the program name, and the customer and policy numbers.</li>
+<li>The task abends with code <code>LGCA</code> and no dump.</li>
+</ul>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The <code>EIBCALEN = 0</code> check runs before any DB2 access. It calls <code>WRITE_ERROR_MESSAGE</code> and then issues <code>EXEC CICS ABEND ABCODE('LGCA') NODUMP</code>.</li>
+</ul>
+<h3 id="95-example-5-db2-resource-failure-on-cursor-open" tabindex="-1">9.5 Example 5: DB2 resource failure on cursor open</h3>
+<p><strong>Input</strong></p>
+<ul>
+<li>A valid <code>01UMOT</code> request, but <code>OPEN POLICY_CURSOR</code> returns SQLCODE -913 (deadlock or timeout).</li>
+</ul>
+<p><strong>Expected output</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE = '90'</code>.</li>
+<li>An error record is written with <code>SQLREQ = ' OPEN   PCURSOR '</code> and the SQLCODE. The first 90 bytes of the COMMAREA are also logged as <code>COMMAREA=...</code>.</li>
+<li>The program returns immediately.</li>
+</ul>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The <code>SELECT(SQLCODE)</code> after the open matches the <code>-913</code> case, and so would any other non-zero SQLCODE. Both set the return code to <code>'90'</code>, call <code>WRITE_ERROR_MESSAGE</code>, and issue <code>EXEC CICS RETURN</code>.</li>
+</ul>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a>
+<ul>
+<li class="toc-level-3"><a href="#21-cics-interface-inputs">2.1 CICS Interface Inputs</a></li>
+<li class="toc-level-3"><a href="#22-cics-commarea-input-fields-comm_area">2.2 CICS COMMAREA Input Fields (COMM_AREA)</a></li>
+<li class="toc-level-3"><a href="#23-external-db2-data-source-inputs">2.3 External Db2 Data Source Inputs</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a>
+<ul>
+<li class="toc-level-3"><a href="#31-returned-commarea-primary-output-to-caller">3.1 Returned COMMAREA (primary output to caller)</a></li>
+<li class="toc-level-3"><a href="#32-db2-data-updates">3.2 Db2 data updates</a></li>
+<li class="toc-level-3"><a href="#33-error-and-diagnostic-messages-cics-queue-output-via-lgstsq">3.3 Error and diagnostic messages (CICS queue output via LGSTSQ)</a></li>
+<li class="toc-level-3"><a href="#34-program-control-and-abnormal-termination">3.4 Program control and abnormal termination</a></li>
+<li class="toc-level-3"><a href="#35-downstream-program-invocation">3.5 Downstream program invocation</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-initialization-and-input-validation">4.1 Initialization and Input Validation</a></li>
+<li class="toc-level-3"><a href="#42-concurrency-and-locking-management-optimistic-locking">4.2 Concurrency and Locking Management (Optimistic Locking)</a></li>
+<li class="toc-level-3"><a href="#43-policy-specific-update-operations">4.3 Policy-Specific Update Operations</a></li>
+<li class="toc-level-3"><a href="#44-core-policy-database-synchronization">4.4 Core Policy Database Synchronization</a></li>
+<li class="toc-level-3"><a href="#45-downstream-vsam-synchronization-and-termination">4.5 Downstream VSAM Synchronization and Termination</a></li>
+<li class="toc-level-3"><a href="#46-error-handling-and-logging">4.6 Error Handling and Logging</a></li>
+<li class="toc-level-3"><a href="#47-concurrency-and-locking-management-optimistic-locking">4.7 Concurrency and Locking Management (Optimistic Locking)</a></li>
+<li class="toc-level-3"><a href="#48-policy-specific-update-operations">4.8 Policy-Specific Update Operations</a></li>
+<li class="toc-level-3"><a href="#49-core-policy-database-synchronization">4.9 Core Policy Database Synchronization</a></li>
+<li class="toc-level-3"><a href="#410-downstream-vsam-synchronization-and-termination">4.10 Downstream VSAM Synchronization and Termination</a></li>
+<li class="toc-level-3"><a href="#411-error-handling-and-logging">4.11 Error Handling and Logging</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a>
+<ul>
+<li class="toc-level-3"><a href="#61-calling-environment-and-input-parameters">6.1 Calling Environment and Input Parameters</a></li>
+<li class="toc-level-3"><a href="#62-included-source-members-copybooks">6.2 Included Source Members (Copybooks)</a></li>
+<li class="toc-level-3"><a href="#63-database-dependencies-db2-for-zos">6.3 Database Dependencies (Db2 for z/OS)</a></li>
+<li class="toc-level-3"><a href="#64-external-programs-and-modules">6.4 External Programs and Modules</a></li>
+<li class="toc-level-3"><a href="#65-cics-services-and-resources">6.5 CICS Services and Resources</a></li>
+<li class="toc-level-3"><a href="#66-build-and-configuration-dependencies">6.6 Build and Configuration Dependencies</a></li>
+<li class="toc-level-3"><a href="#67-runtime-and-language-dependencies">6.7 Runtime and Language Dependencies</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a>
+<ul>
+<li class="toc-level-3"><a href="#71-request-type-constraints">7.1 Request Type Constraints</a></li>
+<li class="toc-level-3"><a href="#72-concurrency-and-data-integrity-constraints">7.2 Concurrency and Data Integrity Constraints</a></li>
+<li class="toc-level-3"><a href="#73-sequencing-constraints">7.3 Sequencing Constraints</a></li>
+<li class="toc-level-3"><a href="#74-resource-and-size-limits">7.4 Resource and Size Limits</a></li>
+<li class="toc-level-3"><a href="#75-error-handling-and-return-code-constraints">7.5 Error Handling and Return Code Constraints</a></li>
+<li class="toc-level-3"><a href="#76-environment-and-dependency-constraints">7.6 Environment and Dependency Constraints</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a>
+<ul>
+<li class="toc-level-3"><a href="#81-input-and-environment-validation">8.1 Input and Environment Validation</a></li>
+<li class="toc-level-3"><a href="#82-return-code-signalling-to-the-caller">8.2 Return Code Signalling to the Caller</a></li>
+<li class="toc-level-3"><a href="#83-db2-sqlcode-checking">8.3 DB2 SQLCODE Checking</a></li>
+<li class="toc-level-3"><a href="#84-business-and-data-integrity-checks">8.4 Business and Data Integrity Checks</a></li>
+<li class="toc-level-3"><a href="#85-transactional-recovery">8.5 Transactional Recovery</a></li>
+<li class="toc-level-3"><a href="#86-logging-and-notification">8.6 Logging and Notification</a></li>
+<li class="toc-level-3"><a href="#87-downstream-call-handling">8.7 Downstream Call Handling</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-motor-policy-updated-successfully">9.1 Example 1: Motor policy updated successfully</a></li>
+<li class="toc-level-3"><a href="#92-example-2-stale-timestamp-optimistic-lock-failure">9.2 Example 2: Stale timestamp (optimistic lock failure)</a></li>
+<li class="toc-level-3"><a href="#93-example-3-policy-not-found">9.3 Example 3: Policy not found</a></li>
+<li class="toc-level-3"><a href="#94-example-4-missing-commarea">9.4 Example 4: Missing COMMAREA</a></li>
+<li class="toc-level-3"><a href="#95-example-5-db2-resource-failure-on-cursor-open">9.5 Example 5: DB2 resource failure on cursor open</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGUPDB01</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

@@ -2,104 +2,116 @@
 
 This file provides guidance to agents when working with code in this repository.
 
-## Project Overview
+## Workspace Type
 
-**GenApp (PL/I variant)** — IBM General Insurance Application implemented in PL/I. CICS online transactions + batch programs running on z/OS. Built using IBM zAppBuild (DBB/Groovy pipeline).
+**Application platform: IBM Z**
+**Detected languages:** Enterprise PL/I for z/OS (CICS, Db2, batch), JCL
+**Project:** GenApp (PL/I variant), the IBM General Insurance application. It is built with IBM zAppBuild (DBB/Groovy).
 
-## Repository Structure
+## Repository Layout
 
-| Directory | Contents |
-|-----------|----------|
-| `pli/` | 35 PL/I source programs (`.pli`) |
-| `plinc/` | 4 PL/I include files (`.inc`) — equivalent of COBOL copybooks |
-| `jcl/` | JCL for DB2 DDL, CSD definitions, bind |
-| `application-conf/` | zAppBuild build configuration properties |
+| Directory | Purpose |
+|-----------|---------|
+| `pli/` | PL/I programs. Most have no sequence numbers in columns 73-80. |
+| `plinc/` | PL/I include files (`.inc`, the equivalent of COBOL copybooks). They DO carry sequence numbers in columns 73-80. |
+| `jcl/` | Db2 DDL, bind and CSD definition jobs |
+| `Resources/` | CICS CSD definitions |
+| `application-conf/` | zAppBuild properties |
+| `.bobz/` | Scanner settings, expanded sources, impact analysis reports |
 
-## Build System
+The BMS source for mapset `SSMAP` and the `LGAPBR01` business rules program are NOT in this repo. `plinc/SSMAP.inc` is only the PL/I symbolic map.
 
-Build is via **IBM zAppBuild** (Groovy/DBB), not a local command. There is no local `make`/`gradle`/`npm`. All compilation happens on z/OS.
+## Build, Lint and Test
 
-- PLI compiler version: `V52` (configured in [`application-conf/PLI.properties`](application-conf/PLI.properties))
-- Default compile parms: `PP(INCLUDE('ID(++INCLUDE)'))` for plain; `SYSTEM(CICS),PP(MACRO,CICS)` for CICS programs
-- Link edit parms: `MAP,RENT,COMPAT(PM5)`
-- CICS programs deploy to `CICSLOAD`; batch programs to `LOAD`
-- `pli_compileMaxRC=4` — RC=4 (warnings) is acceptable; link edit must be RC=0
+There is no local build, lint or test runner. Everything runs on z/OS through zAppBuild. Use `get_diagnostics` (Z Open Editor) for local syntax checks.
 
-## Testing
+- Compiler `V52`. Compile RC up to 4 is accepted; link edit must be RC=0 (`application-conf/PLI.properties`).
+- Compile parms: `PP(INCLUDE('ID(++INCLUDE)')),SOURCE`. CICS programs also get `SYSTEM(CICS),PP(MACRO,CICS)`.
+- Link edit parms are `MAP,RENT,COMPAT(PM5)`. CICS programs deploy as `CICSLOAD`, all others as `LOAD`.
+- `userbuild-run-user-build` builds a single program. Ask the user whether to do a full upload first. A full upload is required the first time, and again when include files change.
+- A change to any include requires an impact build or full build, not a single-file build. Almost every program includes `LGCMAREA` or `LGPOLICY`.
+- Tests are TAZ unit tests. `runzTests=true` is set in `application-conf/application.properties`, and `application-conf/TazUnitTest.properties` configures them. Test case programs match `**/testcase/*.pli` (`pli_testcase=true` in `application-conf/file.properties`).
+- To run a single test, use `edt_run_tests` on the one test file. For a pipeline run, point `TazUnitTest.groovy` at one `*.bzucfg`.
+- Playback uses `EQAPPLAY` with `STOP=E,REPORT=XML`. `.rec` and `.plbck` files are binary, so never edit them as text.
+- No `testcase/` or `*.bzucfg` files are currently in the repo.
 
-- TAZ unit tests run via `TazUnitTest.groovy` triggered by `runzTests=true` in [`application-conf/application.properties`](application-conf/application.properties)
-- Test recording files (`.rec`) are binary — committed as binary in `.gitattributes`
-- Test case programs: `**/testcase/*.pli` (set `pli_testcase=true` via [`application-conf/file.properties`](application-conf/file.properties))
-- TAZ playback uses `EQAPPLAY`, parms: `STOP=E,REPORT=XML`
+## Encoding and Line Endings (critical)
 
-## Encoding — CRITICAL
+- Sources are UTF-8 in Git and convert to EBCDIC IBM-1047 on transfer (`.gitattributes`: `zos-working-tree-encoding=ibm-1047 git-encoding=utf-8`).
+- Keep line endings LF only. Never introduce CRLF.
+- In `.inc` files, keep the columns 73-80 sequence numbers when editing, and number any new lines consistently.
 
-All mainframe source files are stored in UTF-8 in Git and automatically converted to EBCDIC (IBM-1047) when transferred to z/OS. Controlled by [`.gitattributes`](.gitattributes):
-- `.pli`, `.inc`, `.jcl`, `.properties`, `.cbl`, `.bms`, `.asm` → `zos-working-tree-encoding=ibm-1047 git-encoding=utf-8`
-- `.rec`, `.plbck` → `binary` (never convert)
+## PL/I Conventions
 
-**Do not change line endings or encoding** of source files manually.
+### Includes
+- Use `%INCLUDE NAME;` with no path and no extension. The search path is `plinc/*.inc` (`pliincludeSearch`). A quoted path breaks the DBB scanner.
+- Db2 programs use `EXEC SQL INCLUDE SQLCA;` and `EXEC SQL INCLUDE LGCMAREA;`.
 
-## PL/I Code Patterns
+### COMMAREA (`plinc/LGCMAREA.inc`)
+- It is the only data contract between programs. Layout: 6-byte `CA_REQUEST_ID`, 2-digit `CA_RETURN_CODE`, 10-digit `CA_CUSTOMER_NUM`, then `CA_REQUEST_SPECIFIC` (`CHAR(32482)`), 32500 bytes in total.
+- Every branch of the union must keep the overall size unchanged. When adding a field, shrink the branch's filler field by the same number of bytes.
+- CICS programs: `Proc(COMM_AREA_PTR) Options(Main)`. Menu programs: `Proc(DFHEIPTR,COMM_AREA_PTR) Options(Main,Reentrant)`.
+- Return codes: `'00'` OK, `'98'` COMMAREA too short, `'99'` Db2 or system error. Set the code, then `EXEC CICS RETURN` immediately.
+- `CA_REQUEST_ID` encodes the operation, for example `'01IMOT'` = inquire motor.
 
-### Include files
-- Programs use **both** `%INCLUDE` (compile-time macro preprocessor) and `EXEC SQL INCLUDE`:
-  - `%INCLUDE LGCMAREA;` — COMMAREA structure (all CICS programs)
-  - `%INCLUDE SSMAP;` — BMS map structures (menu programs LGTESTP1–4, LGTESTC1)
-  - `%INCLUDE LGCMARER;` — Business rule request area (LGAPOL01 → LGAPBR01)
-  - `EXEC SQL INCLUDE SQLCA;` + `EXEC SQL INCLUDE LGCMAREA;` — DB2 programs
-- Include search path: `plinc/*.inc` (configured in [`application-conf/application.properties`](application-conf/application.properties) as `pliincludeSearch`)
+### Length constants are duplicated
+- `WS_MOTOR_LEN` and `WS_FULL_MOTOR_LEN` (and similar constants) are declared in `plinc/LGPOLICY.inc` AND locally in some programs (`LGUPOL01`, `LGUCUS01`). Update every copy together.
+- `WS_MOTOR_LEN` (65) is smaller than the `CA_MOTOR` structure. `premium` and `accidents` are moved to the COMMAREA separately in `LGIPDB01`, so a new trailing field needs an explicit assignment.
+- Db2 CHAR host variables must match the column length exactly.
+- A nullable column needs an indicator variable on SELECT. Otherwise SQLCODE -305 occurs on existing rows.
 
-### COMMAREA convention
-- **All CICS programs** receive `COMM_AREA_PTR` as the procedure parameter: `Proc(COMM_AREA_PTR) Options(Main)`
-- Menu programs additionally receive `DFHEIPTR`: `Proc(DFHEIPTR,COMM_AREA_PTR) Options(Main,Reentrant)`
-- `CA_REQUEST_ID` (6 chars) encodes the operation: e.g. `'01IMOT'` = Inquire Motor policy
-- `CA_RETURN_CODE` = `'00'` for success, `'98'` for bad COMMAREA length, `'99'` for DB2/system errors
-- COMMAREA is validated for minimum length at program entry; abend `LGCA` if EIBCALEN=0
+### Error handling
+- Every program declares `WS_EYECATCHER`, initialised to `'PROGNAMExxxxxx-WS'`, for dump identification.
+- Errors go to a CICS TS queue via the internal `WRITE_ERROR_MESSAGE` procedure (and `LGSTSQ`), not to an ABEND. The exception is `EIBCALEN=0`, which abends `LGCA`.
+- Check `SQLCODE` after every SQL statement.
 
-### Error handling pattern
-- Every program declares a `WS_EYECATCHER` initialized to `'PROGNAMExxxxxx-WS'` for dump identification
-- Error messages written to CICS TS queue (not ABEND) via internal `WRITE_ERROR_MESSAGE` procedure
-- DB2 errors: check `SQLCODE` after every SQL statement; non-zero → write error and `EXEC CICS RETURN`
+### Naming
+`LG` + operation (A/D/I/U) + entity (C=Customer, P=Policy) + backend (`DB`=Db2, `VS`=VSAM, `OL`/`US`=orchestrator) + `01`.
+Menus are `LGTESTP1-4` (Motor, Endowment, House, Commercial) and `LGTESTC1` (Customer). Batch programs are `LGBATCH`, `LGBATDB2`, `LGMOTOUT` and `LGBATCHF`, a static-CALL submodule.
 
-### Program naming convention
-```
-LG + operation(A=Add,D=Delete,I=Inquire,U=Update) + entity(C=Customer,P=Policy) + backend(DB=DB2,VS=VSAM,US=Combined) + 01
-```
-- `LGACDB01` = **L**ife**G**eneral + **A**dd **C**ustomer + **D**B2 + instance 01
-- `LGAPOL01` = Add Policy (orchestrator); calls `LGAPDB01` and optionally `LGAPBR01` (business rules)
-- `LGTESTP1-4` = Menu programs (Motor, Endowment, House, Commercial)
-- `LGTESTC1` = Customer menu
-
-### Batch programs
-- `LGBATCH` / `LGBATDB2` — non-CICS; use `Proc Options(Main)` without COMMAREA parameter
-- Files declared with `DCL filename FILE RECORD INPUT SEQUENTIAL ENV(FB RECSIZE(n))`
-- `LGBATCHF` is a subprogram called via static `CALL` (not CICS LINK)
-
-## DB2 Tables
-
-| Table | Programs that write | Programs that read |
-|-------|--------------------|--------------------|
-| CUSTOMER | LGACDB01, LGACUS01 | LGBATCH, LGBATDB2, LGICDB01 |
-| CUSTOMER_SECURE | LGACDB02 | — |
-| POLICY | LGACUS01, LGAPDB01 | LGDPDB01, LGIPDB01 |
-| ENDOWMENT/HOUSE/MOTOR/COMMERCIAL/CLAIM | LGAPDB01 | LGIPDB01 |
-| MOTOR | LGMOTOUT (read/write) | — |
-
-## CICS Program Call Architecture
+## Architecture
 
 ```
-Menu (LGTESTP1-4 / LGTESTC1)
-  └─ CICS LINK ──► Policy orchestrator (LGAPOL01 / LGDPOL01 / LGIPOL01 / LGUPOL01)
-                      └─ CICS DYNAMIC_LINK ──► DB2 backend (LGAPDB01 / LGDPDB01 / etc.)
-                      └─ CICS LINK ──► Business rules (LGAPBR01) [optional]
-  └─ CICS LINK ──► Customer orchestrator (LGACUS01 / LGICUS01 / LGUCUS01)
-                      └─ CICS DYNAMIC_LINK ──► DB2 backend (LGICDB01 / LGUCDB01)
+Menu (LGTESTP1-4 / LGTESTC1) -- CICS LINK --> Orchestrator (LGxPOL01 / LGxCUS01)
+Orchestrator -- CICS LINK --> Db2 backend (LGxPDB01 / LGxCDB01) or VSAM backend (LGxPVS01)
+LGAPOL01 -- CICS LINK --> LGAPBR01 (optional business rules, not in repo)
+LGACDB01 -- CICS LINK --> LGACVS01, LGACDB02 (customer security)
 ```
 
-- `LGAPVS01`, `LGIPVS01`, etc. = VSAM counterparts (parallel to DB2 backends)
-- `LGACDB01` also calls `LGACVS01` (CICS LINK) and `LGACDB02` (customer security, CICS LINK)
+- Orchestrators contain no SQL. `LGAPOL01` links to literal program names, while `LGIPOL01` and `LGDPOL01` link through a variable.
+- Update policy flow: `LGUPOL01` -> `LGUPDB01` (Db2). It also links `LGUPVS01`.
+- Customer numbers come from a CICS named counter (`GENACUSTNUM`, pool `GENA`). If it is unavailable, `LGACDB01` silently falls back to customer 0.
+
+## Db2 Tables (from scanner and source)
+
+| Table | Written by | Read by |
+|-------|-----------|---------|
+| CUSTOMER | LGACDB01, LGACUS01, LGUCDB01 | LGICDB01, LGBATCH, LGBATDB2 |
+| CUSTOMER_SECURE | LGACDB02 | - |
+| POLICY | LGAPDB01, LGACUS01, LGDPDB01 | LGIPDB01 |
+| ENDOWMENT, HOUSE, MOTOR, COMMERCIAL, CLAIM | LGAPDB01 (MOTOR is also updated by LGUPDB01) | LGIPDB01 (MOTOR also by LGMOTOUT) |
+
+The scanner misses some UPDATE statements, for example `UPDATE MOTOR` in `LGUPDB01`. Confirm with `grep` before trusting a scanner "no access" result.
 
 ## Scanned Database
 
-Program metadata is stored in `.bobz/local-settings.json` (`databaseLocation` field). Use `execute_sql_query` for cross-program analysis (call chains, SQL table access, dependencies).
+`.bobz/local-settings.json` (`databaseLocation`) points to the scanner database. Query it with `execute_sql_query` first for call chains, table access and include usage. Its include (copybook) data is incomplete for PL/I, so use `grep` for `%INCLUDE`. Scanner line numbers refer to expanded source (`.bobz/expanded/`), not the original files.
+
+## Technical Documentation
+
+**Location:** `application-conf/README.md` (zAppBuild property reference) and `.bobz/impact-analysis/<change>/IMPACT-ANALYSIS.md`.
+
+| Subject | Documentation | Purpose |
+|---------|--------------|---------|
+| Build properties | `application-conf/README.md` | Which build parameters can be overridden per file |
+| MOTOR table change | `.bobz/impact-analysis/motor-add-nullable-column-*/IMPACT-ANALYSIS.md` | Impact of adding a nullable MOTOR column: Db2, COMMAREA, BMS, VSAM and batch |
+| MOTOR programs (`LGAPDB01`, `LGIPDB01`, `LGUPDB01`, `LGMOTOUT`, `LGTESTP1`, `LGUPOL01`, `LGUCUS01`) and includes (`LGCMAREA`, `LGPOLICY`, `SSMAP`) | the same report | Per-program change points and risks |
+
+**Auto-update rules:**
+1. When code changes, check whether the mapping above covers it, and flag documentation that is now out of sync.
+2. When analysing a mapped program, read its documentation first.
+3. Add new programs or documents to the table when they appear.
+
+## Coding Standards
+
+No coding standard skill is available in this workspace. If one is added, apply it to all generated or modified PL/I and JCL.

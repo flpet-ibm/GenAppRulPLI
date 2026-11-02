@@ -1,0 +1,1487 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGTESTP1</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link active">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>LGTESTP1 is the CICS online front-end for the motor policy menu. It lets a user work with a customer’s motor insurance policies from a single screen (map SSMAPP1 in mapset SSMAP). The user enters a menu option along with the customer number, policy number and policy details. The program then runs the matching action by calling the back-end policy programs: inquire, add, delete, or update. For an inquiry, it shows the vehicle and policy details, which include issue and expiry dates, make, model, value, registration, colour, engine capacity, manufacture date, premium and accident count. For an add, it takes the details entered on the screen, creates the policy and returns the new customer and policy numbers. For a delete, it removes the policy and clears the screen fields. For an update, it first displays the current details, accepts the user’s changes, and then applies them. The program also reports outcomes and errors to the user, such as a successful add, update or delete, a missing customer, no data returned, a failed operation, or an invalid option. It returns control to the same transaction so the menu stays available for the next request, and it ends the session with a “Transaction ended” message when the user presses PF3 or a map failure occurs.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<ul>
+<li>
+<p><strong>Program parameters (CICS entry)</strong></p>
+<ul>
+<li><code>DFHEIPTR</code>: CICS EXEC interface block pointer. It gives the program access to <code>EIBCALEN</code> and other EIB fields.</li>
+<li><code>COMM_AREA_PTR</code>: pointer to the CICS COMMAREA (<code>COMM_AREA</code>, 32,500 bytes).
+<ul>
+<li>On first entry (<code>EIBCALEN = 0</code>) the program points it at its own <code>BASE_COMM_AREA</code> and initialises it.</li>
+<li>On later entries it holds the commarea passed back by <code>RETURN TRANSID('SSP1') COMMAREA(COMM_AREA)</code>.</li>
+</ul>
+</li>
+<li><code>EIBCALEN</code>: length of the incoming commarea. It decides whether to display the initial menu or process the user’s reply.</li>
+</ul>
+</li>
+<li>
+<p><strong>Terminal/screen input (BMS map <code>SSMAPP1</code> in mapset <code>SSMAP</code>, read with <code>EXEC CICS RECEIVE MAP</code>)</strong></p>
+<ul>
+<li>Menu selection
+<ul>
+<li><code>ENP1OPTO</code>: one-character option the user entered.
+<ul>
+<li>It is the <code>SELECT</code> key, which chooses the operation: ‘1’ inquire, ‘2’ add, ‘3’ delete, ‘4’ update.</li>
+<li>Any other value produces the “Please enter a valid option” message.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Policy keys
+<ul>
+<li><code>ENP1CNOO</code> / <code>ENP1CNOI</code>: customer number entered on the screen. It populates <code>CA_CUSTOMER_NUM</code> for inquire, delete and update. For add, the value is taken from <code>ENP1CNOI</code>.</li>
+<li><code>ENP1PNOO</code>: policy number entered on the screen. It populates <code>CA_POLICY_NUM</code> for inquire, delete and update.</li>
+</ul>
+</li>
+<li>Policy dates (used for add and update)
+<ul>
+<li><code>ENP1IDAI</code>: issue date, mapped to <code>CA_ISSUE_DATE</code>.</li>
+<li><code>ENP1EDAI</code>: expiry date, mapped to <code>CA_EXPIRY_DATE</code>.</li>
+</ul>
+</li>
+<li>Vehicle details (used for add and update)
+<ul>
+<li><code>ENP1CMKI</code>: vehicle make, mapped to <code>CA_M_MAKE</code>.</li>
+<li><code>ENP1CMOI</code>: vehicle model, mapped to <code>CA_M_MODEL</code>.</li>
+<li><code>ENP1REGI</code>: registration number, mapped to <code>CA_M_REGNUMBER</code>.</li>
+<li><code>ENP1COLI</code>: colour, mapped to <code>CA_M_COLOUR</code>.</li>
+<li><code>ENP1CCI</code>: engine cubic capacity, mapped to <code>CA_M_CC</code>.</li>
+<li><code>ENP1MANI</code>: manufactured date, mapped to <code>CA_M_MANUFACTURED</code>.</li>
+</ul>
+</li>
+<li>Financial and risk details (used for add and update)
+<ul>
+<li><code>ENP1VALI</code>: vehicle value, mapped to <code>CA_M_VALUE</code>.</li>
+<li><code>ENP1PREI</code>: premium, mapped to <code>CA_M_PREMIUM</code>.</li>
+<li><code>ENP1ACCI</code>: number of accidents, mapped to <code>CA_M_ACCIDENTS</code>.</li>
+</ul>
+</li>
+<li>Update flow: a second <code>RECEIVE MAP</code> reads the user’s edited values after the existing policy has been displayed.</li>
+<li>AID keys and map conditions
+<ul>
+<li><code>CLEAR</code> key: redisplays a blank menu.</li>
+<li><code>PF3</code> key: ends the transaction.</li>
+<li><code>MAPFAIL</code> condition (no map data received): ends the transaction.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Data returned from called programs (via COMMAREA <code>COMM_AREA</code>)</strong></p>
+<ul>
+<li><code>LGIPOL01</code> (inquiry, <code>CA_REQUEST_ID</code> = ‘01IMOT’): returns the stored motor policy details.
+<ul>
+<li>Returned fields: <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_M_MAKE</code>, <code>CA_M_MODEL</code>, <code>CA_M_VALUE</code>, <code>CA_M_REGNUMBER</code>, <code>CA_M_COLOUR</code>, <code>CA_M_CC</code>, <code>CA_M_MANUFACTURED</code>, <code>CA_M_PREMIUM</code>, <code>CA_M_ACCIDENTS</code>.</li>
+<li>The program displays them on the screen.</li>
+</ul>
+</li>
+<li><code>LGAPOL01</code> (add, ‘01AMOT’) and <code>LGUPOL01</code> (update, ‘01UMOT’): return <code>CA_CUSTOMER_NUM</code> and <code>CA_POLICY_NUM</code> after a successful add or update. The program shows them on the screen.</li>
+<li><code>LGDPOL01</code> (delete, ‘01DMOT’): returns a status in <code>CA_RETURN_CODE</code>.</li>
+<li><code>CA_RETURN_CODE</code>: status set by every called program. A value above 0 sends the program to an error path.
+<ul>
+<li>A value of 70 after an add means the customer does not exist.</li>
+<li>Any other non-zero value gives the generic add, update, delete or no-data error message.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Constants and request control values set by the program (not external data, but they drive the called back-end programs)</strong></p>
+<ul>
+<li><code>CA_REQUEST_ID</code>: operation code passed to the back-end programs (‘01IMOT’, ‘01AMOT’, ‘01DMOT’, ‘01UMOT’).</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<ul>
+<li>
+<p><strong>Screen output (BMS map <code>SSMAPP1</code> in mapset <code>SSMAP</code>)</strong></p>
+<ul>
+<li>Motor policy menu display
+<ul>
+<li><code>ENP1CNOO</code>, <code>ENP1PNOO</code>: customer number and policy number. On first entry (<code>EIBCALEN = 0</code>) both are set to <code>'0000000000'</code>.</li>
+<li><code>ENP1VALO</code>, <code>ENP1CCO</code>, <code>ENP1ACCO</code>, <code>ENP1PREO</code>: numeric fields. On first entry they are initialised to zeros so the screen starts blank.</li>
+<li><code>ENP1OPTO</code>: the menu option the user selected. It decides which transaction runs. <code>'1'</code> inquires, <code>'2'</code> adds, <code>'3'</code> deletes and <code>'4'</code> updates. Any other value sends the “Please enter a valid option” message.</li>
+</ul>
+</li>
+<li>Policy details shown after inquiry (options 1 and 4). The back-end commarea values are moved into the map input fields (<code>...I</code>) before the map is sent.
+<ul>
+<li><code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>: policy start and end dates.</li>
+<li><code>CA_M_MAKE</code>, <code>CA_M_MODEL</code>, <code>CA_M_REGNUMBER</code>, <code>CA_M_COLOUR</code>, <code>CA_M_CC</code>, <code>CA_M_MANUFACTURED</code>: vehicle details.</li>
+<li><code>CA_M_VALUE</code>, <code>CA_M_PREMIUM</code>, <code>CA_M_ACCIDENTS</code>: vehicle value, premium and accident count.</li>
+</ul>
+</li>
+<li>Confirmation after a successful add or update
+<ul>
+<li><code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code>: the customer and policy numbers returned by the back-end program, shown on the screen.</li>
+<li>The option field is cleared.</li>
+</ul>
+</li>
+<li>Field clearing after a successful delete
+<ul>
+<li>The date and vehicle fields on the map are blanked.</li>
+</ul>
+</li>
+<li><code>CLEAR</code> key handling
+<ul>
+<li>The map is cleared and re-sent without data (<code>MAPONLY</code>).</li>
+</ul>
+</li>
+<li>Invalid-option handling
+<ul>
+<li>The cursor is positioned on the option field (<code>ENP1OPTL = -1</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Messages shown in the error field <code>ERP1FLDO</code></strong></p>
+<ul>
+<li>Success messages
+<ul>
+<li><code>'New Motor Policy Inserted'</code> after a successful add.</li>
+<li><code>'Motor Policy Updated'</code> after a successful update.</li>
+<li><code>'Motor Policy Deleted'</code> after a successful delete.</li>
+</ul>
+</li>
+<li>Error messages
+<ul>
+<li><code>'Customer does not exist'</code>: add failed with return code 70.</li>
+<li><code>'Error Adding Motor Policy'</code>: add failed with any other nonzero return code.</li>
+<li><code>'Error Updating Motor Policy'</code>: update failed.</li>
+<li><code>'Error Deleting Motor Policy'</code>: delete failed.</li>
+<li><code>'No data was returned.'</code>: inquiry failed. This applies to option 1 and to the inquiry step of option 4.</li>
+</ul>
+</li>
+<li>Validation message
+<ul>
+<li><code>'Please enter a valid option'</code>: the menu option is not 1–4.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Terminal text output</strong></p>
+<ul>
+<li><code>MSGEND</code> (<code>'Transaction ended      '</code>) is sent as text with <code>ERASE</code> and <code>FREEKB</code>. This happens when PF3 is pressed or when no map data is received (<code>MAPFAIL</code>), and the task then ends.</li>
+</ul>
+</li>
+<li>
+<p><strong>Data passed to called programs through the commarea <code>COMM_AREA</code></strong></p>
+<ul>
+<li>Request routing
+<ul>
+<li><code>CA_REQUEST_ID</code>: operation code for the back-end program. <code>'01IMOT'</code> is inquire (options 1 and 4). <code>'01AMOT'</code> is add, <code>'01UMOT'</code> is update and <code>'01DMOT'</code> is delete.</li>
+<li>Target programs: <code>LGIPOL01</code> (inquire), <code>LGAPOL01</code> (add), <code>LGUPOL01</code> (update) and <code>LGDPOL01</code> (delete). All are called with a 32500-byte commarea.</li>
+</ul>
+</li>
+<li>Keys
+<ul>
+<li><code>CA_CUSTOMER_NUM</code>, <code>CA_POLICY_NUM</code>: identify the policy to process. Add and update take the customer number from the map input field.</li>
+</ul>
+</li>
+<li>Policy data sent for add and update
+<ul>
+<li><code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>.</li>
+<li><code>CA_M_MAKE</code>, <code>CA_M_MODEL</code>, <code>CA_M_VALUE</code>, <code>CA_M_REGNUMBER</code>, <code>CA_M_COLOUR</code>, <code>CA_M_CC</code>, <code>CA_M_MANUFACTURED</code>, <code>CA_M_PREMIUM</code>, <code>CA_M_ACCIDENTS</code>.</li>
+<li><code>CA_PAYMENT</code>, <code>CA_BROKERID</code>, <code>CA_BROKERSREF</code>: reset to zero or blank before the call.</li>
+</ul>
+</li>
+<li>Database changes
+<ul>
+<li>The program does not write to files or databases itself. The called programs persist the add, update and delete changes.</li>
+<li>On an add or delete failure, <code>EXEC CICS SYNCPOINT ROLLBACK</code> backs out the changes.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Transaction control and returned state</strong></p>
+<ul>
+<li>After a successful action or an invalid option, <code>EXEC CICS RETURN TRANSID('SSP1') COMMAREA(COMM_AREA)</code> restarts the menu transaction and passes the commarea along.</li>
+<li>After an error message is sent, the commarea (<code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code> and the policy data) is reset. The transaction then returns to <code>SSP1</code>.</li>
+<li>The <code>CLEAR</code> key also returns to <code>SSP1</code> with the commarea.</li>
+<li>A plain <code>EXEC CICS RETURN</code> ends the task. It is used at the end of the <code>ENDIT</code> path.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    A([Start LGTESTP1]) --> B{Commarea length is zero}
+    B -- Yes --> C[Point to base commarea<br>Clear map and commarea fields<br>Set numeric display fields to zeros]
+    C --> D[Send motor policy menu map with erase]
+    D --> E[Register handlers<br>CLEAR goes to clear screen<br>PF3 and MAPFAIL go to end]
+    B -- No --> E
+    E --> F[Receive menu map SSMAPP1]
+    F --> G{Menu option selected}
+
+    G -- 1 Inquire --> H1[Set request 01IMOT<br>Set customer and policy number]
+    H1 --> H2[Link to LGIPOL01]
+    H2 --> H3{Return code above zero}
+    H3 -- Yes --> NODATA[Set message No data was returned]
+    H3 -- No --> H4[Move policy details to screen fields]
+    H4 --> H5[Send map with policy details]
+    H5 --> RET[Return to transaction SSP1 with commarea]
+
+    G -- 2 Add --> I1[Set request 01AMOT<br>Set customer number<br>Zero payment and broker<br>Copy screen fields to commarea]
+    I1 --> I2[Link to LGAPOL01]
+    I2 --> I3{Return code above zero}
+    I3 -- Yes --> I4[Syncpoint rollback]
+    I4 --> I5{Return code is 70}
+    I5 -- Yes --> I6[Set message Customer does not exist]
+    I5 -- No --> I7[Set message Error Adding Motor Policy]
+    I3 -- No --> I8[Show new customer and policy number<br>Message New Motor Policy Inserted]
+    I8 --> I9[Send map]
+    I9 --> RET
+
+    G -- 3 Delete --> J1[Set request 01DMOT<br>Set customer and policy number]
+    J1 --> J2[Link to LGDPOL01]
+    J2 --> J3{Return code above zero}
+    J3 -- Yes --> J4[Syncpoint rollback]
+    J4 --> J5[Set message Error Deleting Motor Policy]
+    J3 -- No --> J6[Clear policy detail fields<br>Message Motor Policy Deleted]
+    J6 --> J7[Send map]
+    J7 --> RET
+
+    G -- 4 Update --> K1[Set request 01IMOT<br>Set customer and policy number]
+    K1 --> K2[Link to LGIPOL01]
+    K2 --> K3{Return code above zero}
+    K3 -- Yes --> NODATA
+    K3 -- No --> K4[Move policy details to screen fields<br>Send map]
+    K4 --> K5[Receive edited map]
+    K5 --> K6[Set request 01UMOT<br>Copy screen fields to commarea]
+    K6 --> K7[Link to LGUPOL01]
+    K7 --> K8{Return code above zero}
+    K8 -- Yes --> K9[Set message Error Updating Motor Policy]
+    K8 -- No --> K10[Show customer and policy number<br>Message Motor Policy Updated]
+    K10 --> K11[Send map]
+    K11 --> RET
+
+    G -- Other --> L1[Set message Please enter a valid option<br>Place cursor on option field]
+    L1 --> L2[Send map with cursor]
+    L2 --> RET
+
+    NODATA --> ERR[Send map with error message]
+    I6 --> ERR
+    I7 --> ERR
+    J5 --> ERR
+    K9 --> ERR
+    ERR --> ERR2[Clear map and commarea fields]
+    ERR2 --> RET
+
+    E -. CLEAR key .-> M1[Clear map and send map only]
+    M1 --> RET
+    E -. PF3 or MAPFAIL .-> N1[Send text Transaction ended<br>with erase and free keyboard]
+    N1 --> N2([Return to CICS])
+    RET --> O([End task])
+
+    classDef start fill:#d5f5e3,stroke:#7dcea0,color:#000;
+    classDef proc fill:#d6eaf8,stroke:#85c1e9,color:#000;
+    classDef decision fill:#fdebd0,stroke:#f5b041,color:#000;
+    classDef err fill:#f9d6d5,stroke:#e6a0a0,color:#000;
+    classDef ok fill:#e8daef,stroke:#bb8fce,color:#000;
+
+    class A,N2,O start;
+    class C,D,E,F,H1,H2,H4,H5,I1,I2,I4,I9,J1,J2,J4,J7,K1,K2,K4,K5,K6,K7,L1,L2,M1,N1,RET,ERR2 proc;
+    class B,G,H3,I3,I5,J3,K3,K8 decision;
+    class NODATA,I6,I7,J5,K9,ERR err;
+    class I8,J6,K10 ok;
+</div>
+<hr>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<p><strong>High-level Summary</strong></p>
+<p>LGTESTP1 is a pseudo-conversational CICS transaction (SSP1) written in PL/I. It runs the Motor Policy menu screen (map SSMAPP1 in mapset SSMAP) of the insurance application. The user enters a customer number, a policy number and an option. The program then calls a back-end program through CICS LINK to inquire, add, delete or update a motor policy. It formats the result or an error message on the same screen and returns control to CICS with the transaction ID SSP1 and the commarea, so the next key press restarts the menu.</p>
+<p><strong>Execution Flow</strong></p>
+<ol>
+<li><strong>First-time entry.</strong> If the commarea length (EIBCALEN) is zero, this is the first invocation.
+<ul>
+<li>The program points the commarea at a local base area.</li>
+<li>It clears the output map and the commarea header fields: request ID, return code, customer number and the request-specific area.</li>
+<li>It sets the displayed customer number, policy number, value, CC, accidents and premium fields to zeros.</li>
+<li>It sends the empty menu map with ERASE.</li>
+</ul>
+</li>
+<li><strong>Handlers.</strong> Every pass registers the following handlers:
+<ul>
+<li>CLEAR goes to CLEARIT.</li>
+<li>PF3 goes to ENDIT.</li>
+<li>The MAPFAIL condition goes to ENDIT.</li>
+</ul>
+</li>
+<li><strong>Receive.</strong> The program receives map SSMAPP1 into SSMAPP1I. If the user pressed Enter with no data, MAPFAIL ends the transaction. The program then selects on the option field (ENP1OPTO):
+<ul>
+<li><strong>Option 1 (Inquire).</strong>
+<ul>
+<li>It sets CA_REQUEST_ID to <code>01IMOT</code> and takes the customer and policy numbers from the screen.</li>
+<li>It LINKs to LGIPOL01 with a 32500-byte commarea.</li>
+<li>If CA_RETURN_CODE is above 0, it goes to NO_DATA with the message “No data was returned.”</li>
+<li>Otherwise it copies these fields to the screen: issue date, expiry date, make, model, value, registration, colour, CC, manufactured date, premium and accidents. It sends the map and returns with the SSP1 transaction ID.</li>
+</ul>
+</li>
+<li><strong>Option 2 (Add).</strong>
+<ul>
+<li>It sets the request to <code>01AMOT</code> and takes the customer number from the input field.</li>
+<li>It zeroes payment and broker ID, blanks the broker reference, and copies all the motor fields from the screen to the commarea.</li>
+<li>It LINKs to LGAPOL01.</li>
+<li>If the return code is above 0, it issues SYNCPOINT ROLLBACK and goes to NO_ADD. Return code 70 gives “Customer does not exist”. Any other code gives “Error Adding Motor Policy”.</li>
+<li>On success it displays the returned customer and policy numbers, clears the option field, and shows “New Motor Policy Inserted”.</li>
+</ul>
+</li>
+<li><strong>Option 3 (Delete).</strong>
+<ul>
+<li>It sets the request to <code>01DMOT</code> and passes the customer and policy numbers.</li>
+<li>It LINKs to LGDPOL01.</li>
+<li>On a non-zero return code it issues SYNCPOINT ROLLBACK and shows “Error Deleting Motor Policy”.</li>
+<li>On success it blanks the policy detail fields and shows “Motor Policy Deleted”.</li>
+</ul>
+</li>
+<li><strong>Option 4 (Update).</strong>
+<ul>
+<li>First the program performs an inquiry (<code>01IMOT</code> through LGIPOL01). A failure gives “No data was returned.”</li>
+<li>It displays the current values and waits for the user to edit them by issuing another RECEIVE MAP.</li>
+<li>It then builds a <code>01UMOT</code> request with payment and broker values zeroed and the edited screen values, and LINKs to LGUPOL01.</li>
+<li>A non-zero return code gives “Error Updating Motor Policy”. Success shows “Motor Policy Updated”.</li>
+</ul>
+</li>
+<li><strong>Any other option.</strong> The program shows “Please enter a valid option”, sets the cursor on the option field (ENP1OPTL = -1), and sends the map with CURSOR.</li>
+</ul>
+</li>
+<li><strong>Error exit (ERROR_OUT).</strong> The program sends the map with the error message. It then clears the output map and the whole commarea, including the request ID, return code and customer number. It returns with transaction SSP1.</li>
+<li><strong>Exit paths.</strong>
+<ul>
+<li>ENDIT_STARTIT returns to CICS with TRANSID SSP1 and the commarea, which keeps the conversation going.</li>
+<li>ENDIT (PF3 or MAPFAIL) sends the text “Transaction ended” with ERASE and FREEKB, then returns without a transaction ID.</li>
+<li>CLEARIT (CLEAR key) clears the map, sends the map only, and returns with SSP1.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Business rules</strong></p>
+<ul>
+<li>Request codes are <code>01IMOT</code> (inquire), <code>01AMOT</code> (add), <code>01UMOT</code> (update) and <code>01DMOT</code> (delete).</li>
+<li>A return code above 0 from any back-end program is treated as failure.</li>
+<li>Return code 70 on add means the customer does not exist.</li>
+<li>Add and delete failures trigger a rollback of the unit of work. Inquire and update failures do not.</li>
+<li>Payment and broker fields are always set to 0 or blank for add and update.</li>
+<li>Update is a two-step interaction: it shows the current data and then waits for the edited data.</li>
+</ul>
+<p><strong>External Interactions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CICS BMS map SSMAPP1 (mapset SSMAP)</td>
+<td>Terminal input and output</td>
+</tr>
+<tr>
+<td>LGIPOL01</td>
+<td>Motor policy inquiry. Also used as the first step of update.</td>
+</tr>
+<tr>
+<td>LGAPOL01</td>
+<td>Motor policy add</td>
+</tr>
+<tr>
+<td>LGUPOL01</td>
+<td>Motor policy update</td>
+</tr>
+<tr>
+<td>LGDPOL01</td>
+<td>Motor policy delete</td>
+</tr>
+<tr>
+<td>CICS SYNCPOINT ROLLBACK</td>
+<td>Backs out changes after a failed add or delete</td>
+</tr>
+<tr>
+<td>CICS RETURN with TRANSID SSP1</td>
+<td>Pseudo-conversational restart</td>
+</tr>
+</tbody>
+</table>
+<p>The program does not issue any SQL itself. The linked programs access the data, and the policy tables listed below are inferred from the commarea layout.</p>
+<p><strong>Plain Language Summary</strong></p>
+<p>The program is a simple menu screen for motor insurance policies. The user types a customer number, optionally a policy number, and picks 1 to view a policy, 2 to add one, 3 to delete one, or 4 to change one. The program asks a specialist program to do the work. If that program reports a problem, the screen shows a short message such as “Customer does not exist” or “Error Deleting Motor Policy”. If everything works, it shows the policy details or a confirmation message. For add and delete failures, any partial changes are undone. PF3 ends the session and CLEAR resets the screen. Any other option value produces a “valid option” prompt.</p>
+<hr>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+    CUSTOMER {
+        int CUSTOMER_NUM "customer number"
+    }
+    POLICY {
+        int POLICY_NUM "policy number"
+        int CUSTOMER_NUM "owner customer"
+        string ISSUE_DATE "length 10"
+        string EXPIRY_DATE "length 10"
+        string LASTCHANGED "length 26"
+        int BROKERID
+        string BROKERSREF "length 10"
+        int PAYMENT
+    }
+    MOTOR {
+        int POLICY_NUM "policy number"
+        string MAKE "length 15"
+        string MODEL "length 15"
+        int VALUE
+        string REGNUMBER "length 7"
+        string COLOUR "length 8"
+        int CC
+        string MANUFACTURED "length 10"
+        int PREMIUM
+        int ACCIDENTS
+    }
+    CUSTOMER ||--o{ POLICY : owns
+    POLICY ||--o| MOTOR : details
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGTESTP1 (Main Procedure — program entry and first-time initialisation)</strong></p>
+<ul>
+<li>Entry point declared as <code>Proc(DFHEIPTR,COMM_AREA_PTR) Options(Main,Reentrant)</code>, making it a CICS menu program for Motor Policy transactions.</li>
+<li>On the very first invocation (<code>EIBCALEN = 0</code>), the COMMAREA pointer is set to a local base area, the motor policy panel output structure (<code>SSMAPP1O</code>) is cleared, and key COMMAREA fields (<code>CA_REQUEST_ID</code>, <code>CA_RETURN_CODE</code>, <code>CA_CUSTOMER_NUM</code>, <code>CA_REQUEST_INITIALISER</code>) are initialised to zero/blank. Numeric output fields on the screen (customer number, policy number, value, CC, accidents, premium) are pre-filled with zeroes.</li>
+<li>A <code>EXEC CICS SEND MAP</code> (mapname <code>SSMAPP1</code>, mapset <code>SSMAP</code>) with <code>ERASE</code> then displays the blank motor policy menu to the terminal.</li>
+<li>Control falls through to label <code>A_GAIN</code> on subsequent invocations; on first entry the SEND is followed by an implicit fall-through since there is no explicit RETURN before <code>A_GAIN</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>A_GAIN (Main Dispatch Loop)</strong></p>
+<ul>
+<li>Serves as the re-entry point after each pseudo-conversational cycle.</li>
+<li>Registers two AID handlers: <code>CLEAR</code> routes to <code>CLEARIT</code> and <code>PF3</code> routes to <code>ENDIT</code>; a <code>MAPFAIL</code> condition also routes to <code>ENDIT</code>.</li>
+<li>Issues <code>EXEC CICS RECEIVE MAP('SSMAPP1')</code> to read the operator’s input from the motor policy screen into <code>SSMAPP1I</code>.</li>
+<li>Evaluates the single-character option field <code>ENP1OPTO</code> using a <code>SELECT</code> statement to dispatch to one of four motor policy operations or an error branch:
+<ul>
+<li><strong>Option ‘1’ — Inquire Motor Policy:</strong> Sets <code>CA_REQUEST_ID = '01IMOT'</code>, copies <code>ENP1CNOO</code> and <code>ENP1PNOO</code> into the COMMAREA, issues <code>EXEC CICS LINK PROGRAM('LGIPOL01')</code>. On a non-zero return code branches to <code>NO_DATA</code>; otherwise maps all returned motor policy fields (<code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>, <code>CA_M_MAKE</code>, <code>CA_M_MODEL</code>, <code>CA_M_VALUE</code>, <code>CA_M_REGNUMBER</code>, <code>CA_M_COLOUR</code>, <code>CA_M_CC</code>, <code>CA_M_MANUFACTURED</code>, <code>CA_M_PREMIUM</code>, <code>CA_M_ACCIDENTS</code>) back to the output map fields and sends the updated screen, then goes to <code>ENDIT_STARTIT</code>.</li>
+<li><strong>Option ‘2’ — Add Motor Policy:</strong> Sets <code>CA_REQUEST_ID = '01AMOT'</code>, reads all motor field inputs from the screen into the COMMAREA, issues <code>EXEC CICS LINK PROGRAM('LGAPOL01')</code>. On failure issues <code>EXEC CICS SYNCPOINT ROLLBACK</code> and branches to <code>NO_ADD</code>; on success writes the returned customer and policy numbers back to the screen input fields, sets the error field to <code>'New Motor Policy Inserted'</code>, sends the screen, and goes to <code>ENDIT_STARTIT</code>.</li>
+<li><strong>Option ‘3’ — Delete Motor Policy:</strong> Sets <code>CA_REQUEST_ID = '01DMOT'</code>, copies identifiers into the COMMAREA, issues <code>EXEC CICS LINK PROGRAM('LGDPOL01')</code>. On failure issues rollback and branches to <code>NO_DELETE</code>; on success clears all motor detail screen fields, sets the confirmation message <code>'Motor Policy Deleted'</code>, sends the screen, and goes to <code>ENDIT_STARTIT</code>.</li>
+<li><strong>Option ‘4’ — Update Motor Policy:</strong> First performs an inquiry (<code>CA_REQUEST_ID = '01IMOT'</code>, links <code>LGIPOL01</code>) to retrieve the current policy data and display it. On inquiry failure branches to <code>NO_DATA</code>. Then issues a second <code>EXEC CICS RECEIVE MAP</code> to collect the user’s edits, reloads all motor fields into the COMMAREA, sets <code>CA_REQUEST_ID = '01UMOT'</code>, and issues <code>EXEC CICS LINK PROGRAM('LGUPOL01')</code>. On failure branches to <code>NO_UPD</code>; on success updates screen fields, sets <code>'Motor Policy Updated'</code>, sends the screen, and goes to <code>ENDIT_STARTIT</code>.</li>
+<li><strong>OTHERWISE — Invalid Option:</strong> Writes <code>'Please enter a valid option'</code> to the error field, sets the option field length attribute to <code>-1</code> (cursor positioning), sends the screen with <code>CURSOR</code>, and goes to <code>ENDIT_STARTIT</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>ENDIT_STARTIT (Pseudo-Conversational Return)</strong></p>
+<ul>
+<li>Issues <code>EXEC CICS RETURN TRANSID('SSP1') COMMAREA(COMM_AREA)</code> to end the current task and schedule re-entry under transaction <code>SSP1</code> with the current COMMAREA preserved, implementing the pseudo-conversational model.</li>
+</ul>
+</li>
+<li>
+<p><strong>ENDIT (Session Termination)</strong></p>
+<ul>
+<li>Reached when the operator presses PF3, CLEAR triggers a MAPFAIL, or a MAPFAIL condition fires.</li>
+<li>Sends the literal message <code>'Transaction ended      '</code> (<code>MSGEND</code>) as free text with <code>ERASE</code> and <code>FREEKB</code>.</li>
+<li>Issues <code>EXEC CICS RETURN</code> with no TRANSID, ending the conversational session completely.</li>
+</ul>
+</li>
+<li>
+<p><strong>CLEARIT (Screen Clear Handler)</strong></p>
+<ul>
+<li>Activated when the operator presses the CLEAR key.</li>
+<li>Clears the <code>SSMAPP1O</code> output structure and re-sends the motor policy map using <code>MAPONLY</code> (map skeleton only, no data), refreshing the screen to a blank state.</li>
+<li>Issues <code>EXEC CICS RETURN TRANSID('SSP1') COMMAREA(COMM_AREA)</code> to continue the pseudo-conversational cycle.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_ADD (Add Failure Handler)</strong></p>
+<ul>
+<li>Inspects <code>CA_RETURN_CODE</code> with a <code>SELECT</code>:
+<ul>
+<li>Return code <code>70</code> sets <code>ERP1FLDO</code> to <code>'Customer does not exist'</code>.</li>
+<li>Any other code sets <code>ERP1FLDO</code> to <code>'Error Adding Motor Policy'</code>.</li>
+</ul>
+</li>
+<li>Branches unconditionally to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_UPD (Update Failure Handler)</strong></p>
+<ul>
+<li>Sets <code>ERP1FLDO</code> to <code>'Error Updating Motor Policy'</code> and branches to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_DELETE (Delete Failure Handler)</strong></p>
+<ul>
+<li>Sets <code>ERP1FLDO</code> to <code>'Error Deleting Motor Policy'</code> and branches to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>NO_DATA (Inquiry Failure Handler)</strong></p>
+<ul>
+<li>Sets <code>ERP1FLDO</code> to <code>'No data was returned.'</code> and branches to <code>ERROR_OUT</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>ERROR_OUT (Common Error Display and Reset)</strong></p>
+<ul>
+<li>Sends the motor policy map (<code>SSMAPP1</code>, mapset <code>SSMAP</code>) with the error message already populated in <code>ERP1FLDO</code> so the operator sees the failure reason.</li>
+<li>Resets all state: clears <code>SSMAPP1O</code>, blanks <code>COMM_AREA_RAW</code>, zeroes <code>CA_RETURN_CODE</code> and <code>CA_CUSTOMER_NUM</code>, clears <code>CA_REQUEST_ID</code> and <code>CA_REQUEST_INITIALISER</code>.</li>
+<li>Branches to <code>ENDIT_STARTIT</code> to return pseudo-conversationally, allowing the operator to retry.</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<ul>
+<li>
+<p>Called programs (CICS LINK)</p>
+</li>
+<li>
+<p>LGIPOL01</p>
+<ul>
+<li>Linked with request ID ‘01IMOT’ to inquire a motor policy.</li>
+<li>Used for menu option 1 (inquire) and for the lookup step of option 4 (update).</li>
+<li>Receives CA_CUSTOMER_NUM and CA_POLICY_NUM.</li>
+<li>Returns the motor policy details and CA_RETURN_CODE.</li>
+</ul>
+</li>
+<li>
+<p>LGAPOL01</p>
+<ul>
+<li>Linked with request ID ‘01AMOT’ to add a new motor policy (menu option 2).</li>
+<li>Receives the customer number and the policy details entered on the screen. These are issue and expiry dates, make, model, value, registration, colour, CC, manufactured date, premium and accidents.</li>
+<li>Also receives CA_PAYMENT, CA_BROKERID and CA_BROKERSREF, which are set to 0, 0 and blank.</li>
+<li>Returns the new policy number and CA_RETURN_CODE.</li>
+<li>Return code 70 means the customer does not exist.</li>
+</ul>
+</li>
+<li>
+<p>LGUPOL01</p>
+<ul>
+<li>Linked with request ID ‘01UMOT’ to update a motor policy (menu option 4).</li>
+<li>Receives the modified screen values after the inquiry.</li>
+<li>Returns CA_RETURN_CODE.</li>
+</ul>
+</li>
+<li>
+<p>LGDPOL01</p>
+<ul>
+<li>Linked with request ID ‘01DMOT’ to delete a motor policy (menu option 3).</li>
+<li>Receives the customer and policy numbers.</li>
+<li>Returns CA_RETURN_CODE.</li>
+</ul>
+</li>
+<li>
+<p>All four links pass COMM_AREA with LENGTH(32500). The called programs must honour this commarea contract.</p>
+</li>
+<li>
+<p>CICS transaction and terminal resources</p>
+</li>
+<li>
+<p>BMS mapset SSMAP</p>
+<ul>
+<li>Contains the maps SSMAPP1 (motor policy menu), SSMAPC1, SSMAPP2, SSMAPP3, SSMAPP4 and SSMAPP5.</li>
+<li>Only SSMAPP1 is actually used in the logic. The other map structures are declared but not used.</li>
+<li>The program uses SEND MAP, SEND MAP MAPONLY, SEND MAP CURSOR and RECEIVE MAP against SSMAPP1.</li>
+</ul>
+</li>
+<li>
+<p>Transaction ID SSP1</p>
+<ul>
+<li>Each EXEC CICS RETURN TRANSID(‘SSP1’) restarts this program as a pseudo-conversational transaction.</li>
+<li>The commarea is passed on each return.</li>
+</ul>
+</li>
+<li>
+<p>CICS terminal I/O</p>
+<ul>
+<li>EXEC CICS SEND TEXT sends the “Transaction ended” message (MSGEND) with ERASE and FREEKB.</li>
+<li>It is used when PF3 is pressed or on a MAPFAIL.</li>
+</ul>
+</li>
+<li>
+<p>CICS aid and condition handling</p>
+<ul>
+<li>HANDLE AID routes CLEAR to the CLEARIT routine and PF3 to the ENDIT routine.</li>
+<li>HANDLE CONDITION MAPFAIL routes to ENDIT.</li>
+</ul>
+</li>
+<li>
+<p>CICS syncpoint control</p>
+<ul>
+<li>EXEC CICS SYNCPOINT ROLLBACK backs out work when the add or delete link returns a non-zero return code.</li>
+</ul>
+</li>
+<li>
+<p>CICS runtime interface</p>
+<ul>
+<li>DFHEIPTR is passed as a parameter to the main procedure and EIBCALEN is tested.</li>
+<li>EIBCALEN = 0 detects the first invocation, which sends the initial menu.</li>
+<li>The program is compiled as Options(Main,Reentrant) and needs the CICS PL/I translator and runtime.</li>
+</ul>
+</li>
+<li>
+<p>Include members and copybooks</p>
+</li>
+<li>
+<p>SSMAP (plinc/SSMAP.inc)</p>
+<ul>
+<li>Defines the BMS symbolic map structures for the mapset.</li>
+<li>Input structures are SSMAPC1I and SSMAPP1I to SSMAPP5I.</li>
+<li>Output structures are SSMAPC1O and SSMAPP1O to SSMAPP5O.</li>
+<li>Includes the menu option field ENP1OPTO and the policy fields on the SSMAPP1 map.</li>
+</ul>
+</li>
+<li>
+<p>LGCMAREA (plinc/LGCMAREA.inc)</p>
+<ul>
+<li>Defines the COMM_AREA structure, based on COMM_AREA_PTR, with a 32500-byte raw redefinition.</li>
+<li>Request and return fields:
+<ul>
+<li>CA_REQUEST_ID and CA_RETURN_CODE</li>
+<li>CA_CUSTOMER_NUM and CA_POLICY_NUM</li>
+</ul>
+</li>
+<li>Common policy fields:
+<ul>
+<li>CA_ISSUE_DATE and CA_EXPIRY_DATE</li>
+<li>CA_PAYMENT, CA_BROKERID and CA_BROKERSREF</li>
+</ul>
+</li>
+<li>Motor policy fields:
+<ul>
+<li>CA_M_MAKE, CA_M_MODEL, CA_M_VALUE</li>
+<li>CA_M_REGNUMBER, CA_M_COLOUR, CA_M_CC</li>
+<li>CA_M_MANUFACTURED, CA_M_PREMIUM, CA_M_ACCIDENTS</li>
+</ul>
+</li>
+<li>Other layouts, not used by this program: customer, security, endowment, house, commercial and claim.</li>
+</ul>
+</li>
+<li>
+<p>Input parameters and data sources</p>
+</li>
+<li>
+<p>DFHEIPTR</p>
+<ul>
+<li>Pointer to the CICS EXEC interface block. It gives access to EIBCALEN and other EIB fields.</li>
+</ul>
+</li>
+<li>
+<p>COMM_AREA_PTR</p>
+<ul>
+<li>The incoming commarea pointer. It is reset to the local BASE_COMM_AREA storage on the first invocation (EIBCALEN = 0).</li>
+<li>It is reused on subsequent pseudo-conversational invocations.</li>
+</ul>
+</li>
+<li>
+<p>Terminal user input from map SSMAPP1</p>
+<ul>
+<li>ENP1OPTO is the menu option (1 inquire, 2 add, 3 delete, 4 update).</li>
+<li>ENP1CNOI and ENP1CNOO hold the customer number.</li>
+<li>ENP1PNOO and ENP1PNOI hold the policy number.</li>
+<li>Motor policy detail fields:
+<ul>
+<li>ENP1IDAI and ENP1EDAI (issue and expiry dates)</li>
+<li>ENP1CMKI and ENP1CMOI (make and model)</li>
+<li>ENP1VALI (value)</li>
+<li>ENP1REGI (registration number)</li>
+<li>ENP1COLI (colour)</li>
+<li>ENP1CCI (CC)</li>
+<li>ENP1MANI (manufactured date)</li>
+<li>ENP1PREI (premium)</li>
+<li>ENP1ACCI (accidents)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Terminal attention keys</p>
+<ul>
+<li>PF3 ends the transaction.</li>
+<li>CLEAR clears the screen and redisplays the menu.</li>
+</ul>
+</li>
+<li>
+<p>Configuration values and constants</p>
+</li>
+<li>
+<p>Hard-coded request codes: ‘01IMOT’, ‘01AMOT’, ‘01DMOT’ and ‘01UMOT’.</p>
+</li>
+<li>
+<p>Hard-coded program names: LGIPOL01, LGAPOL01, LGUPOL01 and LGDPOL01.</p>
+</li>
+<li>
+<p>Hard-coded identifiers: transaction ID SSP1, mapset SSMAP and map SSMAPP1.</p>
+</li>
+<li>
+<p>Commarea length of 32500.</p>
+</li>
+<li>
+<p>Static message MSGEND, “Transaction ended”.</p>
+</li>
+<li>
+<p>Screen messages for success and error outcomes:</p>
+<ul>
+<li>‘New Motor Policy Inserted’</li>
+<li>‘Motor Policy Updated’</li>
+<li>‘Motor Policy Deleted’</li>
+<li>‘Customer does not exist’ (return code 70)</li>
+<li>‘Error Adding Motor Policy’</li>
+<li>‘Error Updating Motor Policy’</li>
+<li>‘Error Deleting Motor Policy’</li>
+<li>‘No data was returned.’</li>
+<li>‘Please enter a valid option’</li>
+</ul>
+</li>
+<li>
+<p>Indirect dependencies</p>
+</li>
+<li>
+<p>Back-end data stores</p>
+<ul>
+<li>The program does not access files or databases itself.</li>
+<li>The linked programs LGIPOL01, LGAPOL01, LGUPOL01 and LGDPOL01 perform the actual policy data access, which is presumably a database.</li>
+<li>Any failure there reaches this program only through CA_RETURN_CODE.</li>
+</ul>
+</li>
+<li>
+<p>There are no environment variables, external files, queues or direct SQL calls in this program.</p>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<h3 id="71-user-interface-and-input-validation-constraints" tabindex="-1">7.1 User Interface and Input Validation Constraints</h3>
+<ul>
+<li>Menu Option Selection Constraint:
+<ul>
+<li>The program restricts the menu option input (<code>ENP1OPTO</code>) to single-character values <code>'1'</code>, <code>'2'</code>, <code>'3'</code>, and <code>'4'</code>.</li>
+<li>Any other option value executes the <code>OTHERWISE</code> branch of the <code>SELECT</code> statement, setting the cursor to the option field (<code>ENP1OPTL = -1</code>), displaying <code>'Please enter a valid option'</code> in <code>ERP1FLDO</code>, and redisplaying the map.</li>
+</ul>
+</li>
+<li>Map Field Size and Type Constraints:
+<ul>
+<li>Policy Number (<code>ENP1PNOI</code> / <code>ENP1PNOO</code>): Enforces a maximum length of 10 characters (<code>CHARACTER(10)</code>).</li>
+<li>Customer Number (<code>ENP1CNOI</code> / <code>ENP1CNOO</code>): Enforces a maximum length of 10 characters (<code>CHARACTER(10)</code>).</li>
+<li>Issue Date (<code>ENP1IDAI</code> / <code>ENP1IDAO</code>): Enforces a maximum length of 10 characters (<code>CHARACTER(10)</code>).</li>
+<li>Expiry Date (<code>ENP1EDAI</code> / <code>ENP1EDAO</code>): Enforces a maximum length of 10 characters (<code>CHARACTER(10)</code>).</li>
+<li>Vehicle Make (<code>ENP1CMKI</code> / <code>ENP1CMKO</code>): Enforces a maximum length of 20 characters (<code>CHARACTER(20)</code>).</li>
+<li>Vehicle Model (<code>ENP1CMOI</code> / <code>ENP1CMOO</code>): Enforces a maximum length of 20 characters (<code>CHARACTER(20)</code>).</li>
+<li>Vehicle Value (<code>ENP1VALI</code> / <code>ENP1VALO</code>): Enforces a maximum length of 6 characters (<code>CHARACTER(6)</code>).</li>
+<li>Registration Number (<code>ENP1REGI</code> / <code>ENP1REGO</code>): Enforces a maximum length of 7 characters (<code>CHARACTER(7)</code>).</li>
+<li>Vehicle Colour (<code>ENP1COLI</code> / <code>ENP1COLO</code>): Enforces a maximum length of 8 characters (<code>CHARACTER(8)</code>).</li>
+<li>Engine Capacity (CC) (<code>ENP1CCI</code> / <code>ENP1CCO</code>): Enforces a maximum length of 8 characters (<code>CHARACTER(8)</code>).</li>
+<li>Manufactured Date (<code>ENP1MANI</code> / <code>ENP1MANO</code>): Enforces a maximum length of 10 characters (<code>CHARACTER(10)</code>).</li>
+<li>Accidents (<code>ENP1ACCI</code> / <code>ENP1ACCO</code>): Enforces a maximum length of 6 characters (<code>CHARACTER(6)</code>).</li>
+<li>Premium (<code>ENP1PREI</code> / <code>ENP1PREO</code>): Enforces a maximum length of 6 characters (<code>CHARACTER(6)</code>).</li>
+<li>Error Message Field (<code>ERP1FLDO</code>): Enforces a maximum output length of 40 characters (<code>CHARACTER(40)</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="72-communication-area-commarea-interface-constraints" tabindex="-1">7.2 Communication Area (COMMAREA) Interface Constraints</h3>
+<ul>
+<li>Fixed COMMAREA Buffer Length:
+<ul>
+<li>All <code>EXEC CICS LINK</code> calls to backend programs (<code>LGIPOL01</code>, <code>LGAPOL01</code>, <code>LGDPOL01</code>, <code>LGUPOL01</code>) enforce a rigid COMMAREA length of exactly 32,500 bytes (<code>LENGTH(32500)</code>).</li>
+</ul>
+</li>
+<li>Request Identifier Formatting:
+<ul>
+<li>The program enforces specific 6-character action codes in <code>CA_REQUEST_ID</code> matching the selected operation:
+<ul>
+<li>Inquire: <code>'01IMOT'</code></li>
+<li>Add: <code>'01AMOT'</code></li>
+<li>Delete: <code>'01DMOT'</code></li>
+<li>Update: <code>'01UMOT'</code> (following an inquiry phase with <code>'01IMOT'</code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Backend Return Code Handling:
+<ul>
+<li><code>CA_RETURN_CODE = 0</code>: Interpreted as successful execution.</li>
+<li><code>CA_RETURN_CODE &gt; 0</code>: Interpreted as an error, triggering branches to dedicated error routines (<code>NO_DATA</code>, <code>NO_ADD</code>, <code>NO_DELETE</code>, or <code>NO_UPD</code>).</li>
+<li><code>CA_RETURN_CODE = 70</code> during policy addition: Explicitly handled to indicate <code>'Customer does not exist'</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="73-transaction-flow-and-execution-sequencing-constraints" tabindex="-1">7.3 Transaction Flow and Execution Sequencing Constraints</h3>
+<ul>
+<li>First-Time Entry vs. Re-entry Sequencing:
+<ul>
+<li>Governed by checking <code>EIBCALEN = 0</code>.</li>
+<li>When <code>EIBCALEN = 0</code>, the program initialises working storage fields (<code>BASE_COMM_AREA</code>, output structure <code>SSMAPP1O</code>, and numeric screen fields to zero strings), issues <code>EXEC CICS SEND MAP('SSMAPP1') MAPSET('SSMAP') ERASE</code>, and enters the input reception loop.</li>
+</ul>
+</li>
+<li>Conversational / Pseudo-Conversational Return:
+<ul>
+<li>On standard completion or recovered error, the program executes <code>EXEC CICS RETURN TRANSID('SSP1') COMMAREA(COMM_AREA)</code> to maintain continuity of the pseudo-conversational session under transaction ID <code>SSP1</code>.</li>
+<li>When processing an unrecoverable exit or terminal message, it issues <code>EXEC CICS SEND TEXT FROM(MSGEND) ... ERASE FREEKB</code> followed by a basic <code>EXEC CICS RETURN</code> without a <code>TRANSID</code>.</li>
+</ul>
+</li>
+<li>Update Operation (Option 4) Sequencing:
+<ul>
+<li>Enforces a two-step sequence: it first inquires the existing motor policy (<code>LINK PROGRAM('LGIPOL01')</code> with request <code>'01IMOT'</code>), displays the current data onto the screen (<code>SEND MAP</code>), receives any modifications from the user (<code>RECEIVE MAP</code>), and only then links to the update backend program (<code>LINK PROGRAM('LGUPOL01')</code> with request <code>'01UMOT'</code>).</li>
+</ul>
+</li>
+<li>Transaction Integrity and Rollback:
+<ul>
+<li>If an error occurs (<code>CA_RETURN_CODE &gt; 0</code>) during Policy Add (Option 2) or Policy Delete (Option 3), an explicit <code>EXEC CICS SYNCPOINT ROLLBACK</code> is executed before branching to the error display routine to back out uncommitted changes.</li>
+</ul>
+</li>
+</ul>
+<h3 id="74-cics-condition-and-attention-identifier-aid-constraints" tabindex="-1">7.4 CICS Condition and Attention Identifier (AID) Constraints</h3>
+<ul>
+<li>Key Interception:
+<ul>
+<li>Intercepts attention identifier actions using <code>EXEC CICS HANDLE AID</code>:
+<ul>
+<li><code>PF3</code>: Diverts flow to label <code>ENDIT</code>, sending the <code>'Transaction ended'</code> text and terminating the transaction.</li>
+<li><code>CLEAR</code>: Diverts flow to label <code>CLEARIT</code>, clearing the screen buffer (<code>SSMAPP1O = ''</code>), sending an empty map (<code>MAPONLY</code>), and returning pseudo-conversationally with <code>TRANSID('SSP1')</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Map Condition Interception:
+<ul>
+<li>Uses <code>EXEC CICS HANDLE CONDITION MAPFAIL(ENDIT)</code> to immediately terminate the session if a <code>MAPFAIL</code> condition occurs during map reception.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<ul>
+<li>
+<p><strong>Terminal input and AID key handling</strong></p>
+<ul>
+<li>A CICS HANDLE AID routes the CLEAR key to a CLEARIT routine, which blanks the output map and resends only the map definition (MAPONLY).
+<ul>
+<li>The program then returns to the same transaction (SSP1) with the communication area, so the user gets a fresh menu.</li>
+</ul>
+</li>
+<li>The PF3 key is routed to the ENDIT routine, which sends the text “Transaction ended” to the terminal with screen erase and keyboard freed, and then ends the task.</li>
+<li>A CICS HANDLE CONDITION routes the MAPFAIL condition (the user submits the screen with no data) to the same ENDIT termination routine.
+<ul>
+<li>There is no explicit RESP check on the RECEIVE MAP. Errors on that command rely on this handler and on default CICS abend behavior.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Input validation</strong></p>
+<ul>
+<li>The menu option (ENP1OPTO) is evaluated in a SELECT with WHEN branches for ‘1’, ‘2’, ‘3’ and ‘4’.</li>
+<li>The OTHERWISE branch handles any other value:
+<ul>
+<li>It puts the message “Please enter a valid option” in the error field (ERP1FLDO).</li>
+<li>It sets the option field length to -1, which places the cursor on the option field.</li>
+<li>It resends the map with the CURSOR option and returns to transaction SSP1 with the communication area so the user can retry.</li>
+</ul>
+</li>
+<li>No other field-level validation is done here (for example customer number format, dates, or numeric content). Such validation is left to the called back-end programs.</li>
+</ul>
+</li>
+<li>
+<p><strong>Back-end return code checks (LINK results)</strong></p>
+<ul>
+<li>After each LINK to a back-end program (LGIPOL01, LGAPOL01, LGDPOL01, LGUPOL01), the program tests the returned CA_RETURN_CODE.</li>
+<li>Any value above zero is treated as a failure and sent to a specific error routine.</li>
+<li>Inquire (option 1): a non-zero return code goes to the NO_DATA routine.</li>
+<li>Add (option 2): a non-zero return code first triggers a CICS SYNCPOINT ROLLBACK and then goes to the NO_ADD routine.</li>
+<li>Delete (option 3): a non-zero return code first triggers a CICS SYNCPOINT ROLLBACK and then goes to the NO_DELETE routine.</li>
+<li>Update (option 4):
+<ul>
+<li>The program first links to the inquire program to load the current data, and a non-zero return code goes to NO_DATA.</li>
+<li>After the user edits the data, it links to the update program, and a non-zero return code goes to NO_UPD.</li>
+<li>Unlike add and delete, the update failure path does not issue an explicit rollback.</li>
+</ul>
+</li>
+<li>The LINK commands have no RESP or RESP2 checks and no HANDLE CONDITION for PGMIDERR or similar conditions.
+<ul>
+<li>A failure of the LINK itself (for example the program is not found) is not handled here and is left to default CICS behavior.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Error message routines and user notification</strong></p>
+<ul>
+<li>NO_ADD examines the return code in more detail:
+<ul>
+<li>Return code 70 produces “Customer does not exist”.</li>
+<li>Any other value produces “Error Adding Motor Policy”.</li>
+</ul>
+</li>
+<li>NO_UPD sets “Error Updating Motor Policy”.</li>
+<li>NO_DELETE sets “Error Deleting Motor Policy”.</li>
+<li>NO_DATA sets “No data was returned.” for failed inquiries, including the inquiry that precedes an update.</li>
+<li>All of these routines converge on the ERROR_OUT routine. It sends the menu map with the message in the error field (ERP1FLDO) so the user sees the failure on screen.</li>
+<li>NO_ADD ends with a branch to ERROR_OUT in each of its SELECT branches. NO_UPD, NO_DELETE and NO_DATA each branch to ERROR_OUT unconditionally.</li>
+</ul>
+</li>
+<li>
+<p><strong>Recovery, reset and fallback logic</strong></p>
+<ul>
+<li>After showing an error, ERROR_OUT clears the map output area, the whole communication area, and the request id, return code, customer number and request-specific area.
+<ul>
+<li>This stops stale data and the failing return code from carrying into the next interaction.</li>
+</ul>
+</li>
+<li>It then branches to ENDIT_STARTIT, which returns to transaction SSP1 with the communication area so the user can try again from the menu.</li>
+<li>Transactional recovery is done by explicit SYNCPOINT ROLLBACK on failed add and delete operations. It undoes any uncommitted changes made by the back-end programs.</li>
+<li>When the program starts with no communication area (first entry, EIBCALEN of zero), it applies default initial values.
+<ul>
+<li>It points the communication area at a local base area and clears the map output.</li>
+<li>It sets the request id to blank and the return code and customer number to zero.</li>
+<li>It sets the numeric screen fields (customer number, policy number, value, CC, accidents, premium) to zeros.</li>
+<li>It sends the clean menu with screen erase.</li>
+<li>This keeps the later logic from working with uninitialized data.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Normal-flow messages and termination</strong></p>
+<ul>
+<li>Successful operations give confirmation messages: “New Motor Policy Inserted”, “Motor Policy Deleted” and “Motor Policy Updated”. The program then returns to transaction SSP1 with the communication area.</li>
+<li>The “Transaction ended” message (MSGEND) is shown only on the PF3 and MAPFAIL exits through ENDIT.</li>
+<li>The program has no PL/I ON-unit handling (ON ERROR, ON CONDITION and so on) and no explicit ABEND calls. Unexpected runtime or CICS errors are left to the default PL/I and CICS handling.</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-inquire-motor-policy-details-option-1" tabindex="-1">9.1 Example 1: Inquire Motor Policy Details (Option 1)</h3>
+<h4 id="911-input-data" tabindex="-1">9.1.1 Input Data</h4>
+<ul>
+<li><strong>Menu Option (<code>ENP1OPTO</code>)</strong>: <code>'1'</code></li>
+<li><strong>Customer Number (<code>ENP1CNOO</code>)</strong>: <code>'0000000001'</code></li>
+<li><strong>Policy Number (<code>ENP1PNOO</code>)</strong>: <code>'0000000010'</code></li>
+</ul>
+<h4 id="912-expected-output" tabindex="-1">9.1.2 Expected Output</h4>
+<ul>
+<li><strong>Program Link</strong>: <code>EXEC CICS LINK PROGRAM('LGIPOL01')</code> with <code>CA_REQUEST_ID = '01IMOT'</code>, <code>CA_CUSTOMER_NUM = 1</code>, and <code>CA_POLICY_NUM = 10</code></li>
+<li><strong>Map Fields Populated (<code>SSMAPP1</code>)</strong>:
+<ul>
+<li>Issue Date (<code>ENP1IDAI</code>): <code>'2023-01-15'</code> (retrieved from <code>CA_ISSUE_DATE</code>)</li>
+<li>Expiry Date (<code>ENP1EDAI</code>): <code>'2024-01-15'</code> (retrieved from <code>CA_EXPIRY_DATE</code>)</li>
+<li>Make (<code>ENP1CMKI</code>): <code>'FORD'</code> (retrieved from <code>CA_M_MAKE</code>)</li>
+<li>Model (<code>ENP1CMOI</code>): <code>'FOCUS'</code> (retrieved from <code>CA_M_MODEL</code>)</li>
+<li>Value (<code>ENP1VALI</code>): <code>15000</code> (retrieved from <code>CA_M_VALUE</code>)</li>
+<li>Registration (<code>ENP1REGI</code>): <code>'AB12CDE'</code> (retrieved from <code>CA_M_REGNUMBER</code>)</li>
+<li>Colour (<code>ENP1COLI</code>): <code>'BLUE'</code> (retrieved from <code>CA_M_COLOUR</code>)</li>
+<li>Engine CC (<code>ENP1CCI</code>): <code>1600</code> (retrieved from <code>CA_M_CC</code>)</li>
+<li>Manufactured Date (<code>ENP1MANI</code>): <code>'2020-05-01'</code> (retrieved from <code>CA_M_MANUFACTURED</code>)</li>
+<li>Premium (<code>ENP1PREI</code>): <code>450</code> (retrieved from <code>CA_M_PREMIUM</code>)</li>
+<li>Accidents (<code>ENP1ACCI</code>): <code>0</code> (retrieved from <code>CA_M_ACCIDENTS</code>)</li>
+</ul>
+</li>
+<li><strong>Transaction State</strong>: Pseudo-conversational return with transaction ID <code>SSP1</code> passing the populated commarea.</li>
+</ul>
+<h4 id="913-explanation" tabindex="-1">9.1.3 Explanation</h4>
+<ol>
+<li>The program receives the screen map input and evaluates <code>ENP1OPTO</code>.</li>
+<li>Matching option <code>'1'</code>, it sets <code>CA_REQUEST_ID</code> to <code>'01IMOT'</code> and populates the commarea with customer number and policy number.</li>
+<li>It links to <code>LGIPOL01</code> to fetch policy details from the backend.</li>
+<li>Upon return with <code>CA_RETURN_CODE = 0</code>, the returned vehicle and policy attributes are copied to the symbolic output map fields, sent back to the terminal, and the transaction is reinvoked via <code>SSP1</code>.</li>
+</ol>
+<hr>
+<h3 id="92-example-2-add-new-motor-policy-option-2" tabindex="-1">9.2 Example 2: Add New Motor Policy (Option 2)</h3>
+<h4 id="921-input-data" tabindex="-1">9.2.1 Input Data</h4>
+<ul>
+<li><strong>Menu Option (<code>ENP1OPTO</code>)</strong>: <code>'2'</code></li>
+<li><strong>Customer Number (<code>ENP1CNOI</code>)</strong>: <code>'0000000002'</code></li>
+<li><strong>Issue Date (<code>ENP1IDAI</code>)</strong>: <code>'2023-06-01'</code></li>
+<li><strong>Expiry Date (<code>ENP1EDAI</code>)</strong>: <code>'2024-06-01'</code></li>
+<li><strong>Vehicle Make (<code>ENP1CMKI</code>)</strong>: <code>'TOYOTA'</code></li>
+<li><strong>Vehicle Model (<code>ENP1CMOI</code>)</strong>: <code>'COROLLA'</code></li>
+<li><strong>Vehicle Value (<code>ENP1VALI</code>)</strong>: <code>20000</code></li>
+<li><strong>Registration (<code>ENP1REGI</code>)</strong>: <code>'XY67ZAB'</code></li>
+<li><strong>Colour (<code>ENP1COLI</code>)</strong>: <code>'RED'</code></li>
+<li><strong>Engine CC (<code>ENP1CCI</code>)</strong>: <code>1800</code></li>
+<li><strong>Manufactured Date (<code>ENP1MANI</code>)</strong>: <code>'2021-03-10'</code></li>
+<li><strong>Premium (<code>ENP1PREI</code>)</strong>: <code>500</code></li>
+<li><strong>Accidents (<code>ENP1ACCI</code>)</strong>: <code>0</code></li>
+</ul>
+<h4 id="922-expected-output" tabindex="-1">9.2.2 Expected Output</h4>
+<ul>
+<li><strong>Program Link</strong>: <code>EXEC CICS LINK PROGRAM('LGAPOL01')</code> with <code>CA_REQUEST_ID = '01AMOT'</code> and all vehicle details populated in <code>COMM_AREA</code></li>
+<li><strong>Map Fields Populated (<code>SSMAPP1</code>)</strong>:
+<ul>
+<li>Customer Number (<code>ENP1CNOI</code>): <code>'0000000002'</code></li>
+<li>Generated Policy Number (<code>ENP1PNOI</code>): <code>'0000000025'</code> (assigned by backend)</li>
+<li>Option Field (<code>ENP1OPTI</code>): <code>''</code></li>
+<li>Status Message (<code>ERP1FLDO</code>): <code>'New Motor Policy Inserted'</code></li>
+</ul>
+</li>
+<li><strong>Transaction State</strong>: Pseudo-conversational return with transaction ID <code>SSP1</code>.</li>
+</ul>
+<h4 id="923-explanation" tabindex="-1">9.2.3 Explanation</h4>
+<ol>
+<li>When option <code>'2'</code> is chosen, the program assigns <code>CA_REQUEST_ID = '01AMOT'</code> and loads motor vehicle attributes from the map into the commarea.</li>
+<li>It executes a CICS LINK to <code>LGAPOL01</code>.</li>
+<li>With <code>CA_RETURN_CODE = 0</code>, the program receives the newly created policy number in <code>CA_POLICY_NUM</code>, sets the confirmation message <code>'New Motor Policy Inserted'</code> in <code>ERP1FLDO</code>, clears the option field, redisplays the screen, and reinvokes <code>SSP1</code>.</li>
+</ol>
+<hr>
+<h3 id="93-example-3-invalid-menu-option-handling" tabindex="-1">9.3 Example 3: Invalid Menu Option Handling</h3>
+<h4 id="931-input-data" tabindex="-1">9.3.1 Input Data</h4>
+<ul>
+<li><strong>Menu Option (<code>ENP1OPTO</code>)</strong>: <code>'9'</code></li>
+</ul>
+<h4 id="932-expected-output" tabindex="-1">9.3.2 Expected Output</h4>
+<ul>
+<li><strong>Error Message (<code>ERP1FLDO</code>)</strong>: <code>'Please enter a valid option'</code></li>
+<li><strong>Cursor Position</strong>: Positioned at option field (<code>ENP1OPTL = -1</code>)</li>
+<li><strong>Transaction State</strong>: Redisplays map with message and re-executes <code>SSP1</code>.</li>
+</ul>
+<h4 id="933-explanation" tabindex="-1">9.3.3 Explanation</h4>
+<ol>
+<li>The program receives option <code>'9'</code> which falls through to the <code>OTHERWISE</code> block in the <code>SELECT</code> statement.</li>
+<li>It sets the error message in <code>ERP1FLDO</code>, flags the cursor for the option input field via <code>ENP1OPTL = -1</code>, sends the map with <code>CURSOR</code>, and returns with transaction ID <code>SSP1</code> to wait for valid user input.</li>
+</ol>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a></li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a></li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a></li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a></li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a>
+<ul>
+<li class="toc-level-3"><a href="#71-user-interface-and-input-validation-constraints">7.1 User Interface and Input Validation Constraints</a></li>
+<li class="toc-level-3"><a href="#72-communication-area-commarea-interface-constraints">7.2 Communication Area (COMMAREA) Interface Constraints</a></li>
+<li class="toc-level-3"><a href="#73-transaction-flow-and-execution-sequencing-constraints">7.3 Transaction Flow and Execution Sequencing Constraints</a></li>
+<li class="toc-level-3"><a href="#74-cics-condition-and-attention-identifier-aid-constraints">7.4 CICS Condition and Attention Identifier (AID) Constraints</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-inquire-motor-policy-details-option-1">9.1 Example 1: Inquire Motor Policy Details (Option 1)</a>
+<ul>
+<li class="toc-level-4"><a href="#911-input-data">9.1.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#912-expected-output">9.1.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#913-explanation">9.1.3 Explanation</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#92-example-2-add-new-motor-policy-option-2">9.2 Example 2: Add New Motor Policy (Option 2)</a>
+<ul>
+<li class="toc-level-4"><a href="#921-input-data">9.2.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#922-expected-output">9.2.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#923-explanation">9.2.3 Explanation</a></li>
+</ul>
+</li>
+<li class="toc-level-3"><a href="#93-example-3-invalid-menu-option-handling">9.3 Example 3: Invalid Menu Option Handling</a>
+<ul>
+<li class="toc-level-4"><a href="#931-input-data">9.3.1 Input Data</a></li>
+<li class="toc-level-4"><a href="#932-expected-output">9.3.2 Expected Output</a></li>
+<li class="toc-level-4"><a href="#933-explanation">9.3.3 Explanation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGTESTP1</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

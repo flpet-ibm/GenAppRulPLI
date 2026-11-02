@@ -1,0 +1,1478 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGICVS01</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link active">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>LGICVS01 is a CICS customer-inquiry routine in the General Insurance application. It returns a valid, existing customer number that the caller can use for inquiry or testing. It gets the allowed range of customer numbers from the shared GENACNTL temporary storage queue. If the queue or its low and high entries don’t exist, it creates them with default boundaries. It picks a pseudo-random number within that range and reads the KSDSCUST customer VSAM file for the nearest key at or above that number, so the result is a real customer record. It then returns the customer number in one of two ways. A calling program that used LINK or a similar call gets it in the communication area. A transaction started from a terminal gets it as text on the screen.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<h3 id="21-communication-area-parameters" tabindex="-1">2.1 Communication Area Parameters</h3>
+<ul>
+<li><code>COMM_AREA_PTR</code>
+<ul>
+<li>A pointer parameter passed to the program entry point representing the address of the caller-supplied communication area (<code>COMMA_DATA</code>).</li>
+</ul>
+</li>
+<li><code>COMMA_DATA</code>
+<ul>
+<li>A based communication area structure mapped via <code>COMM_AREA_PTR</code> used when the program is invoked through a program link (<code>EXEC CICS LINK</code>).</li>
+<li><code>COMMA_DATA_H</code>: A 14-character header field within the communication area providing descriptive header information or label data.</li>
+<li><code>COMMA_DATA_HIGH</code>: A 10-digit numeric field in the communication area used to pass customer search data.</li>
+<li><code>COMMA_DATA_FILL</code>: A 60-character filler field within the input structure.</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-cics-system-fields-and-environment-indicators" tabindex="-1">2.2 CICS System Fields and Environment Indicators</h3>
+<ul>
+<li><code>EIBTASKN</code>
+<ul>
+<li>The CICS Execute Interface Block task number, supplied by the runtime environment and used as a seed value for generating pseudo-random customer numbers.</li>
+</ul>
+</li>
+<li><code>EIBCALEN</code>
+<ul>
+<li>The CICS Execute Interface Block communication area length, providing the size of the passed communication area to determine input data length.</li>
+</ul>
+</li>
+<li><code>WS_STARTCODE</code>
+<ul>
+<li>A 2-character field populated via <code>EXEC CICS ASSIGN STARTCODE</code> indicating how the transaction was initiated (e.g., direct terminal invocation vs. distributed/linked call).</li>
+</ul>
+</li>
+<li><code>WS_INVOKEPROG</code>
+<ul>
+<li>An 8-character field populated via <code>EXEC CICS ASSIGN INVOKINGPROG</code> holding the name of the calling program, used to evaluate whether the program was called via <code>EXEC CICS LINK</code>.</li>
+</ul>
+</li>
+<li><code>WS_SYSID</code>
+<ul>
+<li>A 4-character field populated via <code>EXEC CICS ASSIGN SYSID</code> identifying the local CICS system identifier.</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-terminal-user-inputs" tabindex="-1">2.3 Terminal User Inputs</h3>
+<ul>
+<li><code>WS_RECV</code>
+<ul>
+<li>A record buffer populated via <code>EXEC CICS RECEIVE</code> containing raw terminal input when the transaction is run directly from a 3270 terminal.</li>
+<li><code>WS_RECV_TRANID</code>: A 5-character field holding the transaction identifier entered by the user.</li>
+<li><code>WS_RECV_DATA</code>: A 74-character field holding any user-supplied payload or screen data following the transaction identifier.</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-external-data-stores-and-queues" tabindex="-1">2.4 External Data Stores and Queues</h3>
+<ul>
+<li><code>STSQ_NAME</code> (<code>GENACNTL</code>)
+<ul>
+<li>A CICS Temporary Storage Queue named <code>GENACNTL</code> containing shared control records that supply the valid customer range boundaries.</li>
+<li><code>READ_MSG</code>: Target buffer structure populated by <code>EXEC CICS READQ TS</code> into overlay fields:
+<ul>
+<li><code>READ_CUST_LOW</code>: 10-digit numeric picture field holding the low customer boundary read from the queue.</li>
+<li><code>READ_CUST_HIGH</code>: 10-digit numeric picture field holding the high customer boundary read from the queue.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>KSDSCUST</code>
+<ul>
+<li>The VSAM Key-Sequenced Data Set (KSDS) holding customer master records, accessed via <code>EXEC CICS READ FILE('KSDSCUST') GTEQ</code> using a generic or exact search key.</li>
+<li><code>CA_AREA</code>: Record buffer mapped over the retrieved VSAM record.
+<ul>
+<li><code>CA_CUSTOMER_NUM</code>: 10-character customer identification number read directly from the VSAM dataset.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<h3 id="31-communication-area-outputs" tabindex="-1">3.1 Communication Area Outputs</h3>
+<ul>
+<li><code>COMMA_DATA</code>: Communication area data structure passed back to the calling program when invoked via program link or distributed program call.
+<ul>
+<li><code>COMMA_DATA_H</code>: Character header field populated with descriptive label text (<code>HIGH CUSTOMER=</code>) identifying the returned customer information.</li>
+<li><code>COMMA_DATA_HIGH</code>: Numeric picture field holding the retrieved customer identification number passed back to the caller.</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-terminal-outputs" tabindex="-1">3.2 Terminal Outputs</h3>
+<ul>
+<li><code>WRITE_MSG</code>: Structured record buffer used for terminal display output.
+<ul>
+<li><code>WRITE_MSG_H</code>: Header label (<code>HIGH CUSTOMER=</code>) sent as part of the terminal message display when the program is executed directly via transaction.</li>
+<li><code>WRITE_MSG_HIGH</code>: Customer identifier value appended immediately after the header text in the formatted terminal text output.</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-temporary-storage-queue-outputs" tabindex="-1">3.3 Temporary Storage Queue Outputs</h3>
+<ul>
+<li><code>STSQ_NAME</code>: Target CICS Temporary Storage Queue name (<code>GENACNTL</code>) written to when initializing missing customer control records.
+<ul>
+<li><code>WRITE_MSG_E</code>: Eyecatcher header record written to item 1 of the temporary storage queue to initialize the queue if not already present.</li>
+<li><code>WRITE_MSG_L</code>: Control record containing the low customer boundary label and initial numeric limit written to the temporary storage queue.</li>
+<li><code>WRITE_MSG_H</code>: Control record containing the high customer boundary label and initial numeric limit written to the temporary storage queue.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<h3 id="41-mermaid-flow-diagram" tabindex="-1">4.1 Mermaid Flow Diagram</h3>
+<div class="mermaid">
+graph TD
+    A([Start LGICVS01]) --> B[Clear receive area]
+    B --> C[Assign SYSID, STARTCODE and INVOKINGPROG]
+    C --> D{Started by LINK or invoking program present}
+    D -- Yes --> E[Set flag to C for COMMAREA<br>Copy header and set length from EIBCALEN]
+    D -- No --> F[Receive terminal input<br>Set flag to R and reduce length by 5]
+    E --> G[Initialize low and high to 1000001<br>Set queue flags to Y]
+    F --> G
+    G --> H[Enqueue on GENACNTL resource]
+    H --> I[Read TS queue item 1]
+    I --> J{Read response normal}
+    J -- No --> P[Keep defaults and flags]
+    J -- Yes --> K[Clear eyecatcher flag]
+    K --> L[Read next TS queue item]
+    L --> M{Record starts with LOW CUSTOMER}
+    M -- Yes --> M1[Set low value and clear low flag]
+    M -- No --> N{Record starts with HIGH CUSTOMER}
+    M1 --> N
+    N -- Yes --> N1[Set high value and clear high flag]
+    N -- No --> O{Response greater than 0}
+    N1 --> O
+    O -- No --> L
+    O -- Yes --> P
+    P --> Q[Move low and high to message record]
+    Q --> R{Eyecatcher flag is Y}
+    R -- Yes --> R1[Write eyecatcher record to TS queue]
+    R -- No --> S{Low flag is Y}
+    R1 --> S
+    S -- Yes --> S1[Write LOW CUSTOMER record to TS queue]
+    S -- No --> T{High flag is Y}
+    S1 --> T
+    T -- Yes --> T1[Write HIGH CUSTOMER record to TS queue]
+    T -- No --> U[Dequeue GENACNTL resource]
+    T1 --> U
+    U --> V[Compute random customer number between low and high]
+    V --> W[Store random number as search key]
+    W --> X[Read KSDSCUST file with GTEQ]
+    X --> Y{Read response normal}
+    Y -- Yes --> Y1[Replace key with actual customer number found]
+    Y -- No --> Z{Flag is C}
+    Y1 --> Z
+    Y -- No --> Z
+    Z -- Yes --> Z1[Return header and customer number in COMMAREA<br>Blank the filler]
+    Z -- No --> Z2[Send customer text to terminal<br>Erase screen and free keyboard]
+    Z1 --> END1[CICS RETURN]
+    Z2 --> END1
+    END1 --> END2([End])
+
+    classDef start fill:#d5f5e3,stroke:#82c99a,color:#000;
+    classDef process fill:#d6eaf8,stroke:#85a9d6,color:#000;
+    classDef decision fill:#fdebd0,stroke:#e0b080,color:#000;
+    classDef io fill:#e8daef,stroke:#b39ac9,color:#000;
+
+    class A,END2 start;
+    class B,C,E,G,K,M1,N1,P,Q,V,W,Y1,Z1 process;
+    class D,J,M,N,O,R,S,T,Y,Z decision;
+    class F,H,I,L,R1,S1,T1,U,X,Z2,END1 io;
+</div>
+<h3 id="42-processing-logic-description" tabindex="-1">4.2 Processing Logic Description</h3>
+<p><strong>High-level Summary</strong></p>
+<p>LGICVS01 is a CICS PL/I program that returns a real customer number from the KSDSCUST VSAM file. It reads the customer number range (low and high) from the GENACNTL temporary storage queue. If the queue or any of its records are missing, it creates them with defaults. It then picks a random number inside the range and reads KSDSCUST with GTEQ to find the nearest existing customer key. The caller gets the result in the COMMAREA (LINK or program invocation). A terminal-started transaction gets it as a text screen.</p>
+<p><strong>Execution Flow</strong></p>
+<ol>
+<li><strong>Initialization</strong>: The program clears the receive work area. It then issues three CICS ASSIGN calls to get the SYSID, STARTCODE and INVOKINGPROG. Their responses are stored in WS_RESP but not checked.</li>
+<li><strong>Determine invocation mode</strong>:
+<ul>
+<li>If the first character of the start code is ‘D’ (a program-initiated start) or an invoking program name is present, the caller used LINK or a program call. The flag is set to ‘C’ (COMMAREA). The header is copied from the COMMAREA and the length is set from EIBCALEN.</li>
+<li>Otherwise the program was started from a terminal. It does a CICS RECEIVE into WS_RECV and sets the flag to ‘R’. It copies the data portion and reduces the length by 5 for the transaction ID.</li>
+</ul>
+</li>
+<li><strong>Set defaults</strong>: WS_CUST_LOW and WS_CUST_HIGH are both set to 1000001. The three queue flags (eyecatcher, low, high) are all set to ‘Y’, meaning the record must be written.</li>
+<li><strong>Serialize</strong>: The program issues ENQ on the resource name GENACNTL, so concurrent tasks cannot update the queue at the same time.</li>
+<li><strong>Read the TS queue</strong>: It reads item 1 of queue GENACNTL.
+<ul>
+<li>If the response is not NORMAL, the queue is treated as missing and the defaults and ‘Y’ flags remain.</li>
+<li>If the response is NORMAL, the eyecatcher flag is cleared. A loop then reads the next items until a response greater than 0 occurs (end of queue or any error):
+<ul>
+<li>A record starting with <code>LOW CUSTOMER</code> sets WS_CUST_LOW from the numeric overlay and clears the low flag.</li>
+<li>A record starting with <code>HIGH CUSTOMER</code> sets WS_CUST_HIGH from the numeric overlay and clears the high flag.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Prepare message values</strong>: The low and high values are moved into WRITE_MSG_LOW and WRITE_MSG_HIGH.</li>
+<li><strong>Create missing queue records</strong> (written with NOSUSPEND):
+<ul>
+<li>If the eyecatcher flag is ‘Y’, it writes <code>**** GENAPP CNTL</code> (20 bytes).</li>
+<li>If the low flag is ‘Y’, it writes the <code>LOW CUSTOMER=</code> record (23 bytes).</li>
+<li>If the high flag is ‘Y’, it writes the <code>HIGH CUSTOMER=</code> record (24 bytes).</li>
+</ul>
+</li>
+<li><strong>Release</strong>: The program issues DEQ on GENACNTL.</li>
+<li><strong>Random selection</strong>: It computes <code>FLOOR(RANDOM(EIBTASKN) * (HIGH - LOW) + LOW)</code>. This gives a pseudo-random customer number in the range, seeded by the task number. The result is stored in WS_RANDOM_NUMBER and moved into WRITE_MSG_HIGH, which is the search key.</li>
+<li><strong>VSAM read</strong>: It does a CICS READ of file KSDSCUST with GTEQ, a 10-byte key, and a record length of 225. The data goes into CA_AREA.
+<ul>
+<li>If the response is NORMAL, WRITE_MSG_HIGH is replaced with the real customer number found (CA_CUSTOMER_NUM).</li>
+<li>If it is not NORMAL, for example NOTFND, the random number stays as the result. There is no explicit error handling.</li>
+</ul>
+</li>
+<li><strong>Return the result</strong>:
+<ul>
+<li>Flag ‘C’: the program fills the COMMAREA with the header (<code>HIGH CUSTOMER=</code>), the customer number, and 60 blanks.</li>
+<li>Otherwise: the program sends a 24-byte text (the header only, WRITE_MSG_H) to the terminal with WAIT, ERASE, TERMINAL and FREEKB.</li>
+</ul>
+</li>
+<li><strong>End</strong>: CICS RETURN ends the task.</li>
+</ol>
+<p><strong>Business rules and observations</strong></p>
+<ul>
+<li>The default customer range is 1000001 to 1000001 when the queue is absent.</li>
+<li>The ENQ/DEQ pair protects only the queue read and create section. It does not cover the random selection or the VSAM read.</li>
+<li>RESP values from the ASSIGN, RECEIVE, WRITEQ and READ commands are not checked, except for the TS queue reads and the KSDSCUST read.</li>
+<li>The terminal output is <code>WRITE_MSG_H</code> with a length of 24. This is the label field followed by the 10-digit value that follows it in the structure.</li>
+</ul>
+<p><strong>External Interactions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Type</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GENACNTL</td>
+<td>CICS TS queue</td>
+<td>Stores the eyecatcher, LOW CUSTOMER and HIGH CUSTOMER range records. Read at the start and created with defaults if missing.</td>
+</tr>
+<tr>
+<td>GENACNTL</td>
+<td>ENQ/DEQ resource</td>
+<td>Serializes access to the queue during read and initialization.</td>
+</tr>
+<tr>
+<td>KSDSCUST</td>
+<td>VSAM KSDS file</td>
+<td>Customer master file, read by GTEQ to find an existing customer number at or after the random key.</td>
+</tr>
+<tr>
+<td>COMMAREA</td>
+<td>Caller interface</td>
+<td>Returns the customer number to LINK callers.</td>
+</tr>
+<tr>
+<td>Terminal</td>
+<td>3270 screen</td>
+<td>Displays the result for terminal-started transactions, using CICS RECEIVE and SEND TEXT.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Plain Language Summary</strong></p>
+<p>The program picks a customer number at random for testing or demonstration. It looks up a shared control list, which holds the smallest and largest customer numbers allowed. If that list doesn’t exist yet, it creates one with a default value. It then chooses a random number between the two limits and finds the nearest real customer in the customer file. The customer number is handed back to the calling program, or shown on the screen if a person started the transaction.</p>
+<h3 id="43-database-tables" tabindex="-1">4.3 Database Tables</h3>
+<div class="mermaid">
+erDiagram
+    KSDSCUST {
+        string CUSTOMER_NUM "length 10, key"
+        string CUSTOMER_DATA "length 215"
+    }
+    TSQ_GENACNTL {
+        string EYECATCHER "length 20"
+        string LOW_CUSTOMER_LABEL "length 13"
+        string LOW_CUSTOMER_VALUE "length 10"
+        string HIGH_CUSTOMER_LABEL "length 14"
+        string HIGH_CUSTOMER_VALUE "length 10"
+    }
+    COMMAREA {
+        string HEADER "length 14"
+        string CUSTOMER_NUM "length 10"
+        string FILLER "length 60"
+    }
+    KSDSCUST ||--o{ TSQ_GENACNTL : "range limits for key selection"
+    COMMAREA ||--|| KSDSCUST : "returns selected key"
+</div>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li><strong>LGICVS01</strong>
+<ul>
+<li><strong>Purpose:</strong> Serves as the main procedure entry point for the customer inquiry VSAM transaction/program. It determines the invocation method, initializes or retrieves low and high customer boundary numbers from a CICS Temporary Storage Queue (TSQ), selects a random customer number within that range, retrieves the matching or next available customer record from a VSAM KSDS data set, and returns the result via COMMAREA or terminal output.</li>
+<li><strong>Operations:</strong>
+<ul>
+<li>Queries execution environment attributes including system ID (<code>SYSID</code>), start code (<code>STARTCODE</code>), and invoking program (<code>INVOKINGPROG</code>).</li>
+<li>Handles input by either establishing COMMAREA addressing or receiving screen/terminal input data.</li>
+<li>Serializes access to TSQ <code>GENACNTL</code> using CICS ENQ/DEQ commands.</li>
+<li>Reads customer range boundaries (<code>LOW CUSTOMER</code> and <code>HIGH CUSTOMER</code>) from TSQ <code>GENACNTL</code>.</li>
+<li>If TSQ entries are missing, initializes default customer boundary records (1000001) and writes them to the TSQ.</li>
+<li>Generates a pseudo-random customer key between the low and high customer boundaries using <code>RANDOM(EIBTASKN)</code>.</li>
+<li>Performs a generic or greater-than-or-equal (<code>GTEQ</code>) keyed read against the VSAM file <code>KSDSCUST</code>.</li>
+<li>Formats and returns the retrieved customer number into the caller’s COMMAREA structure or transmits it as formatted text directly to the CICS terminal screen.</li>
+<li>Concludes execution and returns control to CICS.</li>
+</ul>
+</li>
+<li><strong>Control Flow:</strong>
+<ul>
+<li>Evaluates <code>WS_STARTCODE</code> and <code>WS_INVOKEPROG</code> via an <code>IF-THEN-ELSE</code> block to branch between CICS LINK/COMMAREA processing mode (<code>'C'</code>) and terminal transaction RECEIVE mode (<code>'R'</code>).</li>
+<li>Uses an <code>IF</code> block checking the first TSQ read response code (<code>DFHRESP(NORMAL)</code>), followed by a <code>DO UNTIL (WS_RESP &gt; 0)</code> loop reading sequential queue items with embedded <code>IF</code> conditions to parse low and high customer identifiers.</li>
+<li>Uses conditional <code>IF</code> blocks checking flags (<code>WS_FLAG_TSQE</code>, <code>WS_FLAG_TSQL</code>, <code>WS_FLAG_TSQH</code>) to selectively insert missing queue entries.</li>
+<li>Uses an <code>IF</code> check on the VSAM <code>READ</code> response code to update the high message value with the retrieved <code>CA_CUSTOMER_NUM</code>.</li>
+<li>Uses a <code>SELECT-WHEN-OTHERWISE</code> block on <code>WS_FLAG</code> to route the final output to either the COMMAREA buffer or the terminal screen via <code>EXEC CICS SEND TEXT</code>.</li>
+</ul>
+</li>
+<li><strong>Interactions with External Systems:</strong>
+<ul>
+<li>CICS CICS control commands: <code>EXEC CICS ASSIGN</code>, <code>EXEC CICS RECEIVE</code>, <code>EXEC CICS ENQ</code>, <code>EXEC CICS DEQ</code>, <code>EXEC CICS SEND TEXT</code>, and <code>EXEC CICS RETURN</code>.</li>
+<li>CICS Temporary Storage: <code>EXEC CICS READQ TS</code> and <code>EXEC CICS WRITEQ TS</code> operations against TSQ <code>GENACNTL</code>.</li>
+<li>VSAM data set: <code>EXEC CICS READ FILE('KSDSCUST')</code> with <code>GTEQ</code> key searching against the customer master file.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<ul>
+<li>
+<p><strong>Files and data sets</strong></p>
+<ul>
+<li>VSAM KSDS file <code>KSDSCUST</code>
+<ul>
+<li>It is the customer master file, read through <code>EXEC CICS READ FILE('KSDSCUST')</code>.</li>
+<li>The read is a GTEQ search with a 10-byte key. The key is <code>RIDFLD(WRITE_MSG_HIGH)</code> with <code>KEYLENGTH(F10)</code>. The program uses it to find the nearest existing customer number to the random target.</li>
+<li>The record goes into the <code>CA_AREA</code> buffer, with <code>LENGTH(F82)</code>, which is initialised to 225. <code>CA_CUSTOMER_NUM</code> is the first 10 bytes of the record and is the value returned.</li>
+<li>The file must be defined in the CICS CSD (<code>Resources/</code>) and be open and enabled.</li>
+<li>The program reads <code>RESP</code> from <code>WS_RESP</code> and uses the record only when the response is <code>DFHRESP(NORMAL)</code>. Otherwise it keeps the randomly generated number.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS temporary storage queue</strong></p>
+<ul>
+<li>TS queue <code>GENACNTL</code>, held in <code>STSQ_NAME</code>
+<ul>
+<li>It stores the customer number range shared across transactions and tasks.</li>
+<li>It holds three kinds of record:
+<ul>
+<li>An eyecatcher record, <code>**** GENAPP CNTL</code>.</li>
+<li>A <code>LOW CUSTOMER=</code> record.</li>
+<li>A <code>HIGH CUSTOMER=</code> record.</li>
+</ul>
+</li>
+<li><code>READQ TS ITEM(1)</code> and <code>READQ TS NEXT</code> load the records into <code>READ_MSG</code>. <code>READ_CUST_LOW</code> and <code>READ_CUST_HIGH</code> parse the values into <code>WS_CUST_LOW</code> and <code>WS_CUST_HIGH</code>.</li>
+<li><code>WRITEQ TS ... NOSUSPEND</code> creates any missing record from <code>WRITE_MSG_E</code>, <code>WRITE_MSG_L</code> and <code>WRITE_MSG_H</code>. The flags <code>WS_FLAG_TSQE</code>, <code>WS_FLAG_TSQL</code> and <code>WS_FLAG_TSQH</code> decide which records to write.</li>
+<li>The queue needs a TS model or definition that permits it. It must be created on first use if it does not exist.</li>
+</ul>
+</li>
+<li>ENQ/DEQ on the resource named by <code>STSQ_NAME</code>
+<ul>
+<li><code>EXEC CICS ENQ</code> and <code>DEQ</code> with <code>LENGTH(STG(STSQ_NAME))</code> serialise access to the queue.</li>
+<li>This avoids races between concurrent tasks that read and initialise the range.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Input parameters and data sources</strong></p>
+<ul>
+<li>Caller <code>COMMAREA</code>, passed as <code>COMM_AREA_PTR</code>
+<ul>
+<li>It is mapped by the based structure <code>COMMA_DATA</code>, which has <code>COMMA_DATA_H</code>, <code>COMMA_DATA_HIGH</code> and <code>COMMA_DATA_FILL</code>.</li>
+<li>It is used when the program is invoked by LINK or by a program-initiated start. The program tests this with <code>STARTCODE</code> beginning with <code>D</code>, or with a non-blank invoking program.</li>
+<li>It is also the output channel. The program writes the header label and the selected customer number into it for the caller.</li>
+<li><code>EIBCALEN</code> supplies the COMMAREA length, and is copied into <code>WS_RECV_LEN</code>.</li>
+</ul>
+</li>
+<li>Terminal input via <code>EXEC CICS RECEIVE INTO(WS_RECV)</code>
+<ul>
+<li>It is used when the program is started directly as a transaction from a terminal.</li>
+<li>The data lands in <code>WS_RECV</code>, which has <code>WS_RECV_TRANID</code> and <code>WS_RECV_DATA</code>. <code>WS_RECV_LEN</code> receives the length.</li>
+</ul>
+</li>
+<li>Execute Interface Block (EIB) fields
+<ul>
+<li><code>EIBCALEN</code> gives the COMMAREA length.</li>
+<li><code>EIBTASKN</code> is the task number, used as the seed for <code>RANDOM</code>.</li>
+</ul>
+</li>
+<li>Default range values
+<ul>
+<li><code>WS_CUST_LOW</code> and <code>WS_CUST_HIGH</code> both default to <code>1000001</code>. They are used when the TS queue is missing or lacks the range records.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS runtime services</strong></p>
+<ul>
+<li><code>EXEC CICS ASSIGN</code>
+<ul>
+<li><code>SYSID</code>, <code>STARTCODE</code> and <code>INVOKINGPROG</code> are retrieved to decide how the program was started.</li>
+<li>These values set <code>WS_FLAG</code> to <code>C</code> (commarea) or <code>R</code> (receive).</li>
+</ul>
+</li>
+<li><code>EXEC CICS SEND TEXT</code>
+<ul>
+<li>It sends <code>WRITE_MSG_H</code> to the terminal, with <code>ERASE</code>, <code>WAIT</code>, <code>FREEKB</code> and <code>LENGTH(24)</code>.</li>
+<li>It is used in the non-COMMAREA path, which needs a terminal.</li>
+</ul>
+</li>
+<li><code>EXEC CICS RETURN</code>
+<ul>
+<li>It ends the transaction and returns control to the caller or CICS.</li>
+</ul>
+</li>
+<li><code>DFHRESP(NORMAL)</code>
+<ul>
+<li>It is the response-code translation used to test the outcome of <code>READQ TS</code> and <code>READ</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Language runtime and built-in functions</strong></p>
+<ul>
+<li>PL/I built-ins <code>RANDOM</code>, <code>FLOOR</code>, <code>FLOAT</code>, <code>SUBSTR</code> and <code>STG</code>
+<ul>
+<li><code>RANDOM(EIBTASKN)</code> and <code>FLOOR</code> produce the random customer number between the low and high range boundaries.</li>
+<li><code>STG</code> provides the length of the ENQ/DEQ resource name.</li>
+</ul>
+</li>
+<li>The <code>Options(Main)</code> entry point with the <code>Proc(COMM_AREA_PTR)</code> parameter
+<ul>
+<li>It follows the CICS PL/I convention for passing the COMMAREA pointer.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>External programs and callers</strong></p>
+<ul>
+<li>No <code>CALL</code> or <code>EXEC CICS LINK</code> to other programs.</li>
+<li>The program is called by other programs through LINK, or started as a transaction from a terminal. In the GenApp architecture its callers are the customer-add programs, such as <code>LGACDB01</code> and <code>LGACVS01</code>.</li>
+<li>No <code>%INCLUDE</code> or <code>EXEC SQL INCLUDE</code> members are used. All data structures are declared locally.</li>
+</ul>
+</li>
+<li>
+<p><strong>Database dependencies</strong></p>
+<ul>
+<li>There are no Db2 or SQL dependencies. The program contains no <code>EXEC SQL</code> statements.</li>
+</ul>
+</li>
+<li>
+<p><strong>Configuration and environment</strong></p>
+<ul>
+<li>A CICS region is required.
+<ul>
+<li>It must have the transaction and program definitions for <code>LGICVS01</code>.</li>
+<li>It must have the <code>KSDSCUST</code> file definition.</li>
+<li>It must allow TS queue creation and use for <code>GENACNTL</code>.</li>
+<li>It must support ENQ resources.</li>
+</ul>
+</li>
+<li>The build is through zAppBuild.
+<ul>
+<li>The compile uses <code>SYSTEM(CICS)</code> and <code>PP(MACRO,CICS)</code>.</li>
+<li>The program deploys as <code>CICSLOAD</code>.</li>
+</ul>
+</li>
+<li>There are no environment variables or external configuration files.</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<p>I have successfully read the entire PL/I program <code>LGICVS01.pli</code>. Now let’s analyze it thoroughly to extract all constraints, validation rules, dependencies, and formatting behaviors.</p>
+<p>Let’s break down the logic of the program to understand every constraint enforced or implied.</p>
+<h3 id="71-program-calling-context-and-invocation-constraints" tabindex="-1">7.1 Program Calling Context and Invocation Constraints</h3>
+<ul>
+<li><strong>Calling Context / Modes</strong>:
+<ul>
+<li>The program can be invoked via standard LINK (with COMMAREA / pointer COMM_AREA_PTR) or directly via a Transaction (terminal invocation with <code>RECEIVE</code>).</li>
+<li>This is controlled by checking CICS assign parameters:<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">EXEC CICS ASSIGN STARTCODE(WS_STARTCODE) RESP(WS_RESP);
+    EXEC CICS ASSIGN INVOKINGPROG(WS_INVOKEPROG) RESP(WS_RESP);</code></pre>
+</div>
+If <code>SUBSTR(WS_STARTCODE,1,1) = 'D'</code> (which corresponds to Distributed Program Link, or a transaction invocation with COMMAREA, etc.) or <code>WS_INVOKEPROG ^= ' '</code> (meaning it was called by another program, i.e., linked to), then <code>WS_FLAG</code> is set to <code>'C'</code> (indicating COMMAREA mode).
+In this COMMAREA mode:
+<ul>
+<li><code>WS_COMMAREA</code> is assigned <code>COMMA_DATA_H</code>.</li>
+<li><code>WS_RECV_LEN</code> is set to <code>EIBCALEN</code>.</li>
+<li>It maps its return data directly over the caller’s COMMAREA via the pointer <code>COMM_AREA_PTR</code> (<code>COMMA_DATA BASED(COMM_AREA_PTR)</code>).
+Otherwise (not called by another program / not DPL, implying a terminal transaction call):</li>
+<li>It performs <code>EXEC CICS RECEIVE INTO(WS_RECV) LENGTH(WS_RECV_LEN) RESP(WS_RESP);</code>.</li>
+<li><code>WS_FLAG</code> is set to <code>'R'</code>.</li>
+<li><code>WS_COMMAREA</code> is set to <code>WS_RECV_DATA</code>.</li>
+<li><code>WS_RECV_LEN</code> is adjusted (<code>WS_RECV_LEN = WS_RECV_LEN - 5;</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="72-temporary-storage-queue-tsq-constraints" tabindex="-1">7.2 Temporary Storage Queue (TSQ) Constraints</h3>
+<ul>
+<li><strong>TSQ Name</strong>:
+<ul>
+<li>The name is defined as <code>'GENACNTL'</code>. It can also have a 4-character extension <code>STSQ_EXT</code> which, however, does not appear to be initialized or appended in this specific code (only <code>STSQ_NAME</code> is used in CICS TSQ commands: <code>EXEC CICS READQ TS QUEUE(STSQ_NAME)...</code>). Thus, the TSQ name is strictly <code>'GENACNTL'</code> (8 characters).</li>
+</ul>
+</li>
+<li><strong>TSQ Locks / Concurrency</strong>:
+<ul>
+<li>To prevent concurrent read/write race conditions on the TSQ, the program uses CICS ENQUEUE and DEQUEUE:<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">EXEC CICS ENQ RESOURCE(STSQ_NAME) LENGTH(STG(STSQ_NAME));
+    ...
+    EXEC CICS DEQ RESOURCE(STSQ_NAME) LENGTH(STG(STSQ_NAME));</code></pre>
+</div>
+This serializes execution across multiple tasks accessing the same <code>GENACNTL</code> queue.</li>
+</ul>
+</li>
+<li><strong>TSQ Layout &amp; Record Sequencing Constraints</strong>:
+<ul>
+<li>The queue stores control records. When reading from item 1:
+<ul>
+<li>If the TSQ does not exist (<code>WS_RESP</code> is not <code>NORMAL</code>), the program initializes boundaries and prepares to write them.</li>
+<li>If the TSQ exists (<code>WS_RESP = DFHRESP(NORMAL)</code>), the program reads subsequent items sequentially in a loop:<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">DO UNTIL (WS_RESP &gt; 0);
+        EXEC CICS READQ TS QUEUE(STSQ_NAME) INTO(READ_MSG) RESP(WS_RESP) NEXT;</code></pre>
+</div>
+<ul>
+<li>Inside this loop, if the record starts with <code>'LOW CUSTOMER'</code>, it extracts <code>READ_CUST_LOW</code> from the record:
+<code>WS_CUST_LOW  = READ_CUST_LOW;</code></li>
+<li>If the record starts with <code>'HIGH CUSTOMER'</code>, it extracts <code>READ_CUST_HIGH</code> from the record:
+<code>WS_CUST_HIGH = READ_CUST_HIGH;</code></li>
+</ul>
+</li>
+<li>The record layouts (or offsets within <code>READ_MSG</code>) are critical structural constraints:<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">DCL 1  READ_MSG UNION,                                                       
+            3 READ_MSG_MSG             CHAR(80) INIT(&#039; &#039;),                         
+            3 *,                                                                   
+              5 *                      CHAR(13),                                   
+              5 READ_CUST_LOW          PIC &#039;(10)9&#039;,                                
+            3 *,                                                                   
+              5 *                      CHAR(14),                                   
+              5 READ_CUST_HIGH         PIC &#039;(10)9&#039;;</code></pre>
+</div>
+This means:
+<ul>
+<li>The <code>LOW CUSTOMER</code> value is a 10-digit numeric picture (<code>PIC '(10)9'</code>) located starting at byte 14 (after 13 characters of label <code>'LOW CUSTOMER='</code>).</li>
+<li>The <code>HIGH CUSTOMER</code> value is a 10-digit numeric picture (<code>PIC '(10)9'</code>) located starting at byte 15 (after 14 characters of label <code>'HIGH CUSTOMER='</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Default/Fallback values for Customer Boundaries</strong>:
+<ul>
+<li>If TSQ records are not found or do not exist, both <code>WS_CUST_LOW</code> and <code>WS_CUST_HIGH</code> default to <code>1000001</code> (since they are initialized to <code>1000001</code> and only updated if the corresponding record is read).</li>
+</ul>
+</li>
+<li><strong>TSQ Creation/Persistence Constraints</strong>:
+<ul>
+<li>If the TSQ does not exist, or specific headers/records are missing, they are written to the TSQ with <code>NOSUSPEND</code> option (preventing the transaction from suspending if the TSQ is full or locked by another system-level limit):
+<ul>
+<li>Header: <code>&quot;**** GENAPP CNTL&quot;</code>, written with length 20 (from <code>WRITE_MSG_E</code> which is <code>CHAR(20)</code>).</li>
+<li>Low Record: <code>&quot;LOW CUSTOMER=&quot;</code> followed by the value, written with length 23 (from <code>WRITE_MSG_L</code> which is <code>CHAR(13)</code> plus <code>WRITE_MSG_LOW</code> which is <code>CHAR(10)</code>).</li>
+<li>High Record: <code>&quot;HIGH CUSTOMER=&quot;</code> followed by the value, written with length 24 (from <code>WRITE_MSG_H</code> which is <code>CHAR(14)</code> plus <code>WRITE_MSG_HIGH</code> which is <code>PIC '(10)9'</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="73-key-generation-and-random-number-constraints" tabindex="-1">7.3 Key Generation and Random Number Constraints</h3>
+<ul>
+<li><strong>Key Generation Logic</strong>:
+<ul>
+<li>The program selects a random customer number between <code>WS_CUST_LOW</code> and <code>WS_CUST_HIGH</code> inclusive.</li>
+<li>The random calculation uses:<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">WS_RANDOM_NUMBER = FLOOR(RANDOM(EIBTASKN) * FLOAT(WS_CUST_HIGH - WS_CUST_LOW) + WS_CUST_LOW);</code></pre>
+</div>
+<ul>
+<li>The seed for the pseudo-random generator <code>RANDOM</code> is <code>EIBTASKN</code> (the current CICS task number).</li>
+<li>The calculation results in a <code>FIXED BIN(31)</code> integer within the range <code>[WS_CUST_LOW, WS_CUST_HIGH]</code>.</li>
+<li>This integer is assigned to <code>WRITE_MSG_HIGH</code> (which is a <code>PIC '(10)9'</code> field).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="74-vsam-customer-master-file-constraints" tabindex="-1">7.4 VSAM Customer Master File Constraints</h3>
+<ul>
+<li><strong>File Name</strong>:
+<ul>
+<li>The program reads the VSAM dataset <code>'KSDSCUST'</code>.</li>
+</ul>
+</li>
+<li><strong>Search Key Constraint</strong>:
+<ul>
+<li>The search key used is <code>WRITE_MSG_HIGH</code> (which contains the generated random customer number).</li>
+<li>The field <code>WRITE_MSG_HIGH</code> is a numeric picture <code>PIC '(10)9'</code> of length 10.</li>
+<li>The key length (<code>KEYLENGTH</code>) is explicitly specified as <code>F10</code> (which is a fixed bin variable initialized to <code>10</code>).</li>
+</ul>
+</li>
+<li><strong>Read Operation &amp; Search Constraint</strong>:
+<ul>
+<li>The read uses <code>GTEQ</code> (Greater Than or Equal):<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">EXEC CICS READ FILE(&#039;KSDSCUST&#039;)                                              
+              INTO(CA_AREA)                                                      
+              LENGTH(F82)                                                        
+              RIDFLD(WRITE_MSG_HIGH)                                             
+              KEYLENGTH(F10)                                                     
+              RESP(WS_RESP)                                                      
+              GTEQ;</code></pre>
+</div>
+<ul>
+<li>This means the program does not require an exact match. It looks for the first record with a key <em>greater than or equal to</em> the randomly generated customer number.</li>
+<li>If a record is found (<code>WS_RESP = DFHRESP(NORMAL)</code>), the actual customer number retrieved from VSAM (<code>CA_CUSTOMER_NUM</code> from <code>CA_AREA</code>) is assigned to <code>WRITE_MSG_HIGH</code>:
+<code>WRITE_MSG_HIGH = CA_CUSTOMER_NUM;</code></li>
+<li>If no record is found or the read fails (e.g., <code>NOTFND</code>), the program keeps the randomly generated key (<code>WS_RANDOM_NUMBER</code>) in <code>WRITE_MSG_HIGH</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Record Length Constraint</strong>:
+<ul>
+<li>The buffer <code>CA_AREA</code> is used to hold the read customer record.</li>
+<li>The length constraint is <code>F82</code> (initialized to <code>225</code>).</li>
+<li>Structurally, <code>CA_AREA</code> consists of:
+<ul>
+<li><code>CA_CUSTOMER_NUM</code>: <code>CHAR(10)</code> (the 10-byte character field representing the unique customer identifier).</li>
+<li>An anonymous filler: <code>CHAR(215)</code>.</li>
+<li>The total length is exactly <code>10 + 215 = 225</code> bytes, which matches the CICS READ length parameter <code>F82</code> (<code>225</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="75-output-constraints-and-communication-protocols" tabindex="-1">7.5 Output Constraints and Communication Protocols</h3>
+<ul>
+<li><strong>Output Formats Based on Execution Mode</strong>:
+<ul>
+<li><strong>COMMAREA Mode (<code>WS_FLAG = 'C'</code>)</strong>:
+<ul>
+<li>The output is passed back to the caller through the based structure <code>COMMA_DATA</code> mapped via <code>COMM_AREA_PTR</code>:<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">COMMA_DATA_H    = WRITE_MSG_H;                                           
+      COMMA_DATA_HIGH = WRITE_MSG_HIGH;                                        
+      COMMA_DATA_FILL = (60)&#039; &#039;;</code></pre>
+</div>
+<ul>
+<li><code>COMMA_DATA_H</code> is a 14-character field set to <code>&quot;HIGH CUSTOMER=&quot;</code> (derived from <code>WRITE_MSG_H</code>).</li>
+<li><code>COMMA_DATA_HIGH</code> is a 10-digit numeric picture <code>PIC '(10)9'</code> set to the resulting customer number (either the nearest actual customer key retrieved from VSAM, or the random key if the VSAM read was unsuccessful).</li>
+<li><code>COMMA_DATA_FILL</code> is a 60-character space filler.</li>
+<li>The total length of <code>COMMA_DATA</code> is exactly <code>14 + 10 + 60 = 84</code> bytes.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Terminal / Interactive Mode (<code>WS_FLAG ^= 'C'</code>)</strong>:
+<ul>
+<li>The output is sent directly to the invoking terminal:<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">PLI</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code class="language-pli">EXEC CICS SEND TEXT FROM(WRITE_MSG_H)                                    
+                WAIT                                                           
+                ERASE                                                          
+                TERMINAL                                                       
+                LENGTH(24)                                                     
+                FREEKB;</code></pre>
+</div>
+<ul>
+<li>It sends the content of <code>WRITE_MSG_H</code> which contains <code>&quot;HIGH CUSTOMER=&quot;</code> followed by the 10-digit customer number (stored in <code>WRITE_MSG_HIGH</code> overlay/adjacent field).</li>
+<li>Note: In <code>WRITE_MSG</code>, <code>WRITE_MSG_H</code> is declared as <code>CHAR(14) INIT('HIGH CUSTOMER=')</code> followed immediately by <code>WRITE_MSG_HIGH PIC '(10)9'</code>. Since they are consecutive fields inside the <code>WRITE_MSG</code> structure, sending <code>WRITE_MSG_H</code> with a <code>LENGTH(24)</code> effectively sends the 14 characters of <code>&quot;HIGH CUSTOMER=&quot;</code> and the 10 characters of <code>WRITE_MSG_HIGH</code> together.</li>
+<li>The screen is erased (<code>ERASE</code>), the keyboard is unlocked (<code>FREEKB</code>), and the program waits for completion (<code>WAIT</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Let’s double-check all details and format the constraints into logical categories as requested:</p>
+<ul>
+<li>Data validation rules (e.g., required fields, value ranges, formats)</li>
+<li>Conditional restrictions on processing or data flow</li>
+<li>Limits on resource usage (e.g., file size, record count, memory)</li>
+<li>Timing or sequencing constraints (e.g., operations that must occur in a specific order)</li>
+<li>Any other rules that restrict or govern how the program behaves or what inputs/outputs are allowed</li>
+</ul>
+<p>Everything should start with “-” and use proper indentations to reflect hierarchy. Do not use numbered bullet points. Do not add the section heading. The response must start directly with the section body content.</p>
+<p>Let’s organize the categories:</p>
+<h3 id="76-execution-and-inputoutput-mode-constraints" tabindex="-1">7.6 Execution and Input/Output Mode Constraints</h3>
+<ul>
+<li>Mode determination: The program dynamically determines its processing and communication mode (COMMAREA mode or Terminal mode) based on how it is invoked.
+<ul>
+<li>If <code>STARTCODE</code> starts with <code>'D'</code> or <code>INVOKINGPROG</code> is not blank, the program operates in COMMAREA mode (<code>WS_FLAG = 'C'</code>).</li>
+<li>Otherwise, it operates in Terminal mode (<code>WS_FLAG = 'R'</code>), requiring an interactive <code>RECEIVE</code> command.</li>
+</ul>
+</li>
+<li>COMMAREA structural requirements:
+<ul>
+<li>When running in COMMAREA mode, the program maps the return structure to the caller-supplied area using a pointer <code>COMM_AREA_PTR</code>.</li>
+<li>The output structure <code>COMMA_DATA</code> must be exactly 84 bytes, comprising:
+<ul>
+<li><code>COMMA_DATA_H</code>: 14 characters.</li>
+<li><code>COMMA_DATA_HIGH</code>: 10-digit numeric picture (<code>PIC '(10)9'</code>).</li>
+<li><code>COMMA_DATA_FILL</code>: 60 characters.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Terminal output requirements:
+<ul>
+<li>When running in Terminal mode, output is transmitted via <code>EXEC CICS SEND TEXT</code> with a strict length constraint of 24 bytes starting from <code>WRITE_MSG_H</code> (encompassing the 14-byte label <code>&quot;HIGH CUSTOMER=&quot;</code> and the 10-byte customer number value).</li>
+</ul>
+</li>
+</ul>
+<h3 id="77-temporary-storage-queue-tsq-structure-and-concurrency-constraints" tabindex="-1">7.7 Temporary Storage Queue (TSQ) Structure and Concurrency Constraints</h3>
+<ul>
+<li>Queue name validation:
+<ul>
+<li>The TSQ name is strictly hardcoded as <code>'GENACNTL'</code>.</li>
+</ul>
+</li>
+<li>Concurrency control:
+<ul>
+<li>All read and write access to the <code>'GENACNTL'</code> TSQ is wrapped within serialized resource locks via <code>EXEC CICS ENQ</code> and <code>DEQ</code> using the queue name as the resource identifier to prevent race conditions.</li>
+</ul>
+</li>
+<li>Record layout and parsing constraints:
+<ul>
+<li>The program assumes the TSQ contains structured records formatted to fit into an 80-byte message layout (<code>READ_MSG</code> union):
+<ul>
+<li>The <code>LOW CUSTOMER</code> record must start with <code>'LOW CUSTOMER'</code> in its first 12 characters, and its numeric value must reside starting at position 14 as a 10-digit numeric picture (<code>READ_CUST_LOW</code>).</li>
+<li>The <code>HIGH CUSTOMER</code> record must start with <code>'HIGH CUSTOMER'</code> in its first 13 characters, and its numeric value must reside starting at position 15 as a 10-digit numeric picture (<code>READ_CUST_HIGH</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Initialization constraints:
+<ul>
+<li>If the TSQ is empty or missing these records, default values of <code>1000001</code> are enforced for both low and high customer boundaries.</li>
+<li>Write statements to update or create missing boundaries use the <code>NOSUSPEND</code> option, meaning writes fail rather than suspend if CICS resources are exhausted.</li>
+</ul>
+</li>
+</ul>
+<h3 id="78-key-generation-and-numeric-limits" tabindex="-1">7.8 Key Generation and Numeric Limits</h3>
+<ul>
+<li>Range constraints:
+<ul>
+<li>The target customer number to search for is randomly generated within the inclusive range defined by <code>[WS_CUST_LOW, WS_CUST_HIGH]</code>.</li>
+</ul>
+</li>
+<li>Randomization seed dependency:
+<ul>
+<li>The random number generator <code>RANDOM(EIBTASKN)</code> is seeded with the current CICS task number (<code>EIBTASKN</code>), ensuring pseudo-random distribution across unique executions but deterministic behavior within the same task.</li>
+</ul>
+</li>
+</ul>
+<h3 id="79-vsam-file-and-record-constraints" tabindex="-1">7.9 VSAM File and Record Constraints</h3>
+<ul>
+<li>Dataset name:
+<ul>
+<li>All database queries must target the VSAM dataset named <code>'KSDSCUST'</code>.</li>
+</ul>
+</li>
+<li>Search key constraints:
+<ul>
+<li>The search key used in the record lookup (<code>RIDFLD</code>) must be a 10-byte numeric picture field (<code>WRITE_MSG_HIGH</code>).</li>
+<li>The <code>KEYLENGTH</code> is strictly enforced as 10 bytes (defined by <code>F10</code>).</li>
+</ul>
+</li>
+<li>Record retrieval logic:
+<ul>
+<li>The search is performed using the Greater Than or Equal (<code>GTEQ</code>) search option, meaning the program does not require an exact match but rather finds the nearest customer record equal to or above the generated random number.</li>
+</ul>
+</li>
+<li>Record buffer and size limit:
+<ul>
+<li>The buffer into which the VSAM record is read (<code>CA_AREA</code>) must be exactly 225 bytes (defined by <code>F82</code>), partitioned into:
+<ul>
+<li><code>CA_CUSTOMER_NUM</code>: 10-character alphanumeric field at the beginning.</li>
+<li>Filler: 215-character trailing area.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>This layout fits all criteria perfectly. Let’s write out the response starting directly with the body content and following all guidelines.### Execution and Input/Output Mode Constraints</p>
+<ul>
+<li>Mode determination: The program dynamically determines its processing and communication mode (COMMAREA mode or Terminal mode) based on how it is invoked.
+<ul>
+<li>If the CICS <code>STARTCODE</code> starts with <code>'D'</code> or <code>INVOKINGPROG</code> is not blank, the program operates in COMMAREA mode (<code>WS_FLAG = 'C'</code>).</li>
+<li>Otherwise, it operates in Terminal mode (<code>WS_FLAG = 'R'</code>), requiring an interactive <code>RECEIVE</code> command to obtain input data.</li>
+</ul>
+</li>
+<li>COMMAREA structural requirements:
+<ul>
+<li>When running in COMMAREA mode, the program maps the return structure to the caller-supplied area using the pointer <code>COMM_AREA_PTR</code>.</li>
+<li>The output structure <code>COMMA_DATA</code> must be exactly 84 bytes, partitioned into:
+<ul>
+<li><code>COMMA_DATA_H</code>: 14 characters (containing <code>'HIGH CUSTOMER='</code>).</li>
+<li><code>COMMA_DATA_HIGH</code>: 10-digit numeric picture (<code>PIC '(10)9'</code>).</li>
+<li><code>COMMA_DATA_FILL</code>: 60 characters (filled with spaces).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Terminal output requirements:
+<ul>
+<li>When running in Terminal mode, output is transmitted via <code>EXEC CICS SEND TEXT</code> with a strict length constraint of 24 bytes starting from <code>WRITE_MSG_H</code>. This encompasses the 14-byte label <code>&quot;HIGH CUSTOMER=&quot;</code> and the adjacent 10-digit customer number value in <code>WRITE_MSG_HIGH</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="710-temporary-storage-queue-tsq-structure-and-concurrency-constraints" tabindex="-1">7.10 Temporary Storage Queue (TSQ) Structure and Concurrency Constraints</h3>
+<ul>
+<li>Queue name validation:
+<ul>
+<li>The TSQ name is strictly restricted to the 8-character string <code>'GENACNTL'</code>.</li>
+</ul>
+</li>
+<li>Concurrency control:
+<ul>
+<li>All read and write operations on the <code>'GENACNTL'</code> TSQ must be serialized. This is enforced using <code>EXEC CICS ENQ</code> and <code>DEQ</code> commands with the queue name as the resource identifier to prevent concurrent update anomalies.</li>
+</ul>
+</li>
+<li>Record layout and parsing constraints:
+<ul>
+<li>The program expects TSQ records to fit into an 80-byte union message layout (<code>READ_MSG</code>):
+<ul>
+<li>The <code>LOW CUSTOMER</code> record must contain the prefix <code>'LOW CUSTOMER'</code> in its first 12 characters, with its 10-digit numeric value starting at position 14.</li>
+<li>The <code>HIGH CUSTOMER</code> record must contain the prefix <code>'HIGH CUSTOMER'</code> in its first 13 characters, with its 10-digit numeric value starting at position 15.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Boundary initialization constraints:
+<ul>
+<li>If the TSQ is empty or missing either record, default boundary values of <code>1000001</code> are enforced for both the low and high customer limits.</li>
+<li>Write commands that populate missing boundaries use the <code>NOSUSPEND</code> option, meaning these updates will immediately fail rather than suspend the transaction if CICS storage limits are exceeded.</li>
+</ul>
+</li>
+</ul>
+<h3 id="711-key-generation-and-numeric-limits" tabindex="-1">7.11 Key Generation and Numeric Limits</h3>
+<ul>
+<li>Range constraints:
+<ul>
+<li>The target customer number to search for is randomly generated and must fall within the inclusive boundary defined by <code>[WS_CUST_LOW, WS_CUST_HIGH]</code>.</li>
+</ul>
+</li>
+<li>Randomization seed dependency:
+<ul>
+<li>The random number generator <code>RANDOM(EIBTASKN)</code> uses the current CICS task number (<code>EIBTASKN</code>) as its seed, ensuring task-unique pseudo-random key generation.</li>
+</ul>
+</li>
+</ul>
+<h3 id="712-vsam-file-and-record-constraints" tabindex="-1">7.12 VSAM File and Record Constraints</h3>
+<ul>
+<li>Dataset name:
+<ul>
+<li>All customer inquiries must target the VSAM dataset named <code>'KSDSCUST'</code>.</li>
+</ul>
+</li>
+<li>Search key constraints:
+<ul>
+<li>The search key used in the record lookup (<code>RIDFLD</code>) must be a 10-byte numeric picture field (<code>WRITE_MSG_HIGH</code>).</li>
+<li>The <code>KEYLENGTH</code> is strictly enforced as 10 bytes (defined by <code>F10</code>).</li>
+</ul>
+</li>
+<li>Record retrieval logic:
+<ul>
+<li>The search is performed using the Greater Than or Equal (<code>GTEQ</code>) search option, which does not require an exact match but rather finds the nearest customer record equal to or above the generated random number.</li>
+</ul>
+</li>
+<li>Record buffer and size limit:
+<ul>
+<li>The buffer into which the VSAM record is read (<code>CA_AREA</code>) must be exactly 225 bytes (defined by <code>F82</code>), partitioned into:
+<ul>
+<li><code>CA_CUSTOMER_NUM</code>: A 10-character alphanumeric field at the beginning.</li>
+<li>Filler: A 215-character trailing area.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<h3 id="81-cics-command-and-response-code-evaluation" tabindex="-1">8.1 CICS Command and Response Code Evaluation</h3>
+<ul>
+<li>CICS command responses are captured using the standard response parameter across invocation, queue, and file operations.</li>
+<li>The program evaluates the response code against the normal completion condition after reading the temporary storage queue and querying the VSAM dataset.</li>
+<li>The sequential scan of the temporary storage queue uses a conditional loop that terminates when the response code indicates a non-zero status, handling conditions such as end-of-queue or missing items without abending.</li>
+</ul>
+<h3 id="82-concurrency-and-resource-contention-handling" tabindex="-1">8.2 Concurrency and Resource Contention Handling</h3>
+<ul>
+<li>Access to the temporary storage queue is serialized using resource enqueue and dequeue commands on the control queue resource name, preventing race conditions during concurrent initialization or read operations.</li>
+<li>Queue write operations specify the non-suspend option, which instructs CICS to handle full-storage or resource-unavailable conditions immediately rather than suspending the task.</li>
+</ul>
+<h3 id="83-fallback-and-default-value-initialization" tabindex="-1">8.3 Fallback and Default Value Initialization</h3>
+<ul>
+<li>Customer low and high range boundaries are pre-initialized to default fallback values prior to accessing the temporary storage queue.</li>
+<li>If the temporary storage queue does not exist or specific boundary records are missing, tracking flags preserve the default boundary values, allowing the program to continue execution without interruption.</li>
+<li>Missing queue entries are automatically initialized with default values via conditional write commands, establishing the required control records for subsequent executions.</li>
+<li>If the generic or exact read against the customer VSAM dataset does not return a normal response, the program retains the generated pseudo-random customer identifier as the fallback customer number.</li>
+</ul>
+<h3 id="84-caller-invocation-and-output-route-handling" tabindex="-1">8.4 Caller Invocation and Output Route Handling</h3>
+<ul>
+<li>The program determines its invocation context by evaluating the start code and invoking program attributes retrieved from CICS system assignments.</li>
+<li>A conditional evaluation distinguishes between a program link invocation (using the communication area) and a direct terminal transaction invocation (using terminal receive and send commands).</li>
+<li>Output is routed conditionally based on the invocation mode, either populating the communication area structure or transmitting formatted text to the terminal before issuing a clean return.</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1-link-call-with-existing-ts-queue-range" tabindex="-1">9.1 Example 1: LINK call with existing TS queue range</h3>
+<p><strong>Input</strong></p>
+<ul>
+<li>Invocation: <code>EXEC CICS LINK PROGRAM('LGICVS01') COMMAREA(...)</code>, so <code>WS_INVOKEPROG</code> is non-blank and <code>WS_FLAG = 'C'</code>.</li>
+<li>TS queue <code>GENACNTL</code> already exists. Its items are:
+<ul>
+<li>Item 1: <code>**** GENAPP CNTL</code></li>
+<li>Item 2: <code>LOW CUSTOMER=0000000001</code> (<code>READ_CUST_LOW</code> = 0000000001)</li>
+<li>Item 3: <code>HIGH CUSTOMER=0000000100</code> (<code>READ_CUST_HIGH</code> = 0000000100)</li>
+</ul>
+</li>
+<li>The <code>KSDSCUST</code> VSAM file contains customer keys <code>0000000001</code>, <code>0000000005</code>, <code>0000000042</code> and <code>0000000100</code>.</li>
+<li>The random draw gives <code>WS_RANDOM_NUMBER</code> = 37.</li>
+</ul>
+<p><strong>Output (COMMAREA returned to caller)</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>COMMA_DATA_H    = &quot;HIGH CUSTOMER=&quot;
+COMMA_DATA_HIGH = 0000000042
+COMMA_DATA_FILL = (60 blanks)</code></pre>
+</div>
+<p><strong>Explanation</strong></p>
+<ul>
+<li>The program serializes access with ENQ on <code>GENACNTL</code>.</li>
+<li>Item 1 reads normally, so <code>WS_FLAG_TSQE</code> is cleared. The loop then reads the items with <code>NEXT</code>. The <code>LOW CUSTOMER</code> item sets <code>WS_CUST_LOW</code> = 1 and the <code>HIGH CUSTOMER</code> item sets <code>WS_CUST_HIGH</code> = 100. The loop ends when <code>READQ</code> returns a non-normal response, such as ITEMERR at the end of the queue.</li>
+<li>No queue records are rewritten, because all three flags are cleared.</li>
+<li>The random value is <code>FLOOR(RANDOM * (100 − 1) + 1)</code>, which here is 37. It is placed in <code>WRITE_MSG_HIGH</code>.</li>
+<li><code>READ FILE('KSDSCUST') ... GTEQ</code> with key <code>0000000037</code> returns the next key at or above it, <code>0000000042</code>. <code>CA_CUSTOMER_NUM</code> replaces <code>WRITE_MSG_HIGH</code>.</li>
+<li>Because <code>WS_FLAG = 'C'</code>, the label and customer number are moved into the COMMAREA, and the program returns.</li>
+</ul>
+<h3 id="92-example-2-terminal-start-with-no-ts-queue-defaults" tabindex="-1">9.2 Example 2: Terminal start with no TS queue (defaults)</h3>
+<p><strong>Input</strong></p>
+<ul>
+<li>Invocation: transaction entered at a terminal. <code>WS_STARTCODE</code> is not <code>D</code> and <code>WS_INVOKEPROG</code> is blank, so the program does <code>RECEIVE</code> and sets <code>WS_FLAG = 'R'</code>.</li>
+<li>TS queue <code>GENACNTL</code> does not exist, so <code>READQ ITEM(1)</code> returns a non-normal response.</li>
+<li><code>KSDSCUST</code> contains key <code>1000001</code>, stored as <code>0001000001</code>.</li>
+</ul>
+<p><strong>Output (screen via SEND TEXT, 24 bytes)</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>HIGH CUSTOMER=0001000001</code></pre>
+</div>
+<p><strong>Explanation</strong></p>
+<ul>
+<li><code>WS_CUST_LOW</code> and <code>WS_CUST_HIGH</code> keep their initial values of 1000001.</li>
+<li>The queue was not found, so all three flags stay <code>'Y'</code>. The program writes the eyecatcher <code>**** GENAPP CNTL</code> (20 bytes), <code>LOW CUSTOMER=</code> plus the low value (23 bytes), and <code>HIGH CUSTOMER=</code> plus the high value (24 bytes) to the new queue. This initializes the queue for later calls.</li>
+<li>The range is a single value (high − low = 0), so the random number is 1000001.</li>
+<li>The <code>GTEQ</code> read finds key <code>0001000001</code>, which is moved into <code>WRITE_MSG_HIGH</code>.</li>
+<li><code>WS_FLAG</code> is <code>'R'</code>, so the <code>OTHERWISE</code> branch runs. It sends <code>WRITE_MSG_H</code> and <code>WRITE_MSG_HIGH</code> (24 bytes) to the terminal with <code>ERASE</code> and <code>FREEKB</code>.</li>
+</ul>
+<h3 id="93-example-3-key-not-found-by-the-vsam-read" tabindex="-1">9.3 Example 3: Key not found by the VSAM read</h3>
+<p><strong>Input</strong></p>
+<ul>
+<li>Invocation: LINK call. The queue range is 2000000 to 2000500, and the random draw gives 2000600.</li>
+<li><code>KSDSCUST</code> has no key at or above <code>2000600</code>, so the READ returns a non-NORMAL response (for example NOTFND).</li>
+</ul>
+<p><strong>Output (COMMAREA)</strong></p>
+<div class="code-block">
+  <div class="code-block-header">
+    <span class="code-block-lang">CODE</span>
+    <button class="code-block-copy" type="button" onclick="(function(btn){var pre=btn.closest('.code-block').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},2000)});})(this)">Copy</button>
+  </div>
+  <pre><code>COMMA_DATA_H    = &quot;HIGH CUSTOMER=&quot;
+COMMA_DATA_HIGH = 2000600 (the generated random value, as a 10-digit picture)
+COMMA_DATA_FILL = (60 blanks)</code></pre>
+</div>
+<p><strong>Explanation</strong></p>
+<ul>
+<li><code>WS_RESP</code> is not NORMAL, so the assignment <code>WRITE_MSG_HIGH = CA_CUSTOMER_NUM</code> is skipped.</li>
+<li><code>WRITE_MSG_HIGH</code> still holds the random number, and that value is returned unchanged. The caller receives a number that may not exist in the file.</li>
+</ul>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a>
+<ul>
+<li class="toc-level-3"><a href="#21-communication-area-parameters">2.1 Communication Area Parameters</a></li>
+<li class="toc-level-3"><a href="#22-cics-system-fields-and-environment-indicators">2.2 CICS System Fields and Environment Indicators</a></li>
+<li class="toc-level-3"><a href="#23-terminal-user-inputs">2.3 Terminal User Inputs</a></li>
+<li class="toc-level-3"><a href="#24-external-data-stores-and-queues">2.4 External Data Stores and Queues</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a>
+<ul>
+<li class="toc-level-3"><a href="#31-communication-area-outputs">3.1 Communication Area Outputs</a></li>
+<li class="toc-level-3"><a href="#32-terminal-outputs">3.2 Terminal Outputs</a></li>
+<li class="toc-level-3"><a href="#33-temporary-storage-queue-outputs">3.3 Temporary Storage Queue Outputs</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a>
+<ul>
+<li class="toc-level-3"><a href="#41-mermaid-flow-diagram">4.1 Mermaid Flow Diagram</a></li>
+<li class="toc-level-3"><a href="#42-processing-logic-description">4.2 Processing Logic Description</a></li>
+<li class="toc-level-3"><a href="#43-database-tables">4.3 Database Tables</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a></li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a>
+<ul>
+<li class="toc-level-3"><a href="#71-program-calling-context-and-invocation-constraints">7.1 Program Calling Context and Invocation Constraints</a></li>
+<li class="toc-level-3"><a href="#72-temporary-storage-queue-tsq-constraints">7.2 Temporary Storage Queue (TSQ) Constraints</a></li>
+<li class="toc-level-3"><a href="#73-key-generation-and-random-number-constraints">7.3 Key Generation and Random Number Constraints</a></li>
+<li class="toc-level-3"><a href="#74-vsam-customer-master-file-constraints">7.4 VSAM Customer Master File Constraints</a></li>
+<li class="toc-level-3"><a href="#75-output-constraints-and-communication-protocols">7.5 Output Constraints and Communication Protocols</a></li>
+<li class="toc-level-3"><a href="#76-execution-and-inputoutput-mode-constraints">7.6 Execution and Input/Output Mode Constraints</a></li>
+<li class="toc-level-3"><a href="#77-temporary-storage-queue-tsq-structure-and-concurrency-constraints">7.7 Temporary Storage Queue (TSQ) Structure and Concurrency Constraints</a></li>
+<li class="toc-level-3"><a href="#78-key-generation-and-numeric-limits">7.8 Key Generation and Numeric Limits</a></li>
+<li class="toc-level-3"><a href="#79-vsam-file-and-record-constraints">7.9 VSAM File and Record Constraints</a></li>
+<li class="toc-level-3"><a href="#710-temporary-storage-queue-tsq-structure-and-concurrency-constraints">7.10 Temporary Storage Queue (TSQ) Structure and Concurrency Constraints</a></li>
+<li class="toc-level-3"><a href="#711-key-generation-and-numeric-limits">7.11 Key Generation and Numeric Limits</a></li>
+<li class="toc-level-3"><a href="#712-vsam-file-and-record-constraints">7.12 VSAM File and Record Constraints</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a>
+<ul>
+<li class="toc-level-3"><a href="#81-cics-command-and-response-code-evaluation">8.1 CICS Command and Response Code Evaluation</a></li>
+<li class="toc-level-3"><a href="#82-concurrency-and-resource-contention-handling">8.2 Concurrency and Resource Contention Handling</a></li>
+<li class="toc-level-3"><a href="#83-fallback-and-default-value-initialization">8.3 Fallback and Default Value Initialization</a></li>
+<li class="toc-level-3"><a href="#84-caller-invocation-and-output-route-handling">8.4 Caller Invocation and Output Route Handling</a></li>
+</ul>
+</li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1-link-call-with-existing-ts-queue-range">9.1 Example 1: LINK call with existing TS queue range</a></li>
+<li class="toc-level-3"><a href="#92-example-2-terminal-start-with-no-ts-queue-defaults">9.2 Example 2: Terminal start with no TS queue (defaults)</a></li>
+<li class="toc-level-3"><a href="#93-example-3-key-not-found-by-the-vsam-read">9.3 Example 3: Key not found by the VSAM read</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGICVS01</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGUCVS01</title>
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <script src="../../../assets/mermaid.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+
+    <!-- Prism.js for syntax highlighting (bundled — no CDN required) -->
+    <link rel="stylesheet" href="../../../assets/prism-tomorrow.css">
+    <script src="../../../assets/prism-core.js"></script>
+    <script src="../../../assets/prism-languages.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="header-app-name"><a href="../../../../index.html" style="color: inherit; text-decoration: none;">GenApp General Insurance Application (PL/I on CICS, Db2 and VSAM) – Architect&#039;s Wiki</a></span>
+        </div>
+        <div class="header-right">
+        </div>
+    </header>
+    <div class="shell">
+        <aside class="sidebar" id="wiki-sidebar">
+            <nav>
+                
+        <div class="nav-home-wrap">
+            <a href="../../../../index.html" class="nav-home">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                    <path d="M6 15V9h4v6" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+                </svg>
+                Home
+            </a>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Application Documentation</div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Overview</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/application-overview.html" class="nav-link" data-page-id="application-overview">Application Overview</a>
+                <a href="../../../pages/program-catalog.html" class="nav-link" data-page-id="program-catalog">Program Catalog and Naming Conventions</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Architecture</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/layered-architecture.html" class="nav-link" data-page-id="layered-architecture">Layered Architecture and Call Flow</a>
+                <a href="../../../pages/db2-data-access.html" class="nav-link" data-page-id="db2-data-access">Db2 Data Access Programs</a>
+                <a href="../../../pages/vsam-data-access.html" class="nav-link" data-page-id="vsam-data-access">VSAM KSDS Data Access Programs</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Customer Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-inquiry.html" class="nav-link" data-page-id="customer-inquiry">Customer Inquiry</a>
+                <a href="../../../pages/customer-creation.html" class="nav-link" data-page-id="customer-creation">Customer Creation and Security Registration</a>
+                <a href="../../../pages/customer-update.html" class="nav-link" data-page-id="customer-update">Customer Update</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Policy Management</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/policy-inquiry.html" class="nav-link" data-page-id="policy-inquiry">Policy Inquiry</a>
+                <a href="../../../pages/policy-add.html" class="nav-link" data-page-id="policy-add">Policy Add</a>
+                <a href="../../../pages/policy-update.html" class="nav-link" data-page-id="policy-update">Policy Update</a>
+                <a href="../../../pages/policy-delete.html" class="nav-link" data-page-id="policy-delete">Policy Delete</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Online User Interface (3270 Menus)</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/customer-menu.html" class="nav-link" data-page-id="customer-menu">Customer Menu (LGTESTC1, SSC1)</a>
+                <a href="../../../pages/motor-and-endowment-menus.html" class="nav-link" data-page-id="motor-and-endowment-menus">Motor and Endowment Policy Menus</a>
+                <a href="../../../pages/house-and-commercial-menus.html" class="nav-link" data-page-id="house-and-commercial-menus">House and Commercial Policy Menus</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Batch Processing</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/batch-customer-reporting.html" class="nav-link" data-page-id="batch-customer-reporting">Batch Customer Reporting</a>
+                <a href="../../../pages/motor-policy-export.html" class="nav-link" data-page-id="motor-policy-export">Motor Policy Export</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <button class="nav-section-toggle" type="button">
+                <span class="nav-toggle-text">Operations and Shared Services</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items">
+                <a href="../../../pages/error-logging.html" class="nav-link" data-page-id="error-logging">Shared Error and Message Logging (LGSTSQ)</a>
+                <a href="../../../pages/environment-setup.html" class="nav-link" data-page-id="environment-setup">Environment Setup and Reset (LGSETUP)</a>
+                <a href="../../../pages/statistics-collection.html" class="nav-link" data-page-id="statistics-collection">Transaction Statistics Collection</a>
+            </div>
+        </div>
+        <div class="nav-divider"></div>
+        <div class="nav-group-label">Program Documentation</div>
+    <div class="nav-section">
+        <button class="nav-section-toggle open" type="button">
+            <span class="nav-toggle-text">program</span>
+            <span class="nav-section-chevron">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </button>
+        <div class="nav-section-items open">
+        <div class="nav-section">
+            <button class="nav-section-toggle open" type="button">
+                <span class="nav-toggle-text">pli</span>
+                <span class="nav-section-chevron">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="nav-section-items open">
+                <a href="../../../sources/program/pli/LGICVS01.html" class="nav-link">LGICVS01</a>
+                <a href="../../../sources/program/pli/LGICDB01.html" class="nav-link">LGICDB01</a>
+                <a href="../../../sources/program/pli/LGICUS01.html" class="nav-link">LGICUS01</a>
+                <a href="../../../sources/program/pli/LGDPVS01.html" class="nav-link">LGDPVS01</a>
+                <a href="../../../sources/program/pli/LGDPDB01.html" class="nav-link">LGDPDB01</a>
+                <a href="../../../sources/program/pli/LGDPOL01.html" class="nav-link">LGDPOL01</a>
+                <a href="../../../sources/program/pli/LGBATCH.html" class="nav-link">LGBATCH</a>
+                <a href="../../../sources/program/pli/LGBATCHF.html" class="nav-link">LGBATCHF</a>
+                <a href="../../../sources/program/pli/LGBATDB2.html" class="nav-link">LGBATDB2</a>
+                <a href="../../../sources/program/pli/LGAPOL01.html" class="nav-link">LGAPOL01</a>
+                <a href="../../../sources/program/pli/LGAPVS01.html" class="nav-link">LGAPVS01</a>
+                <a href="../../../sources/program/pli/LGASTAT1.html" class="nav-link">LGASTAT1</a>
+                <a href="../../../sources/program/pli/LGACVS01.html" class="nav-link">LGACVS01</a>
+                <a href="../../../sources/program/pli/LGAPDB01.html" class="nav-link">LGAPDB01</a>
+                <a href="../../../sources/program/pli/LGACUS01.html" class="nav-link">LGACUS01</a>
+                <a href="../../../sources/program/pli/LGACDB01.html" class="nav-link">LGACDB01</a>
+                <a href="../../../sources/program/pli/LGACDB02.html" class="nav-link">LGACDB02</a>
+                <a href="../../../sources/program/pli/LGTESTP1.html" class="nav-link">LGTESTP1</a>
+                <a href="../../../sources/program/pli/LGTESTP2.html" class="nav-link">LGTESTP2</a>
+                <a href="../../../sources/program/pli/LGTESTC1.html" class="nav-link">LGTESTC1</a>
+                <a href="../../../sources/program/pli/LGSETUP.html" class="nav-link">LGSETUP</a>
+                <a href="../../../sources/program/pli/LGMOTOUT.html" class="nav-link">LGMOTOUT</a>
+                <a href="../../../sources/program/pli/LGIPVS01.html" class="nav-link">LGIPVS01</a>
+                <a href="../../../sources/program/pli/LGSTSQ.html" class="nav-link">LGSTSQ</a>
+                <a href="../../../sources/program/pli/LGIPOL01.html" class="nav-link">LGIPOL01</a>
+                <a href="../../../sources/program/pli/LGUCVS01.html" class="nav-link active">LGUCVS01</a>
+                <a href="../../../sources/program/pli/LGIPDB01.html" class="nav-link">LGIPDB01</a>
+                <a href="../../../sources/program/pli/LGUCUS01.html" class="nav-link">LGUCUS01</a>
+                <a href="../../../sources/program/pli/LGUPOL01.html" class="nav-link">LGUPOL01</a>
+                <a href="../../../sources/program/pli/LGUCDB01.html" class="nav-link">LGUCDB01</a>
+                <a href="../../../sources/program/pli/LGUPVS01.html" class="nav-link">LGUPVS01</a>
+                <a href="../../../sources/program/pli/LGWEBST5.html" class="nav-link">LGWEBST5</a>
+                <a href="../../../sources/program/pli/LGUPDB01.html" class="nav-link">LGUPDB01</a>
+                <a href="../../../sources/program/pli/LGTESTP4.html" class="nav-link">LGTESTP4</a>
+                <a href="../../../sources/program/pli/LGTESTP3.html" class="nav-link">LGTESTP3</a>
+            </div>
+        </div>
+        </div>
+    </div>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="prog-container">
+                <div id="wiki-breadcrumb"></div>
+                <div class="content-layout">
+                    <article class="prose">
+                        <h2 id="1-purpose" tabindex="-1">1. Purpose</h2>
+<p>This CICS PL/I program updates a customer record in the VSAM KSDS customer file (KSDSCUST). A calling program passes it a communication area that holds the customer number and the new customer details, such as name, date of birth, address, contact information and number of policies. The program uses the customer number as the key to lock the matching customer record for update. It then replaces that record with the data supplied by the caller. If the read or the rewrite fails, the program sets a return code in the communication area (81 for the read, 82 for the rewrite). It then records a time-stamped error message and a sample of the communication area data through the shared logging program (LGSTSQ). It finishes by abending the transaction so the failure is visible to the caller and the operations team.</p>
+<h2 id="2-inputs" tabindex="-1">2. Inputs</h2>
+<p>I will now analyze the extracted source code and any other details of LGUCVS01.pli.</p>
+<p>The program <code>LGUCVS01</code> takes one parameter via its entry point: <code>COMM_AREA_PTR</code>. This is a pointer to <code>COMM_AREA</code> which is a <code>BASED</code> union mapping the CICS COMMAREA structure (<code>LGCMAREA</code>).</p>
+<p>Let’s look at what data from the COMMAREA and outside is used.
+Inputs to the program include:</p>
+<ul>
+<li><code>COMM_AREA_PTR</code> / <code>EIBCALEN</code> passed from CICS representing the communication area.</li>
+<li>Inside the COMMAREA, specific fields are read:
+<ul>
+<li><code>CA_CUSTOMER_NUM</code>: Used as the key field (<code>RIDFLD</code>) in the CICS <code>READ</code> command to look up the customer record from VSAM KSDS. It is also used in <code>REWRITE</code> as the start of the buffer <code>FROM(CA_Customer_Num)</code> containing the updated customer record.</li>
+</ul>
+</li>
+<li>VSAM KSDS File ‘KSDSCUST’ as an external data source:
+<ul>
+<li>The program performs <code>EXEC CICS READ FILE('KSDSCUST') UPDATE</code> to read the customer record, using <code>CA_Customer_Num</code> as the key.</li>
+<li>The program then performs <code>EXEC CICS REWRITE FILE('KSDSCUST')</code> using <code>CA_Customer_Num</code> as the source of the rewrite buffer. (Notice that the rewrite buffer source is <code>FROM(CA_Customer_Num)</code>, which writes the updated customer record. Since <code>CA_Customer_Num</code> is in the <code>COMM_AREA</code> structure, it means the caller populated the rest of the customer fields directly within the commarea following <code>CA_Customer_Num</code>, or rather the layout of <code>COMM_AREA</code> starting at <code>CA_Customer_Num</code> matches the customer record structure being rewritten).</li>
+</ul>
+</li>
+</ul>
+<p>Let’s organize these logical categories:</p>
+<ul>
+<li>Program parameters and CICS interface</li>
+<li>Communication Area (<code>COMM_AREA</code>) fields (such as <code>CA_CUSTOMER_NUM</code> and the fields following it representing the customer data to be rewritten)</li>
+<li>External data sources (such as VSAM dataset <code>KSDSCUST</code>)</li>
+</ul>
+<p>Let’s formulate the bulleted list accurately based on the program logic and inputs. I will write the final response directly without any introductory text, as requested.</p>
+<h2 id="3-outputs" tabindex="-1">3. Outputs</h2>
+<ul>
+<li>
+<p><strong>Data written to files or databases</strong></p>
+<ul>
+<li>VSAM KSDS file KSDSCUST: the program rewrites the customer record that it locked with the preceding READ UPDATE.
+<ul>
+<li>Data written: the CICS REWRITE takes its data from the COMMAREA, starting at <code>CA_CUSTOMER_NUM</code>. It uses the length <code>WS_Commarea_LenF</code>, which is set from <code>EIBCALEN</code>.</li>
+<li>Fields in that data:
+<ul>
+<li>Key and identifier: <code>CA_CUSTOMER_NUM</code>.</li>
+<li>Customer personal data: <code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_DOB</code>, <code>CA_POSTCODE</code>.</li>
+<li>Customer contact data: <code>CA_EMAIL_ADDRESS</code>.</li>
+<li>Policy count: <code>CA_NUM_POLICIES</code>.</li>
+</ul>
+</li>
+<li>Role: this is the main output of the program. It persists the updated customer information in the VSAM file.</li>
+<li>The record is read first into <code>WS_CUSTOMER_AREA</code>, using <code>CA_CUSTOMER_NUM</code> as the key (RIDFLD, 10 bytes). It is read only to hold it for update. The rewrite does not use this buffer.</li>
+<li>The policy-related COMMAREA fields (<code>CA_POLICY_NUM</code>, <code>CA_PAYMENT</code>, <code>CA_BROKERID</code>, <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code>) are in the same COMMAREA. They overlay the same storage as the customer data. They go to the file only as part of the raw COMMAREA bytes that the rewrite writes.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Return values to the caller (COMMAREA)</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code>: tells the calling program the outcome of the update.
+<ul>
+<li>‘81’: the READ FILE UPDATE on KSDSCUST failed (RESP is not NORMAL).</li>
+<li>‘82’: the REWRITE on KSDSCUST failed (RESP is not NORMAL).</li>
+<li>When both operations succeed, the program does not set it. It returns normally with the COMMAREA content as passed in.</li>
+</ul>
+</li>
+<li><code>CA_CUSTOMER_NUM</code> and <code>CA_REQUEST_ID</code> stay in the COMMAREA, so the caller can match the result to the request.</li>
+</ul>
+</li>
+<li>
+<p><strong>Messages written to queues or other programs</strong></p>
+<ul>
+<li>Error log message: on a failed READ or REWRITE, the program sends a formatted message to the logging program LGSTSQ with a CICS LINK. The routine is <code>WRITE_ERROR_MESSAGE</code>.
+<ul>
+<li>Message contents:
+<ul>
+<li>Timestamp: date (<code>EM_DATE</code>, from <code>WS_DATE</code>) and time (<code>EM_TIME</code>, from <code>WS_TIME</code>), taken from the CICS ASKTIME and FORMATTIME commands.</li>
+<li>Program identifier: the literal ‘LGUCVS01’.</li>
+<li>Customer number: <code>EM_CUSNUM</code>, taken from <code>CA_CUSTOMER_NUM</code>.</li>
+<li>Fixed text: ’ Re-write  KSDSCUST '.</li>
+<li>CICS response codes: <code>EM_RESPRC</code> (RESP) and <code>EM_RESP2RC</code> (RESP2).</li>
+</ul>
+</li>
+<li>Role: this gives operations and support staff a diagnostic record of the failure.</li>
+</ul>
+</li>
+<li>COMMAREA dump message: when <code>EIBCALEN</code> is greater than 0, a second message is linked to LGSTSQ. It has the prefix ‘COMMAREA=’ followed by <code>CA_Data</code>.
+<ul>
+<li><code>CA_Data</code> holds the first <code>EIBCALEN</code> bytes of the raw COMMAREA, or the first 90 bytes if <code>EIBCALEN</code> is 91 or more.</li>
+<li>Role: this records the input data that was being processed when the error occurred.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Program termination and abend side effects</strong></p>
+<ul>
+<li>Read failure: the program abends with code ‘LGV1’ (NODUMP), after the return code is set to ‘81’ and the error messages are logged.</li>
+<li>Rewrite failure: the program abends with code ‘LGV2’ (NODUMP), after the return code is set to ‘82’ and the error messages are logged.
+<ul>
+<li>Role of the abends: they end the transaction with a distinct code for each failure point. The CICS ABEND ends the task, so the <code>EXEC CICS RETURN</code> after it is not reached.</li>
+</ul>
+</li>
+<li>Successful path: the program ends with a normal RETURN, and the file update is complete.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-processing-logic" tabindex="-1">4. Processing Logic</h2>
+<ul>
+<li>
+<p><strong>Initialization and Setup</strong></p>
+</li>
+<li>
+<p>The program is a CICS main procedure that receives a pointer to the COMMAREA (<code>COMM_AREA_PTR</code>) and overlays the <code>COMM_AREA</code> based structure on it.</p>
+</li>
+<li>
+<p>It copies the CICS commarea length (<code>EIBCALEN</code>) into two working fields:</p>
+<ul>
+<li><code>WS_Commarea_Len</code> is used as the length of the read.</li>
+<li><code>WS_Commarea_LenF</code> is used as the length of the rewrite.</li>
+</ul>
+</li>
+<li>
+<p>Working storage holds the response codes (<code>WS_RESP</code>, <code>WS_RESP2</code>), a 1024-byte customer buffer (<code>WS_Customer_Area</code>), time and date fields, and the error message layouts.</p>
+</li>
+<li>
+<p><strong>Customer Record Retrieval (VSAM KSDS Read for Update)</strong></p>
+<ul>
+<li>The program issues <code>EXEC CICS READ FILE('KSDSCUST')</code> with the <code>UPDATE</code> option, which locks the record for a later rewrite.
+<ul>
+<li>The record is read into <code>WS_Customer_Area</code>.</li>
+<li>The key (<code>RIDFLD</code>) is <code>CA_CUSTOMER_NUM</code>, the 10-digit customer number from the COMMAREA, with <code>KEYLENGTH(10)</code>.</li>
+<li>The CICS response goes into <code>WS_RESP</code>.</li>
+</ul>
+</li>
+<li><strong>Read failure handling</strong>
+<ul>
+<li>If <code>WS_RESP</code> is not <code>DFHRESP(NORMAL)</code>, the program:
+<ul>
+<li>Saves <code>EIBRESP2</code> in <code>WS_RESP2</code>.</li>
+<li>Sets <code>CA_RETURN_CODE</code> to ‘81’ so the caller knows the read-for-update failed.</li>
+<li>Calls the internal procedure <code>WRITE_ERROR_MESSAGE</code> to log the failure.</li>
+<li>Abends the task with <code>ABCODE('LGV1')</code> and <code>NODUMP</code>, then issues <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The data read into <code>WS_Customer_Area</code> is not used afterwards. The read only establishes the update lock and positions the record for the rewrite.</li>
+</ul>
+</li>
+<li>
+<p><strong>Customer Record Update (Rewrite)</strong></p>
+<ul>
+<li>If the read succeeds, the program issues <code>EXEC CICS REWRITE FILE('KSDSCUST')</code>.
+<ul>
+<li>The source data is taken <code>FROM(CA_Customer_Num)</code>, which is the start of the customer fields in the COMMAREA.</li>
+<li>The length is <code>WS_Commarea_LenF</code>, which is <code>EIBCALEN</code>.</li>
+<li>The response goes into <code>WS_RESP</code>.</li>
+</ul>
+</li>
+<li><strong>Rewrite failure handling</strong>
+<ul>
+<li>If <code>WS_RESP</code> is not <code>DFHRESP(NORMAL)</code>, the program:
+<ul>
+<li>Saves <code>EIBRESP2</code> in <code>WS_RESP2</code>.</li>
+<li>Sets <code>CA_RETURN_CODE</code> to ‘82’ so the caller knows the rewrite failed.</li>
+<li>Calls <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>Abends the task with <code>ABCODE('LGV2')</code> and <code>NODUMP</code>, then issues <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If the rewrite succeeds, the program ends with a plain <code>RETURN</code>. <code>CA_RETURN_CODE</code> is not set on this path.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error Logging (WRITE_ERROR_MESSAGE Procedure)</strong></p>
+<ul>
+<li><strong>Timestamp creation</strong>
+<ul>
+<li><code>EXEC CICS ASKTIME</code> gets the current absolute time into <code>WS_ABSTIME</code>.</li>
+<li><code>EXEC CICS FORMATTIME</code> converts it into <code>WS_DATE</code> (MMDDYYYY format) and <code>WS_TIME</code>.</li>
+</ul>
+</li>
+<li><strong>Error message construction</strong>
+<ul>
+<li>The program fills the <code>ERROR_MSG</code> structure with:
+<ul>
+<li>The date (<code>EM_DATE</code>) and time (<code>EM_TIME</code>).</li>
+<li>The customer number from the COMMAREA (<code>EM_CUSNUM</code>).</li>
+<li>The CICS response code (<code>EM_RESPRC</code>) and the secondary response code (<code>EM_RESP2RC</code>).</li>
+</ul>
+</li>
+<li>The structure also contains the fixed text “LGUCVS01”, &quot; CNUM=“, &quot; Re-write KSDSCUST “, &quot; RESP=” and &quot; RESP2=”.</li>
+</ul>
+</li>
+<li><strong>Logging to the queue program</strong>
+<ul>
+<li>The program calls <code>LGSTSQ</code> with <code>EXEC CICS LINK</code>, passing <code>ERROR_MSG</code> as the COMMAREA with its length from <code>STG(ERROR_MSG)</code>. <code>LGSTSQ</code> is the external logging program.</li>
+</ul>
+</li>
+<li><strong>Conditional logging of the input COMMAREA contents</strong>
+<ul>
+<li>This step runs only if <code>EIBCALEN &gt; 0</code>, meaning a COMMAREA was passed.</li>
+<li>If <code>EIBCALEN &lt; 91</code>:
+<ul>
+<li>The program copies the whole COMMAREA content (left-justified, <code>EIBCALEN</code> bytes) into <code>CA_Data</code>.</li>
+<li>It links to <code>LGSTSQ</code> with <code>CA_ERROR_MSG</code>, which has the “COMMAREA=” prefix.</li>
+</ul>
+</li>
+<li>Otherwise (<code>EIBCALEN</code> is 91 or more):
+<ul>
+<li>The program copies only the first 90 bytes of the COMMAREA into <code>CA_Data</code>.</li>
+<li>It links to <code>LGSTSQ</code> with <code>CA_ERROR_MSG</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The procedure then returns to the caller.</li>
+</ul>
+</li>
+<li>
+<p><strong>Control Flow Summary</strong></p>
+<ul>
+<li>The program is sequential and has no loops.</li>
+<li>Decisions come from three tests:
+<ul>
+<li>The response check after the READ.</li>
+<li>The response check after the REWRITE.</li>
+<li>The <code>EIBCALEN</code> tests inside the error logger.</li>
+</ul>
+</li>
+<li>Any file I/O failure ends the task with an abend, after the error has been logged through <code>LGSTSQ</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>External System Interactions</strong></p>
+<ul>
+<li>VSAM KSDS file <code>KSDSCUST</code>: read for update, then rewrite.</li>
+<li>CICS system services: <code>ASKTIME</code> and <code>FORMATTIME</code> for timestamps, <code>LINK</code> to the <code>LGSTSQ</code> logging program, <code>ABEND</code> for failure termination, and <code>RETURN</code>.</li>
+<li>The caller communicates with the program through the COMMAREA. The program returns the status in <code>CA_RETURN_CODE</code> (‘81’ for a read failure, ‘82’ for a rewrite failure).</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-paragraphs" tabindex="-1">5. Paragraphs</h2>
+<ul>
+<li>
+<p><strong>LGUCVS01 (main procedure body)</strong></p>
+<ul>
+<li>Purpose: Entry point of the CICS PL/I program, declared <code>Options(Main)</code> and taking <code>COMM_AREA_PTR</code>. It updates a customer record in the VSAM KSDS file <code>KSDSCUST</code> using data passed in the COMMAREA.</li>
+<li>Operations:
+<ul>
+<li>Copies <code>EIBCALEN</code> into <code>WS_Commarea_Len</code> and <code>WS_Commarea_LenF</code>. The first is used as the read length and the second as the rewrite length.</li>
+<li>Issues <code>EXEC CICS READ FILE('KSDSCUST')</code> with the <code>UPDATE</code> option. It reads into <code>WS_Customer_Area</code> (1024 bytes), uses <code>CA_Customer_Num</code> as <code>RIDFLD</code> with <code>KeyLength(10)</code>, and returns the response in <code>WS_RESP</code>.</li>
+<li>Issues <code>EXEC CICS REWRITE FILE('KSDSCUST')</code> from <code>CA_Customer_Num</code>, with length <code>WS_Commarea_LenF</code>, and returns the response in <code>WS_RESP</code>.</li>
+<li>Ends with <code>RETURN</code>.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>After the READ, if <code>WS_RESP</code> is not <code>DFHRESP(NORMAL)</code>, it does the following:
+<ul>
+<li>Saves <code>EIBRESP2</code> into <code>WS_RESP2</code>.</li>
+<li>Sets <code>CA_RETURN_CODE</code> to ‘81’.</li>
+<li>Calls <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>Abends with code <code>LGV1</code> and <code>NODUMP</code>.</li>
+<li>Issues <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li>After the REWRITE, if <code>WS_RESP</code> is not <code>DFHRESP(NORMAL)</code>, it does the following:
+<ul>
+<li>Saves <code>EIBRESP2</code> into <code>WS_RESP2</code>.</li>
+<li>Sets <code>CA_RETURN_CODE</code> to ‘82’.</li>
+<li>Calls <code>WRITE_ERROR_MESSAGE</code>.</li>
+<li>Abends with code <code>LGV2</code> and <code>NODUMP</code>.</li>
+<li>Issues <code>EXEC CICS RETURN</code>.</li>
+</ul>
+</li>
+<li>If both operations succeed, the program falls through to the final <code>RETURN</code>.</li>
+</ul>
+</li>
+<li>External interactions:
+<ul>
+<li>VSAM KSDS file <code>KSDSCUST</code>, through CICS file control (READ for update, then REWRITE).</li>
+<li>The COMMAREA, which is addressed through the based structure <code>COMM_AREA</code>. It carries the request fields and returns the status in <code>CA_RETURN_CODE</code>.</li>
+<li>CICS ABEND processing on failure.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>WRITE_ERROR_MESSAGE</strong></p>
+<ul>
+<li>Purpose: Internal procedure, called when a VSAM READ or REWRITE fails. It builds a timestamped error message and sends it to the logging program <code>LGSTSQ</code>. The program name suggests a TS/TD queue logger.</li>
+<li>Operations:
+<ul>
+<li><code>EXEC CICS ASKTIME</code> gets the current absolute time into <code>WS_ABSTIME</code>.</li>
+<li><code>EXEC CICS FORMATTIME</code> converts it to a date (<code>MMDDYYYY</code> format) in <code>WS_DATE</code> and a time in <code>WS_TIME</code>.</li>
+<li>Fills the <code>ERROR_MSG</code> structure:
+<ul>
+<li><code>EM_DATE</code> from <code>WS_DATE</code>.</li>
+<li><code>EM_TIME</code> from <code>WS_TIME</code>.</li>
+<li><code>EM_CUSNUM</code> from <code>CA_Customer_Num</code>.</li>
+<li><code>EM_RESPRC</code> from <code>WS_RESP</code>.</li>
+<li><code>EM_RESP2RC</code> from <code>WS_RESP2</code>.</li>
+</ul>
+</li>
+<li><code>EXEC CICS LINK PROGRAM('LGSTSQ')</code> sends <code>ERROR_MSG</code>, with its length given by <code>STG(ERROR_MSG)</code>.</li>
+<li>If a COMMAREA was passed, it copies the leading part of <code>COMM_AREA_RAW</code> into <code>CA_Data</code>, then makes a second <code>LINK</code> to <code>LGSTSQ</code> with <code>CA_ERROR_MSG</code>. This message has the <code>COMMAREA=</code> prefix.</li>
+</ul>
+</li>
+<li>Control flow:
+<ul>
+<li>The COMMAREA dump happens only if <code>EIBCALEN &gt; 0</code>.</li>
+<li>If <code>EIBCALEN &lt; 91</code>, it copies <code>EIBCALEN</code> bytes, left-justified, into <code>CA_Data</code>.</li>
+<li>Otherwise it copies the first 90 bytes.</li>
+<li>Both branches make the same <code>LINK</code> call.</li>
+<li>The procedure ends with <code>RETURN</code>, which goes back to the caller.</li>
+</ul>
+</li>
+<li>External interactions:
+<ul>
+<li>CICS time services (<code>ASKTIME</code> and <code>FORMATTIME</code>).</li>
+<li>Up to two <code>LINK</code> calls to program <code>LGSTSQ</code> for error logging, which pass <code>ERROR_MSG</code> and, when a COMMAREA exists, <code>CA_ERROR_MSG</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dependencies" tabindex="-1">6. Dependencies</h2>
+<ul>
+<li>
+<p><strong>Data stores and files</strong></p>
+<ul>
+<li>VSAM KSDS file <code>KSDSCUST</code>
+<ul>
+<li>It holds the customer records and is defined in CICS as a file resource.</li>
+<li>The program reads a record with <code>EXEC CICS READ FILE('KSDSCUST') ... UPDATE</code>. The key is <code>CA_CUSTOMER_NUM</code> (RIDFLD, KEYLENGTH 10). The record goes into <code>WS_Customer_Area</code>, a 1024-byte buffer.</li>
+<li>The program updates the record with <code>EXEC CICS REWRITE FILE('KSDSCUST')</code>. The source field is <code>CA_Customer_Num</code>, and the length is <code>WS_Commarea_LenF</code>, which is set from <code>EIBCALEN</code>.</li>
+<li>The READ-for-update takes a record lock that the REWRITE then uses. The file must therefore be defined in CICS as updatable.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Called programs and queues</strong></p>
+<ul>
+<li>CICS program <code>LGSTSQ</code>
+<ul>
+<li>It is called with <code>EXEC CICS LINK</code> from the <code>WRITE_ERROR_MESSAGE</code> procedure and handles the error logging.</li>
+<li>The first call passes the <code>ERROR_MSG</code> structure as the COMMAREA. The structure holds the date, time, program name, customer number, and RESP and RESP2 codes.</li>
+<li>If <code>EIBCALEN</code> is greater than 0, the program makes a second call. It passes the <code>CA_ERROR_MSG</code> structure, which contains up to 90 bytes of the caller’s COMMAREA content, copied from <code>COMM_AREA_RAW</code>.</li>
+<li>It is called either once or twice.</li>
+</ul>
+</li>
+<li>The caller of <code>LGUCVS01</code>
+<ul>
+<li>A calling program or transaction passes the COMMAREA through the <code>COMM_AREA_PTR</code> parameter.</li>
+<li>The caller must supply a COMMAREA that contains the customer number and the customer data to rewrite.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Input parameters and data sources</strong></p>
+<ul>
+<li>COMMAREA (<code>COMM_AREA</code>, based on <code>COMM_AREA_PTR</code>)
+<ul>
+<li>This is the main interface with the caller. It is a union with a raw 32500-byte view in <code>COMM_AREA_RAW</code>.</li>
+<li>Fields the program uses:
+<ul>
+<li><code>CA_CUSTOMER_NUM</code> is the record key for the READ and the source of the REWRITE.</li>
+<li><code>CA_RETURN_CODE</code> is the status returned to the caller. It is set to ‘81’ if the READ fails and ‘82’ if the REWRITE fails.</li>
+</ul>
+</li>
+<li>Fields declared in the layout that carry customer or policy data:
+<ul>
+<li><code>CA_REQUEST_ID</code></li>
+<li>Customer request fields: <code>CA_FIRST_NAME</code>, <code>CA_LAST_NAME</code>, <code>CA_DOB</code>, <code>CA_POSTCODE</code>, <code>CA_NUM_POLICIES</code>, <code>CA_EMAIL_ADDRESS</code></li>
+<li>Policy request fields: <code>CA_POLICY_NUM</code>, <code>CA_PAYMENT</code>, <code>CA_BROKERID</code>, <code>CA_ISSUE_DATE</code>, <code>CA_EXPIRY_DATE</code></li>
+</ul>
+</li>
+<li>The layout has further customer, policy-specific (endowment, house, motor, commercial, claim) and customer-security fields. The program does not reference them directly.</li>
+</ul>
+</li>
+<li>CICS Execute Interface Block (EIB)
+<ul>
+<li><code>EIBCALEN</code> gives the COMMAREA length. The program uses it for the record length and to decide how much COMMAREA data to log.</li>
+<li><code>EIBRESP2</code> supplies the secondary response code for error reporting.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Copybooks and includes</strong></p>
+<ul>
+<li><code>LGCMAREA</code> (<code>plinc/LGCMAREA.inc</code>)
+<ul>
+<li>It defines the COMMAREA layout (<code>COMM_AREA</code>, <code>COMM_AREA_PTR</code>, and all <code>CA_*</code> fields).</li>
+<li>It is used by all functions that share this layout.</li>
+<li>It is shown as a commented <code>%INCLUDE</code>, and its content is expanded in the source.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CICS runtime services</strong></p>
+<ul>
+<li>CICS file control (<code>READ UPDATE</code>, <code>REWRITE</code>) for access to <code>KSDSCUST</code>.</li>
+<li>CICS time services
+<ul>
+<li><code>ASKTIME</code> gets the current absolute time into <code>WS_ABSTIME</code>.</li>
+<li><code>FORMATTIME</code> formats it into <code>WS_DATE</code> (MMDDYYYY) and <code>WS_TIME</code> for the error message timestamp.</li>
+</ul>
+</li>
+<li>CICS program control
+<ul>
+<li><code>LINK</code> calls <code>LGSTSQ</code>.</li>
+<li><code>ABEND</code> ends the task with abend codes <code>LGV1</code> (READ failure) and <code>LGV2</code> (REWRITE failure), both with NODUMP.</li>
+<li><code>RETURN</code> ends the task.</li>
+</ul>
+</li>
+<li><code>DFHRESP(NORMAL)</code> is used to test response codes from the file commands.</li>
+</ul>
+</li>
+<li>
+<p><strong>Configuration and environment</strong></p>
+<ul>
+<li>CICS resource definitions
+<ul>
+<li>The <code>KSDSCUST</code> file definition and the <code>LGSTSQ</code> program definition must exist in the CICS region.</li>
+</ul>
+</li>
+<li>Compile and build environment
+<ul>
+<li>The program needs the PL/I compiler with the CICS translator and access to the <code>plinc</code> include library.</li>
+<li>The generated build files under <code>.bobz</code>/<code>bobz</code>, the application configuration (<code>application-conf</code>) and <code>zapp.yaml</code> support the build and are not read at run time.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Local working data and constants</strong></p>
+<ul>
+<li>Error message structures
+<ul>
+<li><code>ERROR_MSG</code> and <code>CA_ERROR_MSG</code> are built at run time and sent to <code>LGSTSQ</code>.</li>
+<li><code>ERROR_MSG</code> includes the literal program identifier <code> LGUCVS01</code>. The <code>Eyecatcher</code> field also holds a program identifier.</li>
+</ul>
+</li>
+<li>Working fields
+<ul>
+<li>Response and length fields: <code>WS_RESP</code>, <code>WS_RESP2</code>, <code>WS_Comm_Len</code>, <code>WS_Commarea_Len</code>, <code>WS_Commarea_LenF</code></li>
+<li><code>WS_Customer_Area</code>, the 1024-byte buffer that receives the record</li>
+<li>Date and time fields: <code>WS_ABSTIME</code>, <code>WS_DATE</code>, <code>WS_TIME</code></li>
+<li>Declared but not used in the logic: <code>WS_STARTCODE</code> and <code>WS_SYSID</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-constraints" tabindex="-1">7. Constraints</h2>
+<ul>
+<li>
+<p><strong>Data Format and Structure Constraints</strong></p>
+<ul>
+<li>The caller’s COMMAREA must match the layout of the <code>COMM_AREA</code> structure, which is based on <code>COMM_AREA_PTR</code>.
+<ul>
+<li><code>CA_REQUEST_ID</code> is a 6-character field.</li>
+<li><code>CA_RETURN_CODE</code> is <code>PIC '99'</code>, so it holds 2 digits.</li>
+<li><code>CA_CUSTOMER_NUM</code> is <code>PIC '9999999999'</code>, so it holds 10 digits.</li>
+<li><code>CA_NUM_POLICIES</code> is <code>PIC '999'</code>, so it holds 3 digits.</li>
+<li><code>CA_POLICY_NUM</code> and <code>CA_BROKERID</code> are each <code>PIC '9999999999'</code>, so each holds 10 digits.</li>
+<li><code>CA_PAYMENT</code> is <code>PIC '999999'</code>, so it holds 6 digits.</li>
+</ul>
+</li>
+<li>The customer fields have fixed widths:
+<ul>
+<li><code>CA_FIRST_NAME</code> is 10 characters.</li>
+<li><code>CA_LAST_NAME</code> is 20 characters.</li>
+<li><code>CA_DOB</code> is 10 characters.</li>
+<li><code>CA_POSTCODE</code> is 8 characters.</li>
+<li><code>CA_EMAIL_ADDRESS</code> is 100 characters.</li>
+</ul>
+</li>
+<li><code>CA_ISSUE_DATE</code> and <code>CA_EXPIRY_DATE</code> are each 10 characters.</li>
+<li>The request-specific area is a <code>UNION</code> of the customer, security, and policy views. All three views overlay the same 32482-byte region.</li>
+<li>The whole COMMAREA is declared as 32500 bytes (<code>COMM_AREA_RAW</code>). This is the maximum size the structure can describe.</li>
+<li>The program does not check that the numeric fields hold valid digits. It does not check required fields, date formats, or value ranges. It assumes the caller supplies valid content.</li>
+<li><code>WS_Customer_Area</code> is a 1024-byte buffer. It limits the size of the VSAM record that the <code>READ</code> can return.</li>
+<li><code>WS_Commarea_Len</code> and <code>WS_Commarea_LenF</code> are <code>FIXED BIN(15)</code>, with a maximum of 32767. They can hold the 32500-byte COMMAREA length.</li>
+</ul>
+</li>
+<li>
+<p><strong>Key and Record Access Constraints</strong></p>
+<ul>
+<li>The record is located only through <code>CA_Customer_Num</code>, used as <code>RIDFLD</code> with <code>KeyLength(10)</code>. The key must be a 10-byte value that matches an existing record in the KSDS file <code>KSDSCUST</code>.</li>
+<li>If the key does not match a record, the <code>READ</code> returns a non-NORMAL response. The program treats this as a failure.</li>
+<li>The record is read with the <code>UPDATE</code> option. A successful read gives the task a lock on the record, and the rewrite must follow. The program does nothing else to the record between the two commands.</li>
+<li>The file name is fixed as <code>KSDSCUST</code>. The program cannot update any other file.</li>
+</ul>
+</li>
+<li>
+<p><strong>Sequencing Constraints</strong></p>
+<ul>
+<li>Processing follows a fixed order:
+<ul>
+<li>Read the record for update.</li>
+<li>Rewrite the record.</li>
+<li>Return.</li>
+</ul>
+</li>
+<li>The <code>REWRITE</code> is reached only if the <code>READ UPDATE</code> returned <code>DFHRESP(NORMAL)</code>. A failed read ends the task before the rewrite.</li>
+<li>The <code>REWRITE</code> has no <code>FROM</code> data other than <code>CA_Customer_Num</code>, and it must follow the <code>READ UPDATE</code> on the same file. This ordering is the CICS requirement for a rewrite.</li>
+<li>Error logging runs before the abend: <code>WRITE_ERROR_MESSAGE</code> is called, then <code>ABEND</code>.</li>
+<li>Inside <code>WRITE_ERROR_MESSAGE</code>, the order is <code>ASKTIME</code>, then <code>FORMATTIME</code>, then building the message, then the <code>LINK</code>. Time and date must be obtained before the message is built.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error Handling and Return Code Constraints</strong></p>
+<ul>
+<li>Each CICS file command must complete with <code>DFHRESP(NORMAL)</code>. The program checks <code>RESP</code> after both the <code>READ</code> and the <code>REWRITE</code>.</li>
+<li>If the <code>READ UPDATE</code> fails:
+<ul>
+<li><code>CA_RETURN_CODE</code> is set to <code>'81'</code>.</li>
+<li><code>WS_RESP2</code> is taken from <code>EIBRESP2</code>.</li>
+<li>An error message is written.</li>
+<li>The task abends with code <code>LGV1</code> (<code>NODUMP</code>).</li>
+</ul>
+</li>
+<li>If the <code>REWRITE</code> fails:
+<ul>
+<li><code>CA_RETURN_CODE</code> is set to <code>'82'</code>.</li>
+<li><code>WS_RESP2</code> is taken from <code>EIBRESP2</code>.</li>
+<li>An error message is written.</li>
+<li>The task abends with code <code>LGV2</code> (<code>NODUMP</code>).</li>
+</ul>
+</li>
+<li>Every error is fatal. There is no retry and no recovery path.</li>
+<li>Any failure ends the task with an abend, and no dump is taken because of <code>NODUMP</code>.</li>
+<li>The <code>RETURN</code> after each <code>ABEND</code> is not reachable in practice.</li>
+<li>On success, the program returns normally and leaves <code>CA_RETURN_CODE</code> unchanged. It does not set a success value.</li>
+</ul>
+</li>
+<li>
+<p><strong>Error Message Logging Constraints</strong></p>
+<ul>
+<li>The error message is written by linking to program <code>LGSTSQ</code>. That program must be available to the task.</li>
+<li>The first message is the <code>ERROR_MSG</code> structure.
+<ul>
+<li>The date is taken from <code>FORMATTIME ... MMDDYYYY</code>. It fits <code>EM_DATE</code>, which is 10 characters.</li>
+<li>The time fits <code>EM_TIME</code>, which is 8 characters.</li>
+<li><code>EM_CUSNUM</code> is 10 characters.</li>
+<li><code>EM_RESPRC</code> and <code>EM_RESP2RC</code> use the picture <code>+(5)9</code>. They show the RESP and RESP2 values with a sign and up to 6 characters.</li>
+<li>The message text area is limited to 63 characters.</li>
+</ul>
+</li>
+<li>The <code>LINK</code> length is the storage size of the structure, <code>STG(ERROR_MSG)</code>.</li>
+<li>A second message, <code>CA_ERROR_MSG</code>, carries a copy of the COMMAREA. It is sent only when <code>EIBCALEN &gt; 0</code>.
+<ul>
+<li>If <code>EIBCALEN &lt; 91</code>, the message holds the first <code>EIBCALEN</code> bytes of the COMMAREA.</li>
+<li>Otherwise it holds at most the first 90 bytes. This is the size of <code>CA_Data</code>, so the logged COMMAREA content is truncated to 90 bytes.</li>
+</ul>
+</li>
+<li>If the program is called without a COMMAREA (<code>EIBCALEN = 0</code>), the COMMAREA copy is not written. The <code>COMM_AREA</code> fields are still referenced earlier in the program. The code has no check that rejects a missing COMMAREA.</li>
+</ul>
+</li>
+<li>
+<p><strong>Resource and Size Limits</strong></p>
+<ul>
+<li>The record buffer is 1024 bytes.</li>
+<li>The COMMAREA is up to 32500 bytes, and the logged copy is up to 90 bytes.</li>
+<li>The <code>READ</code> uses <code>WS_Commarea_Len</code> as <code>LENGTH</code>, and this value is initialised from <code>EIBCALEN</code>. The length of the COMMAREA therefore affects how much of the record the <code>READ</code> can return, and a record longer than that length causes a <code>LENGTH</code> error response, which the program treats as an error.</li>
+<li>The <code>REWRITE</code> uses <code>WS_Commarea_LenF</code>, which is also set from <code>EIBCALEN</code>. The rewritten record length is therefore the same as the COMMAREA length that the caller passed.</li>
+<li>The key length is fixed at 10 bytes.</li>
+</ul>
+</li>
+<li>
+<p><strong>Environment and Execution Constraints</strong></p>
+<ul>
+<li>The program must run in a CICS region. The file <code>KSDSCUST</code> must be defined and open, and it must allow update access.</li>
+<li>The program is a main procedure (<code>Options(Main)</code>) that receives the COMMAREA pointer as a parameter.</li>
+<li>The <code>EIB</code> fields <code>EIBCALEN</code> and <code>EIBRESP2</code> are used and must be available.</li>
+<li>The abend codes <code>LGV1</code> and <code>LGV2</code> identify the failing operation for the caller or an operator.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-error-handling" tabindex="-1">8. Error Handling</h2>
+<p><strong>CICS response checking on file operations</strong></p>
+<ul>
+<li>Read-for-update of KSDSCUST
+<ul>
+<li>The program captures the CICS response in a RESP field and compares it to the NORMAL response value.</li>
+<li>Any non-normal response sends the program into its error path. The program does not distinguish between causes such as record not found, I/O error, or a locked record. All of them are handled the same way.</li>
+<li>On failure, the secondary response code (EIBRESP2) is copied to a working field so it can be logged.</li>
+<li>The return code in the COMMAREA is set to ‘81’. This tells the caller the read-for-update failed.</li>
+</ul>
+</li>
+<li>Rewrite of KSDSCUST
+<ul>
+<li>The rewrite uses the same RESP capture and NORMAL comparison.</li>
+<li>On failure, EIBRESP2 is captured and the COMMAREA return code is set to ‘82’. This tells the caller the rewrite failed.</li>
+<li>The rewrite is only reached if the read-for-update succeeded.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Return code signalling to the caller</strong></p>
+<ul>
+<li>The COMMAREA return code field identifies where the failure occurred. ‘81’ means the read failed and ‘82’ means the rewrite failed.</li>
+<li>The program never sets a success value in the return code. On success it only executes a plain RETURN.</li>
+<li>The return code is set before the abend, so it is only useful to a caller that can see the COMMAREA after the abend, for example through transaction backout or diagnostic logging.</li>
+</ul>
+<p><strong>Error logging and notification</strong></p>
+<ul>
+<li>A dedicated internal procedure, called from both failure paths, builds and writes the error messages.
+<ul>
+<li>It gets the current time with ASKTIME and formats it into date and time strings with FORMATTIME.</li>
+<li>It fills a structured error message with the date, time, program identifier, customer number, and the RESP and RESP2 values. The message text includes the literal text “Re-write KSDSCUST”.</li>
+<li>That literal also appears in the message for a failed read, so the text can mislead.</li>
+<li>It sends the message to the shared logging program LGSTSQ with a CICS LINK, passing the message as the COMMAREA.</li>
+</ul>
+</li>
+<li>A second diagnostic record carries the COMMAREA contents.
+<ul>
+<li>It is only written if the incoming COMMAREA length is greater than zero.</li>
+<li>If the length is under 91 bytes, it copies the whole COMMAREA, left-justified, into a 90-byte data area. If the length is 91 or more, it truncates the copy to the first 90 bytes.</li>
+<li>It sends this record to LGSTSQ with a second LINK.</li>
+<li>The length check protects against a missing or short COMMAREA. It prevents the program from logging data that is not there.</li>
+</ul>
+</li>
+<li>The program does not check the RESP of the LINK calls to LGSTSQ. If logging fails, the program does not detect it.</li>
+</ul>
+<p><strong>Program termination and abend handling</strong></p>
+<ul>
+<li>Both failure paths follow the logging step with a CICS ABEND using NODUMP.
+<ul>
+<li>Abend code ‘LGV1’ marks a read-for-update failure.</li>
+<li>Abend code ‘LGV2’ marks a rewrite failure.</li>
+<li>NODUMP suppresses the storage dump, which reduces overhead and noise.</li>
+</ul>
+</li>
+<li>Each abend is followed by a CICS RETURN statement. It is unreachable in practice because the ABEND ends the task. It would only matter if the abend were suppressed or handled by an abend exit.</li>
+<li>The abend also lets CICS back out uncommitted changes. This keeps the file consistent if the read succeeded but the rewrite failed.</li>
+</ul>
+<p><strong>Items not present</strong></p>
+<ul>
+<li>There are no retries or fallback logic. A failed read or rewrite does not trigger alternate paths, default values, or further attempts.</li>
+<li>There are no PL/I ON-unit exception handlers, such as ON ERROR or ON CONDITION. All error handling uses explicit CICS response checking.</li>
+<li>The program does not validate input values such as the customer number or the COMMAREA contents. It does not check the COMMAREA length for the file operations, other than in the logging routine.</li>
+<li>The program has no explicit HANDLE CONDITION or HANDLE ABEND logic. It never recovers from the abends it issues itself.</li>
+</ul>
+<h2 id="9-examples" tabindex="-1">9. Examples</h2>
+<h3 id="91-example-1--successful-customer-update" tabindex="-1">9.1 Example 1 — Successful Customer Update</h3>
+<p><strong>Input (COMMAREA fields):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_REQUEST_ID</code></td>
+<td><code>'01UCUS'</code></td>
+</tr>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td><code>'00'</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>0000012345</code></td>
+</tr>
+<tr>
+<td><code>CA_FIRST_NAME</code></td>
+<td><code>'Jane      '</code></td>
+</tr>
+<tr>
+<td><code>CA_LAST_NAME</code></td>
+<td><code>'Smith               '</code></td>
+</tr>
+<tr>
+<td><code>CA_DOB</code></td>
+<td><code>'1985-04-22'</code></td>
+</tr>
+<tr>
+<td><code>CA_POSTCODE</code></td>
+<td><code>'SW1A 2AA'</code></td>
+</tr>
+<tr>
+<td><code>CA_NUM_POLICIES</code></td>
+<td><code>003</code></td>
+</tr>
+<tr>
+<td><code>CA_EMAIL_ADDRESS</code></td>
+<td><code>'jane.smith@example.com'</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code> remains <code>'00'</code>.</li>
+<li>The VSAM KSDS file <code>KSDSCUST</code> is updated: the existing record for customer <code>0000012345</code> is replaced with the data supplied in the COMMAREA (from <code>CA_CUSTOMER_NUM</code> onward).</li>
+<li>CICS RETURN is issued; control passes back to the calling orchestrator.</li>
+</ul>
+<p><strong>How the logic works:</strong></p>
+<ol>
+<li><code>EXEC CICS READ … UPDATE</code> locks the <code>KSDSCUST</code> record keyed on <code>CA_CUSTOMER_NUM</code> (<code>0000012345</code>). The record is read into <code>WS_CUSTOMER_AREA</code> solely to acquire the CICS update lock; its contents are not used.</li>
+<li>Because <code>WS_RESP = DFHRESP(NORMAL)</code>, the error branch is skipped.</li>
+<li><code>EXEC CICS REWRITE</code> writes the entire COMMAREA block starting at <code>CA_CUSTOMER_NUM</code> back to the file, effectively replacing the record with the new field values (name, DOB, postcode, policies, e-mail, etc.).</li>
+<li>Again <code>WS_RESP = DFHRESP(NORMAL)</code>, so no error path is taken and the program returns normally.</li>
+</ol>
+<hr>
+<h3 id="92-example-2--vsam-read-for-update-fails-customer-not-found--file-unavailable" tabindex="-1">9.2 Example 2 — VSAM Read-for-Update Fails (customer not found / file unavailable)</h3>
+<p><strong>Input (COMMAREA fields):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CA_REQUEST_ID</code></td>
+<td><code>'01UCUS'</code></td>
+</tr>
+<tr>
+<td><code>CA_RETURN_CODE</code></td>
+<td><code>'00'</code></td>
+</tr>
+<tr>
+<td><code>CA_CUSTOMER_NUM</code></td>
+<td><code>9999999999</code> <em>(does not exist in KSDSCUST)</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expected output:</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code> is set to <code>'81'</code>.</li>
+<li>An error message is written to the CICS temporary-storage queue via <code>LGSTSQ</code>, containing the timestamp, program name <code>LGUCVS01</code>, the customer number <code>9999999999</code>, and the CICS RESP/RESP2 codes.</li>
+<li>CICS abend <code>LGV1</code> (NODUMP) is issued, then <code>EXEC CICS RETURN</code>.</li>
+</ul>
+<p><strong>How the logic works:</strong></p>
+<ol>
+<li><code>EXEC CICS READ … UPDATE</code> targets key <code>9999999999</code>. Because the record does not exist (or the file is unavailable), CICS returns a non-normal RESP code.</li>
+<li>The condition <code>WS_RESP &lt;&gt; DFHRESP(NORMAL)</code> is true; <code>WS_RESP2</code> is captured from <code>EIBRESP2</code>.</li>
+<li><code>CA_RETURN_CODE</code> is set to <code>'81'</code> and <code>WRITE_ERROR_MESSAGE</code> is called. That procedure gets the current timestamp via <code>ASKTIME</code>/<code>FORMATTIME</code>, formats an error message with the customer number and response codes, and links to <code>LGSTSQ</code> to write it to the TS queue. If the COMMAREA is 90 bytes or fewer, it is also logged in full.</li>
+<li>The program abends with code <code>LGV1</code> (no dump) and returns, signalling the failure to the caller via <code>CA_RETURN_CODE = '81'</code>.</li>
+</ol>
+<hr>
+<h3 id="93-example-3--vsam-rewrite-fails" tabindex="-1">9.3 Example 3 — VSAM Rewrite Fails</h3>
+<p><strong>Input (COMMAREA fields):</strong></p>
+<p>Same as Example 1 (<code>CA_CUSTOMER_NUM = 0000012345</code>), but the VSAM file is in read-only mode or a resource conflict prevents the rewrite.</p>
+<p><strong>Expected output:</strong></p>
+<ul>
+<li><code>CA_RETURN_CODE</code> is set to <code>'82'</code>.</li>
+<li>An error message (timestamp, program name, customer number, RESP/RESP2) is written to the TS queue via <code>LGSTSQ</code>.</li>
+<li>CICS abend <code>LGV2</code> (NODUMP) is issued, then <code>EXEC CICS RETURN</code>.</li>
+</ul>
+<p><strong>How the logic works:</strong></p>
+<ol>
+<li>The initial <code>EXEC CICS READ … UPDATE</code> succeeds (RESP = NORMAL), so the record lock is held.</li>
+<li><code>EXEC CICS REWRITE</code> fails (non-normal RESP), perhaps due to a file-control conflict or I/O error.</li>
+<li><code>CA_RETURN_CODE</code> is set to <code>'82'</code>, <code>WRITE_ERROR_MESSAGE</code> logs the error, and the program terminates with abend code <code>LGV2</code>. This distinct code (<code>'82'</code> vs. <code>'81'</code>) lets the calling orchestrator distinguish a rewrite failure from a read failure.</li>
+</ol>
+
+                    </article>
+                    <nav class="toc-panel" aria-label="On this page">
+  <span class="toc-panel-label">On this page</span>
+  <ul class="toc-list">
+<li class="toc-level-2"><a href="#1-purpose">1. Purpose</a></li>
+<li class="toc-level-2"><a href="#2-inputs">2. Inputs</a></li>
+<li class="toc-level-2"><a href="#3-outputs">3. Outputs</a></li>
+<li class="toc-level-2"><a href="#4-processing-logic">4. Processing Logic</a></li>
+<li class="toc-level-2"><a href="#5-paragraphs">5. Paragraphs</a></li>
+<li class="toc-level-2"><a href="#6-dependencies">6. Dependencies</a></li>
+<li class="toc-level-2"><a href="#7-constraints">7. Constraints</a></li>
+<li class="toc-level-2"><a href="#8-error-handling">8. Error Handling</a></li>
+<li class="toc-level-2"><a href="#9-examples">9. Examples</a>
+<ul>
+<li class="toc-level-3"><a href="#91-example-1--successful-customer-update">9.1 Example 1 — Successful Customer Update</a></li>
+<li class="toc-level-3"><a href="#92-example-2--vsam-read-for-update-fails-customer-not-found--file-unavailable">9.2 Example 2 — VSAM Read-for-Update Fails (customer not found / file unavailable)</a></li>
+<li class="toc-level-3"><a href="#93-example-3--vsam-rewrite-fails">9.3 Example 3 — VSAM Rewrite Fails</a></li>
+</ul>
+</li>
+</ul>
+
+</nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="wiki-footer">Made by IBM Bob Premium Package for Z</footer>
+    <script>
+    /* toc-spy.js — highlights the active heading in the TOC panel on scroll */
+    (function () {
+      function init() {
+        var panel = document.querySelector('.toc-panel');
+        if (!panel) return;
+        var links = Array.prototype.slice.call(panel.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        var headingIds = links.map(function (a) { return a.getAttribute('href').slice(1); });
+        var headings = headingIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+
+        function clearActive() {
+          panel.querySelectorAll('.toc-active').forEach(function (el) { el.classList.remove('toc-active'); });
+          panel.querySelectorAll('.toc-parent-active').forEach(function (el) { el.classList.remove('toc-parent-active'); });
+        }
+
+        function setActive(id) {
+          clearActive();
+          var link = panel.querySelector('a[href="#' + id + '"]');
+          if (!link) return;
+          link.classList.add('toc-active');
+          var li = link.closest('li');
+          if (li) {
+            var parentLi = li.parentElement && li.parentElement.closest('li');
+            if (parentLi) parentLi.classList.add('toc-parent-active');
+          }
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function (h) { observer.observe(h); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script>
+    /* breadcrumb.js — reads sessionStorage['wiki_referrer'] and renders breadcrumb.
+       Only fires when the referrer was set by clicking a link inside the Source Files
+       disclosure on a wiki page; clears after rendering so stale state never lingers. */
+    (function () {
+      var raw;
+      try { raw = sessionStorage.getItem('wiki_referrer'); } catch (_e) {}
+      if (!raw) return;
+      /* Consume immediately — prevents the breadcrumb re-appearing on the next visit. */
+      try { sessionStorage.removeItem('wiki_referrer'); } catch (_e) {}
+      var ref;
+      try { ref = JSON.parse(raw); } catch (_e) { return; }
+      if (!ref || !ref.href) return;
+      var bc = document.getElementById('wiki-breadcrumb');
+      if (!bc) return;
+      bc.className = 'wiki-breadcrumb';
+      bc.innerHTML =
+        '<a href="' + ref.href + '">' + (ref.title || 'Back') + '</a>' +
+        '<span class="wiki-breadcrumb-sep"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="wiki-breadcrumb-current">LGUCVS01</span>';
+    })();
+    </script>
+    <script>
+    /* sidebar toggle — same as main wiki pages */
+    (function () {
+
+      var STORAGE_KEY = 'sb_open';
+
+      function getOpenSet() {
+        try {
+          var raw = sessionStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+
+      function saveOpenSet(set) {
+        try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(set)); } catch (e) {}
+      }
+
+      function findItems(toggle) {
+        var node = toggle.nextSibling;
+        while (node) {
+          if (node.nodeType === 1 && node.classList.contains('nav-section-items'))
+            return node;
+          node = node.nextSibling;
+        }
+        return null;
+      }
+
+      function toggleKey(toggle, index) {
+        var label = (toggle.querySelector('.nav-toggle-text') || toggle).textContent.trim().replace(/\s+/g, ' ');
+        return index + ':' + label;
+      }
+
+      function openSection(toggle, items, key, set) {
+        toggle.classList.add('open');
+        items.classList.add('open');
+        if (set) set[key] = true;
+      }
+
+      function closeSection(toggle, items, key, set) {
+        toggle.classList.remove('open');
+        items.classList.remove('open');
+        if (set) set[key] = false;
+      }
+
+      function init() {
+        var sidebar = document.getElementById('wiki-sidebar');
+        var toggles = Array.prototype.slice.call(
+          document.querySelectorAll('.nav-section-toggle')
+        );
+
+        var savedSet = getOpenSet();
+        var openSet = savedSet || {};
+
+        toggles.forEach(function (toggle, idx) {
+          var items = findItems(toggle);
+          if (!items) return;
+
+          var key = toggleKey(toggle, idx);
+          var shouldOpen = openSet[key] === true;
+
+          if (shouldOpen) {
+            toggle.classList.add('open');
+            items.classList.add('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var nowOpen = toggle.classList.contains('open');
+            if (nowOpen) {
+              closeSection(toggle, items, key, openSet);
+            } else {
+              openSection(toggle, items, key, openSet);
+            }
+            saveOpenSet(openSet);
+          });
+        });
+
+        saveOpenSet(openSet);
+
+        /* Restore sidebar scroll position after sections are expanded so the
+           scroll height is correct when we apply scrollTop. */
+        if (sidebar) {
+          try {
+            var savedScroll = sessionStorage.getItem('sb_scroll');
+            if (savedScroll !== null) { sidebar.scrollTop = parseInt(savedScroll, 10) || 0; }
+          } catch (_e) {}
+        }
+
+        window.addEventListener('pagehide', function () {
+          saveOpenSet(openSet);
+          if (sidebar) {
+            try { sessionStorage.setItem('sb_scroll', String(sidebar.scrollTop)); } catch (_e) {}
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+    </script>
+</body>
+</html>
